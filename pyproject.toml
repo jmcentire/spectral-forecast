@@ -1,16 +1,16 @@
 [project]
 name = "spectral-forecast"
-version = "0.1.0"
-description = "Three-layer analytical time series forecasting: Fourier extraction, trend fitting, shock adjustment"
+version = "0.4.0"
+description = "Adaptive multi-basis time series forecasting: Fourier + wavelet decomposition with entropy-guided basis selection"
 requires-python = ">=3.11"
 dependencies = [
     "numpy>=1.24",
     "scipy>=1.11",
+    "PyWavelets>=1.4",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
-benchmark = []
 
 [project.scripts]
 spectral-forecast = "spectral_forecast.cli:main"

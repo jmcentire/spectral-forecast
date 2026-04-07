@@ -20,6 +20,7 @@ from spectral_forecast.extraction import (
 from spectral_forecast.local import LocalModel, LocalResult, fit_local, forecast_local
 from spectral_forecast.shock import ShockComponent, ShockResult, detect_shocks
 from spectral_forecast.trend import TrendModel, TrendResult, fit_trend
+from spectral_forecast.wavelet import WaveletModel, WaveletResult, fit_wavelet, forecast_wavelet
 
 
 @dataclass
@@ -33,6 +34,9 @@ class ForecastResult:
     trend: TrendModel
     shocks: list[ShockComponent]
     local: LocalModel
+    wavelet: WaveletModel | None  # None if AR path was used
+    residual_mode: str  # "ar" or "wavelet" — which decomposition was chosen
+    residual_ac1: float  # diagnostic: lag-1 autocorrelation that drove the choice
     noise_std: float
     residual_quantiles: tuple[float, float]  # (lower_q, upper_q) of residual
 
@@ -54,7 +58,10 @@ class ForecastResult:
                 f"    [{i}] {s.shape.value} at t={s.onset_idx} "
                 f"mag={s.magnitude:.4f} decay={s.decay_rate:.4f}"
             )
+        lines.append(f"  Residual mode: {self.residual_mode} (AC1={self.residual_ac1:.3f})")
         lines.append(f"  Local: {self.local.describe()}")
+        if self.wavelet is not None:
+            lines.append(f"  Wavelet: {self.wavelet.describe()}")
         lines.append(f"  Noise std: {self.noise_std:.6f}")
         lines.append(
             f"  Error bounds: [{self.residual_quantiles[0]:.4f}, "
@@ -111,6 +118,9 @@ class SpectralForecaster:
         self._trend: TrendResult | None = None
         self._shocks: ShockResult | None = None
         self._local: LocalResult | None = None
+        self._wavelet: WaveletResult | None = None
+        self._residual_ac1: float = 0.0
+        self._residual_mode: str = "ar"
         self._n_train: int = 0
         self._residual: NDArray[np.floating] | None = None
         self._detrend_slope: float = 0.0
@@ -189,13 +199,35 @@ class SpectralForecaster:
             shock_vals += shock.evaluate(t)
         residual_after_shocks = signal - predicted - shock_vals
 
-        # Layer 3b: Local correction — AR model on recent residuals.
-        # This captures momentum, mean-reversion, and local autocorrelation
-        # that the Fourier + trend model misses.
-        self._local = fit_local(residual_after_shocks)
+        # Measure residual autocorrelation — this determines the decomposition path
+        r = residual_after_shocks
+        if len(r) > 1 and np.std(r) > 1e-10:
+            self._residual_ac1 = float(np.corrcoef(r[:-1], r[1:])[0, 1])
+        else:
+            self._residual_ac1 = 0.0
 
-        # Final residual after all layers including local correction
-        self._residual = residual_after_shocks - self._local.fitted_values
+        # Layer 3b: Adaptive residual decomposition.
+        # AR model always runs (it's cheap and captures short-term momentum).
+        # If residual has high autocorrelation (AC1 >= 0.1), the Fourier basis
+        # left predictable structure — add wavelet decomposition to capture
+        # localized time-frequency features the periodic model missed.
+        self._local = fit_local(residual_after_shocks)
+        local_residual = residual_after_shocks - self._local.fitted_values
+
+        ac1_threshold = 0.1
+        if abs(self._residual_ac1) >= ac1_threshold:
+            try:
+                self._wavelet = fit_wavelet(local_residual)
+                self._residual = self._wavelet.residual
+                self._residual_mode = "wavelet+ar"
+            except (ImportError, ValueError):
+                self._wavelet = None
+                self._residual = local_residual
+                self._residual_mode = "ar"
+        else:
+            self._wavelet = None
+            self._residual = local_residual
+            self._residual_mode = "ar"
 
     def forecast(self, horizon: int) -> ForecastResult:
         """Generate forecast for `horizon` steps ahead.
@@ -265,7 +297,19 @@ class SpectralForecaster:
         )
         local_correction = local_correction * local_decay
 
-        point_forecast = periodic + trend_vals + shock_vals + local_correction
+        # Wavelet correction (if residual had high AC and wavelet path was chosen)
+        if self._wavelet is not None:
+            wavelet_correction = forecast_wavelet(self._wavelet.model, horizon)
+            # Wavelet correction also decays with horizon
+            wavelet_halflife = max(self._n_train / 8.0, 16.0)
+            wavelet_decay = np.exp(
+                -np.log(2) * np.arange(horizon, dtype=np.float64) / wavelet_halflife
+            )
+            wavelet_correction = wavelet_correction * wavelet_decay
+        else:
+            wavelet_correction = np.zeros(horizon)
+
+        point_forecast = periodic + trend_vals + shock_vals + local_correction + wavelet_correction
 
         # Clamp forecast to observed signal range. The model should not
         # extrapolate to values far outside what the context data showed.
@@ -293,6 +337,9 @@ class SpectralForecaster:
             trend=self._trend.model,
             shocks=self._shocks.shocks,
             local=self._local.model,
+            wavelet=self._wavelet.model if self._wavelet else None,
+            residual_mode=self._residual_mode,
+            residual_ac1=self._residual_ac1,
             noise_std=noise_std,
             residual_quantiles=(lower_q, upper_q),
         )
