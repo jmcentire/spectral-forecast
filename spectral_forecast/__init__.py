@@ -3,6 +3,7 @@
 from spectral_forecast.extraction import extract, ExtractedComponent, ExtractionResult
 from spectral_forecast.trend import fit_trend, TrendModel, TrendResult, TrendType
 from spectral_forecast.shock import detect_shocks, ShockComponent, ShockResult, ShockShape
+from spectral_forecast.local import fit_local, forecast_local, LocalModel, LocalResult
 from spectral_forecast.forecast import SpectralForecaster, ForecastResult
 
 __all__ = [

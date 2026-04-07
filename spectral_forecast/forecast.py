@@ -1,7 +1,7 @@
-"""Forecaster: superposes all three layers with error bounds.
+"""Forecaster: superposes all layers with error bounds.
 
 The forecast at any future time t is:
-    y(t) = sum(Layer1 components at t) + Layer2 trend at t + sum(Layer3 shocks at t)
+    y(t) = Layer1 periodic + Layer2 trend + Layer3a shocks + Layer3b local correction
     error_bounds = quantiles of the final residual noise distribution
 """
 
@@ -17,6 +17,7 @@ from spectral_forecast.extraction import (
     ExtractedComponent,
     extract,
 )
+from spectral_forecast.local import LocalModel, LocalResult, fit_local, forecast_local
 from spectral_forecast.shock import ShockComponent, ShockResult, detect_shocks
 from spectral_forecast.trend import TrendModel, TrendResult, fit_trend
 
@@ -31,6 +32,7 @@ class ForecastResult:
     components: list[ExtractedComponent]
     trend: TrendModel
     shocks: list[ShockComponent]
+    local: LocalModel
     noise_std: float
     residual_quantiles: tuple[float, float]  # (lower_q, upper_q) of residual
 
@@ -52,6 +54,7 @@ class ForecastResult:
                 f"    [{i}] {s.shape.value} at t={s.onset_idx} "
                 f"mag={s.magnitude:.4f} decay={s.decay_rate:.4f}"
             )
+        lines.append(f"  Local: {self.local.describe()}")
         lines.append(f"  Noise std: {self.noise_std:.6f}")
         lines.append(
             f"  Error bounds: [{self.residual_quantiles[0]:.4f}, "
@@ -107,6 +110,7 @@ class SpectralForecaster:
         self._extraction: ExtractionResult | None = None
         self._trend: TrendResult | None = None
         self._shocks: ShockResult | None = None
+        self._local: LocalResult | None = None
         self._n_train: int = 0
         self._residual: NDArray[np.floating] | None = None
         self._detrend_slope: float = 0.0
@@ -179,11 +183,19 @@ class SpectralForecaster:
             lookback_window=lookback,
         )
 
-        # Final residual after all three layers
+        # Residual after Layer 1 + Layer 2 + Layer 3a (shocks)
         shock_vals = np.zeros(self._n_train)
         for shock in self._shocks.shocks:
             shock_vals += shock.evaluate(t)
-        self._residual = signal - predicted - shock_vals
+        residual_after_shocks = signal - predicted - shock_vals
+
+        # Layer 3b: Local correction — AR model on recent residuals.
+        # This captures momentum, mean-reversion, and local autocorrelation
+        # that the Fourier + trend model misses.
+        self._local = fit_local(residual_after_shocks)
+
+        # Final residual after all layers including local correction
+        self._residual = residual_after_shocks - self._local.fitted_values
 
     def forecast(self, horizon: int) -> ForecastResult:
         """Generate forecast for `horizon` steps ahead.
@@ -194,7 +206,7 @@ class SpectralForecaster:
         Returns:
             ForecastResult with point forecast, bounds, and full decomposition.
         """
-        if self._extraction is None or self._trend is None or self._shocks is None:
+        if self._extraction is None or self._trend is None or self._shocks is None or self._local is None:
             raise RuntimeError("Must call fit() before forecast()")
 
         t_future = np.arange(
@@ -232,12 +244,19 @@ class SpectralForecaster:
             t_future, t_boundary=float(self._n_train - 1), damping_halflife=damping_hl
         )
 
-        # Layer 3: shock extrapolation (shocks continue their shape)
+        # Layer 3a: shock extrapolation (shocks continue their shape)
         shock_vals = np.zeros(horizon)
         for shock in self._shocks.shocks:
             shock_vals += shock.evaluate(t_future)
 
-        point_forecast = periodic + trend_vals + shock_vals
+        # Layer 3b: local correction from AR model on recent residuals
+        local_correction = forecast_local(
+            self._local.model,
+            self._local.recent_residuals,
+            horizon,
+        )
+
+        point_forecast = periodic + trend_vals + shock_vals + local_correction
 
         # Clamp forecast to observed signal range. The model should not
         # extrapolate to values far outside what the context data showed.
@@ -264,6 +283,7 @@ class SpectralForecaster:
             components=self._extraction.components,
             trend=self._trend.model,
             shocks=self._shocks.shocks,
+            local=self._local.model,
             noise_std=noise_std,
             residual_quantiles=(lower_q, upper_q),
         )
