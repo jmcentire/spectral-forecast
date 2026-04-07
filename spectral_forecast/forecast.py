@@ -249,12 +249,21 @@ class SpectralForecaster:
         for shock in self._shocks.shocks:
             shock_vals += shock.evaluate(t_future)
 
-        # Layer 3b: local correction from AR model on recent residuals
+        # Layer 3b: local correction from AR model on recent residuals.
+        # The correction decays with forecast horizon — a recent deviation
+        # matters a lot for the next few steps but little for step 1000.
+        # Decay halflife = AR order * 2 (the correction is trustworthy for
+        # about twice the lag depth it was estimated from).
         local_correction = forecast_local(
             self._local.model,
             self._local.recent_residuals,
             horizon,
         )
+        local_halflife = max(self._local.model.order * 2.0, 4.0)
+        local_decay = np.exp(
+            -np.log(2) * np.arange(horizon, dtype=np.float64) / local_halflife
+        )
+        local_correction = local_correction * local_decay
 
         point_forecast = periodic + trend_vals + shock_vals + local_correction
 

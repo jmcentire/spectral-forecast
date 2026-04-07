@@ -52,20 +52,57 @@ class LocalResult:
     recent_residuals: NDArray[np.floating]  # last p residuals (needed for forecasting)
 
 
-def _yule_walker(residuals: NDArray[np.floating], order: int) -> tuple[NDArray, float]:
+def _weighted_autocovariance(
+    residuals: NDArray[np.floating],
+    weights: NDArray[np.floating],
+    max_lag: int,
+) -> NDArray[np.floating]:
+    """Compute recency-weighted autocovariance up to max_lag.
+
+    Recent residuals contribute more to the autocorrelation estimate.
+    This focuses the AR model on the most recent local dynamics.
+    """
+    n = len(residuals)
+    wmean = np.sum(weights * residuals) / np.sum(weights)
+    centered = residuals - wmean
+    autocov = np.zeros(max_lag + 1)
+    for k in range(max_lag + 1):
+        # Weight each product by the recency weight of the later sample
+        products = centered[k:] * centered[: n - k]
+        w_slice = weights[k:]
+        autocov[k] = np.sum(w_slice * products) / np.sum(w_slice)
+    return autocov
+
+
+def _yule_walker(
+    residuals: NDArray[np.floating],
+    order: int,
+    weights: NDArray[np.floating] | None = None,
+) -> tuple[NDArray, float]:
     """Solve Yule-Walker equations for AR(p) coefficients.
+
+    Args:
+        residuals: 1D array of residuals.
+        order: AR order (p).
+        weights: Recency weights (same length as residuals). If None,
+            uses uniform weights (standard Yule-Walker).
 
     Returns (coefficients, innovation_variance).
     """
     n = len(residuals)
     if order == 0 or n <= order:
+        if weights is not None:
+            wvar = np.sum(weights * (residuals - np.sum(weights * residuals) / np.sum(weights)) ** 2) / np.sum(weights)
+            return np.array([]), float(wvar)
         return np.array([]), float(np.var(residuals))
 
-    # Compute autocorrelation
-    mean = np.mean(residuals)
-    centered = residuals - mean
-    autocov = np.correlate(centered, centered, mode="full")[n - 1 :]
-    autocov = autocov / n  # biased estimator (more stable)
+    if weights is not None:
+        autocov = _weighted_autocovariance(residuals, weights, order)
+    else:
+        mean = np.mean(residuals)
+        centered = residuals - mean
+        autocov = np.correlate(centered, centered, mode="full")[n - 1 :]
+        autocov = autocov / n
 
     if autocov[0] <= 0:
         return np.array([]), float(np.var(residuals))
@@ -101,15 +138,23 @@ def fit_local(
     residuals: NDArray[np.floating],
     max_order: int = 12,
     window_size: int | None = None,
+    recency_halflife: float | None = None,
 ) -> LocalResult:
-    """Fit a local AR model on recent residuals.
+    """Fit a local AR model on recent residuals with recency weighting.
+
+    Very recent deviations are weighted more strongly than older ones.
+    This focuses the AR model on the most recent local dynamics — a
+    deviation 5 steps ago matters far more for the next-step forecast
+    than one 200 steps ago.
 
     Args:
         residuals: Full residual array (after Layer 1 + Layer 2 extraction).
         max_order: Maximum AR order to consider.
         window_size: How many recent residuals to use for fitting.
-            None = min(len(residuals), 256). Using a window focuses the
-            model on recent behavior rather than the full history.
+            None = min(len(residuals), 256).
+        recency_halflife: Half-life for exponential recency weighting
+            (in samples). A deviation at t - halflife has half the weight
+            of one at t. None = window_size / 3.
 
     Returns:
         LocalResult with fitted model and recent residuals for forecasting.
@@ -125,17 +170,29 @@ def fit_local(
     recent = residuals[-window_size:]
     n = len(recent)
 
+    # Recency weights: exponential decay from end of window
+    if recency_halflife is None:
+        recency_halflife = n / 3.0
+    decay_rate = np.log(2) / max(recency_halflife, 1.0)
+    t_idx = np.arange(n, dtype=np.float64)
+    weights = np.exp(-decay_rate * (n - 1 - t_idx))
+    weights = weights / weights.sum() * n  # normalize so sum = n
+
     # Limit max_order to something reasonable for the window size
     max_order = min(max_order, n // 4, 24)
+
+    # Weighted variance for AR(0) baseline
+    wmean = np.sum(weights * recent) / np.sum(weights)
+    wvar = float(np.sum(weights * (recent - wmean) ** 2) / np.sum(weights))
 
     # Try AR(0) through AR(max_order), select by AIC
     best_order = 0
     best_coeffs = np.array([])
-    best_aic = _ar_aic(n, 0, float(np.var(recent)))
-    best_innov_var = float(np.var(recent))
+    best_aic = _ar_aic(n, 0, wvar)
+    best_innov_var = wvar
 
     for p in range(1, max_order + 1):
-        coeffs, innov_var = _yule_walker(recent, p)
+        coeffs, innov_var = _yule_walker(recent, p, weights=weights)
         if len(coeffs) == 0:
             continue
         aic = _ar_aic(n, p, innov_var)
@@ -145,8 +202,8 @@ def fit_local(
             best_coeffs = coeffs
             best_innov_var = innov_var
 
-    # Compute intercept (for non-zero-mean residuals)
-    mean_resid = float(np.mean(recent))
+    # Compute intercept using weighted mean
+    mean_resid = float(wmean)
     if best_order > 0:
         intercept = mean_resid * (1 - float(np.sum(best_coeffs)))
     else:
