@@ -48,6 +48,51 @@ class TrendModel:
             return self.params["a"] * np.exp(self.params["b"] * t) + self.params["c"]
         raise ValueError(f"Unknown trend type: {self.trend_type}")
 
+    def predict_damped(
+        self, t: NDArray[np.floating], t_boundary: float, damping_halflife: float
+    ) -> NDArray[np.floating]:
+        """Evaluate trend with damping beyond the training boundary.
+
+        For nonlinear trends (quadratic, exponential), extrapolation far beyond
+        the training window is unreliable. This transitions from the full model
+        to its tangent line (local slope at t_boundary) using exponential damping.
+
+        Linear and none trends are unaffected — linear extrapolation is linear,
+        and none is zero everywhere.
+
+        Args:
+            t: Time indices to evaluate.
+            t_boundary: Last time index of training data.
+            damping_halflife: Distance (in samples) at which the nonlinear
+                component is reduced by half. Smaller = faster transition to
+                tangent line.
+        """
+        t = np.asarray(t, dtype=np.float64)
+
+        # Linear and none don't need damping
+        if self.trend_type in (TrendType.NONE, TrendType.LINEAR):
+            return self.predict(t)
+
+        # Full model prediction and tangent line at boundary
+        full_pred = self.predict(t)
+        boundary_val = self.predict(np.array([t_boundary]))[0]
+
+        # Compute slope at boundary via finite difference
+        eps = 0.5
+        slope = (
+            self.predict(np.array([t_boundary + eps]))[0]
+            - self.predict(np.array([t_boundary - eps]))[0]
+        ) / (2 * eps)
+        tangent = boundary_val + slope * (t - t_boundary)
+
+        # Blend: within training window, use full model.
+        # Beyond boundary, exponentially transition to tangent.
+        dt = np.maximum(t - t_boundary, 0.0)
+        decay = np.log(2) / max(damping_halflife, 1.0)
+        blend = np.exp(-decay * dt)  # 1.0 at boundary, decays toward 0
+
+        return blend * full_pred + (1 - blend) * tangent
+
 
 @dataclass
 class TrendResult:

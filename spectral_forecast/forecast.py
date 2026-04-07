@@ -73,6 +73,8 @@ class SpectralForecaster:
         shock_lookback: int | None = None,
         shock_min_sigma: float = 2.0,
         confidence_level: float = 0.8,
+        trend_damping_halflife: float | None = None,
+        amplitude_damping: bool = True,
     ):
         """
         Args:
@@ -84,6 +86,11 @@ class SpectralForecaster:
             shock_lookback: Window for shock detection (None = auto).
             shock_min_sigma: Min sigma for shock detection.
             confidence_level: Width of error bounds (0.8 = 10th-90th).
+            trend_damping_halflife: Nonlinear trends transition to tangent
+                line beyond training boundary. This is the half-life in
+                samples. None = auto (context_length / 4).
+            amplitude_damping: Dampen Fourier component amplitudes over
+                forecast horizon based on phase uncertainty from SNR.
         """
         self.sample_rate = sample_rate
         self.max_components = max_components
@@ -93,6 +100,8 @@ class SpectralForecaster:
         self.shock_lookback = shock_lookback
         self.shock_min_sigma = shock_min_sigma
         self.confidence_level = confidence_level
+        self.trend_damping_halflife = trend_damping_halflife
+        self.amplitude_damping = amplitude_damping
 
         # Stored after fit
         self._extraction: ExtractionResult | None = None
@@ -102,6 +111,8 @@ class SpectralForecaster:
         self._residual: NDArray[np.floating] | None = None
         self._detrend_slope: float = 0.0
         self._detrend_intercept: float = 0.0
+        self._periodic_range: tuple[float, float] = (0.0, 0.0)
+        self._signal_range: tuple[float, float] = (0.0, 0.0)
 
     def fit(self, signal: NDArray[np.floating]) -> None:
         """Decompose the signal into three layers."""
@@ -112,6 +123,9 @@ class SpectralForecaster:
                 "Clean the data before forecasting."
             )
         self._n_train = len(signal)
+        # Record observed signal range for forecast clamping
+        margin = float(np.std(signal))
+        self._signal_range = (float(signal.min()) - margin, float(signal.max()) + margin)
         t = np.arange(self._n_train, dtype=np.float64)
 
         # Pre-detrend: remove linear trend before FFT to prevent trend energy
@@ -145,6 +159,12 @@ class SpectralForecaster:
         periodic = np.zeros(self._n_train)
         for comp in self._extraction.components:
             periodic += comp.evaluate(t)
+        # Record observed periodic range — used to clamp forecast extrapolation
+        margin = self._extraction.noise_std
+        self._periodic_range = (
+            float(periodic.min()) - margin,
+            float(periodic.max()) + margin,
+        )
         trend_vals = self._trend.model.predict(t)
         predicted = periodic + trend_vals
 
@@ -181,13 +201,36 @@ class SpectralForecaster:
             self._n_train, self._n_train + horizon, dtype=np.float64
         )
 
-        # Layer 1: periodic components
+        # Layer 1: periodic components with optional amplitude damping.
+        # Phase uncertainty grows with horizon: sigma_phase = 2*h / (N*sqrt(2*snr/3))
+        # When sigma_phase is large, the component's contribution is unreliable.
+        # Dampen amplitude by exp(-sigma_phase^2 / 2).
         periodic = np.zeros(horizon)
+        h_indices = np.arange(1, horizon + 1, dtype=np.float64)
         for comp in self._extraction.components:
-            periodic += comp.evaluate(t_future)
+            comp_signal = comp.evaluate(t_future)
+            if self.amplitude_damping and comp.snr > 0:
+                sigma_phase = 2.0 * h_indices / (
+                    self._n_train * np.sqrt(max(2.0 * comp.snr / 3.0, 1e-10))
+                )
+                damping = np.exp(-0.5 * sigma_phase**2)
+                comp_signal = comp_signal * damping
+            periodic += comp_signal
 
-        # Layer 2: trend extrapolation
-        trend_vals = self._trend.model.predict(t_future)
+        # Clamp periodic to observed range. Constructive interference from
+        # phase drift can produce values far outside what the data showed.
+        # This is data-driven (no tuning parameters): the periodic component
+        # of the signal can't be larger than what was observed in context.
+        lo, hi = self._periodic_range
+        periodic = np.clip(periodic, lo, hi)
+
+        # Layer 2: trend extrapolation with damping for nonlinear trends
+        damping_hl = self.trend_damping_halflife
+        if damping_hl is None:
+            damping_hl = self._n_train / 4.0
+        trend_vals = self._trend.model.predict_damped(
+            t_future, t_boundary=float(self._n_train - 1), damping_halflife=damping_hl
+        )
 
         # Layer 3: shock extrapolation (shocks continue their shape)
         shock_vals = np.zeros(horizon)
@@ -195,6 +238,12 @@ class SpectralForecaster:
             shock_vals += shock.evaluate(t_future)
 
         point_forecast = periodic + trend_vals + shock_vals
+
+        # Clamp forecast to observed signal range. The model should not
+        # extrapolate to values far outside what the context data showed.
+        # This is data-driven: margin is 1 std of the training signal.
+        sig_lo, sig_hi = self._signal_range
+        point_forecast = np.clip(point_forecast, sig_lo, sig_hi)
 
         # Error bounds from residual distribution (possibly asymmetric)
         residual = self._residual
