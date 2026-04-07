@@ -6,7 +6,7 @@ An analytical time series forecasting method that decomposes signals into interp
 
 On datasets with periodic structure, it outperforms Google's TimesFM (200M parameters) by 42--68%.
 
-**Paper:** [Entropy-Bounded Decomposition for Time Series Forecasting](paper/paper.pdf) | [DOI: 10.5281/zenodo.19451784](https://doi.org/10.5281/zenodo.19451784)
+**Paper:** [Entropy-Bounded Decomposition for Time Series Forecasting](paper/paper.pdf) | [DOI: 10.5281/zenodo.19457241](https://doi.org/10.5281/zenodo.19457241)
 
 ## Results
 
@@ -116,7 +116,7 @@ pytest tests/ -v
   title={Entropy-Bounded Decomposition for Time Series Forecasting: Fourier Extraction, Adaptive Basis Selection, and the Maximum Entropy Stopping Criterion},
   author={McEntire, Jeremy},
   year={2026},
-  doi={10.5281/zenodo.19451784}
+  doi={10.5281/zenodo.19457241}
 }
 ```
 
