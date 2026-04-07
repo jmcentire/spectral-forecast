@@ -172,7 +172,7 @@ This framing connects time series decomposition to Shannon's rate-distortion the
 
 \subsection{Datasets}
 
-We evaluate on the four ETT (Electricity Transformer Temperature) datasets introduced by Zhou et al.~\cite{zhou2021}: ETTh1, ETTh2 (hourly, $17{,}420$ points each), ETTm1, ETTm2 ($15$-minute intervals, $69{,}680$ points each). We forecast the OT (oil temperature) column, following the standard univariate protocol.
+We evaluate on six standard benchmarks: the four ETT (Electricity Transformer Temperature) datasets introduced by Zhou et al.~\cite{zhou2021}---ETTh1, ETTh2 (hourly, $17{,}420$ points each), ETTm1, ETTm2 ($15$-minute intervals, $69{,}680$ points each)---plus Weather ($21$ meteorological indicators, $52{,}695$ points at $10$-minute resolution) and ECL (electricity consumption of $321$ clients, $26{,}304$ hourly points). We forecast the OT column for ETT datasets and the first series for Weather and ECL, following the standard univariate protocol.
 
 \subsection{Protocol}
 
@@ -199,18 +199,18 @@ Our method uses default hyperparameters throughout---no per-dataset tuning.
 Table~\ref{tab:main} reports normalized MSE across all datasets and horizons. Our method is denoted \textbf{SF} (Spectral Forecast).
 
 \begin{table}[t]
-\caption{Normalized MSE on ETT benchmarks. Bold indicates best. TimesFM and PatchTST numbers at $H=96$ from published results; longer horizons shown as ``---'' where published comparisons are unavailable at that exact configuration.}
+\caption{Normalized MSE on six benchmarks. Bold indicates best at $H=96$. TimesFM and PatchTST numbers from published results.}
 \label{tab:main}
 \centering
 \small
-\begin{tabular}{ll rrrr}
+\begin{tabular}{ll rrr}
 \toprule
 Dataset & $H$ & \textbf{SF} & TimesFM & PatchTST \\
 \midrule
 ETTh1 & 96  & \textbf{0.131} & 0.375 & 0.370 \\
-      & 192 & \textbf{0.168} & --- & --- \\
-      & 336 & \textbf{0.210} & --- & --- \\
-      & 720 & \textbf{0.320} & --- & --- \\
+      & 192 & 0.168 & --- & --- \\
+      & 336 & 0.210 & --- & --- \\
+      & 720 & 0.320 & --- & --- \\
 \midrule
 ETTh2 & 96  & 0.400 & \textbf{0.289} & 0.274 \\
       & 192 & 0.465 & --- & --- \\
@@ -218,21 +218,31 @@ ETTh2 & 96  & 0.400 & \textbf{0.289} & 0.274 \\
       & 720 & 1.019 & --- & --- \\
 \midrule
 ETTm1 & 96  & \textbf{0.088} & 0.320 & 0.293 \\
-      & 192 & \textbf{0.149} & --- & --- \\
-      & 336 & \textbf{0.200} & --- & --- \\
+      & 192 & 0.149 & --- & --- \\
+      & 336 & 0.200 & --- & --- \\
       & 720 & 0.383 & --- & --- \\
 \midrule
 ETTm2 & 96  & 0.251 & \textbf{0.175} & 0.166 \\
       & 192 & 0.403 & --- & --- \\
       & 336 & 0.571 & --- & --- \\
       & 720 & 0.938 & --- & --- \\
+\midrule
+Weather & 96 & 0.156 & --- & \textbf{0.149} \\
+        & 192 & 0.281 & --- & --- \\
+        & 336 & 0.490 & --- & --- \\
+        & 720 & 0.922 & --- & --- \\
+\midrule
+ECL   & 96  & 0.609 & --- & \textbf{0.129} \\
+      & 192 & 0.731 & --- & --- \\
+      & 336 & 0.759 & --- & --- \\
+      & 720 & 1.944 & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 On ETTh1, our method achieves MSE $0.131$ at $H=96$, a $65\%$ improvement over TimesFM ($0.375$) and PatchTST ($0.370$). The advantage holds at all horizons: at $H=720$, our MSE of $0.320$ is still below TimesFM's best score at $H=96$. On ETTm1, the advantage is $73\%$ at $H=96$ (MSE $0.088$ vs $0.320$).
 
-On ETTh2 and ETTm2, the transformer baselines win. TimesFM achieves $0.289$ on ETTh2 versus our $0.400$, and $0.175$ on ETTm2 versus our $0.251$. The method's advantages and disadvantages are dataset-dependent, not universal.
+On ETTh2 and ETTm2, the transformer baselines win. TimesFM achieves $0.289$ on ETTh2 versus our $0.400$, and $0.175$ on ETTm2 versus our $0.251$. Weather is nearly even with PatchTST ($0.156$ vs $0.149$, $-5\%$), consistent with its strong diurnal and seasonal periodicity. ECL (individual electricity consumption) is far behind ($0.609$ vs $0.129$), consistent with its highly irregular, client-specific patterns. The method's advantages and disadvantages are dataset-dependent, not universal.
 
 Window-level standard deviations are substantial (ETTh1 $H$=96: $0.131 \pm 0.127$ across $61$ windows), reflecting the inherent variability of different forecast contexts within the same dataset. The means are stable across runs (the method is deterministic).
 
@@ -313,11 +323,13 @@ This diagnostic is itself a contribution. Before deploying a forecasting method 
 
 \textbf{Fourier stationarity assumption.} Layer~1 assumes the frequency content is stationary over the context window. If the dominant frequencies shift within the context (chirp signals, frequency-modulated data), the extraction will blur the shifting frequencies. A short-time Fourier transform or wavelet-first approach would handle this, at the cost of frequency resolution.
 
-\textbf{Shock absorption.} When a large discrete shock (step function) occurs in the middle of the context, its broadband spectral energy is partially absorbed by Layer~1 before Layer~3a can detect it. A pre-pass shock detector would fix this but adds complexity. The current architecture handles shocks near the end of the context well.
+\textbf{Shock absorption.} When a large discrete shock (step function) occurs in the middle of the context, its broadband spectral energy is partially absorbed by Layer~1 before Layer~3a can detect it. We attempted a pre-pass shock detector (median filtering to isolate level shifts before FFT), but it cannot distinguish periodic structure from level shifts without first knowing what is periodic---a chicken-and-egg problem. On all six benchmarks, the pre-pass degraded results (ETTh1 MSE from $0.131$ to $0.241$). The correct fix is an iterative architecture: extract periodicity, detect shocks on the residual, remove shocks, re-extract. This is future work.
 
 \textbf{ETTh2/ETTm2 gap.} On non-periodic datasets, our method underperforms transformers by $38$--$44\%$ at $H=96$. The wavelet extension closes some of this gap but not all. The remaining structure may require a learned basis or a nonlinear decomposition method.
 
-\textbf{Limited benchmark scope.} We evaluate on four ETT datasets. A full comparison would include Weather, Traffic, Electricity, and the Monash archive. The method's performance on these datasets remains to be established.
+\textbf{Heavy-tailed residuals.} The maximum entropy stopping criterion assumes a Gaussian noise model. If the residual is heavy-tailed (Cauchy, Pareto), the extractor may mine the tails for spurious structure. We tested a Shapiro--Wilk normality gate to block wavelet decomposition on non-Gaussian residuals; it was neutral-to-negative on all six benchmarks because real residuals are almost always slightly non-Gaussian. A more nuanced approach---using the normality test as a diagnostic rather than a gate, or adjusting the stopping threshold based on excess kurtosis---is warranted.
+
+\textbf{Benchmark scope.} We evaluate on six datasets from two domains (electricity transformers, meteorology, individual electricity consumption). A full comparison would include Traffic and the Monash archive.
 
 %% ============================================================
 \section{Conclusion}
