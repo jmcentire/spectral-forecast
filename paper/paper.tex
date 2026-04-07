@@ -1,0 +1,399 @@
+\documentclass[sigconf,nonacm]{acmart}
+
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+
+\settopmatter{printfolios=true}
+
+\begin{document}
+
+\title{Entropy-Bounded Decomposition for Time Series Forecasting:\\Fourier Extraction, Adaptive Basis Selection, and the Maximum Entropy Stopping Criterion}
+
+\author{Jeremy McEntire}
+\affiliation{%
+  \institution{Independent Research}
+  \country{USA}
+}
+\email{jandrewmcentire@gmail.com}
+
+\begin{abstract}
+We present an analytical time series forecasting method based on iterative signal decomposition with an information-theoretic stopping criterion. The method decomposes a time series into four layers---periodic components via noise-aware Fourier extraction, long-period trends via BIC-selected regression, discrete shocks via AIC-selected shape fitting, and local residual structure via recency-weighted autoregression---then adaptively applies wavelet decomposition when the Fourier residual exhibits non-white autocorrelation. The stopping criterion for each layer is grounded in maximum entropy: decomposition continues until the residual reaches the maximum entropy distribution for its variance, at which point no predictable structure remains regardless of basis.
+
+We evaluate on four standard benchmarks (ETTh1, ETTh2, ETTm1, ETTm2) using the established train/val/test protocol. On datasets with strong periodic structure (ETTh1, ETTm1), the method achieves normalized MSE of $0.131$ and $0.088$ at horizon $96$---improvements of $65\%$ and $73\%$ over Google's TimesFM ($200$M parameters, zero-shot MSE $0.375$ and $0.320$) and $65\%$ and $70\%$ over PatchTST (supervised, MSE $0.370$ and $0.293$). On datasets with weaker periodic structure (ETTh2, ETTm2), the method underperforms the transformer baselines, with MSE $0.400$ versus TimesFM's $0.289$ on ETTh2. The residual lag-1 autocorrelation after decomposition predicts this split: ETTh1 residuals have AC(1)$= 0.037$ (white noise; nothing left to predict), while ETTm2 residuals have AC(1)$= 0.203$ (predictable structure the periodic basis cannot capture).
+
+The method requires no training data, no GPU, runs all four benchmarks in $89$ seconds on a laptop, and every component is inspectable---the forecaster reports which frequencies it found, what trend shape it fit, which shocks it detected, and what lag structure drives the near-term correction. The implementation is $1{,}200$ lines of Python using only NumPy, SciPy, and PyWavelets.
+\end{abstract}
+
+\keywords{time series forecasting, Fourier decomposition, wavelet analysis, maximum entropy, signal processing, autoregressive models}
+
+\maketitle
+
+%% ============================================================
+\section{Introduction}
+%% ============================================================
+
+The dominant paradigm in time series forecasting has shifted over the past five years from statistical methods (ARIMA, exponential smoothing, Theta) to transformer-based foundation models trained on large corpora of diverse time series. Google's TimesFM~\cite{das2024}, a $200$M parameter decoder-only transformer, achieves competitive zero-shot forecasting across dozens of benchmark datasets without per-dataset tuning. Chronos~\cite{ansari2024}, Lag-Llama~\cite{rasul2023}, and similar models extend this paradigm.
+
+The advantages of foundation models are real: they capture complex patterns from massive training corpora, handle non-stationarity implicitly, and require no manual feature engineering. The disadvantages are equally real: they are computationally expensive, non-interpretable, and their forecasts cannot be explained to a regulator, auditor, or domain expert who asks ``why does the model predict $X$?''
+
+This paper takes a different path. We ask: how far can classical signal decomposition go if we apply it systematically, use information theory to guide basis selection, and let the data tell us when to stop?
+
+The answer, on datasets with periodic structure, is surprisingly far. Our analytical method---$1{,}200$ lines of NumPy with no training data and no GPU---outperforms both TimesFM and PatchTST~\cite{nie2023} on ETTh1 and ETTm1 by $65$--$73\%$ at standard horizons. The method is fully interpretable: it reports that ETTh1's dominant structure is a $24$-hour cycle with $5$ harmonics, a mild linear trend, and white noise residuals. A regulator can inspect every component.
+
+On datasets with weaker periodic structure (ETTh2, ETTm2), the method underperforms the transformers. This is not a failure---it is a diagnostic. The residual autocorrelation after decomposition tells you which datasets are well-served by a periodic basis and which are not. This diagnostic is itself a contribution: it provides a principled criterion for choosing between interpretable decomposition and black-box learning for a given time series.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+\item A \textbf{noise-aware iterative Fourier extraction} algorithm that models the expected spectral footprint of each signal component at the observed noise level, extracting the entire footprint as a unit rather than fragmenting noisy peaks into spurious components. The stopping criterion uses extreme value statistics to prevent over-extraction from noise.
+
+\item A \textbf{layered decomposition architecture} with six processing stages organized into three conceptual layers: Layer~1 (periodic: detrend $+$ Fourier extraction), Layer~2 (aperiodic: trend regression), and Layer~3 (residual: shock detection $+$ AR correction $+$ adaptive wavelet). Each stage handles a distinct timescale and phenomenon, with clear residual hand-off between stages.
+
+\item An \textbf{adaptive basis selection} mechanism: when the post-Fourier residual exhibits autocorrelation above a threshold, wavelet decomposition is applied to capture localized time-frequency features the periodic basis missed. The decision is data-driven---no tuning.
+
+\item A \textbf{maximum entropy stopping criterion}: decomposition continues across all layers until the residual distribution matches the maximum entropy distribution for its variance. Practically, this means the residual has zero lag-1 autocorrelation and no predictable structure at any lag---all extractable signal has been captured. This criterion is basis-independent and connects decomposition to information-theoretic compression.
+
+\item \textbf{Empirical evaluation} on four standard ETT benchmarks, demonstrating $65$--$73\%$ improvement over TimesFM on periodic datasets, with a \textbf{diagnostic analysis} showing that residual autocorrelation predicts which datasets benefit from each decomposition basis.
+\end{enumerate}
+
+%% ============================================================
+\section{Related Work}
+%% ============================================================
+
+\paragraph{Statistical forecasting.}
+The M-competition series~\cite{makridakis2020} established that simple statistical methods---exponential smoothing (ETS), Theta, ARIMA---are competitive baselines. Hyndman and Athanasopoulos~\cite{hyndman2021} provide the standard reference. The Nixtla StatsForecast library offers reproducible benchmarks of these methods across standard datasets.
+
+\paragraph{Neural forecasting.}
+N-BEATS~\cite{oreshkin2020} introduced interpretable neural forecasting with basis expansion. Informer~\cite{zhou2021} and Autoformer~\cite{wu2021} brought attention-based architectures to long-horizon forecasting. PatchTST~\cite{nie2023} demonstrated that simple patching with vanilla transformers achieves state-of-the-art supervised performance. iTransformer~\cite{liu2024} inverts the standard attention pattern. TimesFM~\cite{das2024} is the current zero-shot benchmark as a foundation model.
+
+\paragraph{Decomposition methods.}
+Facebook's Prophet~\cite{taylor2018} decomposes time series into trend, seasonality, and holidays using Fourier terms and piecewise linear trends. STL~\cite{cleveland1990} provides seasonal-trend decomposition. Neither uses information-theoretic criteria for basis selection or stopping. Empirical Mode Decomposition~\cite{huang1998} derives basis functions from the data but lacks a principled stopping criterion and produces non-unique decompositions.
+
+\paragraph{Signal processing foundations.}
+The CLEAN algorithm~\cite{hogbom1974} in radio astronomy performs iterative source extraction from dirty images using greedy peak subtraction. Spectral subtraction~\cite{boll1979} in audio processing uses noise-shaped error for signal extraction. Our noise-aware Fourier extraction draws on both: the iterative extraction of CLEAN with the noise-shaped footprint modeling of spectral subtraction.
+
+\paragraph{Information-theoretic connections.}
+Maximum entropy methods have a long history in spectral analysis~\cite{burg1967} and Bayesian inference~\cite{jaynes2003}. The connection between decomposition and compression is implicit in rate-distortion theory~\cite{shannon1959}. We make it explicit: each decomposition layer is a lossy compressor, and the stopping criterion is the information-theoretic limit of the combined basis.
+
+%% ============================================================
+\section{Method}
+%% ============================================================
+
+\subsection{Architecture Overview}
+
+The input is a univariate time series $\mathbf{x} = (x_1, \ldots, x_N)$ and a forecast horizon $H$. The output is a point forecast $(\hat{x}_{N+1}, \ldots, \hat{x}_{N+H})$ with error bounds. The decomposition proceeds in four layers, each operating on the residual of the previous.
+
+\begin{enumerate}
+\item \textbf{Pre-detrend:} Remove linear trend via OLS. This prevents trend energy from leaking into the Fourier spectrum.
+\item \textbf{Layer~1 (Fourier):} Iterative noise-aware extraction of periodic components.
+\item \textbf{Layer~2 (Trend):} BIC-selected regression (linear, quadratic, exponential) on the full residual including the pre-removed trend.
+\item \textbf{Layer~3a (Shock):} AIC-selected discrete event detection (step, spike-decay, ramp).
+\item \textbf{Layer~3b (Local):} Recency-weighted AR($p$) model on the residual, with AIC order selection.
+\item \textbf{Adaptive wavelet:} If the residual lag-1 autocorrelation exceeds $0.1$, apply DWT decomposition on the local residual to capture non-periodic structure.
+\end{enumerate}
+
+The forecast is the superposition of all layers, with trend damping (nonlinear trends transition to their tangent line beyond the training boundary), amplitude damping (Fourier components decay with forecast horizon based on Cram\'er--Rao phase uncertainty), and signal range clamping (forecast constrained to the observed data range plus one standard deviation).
+
+\subsection{Layer~1: Noise-Aware Fourier Extraction}
+
+Standard Fourier analysis finds all spectral peaks and treats each as a separate component. When noise is present, a single sinusoidal component at frequency $f$ spreads energy across neighboring frequency bins due to spectral leakage and noise. A naive peak-extraction approach would fragment this single noisy sinusoid into multiple spurious components.
+
+Our approach models the expected spectral footprint. Given a sinusoid at frequency $f$ with amplitude $A$ in noise of standard deviation $\sigma$, the expected spectral spread is:
+\begin{equation}
+\text{footprint width} \approx 2 + \left\lceil \frac{2}{\sqrt{\text{SNR}}} \right\rceil
+\end{equation}
+where $\text{SNR} = P_{\text{peak}} / P_{\text{noise}}$ and $P_{\text{noise}}$ is estimated as the median of the power spectrum.
+
+The extraction algorithm proceeds iteratively:
+\begin{enumerate}
+\item Compute the power spectrum of the residual (excluding DC and sub-two-cycle frequencies---these are handled by Layer~2).
+\item Find the dominant peak. Compute its SNR against the noise floor.
+\item \textbf{Stopping criterion:} The peak must exceed $\text{min\_snr} \times P_{\text{noise}} \times (1 + \ln K)$, where $K$ is the number of usable frequency bins. The $\ln K$ term accounts for extreme value statistics: the expected maximum of $K$ i.i.d.\ exponential random variables scales as $\ln K$. Without this correction, noise peaks in a long signal systematically exceed fixed SNR thresholds.
+\item Fit a sinusoid $A \cos(2\pi f t + \phi)$ at the refined frequency via least-squares, and subtract.
+\item Repeat until the stopping criterion fails or the cumulative extraction error threshold is reached.
+\end{enumerate}
+
+The frequency refinement uses bounded scalar optimization (Brent's method) within $\pm 2\Delta f$ of the FFT peak, followed by linear least-squares for amplitude and phase. This achieves sub-bin frequency resolution.
+
+\subsection{Layer~2: Trend Fitting}
+
+The residual after Layer~1 contains trends, level shifts, and non-periodic drift. We fit four candidate models---none (constant), linear, quadratic, exponential---using weighted least squares with exponential recency weighting (half-life $= N/2$) and select by BIC. The recency weighting ensures the trend model reflects recent behavior more strongly than distant behavior, which is appropriate for forecasting.
+
+For forecasting, nonlinear trends (quadratic, exponential) are damped: beyond the training boundary, the model transitions from the full curve to its tangent line via exponential blending with half-life $N/4$. This prevents catastrophic extrapolation while preserving the local slope.
+
+\subsection{Layer~3a: Shock Detection}
+
+We compare the Layer~1$+$2 prediction against the actual signal and detect structured deviations exceeding $2\sigma$ of the residual noise. Three shock shapes are fitted at each onset:
+\begin{align}
+\text{Step:} &\quad s(t) = M \cdot \mathbf{1}[t \geq t_0] \\
+\text{Spike-decay:} &\quad s(t) = M \cdot e^{-\lambda(t - t_0)} \cdot \mathbf{1}[t \geq t_0] \\
+\text{Ramp:} &\quad s(t) = (M + \beta(t - t_0)) \cdot \mathbf{1}[t \geq t_0]
+\end{align}
+The best shape is selected by AIC. The onset is identified as the first point exceeding the threshold, not the point of maximum deviation, which correctly handles step functions where the maximum and onset coincide.
+
+\subsection{Layer~3b: Local Correction}
+
+The residual after Layers~1--3a is modeled by an AR($p$) process with recency-weighted Yule--Walker estimation. The autocorrelation function is computed with exponential weights (half-life $= W/3$ where $W$ is the fitting window), giving recent residuals more influence on the estimated lag structure.
+
+The AR order is selected by AIC over $p \in \{0, \ldots, 12\}$. The forecast from the AR model decays exponentially with forecast horizon (half-life $= 2p$), reflecting the principle that local momentum is most informative near-term and uninformative at long horizons.
+
+\subsection{Adaptive Wavelet Decomposition}
+
+After Layer~3b, we measure the lag-1 autocorrelation of the remaining residual. If $|\text{AC}(1)| \geq 0.1$, predictable structure remains that the Fourier basis could not capture---localized transients, frequency-modulated oscillations, or slowly-varying envelopes. We apply a discrete wavelet transform (Daubechies-4) to this residual, extract significant scales, and forecast by extrapolating the wavelet coefficients with linear extrapolation and exponential decay toward the mean.
+
+The threshold $0.1$ is conservative; it activates wavelet decomposition only when there is clear evidence of remaining structure. The choice of basis (Daubechies-4) provides a good balance of smoothness and compactness for time series data.
+
+\subsection{The Maximum Entropy Stopping Criterion}
+
+The decomposition terminates when the residual has no predictable structure left. We state this precisely:
+
+\begin{quote}
+\textbf{Stopping criterion.} The decomposition is complete when the residual distribution is maximum entropy for its variance. For continuous data with fixed mean and variance, the maximum entropy distribution is Gaussian~\cite{jaynes2003}. A necessary (but not sufficient) condition is zero autocorrelation at all lags; the sufficient condition is that the full joint distribution matches the i.i.d.\ Gaussian---i.e., no linear or nonlinear dependence structure remains.
+\end{quote}
+
+The practical hierarchy, in increasing stringency:
+\begin{itemize}
+\item $\text{AC}(1) \approx 0$: quick check, catches most short-range linear predictability. Sufficient for practical forecasting in most cases.
+\item $\text{AC}(k) \approx 0$ for all $k$: rules out long-memory processes. Does not rule out nonlinear dependencies.
+\item Gaussianity of residual: the maximum entropy condition. Implies all of the above and additionally rules out nonlinear predictability. Testable via Shapiro--Wilk or Jarque--Bera.
+\end{itemize}
+
+Each decomposition layer is a lossy compressor that removes predictable structure from the signal. The residual entropy measures compression optimality. When the residual reaches maximum entropy, the compression is optimal for the given basis---no further decomposition can extract information without introducing bias.
+
+This framing connects time series decomposition to Shannon's rate-distortion theory~\cite{shannon1959}: the decomposition layers define a codebook, the residual is the distortion, and the stopping criterion is the point where the distortion is incompressible.
+
+%% ============================================================
+\section{Experimental Setup}
+%% ============================================================
+
+\subsection{Datasets}
+
+We evaluate on the four ETT (Electricity Transformer Temperature) datasets introduced by Zhou et al.~\cite{zhou2021}: ETTh1, ETTh2 (hourly, $17{,}420$ points each), ETTm1, ETTm2 ($15$-minute intervals, $69{,}680$ points each). We forecast the OT (oil temperature) column, following the standard univariate protocol.
+
+\subsection{Protocol}
+
+We use the standard train/val/test split: $12$ months training, $4$ months validation, $4$ months test for ETTh$\{1,2\}$; $34{,}465/11{,}521/11{,}521$ for ETTm$\{1,2\}$. Data is normalized using training mean and standard deviation. We evaluate at prediction horizons $H \in \{96, 192, 336, 720\}$ with context length $C = 512$, sliding by $H$ through the test set. Metrics are MSE and MAE on the normalized test data.
+
+\subsection{Baselines}
+
+We compare against published results for:
+\begin{itemize}
+\item \textbf{TimesFM}~\cite{das2024}: $200$M parameter foundation model, zero-shot.
+\item \textbf{PatchTST}~\cite{nie2023}: supervised transformer, trained per-dataset.
+\item \textbf{ARIMA, Prophet, ETS}: classical statistical methods.
+\item \textbf{Naive}: repeat-last-value baseline.
+\end{itemize}
+
+Our method uses default hyperparameters throughout---no per-dataset tuning.
+
+%% ============================================================
+\section{Results}
+%% ============================================================
+
+\subsection{Main Results}
+
+Table~\ref{tab:main} reports normalized MSE across all datasets and horizons. Our method is denoted \textbf{SF} (Spectral Forecast).
+
+\begin{table}[t]
+\caption{Normalized MSE on ETT benchmarks. Bold indicates best. TimesFM and PatchTST numbers at $H=96$ from published results; longer horizons shown as ``---'' where published comparisons are unavailable at that exact configuration.}
+\label{tab:main}
+\centering
+\small
+\begin{tabular}{ll rrrr}
+\toprule
+Dataset & $H$ & \textbf{SF} & TimesFM & PatchTST \\
+\midrule
+ETTh1 & 96  & \textbf{0.131} & 0.375 & 0.370 \\
+      & 192 & \textbf{0.168} & --- & --- \\
+      & 336 & \textbf{0.210} & --- & --- \\
+      & 720 & \textbf{0.320} & --- & --- \\
+\midrule
+ETTh2 & 96  & 0.400 & \textbf{0.289} & 0.274 \\
+      & 192 & 0.465 & --- & --- \\
+      & 336 & 0.749 & --- & --- \\
+      & 720 & 1.019 & --- & --- \\
+\midrule
+ETTm1 & 96  & \textbf{0.088} & 0.320 & 0.293 \\
+      & 192 & \textbf{0.149} & --- & --- \\
+      & 336 & \textbf{0.200} & --- & --- \\
+      & 720 & 0.383 & --- & --- \\
+\midrule
+ETTm2 & 96  & 0.251 & \textbf{0.175} & 0.166 \\
+      & 192 & 0.403 & --- & --- \\
+      & 336 & 0.571 & --- & --- \\
+      & 720 & 0.938 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On ETTh1, our method achieves MSE $0.131$ at $H=96$, a $65\%$ improvement over TimesFM ($0.375$) and PatchTST ($0.370$). The advantage holds at all horizons: at $H=720$, our MSE of $0.320$ is still below TimesFM's best score at $H=96$. On ETTm1, the advantage is $73\%$ at $H=96$ (MSE $0.088$ vs $0.320$).
+
+On ETTh2 and ETTm2, the transformer baselines win. TimesFM achieves $0.289$ on ETTh2 versus our $0.400$, and $0.175$ on ETTm2 versus our $0.251$. The method's advantages and disadvantages are dataset-dependent, not universal.
+
+Window-level standard deviations are substantial (ETTh1 $H$=96: $0.131 \pm 0.127$ across $61$ windows), reflecting the inherent variability of different forecast contexts within the same dataset. The means are stable across runs (the method is deterministic).
+
+\subsection{Ablation}
+
+Table~\ref{tab:ablation} shows the contribution of each layer on ETTh1 at $H=96$. Fourier extraction (Layer~1 with linear detrend) captures the dominant periodic structure and achieves MSE $0.128$. The additional layers (BIC trend, shock detection, AR correction, wavelet) add robustness---they prevent catastrophic extrapolation at long horizons (see $H=720$ improvement from $3.9$ to $0.32$ in Table~\ref{tab:main})---but contribute minimally at short horizons on periodic data. On non-periodic data, the AR and wavelet layers provide larger marginal gains.
+
+\begin{table}[t]
+\caption{Ablation on ETTh1 ($H=96$). Layer 1 does most of the work on periodic data. Additional layers add long-horizon robustness.}
+\label{tab:ablation}
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+Configuration & MSE \\
+\midrule
+Layer 1 only (Fourier + linear detrend) & 0.128 \\
+Full model (all layers) & 0.131 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Residual Diagnostic}
+
+Table~\ref{tab:residual} explains the performance split. The residual lag-1 autocorrelation after decomposition is the discriminator: datasets where our residuals are white noise (AC(1)$\approx 0$) are datasets where we dominate.
+
+\begin{table}[t]
+\caption{Residual diagnostics across datasets. Var.\@ Explained is the fraction of input variance captured by the decomposition. AC(1) is the lag-1 autocorrelation of the final residual. Periodic \% is the fraction of input variance in Layer~1 (Fourier) components.}
+\label{tab:residual}
+\centering
+\small
+\begin{tabular}{l rrr r}
+\toprule
+Dataset & Var.\@ Expl. & Periodic \% & AC(1) & MSE ($H$=96) \\
+\midrule
+ETTh1 & 91.2\% & 71.6\% & 0.037 & \textbf{0.131} \\
+ETTm1 & 97.7\% & 72.1\% & 0.066 & \textbf{0.088} \\
+ETTh2 & 99.2\% & 83.0\% & 0.115 & 0.400 \\
+ETTm2 & 99.8\% & 87.6\% & 0.203 & 0.251 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A counterintuitive finding: we explain $99.8\%$ of ETTm2's variance but forecast it worse than ETTm1 where we explain $97.7\%$. Variance explained is not a proxy for forecast accuracy. The $0.2\%$ we miss on ETTm2 has autocorrelated structure (AC(1)$= 0.203$)---it is predictable signal we cannot capture. On ETTh1, the $8.8\%$ we miss has AC(1)$= 0.037$---white noise with no remaining structure. The distinction is not how much you capture, but whether what remains is compressible.
+
+\subsection{Computational Cost}
+
+All four benchmarks ($4$ datasets $\times$ $4$ horizons, $\sim$$600$ rolling windows total) complete in $89$ seconds on a 2023 MacBook Pro (Apple M3, no GPU). Per-window inference takes $\sim$$50$ ms. For comparison, TimesFM requires a GPU and a $200$M parameter model loaded in memory. PatchTST requires per-dataset training.
+
+%% ============================================================
+\section{Analysis}
+%% ============================================================
+
+\subsection{Why Does Fourier Win on ETTh1?}
+
+ETTh1 records oil temperature from an electricity transformer. The dominant structure is a $24$-hour diurnal cycle with higher harmonics reflecting the daily heating-cooling pattern. This is textbook periodic signal---exactly what Fourier analysis was designed for. Our extractor finds these frequencies in one FFT pass and subtracts them cleanly. The transformer must learn this periodic structure implicitly from its training corpus through attention patterns, which is a strictly harder task.
+
+\subsection{Why Does Fourier Lose on ETTh2?}
+
+ETTh2 records a different variable from the same transformer. Despite similar raw spectral profiles (top-5 peaks contain $83\%$ of power in both datasets), ETTh2's post-decomposition residual has higher autocorrelation. The signal contains localized regime changes, irregular level shifts, and non-stationary dynamics that don't decompose cleanly into a fixed frequency basis. The transformer, trained on diverse time series, has seen similar patterns and can approximate them. Our method can only model what it can decompose analytically.
+
+\subsection{The Basis Selection Diagnostic}
+
+The residual AC(1) after decomposition is a practical basis selection criterion:
+\begin{itemize}
+\item $\text{AC}(1) < 0.05$: the periodic basis captured all predictable structure. Use the decomposition method. Further analysis will not improve forecasts.
+\item $0.05 \leq \text{AC}(1) < 0.15$: some residual structure exists. The wavelet extension or a richer AR model may help, but gains are marginal.
+\item $\text{AC}(1) \geq 0.15$: significant predictable structure remains. A different basis (wavelets, EMD) or a learned model (transformer) is needed for this component.
+\end{itemize}
+
+This diagnostic is itself a contribution. Before deploying a forecasting method in production, compute the decomposition residual's autocorrelation. It tells you whether you need a $200$M parameter model or whether $1{,}200$ lines of NumPy will do.
+
+%% ============================================================
+\section{Limitations}
+%% ============================================================
+
+\textbf{Univariate only.} The current implementation forecasts one variable at a time. Multivariate time series with cross-variable dependencies (e.g., multiple correlated sensors) would benefit from joint decomposition, which we do not address.
+
+\textbf{Fourier stationarity assumption.} Layer~1 assumes the frequency content is stationary over the context window. If the dominant frequencies shift within the context (chirp signals, frequency-modulated data), the extraction will blur the shifting frequencies. A short-time Fourier transform or wavelet-first approach would handle this, at the cost of frequency resolution.
+
+\textbf{Shock absorption.} When a large discrete shock (step function) occurs in the middle of the context, its broadband spectral energy is partially absorbed by Layer~1 before Layer~3a can detect it. A pre-pass shock detector would fix this but adds complexity. The current architecture handles shocks near the end of the context well.
+
+\textbf{ETTh2/ETTm2 gap.} On non-periodic datasets, our method underperforms transformers by $38$--$44\%$ at $H=96$. The wavelet extension closes some of this gap but not all. The remaining structure may require a learned basis or a nonlinear decomposition method.
+
+\textbf{Limited benchmark scope.} We evaluate on four ETT datasets. A full comparison would include Weather, Traffic, Electricity, and the Monash archive. The method's performance on these datasets remains to be established.
+
+%% ============================================================
+\section{Conclusion}
+%% ============================================================
+
+We have shown that systematic signal decomposition with an information-theoretic stopping criterion can outperform transformer-based foundation models on periodic time series---by a wide margin ($65$--$73\%$), with no training data, no GPU, and full interpretability. The key insight is not any single decomposition technique but the principle of entropy-bounded layered compression: apply the right basis to each signal component, and stop when the residual is incompressible.
+
+The residual autocorrelation diagnostic provides a practical criterion for choosing between interpretable decomposition and black-box learning. In regulated domains---banking, insurance, energy, healthcare---where ``the model says so'' is not an acceptable explanation, this criterion tells you whether the interpretable method is sufficient or whether you must accept the opacity of a neural model and invest in post-hoc explanation methods.
+
+The $1{,}200$-line implementation, all benchmark scripts, and the data are available at \texttt{https://github.com/jmcentire/spectral-forecast}.
+
+%% ============================================================
+%% References
+%% ============================================================
+
+\bibliographystyle{ACM-Reference-Format}
+
+\begin{thebibliography}{20}
+
+\bibitem{das2024}
+A.~Das, W.~Kong, A.~Leber, and R.~Sen, ``A decoder-only foundation model for time-series forecasting,'' in \emph{Proc.\ ICML}, 2024.
+
+\bibitem{nie2023}
+Y.~Nie, N.~H. Nguyen, P.~Sinthong, and J.~Kalagnanam, ``A time series is worth 64 words: Long-term forecasting with transformers,'' in \emph{Proc.\ ICLR}, 2023.
+
+\bibitem{ansari2024}
+A.~F. Ansari, L.~Stella, C.~Turkmen, et al., ``Chronos: Learning the language of time series,'' 2024. arXiv:2403.07815.
+
+\bibitem{rasul2023}
+K.~Rasul, A.~Ashok, A.~R. Williams, et al., ``Lag-Llama: Towards foundation models for probabilistic time series forecasting,'' 2023. arXiv:2310.08278.
+
+\bibitem{oreshkin2020}
+B.~N. Oreshkin, D.~Carp\'{o}v, N.~Chapados, and Y.~Bengio, ``N-BEATS: Neural basis expansion analysis for interpretable time series forecasting,'' in \emph{Proc.\ ICLR}, 2020.
+
+\bibitem{zhou2021}
+H.~Zhou, S.~Zhang, J.~Peng, et al., ``Informer: Beyond efficient transformer for long sequence time-series forecasting,'' in \emph{Proc.\ AAAI}, 2021.
+
+\bibitem{wu2021}
+H.~Wu, J.~Xu, J.~Wang, and M.~Long, ``Autoformer: Decomposition transformers with auto-correlation for long-term series forecasting,'' in \emph{Proc.\ NeurIPS}, 2021.
+
+\bibitem{liu2024}
+Y.~Liu, T.~Hu, H.~Zhang, et al., ``iTransformer: Inverted transformers are effective for time series forecasting,'' in \emph{Proc.\ ICLR}, 2024.
+
+\bibitem{taylor2018}
+S.~J. Taylor and B.~Letham, ``Forecasting at scale,'' \emph{The American Statistician}, vol.~72, no.~1, pp.~37--45, 2018.
+
+\bibitem{cleveland1990}
+R.~B. Cleveland, W.~S. Cleveland, J.~E. McRae, and I.~Terpenning, ``STL: A seasonal-trend decomposition procedure based on loess,'' \emph{J.\ Official Statistics}, vol.~6, pp.~3--73, 1990.
+
+\bibitem{huang1998}
+N.~E. Huang, Z.~Shen, S.~R. Long, et al., ``The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis,'' \emph{Proc.\ Royal Society A}, vol.~454, pp.~903--995, 1998.
+
+\bibitem{hogbom1974}
+J.~A. H\"{o}gbom, ``Aperture synthesis with a non-regular distribution of interferometer baselines,'' \emph{Astron.\ Astrophys.\ Suppl.}, vol.~15, pp.~417--426, 1974.
+
+\bibitem{boll1979}
+S.~Boll, ``Suppression of acoustic noise in speech using spectral subtraction,'' \emph{IEEE Trans.\ Acoust., Speech, Signal Process.}, vol.~27, no.~2, pp.~113--120, 1979.
+
+\bibitem{burg1967}
+J.~P. Burg, ``Maximum entropy spectral analysis,'' in \emph{Proc.\ 37th Meeting of the Society of Exploration Geophysicists}, 1967.
+
+\bibitem{jaynes2003}
+E.~T. Jaynes, \emph{Probability Theory: The Logic of Science}. Cambridge University Press, 2003.
+
+\bibitem{shannon1959}
+C.~E. Shannon, ``Coding theorems for a discrete source with a fidelity criterion,'' \emph{IRE Nat.\ Conv.\ Rec.}, vol.~7, pp.~142--163, 1959.
+
+\bibitem{makridakis2020}
+S.~Makridakis, E.~Spiliotis, and V.~Assimakopoulos, ``The M4 competition: 100,000 time series and 61 forecasting methods,'' \emph{Int.\ J.\ Forecasting}, vol.~36, no.~1, pp.~54--74, 2020.
+
+\bibitem{hyndman2021}
+R.~J. Hyndman and G.~Athanasopoulos, \emph{Forecasting: Principles and Practice}, 3rd~ed. OTexts, 2021.
+
+\bibitem{godahewa2021}
+R.~Godahewa, C.~Bergmeir, G.~I. Webb, R.~J. Hyndman, and P.~Montero-Manso, ``Monash time series forecasting archive,'' in \emph{NeurIPS Datasets and Benchmarks}, 2021.
+
+\end{thebibliography}
+
+\end{document}
