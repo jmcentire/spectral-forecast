@@ -1,1486 +1,249 @@
 {
-  "version": "1.0.0",
-  "project": {
-    "name": "spectral-forecast",
-    "description": "Code map exported from Kindex for spectral-forecast.",
-    "languages": [
-      "Python"
-    ],
-    "frameworks": [],
-    "analyzedAt": "2026-05-24T15:05:41",
-    "gitCommitHash": "0229828e1c15574ff29a32fcbbb9e14b43960690"
-  },
-  "nodes": [
-    {
-      "id": "code-mod-spectral-forecast-0fb5aa76821b",
-      "type": "file",
-      "name": "zenodo_upload.py",
-      "filePath": "zenodo_upload.py",
-      "summary": "Language: Python | Path: zenodo_upload.py | ~92 lines",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-466f50669ed4",
-      "type": "file",
-      "name": "spectral_forecast/engine.py",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "Language: Python | Path: spectral_forecast/engine.py | ~387 lines ## Classes - ARWorker(Worker)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 8,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-8d4c1a5a3320",
-      "type": "file",
-      "name": "spectral_forecast/workers_v2.py",
-      "filePath": "spectral_forecast/workers_v2.py",
-      "summary": "Language: Python | Path: spectral_forecast/workers_v2.py | ~160 lines ## Classes - AggressiveDampingFourierWorker(Worker)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 3,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-839f0f93c0f4",
-      "type": "file",
-      "name": "spectral_forecast/benchmark.py",
-      "filePath": "spectral_forecast/benchmark.py",
-      "summary": "Language: Python | Path: spectral_forecast/benchmark.py | ~104 lines ## Classes - BenchmarkMetrics",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 5,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-28ab2417eb6d",
-      "type": "file",
-      "name": "engine_full_benchmark.py",
-      "filePath": "engine_full_benchmark.py",
-      "summary": "Language: Python | Path: engine_full_benchmark.py | ~102 lines ## Functions - load_ett(path)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 4,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-53e0cd347b2c",
-      "type": "file",
-      "name": "engine_quick_benchmark.py",
-      "filePath": "engine_quick_benchmark.py",
-      "summary": "Language: Python | Path: engine_quick_benchmark.py | ~26 lines ## Functions - load(path)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-4e45d636ce55",
-      "type": "file",
-      "name": "engine_v2_benchmark.py",
-      "filePath": "engine_v2_benchmark.py",
-      "summary": "Language: Python | Path: engine_v2_benchmark.py | ~87 lines ## Functions - load_ett(path)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 6,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-c6b714e9c4a5",
-      "type": "file",
-      "name": "run_engine_benchmark.py",
-      "filePath": "run_engine_benchmark.py",
-      "summary": "Language: Python | Path: run_engine_benchmark.py | ~39 lines ## Functions - load_ett_csv(path, column=\"OT\")",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-9e8480babfc1",
-      "type": "file",
-      "name": "confidence_profile.py",
-      "filePath": "confidence_profile.py",
-      "summary": "Language: Python | Path: confidence_profile.py | ~23 lines ## Functions - load(path)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-1630b07cb9f6",
-      "type": "file",
-      "name": "residual_diagnostic.py",
-      "filePath": "residual_diagnostic.py",
-      "summary": "Language: Python | Path: residual_diagnostic.py | ~96 lines ## Functions - analyze_residuals(name, info)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-8e7e8dbdac82",
-      "type": "file",
-      "name": "run_all_benchmarks.py",
-      "filePath": "run_all_benchmarks.py",
-      "summary": "Language: Python | Path: run_all_benchmarks.py | ~69 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-c1e4d5fb56d1",
-      "type": "file",
-      "name": "run_expanded_benchmarks.py",
-      "filePath": "run_expanded_benchmarks.py",
-      "summary": "Language: Python | Path: run_expanded_benchmarks.py | ~100 lines ## Functions - load_ett_csv(path, column=\"OT\")",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 4,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-32209cb53854",
-      "type": "file",
-      "name": "spectral_density.py",
-      "filePath": "spectral_density.py",
-      "summary": "Language: Python | Path: spectral_density.py | ~81 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-205a767985fe",
-      "type": "file",
-      "name": "verify_baseline.py",
-      "filePath": "verify_baseline.py",
-      "summary": "Language: Python | Path: verify_baseline.py | ~37 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-97933a6d0ecd",
-      "type": "file",
-      "name": "download_datasets.py",
-      "filePath": "download_datasets.py",
-      "summary": "Language: Python | Path: download_datasets.py | ~39 lines",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-034a1a4da8f4",
-      "type": "file",
-      "name": "download_nixtla.py",
-      "filePath": "download_nixtla.py",
-      "summary": "Language: Python | Path: download_nixtla.py | ~19 lines",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-6a6412a378e4",
-      "type": "file",
-      "name": "spectral_forecast/trend.py",
-      "filePath": "spectral_forecast/trend.py",
-      "summary": "Language: Python | Path: spectral_forecast/trend.py | ~193 lines ## Classes - TrendModel",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 9,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-31a78c373828",
-      "type": "file",
-      "name": "spectral_forecast/extraction.py",
-      "filePath": "spectral_forecast/extraction.py",
-      "summary": "Language: Python | Path: spectral_forecast/extraction.py | ~113 lines ## Classes - ExtractedComponent",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 6,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-40f2bcf0da95",
-      "type": "file",
-      "name": "spectral_forecast/forecast.py",
-      "filePath": "spectral_forecast/forecast.py",
-      "summary": "Language: Python | Path: spectral_forecast/forecast.py | ~347 lines ## Classes - ForecastResult",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-e3ad60adcf4d",
-      "type": "file",
-      "name": "spectral_forecast/models/iterative.py",
-      "filePath": "spectral_forecast/models/iterative.py",
-      "summary": "Language: Python | Path: spectral_forecast/models/iterative.py | ~214 lines ## Classes - IterativeDecompositionForecaster",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 6,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-77c09a06d935",
-      "type": "file",
-      "name": "spectral_forecast/prepass.py",
-      "filePath": "spectral_forecast/prepass.py",
-      "summary": "Language: Python | Path: spectral_forecast/prepass.py | ~39 lines ## Classes - LevelShift",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 3,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-07e81bf4d958",
-      "type": "file",
-      "name": "spectral_forecast/models/baseline.py",
-      "filePath": "spectral_forecast/models/baseline.py",
-      "summary": "Language: Python | Path: spectral_forecast/models/baseline.py | ~101 lines ## Classes - LinearARForecaster",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-4e01f26b56b5",
-      "type": "file",
-      "name": "spectral_forecast/local.py",
-      "filePath": "spectral_forecast/local.py",
-      "summary": "Language: Python | Path: spectral_forecast/local.py | ~235 lines ## Classes - LocalModel",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 7,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-49ee81e30326",
-      "type": "file",
-      "name": "spectral_forecast/shock.py",
-      "filePath": "spectral_forecast/shock.py",
-      "summary": "Language: Python | Path: spectral_forecast/shock.py | ~165 lines ## Classes - ShockComponent",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 8,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-8f6db409d46a",
-      "type": "file",
-      "name": "spectral_forecast/models/stochastic_resonance.py",
-      "filePath": "spectral_forecast/models/stochastic_resonance.py",
-      "summary": "Language: Python | Path: spectral_forecast/models/stochastic_resonance.py | ~301 lines ## Classes - StochasticResonanceForecaster",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-850608308cd5",
-      "type": "file",
-      "name": "spectral_forecast/wavelet.py",
-      "filePath": "spectral_forecast/wavelet.py",
-      "summary": "Language: Python | Path: spectral_forecast/wavelet.py | ~203 lines ## Classes - WaveletComponent",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 7,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-d837b04bcf31",
-      "type": "file",
-      "name": "spectral_forecast/__init__.py",
-      "filePath": "spectral_forecast/__init__.py",
-      "summary": "Language: Python | Path: spectral_forecast/__init__.py | ~10 lines",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-55813087a5bb",
-      "type": "file",
-      "name": "spectral_forecast/models/__init__.py",
-      "filePath": "spectral_forecast/models/__init__.py",
-      "summary": "Language: Python | Path: spectral_forecast/models/__init__.py | ~7 lines",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-be6c95e2d6a5",
-      "type": "file",
-      "name": "debug_prepass.py",
-      "filePath": "debug_prepass.py",
-      "summary": "Language: Python | Path: debug_prepass.py | ~23 lines ## Imports numpy",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-478895094b7b",
-      "type": "file",
-      "name": "check_ar_orders.py",
-      "filePath": "check_ar_orders.py",
-      "summary": "Language: Python | Path: check_ar_orders.py | ~34 lines ## Functions - check_dataset(name, filepath, train_n, val_n)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-1ca423064fe8",
-      "type": "file",
-      "name": "diagnose_clamping.py",
-      "filePath": "diagnose_clamping.py",
-      "summary": "Language: Python | Path: diagnose_clamping.py | ~47 lines ## Functions - check_dataset(name, filepath, train_n, val_n, horizon=720)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-04ff12fecbe2",
-      "type": "file",
-      "name": "run_ablation.py",
-      "filePath": "run_ablation.py",
-      "summary": "Language: Python | Path: run_ablation.py | ~60 lines ## Functions - fourier_only(data_norm, start, context_length, horizon)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 4,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-c77b0edefdf1",
-      "type": "file",
-      "name": "diagnose.py",
-      "filePath": "diagnose.py",
-      "summary": "Language: Python | Path: diagnose.py | ~8 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-59637dc8a6c0",
-      "type": "file",
-      "name": "diagnose_ettm1_720.py",
-      "filePath": "diagnose_ettm1_720.py",
-      "summary": "Language: Python | Path: diagnose_ettm1_720.py | ~8 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-33154148ccd4",
-      "type": "file",
-      "name": "diagnose_win17.py",
-      "filePath": "diagnose_win17.py",
-      "summary": "Language: Python | Path: diagnose_win17.py | ~8 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-e3e82688bf01",
-      "type": "file",
-      "name": "diagnose_windows.py",
-      "filePath": "diagnose_windows.py",
-      "summary": "Language: Python | Path: diagnose_windows.py | ~8 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-af7aa2a55091",
-      "type": "file",
-      "name": "run_benchmark.py",
-      "filePath": "run_benchmark.py",
-      "summary": "Language: Python | Path: run_benchmark.py | ~9 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-a07b89dcd716",
-      "type": "file",
-      "name": "run_benchmark_ettm1.py",
-      "filePath": "run_benchmark_ettm1.py",
-      "summary": "Language: Python | Path: run_benchmark_ettm1.py | ~9 lines ## Functions - main()",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-mod-spectral-forecast-6d346ed5ce88",
-      "type": "file",
-      "name": "spectral_forecast/cli.py",
-      "filePath": "spectral_forecast/cli.py",
-      "summary": "Language: Python | Path: spectral_forecast/cli.py | ~14 lines ## Functions - main(argv: list[str] | None = None) -> None",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "artifact",
-        "toolTier": "C"
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-8d22271de8c7",
-      "type": "class",
-      "name": "WaveletResult",
-      "filePath": "spectral_forecast/wavelet.py",
-      "summary": "class WaveletResult (spectral_forecast/wavelet.py:58)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-0cde9a123c28",
-      "type": "class",
-      "name": "StochasticResonanceForecaster",
-      "filePath": "spectral_forecast/models/stochastic_resonance.py",
-      "summary": "class StochasticResonanceForecaster (spectral_forecast/models/stochastic_resonance.py:67) ## Methods - equilibrium_error(self) -> Optional[float]",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 5,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-55ea1e7362f9",
-      "type": "class",
-      "name": "WaveletComponent",
-      "filePath": "spectral_forecast/wavelet.py",
-      "summary": "class WaveletComponent (spectral_forecast/wavelet.py:28)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-3ff707f40eb8",
-      "type": "class",
-      "name": "WaveletModel",
-      "filePath": "spectral_forecast/wavelet.py",
-      "summary": "class WaveletModel (spectral_forecast/wavelet.py:38) ## Methods - describe(self) -> str",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-12a53056f353",
-      "type": "class",
-      "name": "ShockComponent",
-      "filePath": "spectral_forecast/shock.py",
-      "summary": "class ShockComponent (spectral_forecast/shock.py:30) ## Methods - evaluate(self, t: NDArray[np.floating]) -> NDArray[np.floating]",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-f2294eab495d",
-      "type": "class",
-      "name": "ShockResult",
-      "filePath": "spectral_forecast/shock.py",
-      "summary": "class ShockResult (spectral_forecast/shock.py:60)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-96d2a96c8ffd",
-      "type": "class",
-      "name": "ShockShape",
-      "filePath": "spectral_forecast/shock.py",
-      "summary": "class ShockShape(Enum) (spectral_forecast/shock.py:23)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-9c59a08d8a5b",
-      "type": "class",
-      "name": "LinearARForecaster",
-      "filePath": "spectral_forecast/models/baseline.py",
-      "summary": "class LinearARForecaster (spectral_forecast/models/baseline.py:22) ## Methods - coefficients(self) -> Optional[np.ndarray]",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 4,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-dce8209418bd",
-      "type": "class",
-      "name": "LocalModel",
-      "filePath": "spectral_forecast/local.py",
-      "summary": "class LocalModel (spectral_forecast/local.py:26) ## Methods - describe(self) -> str",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-b6dffaf9cae3",
-      "type": "class",
-      "name": "LocalResult",
-      "filePath": "spectral_forecast/local.py",
-      "summary": "class LocalResult (spectral_forecast/local.py:47)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-cb9c14b71605",
-      "type": "class",
-      "name": "IterativeDecompositionForecaster",
-      "filePath": "spectral_forecast/models/iterative.py",
-      "summary": "class IterativeDecompositionForecaster (spectral_forecast/models/iterative.py:99) ## Methods - fit(self, y: np.ndarray) -> \"IterativeDecompositionForecaster\"",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-68b0dc6150a3",
-      "type": "class",
-      "name": "LevelShift",
-      "filePath": "spectral_forecast/prepass.py",
-      "summary": "class LevelShift (spectral_forecast/prepass.py:23)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-5a7fd74d8790",
-      "type": "class",
-      "name": "PrepassResult",
-      "filePath": "spectral_forecast/prepass.py",
-      "summary": "class PrepassResult (spectral_forecast/prepass.py:31)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-e96d78609f8d",
-      "type": "class",
-      "name": "ExtractionResult",
-      "filePath": "spectral_forecast/extraction.py",
-      "summary": "class ExtractionResult (spectral_forecast/extraction.py:37)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-cbdcd78c6d50",
-      "type": "class",
-      "name": "ForecastResult",
-      "filePath": "spectral_forecast/forecast.py",
-      "summary": "class ForecastResult (spectral_forecast/forecast.py:27) ## Methods - describe(self) -> str",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-5b07ffd59ab2",
-      "type": "class",
-      "name": "SpectralForecaster",
-      "filePath": "spectral_forecast/forecast.py",
-      "summary": "class SpectralForecaster (spectral_forecast/forecast.py:73) ## Methods - fit(self, signal: NDArray[np.floating]) -> None",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 3,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-a655453d6600",
-      "type": "class",
-      "name": "TrendResult",
-      "filePath": "spectral_forecast/trend.py",
-      "summary": "class TrendResult (spectral_forecast/trend.py:98)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-34e17d6efc20",
-      "type": "class",
-      "name": "TrendType",
-      "filePath": "spectral_forecast/trend.py",
-      "summary": "class TrendType(Enum) (spectral_forecast/trend.py:22)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-29e68df342b3",
-      "type": "class",
-      "name": "ExtractedComponent",
-      "filePath": "spectral_forecast/extraction.py",
-      "summary": "class ExtractedComponent (spectral_forecast/extraction.py:23) ## Methods - evaluate(self, t: NDArray[np.floating]) -> NDArray[np.floating]",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-51f037698a43",
-      "type": "class",
-      "name": "TrendModel",
-      "filePath": "spectral_forecast/trend.py",
-      "summary": "class TrendModel (spectral_forecast/trend.py:30) ## Methods - predict(self, t: NDArray[np.floating]) -> NDArray[np.floating]",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 2,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-969b41b04746",
-      "type": "class",
-      "name": "BenchmarkMetrics",
-      "filePath": "spectral_forecast/benchmark.py",
-      "summary": "class BenchmarkMetrics (spectral_forecast/benchmark.py:20)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-cffa326d81cd",
-      "type": "class",
-      "name": "BenchmarkResult",
-      "filePath": "spectral_forecast/benchmark.py",
-      "summary": "class BenchmarkResult (spectral_forecast/benchmark.py:32) ## Methods - summary(self) -> str",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-a0c9ee5b0668",
-      "type": "class",
-      "name": "Worker",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class Worker (spectral_forecast/engine.py:54) ## Methods - confidence(self) -> float",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 4,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-5b82d66cd325",
-      "type": "class",
-      "name": "AggressiveDampingFourierWorker",
-      "filePath": "spectral_forecast/workers_v2.py",
-      "summary": "class AggressiveDampingFourierWorker(Worker) (spectral_forecast/workers_v2.py:120)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-66b2044bf2d5",
-      "type": "class",
-      "name": "NormalityAwareFourierWorker",
-      "filePath": "spectral_forecast/workers_v2.py",
-      "summary": "class NormalityAwareFourierWorker(Worker) (spectral_forecast/workers_v2.py:67) ## Methods - confidence(self) -> float",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-425561749662",
-      "type": "class",
-      "name": "ShockAwareFourierWorker",
-      "filePath": "spectral_forecast/workers_v2.py",
-      "summary": "class ShockAwareFourierWorker(Worker) (spectral_forecast/workers_v2.py:20)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-0db4af7304ad",
-      "type": "class",
-      "name": "FourierWorker",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class FourierWorker(Worker) (spectral_forecast/engine.py:224)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-5a2a51dba419",
-      "type": "class",
-      "name": "IterativeWorker",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class IterativeWorker(Worker) (spectral_forecast/engine.py:248)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-fc6ce3f9fe2d",
-      "type": "class",
-      "name": "Prediction",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class Prediction (spectral_forecast/engine.py:24)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-272936f49c96",
-      "type": "class",
-      "name": "SRWorker",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class SRWorker(Worker) (spectral_forecast/engine.py:279) ## Methods - observe(self, value: float) -> None",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-660b672d8ffd",
-      "type": "class",
-      "name": "ARWorker",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class ARWorker(Worker) (spectral_forecast/engine.py:190)",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-ae084aa2f268",
-      "type": "class",
-      "name": "EnsembleResult",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class EnsembleResult (spectral_forecast/engine.py:34) ## Methods - describe(self) -> str",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 1,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    },
-    {
-      "id": "code-sym-spectral-forecast-724eb9524213",
-      "type": "class",
-      "name": "ForecastEngine",
-      "filePath": "spectral_forecast/engine.py",
-      "summary": "class ForecastEngine (spectral_forecast/engine.py:344) ## Methods - observe(self, value: float) -> None",
-      "tags": [
-        "code",
-        "python"
-      ],
-      "complexity": 3,
-      "languageNotes": {
-        "language": "Python",
-        "kindexType": "concept",
-        "toolTier": ""
-      }
-    }
-  ],
   "edges": [
     {
+      "direction": "outbound",
       "source": "code-mod-spectral-forecast-6d346ed5ce88",
       "target": "code-mod-spectral-forecast-af7aa2a55091",
       "type": "depends_on",
-      "direction": "outbound",
       "weight": 0.5
     },
     {
-      "source": "code-sym-spectral-forecast-8d22271de8c7",
-      "target": "code-mod-spectral-forecast-850608308cd5",
-      "type": "contains",
       "direction": "outbound",
-      "weight": 0.6
-    },
-    {
       "source": "code-sym-spectral-forecast-0cde9a123c28",
       "target": "code-mod-spectral-forecast-8f6db409d46a",
       "type": "contains",
-      "direction": "outbound",
       "weight": 0.6
     },
     {
-      "source": "code-sym-spectral-forecast-55ea1e7362f9",
-      "target": "code-mod-spectral-forecast-850608308cd5",
-      "type": "contains",
       "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-3ff707f40eb8",
-      "target": "code-mod-spectral-forecast-850608308cd5",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-12a53056f353",
-      "target": "code-mod-spectral-forecast-49ee81e30326",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-f2294eab495d",
-      "target": "code-mod-spectral-forecast-49ee81e30326",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-96d2a96c8ffd",
-      "target": "code-mod-spectral-forecast-49ee81e30326",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-9c59a08d8a5b",
-      "target": "code-mod-spectral-forecast-07e81bf4d958",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-dce8209418bd",
-      "target": "code-mod-spectral-forecast-4e01f26b56b5",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-b6dffaf9cae3",
-      "target": "code-mod-spectral-forecast-4e01f26b56b5",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-cb9c14b71605",
-      "target": "code-mod-spectral-forecast-e3ad60adcf4d",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-68b0dc6150a3",
-      "target": "code-mod-spectral-forecast-77c09a06d935",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-5a7fd74d8790",
-      "target": "code-mod-spectral-forecast-77c09a06d935",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-e96d78609f8d",
-      "target": "code-mod-spectral-forecast-31a78c373828",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-cbdcd78c6d50",
-      "target": "code-mod-spectral-forecast-40f2bcf0da95",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-5b07ffd59ab2",
-      "target": "code-mod-spectral-forecast-40f2bcf0da95",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-a655453d6600",
-      "target": "code-mod-spectral-forecast-6a6412a378e4",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-34e17d6efc20",
-      "target": "code-mod-spectral-forecast-6a6412a378e4",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-29e68df342b3",
-      "target": "code-mod-spectral-forecast-31a78c373828",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-51f037698a43",
-      "target": "code-mod-spectral-forecast-6a6412a378e4",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-969b41b04746",
-      "target": "code-mod-spectral-forecast-839f0f93c0f4",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-cffa326d81cd",
-      "target": "code-mod-spectral-forecast-839f0f93c0f4",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-a0c9ee5b0668",
-      "target": "code-mod-spectral-forecast-466f50669ed4",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-5b82d66cd325",
-      "target": "code-mod-spectral-forecast-8d4c1a5a3320",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-66b2044bf2d5",
-      "target": "code-mod-spectral-forecast-8d4c1a5a3320",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
-      "source": "code-sym-spectral-forecast-425561749662",
-      "target": "code-mod-spectral-forecast-8d4c1a5a3320",
-      "type": "contains",
-      "direction": "outbound",
-      "weight": 0.6
-    },
-    {
       "source": "code-sym-spectral-forecast-0db4af7304ad",
       "target": "code-mod-spectral-forecast-466f50669ed4",
       "type": "contains",
-      "direction": "outbound",
       "weight": 0.6
     },
     {
-      "source": "code-sym-spectral-forecast-5a2a51dba419",
-      "target": "code-mod-spectral-forecast-466f50669ed4",
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-12a53056f353",
+      "target": "code-mod-spectral-forecast-49ee81e30326",
       "type": "contains",
-      "direction": "outbound",
       "weight": 0.6
     },
     {
-      "source": "code-sym-spectral-forecast-fc6ce3f9fe2d",
-      "target": "code-mod-spectral-forecast-466f50669ed4",
-      "type": "contains",
       "direction": "outbound",
-      "weight": 0.6
-    },
-    {
       "source": "code-sym-spectral-forecast-272936f49c96",
       "target": "code-mod-spectral-forecast-466f50669ed4",
       "type": "contains",
-      "direction": "outbound",
       "weight": 0.6
     },
     {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-29e68df342b3",
+      "target": "code-mod-spectral-forecast-31a78c373828",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-34e17d6efc20",
+      "target": "code-mod-spectral-forecast-6a6412a378e4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-3ff707f40eb8",
+      "target": "code-mod-spectral-forecast-850608308cd5",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-425561749662",
+      "target": "code-mod-spectral-forecast-8d4c1a5a3320",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-51f037698a43",
+      "target": "code-mod-spectral-forecast-6a6412a378e4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-55ea1e7362f9",
+      "target": "code-mod-spectral-forecast-850608308cd5",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-5a2a51dba419",
+      "target": "code-mod-spectral-forecast-466f50669ed4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-5a7fd74d8790",
+      "target": "code-mod-spectral-forecast-77c09a06d935",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-5b07ffd59ab2",
+      "target": "code-mod-spectral-forecast-40f2bcf0da95",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-5b82d66cd325",
+      "target": "code-mod-spectral-forecast-8d4c1a5a3320",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
       "source": "code-sym-spectral-forecast-660b672d8ffd",
       "target": "code-mod-spectral-forecast-466f50669ed4",
       "type": "contains",
-      "direction": "outbound",
       "weight": 0.6
     },
     {
-      "source": "code-sym-spectral-forecast-ae084aa2f268",
-      "target": "code-mod-spectral-forecast-466f50669ed4",
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-66b2044bf2d5",
+      "target": "code-mod-spectral-forecast-8d4c1a5a3320",
       "type": "contains",
-      "direction": "outbound",
       "weight": 0.6
     },
     {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-68b0dc6150a3",
+      "target": "code-mod-spectral-forecast-77c09a06d935",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
       "source": "code-sym-spectral-forecast-724eb9524213",
       "target": "code-mod-spectral-forecast-466f50669ed4",
       "type": "contains",
+      "weight": 0.6
+    },
+    {
       "direction": "outbound",
+      "source": "code-sym-spectral-forecast-8d22271de8c7",
+      "target": "code-mod-spectral-forecast-850608308cd5",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-969b41b04746",
+      "target": "code-mod-spectral-forecast-839f0f93c0f4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-96d2a96c8ffd",
+      "target": "code-mod-spectral-forecast-49ee81e30326",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-9c59a08d8a5b",
+      "target": "code-mod-spectral-forecast-07e81bf4d958",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-a0c9ee5b0668",
+      "target": "code-mod-spectral-forecast-466f50669ed4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-a655453d6600",
+      "target": "code-mod-spectral-forecast-6a6412a378e4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-ae084aa2f268",
+      "target": "code-mod-spectral-forecast-466f50669ed4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-b6dffaf9cae3",
+      "target": "code-mod-spectral-forecast-4e01f26b56b5",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-cb9c14b71605",
+      "target": "code-mod-spectral-forecast-e3ad60adcf4d",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-cbdcd78c6d50",
+      "target": "code-mod-spectral-forecast-40f2bcf0da95",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-cffa326d81cd",
+      "target": "code-mod-spectral-forecast-839f0f93c0f4",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-dce8209418bd",
+      "target": "code-mod-spectral-forecast-4e01f26b56b5",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-e96d78609f8d",
+      "target": "code-mod-spectral-forecast-31a78c373828",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-f2294eab495d",
+      "target": "code-mod-spectral-forecast-49ee81e30326",
+      "type": "contains",
+      "weight": 0.6
+    },
+    {
+      "direction": "outbound",
+      "source": "code-sym-spectral-forecast-fc6ce3f9fe2d",
+      "target": "code-mod-spectral-forecast-466f50669ed4",
+      "type": "contains",
       "weight": 0.6
     }
   ],
   "layers": [
     {
+      "description": "Kindex-inferred core layer.",
       "id": "core",
       "name": "Core",
-      "description": "Kindex-inferred core layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-034a1a4da8f4",
         "code-mod-spectral-forecast-04ff12fecbe2",
@@ -1506,9 +269,9 @@
       ]
     },
     {
+      "description": "Kindex-inferred data layer.",
       "id": "data",
       "name": "Data",
-      "description": "Kindex-inferred data layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-07e81bf4d958",
         "code-mod-spectral-forecast-55813087a5bb",
@@ -1517,9 +280,9 @@
       ]
     },
     {
+      "description": "Kindex-inferred domain layer.",
       "id": "domain",
       "name": "Domain",
-      "description": "Kindex-inferred domain layer.",
       "nodeIds": [
         "code-sym-spectral-forecast-0cde9a123c28",
         "code-sym-spectral-forecast-0db4af7304ad",
@@ -1557,9 +320,9 @@
       ]
     },
     {
+      "description": "Kindex-inferred test layer.",
       "id": "test",
       "name": "Test",
-      "description": "Kindex-inferred test layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-31a78c373828",
         "code-mod-spectral-forecast-32209cb53854",
@@ -1577,18 +340,1252 @@
       ]
     },
     {
+      "description": "Kindex-inferred ui layer.",
       "id": "ui",
       "name": "Ui",
-      "description": "Kindex-inferred ui layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-53e0cd347b2c"
       ]
     }
   ],
+  "nodes": [
+    {
+      "complexity": 2,
+      "filePath": "check_ar_orders.py",
+      "id": "code-mod-spectral-forecast-478895094b7b",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "check_ar_orders.py",
+      "summary": "Language: Python | Path: check_ar_orders.py | ~34 lines ## Functions - check_dataset(name, filepath, train_n, val_n)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "confidence_profile.py",
+      "id": "code-mod-spectral-forecast-9e8480babfc1",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "confidence_profile.py",
+      "summary": "Language: Python | Path: confidence_profile.py | ~23 lines ## Functions - load(path)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "debug_prepass.py",
+      "id": "code-mod-spectral-forecast-be6c95e2d6a5",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "debug_prepass.py",
+      "summary": "Language: Python | Path: debug_prepass.py | ~23 lines ## Imports numpy",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "diagnose.py",
+      "id": "code-mod-spectral-forecast-c77b0edefdf1",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "diagnose.py",
+      "summary": "Language: Python | Path: diagnose.py | ~8 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "diagnose_clamping.py",
+      "id": "code-mod-spectral-forecast-1ca423064fe8",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "diagnose_clamping.py",
+      "summary": "Language: Python | Path: diagnose_clamping.py | ~47 lines ## Functions - check_dataset(name, filepath, train_n, val_n, horizon=720)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "diagnose_ettm1_720.py",
+      "id": "code-mod-spectral-forecast-59637dc8a6c0",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "diagnose_ettm1_720.py",
+      "summary": "Language: Python | Path: diagnose_ettm1_720.py | ~8 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "diagnose_win17.py",
+      "id": "code-mod-spectral-forecast-33154148ccd4",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "diagnose_win17.py",
+      "summary": "Language: Python | Path: diagnose_win17.py | ~8 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "diagnose_windows.py",
+      "id": "code-mod-spectral-forecast-e3e82688bf01",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "diagnose_windows.py",
+      "summary": "Language: Python | Path: diagnose_windows.py | ~8 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "download_datasets.py",
+      "id": "code-mod-spectral-forecast-97933a6d0ecd",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "download_datasets.py",
+      "summary": "Language: Python | Path: download_datasets.py | ~39 lines",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "download_nixtla.py",
+      "id": "code-mod-spectral-forecast-034a1a4da8f4",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "download_nixtla.py",
+      "summary": "Language: Python | Path: download_nixtla.py | ~19 lines",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 4,
+      "filePath": "engine_full_benchmark.py",
+      "id": "code-mod-spectral-forecast-28ab2417eb6d",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "engine_full_benchmark.py",
+      "summary": "Language: Python | Path: engine_full_benchmark.py | ~102 lines ## Functions - load_ett(path)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "engine_quick_benchmark.py",
+      "id": "code-mod-spectral-forecast-53e0cd347b2c",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "engine_quick_benchmark.py",
+      "summary": "Language: Python | Path: engine_quick_benchmark.py | ~26 lines ## Functions - load(path)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 6,
+      "filePath": "engine_v2_benchmark.py",
+      "id": "code-mod-spectral-forecast-4e45d636ce55",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "engine_v2_benchmark.py",
+      "summary": "Language: Python | Path: engine_v2_benchmark.py | ~87 lines ## Functions - load_ett(path)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "residual_diagnostic.py",
+      "id": "code-mod-spectral-forecast-1630b07cb9f6",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "residual_diagnostic.py",
+      "summary": "Language: Python | Path: residual_diagnostic.py | ~96 lines ## Functions - analyze_residuals(name, info)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 4,
+      "filePath": "run_ablation.py",
+      "id": "code-mod-spectral-forecast-04ff12fecbe2",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "run_ablation.py",
+      "summary": "Language: Python | Path: run_ablation.py | ~60 lines ## Functions - fourier_only(data_norm, start, context_length, horizon)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "run_all_benchmarks.py",
+      "id": "code-mod-spectral-forecast-8e7e8dbdac82",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "run_all_benchmarks.py",
+      "summary": "Language: Python | Path: run_all_benchmarks.py | ~69 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "run_benchmark.py",
+      "id": "code-mod-spectral-forecast-af7aa2a55091",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "run_benchmark.py",
+      "summary": "Language: Python | Path: run_benchmark.py | ~9 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "run_benchmark_ettm1.py",
+      "id": "code-mod-spectral-forecast-a07b89dcd716",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "run_benchmark_ettm1.py",
+      "summary": "Language: Python | Path: run_benchmark_ettm1.py | ~9 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "run_engine_benchmark.py",
+      "id": "code-mod-spectral-forecast-c6b714e9c4a5",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "run_engine_benchmark.py",
+      "summary": "Language: Python | Path: run_engine_benchmark.py | ~39 lines ## Functions - load_ett_csv(path, column=\"OT\")",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 4,
+      "filePath": "run_expanded_benchmarks.py",
+      "id": "code-mod-spectral-forecast-c1e4d5fb56d1",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "run_expanded_benchmarks.py",
+      "summary": "Language: Python | Path: run_expanded_benchmarks.py | ~100 lines ## Functions - load_ett_csv(path, column=\"OT\")",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "spectral_density.py",
+      "id": "code-mod-spectral-forecast-32209cb53854",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_density.py",
+      "summary": "Language: Python | Path: spectral_density.py | ~81 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/__init__.py",
+      "id": "code-mod-spectral-forecast-d837b04bcf31",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/__init__.py",
+      "summary": "Language: Python | Path: spectral_forecast/__init__.py | ~10 lines",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/benchmark.py",
+      "id": "code-sym-spectral-forecast-969b41b04746",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "BenchmarkMetrics",
+      "summary": "class BenchmarkMetrics (spectral_forecast/benchmark.py:20)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/benchmark.py",
+      "id": "code-sym-spectral-forecast-cffa326d81cd",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "BenchmarkResult",
+      "summary": "class BenchmarkResult (spectral_forecast/benchmark.py:32) ## Methods - summary(self) -> str",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 5,
+      "filePath": "spectral_forecast/benchmark.py",
+      "id": "code-mod-spectral-forecast-839f0f93c0f4",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/benchmark.py",
+      "summary": "Language: Python | Path: spectral_forecast/benchmark.py | ~104 lines ## Classes - BenchmarkMetrics",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/cli.py",
+      "id": "code-mod-spectral-forecast-6d346ed5ce88",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/cli.py",
+      "summary": "Language: Python | Path: spectral_forecast/cli.py | ~14 lines ## Functions - main(argv: list[str] | None = None) -> None",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-0db4af7304ad",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "FourierWorker",
+      "summary": "class FourierWorker(Worker) (spectral_forecast/engine.py:224)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-272936f49c96",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "SRWorker",
+      "summary": "class SRWorker(Worker) (spectral_forecast/engine.py:279) ## Methods - observe(self, value: float) -> None",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-5a2a51dba419",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "IterativeWorker",
+      "summary": "class IterativeWorker(Worker) (spectral_forecast/engine.py:248)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-660b672d8ffd",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ARWorker",
+      "summary": "class ARWorker(Worker) (spectral_forecast/engine.py:190)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 3,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-724eb9524213",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ForecastEngine",
+      "summary": "class ForecastEngine (spectral_forecast/engine.py:344) ## Methods - observe(self, value: float) -> None",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 4,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-a0c9ee5b0668",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "Worker",
+      "summary": "class Worker (spectral_forecast/engine.py:54) ## Methods - confidence(self) -> float",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-ae084aa2f268",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "EnsembleResult",
+      "summary": "class EnsembleResult (spectral_forecast/engine.py:34) ## Methods - describe(self) -> str",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-sym-spectral-forecast-fc6ce3f9fe2d",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "Prediction",
+      "summary": "class Prediction (spectral_forecast/engine.py:24)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 8,
+      "filePath": "spectral_forecast/engine.py",
+      "id": "code-mod-spectral-forecast-466f50669ed4",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/engine.py",
+      "summary": "Language: Python | Path: spectral_forecast/engine.py | ~387 lines ## Classes - ARWorker(Worker)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/extraction.py",
+      "id": "code-sym-spectral-forecast-29e68df342b3",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ExtractedComponent",
+      "summary": "class ExtractedComponent (spectral_forecast/extraction.py:23) ## Methods - evaluate(self, t: NDArray[np.floating]) -> NDArray[np.floating]",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/extraction.py",
+      "id": "code-sym-spectral-forecast-e96d78609f8d",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ExtractionResult",
+      "summary": "class ExtractionResult (spectral_forecast/extraction.py:37)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 6,
+      "filePath": "spectral_forecast/extraction.py",
+      "id": "code-mod-spectral-forecast-31a78c373828",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/extraction.py",
+      "summary": "Language: Python | Path: spectral_forecast/extraction.py | ~113 lines ## Classes - ExtractedComponent",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 3,
+      "filePath": "spectral_forecast/forecast.py",
+      "id": "code-sym-spectral-forecast-5b07ffd59ab2",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "SpectralForecaster",
+      "summary": "class SpectralForecaster (spectral_forecast/forecast.py:73) ## Methods - fit(self, signal: NDArray[np.floating]) -> None",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/forecast.py",
+      "id": "code-sym-spectral-forecast-cbdcd78c6d50",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ForecastResult",
+      "summary": "class ForecastResult (spectral_forecast/forecast.py:27) ## Methods - describe(self) -> str",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 2,
+      "filePath": "spectral_forecast/forecast.py",
+      "id": "code-mod-spectral-forecast-40f2bcf0da95",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/forecast.py",
+      "summary": "Language: Python | Path: spectral_forecast/forecast.py | ~347 lines ## Classes - ForecastResult",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/local.py",
+      "id": "code-sym-spectral-forecast-b6dffaf9cae3",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "LocalResult",
+      "summary": "class LocalResult (spectral_forecast/local.py:47)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/local.py",
+      "id": "code-sym-spectral-forecast-dce8209418bd",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "LocalModel",
+      "summary": "class LocalModel (spectral_forecast/local.py:26) ## Methods - describe(self) -> str",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 7,
+      "filePath": "spectral_forecast/local.py",
+      "id": "code-mod-spectral-forecast-4e01f26b56b5",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/local.py",
+      "summary": "Language: Python | Path: spectral_forecast/local.py | ~235 lines ## Classes - LocalModel",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/models/__init__.py",
+      "id": "code-mod-spectral-forecast-55813087a5bb",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/models/__init__.py",
+      "summary": "Language: Python | Path: spectral_forecast/models/__init__.py | ~7 lines",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 4,
+      "filePath": "spectral_forecast/models/baseline.py",
+      "id": "code-sym-spectral-forecast-9c59a08d8a5b",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "LinearARForecaster",
+      "summary": "class LinearARForecaster (spectral_forecast/models/baseline.py:22) ## Methods - coefficients(self) -> Optional[np.ndarray]",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/models/baseline.py",
+      "id": "code-mod-spectral-forecast-07e81bf4d958",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/models/baseline.py",
+      "summary": "Language: Python | Path: spectral_forecast/models/baseline.py | ~101 lines ## Classes - LinearARForecaster",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "spectral_forecast/models/iterative.py",
+      "id": "code-sym-spectral-forecast-cb9c14b71605",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "IterativeDecompositionForecaster",
+      "summary": "class IterativeDecompositionForecaster (spectral_forecast/models/iterative.py:99) ## Methods - fit(self, y: np.ndarray) -> \"IterativeDecompositionForecaster\"",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 6,
+      "filePath": "spectral_forecast/models/iterative.py",
+      "id": "code-mod-spectral-forecast-e3ad60adcf4d",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/models/iterative.py",
+      "summary": "Language: Python | Path: spectral_forecast/models/iterative.py | ~214 lines ## Classes - IterativeDecompositionForecaster",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 5,
+      "filePath": "spectral_forecast/models/stochastic_resonance.py",
+      "id": "code-sym-spectral-forecast-0cde9a123c28",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "StochasticResonanceForecaster",
+      "summary": "class StochasticResonanceForecaster (spectral_forecast/models/stochastic_resonance.py:67) ## Methods - equilibrium_error(self) -> Optional[float]",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/models/stochastic_resonance.py",
+      "id": "code-mod-spectral-forecast-8f6db409d46a",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/models/stochastic_resonance.py",
+      "summary": "Language: Python | Path: spectral_forecast/models/stochastic_resonance.py | ~301 lines ## Classes - StochasticResonanceForecaster",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/prepass.py",
+      "id": "code-sym-spectral-forecast-5a7fd74d8790",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "PrepassResult",
+      "summary": "class PrepassResult (spectral_forecast/prepass.py:31)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/prepass.py",
+      "id": "code-sym-spectral-forecast-68b0dc6150a3",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "LevelShift",
+      "summary": "class LevelShift (spectral_forecast/prepass.py:23)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 3,
+      "filePath": "spectral_forecast/prepass.py",
+      "id": "code-mod-spectral-forecast-77c09a06d935",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/prepass.py",
+      "summary": "Language: Python | Path: spectral_forecast/prepass.py | ~39 lines ## Classes - LevelShift",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/shock.py",
+      "id": "code-sym-spectral-forecast-12a53056f353",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ShockComponent",
+      "summary": "class ShockComponent (spectral_forecast/shock.py:30) ## Methods - evaluate(self, t: NDArray[np.floating]) -> NDArray[np.floating]",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/shock.py",
+      "id": "code-sym-spectral-forecast-96d2a96c8ffd",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ShockShape",
+      "summary": "class ShockShape(Enum) (spectral_forecast/shock.py:23)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/shock.py",
+      "id": "code-sym-spectral-forecast-f2294eab495d",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ShockResult",
+      "summary": "class ShockResult (spectral_forecast/shock.py:60)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 8,
+      "filePath": "spectral_forecast/shock.py",
+      "id": "code-mod-spectral-forecast-49ee81e30326",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/shock.py",
+      "summary": "Language: Python | Path: spectral_forecast/shock.py | ~165 lines ## Classes - ShockComponent",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/trend.py",
+      "id": "code-sym-spectral-forecast-34e17d6efc20",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "TrendType",
+      "summary": "class TrendType(Enum) (spectral_forecast/trend.py:22)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 2,
+      "filePath": "spectral_forecast/trend.py",
+      "id": "code-sym-spectral-forecast-51f037698a43",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "TrendModel",
+      "summary": "class TrendModel (spectral_forecast/trend.py:30) ## Methods - predict(self, t: NDArray[np.floating]) -> NDArray[np.floating]",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/trend.py",
+      "id": "code-sym-spectral-forecast-a655453d6600",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "TrendResult",
+      "summary": "class TrendResult (spectral_forecast/trend.py:98)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 9,
+      "filePath": "spectral_forecast/trend.py",
+      "id": "code-mod-spectral-forecast-6a6412a378e4",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/trend.py",
+      "summary": "Language: Python | Path: spectral_forecast/trend.py | ~193 lines ## Classes - TrendModel",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/wavelet.py",
+      "id": "code-sym-spectral-forecast-3ff707f40eb8",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "WaveletModel",
+      "summary": "class WaveletModel (spectral_forecast/wavelet.py:38) ## Methods - describe(self) -> str",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/wavelet.py",
+      "id": "code-sym-spectral-forecast-55ea1e7362f9",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "WaveletComponent",
+      "summary": "class WaveletComponent (spectral_forecast/wavelet.py:28)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/wavelet.py",
+      "id": "code-sym-spectral-forecast-8d22271de8c7",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "WaveletResult",
+      "summary": "class WaveletResult (spectral_forecast/wavelet.py:58)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 7,
+      "filePath": "spectral_forecast/wavelet.py",
+      "id": "code-mod-spectral-forecast-850608308cd5",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/wavelet.py",
+      "summary": "Language: Python | Path: spectral_forecast/wavelet.py | ~203 lines ## Classes - WaveletComponent",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/workers_v2.py",
+      "id": "code-sym-spectral-forecast-425561749662",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "ShockAwareFourierWorker",
+      "summary": "class ShockAwareFourierWorker(Worker) (spectral_forecast/workers_v2.py:20)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/workers_v2.py",
+      "id": "code-sym-spectral-forecast-5b82d66cd325",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "AggressiveDampingFourierWorker",
+      "summary": "class AggressiveDampingFourierWorker(Worker) (spectral_forecast/workers_v2.py:120)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 1,
+      "filePath": "spectral_forecast/workers_v2.py",
+      "id": "code-sym-spectral-forecast-66b2044bf2d5",
+      "languageNotes": {
+        "kindexType": "concept",
+        "language": "Python",
+        "toolTier": ""
+      },
+      "name": "NormalityAwareFourierWorker",
+      "summary": "class NormalityAwareFourierWorker(Worker) (spectral_forecast/workers_v2.py:67) ## Methods - confidence(self) -> float",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "class"
+    },
+    {
+      "complexity": 3,
+      "filePath": "spectral_forecast/workers_v2.py",
+      "id": "code-mod-spectral-forecast-8d4c1a5a3320",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "spectral_forecast/workers_v2.py",
+      "summary": "Language: Python | Path: spectral_forecast/workers_v2.py | ~160 lines ## Classes - AggressiveDampingFourierWorker(Worker)",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 2,
+      "filePath": "verify_baseline.py",
+      "id": "code-mod-spectral-forecast-205a767985fe",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "verify_baseline.py",
+      "summary": "Language: Python | Path: verify_baseline.py | ~37 lines ## Functions - main()",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    },
+    {
+      "complexity": 1,
+      "filePath": "zenodo_upload.py",
+      "id": "code-mod-spectral-forecast-0fb5aa76821b",
+      "languageNotes": {
+        "kindexType": "artifact",
+        "language": "Python",
+        "toolTier": "C"
+      },
+      "name": "zenodo_upload.py",
+      "summary": "Language: Python | Path: zenodo_upload.py | ~92 lines",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "type": "file"
+    }
+  ],
+  "project": {
+    "analyzedAt": "2026-05-24T17:35:26-05:00",
+    "description": "Code map exported from Kindex for spectral-forecast.",
+    "frameworks": [],
+    "gitCommitHash": "364d183ef5180e0a2d4a6b6a6ed5c9fcbd35d0d9",
+    "languages": [
+      "Python"
+    ],
+    "name": "spectral-forecast"
+  },
   "tour": [
     {
-      "order": 1,
-      "title": "Core",
       "description": "Review 21 node(s) in the Core layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-034a1a4da8f4",
@@ -1612,22 +1609,22 @@
         "code-mod-spectral-forecast-c6b714e9c4a5",
         "code-mod-spectral-forecast-c77b0edefdf1",
         "code-mod-spectral-forecast-e3e82688bf01"
-      ]
+      ],
+      "order": 1,
+      "title": "Core"
     },
     {
-      "order": 2,
-      "title": "Data",
       "description": "Review 4 node(s) in the Data layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-07e81bf4d958",
         "code-mod-spectral-forecast-55813087a5bb",
         "code-mod-spectral-forecast-8f6db409d46a",
         "code-mod-spectral-forecast-e3ad60adcf4d"
-      ]
+      ],
+      "order": 2,
+      "title": "Data"
     },
     {
-      "order": 3,
-      "title": "Domain",
       "description": "Review 33 node(s) in the Domain layer.",
       "nodeIds": [
         "code-sym-spectral-forecast-0cde9a123c28",
@@ -1655,11 +1652,11 @@
         "code-sym-spectral-forecast-a0c9ee5b0668",
         "code-sym-spectral-forecast-a655453d6600",
         "code-sym-spectral-forecast-ae084aa2f268"
-      ]
+      ],
+      "order": 3,
+      "title": "Domain"
     },
     {
-      "order": 4,
-      "title": "Test",
       "description": "Review 13 node(s) in the Test layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-31a78c373828",
@@ -1675,15 +1672,18 @@
         "code-mod-spectral-forecast-850608308cd5",
         "code-mod-spectral-forecast-8d4c1a5a3320",
         "code-mod-spectral-forecast-d837b04bcf31"
-      ]
+      ],
+      "order": 4,
+      "title": "Test"
     },
     {
-      "order": 5,
-      "title": "Ui",
       "description": "Review 1 node(s) in the Ui layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-53e0cd347b2c"
-      ]
+      ],
+      "order": 5,
+      "title": "Ui"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }
