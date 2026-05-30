@@ -1,0 +1,804 @@
+{
+  "domains": [
+    "code",
+    "python"
+  ],
+  "node_count": 72,
+  "nodes": [
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-034a1a4da8f4",
+      "title": "download_nixtla.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-04ff12fecbe2",
+      "title": "run_ablation.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-07e81bf4d958",
+      "title": "spectral_forecast/models/baseline.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-0fb5aa76821b",
+      "title": "zenodo_upload.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-1630b07cb9f6",
+      "title": "residual_diagnostic.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-1ca423064fe8",
+      "title": "diagnose_clamping.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-205a767985fe",
+      "title": "verify_baseline.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-28ab2417eb6d",
+      "title": "engine_full_benchmark.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-31a78c373828",
+      "title": "spectral_forecast/extraction.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-32209cb53854",
+      "title": "spectral_density.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-33154148ccd4",
+      "title": "diagnose_win17.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-40f2bcf0da95",
+      "title": "spectral_forecast/forecast.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-466f50669ed4",
+      "title": "spectral_forecast/engine.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-478895094b7b",
+      "title": "check_ar_orders.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-49ee81e30326",
+      "title": "spectral_forecast/shock.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-4e01f26b56b5",
+      "title": "spectral_forecast/local.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-4e45d636ce55",
+      "title": "engine_v2_benchmark.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-53e0cd347b2c",
+      "title": "engine_quick_benchmark.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-55813087a5bb",
+      "title": "spectral_forecast/models/__init__.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-59637dc8a6c0",
+      "title": "diagnose_ettm1_720.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-6a6412a378e4",
+      "title": "spectral_forecast/trend.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-6d346ed5ce88",
+      "title": "spectral_forecast/cli.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-77c09a06d935",
+      "title": "spectral_forecast/prepass.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-839f0f93c0f4",
+      "title": "spectral_forecast/benchmark.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-850608308cd5",
+      "title": "spectral_forecast/wavelet.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-8d4c1a5a3320",
+      "title": "spectral_forecast/workers_v2.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-8e7e8dbdac82",
+      "title": "run_all_benchmarks.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-8f6db409d46a",
+      "title": "spectral_forecast/models/stochastic_resonance.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-97933a6d0ecd",
+      "title": "download_datasets.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-9e8480babfc1",
+      "title": "confidence_profile.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-a07b89dcd716",
+      "title": "run_benchmark_ettm1.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-af7aa2a55091",
+      "title": "run_benchmark.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-be6c95e2d6a5",
+      "title": "debug_prepass.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-c1e4d5fb56d1",
+      "title": "run_expanded_benchmarks.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-c6b714e9c4a5",
+      "title": "run_engine_benchmark.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-c77b0edefdf1",
+      "title": "diagnose.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-d837b04bcf31",
+      "title": "spectral_forecast/__init__.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-e3ad60adcf4d",
+      "title": "spectral_forecast/models/iterative.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-e3e82688bf01",
+      "title": "diagnose_windows.py",
+      "type": "artifact",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-0cde9a123c28",
+      "title": "StochasticResonanceForecaster",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-0db4af7304ad",
+      "title": "FourierWorker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-12a53056f353",
+      "title": "ShockComponent",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-272936f49c96",
+      "title": "SRWorker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-29e68df342b3",
+      "title": "ExtractedComponent",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-34e17d6efc20",
+      "title": "TrendType",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-3ff707f40eb8",
+      "title": "WaveletModel",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-425561749662",
+      "title": "ShockAwareFourierWorker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-51f037698a43",
+      "title": "TrendModel",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-55ea1e7362f9",
+      "title": "WaveletComponent",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-5a2a51dba419",
+      "title": "IterativeWorker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-5a7fd74d8790",
+      "title": "PrepassResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-5b07ffd59ab2",
+      "title": "SpectralForecaster",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-5b82d66cd325",
+      "title": "AggressiveDampingFourierWorker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-660b672d8ffd",
+      "title": "ARWorker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-66b2044bf2d5",
+      "title": "NormalityAwareFourierWorker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-68b0dc6150a3",
+      "title": "LevelShift",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-724eb9524213",
+      "title": "ForecastEngine",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-8d22271de8c7",
+      "title": "WaveletResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-969b41b04746",
+      "title": "BenchmarkMetrics",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-96d2a96c8ffd",
+      "title": "ShockShape",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-9c59a08d8a5b",
+      "title": "LinearARForecaster",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-a0c9ee5b0668",
+      "title": "Worker",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-a655453d6600",
+      "title": "TrendResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-ae084aa2f268",
+      "title": "EnsembleResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-b6dffaf9cae3",
+      "title": "LocalResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-cb9c14b71605",
+      "title": "IterativeDecompositionForecaster",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-cbdcd78c6d50",
+      "title": "ForecastResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-cffa326d81cd",
+      "title": "BenchmarkResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-dce8209418bd",
+      "title": "LocalModel",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-e96d78609f8d",
+      "title": "ExtractionResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-f2294eab495d",
+      "title": "ShockResult",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-sym-spectral-forecast-fc6ce3f9fe2d",
+      "title": "Prediction",
+      "type": "concept",
+      "updated_at": "2026-05-30T14:50:26",
+      "weight": 0.5
+    }
+  ],
+  "repo": "spectral-forecast",
+  "source_updated_at": "2026-05-30T14:50:26",
+  "version": 1
+}
