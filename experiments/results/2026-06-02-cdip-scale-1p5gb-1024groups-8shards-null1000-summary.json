@@ -1,0 +1,96 @@
+{
+  "date": "2026-06-02",
+  "experiment": "CDIP 1.5GB scale pass, 1024 balanced groups, 8 manifest-backed shards, 1000 shifted-null repeats",
+  "purpose": "Increase shifted-null repeat count to improve empirical p-value resolution beyond the 50-repeat floor while keeping detector inputs agnostic.",
+  "input": {
+    "records_loaded": 70,
+    "channels": [
+      "z"
+    ],
+    "preset": "scale",
+    "group_strategy": "balanced",
+    "max_groups": 1024,
+    "null_repeats": 1000,
+    "shard_count": 8,
+    "window_manifest": "/tmp/cdip_1p5gb_1024groups_windows.json"
+  },
+  "artifacts": {
+    "merged_report": "/tmp/cdip_1p5gb_1024_null1000_8shards_merged.json",
+    "shard_report_pattern": "/tmp/cdip_1p5gb_1024_null1000_8shards_shard{0..7}.json",
+    "shard_checkpoint_pattern": "/tmp/cdip_1p5gb_1024_null1000_8shards_shard{0..7}.checkpoint.json",
+    "canary_report": "/tmp/cdip_1p5gb_1024_null1000_canary_shard0of64.json"
+  },
+  "summary": {
+    "records_loaded": 70,
+    "groups_discovered": 1024,
+    "all_windows_discovered": 5491,
+    "windows_discovered": 5491,
+    "windows_run": 5491,
+    "windows_skipped": 0,
+    "observed_multi_emission_total": 44966.696346664896,
+    "null_multi_emission_total_estimate": 41062.2201358381,
+    "observed_minus_null_total": 3904.476210826797,
+    "null_multi_emission_total_std": 353.30948020622253,
+    "observed_total_z": 11.051150420724065,
+    "null_total_p_ge_observed": 0.000999000999000999,
+    "null_total_empirical_p_ge_observed": 0.000999000999000999,
+    "null_total_empirical_p_floor": 0.000999000999000999,
+    "null_total_exceedances": 0,
+    "null_total_repeats": 1000,
+    "observed_total_z_normal_p_one_sided": 1.082117536806642e-28,
+    "null_window_emission_std": 8.820459577665536
+  },
+  "comparison_to_null50": {
+    "null50_empirical_p_floor": 0.0196078431372549,
+    "null1000_empirical_p_floor": 0.000999000999000999,
+    "null50_observed_total_z": 11.193412573546418,
+    "null1000_observed_total_z": 11.051150420724065,
+    "null50_observed_minus_null_total": 3913.049780439076,
+    "null1000_observed_minus_null_total": 3904.476210826797,
+    "interpretation": "Increasing null repeats improved empirical p resolution by about 19.6x. The observed total still exceeded every shifted-null total, so the empirical p remains floor-limited at 1/(1000+1)."
+  },
+  "top_posthoc_correlations": [
+    {
+      "metric": "spectral_mean_period",
+      "n": 98838,
+      "pearson": 0.20567109346605267,
+      "spearman": 0.16839777315149848
+    },
+    {
+      "metric": "significant_wave_height",
+      "n": 98838,
+      "pearson": 0.15826243550333233,
+      "spearman": 0.13229705571642342
+    },
+    {
+      "metric": "max_wave_height",
+      "n": 98838,
+      "pearson": 0.14447404090421756,
+      "spearman": 0.12384871011571379
+    },
+    {
+      "metric": "crest_trough_correlation_proxy",
+      "n": 98838,
+      "pearson": 0.13475331497201626,
+      "spearman": 0.1163565736835211
+    },
+    {
+      "metric": "max_to_significant_wave_height",
+      "n": 98838,
+      "pearson": -0.07596456467254913,
+      "spearman": -0.06515151849878884
+    },
+    {
+      "metric": "spectral_bandwidth",
+      "n": 98838,
+      "pearson": -0.043482955464503245,
+      "spearman": -0.03685600458103377
+    },
+    {
+      "metric": "elevation_kurtosis",
+      "n": 98838,
+      "pearson": -0.027995313104338945,
+      "spearman": -0.02861917408269018
+    }
+  ]
+}
