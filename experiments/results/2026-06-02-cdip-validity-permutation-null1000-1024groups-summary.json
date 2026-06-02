@@ -1,0 +1,108 @@
+{
+  "date": "2026-06-02",
+  "experiment": "CDIP validity check, 1024 balanced groups, deterministic permutation null, 1000 repeats",
+  "purpose": "Pressure-test whether the aggregate multi-buoy stigmergy surplus survives a null that preserves per-series observer score distributions while breaking non-anchor cross-buoy timing alignment within each window.",
+  "method": {
+    "detector_inputs": "Agnostic spectral observer outputs only: frozen/sliding residual surprise, conditional drift, state drift, source identity.",
+    "null_mode": "permute",
+    "null_description": "For each repeat, the first series in a window remains anchored and non-anchor series keep their observed scores but receive a deterministic within-series permutation of anchor indexes. This preserves per-series score distributions and window geometry while disrupting cross-buoy timing coherence.",
+    "null_repeats": 1000,
+    "unique_null_totals": 1000,
+    "shards": 16,
+    "local_concurrency": 2
+  },
+  "input": {
+    "records_loaded": 70,
+    "local_corpus_size": "36G",
+    "channels": [
+      "z"
+    ],
+    "preset": "scale",
+    "group_strategy": "balanced",
+    "max_groups": 1024,
+    "window_manifest": "/tmp/cdip_1p5gb_1024groups_windows.json"
+  },
+  "artifacts": {
+    "merged_report": "/tmp/cdip_1p5gb_1024_permute_null1000_16shards_merged.json",
+    "shard_report_pattern": "/tmp/cdip_1p5gb_1024_permute_null1000_16shards_shard{0..15}.json",
+    "shard_checkpoint_pattern": "/tmp/cdip_1p5gb_1024_permute_null1000_16shards_shard{0..15}.checkpoint.json",
+    "canary_report": "/tmp/cdip_1p5gb_1024_permute_null1000_canary_shard0of64.json"
+  },
+  "summary": {
+    "records_loaded": 70,
+    "groups_discovered": 1024,
+    "all_windows_discovered": 5491,
+    "windows_discovered": 5491,
+    "windows_run": 5491,
+    "windows_skipped": 0,
+    "observed_multi_emission_total": 44966.6963466649,
+    "null_multi_emission_total_estimate": 41421.50591878177,
+    "observed_minus_null_total": 3545.1904278831353,
+    "null_multi_emission_total_std": 269.96177328390684,
+    "observed_total_z": 13.132194179784172,
+    "null_total_p_ge_observed": 0.000999000999000999,
+    "null_total_empirical_p_ge_observed": 0.000999000999000999,
+    "null_total_empirical_p_floor": 0.000999000999000999,
+    "null_total_exceedances": 0,
+    "null_total_repeats": 1000,
+    "null_total_unique_exceedances": 0,
+    "null_total_unique_repeats": 1000,
+    "null_total_unique_empirical_p_floor": 0.000999000999000999,
+    "null_total_unique_p_ge_observed": 0.000999000999000999,
+    "null_window_emission_std": 8.867955088955263
+  },
+  "comparison": {
+    "shift_null1000_unique_totals": 6,
+    "permute_null1000_unique_totals": 1000,
+    "shift_null1000_delta": 3904.476210826797,
+    "permute_null1000_delta": 3545.1904278831353,
+    "interpretation": "The permutation null is a stricter validity check than the cyclic shifted-null control. The observed aggregate still exceeded all 1000 unique permutation-null totals, but the delta decreased by about 9.2%, so some surplus is sensitive to the null definition while substantial coherent structure remains."
+  },
+  "reporting_caution": {
+    "normal_theory_p": "Do not present observed_total_z_normal_p_one_sided as evidentiary p-value. Treat observed_total_z as standardized effect size and report empirical shifted/permutation-null exceedance with its floor."
+  },
+  "top_posthoc_correlations": [
+    {
+      "metric": "spectral_mean_period",
+      "n": 98838,
+      "pearson": 0.20567109346605278,
+      "spearman": 0.16839777315149848
+    },
+    {
+      "metric": "significant_wave_height",
+      "n": 98838,
+      "pearson": 0.15826243550333238,
+      "spearman": 0.13229705571642342
+    },
+    {
+      "metric": "max_wave_height",
+      "n": 98838,
+      "pearson": 0.1444740409042176,
+      "spearman": 0.12384871011571379
+    },
+    {
+      "metric": "crest_trough_correlation_proxy",
+      "n": 98838,
+      "pearson": 0.13475331497201634,
+      "spearman": 0.1163565736835211
+    },
+    {
+      "metric": "max_to_significant_wave_height",
+      "n": 98838,
+      "pearson": -0.07596456467254907,
+      "spearman": -0.06515151849878884
+    },
+    {
+      "metric": "spectral_bandwidth",
+      "n": 98838,
+      "pearson": -0.04348295546450325,
+      "spearman": -0.03685600458103377
+    },
+    {
+      "metric": "elevation_kurtosis",
+      "n": 98838,
+      "pearson": -0.027995313104338927,
+      "spearman": -0.02861917408269018
+    }
+  ]
+}

@@ -49,6 +49,12 @@
     "null1000_observed_minus_null_total": 3904.476210826797,
     "interpretation": "Increasing null repeats improved empirical p resolution by about 19.6x. The observed total still exceeded every shifted-null total, so the empirical p remains floor-limited at 1/(1000+1)."
   },
+  "correction": {
+    "date": "2026-06-02",
+    "issue": "The shifted-null control is cyclic for the current window/stride geometry. Although null_total_repeats is 1000, the merged shifted-null totals contain only 6 unique values rounded to 12 decimals.",
+    "effective_unique_null_totals": 6,
+    "implication": "Do not interpret the shifted-null p floor 1/(1000+1) as 1000 independent null draws. Treat this result as a standardized shifted-null effect-size diagnostic, not as the validity check. The permutation-null run supersedes it for null-validity pressure testing."
+  },
   "top_posthoc_correlations": [
     {
       "metric": "spectral_mean_period",
