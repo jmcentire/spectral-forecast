@@ -80,7 +80,9 @@ aggregate run as exploratory and inspect only the windows/groups that do beat
 their local null.
 
 Do not tune parameters against those local positive windows. For scale runs,
-hold the preset fixed and expand coverage:
+hold the preset fixed and expand coverage. The scale preset uses balanced
+group selection so early filename order does not dominate the observed buoy
+combinations:
 
 ```bash
 python3 experiments/cdip_batch.py data/cdip/*p1_xy.nc \

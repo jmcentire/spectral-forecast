@@ -9,9 +9,11 @@ tune parameters against local positive windows.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import itertools
 import json
 import sys
+from collections import Counter
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
@@ -111,12 +113,30 @@ def _discover_windows(
     window_step: int,
     max_groups: int,
     max_windows_per_group: int,
+    group_strategy: str = "first",
 ) -> list[BatchWindow]:
     windows: list[BatchWindow] = []
     group_index = 0
     required_samples = max(min_clean_samples, window_samples)
+    usage: Counter[str] = Counter()
+    combos = list(itertools.combinations(records, group_size))
 
-    for combo in itertools.combinations(records, group_size):
+    def combo_rank(combo: Sequence[CdipRawRecord]) -> tuple[int, int, str]:
+        platforms = tuple(record.platform_id for record in combo)
+        digest = hashlib.sha1(",".join(platforms).encode("utf-8")).hexdigest()
+        return (
+            sum(usage[platform] for platform in platforms),
+            max((usage[platform] for platform in platforms), default=0),
+            digest,
+        )
+
+    while combos and group_index < max_groups:
+        if group_strategy == "balanced":
+            best_index = min(range(len(combos)), key=lambda index: combo_rank(combos[index]))
+            combo = combos.pop(best_index)
+        else:
+            combo = combos.pop(0)
+
         target_rate = min(record.sample_rate for record in combo)
         min_duration = (required_samples - 1) / target_rate
         span_lists = [
@@ -149,9 +169,9 @@ def _discover_windows(
                 break
 
         if group_windows:
+            if group_strategy == "balanced":
+                usage.update(record.platform_id for record in combo)
             group_index += 1
-            if group_index >= max_groups:
-                break
 
     return windows
 
@@ -312,6 +332,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
         window_step=args.window_step,
         max_groups=args.max_groups,
         max_windows_per_group=args.max_windows_per_group,
+        group_strategy=args.group_strategy,
     )
     if args.max_total_windows > 0:
         windows = windows[: args.max_total_windows]
@@ -321,6 +342,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
     window_rows = []
     observed_multi = []
     null_multi = []
+    null_totals = np.zeros(args.null_repeats, dtype=np.float64)
     skipped = []
 
     for window in windows:
@@ -372,6 +394,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
         )
         observed_multi.append(multi_sum)
         null_multi.extend(null_sums)
+        null_totals[: len(null_sums)] += null_sums
         metric_rows.extend(
             _metric_records(
                 results,
@@ -406,8 +429,20 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
         )
 
     observed_total = float(np.sum(observed_multi)) if observed_multi else 0.0
-    null_mean_total = float(np.mean(null_multi)) * len(observed_multi) if null_multi else 0.0
-    null_std = float(np.std(null_multi)) if null_multi else 0.0
+    has_total_null = bool(observed_multi) and len(null_totals) > 0
+    null_mean_total = float(np.mean(null_totals)) if has_total_null else 0.0
+    null_total_std = float(np.std(null_totals)) if has_total_null else 0.0
+    null_window_std = float(np.std(null_multi)) if null_multi else 0.0
+    observed_total_z = (
+        (observed_total - null_mean_total) / null_total_std
+        if null_total_std > 0
+        else 0.0
+    )
+    null_total_p_ge_observed = (
+        float((1 + np.sum(null_totals >= observed_total)) / (len(null_totals) + 1))
+        if has_total_null
+        else 1.0
+    )
     combo_rows = sorted(
         aggregate_combos.values(),
         key=lambda row: (row["emission_sum"], row["max_pheromone"]),
@@ -420,6 +455,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             "files": [str(path) for path in args.files],
             "channels": channels,
             "group_size": args.group_size,
+            "group_strategy": args.group_strategy,
             "baseline": args.baseline,
             "adaptive_window": args.adaptive_window,
             "stride": args.stride,
@@ -440,7 +476,10 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             "observed_multi_emission_total": observed_total,
             "null_multi_emission_total_estimate": null_mean_total,
             "observed_minus_null_total": observed_total - null_mean_total,
-            "null_window_emission_std": null_std,
+            "null_multi_emission_total_std": null_total_std,
+            "observed_total_z": observed_total_z,
+            "null_total_p_ge_observed": null_total_p_ge_observed,
+            "null_window_emission_std": null_window_std,
         },
         "top_combinations": combo_rows[: args.top],
         "correlations": _correlation_rows(metric_rows),
@@ -466,15 +505,21 @@ def _print_text_report(report: dict[str, Any]) -> None:
         )
     )
     print(
-        "  observed_multi=%.3f null_estimate=%.3f delta=%.3f"
+        "  observed_multi=%.3f null_estimate=%.3f delta=%.3f null_total_std=%.3f z=%.3f p_ge=%.3f"
         % (
             summary["observed_multi_emission_total"],
             summary["null_multi_emission_total_estimate"],
             summary["observed_minus_null_total"],
+            summary["null_multi_emission_total_std"],
+            summary["observed_total_z"],
+            summary["null_total_p_ge_observed"],
         )
     )
     print("  detector_features=agnostic posthoc_metrics=audit_only null=time-shifted-emission-index")
-    print("  preset=%s tuning=disabled_for_scale_runs" % report["parameters"]["preset"])
+    print(
+        "  preset=%s group_strategy=%s tuning=disabled_for_scale_runs"
+        % (report["parameters"]["preset"], report["parameters"]["group_strategy"])
+    )
 
     print("\nTop combinations")
     print("%24s %6s %10s %10s %10s" % ("platforms", "count", "emission", "pheromone", "max_score"))
@@ -526,6 +571,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--channels", nargs="+", default=["z"], help="Channels to observe")
     parser.add_argument("--keep-flags", type=int, nargs="+", default=[2], help="CDIP primary flags to keep")
     parser.add_argument("--group-size", type=int, default=3, help="Buoys per aligned group")
+    parser.add_argument(
+        "--group-strategy",
+        choices=["first", "balanced"],
+        default="first",
+        help="How to choose aligned buoy groups before applying max-groups",
+    )
     parser.add_argument("--max-groups", type=int, default=8, help="Maximum aligned groups to run")
     parser.add_argument("--max-windows-per-group", type=int, default=3, help="Maximum windows per group")
     parser.add_argument("--max-total-windows", type=int, default=0, help="Hard cap on total windows; 0 means no cap")
@@ -561,6 +612,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         args.emission_threshold = 3.0
         args.decay = 0.9
         args.null_repeats = max(args.null_repeats, 10)
+        args.group_strategy = "balanced"
     return args
 
 

@@ -7,8 +7,8 @@
       "Python"
     ],
     "frameworks": [],
-    "analyzedAt": "2026-06-02T01:11:14-05:00",
-    "gitCommitHash": "d1cd3cbcb903866b9f24ed479cfe9e672058b43c"
+    "analyzedAt": "2026-06-02T01:18:00-05:00",
+    "gitCommitHash": "5aaeae649035ed60be4301f6a2ea8ab1512bfa70"
   },
   "nodes": [
     {
@@ -237,7 +237,7 @@
       "type": "class",
       "name": "BatchWindow",
       "filePath": "experiments/cdip_batch.py",
-      "summary": "class BatchWindow (experiments/cdip_batch.py:47) ## Methods - platforms(self) -> tuple[str,...]",
+      "summary": "class BatchWindow (experiments/cdip_batch.py:49) ## Methods - platforms(self) -> tuple[str,...]",
       "tags": [
         "code",
         "python"
@@ -254,7 +254,7 @@
       "type": "file",
       "name": "experiments/cdip_batch.py",
       "filePath": "experiments/cdip_batch.py",
-      "summary": "Language: Python | Path: experiments/cdip_batch.py | ~567 lines ## Classes - BatchWindow",
+      "summary": "Language: Python | Path: experiments/cdip_batch.py | ~619 lines ## Classes - BatchWindow",
       "tags": [
         "code",
         "python"
@@ -1121,7 +1121,7 @@
       "type": "file",
       "name": "spectral_forecast/observation.py",
       "filePath": "spectral_forecast/observation.py",
-      "summary": "Language: Python | Path: spectral_forecast/observation.py | ~445 lines ## Classes - DecompositionState",
+      "summary": "Language: Python | Path: spectral_forecast/observation.py | ~446 lines ## Classes - DecompositionState",
       "tags": [
         "code",
         "python"

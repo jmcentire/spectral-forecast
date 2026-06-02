@@ -3,6 +3,8 @@
 import numpy as np
 
 from spectral_forecast.observation import (
+    ObservationPoint,
+    ObservationResult,
     build_stigmergy,
     decomposition_state,
     observe_series,
@@ -62,6 +64,37 @@ def test_stigmergy_accumulates_cross_series_emissions():
     assert top
     assert top[0].pheromone > 0
     assert any(point.active_series_count > 0 for point in stig.points)
+
+
+def test_stigmergy_ignores_nonfinite_scores():
+    point = ObservationPoint(
+        series="bad",
+        index=1,
+        actual=0.0,
+        frozen_prediction=0.0,
+        sliding_prediction=0.0,
+        frozen_residual=0.0,
+        sliding_residual=0.0,
+        frozen_score=float("nan"),
+        sliding_score=0.0,
+        conditional_drift_score=0.0,
+        state_drift_score=0.0,
+        state=None,  # type: ignore[arg-type]
+    )
+    result = ObservationResult(
+        series="bad",
+        points=[point],
+        baseline_size=10,
+        adaptive_window=5,
+        stride=1,
+        residual_center=0.0,
+        residual_scale=1.0,
+    )
+
+    stig = build_stigmergy([result], score="max", emission_threshold=3.0)
+
+    assert stig.points[0].emission == 0.0
+    assert stig.points[0].active_series_count == 0
 
 
 def test_observation_scores_are_past_only_shapes():

@@ -189,7 +189,7 @@
       "id": "code-mod-spectral-forecast-4e01f26b56b5",
       "title": "spectral_forecast/local.py",
       "type": "artifact",
-      "updated_at": "2026-05-24T15:05:40",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -299,7 +299,7 @@
       "id": "code-mod-spectral-forecast-8abebb23a45c",
       "title": "spectral_forecast/observation.py",
       "type": "artifact",
-      "updated_at": "2026-06-01T23:35:59",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -442,7 +442,7 @@
       "id": "code-mod-spectral-forecast-e1546b1934a6",
       "title": "experiments/cdip_batch.py",
       "type": "artifact",
-      "updated_at": "2026-06-02T01:16:48",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -519,7 +519,7 @@
       "id": "code-sym-spectral-forecast-0e339e0ea723",
       "title": "ObservationPoint",
       "type": "concept",
-      "updated_at": "2026-06-01T23:35:58",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -574,7 +574,7 @@
       "id": "code-sym-spectral-forecast-3aa60d61f039",
       "title": "StigmergyResult",
       "type": "concept",
-      "updated_at": "2026-06-01T23:35:59",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -607,7 +607,7 @@
       "id": "code-sym-spectral-forecast-49b80134b025",
       "title": "StigmergyPoint",
       "type": "concept",
-      "updated_at": "2026-06-01T23:35:58",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -640,7 +640,7 @@
       "id": "code-sym-spectral-forecast-570a52cafe32",
       "title": "ObservationResult",
       "type": "concept",
-      "updated_at": "2026-06-01T23:35:58",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -783,7 +783,7 @@
       "id": "code-sym-spectral-forecast-994335706ba1",
       "title": "BatchWindow",
       "type": "concept",
-      "updated_at": "2026-06-02T01:16:48",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -805,7 +805,7 @@
       "id": "code-sym-spectral-forecast-9d0362ee07f3",
       "title": "DecompositionState",
       "type": "concept",
-      "updated_at": "2026-06-01T23:35:58",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -849,7 +849,7 @@
       "id": "code-sym-spectral-forecast-b6dffaf9cae3",
       "title": "LocalResult",
       "type": "concept",
-      "updated_at": "2026-05-24T15:05:34",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -915,7 +915,7 @@
       "id": "code-sym-spectral-forecast-dce8209418bd",
       "title": "LocalModel",
       "type": "concept",
-      "updated_at": "2026-05-24T15:05:34",
+      "updated_at": "2026-06-02T02:03:38",
       "weight": 0.5
     },
     {
@@ -964,6 +964,6 @@
     }
   ],
   "repo": "spectral-forecast",
-  "source_updated_at": "2026-06-02T01:16:48",
+  "source_updated_at": "2026-06-02T02:03:38",
   "version": 1
 }

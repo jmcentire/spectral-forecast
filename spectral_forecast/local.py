@@ -252,9 +252,20 @@ def forecast_local(
     Returns:
         1D array of local correction values for each forecast step.
     """
+    context = np.append(np.asarray(recent_residuals, dtype=np.float64), model.intercept)
+    finite_context = context[np.isfinite(context)]
+    if len(finite_context) == 0:
+        return np.zeros(horizon)
+    margin = max(float(model.residual_std), 0.0)
+    lo = float(np.min(finite_context) - margin)
+    hi = float(np.max(finite_context) + margin)
+    if lo == hi:
+        lo -= 1e-12
+        hi += 1e-12
+
     if model.order == 0:
         # No AR structure — just return the mean correction
-        return np.full(horizon, model.intercept)
+        return np.full(horizon, np.clip(model.intercept, lo, hi))
 
     p = model.order
     # Pad recent residuals if needed
@@ -272,6 +283,8 @@ def forecast_local(
                 idx = p + (h - j - 1)
                 if 0 <= idx < p:
                     val += model.coefficients[j] * history[idx]
-        forecast[h] = val
+        if not np.isfinite(val):
+            val = hi if val > 0 else lo
+        forecast[h] = np.clip(val, lo, hi)
 
     return forecast

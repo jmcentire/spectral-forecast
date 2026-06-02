@@ -89,3 +89,21 @@ def test_discover_windows_finds_overlapping_record_groups():
     assert len(windows) == 2
     assert windows[0].platforms == ("a", "b", "c")
     assert windows[0].start_time == 200.0
+
+
+def test_discover_windows_balanced_spreads_platform_usage():
+    records = [_record(platform, 0.0, 1000) for platform in ["a", "b", "c", "d"]]
+
+    windows = _discover_windows(
+        records,
+        group_size=2,
+        min_clean_samples=128,
+        window_samples=256,
+        window_step=128,
+        max_groups=2,
+        max_windows_per_group=1,
+        group_strategy="balanced",
+    )
+
+    assert len(windows) == 2
+    assert set(windows[0].platforms).isdisjoint(windows[1].platforms)

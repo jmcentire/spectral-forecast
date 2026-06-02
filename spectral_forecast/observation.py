@@ -353,6 +353,7 @@ def build_stigmergy(
     for index in sorted(by_index):
         points = by_index[index]
         scores = np.array([p.score(score) for p in points], dtype=np.float64)
+        scores = np.where(np.isfinite(scores), scores, 0.0)
         active = [p.series for p, s in zip(points, scores) if s > emission_threshold]
         emissions = np.maximum(scores - emission_threshold, 0.0)
         emission = float(np.sum(emissions))
