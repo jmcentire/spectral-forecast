@@ -78,3 +78,13 @@ python3 experiments/cdip_batch.py data/cdip/*p1_xy.nc \
 If observed multi-buoy emission does not beat the shifted null, treat the
 aggregate run as exploratory and inspect only the windows/groups that do beat
 their local null.
+
+Do not tune parameters against those local positive windows. For scale runs,
+hold the preset fixed and expand coverage:
+
+```bash
+python3 experiments/cdip_batch.py data/cdip/*p1_xy.nc \
+  --preset scale \
+  --channels z \
+  --format text
+```

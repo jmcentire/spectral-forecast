@@ -2,7 +2,8 @@
 
 This script runs the existing agnostic observer over many aligned buoy groups
 and windows. It does not add wave-domain features to detection. Research-style
-metrics remain post-hoc audit outputs.
+metrics remain post-hoc audit outputs. Use fixed presets for scale runs; do not
+tune parameters against local positive windows.
 """
 
 from __future__ import annotations
@@ -415,6 +416,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
 
     return {
         "parameters": {
+            "preset": args.preset,
             "files": [str(path) for path in args.files],
             "channels": channels,
             "group_size": args.group_size,
@@ -472,6 +474,7 @@ def _print_text_report(report: dict[str, Any]) -> None:
         )
     )
     print("  detector_features=agnostic posthoc_metrics=audit_only null=time-shifted-emission-index")
+    print("  preset=%s tuning=disabled_for_scale_runs" % report["parameters"]["preset"])
 
     print("\nTop combinations")
     print("%24s %6s %10s %10s %10s" % ("platforms", "count", "emission", "pheromone", "max_score"))
@@ -514,6 +517,12 @@ def _print_text_report(report: dict[str, Any]) -> None:
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("files", type=Path, nargs="+", help="CDIP *_xy.nc files")
+    parser.add_argument(
+        "--preset",
+        choices=["custom", "scale"],
+        default="custom",
+        help="Use fixed preregistered batch settings for broad expansion",
+    )
     parser.add_argument("--channels", nargs="+", default=["z"], help="Channels to observe")
     parser.add_argument("--keep-flags", type=int, nargs="+", default=[2], help="CDIP primary flags to keep")
     parser.add_argument("--group-size", type=int, default=3, help="Buoys per aligned group")
@@ -539,7 +548,20 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--top", type=int, default=10, help="Rows to show")
     parser.add_argument("--top-windows", type=int, default=10, help="Windows to show")
     parser.add_argument("--format", choices=["text", "json"], default="text", help="Output format")
-    return parser.parse_args(argv)
+    args = parser.parse_args(argv)
+    if args.preset == "scale":
+        args.group_size = 3
+        args.max_groups = max(args.max_groups, 32)
+        args.max_windows_per_group = max(args.max_windows_per_group, 8)
+        args.baseline = 1024
+        args.adaptive_window = 512
+        args.stride = 512
+        args.window_samples = 4096
+        args.window_step = 2048
+        args.emission_threshold = 3.0
+        args.decay = 0.9
+        args.null_repeats = max(args.null_repeats, 10)
+    return args
 
 
 def main(argv: Sequence[str] | None = None) -> None:
