@@ -266,6 +266,31 @@ def test_merge_reports_reconstructs_totals_and_combinations(tmp_path):
         }
         params = dict(parameters)
         params["shard_index"] = shard_index
+        merge_state = {
+            "aggregate_combinations": [
+                {
+                    "active_platforms": "a,b",
+                    "count": combo_count,
+                    "emission_sum": combo_emission,
+                    "max_pheromone": combo_emission,
+                    "max_score": observed,
+                    "examples": [{"group": "a,b", "window_start": window_row["start"]}],
+                }
+            ],
+            "metric_rows": [],
+            "window_rows": [window_row],
+            "observed_multi": [observed],
+            "null_totals": null_totals,
+            "skipped": [],
+        }
+        if shard_index == 0:
+            merge_state["null_multi"] = null_totals
+        else:
+            merge_state["null_window_stats"] = {
+                "count": float(len(null_totals)),
+                "sum": float(np.sum(null_totals)),
+                "sumsq": float(np.sum(np.asarray(null_totals) ** 2)),
+            }
         return {
             "parameters": params,
             "summary": {
@@ -273,24 +298,7 @@ def test_merge_reports_reconstructs_totals_and_combinations(tmp_path):
                 "all_windows_discovered": 2,
                 "windows_discovered": 1,
             },
-            "merge_state": {
-                "aggregate_combinations": [
-                    {
-                        "active_platforms": "a,b",
-                        "count": combo_count,
-                        "emission_sum": combo_emission,
-                        "max_pheromone": combo_emission,
-                        "max_score": observed,
-                        "examples": [{"group": "a,b", "window_start": window_row["start"]}],
-                    }
-                ],
-                "metric_rows": [],
-                "window_rows": [window_row],
-                "observed_multi": [observed],
-                "null_multi": null_totals,
-                "null_totals": null_totals,
-                "skipped": [],
-            },
+            "merge_state": merge_state,
         }
 
     paths = []
@@ -313,6 +321,7 @@ def test_merge_reports_reconstructs_totals_and_combinations(tmp_path):
     assert summary["observed_multi_emission_total"] == 30.0
     assert summary["null_multi_emission_total_estimate"] == 21.5
     assert summary["null_multi_emission_total_std"] == 1.5
+    assert summary["null_window_emission_std"] == pytest.approx(np.std([8.0, 9.0, 12.0, 14.0]))
     assert summary["observed_total_z"] == pytest.approx((30.0 - 21.5) / 1.5)
     assert summary["null_total_empirical_p_floor"] == pytest.approx(1 / 3)
     assert summary["null_total_empirical_p_ge_observed"] == pytest.approx(1 / 3)

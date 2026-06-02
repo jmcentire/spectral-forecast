@@ -384,6 +384,43 @@ def _normal_survival_from_z(z_score: float) -> float:
     return float(0.5 * math.erfc(z_score / math.sqrt(2.0)))
 
 
+def _empty_null_window_stats() -> dict[str, float]:
+    return {"count": 0.0, "sum": 0.0, "sumsq": 0.0}
+
+
+def _add_null_window_values(stats: dict[str, float], values: Sequence[float]) -> None:
+    if not values:
+        return
+    array = np.asarray(values, dtype=np.float64)
+    stats["count"] = float(stats.get("count", 0.0) + len(array))
+    stats["sum"] = float(stats.get("sum", 0.0) + np.sum(array))
+    stats["sumsq"] = float(stats.get("sumsq", 0.0) + np.sum(array * array))
+
+
+def _merge_null_window_stats(
+    target: dict[str, float],
+    source: dict[str, float],
+) -> None:
+    target["count"] = float(target.get("count", 0.0) + source.get("count", 0.0))
+    target["sum"] = float(target.get("sum", 0.0) + source.get("sum", 0.0))
+    target["sumsq"] = float(target.get("sumsq", 0.0) + source.get("sumsq", 0.0))
+
+
+def _null_window_std_from_stats(stats: dict[str, float]) -> float:
+    count = float(stats.get("count", 0.0))
+    if count <= 0:
+        return 0.0
+    mean = float(stats.get("sum", 0.0)) / count
+    variance = float(stats.get("sumsq", 0.0)) / count - mean * mean
+    return float(math.sqrt(max(variance, 0.0)))
+
+
+def _null_window_stats_from_values(values: Sequence[float]) -> dict[str, float]:
+    stats = _empty_null_window_stats()
+    _add_null_window_values(stats, values)
+    return stats
+
+
 def _summary_from_state(
     *,
     records_loaded: int,
@@ -392,15 +429,18 @@ def _summary_from_state(
     window_rows: Sequence[dict[str, Any]],
     skipped: Sequence[dict[str, Any]],
     observed_multi: Sequence[float],
-    null_multi: Sequence[float],
     null_totals: Sequence[float] | np.ndarray,
+    null_multi: Sequence[float] | None = None,
+    null_window_stats: dict[str, float] | None = None,
 ) -> dict[str, Any]:
     observed_total = float(np.sum(observed_multi)) if observed_multi else 0.0
     null_totals_array = np.asarray(null_totals, dtype=np.float64)
     has_total_null = bool(observed_multi) and len(null_totals_array) > 0
     null_mean_total = float(np.mean(null_totals_array)) if has_total_null else 0.0
     null_total_std = float(np.std(null_totals_array)) if has_total_null else 0.0
-    null_window_std = float(np.std(null_multi)) if null_multi else 0.0
+    if null_window_stats is None:
+        null_window_stats = _null_window_stats_from_values(null_multi or [])
+    null_window_std = _null_window_std_from_stats(null_window_stats)
     observed_total_z = (
         (observed_total - null_mean_total) / null_total_std
         if null_total_std > 0
@@ -587,7 +627,7 @@ def _merge_state(
     metric_rows: Sequence[dict[str, float]],
     window_rows: Sequence[dict[str, Any]],
     observed_multi: Sequence[float],
-    null_multi: Sequence[float],
+    null_window_stats: dict[str, float],
     null_totals: Sequence[float] | np.ndarray,
     skipped: Sequence[dict[str, Any]],
 ) -> dict[str, Any]:
@@ -596,7 +636,11 @@ def _merge_state(
         "metric_rows": list(metric_rows),
         "window_rows": list(window_rows),
         "observed_multi": [float(value) for value in observed_multi],
-        "null_multi": [float(value) for value in null_multi],
+        "null_window_stats": {
+            "count": float(null_window_stats.get("count", 0.0)),
+            "sum": float(null_window_stats.get("sum", 0.0)),
+            "sumsq": float(null_window_stats.get("sumsq", 0.0)),
+        },
         "null_totals": [float(value) for value in null_totals],
         "skipped": list(skipped),
     }
@@ -699,7 +743,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
     metric_rows: list[dict[str, float]] = []
     window_rows = []
     observed_multi = []
-    null_multi = []
+    null_window_stats = _empty_null_window_stats()
     null_totals = np.zeros(args.null_repeats, dtype=np.float64)
     skipped = []
     start_index = 0
@@ -714,7 +758,10 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
         metric_rows = list(checkpoint.get("metric_rows", []))
         window_rows = list(checkpoint.get("window_rows", []))
         observed_multi = list(checkpoint.get("observed_multi", []))
-        null_multi = list(checkpoint.get("null_multi", []))
+        if "null_window_stats" in checkpoint:
+            null_window_stats = dict(checkpoint["null_window_stats"])
+        else:
+            null_window_stats = _null_window_stats_from_values(checkpoint.get("null_multi", []))
         null_totals = np.asarray(checkpoint.get("null_totals", []), dtype=np.float64)
         if len(null_totals) != args.null_repeats:
             raise ValueError("Checkpoint null_totals length does not match null_repeats")
@@ -733,7 +780,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             "metric_rows": metric_rows,
             "window_rows": window_rows,
             "observed_multi": observed_multi,
-            "null_multi": null_multi,
+            "null_window_stats": null_window_stats,
             "null_totals": null_totals.tolist(),
             "skipped": skipped,
         }
@@ -827,7 +874,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             repeats=args.null_repeats,
         )
         observed_multi.append(multi_sum)
-        null_multi.extend(null_sums)
+        _add_null_window_values(null_window_stats, null_sums)
         null_totals[: len(null_sums)] += null_sums
         metric_rows.extend(
             _metric_records(
@@ -885,8 +932,8 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             window_rows=window_rows,
             skipped=skipped,
             observed_multi=observed_multi,
-            null_multi=null_multi,
             null_totals=null_totals,
+            null_window_stats=null_window_stats,
         ),
         "top_combinations": combo_rows[: args.top],
         "correlations": _correlation_rows(metric_rows),
@@ -903,7 +950,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             metric_rows=metric_rows,
             window_rows=window_rows,
             observed_multi=observed_multi,
-            null_multi=null_multi,
+            null_window_stats=null_window_stats,
             null_totals=null_totals,
             skipped=skipped,
         )
@@ -948,7 +995,7 @@ def merge_reports(
     metric_rows: list[dict[str, float]] = []
     window_rows: list[dict[str, Any]] = []
     observed_multi: list[float] = []
-    null_multi: list[float] = []
+    null_window_stats = _empty_null_window_stats()
     null_totals: np.ndarray | None = None
     skipped: list[dict[str, Any]] = []
 
@@ -958,7 +1005,13 @@ def merge_reports(
         metric_rows.extend(state.get("metric_rows", []))
         window_rows.extend(state.get("window_rows", []))
         observed_multi.extend(float(value) for value in state.get("observed_multi", []))
-        null_multi.extend(float(value) for value in state.get("null_multi", []))
+        if "null_window_stats" in state:
+            _merge_null_window_stats(null_window_stats, state["null_window_stats"])
+        else:
+            _merge_null_window_stats(
+                null_window_stats,
+                _null_window_stats_from_values(state.get("null_multi", [])),
+            )
         shard_null_totals = np.asarray(state.get("null_totals", []), dtype=np.float64)
         if null_totals is None:
             null_totals = shard_null_totals
@@ -994,8 +1047,8 @@ def merge_reports(
             window_rows=window_rows,
             skipped=skipped,
             observed_multi=observed_multi,
-            null_multi=null_multi,
             null_totals=[] if null_totals is None else null_totals,
+            null_window_stats=null_window_stats,
         ),
         "top_combinations": combo_rows[:top],
         "correlations": _correlation_rows(metric_rows),
