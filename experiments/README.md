@@ -90,3 +90,24 @@ python3 experiments/cdip_batch.py data/cdip/*p1_xy.nc \
   --channels z \
   --format text
 ```
+
+Long scale runs should write progress to stderr and checkpoint state so they
+can be resumed:
+
+```bash
+python3 experiments/cdip_batch.py data/cdip/*p1_xy.nc \
+  --preset scale \
+  --channels z \
+  --max-groups 512 \
+  --null-repeats 50 \
+  --top-windows 100000 \
+  --checkpoint /tmp/cdip-scale-checkpoint.json \
+  --progress-every 30 \
+  --checkpoint-every 60 \
+  --format json > /tmp/cdip-scale-report.json
+```
+
+If interrupted, rerun the same command with `--resume`. The reported
+`p_emp_ge` is the shifted-null empirical exceedance estimate and is resolution
+limited by `1 / (null_repeats + 1)`. Use `p_floor` to see that limit and
+`p_norm` as a separate normal approximation from the aggregate null z score.

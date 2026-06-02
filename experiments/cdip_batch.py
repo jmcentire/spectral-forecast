@@ -12,7 +12,9 @@ import argparse
 import hashlib
 import itertools
 import json
+import math
 import sys
+import time
 from collections import Counter
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
@@ -278,6 +280,71 @@ def _correlation_rows(metric_rows: Sequence[dict[str, float]]) -> list[dict[str,
     return sorted(out, key=lambda row: abs(row["spearman"]), reverse=True)
 
 
+def _normal_survival_from_z(z_score: float) -> float:
+    """One-sided normal survival probability for a z score."""
+    if not math.isfinite(z_score):
+        return 1.0
+    return float(0.5 * math.erfc(z_score / math.sqrt(2.0)))
+
+
+def _checkpoint_signature(args: argparse.Namespace, channels: Sequence[str]) -> dict[str, Any]:
+    return {
+        "files": [str(path) for path in args.files],
+        "channels": list(channels),
+        "keep_flags": list(args.keep_flags),
+        "group_size": args.group_size,
+        "group_strategy": args.group_strategy,
+        "max_groups": args.max_groups,
+        "max_windows_per_group": args.max_windows_per_group,
+        "max_total_windows": args.max_total_windows,
+        "baseline": args.baseline,
+        "adaptive_window": args.adaptive_window,
+        "stride": args.stride,
+        "window_samples": args.window_samples,
+        "window_step": args.window_step,
+        "min_clean_samples": args.min_clean_samples,
+        "score": args.score,
+        "emission_threshold": args.emission_threshold,
+        "decay": args.decay,
+        "null_repeats": args.null_repeats,
+        "posthoc_window": args.posthoc_window or args.adaptive_window,
+    }
+
+
+def _write_checkpoint(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    tmp.replace(path)
+
+
+def _load_checkpoint(path: Path, signature: dict[str, Any]) -> dict[str, Any]:
+    payload = json.loads(path.read_text())
+    if payload.get("signature") != signature:
+        raise ValueError("Checkpoint signature does not match current run arguments")
+    return payload
+
+
+def _progress_line(
+    *,
+    processed: int,
+    total: int,
+    started_at: float,
+    window_rows: Sequence[dict[str, Any]],
+    skipped: Sequence[dict[str, Any]],
+) -> str:
+    elapsed = max(time.time() - started_at, 1e-9)
+    rate = processed / elapsed
+    remaining = max(total - processed, 0)
+    eta = remaining / rate if rate > 0 else 0.0
+    observed = float(sum(float(row["observed_multi_emission"]) for row in window_rows))
+    return (
+        "cdip_batch progress processed=%d/%d windows_run=%d skipped=%d "
+        "elapsed=%.1fs rate=%.3f_windows_s eta=%.1fs observed_multi=%.3f"
+        % (processed, total, len(window_rows), len(skipped), elapsed, rate, eta, observed)
+    )
+
+
 def _merge_combinations(
     aggregate: dict[str, dict[str, Any]],
     combos: Sequence[dict[str, Any]],
@@ -319,6 +386,7 @@ def _merge_combinations(
 
 def run_batch(args: argparse.Namespace) -> dict[str, Any]:
     channels = [channel.lower() for channel in args.channels]
+    signature = _checkpoint_signature(args, channels)
     records = [
         load_cdip_raw_record(path, channels, keep_flags=set(args.keep_flags))
         for path in args.files
@@ -337,6 +405,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
     if args.max_total_windows > 0:
         windows = windows[: args.max_total_windows]
 
+    checkpoint_path = Path(args.checkpoint) if args.checkpoint else None
     aggregate_combos: dict[str, dict[str, Any]] = {}
     metric_rows: list[dict[str, float]] = []
     window_rows = []
@@ -344,8 +413,79 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
     null_multi = []
     null_totals = np.zeros(args.null_repeats, dtype=np.float64)
     skipped = []
+    start_index = 0
 
-    for window in windows:
+    if args.resume:
+        if checkpoint_path is None:
+            raise ValueError("--resume requires --checkpoint")
+        if not checkpoint_path.exists():
+            raise FileNotFoundError(f"Checkpoint does not exist: {checkpoint_path}")
+        checkpoint = _load_checkpoint(checkpoint_path, signature)
+        aggregate_combos = dict(checkpoint.get("aggregate_combos", {}))
+        metric_rows = list(checkpoint.get("metric_rows", []))
+        window_rows = list(checkpoint.get("window_rows", []))
+        observed_multi = list(checkpoint.get("observed_multi", []))
+        null_multi = list(checkpoint.get("null_multi", []))
+        null_totals = np.asarray(checkpoint.get("null_totals", []), dtype=np.float64)
+        if len(null_totals) != args.null_repeats:
+            raise ValueError("Checkpoint null_totals length does not match null_repeats")
+        skipped = list(checkpoint.get("skipped", []))
+        start_index = int(checkpoint.get("next_window_index", 0))
+
+    def checkpoint_payload(next_window_index: int, *, complete: bool = False) -> dict[str, Any]:
+        return {
+            "version": 1,
+            "signature": signature,
+            "complete": complete,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "next_window_index": next_window_index,
+            "total_windows": len(windows),
+            "aggregate_combos": aggregate_combos,
+            "metric_rows": metric_rows,
+            "window_rows": window_rows,
+            "observed_multi": observed_multi,
+            "null_multi": null_multi,
+            "null_totals": null_totals.tolist(),
+            "skipped": skipped,
+        }
+
+    started_at = time.time()
+    last_progress = 0.0
+    last_checkpoint = 0.0
+
+    def maybe_report(processed: int, *, force: bool = False) -> None:
+        nonlocal last_progress
+        if args.progress_every <= 0:
+            return
+        now = time.time()
+        if force or now - last_progress >= args.progress_every:
+            print(
+                _progress_line(
+                    processed=processed,
+                    total=len(windows),
+                    started_at=started_at,
+                    window_rows=window_rows,
+                    skipped=skipped,
+                ),
+                file=sys.stderr,
+                flush=True,
+            )
+            last_progress = now
+
+    def maybe_checkpoint(next_window_index: int, *, force: bool = False, complete: bool = False) -> None:
+        nonlocal last_checkpoint
+        if checkpoint_path is None:
+            return
+        now = time.time()
+        if force or complete or args.checkpoint_every <= 0 or now - last_checkpoint >= args.checkpoint_every:
+            _write_checkpoint(
+                checkpoint_path,
+                checkpoint_payload(next_window_index, complete=complete),
+            )
+            last_checkpoint = now
+
+    maybe_report(start_index, force=True)
+    for window_index, window in enumerate(windows[start_index:], start=start_index):
         series = _series_from_records(
             window.records,
             channels,
@@ -374,6 +514,9 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
                     "reason": str(exc),
                 }
             )
+            processed = window_index + 1
+            maybe_checkpoint(processed)
+            maybe_report(processed)
             continue
 
         stig = build_stigmergy(
@@ -427,6 +570,12 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
                 "top_combinations": combos[: args.top],
             }
         )
+        processed = window_index + 1
+        maybe_checkpoint(processed)
+        maybe_report(processed)
+
+    maybe_checkpoint(len(windows), force=True, complete=True)
+    maybe_report(len(windows), force=True)
 
     observed_total = float(np.sum(observed_multi)) if observed_multi else 0.0
     has_total_null = bool(observed_multi) and len(null_totals) > 0
@@ -438,11 +587,15 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
         if null_total_std > 0
         else 0.0
     )
+    null_total_repeats = int(len(null_totals)) if has_total_null else 0
+    null_total_exceedances = int(np.sum(null_totals >= observed_total)) if has_total_null else 0
+    null_total_empirical_p_floor = 1.0 / (null_total_repeats + 1) if has_total_null else 1.0
     null_total_p_ge_observed = (
-        float((1 + np.sum(null_totals >= observed_total)) / (len(null_totals) + 1))
+        float((1 + null_total_exceedances) / (null_total_repeats + 1))
         if has_total_null
         else 1.0
     )
+    observed_total_z_normal_p_one_sided = _normal_survival_from_z(observed_total_z)
     combo_rows = sorted(
         aggregate_combos.values(),
         key=lambda row: (row["emission_sum"], row["max_pheromone"]),
@@ -479,6 +632,11 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             "null_multi_emission_total_std": null_total_std,
             "observed_total_z": observed_total_z,
             "null_total_p_ge_observed": null_total_p_ge_observed,
+            "null_total_empirical_p_ge_observed": null_total_p_ge_observed,
+            "null_total_empirical_p_floor": null_total_empirical_p_floor,
+            "null_total_exceedances": null_total_exceedances,
+            "null_total_repeats": null_total_repeats,
+            "observed_total_z_normal_p_one_sided": observed_total_z_normal_p_one_sided,
             "null_window_emission_std": null_window_std,
         },
         "top_combinations": combo_rows[: args.top],
@@ -505,14 +663,16 @@ def _print_text_report(report: dict[str, Any]) -> None:
         )
     )
     print(
-        "  observed_multi=%.3f null_estimate=%.3f delta=%.3f null_total_std=%.3f z=%.3f p_ge=%.3f"
+        "  observed_multi=%.3f null_estimate=%.3f delta=%.3f null_total_std=%.3f z=%.3f p_emp_ge=%.6f p_floor=%.6f p_norm=%.3e"
         % (
             summary["observed_multi_emission_total"],
             summary["null_multi_emission_total_estimate"],
             summary["observed_minus_null_total"],
             summary["null_multi_emission_total_std"],
             summary["observed_total_z"],
-            summary["null_total_p_ge_observed"],
+            summary["null_total_empirical_p_ge_observed"],
+            summary["null_total_empirical_p_floor"],
+            summary["observed_total_z_normal_p_one_sided"],
         )
     )
     print("  detector_features=agnostic posthoc_metrics=audit_only null=time-shifted-emission-index")
@@ -598,6 +758,20 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--posthoc-window", type=int, default=None, help="Post-hoc metric window")
     parser.add_argument("--top", type=int, default=10, help="Rows to show")
     parser.add_argument("--top-windows", type=int, default=10, help="Windows to show")
+    parser.add_argument(
+        "--progress-every",
+        type=float,
+        default=30.0,
+        help="Seconds between stderr progress heartbeats; 0 disables",
+    )
+    parser.add_argument("--checkpoint", type=Path, default=None, help="Path for resumable checkpoint JSON")
+    parser.add_argument(
+        "--checkpoint-every",
+        type=float,
+        default=60.0,
+        help="Seconds between checkpoint writes when --checkpoint is set; 0 writes every window",
+    )
+    parser.add_argument("--resume", action="store_true", help="Resume from --checkpoint")
     parser.add_argument("--format", choices=["text", "json"], default="text", help="Output format")
     args = parser.parse_args(argv)
     if args.preset == "scale":

@@ -1,13 +1,19 @@
 """Tests for CDIP batch experiment helpers."""
 
 from pathlib import Path
+from argparse import Namespace
 
 import numpy as np
+import pytest
 
 from experiments.cdip_batch import (
+    _checkpoint_signature,
     _discover_windows,
+    _load_checkpoint,
     _multi_platform_emission_sum,
+    _normal_survival_from_z,
     _shift_observation_result,
+    _write_checkpoint,
 )
 from experiments.cdip_observe import CdipRawRecord
 from spectral_forecast.observation import ObservationPoint, ObservationResult
@@ -67,6 +73,45 @@ def test_multi_platform_emission_sum_ignores_single_platform_rows():
     ]
 
     assert _multi_platform_emission_sum(rows) == 6.0
+
+
+def test_normal_survival_from_z_is_one_sided_tail():
+    assert _normal_survival_from_z(0.0) == 0.5
+    assert 0.0004 < _normal_survival_from_z(3.28) < 0.0006
+    assert _normal_survival_from_z(float("nan")) == 1.0
+
+
+def test_checkpoint_round_trip_validates_signature(tmp_path):
+    args = Namespace(
+        files=[Path("a_xy.nc")],
+        keep_flags=[2],
+        group_size=3,
+        group_strategy="balanced",
+        max_groups=32,
+        max_windows_per_group=8,
+        max_total_windows=0,
+        baseline=1024,
+        adaptive_window=512,
+        stride=512,
+        window_samples=4096,
+        window_step=2048,
+        min_clean_samples=None,
+        score="max",
+        emission_threshold=3.0,
+        decay=0.9,
+        null_repeats=50,
+        posthoc_window=None,
+    )
+    signature = _checkpoint_signature(args, ["z"])
+    path = tmp_path / "checkpoint.json"
+
+    _write_checkpoint(path, {"signature": signature, "next_window_index": 7})
+
+    assert _load_checkpoint(path, signature)["next_window_index"] == 7
+    mismatched = dict(signature)
+    mismatched["max_groups"] = 64
+    with pytest.raises(ValueError, match="signature"):
+        _load_checkpoint(path, mismatched)
 
 
 def test_discover_windows_finds_overlapping_record_groups():

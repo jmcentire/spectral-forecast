@@ -442,7 +442,7 @@
       "id": "code-mod-spectral-forecast-e1546b1934a6",
       "title": "experiments/cdip_batch.py",
       "type": "artifact",
-      "updated_at": "2026-06-02T02:03:38",
+      "updated_at": "2026-06-02T11:25:48",
       "weight": 0.5
     },
     {
@@ -783,7 +783,7 @@
       "id": "code-sym-spectral-forecast-994335706ba1",
       "title": "BatchWindow",
       "type": "concept",
-      "updated_at": "2026-06-02T02:03:38",
+      "updated_at": "2026-06-02T11:25:48",
       "weight": 0.5
     },
     {
@@ -964,6 +964,6 @@
     }
   ],
   "repo": "spectral-forecast",
-  "source_updated_at": "2026-06-02T02:03:38",
+  "source_updated_at": "2026-06-02T11:25:48",
   "version": 1
 }
