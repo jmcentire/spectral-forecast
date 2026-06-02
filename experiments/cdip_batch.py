@@ -178,6 +178,103 @@ def _discover_windows(
     return windows
 
 
+def _select_shard_items(items: Sequence[Any], shard_count: int, shard_index: int) -> list[Any]:
+    if shard_count < 1:
+        raise ValueError("shard_count must be >= 1")
+    if not 0 <= shard_index < shard_count:
+        raise ValueError("shard_index must satisfy 0 <= shard_index < shard_count")
+    if shard_count == 1:
+        return list(items)
+    return [item for index, item in enumerate(items) if index % shard_count == shard_index]
+
+
+def _window_manifest_signature(
+    args: argparse.Namespace,
+    channels: Sequence[str],
+    min_clean_samples: int,
+) -> dict[str, Any]:
+    return {
+        "files": [str(path) for path in args.files],
+        "channels": list(channels),
+        "keep_flags": list(args.keep_flags),
+        "group_size": args.group_size,
+        "group_strategy": args.group_strategy,
+        "max_groups": args.max_groups,
+        "max_windows_per_group": args.max_windows_per_group,
+        "max_total_windows": args.max_total_windows,
+        "window_samples": args.window_samples,
+        "window_step": args.window_step,
+        "min_clean_samples": min_clean_samples,
+    }
+
+
+def _window_to_manifest_row(window: BatchWindow) -> dict[str, Any]:
+    return {
+        "source_paths": list(window.source_paths),
+        "start_time": window.start_time,
+        "n_samples": window.n_samples,
+        "target_rate": window.target_rate,
+        "group_index": window.group_index,
+        "window_index": window.window_index,
+    }
+
+
+def _window_from_manifest_row(
+    row: dict[str, Any],
+    records_by_path: dict[str, CdipRawRecord],
+) -> BatchWindow:
+    records = []
+    missing = []
+    for source_path in row["source_paths"]:
+        record = records_by_path.get(source_path)
+        if record is None:
+            missing.append(source_path)
+        else:
+            records.append(record)
+    if missing:
+        raise ValueError("Window manifest references missing source paths: " + ", ".join(missing))
+    return BatchWindow(
+        records=tuple(records),
+        start_time=float(row["start_time"]),
+        n_samples=int(row["n_samples"]),
+        target_rate=float(row["target_rate"]),
+        group_index=int(row["group_index"]),
+        window_index=int(row["window_index"]),
+    )
+
+
+def _write_window_manifest(
+    path: Path,
+    *,
+    signature: dict[str, Any],
+    windows: Sequence[BatchWindow],
+) -> None:
+    payload = {
+        "version": 1,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "signature": signature,
+        "windows": [_window_to_manifest_row(window) for window in windows],
+    }
+    _write_checkpoint(path, payload)
+
+
+def _load_window_manifest(
+    path: Path,
+    *,
+    signature: dict[str, Any],
+    records_by_path: dict[str, CdipRawRecord],
+) -> list[BatchWindow]:
+    payload = json.loads(path.read_text())
+    if payload.get("version") != 1:
+        raise ValueError("Unsupported window manifest version")
+    if payload.get("signature") != signature:
+        raise ValueError("Window manifest signature does not match current run arguments")
+    return [
+        _window_from_manifest_row(row, records_by_path)
+        for row in payload.get("windows", [])
+    ]
+
+
 def _shift_observation_result(
     result: ObservationResult,
     *,
@@ -287,6 +384,61 @@ def _normal_survival_from_z(z_score: float) -> float:
     return float(0.5 * math.erfc(z_score / math.sqrt(2.0)))
 
 
+def _summary_from_state(
+    *,
+    records_loaded: int,
+    windows_discovered: int,
+    all_windows_discovered: int,
+    window_rows: Sequence[dict[str, Any]],
+    skipped: Sequence[dict[str, Any]],
+    observed_multi: Sequence[float],
+    null_multi: Sequence[float],
+    null_totals: Sequence[float] | np.ndarray,
+) -> dict[str, Any]:
+    observed_total = float(np.sum(observed_multi)) if observed_multi else 0.0
+    null_totals_array = np.asarray(null_totals, dtype=np.float64)
+    has_total_null = bool(observed_multi) and len(null_totals_array) > 0
+    null_mean_total = float(np.mean(null_totals_array)) if has_total_null else 0.0
+    null_total_std = float(np.std(null_totals_array)) if has_total_null else 0.0
+    null_window_std = float(np.std(null_multi)) if null_multi else 0.0
+    observed_total_z = (
+        (observed_total - null_mean_total) / null_total_std
+        if null_total_std > 0
+        else 0.0
+    )
+    null_total_repeats = int(len(null_totals_array)) if has_total_null else 0
+    null_total_exceedances = (
+        int(np.sum(null_totals_array >= observed_total)) if has_total_null else 0
+    )
+    null_total_empirical_p_floor = 1.0 / (null_total_repeats + 1) if has_total_null else 1.0
+    null_total_p_ge_observed = (
+        float((1 + null_total_exceedances) / (null_total_repeats + 1))
+        if has_total_null
+        else 1.0
+    )
+    observed_total_z_normal_p_one_sided = _normal_survival_from_z(observed_total_z)
+    return {
+        "records_loaded": records_loaded,
+        "groups_discovered": len({tuple(row["group"]) for row in window_rows}),
+        "all_windows_discovered": all_windows_discovered,
+        "windows_discovered": windows_discovered,
+        "windows_run": len(window_rows),
+        "windows_skipped": len(skipped),
+        "observed_multi_emission_total": observed_total,
+        "null_multi_emission_total_estimate": null_mean_total,
+        "observed_minus_null_total": observed_total - null_mean_total,
+        "null_multi_emission_total_std": null_total_std,
+        "observed_total_z": observed_total_z,
+        "null_total_p_ge_observed": null_total_p_ge_observed,
+        "null_total_empirical_p_ge_observed": null_total_p_ge_observed,
+        "null_total_empirical_p_floor": null_total_empirical_p_floor,
+        "null_total_exceedances": null_total_exceedances,
+        "null_total_repeats": null_total_repeats,
+        "observed_total_z_normal_p_one_sided": observed_total_z_normal_p_one_sided,
+        "null_window_emission_std": null_window_std,
+    }
+
+
 def _checkpoint_signature(args: argparse.Namespace, channels: Sequence[str]) -> dict[str, Any]:
     return {
         "files": [str(path) for path in args.files],
@@ -308,6 +460,8 @@ def _checkpoint_signature(args: argparse.Namespace, channels: Sequence[str]) -> 
         "decay": args.decay,
         "null_repeats": args.null_repeats,
         "posthoc_window": args.posthoc_window or args.adaptive_window,
+        "shard_count": getattr(args, "shard_count", 1),
+        "shard_index": getattr(args, "shard_index", 0),
     }
 
 
@@ -351,6 +505,7 @@ def _merge_combinations(
     *,
     group: Sequence[str],
     window_start: str,
+    global_window_index: int,
 ) -> None:
     for row in combos:
         platforms = [item for item in str(row["active_platforms"]).split(",") if item]
@@ -375,6 +530,7 @@ def _merge_combinations(
         if len(target["examples"]) < 5:
             target["examples"].append(
                 {
+                    "global_window_index": global_window_index,
                     "group": ",".join(group),
                     "window_start": window_start,
                     "series": row["active_series"],
@@ -382,6 +538,99 @@ def _merge_combinations(
                     "last_index": row["last_index"],
                 }
             )
+
+
+def _merge_aggregate_combinations(rows: Sequence[dict[str, Any]]) -> list[dict[str, Any]]:
+    aggregate: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        key = str(row["active_platforms"])
+        target = aggregate.setdefault(
+            key,
+            {
+                "active_platforms": key,
+                "count": 0,
+                "emission_sum": 0.0,
+                "max_pheromone": 0.0,
+                "max_score": 0.0,
+                "examples": [],
+            },
+        )
+        target["count"] += int(row.get("count", 0))
+        target["emission_sum"] += float(row.get("emission_sum", 0.0))
+        target["max_pheromone"] = max(
+            target["max_pheromone"],
+            float(row.get("max_pheromone", 0.0)),
+        )
+        target["max_score"] = max(target["max_score"], float(row.get("max_score", 0.0)))
+        target["examples"].extend(row.get("examples", []))
+
+    for row in aggregate.values():
+        row["examples"] = sorted(
+            row["examples"],
+            key=lambda example: (
+                example.get("global_window_index", math.inf),
+                example.get("window_start", ""),
+                example.get("series", ""),
+            ),
+        )[:5]
+
+    return sorted(
+        aggregate.values(),
+        key=lambda row: (row["emission_sum"], row["max_pheromone"]),
+        reverse=True,
+    )
+
+
+def _merge_state(
+    *,
+    combo_rows: Sequence[dict[str, Any]],
+    metric_rows: Sequence[dict[str, float]],
+    window_rows: Sequence[dict[str, Any]],
+    observed_multi: Sequence[float],
+    null_multi: Sequence[float],
+    null_totals: Sequence[float] | np.ndarray,
+    skipped: Sequence[dict[str, Any]],
+) -> dict[str, Any]:
+    return {
+        "aggregate_combinations": list(combo_rows),
+        "metric_rows": list(metric_rows),
+        "window_rows": list(window_rows),
+        "observed_multi": [float(value) for value in observed_multi],
+        "null_multi": [float(value) for value in null_multi],
+        "null_totals": [float(value) for value in null_totals],
+        "skipped": list(skipped),
+    }
+
+
+def _batch_parameters(
+    args: argparse.Namespace,
+    channels: Sequence[str],
+    min_clean_samples: int,
+) -> dict[str, Any]:
+    return {
+        "preset": args.preset,
+        "files": [str(path) for path in args.files],
+        "channels": list(channels),
+        "keep_flags": list(args.keep_flags),
+        "group_size": args.group_size,
+        "group_strategy": args.group_strategy,
+        "max_groups": args.max_groups,
+        "max_windows_per_group": args.max_windows_per_group,
+        "max_total_windows": args.max_total_windows,
+        "baseline": args.baseline,
+        "adaptive_window": args.adaptive_window,
+        "stride": args.stride,
+        "window_samples": args.window_samples,
+        "window_step": args.window_step,
+        "min_clean_samples": min_clean_samples,
+        "score": args.score,
+        "emission_threshold": args.emission_threshold,
+        "decay": args.decay,
+        "null_repeats": args.null_repeats,
+        "posthoc_window": args.posthoc_window or args.adaptive_window,
+        "shard_count": args.shard_count,
+        "shard_index": args.shard_index,
+    }
 
 
 def run_batch(args: argparse.Namespace) -> dict[str, Any]:
@@ -392,18 +641,58 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
         for path in args.files
     ]
     min_clean_samples = args.min_clean_samples or args.baseline + args.adaptive_window + args.stride
-    windows = _discover_windows(
-        records,
-        group_size=args.group_size,
-        min_clean_samples=min_clean_samples,
-        window_samples=args.window_samples,
-        window_step=args.window_step,
-        max_groups=args.max_groups,
-        max_windows_per_group=args.max_windows_per_group,
-        group_strategy=args.group_strategy,
+    window_manifest_signature = _window_manifest_signature(args, channels, min_clean_samples)
+    if args.read_window_manifest is not None:
+        records_by_path = {str(record.path): record for record in records}
+        windows = _load_window_manifest(
+            args.read_window_manifest,
+            signature=window_manifest_signature,
+            records_by_path=records_by_path,
+        )
+    else:
+        windows = _discover_windows(
+            records,
+            group_size=args.group_size,
+            min_clean_samples=min_clean_samples,
+            window_samples=args.window_samples,
+            window_step=args.window_step,
+            max_groups=args.max_groups,
+            max_windows_per_group=args.max_windows_per_group,
+            group_strategy=args.group_strategy,
+        )
+        if args.max_total_windows > 0:
+            windows = windows[: args.max_total_windows]
+        if args.write_window_manifest is not None:
+            _write_window_manifest(
+                args.write_window_manifest,
+                signature=window_manifest_signature,
+                windows=windows,
+            )
+    if args.manifest_only:
+        return {
+            "parameters": _batch_parameters(args, channels, min_clean_samples),
+            "summary": {
+                "records_loaded": len(records),
+                "groups_discovered": len({window.platforms for window in windows}),
+                "all_windows_discovered": len(windows),
+                "windows_discovered": len(windows),
+                "windows_run": 0,
+                "windows_skipped": 0,
+            },
+            "manifest": {
+                "read": str(args.read_window_manifest) if args.read_window_manifest else None,
+                "written": str(args.write_window_manifest) if args.write_window_manifest else None,
+                "signature": window_manifest_signature,
+            },
+        }
+    indexed_windows = list(enumerate(windows))
+    all_windows_discovered = len(indexed_windows)
+    indexed_windows = _select_shard_items(
+        indexed_windows,
+        args.shard_count,
+        args.shard_index,
     )
-    if args.max_total_windows > 0:
-        windows = windows[: args.max_total_windows]
+    windows = [window for _, window in indexed_windows]
 
     checkpoint_path = Path(args.checkpoint) if args.checkpoint else None
     aggregate_combos: dict[str, dict[str, Any]] = {}
@@ -486,6 +775,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
 
     maybe_report(start_index, force=True)
     for window_index, window in enumerate(windows[start_index:], start=start_index):
+        global_window_index = indexed_windows[window_index][0]
         series = _series_from_records(
             window.records,
             channels,
@@ -511,6 +801,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
                 {
                     "platforms": list(window.platforms),
                     "start": _iso(window.start_time),
+                    "global_window_index": global_window_index,
                     "reason": str(exc),
                 }
             )
@@ -551,12 +842,14 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             combos,
             group=window.platforms,
             window_start=_iso(window.start_time),
+            global_window_index=global_window_index,
         )
 
         null_mean = float(np.mean(null_sums)) if null_sums else 0.0
         null_std = float(np.std(null_sums)) if null_sums else 0.0
         window_rows.append(
             {
+                "global_window_index": global_window_index,
                 "group": list(window.platforms),
                 "paths": list(window.source_paths),
                 "start": _iso(window.start_time),
@@ -577,68 +870,24 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
     maybe_checkpoint(len(windows), force=True, complete=True)
     maybe_report(len(windows), force=True)
 
-    observed_total = float(np.sum(observed_multi)) if observed_multi else 0.0
-    has_total_null = bool(observed_multi) and len(null_totals) > 0
-    null_mean_total = float(np.mean(null_totals)) if has_total_null else 0.0
-    null_total_std = float(np.std(null_totals)) if has_total_null else 0.0
-    null_window_std = float(np.std(null_multi)) if null_multi else 0.0
-    observed_total_z = (
-        (observed_total - null_mean_total) / null_total_std
-        if null_total_std > 0
-        else 0.0
-    )
-    null_total_repeats = int(len(null_totals)) if has_total_null else 0
-    null_total_exceedances = int(np.sum(null_totals >= observed_total)) if has_total_null else 0
-    null_total_empirical_p_floor = 1.0 / (null_total_repeats + 1) if has_total_null else 1.0
-    null_total_p_ge_observed = (
-        float((1 + null_total_exceedances) / (null_total_repeats + 1))
-        if has_total_null
-        else 1.0
-    )
-    observed_total_z_normal_p_one_sided = _normal_survival_from_z(observed_total_z)
     combo_rows = sorted(
         aggregate_combos.values(),
         key=lambda row: (row["emission_sum"], row["max_pheromone"]),
         reverse=True,
     )
 
-    return {
-        "parameters": {
-            "preset": args.preset,
-            "files": [str(path) for path in args.files],
-            "channels": channels,
-            "group_size": args.group_size,
-            "group_strategy": args.group_strategy,
-            "baseline": args.baseline,
-            "adaptive_window": args.adaptive_window,
-            "stride": args.stride,
-            "window_samples": args.window_samples,
-            "window_step": args.window_step,
-            "score": args.score,
-            "emission_threshold": args.emission_threshold,
-            "decay": args.decay,
-            "null_repeats": args.null_repeats,
-            "posthoc_window": args.posthoc_window or args.adaptive_window,
-        },
-        "summary": {
-            "records_loaded": len(records),
-            "groups_discovered": len({tuple(row["group"]) for row in window_rows}),
-            "windows_discovered": len(windows),
-            "windows_run": len(window_rows),
-            "windows_skipped": len(skipped),
-            "observed_multi_emission_total": observed_total,
-            "null_multi_emission_total_estimate": null_mean_total,
-            "observed_minus_null_total": observed_total - null_mean_total,
-            "null_multi_emission_total_std": null_total_std,
-            "observed_total_z": observed_total_z,
-            "null_total_p_ge_observed": null_total_p_ge_observed,
-            "null_total_empirical_p_ge_observed": null_total_p_ge_observed,
-            "null_total_empirical_p_floor": null_total_empirical_p_floor,
-            "null_total_exceedances": null_total_exceedances,
-            "null_total_repeats": null_total_repeats,
-            "observed_total_z_normal_p_one_sided": observed_total_z_normal_p_one_sided,
-            "null_window_emission_std": null_window_std,
-        },
+    report = {
+        "parameters": _batch_parameters(args, channels, min_clean_samples),
+        "summary": _summary_from_state(
+            records_loaded=len(records),
+            windows_discovered=len(windows),
+            all_windows_discovered=all_windows_discovered,
+            window_rows=window_rows,
+            skipped=skipped,
+            observed_multi=observed_multi,
+            null_multi=null_multi,
+            null_totals=null_totals,
+        ),
         "top_combinations": combo_rows[: args.top],
         "correlations": _correlation_rows(metric_rows),
         "windows": sorted(
@@ -646,6 +895,115 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             key=lambda row: row["observed_minus_null"],
             reverse=True,
         )[: args.top_windows],
+        "skipped": skipped[:20],
+    }
+    if args.include_merge_state or args.shard_count > 1:
+        report["merge_state"] = _merge_state(
+            combo_rows=combo_rows,
+            metric_rows=metric_rows,
+            window_rows=window_rows,
+            observed_multi=observed_multi,
+            null_multi=null_multi,
+            null_totals=null_totals,
+            skipped=skipped,
+        )
+    return report
+
+
+def merge_reports(
+    paths: Sequence[Path],
+    *,
+    top: int,
+    top_windows: int,
+) -> dict[str, Any]:
+    if not paths:
+        raise ValueError("At least one report is required for merge")
+
+    reports = []
+    for path in paths:
+        report = json.loads(path.read_text())
+        if "merge_state" not in report:
+            raise ValueError(f"Report is missing merge_state and cannot be merged: {path}")
+        reports.append(report)
+
+    first_params = dict(reports[0]["parameters"])
+    base_params = {key: value for key, value in first_params.items() if key != "shard_index"}
+    shard_indexes = []
+    for path, report in zip(paths, reports):
+        params = dict(report["parameters"])
+        comparable = {key: value for key, value in params.items() if key != "shard_index"}
+        if comparable != base_params:
+            raise ValueError(f"Report parameters are not merge-compatible: {path}")
+        shard_indexes.append(int(params.get("shard_index", 0)))
+
+    shard_count = int(first_params.get("shard_count", len(paths)))
+    if len(set(shard_indexes)) != len(shard_indexes):
+        raise ValueError("Shard reports contain duplicate shard_index values")
+    if shard_count > 1 and sorted(shard_indexes) != list(range(shard_count)):
+        raise ValueError(
+            "Shard reports must cover every shard index from 0 to shard_count - 1"
+        )
+
+    aggregate_input: list[dict[str, Any]] = []
+    metric_rows: list[dict[str, float]] = []
+    window_rows: list[dict[str, Any]] = []
+    observed_multi: list[float] = []
+    null_multi: list[float] = []
+    null_totals: np.ndarray | None = None
+    skipped: list[dict[str, Any]] = []
+
+    for report in reports:
+        state = report["merge_state"]
+        aggregate_input.extend(state.get("aggregate_combinations", []))
+        metric_rows.extend(state.get("metric_rows", []))
+        window_rows.extend(state.get("window_rows", []))
+        observed_multi.extend(float(value) for value in state.get("observed_multi", []))
+        null_multi.extend(float(value) for value in state.get("null_multi", []))
+        shard_null_totals = np.asarray(state.get("null_totals", []), dtype=np.float64)
+        if null_totals is None:
+            null_totals = shard_null_totals
+        elif len(null_totals) != len(shard_null_totals):
+            raise ValueError("Shard null_totals lengths do not match")
+        else:
+            null_totals = null_totals + shard_null_totals
+        skipped.extend(state.get("skipped", []))
+
+    combo_rows = _merge_aggregate_combinations(aggregate_input)
+    summary_windows = [int(report["summary"]["windows_discovered"]) for report in reports]
+    windows_discovered = int(sum(summary_windows))
+    all_windows_values = {
+        int(report["summary"].get("all_windows_discovered", windows_discovered))
+        for report in reports
+    }
+    all_windows_discovered = (
+        next(iter(all_windows_values)) if len(all_windows_values) == 1 else windows_discovered
+    )
+    if len(all_windows_values) == 1 and windows_discovered != all_windows_discovered:
+        raise ValueError("Merged shard window counts do not match all_windows_discovered")
+
+    parameters = dict(first_params)
+    parameters["shard_index"] = "merged"
+    parameters["merged_reports"] = len(paths)
+
+    return {
+        "parameters": parameters,
+        "summary": _summary_from_state(
+            records_loaded=int(reports[0]["summary"]["records_loaded"]),
+            windows_discovered=windows_discovered,
+            all_windows_discovered=all_windows_discovered,
+            window_rows=window_rows,
+            skipped=skipped,
+            observed_multi=observed_multi,
+            null_multi=null_multi,
+            null_totals=[] if null_totals is None else null_totals,
+        ),
+        "top_combinations": combo_rows[:top],
+        "correlations": _correlation_rows(metric_rows),
+        "windows": sorted(
+            window_rows,
+            key=lambda row: row["observed_minus_null"],
+            reverse=True,
+        )[:top_windows],
         "skipped": skipped[:20],
     }
 
@@ -719,9 +1077,34 @@ def _print_text_report(report: dict[str, Any]) -> None:
             )
 
 
+def _print_manifest_report(report: dict[str, Any]) -> None:
+    summary = report["summary"]
+    manifest = report.get("manifest", {})
+    print("CDIP window manifest")
+    print(
+        "  records=%d groups=%d windows=%d"
+        % (
+            summary["records_loaded"],
+            summary["groups_discovered"],
+            summary["windows_discovered"],
+        )
+    )
+    if manifest.get("read"):
+        print("  read=%s" % manifest["read"])
+    if manifest.get("written"):
+        print("  written=%s" % manifest["written"])
+
+
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("files", type=Path, nargs="+", help="CDIP *_xy.nc files")
+    parser.add_argument("files", type=Path, nargs="*", help="CDIP *_xy.nc files")
+    parser.add_argument(
+        "--merge-reports",
+        type=Path,
+        nargs="+",
+        default=None,
+        help="Merge shard JSON reports produced with merge_state",
+    )
     parser.add_argument(
         "--preset",
         choices=["custom", "scale"],
@@ -758,6 +1141,13 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--posthoc-window", type=int, default=None, help="Post-hoc metric window")
     parser.add_argument("--top", type=int, default=10, help="Rows to show")
     parser.add_argument("--top-windows", type=int, default=10, help="Windows to show")
+    parser.add_argument("--shard-count", type=int, default=1, help="Total deterministic shards")
+    parser.add_argument("--shard-index", type=int, default=0, help="Shard index to run, zero-based")
+    parser.add_argument(
+        "--include-merge-state",
+        action="store_true",
+        help="Include full state needed for exact report merging",
+    )
     parser.add_argument(
         "--progress-every",
         type=float,
@@ -766,12 +1156,29 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--checkpoint", type=Path, default=None, help="Path for resumable checkpoint JSON")
     parser.add_argument(
+        "--write-window-manifest",
+        type=Path,
+        default=None,
+        help="Write discovered aligned windows before shard selection",
+    )
+    parser.add_argument(
+        "--read-window-manifest",
+        type=Path,
+        default=None,
+        help="Read a previously discovered aligned window manifest",
+    )
+    parser.add_argument(
         "--checkpoint-every",
         type=float,
         default=60.0,
         help="Seconds between checkpoint writes when --checkpoint is set; 0 writes every window",
     )
     parser.add_argument("--resume", action="store_true", help="Resume from --checkpoint")
+    parser.add_argument(
+        "--manifest-only",
+        action="store_true",
+        help="Discover or read aligned windows, optionally write a manifest, then exit",
+    )
     parser.add_argument("--format", choices=["text", "json"], default="text", help="Output format")
     args = parser.parse_args(argv)
     if args.preset == "scale":
@@ -787,14 +1194,27 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         args.decay = 0.9
         args.null_repeats = max(args.null_repeats, 10)
         args.group_strategy = "balanced"
+    if args.shard_count < 1:
+        parser.error("--shard-count must be >= 1")
+    if not 0 <= args.shard_index < args.shard_count:
+        parser.error("--shard-index must satisfy 0 <= shard_index < shard_count")
+    if args.read_window_manifest is not None and args.write_window_manifest is not None:
+        parser.error("--read-window-manifest and --write-window-manifest are mutually exclusive")
+    if args.merge_reports is None and not args.files:
+        parser.error("files are required unless --merge-reports is supplied")
     return args
 
 
 def main(argv: Sequence[str] | None = None) -> None:
     args = parse_args(argv)
-    report = run_batch(args)
+    if args.merge_reports is not None:
+        report = merge_reports(args.merge_reports, top=args.top, top_windows=args.top_windows)
+    else:
+        report = run_batch(args)
     if args.format == "json":
         print(json.dumps(report, indent=2, sort_keys=True))
+    elif args.manifest_only:
+        _print_manifest_report(report)
     else:
         _print_text_report(report)
 

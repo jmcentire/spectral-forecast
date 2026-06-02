@@ -1,0 +1,118 @@
+{
+  "date": "2026-06-02",
+  "experiment": "CDIP 512-group deterministic shard/merge validation",
+  "purpose": "Validate that eight deterministic shard reports reconstruct the prior single-process 512-group CDIP batch aggregate.",
+  "input": {
+    "records_loaded": 70,
+    "channels": [
+      "z"
+    ],
+    "preset": "scale",
+    "group_strategy": "balanced",
+    "max_groups": 512,
+    "null_repeats": 50,
+    "shard_count": 8
+  },
+  "artifacts": {
+    "monolith_reference": "/tmp/cdip_1p5gb_scale_balanced_512groups_null50.json",
+    "merged_report": "/tmp/cdip_1p5gb_512_8shards_merged.json",
+    "shard_report_pattern": "/tmp/cdip_1p5gb_512_8shards_shard{0..7}.json",
+    "shard_checkpoint_pattern": "/tmp/cdip_1p5gb_512_8shards_shard{0..7}.checkpoint.json"
+  },
+  "shards": [
+    {
+      "shard_index": 0,
+      "windows_discovered": 347,
+      "windows_run": 347,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2820.435
+    },
+    {
+      "shard_index": 1,
+      "windows_discovered": 346,
+      "windows_run": 346,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2692.104
+    },
+    {
+      "shard_index": 2,
+      "windows_discovered": 346,
+      "windows_run": 346,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2772.448
+    },
+    {
+      "shard_index": 3,
+      "windows_discovered": 346,
+      "windows_run": 346,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2687.703
+    },
+    {
+      "shard_index": 4,
+      "windows_discovered": 346,
+      "windows_run": 346,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2582.262
+    },
+    {
+      "shard_index": 5,
+      "windows_discovered": 346,
+      "windows_run": 346,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2767.347
+    },
+    {
+      "shard_index": 6,
+      "windows_discovered": 346,
+      "windows_run": 346,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2816.424
+    },
+    {
+      "shard_index": 7,
+      "windows_discovered": 346,
+      "windows_run": 346,
+      "windows_skipped": 0,
+      "observed_multi_emission_total": 2895.023
+    }
+  ],
+  "merged_summary": {
+    "records_loaded": 70,
+    "groups_discovered": 512,
+    "all_windows_discovered": 2769,
+    "windows_discovered": 2769,
+    "windows_run": 2769,
+    "windows_skipped": 0,
+    "observed_multi_emission_total": 22033.744908799636,
+    "null_multi_emission_total_estimate": 20148.08585314295,
+    "observed_minus_null_total": 1885.6590556566844,
+    "null_multi_emission_total_std": 240.82190527589782,
+    "observed_total_z": 7.830097737564103,
+    "null_total_p_ge_observed": 0.0196078431372549,
+    "null_total_empirical_p_ge_observed": 0.0196078431372549,
+    "null_total_empirical_p_floor": 0.0196078431372549,
+    "null_total_exceedances": 0,
+    "null_total_repeats": 50,
+    "observed_total_z_normal_p_one_sided": 2.437454235113499e-15,
+    "null_window_emission_std": 8.75218164502434
+  },
+  "comparison": {
+    "summary_numeric_match_with_monolith": true,
+    "summary_tolerance": {
+      "relative": 1e-12,
+      "absolute": 1e-9
+    },
+    "top_10_window_starts_match": true,
+    "notes": [
+      "The empirical p-value equals the p-floor because observed total exceeded all 50 shifted-null total repeats.",
+      "The serial local shard validation repeated full corpus load and deterministic balanced discovery in each shard process.",
+      "Measured per-shard observation throughput was stable around 2.3 to 2.4 windows per second after discovery."
+    ]
+  },
+  "scaling_constraints": [
+    "Window-level stigmergy work shards cleanly and merges exactly.",
+    "Local multi-process parallelism is memory-limited because each shard process loads the 70-file corpus independently at roughly 17 GB RSS.",
+    "Before larger local runs, discovery should be surfaced and cached as a manifest so shard workers do not repeat invisible balanced group/window discovery."
+  ]
+}
