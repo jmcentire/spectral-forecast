@@ -7,8 +7,8 @@
       "Python"
     ],
     "frameworks": [],
-    "analyzedAt": "2026-06-02T00:32:43-05:00",
-    "gitCommitHash": "cac6d8a0cfcc300cc4b2883c0dbdcefdc9b53dad"
+    "analyzedAt": "2026-06-02T00:48:28-05:00",
+    "gitCommitHash": "928236acfbfc364988244b632f52713cf06e6c4f"
   },
   "nodes": [
     {
@@ -250,6 +250,23 @@
       }
     },
     {
+      "id": "code-sym-spectral-forecast-c65c67d807d6",
+      "type": "class",
+      "name": "PosthocMetrics",
+      "filePath": "experiments/cdip_observe.py",
+      "summary": "class PosthocMetrics (experiments/cdip_observe.py:84) ## Methods - to_dict(self) -> dict[str,float]",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 1,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "concept",
+        "toolTier": ""
+      }
+    },
+    {
       "id": "code-sym-spectral-forecast-ee03b4459fc0",
       "type": "class",
       "name": "CdipSeries",
@@ -271,12 +288,12 @@
       "type": "file",
       "name": "experiments/cdip_observe.py",
       "filePath": "experiments/cdip_observe.py",
-      "summary": "Language: Python | Path: experiments/cdip_observe.py | ~860 lines ## Classes - CdipRawRecord",
+      "summary": "Language: Python | Path: experiments/cdip_observe.py | ~1211 lines ## Classes - CdipRawRecord",
       "tags": [
         "code",
         "python"
       ],
-      "complexity": 25,
+      "complexity": 36,
       "languageNotes": {
         "language": "Python",
         "kindexType": "artifact",
@@ -1736,6 +1753,13 @@
       "weight": 0.6
     },
     {
+      "source": "code-sym-spectral-forecast-c65c67d807d6",
+      "target": "code-mod-spectral-forecast-26853fc06661",
+      "type": "contains",
+      "direction": "outbound",
+      "weight": 0.6
+    },
+    {
       "source": "code-sym-spectral-forecast-cb9c14b71605",
       "target": "code-mod-spectral-forecast-e3ad60adcf4d",
       "type": "contains",
@@ -1878,6 +1902,7 @@
         "code-sym-spectral-forecast-a655453d6600",
         "code-sym-spectral-forecast-ae084aa2f268",
         "code-sym-spectral-forecast-b6dffaf9cae3",
+        "code-sym-spectral-forecast-c65c67d807d6",
         "code-sym-spectral-forecast-cb9c14b71605",
         "code-sym-spectral-forecast-cbdcd78c6d50",
         "code-sym-spectral-forecast-cffa326d81cd",
@@ -1964,7 +1989,7 @@
     {
       "order": 3,
       "title": "Domain",
-      "description": "Review 42 node(s) in the Domain layer.",
+      "description": "Review 43 node(s) in the Domain layer.",
       "nodeIds": [
         "code-sym-spectral-forecast-0c898d9759aa",
         "code-sym-spectral-forecast-0cde9a123c28",

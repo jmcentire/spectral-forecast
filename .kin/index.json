@@ -3,7 +3,7 @@
     "code",
     "python"
   ],
-  "node_count": 84,
+  "node_count": 85,
   "nodes": [
     {
       "domains": [
@@ -90,7 +90,7 @@
       "id": "code-mod-spectral-forecast-26853fc06661",
       "title": "experiments/cdip_observe.py",
       "type": "artifact",
-      "updated_at": "2026-06-02T00:47:53",
+      "updated_at": "2026-06-02T00:58:38",
       "weight": 0.5
     },
     {
@@ -717,7 +717,7 @@
       "id": "code-sym-spectral-forecast-6cc4f9affa46",
       "title": "CdipRawRecord",
       "type": "concept",
-      "updated_at": "2026-06-02T00:47:53",
+      "updated_at": "2026-06-02T00:58:37",
       "weight": 0.5
     },
     {
@@ -835,6 +835,17 @@
         "code",
         "python"
       ],
+      "id": "code-sym-spectral-forecast-c65c67d807d6",
+      "title": "PosthocMetrics",
+      "type": "concept",
+      "updated_at": "2026-06-02T00:58:37",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
       "id": "code-sym-spectral-forecast-cb9c14b71605",
       "title": "IterativeDecompositionForecaster",
       "type": "concept",
@@ -904,7 +915,7 @@
       "id": "code-sym-spectral-forecast-ee03b4459fc0",
       "title": "CdipSeries",
       "type": "concept",
-      "updated_at": "2026-06-02T00:47:53",
+      "updated_at": "2026-06-02T00:58:37",
       "weight": 0.5
     },
     {
@@ -931,6 +942,6 @@
     }
   ],
   "repo": "spectral-forecast",
-  "source_updated_at": "2026-06-02T00:47:53",
+  "source_updated_at": "2026-06-02T00:58:38",
   "version": 1
 }

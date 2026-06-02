@@ -80,6 +80,30 @@ class CdipRawRecord:
         return self.first_sample_time + index / self.sample_rate
 
 
+@dataclass(frozen=True)
+class PosthocMetrics:
+    """Audit-only wave and spectrum metrics computed after detection."""
+
+    elevation_kurtosis: float
+    max_wave_height: float
+    significant_wave_height: float
+    max_to_significant_wave_height: float
+    spectral_bandwidth: float
+    spectral_mean_period: float
+    crest_trough_correlation_proxy: float
+
+    def to_dict(self) -> dict[str, float]:
+        return {
+            "elevation_kurtosis": self.elevation_kurtosis,
+            "max_wave_height": self.max_wave_height,
+            "significant_wave_height": self.significant_wave_height,
+            "max_to_significant_wave_height": self.max_to_significant_wave_height,
+            "spectral_bandwidth": self.spectral_bandwidth,
+            "spectral_mean_period": self.spectral_mean_period,
+            "crest_trough_correlation_proxy": self.crest_trough_correlation_proxy,
+        }
+
+
 def _decode_attr(value: Any, default: str = "") -> str:
     if value is None:
         return default
@@ -419,6 +443,95 @@ def observation_metadata(point: ObservationPoint, meta: CdipSeries, score: Score
     }
 
 
+def _zero_upcrossing_heights(values: NDArray[np.float64]) -> NDArray[np.float64]:
+    centered = np.asarray(values, dtype=np.float64) - float(np.mean(values))
+    crossings = np.flatnonzero((centered[:-1] <= 0.0) & (centered[1:] > 0.0)) + 1
+    if len(crossings) < 2:
+        return np.array([], dtype=np.float64)
+
+    heights = []
+    for start, end in zip(crossings[:-1], crossings[1:]):
+        segment = centered[start:end]
+        if len(segment) == 0:
+            continue
+        heights.append(float(np.max(segment) - np.min(segment)))
+    return np.asarray(heights, dtype=np.float64)
+
+
+def _autocorrelation_at(values: NDArray[np.float64], lag: int) -> float:
+    if lag <= 0 or lag >= len(values):
+        return 0.0
+    centered = np.asarray(values, dtype=np.float64) - float(np.mean(values))
+    left = centered[:-lag]
+    right = centered[lag:]
+    denom = float(np.sqrt(np.sum(left**2) * np.sum(right**2)))
+    if denom <= 1e-30:
+        return 0.0
+    return float(np.sum(left * right) / denom)
+
+
+def posthoc_metrics(values: NDArray[np.float64], sample_rate: float) -> PosthocMetrics:
+    """Compute research-style metrics after detection for audit only."""
+
+    y = np.asarray(values, dtype=np.float64)
+    if len(y) == 0:
+        return PosthocMetrics(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+    centered = y - float(np.mean(y))
+    variance = float(np.mean(centered**2))
+    elevation_kurtosis = (
+        float(np.mean(centered**4) / max(variance**2, 1e-30))
+        if variance > 0
+        else 0.0
+    )
+
+    heights = _zero_upcrossing_heights(y)
+    max_wave_height = float(np.max(heights)) if len(heights) else 0.0
+    if len(heights):
+        sorted_heights = np.sort(heights)[::-1]
+        top_count = max(1, int(np.ceil(len(sorted_heights) / 3.0)))
+        significant_wave_height = float(np.mean(sorted_heights[:top_count]))
+    else:
+        significant_wave_height = 0.0
+    max_to_significant = (
+        max_wave_height / significant_wave_height
+        if significant_wave_height > 1e-30
+        else 0.0
+    )
+
+    if len(centered) < 8 or sample_rate <= 0:
+        spectral_bandwidth = 0.0
+        spectral_mean_period = 0.0
+        crest_trough = 0.0
+    else:
+        window = np.hanning(len(centered))
+        spectrum = np.abs(np.fft.rfft(centered * window)) ** 2
+        freqs = np.fft.rfftfreq(len(centered), d=1.0 / sample_rate)
+        spectrum = spectrum[1:]
+        freqs = freqs[1:]
+        m0 = float(np.sum(spectrum))
+        m1 = float(np.sum(freqs * spectrum))
+        m2 = float(np.sum((freqs**2) * spectrum))
+        spectral_mean_period = m0 / m1 if m1 > 1e-30 else 0.0
+        if m1 > 1e-30:
+            bandwidth_arg = max((m0 * m2) / (m1**2) - 1.0, 0.0)
+            spectral_bandwidth = float(np.sqrt(bandwidth_arg))
+        else:
+            spectral_bandwidth = 0.0
+        half_period_lag = int(round(0.5 * spectral_mean_period * sample_rate))
+        crest_trough = -_autocorrelation_at(y, half_period_lag)
+
+    return PosthocMetrics(
+        elevation_kurtosis=elevation_kurtosis,
+        max_wave_height=max_wave_height,
+        significant_wave_height=significant_wave_height,
+        max_to_significant_wave_height=max_to_significant,
+        spectral_bandwidth=spectral_bandwidth,
+        spectral_mean_period=spectral_mean_period,
+        crest_trough_correlation_proxy=crest_trough,
+    )
+
+
 def _selected_points(
     results: Sequence[ObservationResult],
     *,
@@ -446,6 +559,11 @@ async def run_stigmergy_mesh(
     max_signals: int,
     mesh_src: Path,
     max_workers: int,
+    worker_capacity: int,
+    base_threshold: float,
+    gap_threshold: float,
+    high_relevance_offset: float,
+    prime: str,
 ) -> dict[str, Any]:
     """Route detector emissions through the sibling Stigmergy mesh."""
 
@@ -465,9 +583,10 @@ async def run_stigmergy_mesh(
         AgentRegistry(),
         dedup_enabled=False,
         max_workers=max_workers,
-        worker_capacity=80,
-        base_threshold=0.05,
-        gap_threshold=0.04,
+        worker_capacity=worker_capacity,
+        base_threshold=base_threshold,
+        gap_threshold=gap_threshold,
+        high_relevance_offset=high_relevance_offset,
     )
 
     seed_count = max(2, len(series_by_name))
@@ -478,6 +597,27 @@ async def run_stigmergy_mesh(
     for name in seed_names[:seed_count]:
         worker = mesh.spawn_worker(source_name=name, connect_to=previous)
         previous = worker.id
+        if prime != "none" and name in series_by_name:
+            meta = series_by_name[name]
+            station_token = f"station-{_safe_token(meta.platform_id)}"
+            series_token = f"series-{_safe_token(name)}"
+            channel_token = f"channel-{meta.channel}disp"
+            if prime == "station":
+                content = f"spectral-observation {station_token} {channel_token} mesh-primer"
+            else:
+                content = f"spectral-observation {station_token} {channel_token} {series_token} mesh-primer"
+            primer = Signal(
+                content=content,
+                source="spectral-observer-primer",
+                channel=name,
+                author="spectral-forecast",
+                timestamp=meta.timestamp_for_index(0),
+                metadata={"primer": True, "prime_mode": prime},
+            )
+            worker._context_summarize(primer, 0.1)
+            worker.signals_accepted += 1
+            worker.signals_received += 1
+            worker._position_dirty = True
 
     traces = []
     for point in selected:
@@ -525,6 +665,10 @@ async def run_stigmergy_mesh(
         "signals_routed": len(selected),
         "threshold": threshold,
         "score": score,
+        "prime": prime,
+        "base_threshold": base_threshold,
+        "gap_threshold": gap_threshold,
+        "worker_capacity": worker_capacity,
         "worker_count": mesh.worker_count,
         "workers": workers,
         "lowest_familiarity": low_familiarity,
@@ -549,6 +693,144 @@ def _top_observation_rows(
             row["score"] = point.score(score)
             rows.append(row)
     return sorted(rows, key=lambda row: row["score"], reverse=True)
+
+
+def _point_posthoc_metrics(
+    point: ObservationPoint,
+    meta: CdipSeries,
+    *,
+    window: int,
+) -> PosthocMetrics:
+    start = max(0, point.index - window + 1)
+    end = min(len(meta.values), point.index + 1)
+    return posthoc_metrics(meta.values[start:end], meta.sample_rate)
+
+
+def _rankdata(values: Sequence[float]) -> NDArray[np.float64]:
+    arr = np.asarray(values, dtype=np.float64)
+    order = np.argsort(arr, kind="mergesort")
+    ranks = np.empty(len(arr), dtype=np.float64)
+    i = 0
+    while i < len(arr):
+        j = i + 1
+        while j < len(arr) and arr[order[j]] == arr[order[i]]:
+            j += 1
+        ranks[order[i:j]] = (i + j - 1) / 2.0 + 1.0
+        i = j
+    return ranks
+
+
+def _pearson(x: Sequence[float], y: Sequence[float]) -> float:
+    x_arr = np.asarray(x, dtype=np.float64)
+    y_arr = np.asarray(y, dtype=np.float64)
+    finite = np.isfinite(x_arr) & np.isfinite(y_arr)
+    x_arr = x_arr[finite]
+    y_arr = y_arr[finite]
+    if len(x_arr) < 3 or np.std(x_arr) <= 1e-30 or np.std(y_arr) <= 1e-30:
+        return 0.0
+    return float(np.corrcoef(x_arr, y_arr)[0, 1])
+
+
+def _spearman(x: Sequence[float], y: Sequence[float]) -> float:
+    x_arr = np.asarray(x, dtype=np.float64)
+    y_arr = np.asarray(y, dtype=np.float64)
+    finite = np.isfinite(x_arr) & np.isfinite(y_arr)
+    x_arr = x_arr[finite]
+    y_arr = y_arr[finite]
+    if len(x_arr) < 3:
+        return 0.0
+    return _pearson(_rankdata(x_arr), _rankdata(y_arr))
+
+
+def _posthoc_correlation_rows(
+    results: Sequence[ObservationResult],
+    series_by_name: dict[str, CdipSeries],
+    *,
+    score: ScoreName,
+    window: int,
+) -> list[dict[str, Any]]:
+    metric_values: dict[str, list[float]] = {}
+    scores: list[float] = []
+
+    for result in results:
+        meta = series_by_name[result.series]
+        for point in result.points:
+            metrics = _point_posthoc_metrics(point, meta, window=window).to_dict()
+            scores.append(point.score(score))
+            for name, value in metrics.items():
+                metric_values.setdefault(name, []).append(value)
+
+    rows = []
+    for name, values in metric_values.items():
+        rows.append(
+            {
+                "metric": name,
+                "n": len(values),
+                "pearson": _pearson(scores, values),
+                "spearman": _spearman(scores, values),
+            }
+        )
+    return sorted(rows, key=lambda row: abs(row["spearman"]), reverse=True)
+
+
+def _posthoc_top_rows(
+    results: Sequence[ObservationResult],
+    series_by_name: dict[str, CdipSeries],
+    *,
+    score: ScoreName,
+    window: int,
+    top: int,
+) -> list[dict[str, Any]]:
+    points = sorted(
+        (point for result in results for point in result.points),
+        key=lambda point: point.score(score),
+        reverse=True,
+    )[:top]
+    rows = []
+    for point in points:
+        meta = series_by_name[point.series]
+        row = {
+            "series": point.series,
+            "index": point.index,
+            "timestamp": meta.timestamp_for_index(point.index).isoformat(),
+            "score": point.score(score),
+        }
+        row.update(_point_posthoc_metrics(point, meta, window=window).to_dict())
+        rows.append(row)
+    return rows
+
+
+def _combination_rows(stigmergy_points: Sequence[Any]) -> list[dict[str, Any]]:
+    combos: dict[tuple[str, ...], dict[str, Any]] = {}
+    for point in stigmergy_points:
+        if not point.active_series:
+            continue
+        key = tuple(point.active_series)
+        row = combos.setdefault(
+            key,
+            {
+                "active_series": ",".join(key),
+                "active_platforms": ",".join(sorted({item.split(":")[0] for item in key})),
+                "count": 0,
+                "emission_sum": 0.0,
+                "max_pheromone": 0.0,
+                "max_score": 0.0,
+                "first_index": point.index,
+                "last_index": point.index,
+            },
+        )
+        row["count"] += 1
+        row["emission_sum"] += point.emission
+        row["max_pheromone"] = max(row["max_pheromone"], point.pheromone)
+        row["max_score"] = max(row["max_score"], point.max_score)
+        row["first_index"] = min(row["first_index"], point.index)
+        row["last_index"] = max(row["last_index"], point.index)
+
+    return sorted(
+        combos.values(),
+        key=lambda row: (row["emission_sum"], row["max_pheromone"]),
+        reverse=True,
+    )
 
 
 def _readiness_rows(series: Sequence[CdipSeries], args: argparse.Namespace) -> list[dict[str, Any]]:
@@ -677,13 +959,47 @@ def _print_text_report(report: dict[str, Any]) -> None:
                     row["active_series"],
                 )
             )
+        if report["stigmergy"]["combinations"]:
+            print("\nActive combinations")
+            print("%24s %5s %10s %10s %10s %s" % ("platforms", "count", "emission", "pheromone", "max_score", "series"))
+            for row in report["stigmergy"]["combinations"][:8]:
+                print(
+                    "%24s %5d %10.3f %10.3f %10.3f %s"
+                    % (
+                        row["active_platforms"],
+                        row["count"],
+                        row["emission_sum"],
+                        row["max_pheromone"],
+                        row["max_score"],
+                        row["active_series"],
+                    )
+                )
+
+    posthoc = report.get("posthoc")
+    if posthoc:
+        print("\nPost-hoc research metrics")
+        print("  audit_only=true window=%d" % posthoc["window"])
+        print("%38s %5s %9s %9s" % ("metric", "n", "pearson", "spearman"))
+        for row in posthoc["correlations"][:8]:
+            print(
+                "%38s %5d %9.3f %9.3f"
+                % (row["metric"], row["n"], row["pearson"], row["spearman"])
+            )
 
     mesh = report.get("mesh")
     if mesh:
         print("\nStigmergy mesh")
         print(
-            "  routed=%d workers=%d score=%s threshold=%.3f"
-            % (mesh["signals_routed"], mesh["worker_count"], mesh["score"], mesh["threshold"])
+            "  routed=%d workers=%d score=%s threshold=%.3f prime=%s base=%.3f gap=%.3f"
+            % (
+                mesh["signals_routed"],
+                mesh["worker_count"],
+                mesh["score"],
+                mesh["threshold"],
+                mesh["prime"],
+                mesh["base_threshold"],
+                mesh["gap_threshold"],
+            )
         )
         print("  workers")
         for worker in mesh["workers"]:
@@ -772,6 +1088,7 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
             "score": args.score,
             "emission_threshold": args.emission_threshold,
             "decay": args.decay,
+            "posthoc_window": args.posthoc_window or args.adaptive_window,
         },
         "readiness": _readiness_rows(series, args),
         "top_observations": _top_observation_rows(
@@ -783,6 +1100,24 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
         "stigmergy": {
             "points": len(stig.points),
             "top": [point.to_dict() for point in stig.top(args.top)],
+            "combinations": _combination_rows(stig.points),
+        },
+        "posthoc": {
+            "note": "Audit-only metrics computed after detector emissions; not used by observer or mesh.",
+            "window": args.posthoc_window or args.adaptive_window,
+            "correlations": _posthoc_correlation_rows(
+                results,
+                series_by_name,
+                score=args.score,
+                window=args.posthoc_window or args.adaptive_window,
+            ),
+            "top": _posthoc_top_rows(
+                results,
+                series_by_name,
+                score=args.score,
+                window=args.posthoc_window or args.adaptive_window,
+                top=args.top,
+            ),
         },
     }
 
@@ -795,6 +1130,11 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
             max_signals=args.mesh_max_signals,
             mesh_src=args.mesh_src,
             max_workers=args.mesh_max_workers,
+            worker_capacity=args.mesh_worker_capacity,
+            base_threshold=args.mesh_base_threshold,
+            gap_threshold=args.mesh_gap_threshold,
+            high_relevance_offset=args.mesh_high_relevance_offset,
+            prime=args.mesh_prime,
         )
 
     return report
@@ -837,6 +1177,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--emission-threshold", type=float, default=3.0, help="Emission threshold")
     parser.add_argument("--decay", type=float, default=0.9, help="Stigmergy accumulator decay")
     parser.add_argument("--top", type=int, default=10, help="Rows to show")
+    parser.add_argument("--posthoc-window", type=int, default=None, help="Past window for audit-only metrics")
     parser.add_argument("--readiness-min-size", type=int, default=512, help="Minimum prefix for readiness scan")
     parser.add_argument("--readiness-max-size", type=int, default=None, help="Maximum prefix for readiness scan")
     parser.add_argument("--readiness-step", type=int, default=512, help="Prefix step for readiness scan")
@@ -853,6 +1194,16 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--mesh-src", type=Path, default=Path("../stigmergy/src"), help="Stigmergy src path")
     parser.add_argument("--mesh-max-signals", type=int, default=160, help="Maximum emissions routed to mesh")
     parser.add_argument("--mesh-max-workers", type=int, default=12, help="Maximum mesh workers")
+    parser.add_argument("--mesh-worker-capacity", type=int, default=80, help="Signals per mesh worker before full vigilance")
+    parser.add_argument("--mesh-base-threshold", type=float, default=0.15, help="Mesh base ART vigilance threshold")
+    parser.add_argument("--mesh-gap-threshold", type=float, default=0.08, help="Mesh gap-spawn threshold")
+    parser.add_argument("--mesh-high-relevance-offset", type=float, default=0.2, help="Offset for full resonance")
+    parser.add_argument(
+        "--mesh-prime",
+        choices=["none", "station", "series"],
+        default="series",
+        help="Neutral mesh priming mode to avoid empty-worker collapse",
+    )
     parser.add_argument("--format", choices=["text", "json"], default="text", help="Report format")
     return parser.parse_args(argv)
 

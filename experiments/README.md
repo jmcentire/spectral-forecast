@@ -22,6 +22,14 @@ Raw score values, sample indexes, and timestamps are retained as metadata for au
 but the routed signal content is built from the observer's own output vocabulary:
 `frozen-*`, `sliding-*`, `drift-*`, `state-*`, residual direction, station, and channel.
 
+Post-hoc research metrics can be reported for comparison only. These metrics
+are computed after observations are emitted and are not available to the
+observer or mesh.
+
+The optional mesh uses neutral series priming by default. This gives the ART
+mesh initial station/channel categories so it does not begin as several empty,
+indistinguishable workers.
+
 Example:
 
 ```bash
