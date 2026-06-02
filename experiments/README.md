@@ -33,3 +33,18 @@ python3 experiments/cdip_observe.py data/cdip/045p1_xy.nc \
   --sample-limit 32768 \
   --mesh
 ```
+
+Multiple CDIP files can be passed in one run. The runner selects a common
+clean UTC interval and resamples onto the lowest participating sample rate:
+
+```bash
+python3 experiments/cdip_observe.py \
+  data/cdip/045p1_xy.nc \
+  data/cdip/196p1_xy.nc \
+  --channels z \
+  --baseline 4096 \
+  --adaptive-window 2048 \
+  --stride 512 \
+  --sample-limit 32768 \
+  --mesh
+```

@@ -1,4 +1,4 @@
-"""Run a bounded spectral+stigmergy observation on a raw CDIP displacement file.
+"""Run a bounded spectral+stigmergy observation on raw CDIP displacement files.
 
 This is experiment tooling. It avoids wave-domain labels and published
 rogue-wave predictor features; the optional mesh receives only terms derived
@@ -63,6 +63,23 @@ class CdipSeries:
         return datetime.fromtimestamp(seconds, tz=timezone.utc)
 
 
+@dataclass(frozen=True)
+class CdipRawRecord:
+    """Raw CDIP displacement arrays and timing metadata for one file."""
+
+    path: Path
+    arrays: dict[str, NDArray[np.float64]]
+    valid: NDArray[np.bool_]
+    sample_rate: float
+    first_sample_time: float
+    station_id: str
+    platform_id: str
+    platform_name: str
+
+    def sample_time(self, index: int) -> float:
+        return self.first_sample_time + index / self.sample_rate
+
+
 def _decode_attr(value: Any, default: str = "") -> str:
     if value is None:
         return default
@@ -110,16 +127,13 @@ def _select_span(
     return int(start), int(end)
 
 
-def load_cdip_series(
+def load_cdip_raw_record(
     path: str | Path,
     channels: Sequence[str],
     *,
     keep_flags: set[int],
-    min_clean_samples: int,
-    sample_limit: int | None,
-    segment_offset: int = 0,
-) -> list[CdipSeries]:
-    """Load aligned clean displacement segments from a CDIP NetCDF file."""
+) -> CdipRawRecord:
+    """Load raw CDIP arrays and shared validity mask for selected channels."""
 
     path = Path(path)
     normalized_channels = [channel.lower() for channel in channels]
@@ -142,36 +156,195 @@ def load_cdip_series(
             valid &= np.isfinite(values)
             valid &= values > -999.0
 
-        spans = _contiguous_spans(valid, min_clean_samples)
-        span_start, span_end = _select_span(spans, sample_limit, segment_offset)
-        if span_end - span_start < min_clean_samples:
-            raise ValueError(
-                "Selected segment is shorter than the requested minimum after limiting/offset"
-            )
-
         station_id = _decode_attr(getattr(nc, "cdip_station_id", ""), "unknown")
         platform_id = _decode_attr(getattr(nc, "platform_id", station_id), station_id)
         platform_name = _decode_attr(getattr(nc, "platform_name", platform_id), platform_id)
 
+    return CdipRawRecord(
+        path=path,
+        arrays=arrays,
+        valid=valid,
+        sample_rate=sample_rate,
+        first_sample_time=start_time - filter_delay,
+        station_id=station_id,
+        platform_id=platform_id,
+        platform_name=platform_name,
+    )
+
+
+def load_cdip_series(
+    path: str | Path,
+    channels: Sequence[str],
+    *,
+    keep_flags: set[int],
+    min_clean_samples: int,
+    sample_limit: int | None,
+    segment_offset: int = 0,
+) -> list[CdipSeries]:
+    """Load aligned clean displacement segments from a CDIP NetCDF file."""
+
+    raw = load_cdip_raw_record(path, channels, keep_flags=keep_flags)
+    spans = _contiguous_spans(raw.valid, min_clean_samples)
+    span_start, span_end = _select_span(spans, sample_limit, segment_offset)
+    if span_end - span_start < min_clean_samples:
+        raise ValueError(
+            "Selected segment is shorter than the requested minimum after limiting/offset"
+        )
+
     out: list[CdipSeries] = []
-    for channel, values in arrays.items():
+    for channel, values in raw.arrays.items():
         segment = np.asarray(values[span_start:span_end], dtype=np.float64)
         out.append(
             CdipSeries(
-                name=f"{platform_id}:{channel}",
+                name=f"{raw.platform_id}:{channel}",
                 channel=channel,
                 values=segment,
-                sample_rate=sample_rate,
-                start_time=start_time,
-                filter_delay=filter_delay,
+                sample_rate=raw.sample_rate,
+                start_time=raw.first_sample_time,
+                filter_delay=0.0,
                 span_start=span_start,
                 span_end=span_end,
-                station_id=station_id,
-                platform_id=platform_id,
-                platform_name=platform_name,
-                source_path=str(path),
+                station_id=raw.station_id,
+                platform_id=raw.platform_id,
+                platform_name=raw.platform_name,
+                source_path=str(raw.path),
             )
         )
+    return out
+
+
+def _raw_valid_time_spans(
+    record: CdipRawRecord,
+    *,
+    min_duration: float,
+) -> list[tuple[float, float]]:
+    spans = _contiguous_spans(record.valid, 1)
+    out = []
+    for start, end in spans:
+        if end <= start:
+            continue
+        start_time = record.sample_time(start)
+        end_time = record.sample_time(end - 1)
+        if end_time >= start_time and (end_time - start_time) >= min_duration:
+            out.append((start_time, end_time))
+    return out
+
+
+def _intersect_time_spans(
+    span_lists: Sequence[Sequence[tuple[float, float]]],
+    *,
+    min_duration: float,
+) -> list[tuple[float, float]]:
+    if not span_lists:
+        return []
+
+    intervals = list(span_lists[0])
+    for spans in span_lists[1:]:
+        intersections: list[tuple[float, float]] = []
+        for left_start, left_end in intervals:
+            for right_start, right_end in spans:
+                start = max(left_start, right_start)
+                end = min(left_end, right_end)
+                if end >= start and (end - start) >= min_duration:
+                    intersections.append((start, end))
+        intervals = intersections
+        if not intervals:
+            break
+    return intervals
+
+
+def _select_aligned_window(
+    intervals: Sequence[tuple[float, float]],
+    *,
+    target_rate: float,
+    min_clean_samples: int,
+    sample_limit: int | None,
+    segment_offset: int,
+) -> tuple[float, int]:
+    if not intervals:
+        raise ValueError("No common clean UTC interval across CDIP files")
+    if target_rate <= 0:
+        raise ValueError("target_rate must be positive")
+
+    start_time, end_time = max(intervals, key=lambda item: item[1] - item[0])
+    available = int(np.floor((end_time - start_time) * target_rate)) + 1
+    if segment_offset:
+        available -= segment_offset
+        start_time += segment_offset / target_rate
+    if available <= 0:
+        raise ValueError("Segment offset moves past the selected common interval")
+
+    n_samples = min(available, sample_limit) if sample_limit is not None else available
+    if n_samples < min_clean_samples:
+        raise ValueError(
+            "Selected common interval is shorter than the requested minimum after limiting/offset"
+        )
+    return start_time, int(n_samples)
+
+
+def load_aligned_cdip_series(
+    paths: Sequence[str | Path],
+    channels: Sequence[str],
+    *,
+    keep_flags: set[int],
+    min_clean_samples: int,
+    sample_limit: int | None,
+    segment_offset: int = 0,
+) -> list[CdipSeries]:
+    """Load multiple CDIP files aligned on a common clean UTC grid."""
+
+    if len(paths) == 1:
+        return load_cdip_series(
+            paths[0],
+            channels,
+            keep_flags=keep_flags,
+            min_clean_samples=min_clean_samples,
+            sample_limit=sample_limit,
+            segment_offset=segment_offset,
+        )
+
+    records = [
+        load_cdip_raw_record(path, channels, keep_flags=keep_flags)
+        for path in paths
+    ]
+    target_rate = min(record.sample_rate for record in records)
+    min_duration = (min_clean_samples - 1) / target_rate
+    span_lists = [
+        _raw_valid_time_spans(record, min_duration=min_duration)
+        for record in records
+    ]
+    intervals = _intersect_time_spans(span_lists, min_duration=min_duration)
+    aligned_start, n_samples = _select_aligned_window(
+        intervals,
+        target_rate=target_rate,
+        min_clean_samples=min_clean_samples,
+        sample_limit=sample_limit,
+        segment_offset=segment_offset,
+    )
+    grid = aligned_start + np.arange(n_samples, dtype=np.float64) / target_rate
+
+    out: list[CdipSeries] = []
+    for record in records:
+        source_index = (grid - record.first_sample_time) * record.sample_rate
+        source_x = np.arange(len(record.valid), dtype=np.float64)
+        for channel, values in record.arrays.items():
+            segment = np.interp(source_index, source_x, values).astype(np.float64)
+            out.append(
+                CdipSeries(
+                    name=f"{record.platform_id}:{channel}",
+                    channel=channel,
+                    values=segment,
+                    sample_rate=target_rate,
+                    start_time=aligned_start,
+                    filter_delay=0.0,
+                    span_start=0,
+                    span_end=n_samples,
+                    station_id=record.station_id,
+                    platform_id=record.platform_id,
+                    platform_name=record.platform_name,
+                    source_path=str(record.path),
+                )
+            )
     return out
 
 
@@ -419,7 +592,11 @@ def _readiness_rows(series: Sequence[CdipSeries], args: argparse.Namespace) -> l
 def _print_text_report(report: dict[str, Any]) -> None:
     data = report["data"]
     print("CDIP observation")
-    print(f"  path={data['path']}")
+    if len(data["paths"]) == 1:
+        print(f"  path={data['paths'][0]}")
+    else:
+        print(f"  paths={len(data['paths'])} files")
+        print("  platforms=%s" % ",".join(data["platform_ids"]))
     print(f"  platform={data['platform_id']} sample_rate={data['sample_rate']:.6g}Hz")
     print(
         "  segment=%d:%d samples=%d flags_kept=%s"
@@ -430,6 +607,14 @@ def _print_text_report(report: dict[str, Any]) -> None:
             ",".join(str(flag) for flag in data["flags_kept"]),
         )
     )
+    if data["aligned"]:
+        print(
+            "  aligned_utc=%s to %s"
+            % (
+                data["aligned_start"].replace("+00:00", "Z"),
+                data["aligned_end"].replace("+00:00", "Z"),
+            )
+        )
     print("  protocol=raw displacement, generic QC, past-only spectral observation")
     print("  mesh_terms=no labels and no published wave predictors")
 
@@ -530,8 +715,8 @@ def _print_text_report(report: dict[str, Any]) -> None:
 
 async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
     min_clean_samples = args.min_clean_samples or args.baseline + args.adaptive_window + args.stride
-    series = load_cdip_series(
-        args.file,
+    series = load_aligned_cdip_series(
+        args.files,
         args.channels,
         keep_flags=set(args.keep_flags),
         min_clean_samples=min_clean_samples,
@@ -560,12 +745,19 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
     )
 
     first = series[0]
+    source_paths = sorted({item.source_path for item in series})
+    platform_ids = sorted({item.platform_id for item in series})
     report: dict[str, Any] = {
         "data": {
-            "path": str(args.file),
-            "platform_id": first.platform_id,
-            "platform_name": first.platform_name,
-            "station_id": first.station_id,
+            "path": source_paths[0] if len(source_paths) == 1 else source_paths,
+            "paths": source_paths,
+            "aligned": len(source_paths) > 1,
+            "aligned_start": first.timestamp_for_index(0).isoformat(),
+            "aligned_end": first.timestamp_for_index(len(first.values) - 1).isoformat(),
+            "platform_id": first.platform_id if len(platform_ids) == 1 else "multi",
+            "platform_ids": platform_ids,
+            "platform_name": first.platform_name if len(platform_ids) == 1 else "multi-buoy aligned window",
+            "station_id": first.station_id if len(platform_ids) == 1 else "multi",
             "sample_rate": first.sample_rate,
             "span_start": first.span_start,
             "span_end": first.span_end,
@@ -610,7 +802,12 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("file", type=Path, help="Path to CDIP *_xy.nc displacement file")
+    parser.add_argument(
+        "files",
+        type=Path,
+        nargs="+",
+        help="One or more paths to CDIP *_xy.nc displacement files",
+    )
     parser.add_argument(
         "--channels",
         nargs="+",
