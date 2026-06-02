@@ -1,0 +1,1136 @@
+{
+  "command": "python3 experiments/cdip_batch.py data/cdip/*p1_xy.nc --preset scale --channels z --max-groups 256 --null-repeats 50 --top-windows 100000 --format json",
+  "coverage": {
+    "groups_used": 256,
+    "max_platform_window_usage": 112,
+    "max_windows_per_group": 8,
+    "min_platform_window_usage": 1,
+    "min_windows_per_group": 1,
+    "platform_usage_bottom10": [
+      [
+        "248p1",
+        1
+      ],
+      [
+        "265p1",
+        13
+      ],
+      [
+        "256p1",
+        21
+      ],
+      [
+        "244p1",
+        31
+      ],
+      [
+        "430p1",
+        31
+      ],
+      [
+        "150p1",
+        35
+      ],
+      [
+        "264p1",
+        35
+      ],
+      [
+        "271p1",
+        39
+      ],
+      [
+        "214p1",
+        44
+      ],
+      [
+        "157p1",
+        53
+      ]
+    ],
+    "platform_usage_top10": [
+      [
+        "196p1",
+        112
+      ],
+      [
+        "200p1",
+        105
+      ],
+      [
+        "274p1",
+        105
+      ],
+      [
+        "028p1",
+        105
+      ],
+      [
+        "045p1",
+        101
+      ],
+      [
+        "284p1",
+        99
+      ],
+      [
+        "240p1",
+        99
+      ],
+      [
+        "213p1",
+        97
+      ],
+      [
+        "092p1",
+        96
+      ],
+      [
+        "181p1",
+        94
+      ]
+    ],
+    "platforms_used": 56
+  },
+  "data": {
+    "local_files": 58,
+    "local_size": "22 GB under ignored data/cdip",
+    "selection": "all realtime *_p1_xy.nc files at or below 1 GB in the 2026-06-02 catalog",
+    "source": "CDIP realtime THREDDS xy netCDF files"
+  },
+  "date": "2026-06-02",
+  "methodology": {
+    "detector_features": "agnostic spectral observer outputs only",
+    "group_selection": "balanced deterministic platform coverage",
+    "null": "shifted-time multi-buoy emission totals",
+    "posthoc_metrics": "audit only; not detector inputs",
+    "tuning": "disabled; scale and null repeats increased for coverage/uncertainty only"
+  },
+  "posthoc_correlations": [
+    {
+      "metric": "spectral_mean_period",
+      "n": 24246,
+      "pearson": 0.21320199332352371,
+      "spearman": 0.17222868730866409
+    },
+    {
+      "metric": "significant_wave_height",
+      "n": 24246,
+      "pearson": 0.15560817659046594,
+      "spearman": 0.13014628264237896
+    },
+    {
+      "metric": "max_wave_height",
+      "n": 24246,
+      "pearson": 0.14043655879346112,
+      "spearman": 0.12122929052210488
+    },
+    {
+      "metric": "crest_trough_correlation_proxy",
+      "n": 24246,
+      "pearson": 0.1373758767546771,
+      "spearman": 0.11753341108582809
+    },
+    {
+      "metric": "max_to_significant_wave_height",
+      "n": 24246,
+      "pearson": -0.08282440191369933,
+      "spearman": -0.06758138056566355
+    },
+    {
+      "metric": "spectral_bandwidth",
+      "n": 24246,
+      "pearson": -0.05227564215566909,
+      "spearman": -0.043563723605444075
+    },
+    {
+      "metric": "elevation_kurtosis",
+      "n": 24246,
+      "pearson": -0.03685502877493978,
+      "spearman": -0.025898208591579954
+    }
+  ],
+  "runtime_seconds": 797.17,
+  "summary": {
+    "groups_discovered": 256,
+    "null_multi_emission_total_estimate": 8766.363868871376,
+    "null_multi_emission_total_std": 81.69280630426555,
+    "null_total_p_ge_observed": 0.0196078431372549,
+    "null_window_emission_std": 7.064810275459614,
+    "observed_minus_null_total": 605.2524589223121,
+    "observed_multi_emission_total": 9371.616327793688,
+    "observed_total_z": 7.408883184500288,
+    "records_loaded": 58,
+    "windows_discovered": 1347,
+    "windows_run": 1347,
+    "windows_skipped": 0
+  },
+  "title": "CDIP realtime 1GB cutoff scale pass",
+  "top_combinations": [
+    {
+      "active_platforms": "029p1,181p1",
+      "count": 13,
+      "emission_sum": 97.1327878159931,
+      "examples": [
+        {
+          "first_index": 1536,
+          "group": "029p1,181p1,270p1",
+          "last_index": 2048,
+          "series": "029p1:z,181p1:z",
+          "window_start": "2026-05-04T08:54:30.040550+00:00"
+        },
+        {
+          "first_index": 2560,
+          "group": "029p1,181p1,270p1",
+          "last_index": 3072,
+          "series": "029p1:z,181p1:z",
+          "window_start": "2026-05-04T09:47:50.040622+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "029p1,181p1,270p1",
+          "last_index": 2560,
+          "series": "029p1:z,181p1:z",
+          "window_start": "2026-05-04T10:14:30.040658+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "029p1,181p1,270p1",
+          "last_index": 3072,
+          "series": "029p1:z,181p1:z",
+          "window_start": "2026-05-04T10:41:10.040694+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "029p1,181p1,270p1",
+          "last_index": 3584,
+          "series": "029p1:z,181p1:z",
+          "window_start": "2026-05-04T11:07:50.040729+00:00"
+        }
+      ],
+      "max_pheromone": 27.694683867164528,
+      "max_score": 19.373743972241602
+    },
+    {
+      "active_platforms": "100p1,220p1",
+      "count": 13,
+      "emission_sum": 91.20317332285904,
+      "examples": [
+        {
+          "first_index": 3072,
+          "group": "100p1,220p1,252p1",
+          "last_index": 3072,
+          "series": "100p1:z,220p1:z",
+          "window_start": "2026-05-18T09:21:10.131513+00:00"
+        },
+        {
+          "first_index": 2560,
+          "group": "100p1,196p1,220p1",
+          "last_index": 3584,
+          "series": "100p1:z,220p1:z",
+          "window_start": "2026-05-31T23:59:59.699997+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "100p1,196p1,220p1",
+          "last_index": 3072,
+          "series": "100p1:z,220p1:z",
+          "window_start": "2026-06-01T00:26:39.700033+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "100p1,196p1,220p1",
+          "last_index": 2560,
+          "series": "100p1:z,220p1:z",
+          "window_start": "2026-06-01T00:53:19.700068+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "100p1,196p1,220p1",
+          "last_index": 1536,
+          "series": "100p1:z,220p1:z",
+          "window_start": "2026-06-01T01:19:59.700104+00:00"
+        }
+      ],
+      "max_pheromone": 27.274428928059603,
+      "max_score": 12.860318848817563
+    },
+    {
+      "active_platforms": "181p1,202p1,263p1",
+      "count": 8,
+      "emission_sum": 87.48917234826683,
+      "examples": [
+        {
+          "first_index": 1536,
+          "group": "181p1,202p1,263p1",
+          "last_index": 1536,
+          "series": "181p1:z,202p1:z,263p1:z",
+          "window_start": "2026-04-11T04:59:59.856464+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "181p1,202p1,263p1",
+          "last_index": 3072,
+          "series": "181p1:z,202p1:z,263p1:z",
+          "window_start": "2026-04-11T05:26:39.856499+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "181p1,202p1,263p1",
+          "last_index": 3072,
+          "series": "181p1:z,202p1:z,263p1:z",
+          "window_start": "2026-04-11T05:53:19.856535+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "181p1,202p1,263p1",
+          "last_index": 2048,
+          "series": "181p1:z,202p1:z,263p1:z",
+          "window_start": "2026-04-11T06:46:39.856607+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "181p1,202p1,263p1",
+          "last_index": 1536,
+          "series": "181p1:z,202p1:z,263p1:z",
+          "window_start": "2026-04-11T08:06:39.856714+00:00"
+        }
+      ],
+      "max_pheromone": 39.15027851056792,
+      "max_score": 20.874670952369403
+    },
+    {
+      "active_platforms": "156p1,187p1",
+      "count": 10,
+      "emission_sum": 79.62731579751738,
+      "examples": [
+        {
+          "first_index": 3072,
+          "group": "071p1,156p1,187p1",
+          "last_index": 3072,
+          "series": "156p1:z,187p1:z",
+          "window_start": "2026-04-21T09:23:19.533050+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "071p1,156p1,187p1",
+          "last_index": 3072,
+          "series": "156p1:z,187p1:z",
+          "window_start": "2026-04-21T10:43:19.533157+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "071p1,156p1,187p1",
+          "last_index": 3072,
+          "series": "156p1:z,187p1:z",
+          "window_start": "2026-04-21T11:36:39.533229+00:00"
+        },
+        {
+          "first_index": 3584,
+          "group": "156p1,187p1,270p1",
+          "last_index": 3584,
+          "series": "156p1:z,187p1:z",
+          "window_start": "2026-05-13T23:57:50.059143+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "156p1,187p1,270p1",
+          "last_index": 1536,
+          "series": "156p1:z,187p1:z",
+          "window_start": "2026-05-14T00:24:30.059179+00:00"
+        }
+      ],
+      "max_pheromone": 36.78769954017431,
+      "max_score": 20.3781606838453
+    },
+    {
+      "active_platforms": "036p1,249p1",
+      "count": 12,
+      "emission_sum": 73.99649324610823,
+      "examples": [
+        {
+          "first_index": 3072,
+          "group": "036p1,200p1,249p1",
+          "last_index": 3584,
+          "series": "036p1:z,249p1:z",
+          "window_start": "2026-04-01T19:57:50.031141+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "036p1,200p1,249p1",
+          "last_index": 1536,
+          "series": "036p1:z,249p1:z",
+          "window_start": "2026-04-01T20:24:30.031176+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "036p1,200p1,249p1",
+          "last_index": 3584,
+          "series": "036p1:z,249p1:z",
+          "window_start": "2026-04-01T21:17:50.031248+00:00"
+        },
+        {
+          "first_index": 3072,
+          "group": "036p1,200p1,249p1",
+          "last_index": 3072,
+          "series": "036p1:z,249p1:z",
+          "window_start": "2026-04-01T21:44:30.031284+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "036p1,200p1,249p1",
+          "last_index": 1536,
+          "series": "036p1:z,249p1:z",
+          "window_start": "2026-04-01T22:11:10.031319+00:00"
+        }
+      ],
+      "max_pheromone": 28.18824892714173,
+      "max_score": 13.685520417342552
+    },
+    {
+      "active_platforms": "029p1,270p1",
+      "count": 10,
+      "emission_sum": 69.4201183675608,
+      "examples": [
+        {
+          "first_index": 2048,
+          "group": "029p1,181p1,270p1",
+          "last_index": 2048,
+          "series": "029p1:z,270p1:z",
+          "window_start": "2026-05-04T08:27:50.040515+00:00"
+        },
+        {
+          "first_index": 2560,
+          "group": "029p1,181p1,270p1",
+          "last_index": 3584,
+          "series": "029p1:z,270p1:z",
+          "window_start": "2026-05-04T09:21:10.040586+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "029p1,181p1,270p1",
+          "last_index": 1536,
+          "series": "029p1:z,270p1:z",
+          "window_start": "2026-05-04T09:47:50.040622+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "029p1,181p1,270p1",
+          "last_index": 2048,
+          "series": "029p1:z,270p1:z",
+          "window_start": "2026-05-04T11:34:30.040765+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "029p1,269p1,270p1",
+          "last_index": 2048,
+          "series": "029p1:z,270p1:z",
+          "window_start": "2026-05-04T08:27:50.040515+00:00"
+        }
+      ],
+      "max_pheromone": 32.57717320648399,
+      "max_score": 21.301575428242714
+    },
+    {
+      "active_platforms": "029p1,269p1,270p1",
+      "count": 8,
+      "emission_sum": 68.36976168074524,
+      "examples": [
+        {
+          "first_index": 3584,
+          "group": "029p1,269p1,270p1",
+          "last_index": 3584,
+          "series": "029p1:z,269p1:z,270p1:z",
+          "window_start": "2026-05-04T08:27:50.040515+00:00"
+        },
+        {
+          "first_index": 3072,
+          "group": "029p1,269p1,270p1",
+          "last_index": 3072,
+          "series": "029p1:z,269p1:z,270p1:z",
+          "window_start": "2026-05-04T08:54:30.040550+00:00"
+        },
+        {
+          "first_index": 3584,
+          "group": "029p1,269p1,270p1",
+          "last_index": 3584,
+          "series": "029p1:z,269p1:z,270p1:z",
+          "window_start": "2026-05-04T09:21:10.040586+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "029p1,269p1,270p1",
+          "last_index": 3584,
+          "series": "029p1:z,269p1:z,270p1:z",
+          "window_start": "2026-05-04T09:47:50.040622+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "029p1,269p1,270p1",
+          "last_index": 2048,
+          "series": "029p1:z,269p1:z,270p1:z",
+          "window_start": "2026-05-04T11:07:50.040729+00:00"
+        }
+      ],
+      "max_pheromone": 30.49062807458091,
+      "max_score": 10.024228791248268
+    },
+    {
+      "active_platforms": "143p1,243p1",
+      "count": 15,
+      "emission_sum": 66.9191688951344,
+      "examples": [
+        {
+          "first_index": 2048,
+          "group": "143p1,240p1,243p1",
+          "last_index": 3584,
+          "series": "143p1:z,243p1:z",
+          "window_start": "2026-05-31T01:29:59.561303+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "143p1,240p1,243p1",
+          "last_index": 1536,
+          "series": "143p1:z,243p1:z",
+          "window_start": "2026-05-31T01:56:39.561338+00:00"
+        },
+        {
+          "first_index": 2048,
+          "group": "143p1,240p1,243p1",
+          "last_index": 2048,
+          "series": "143p1:z,243p1:z",
+          "window_start": "2026-05-31T02:23:19.561374+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "143p1,240p1,243p1",
+          "last_index": 3072,
+          "series": "143p1:z,243p1:z",
+          "window_start": "2026-05-31T03:16:39.561446+00:00"
+        },
+        {
+          "first_index": 2560,
+          "group": "143p1,240p1,243p1",
+          "last_index": 3584,
+          "series": "143p1:z,243p1:z",
+          "window_start": "2026-05-31T03:43:19.561481+00:00"
+        }
+      ],
+      "max_pheromone": 15.14308801672749,
+      "max_score": 8.703577503567724
+    },
+    {
+      "active_platforms": "196p1,220p1",
+      "count": 13,
+      "emission_sum": 66.87670132472053,
+      "examples": [
+        {
+          "first_index": 3072,
+          "group": "100p1,196p1,220p1",
+          "last_index": 3072,
+          "series": "196p1:z,220p1:z",
+          "window_start": "2026-06-01T00:53:19.700068+00:00"
+        },
+        {
+          "first_index": 3584,
+          "group": "100p1,196p1,220p1",
+          "last_index": 3584,
+          "series": "196p1:z,220p1:z",
+          "window_start": "2026-06-01T01:46:39.700140+00:00"
+        },
+        {
+          "first_index": 3584,
+          "group": "100p1,196p1,220p1",
+          "last_index": 3584,
+          "series": "196p1:z,220p1:z",
+          "window_start": "2026-06-01T02:13:19.700176+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "100p1,196p1,220p1",
+          "last_index": 1536,
+          "series": "196p1:z,220p1:z",
+          "window_start": "2026-06-01T02:39:59.700212+00:00"
+        },
+        {
+          "first_index": 3072,
+          "group": "181p1,196p1,220p1",
+          "last_index": 3584,
+          "series": "196p1:z,220p1:z",
+          "window_start": "2026-06-01T02:53:19.350268+00:00"
+        }
+      ],
+      "max_pheromone": 21.95036723206777,
+      "max_score": 10.884868990002746
+    },
+    {
+      "active_platforms": "098p1,280p1",
+      "count": 11,
+      "emission_sum": 66.49143174493418,
+      "examples": [
+        {
+          "first_index": 2048,
+          "group": "098p1,213p1,280p1",
+          "last_index": 2048,
+          "series": "098p1:z,280p1:z",
+          "window_start": "2026-05-07T23:30:00.051664+00:00"
+        },
+        {
+          "first_index": 3072,
+          "group": "098p1,213p1,280p1",
+          "last_index": 3072,
+          "series": "098p1:z,280p1:z",
+          "window_start": "2026-05-08T00:23:20.051736+00:00"
+        },
+        {
+          "first_index": 1024,
+          "group": "098p1,213p1,280p1",
+          "last_index": 1024,
+          "series": "098p1:z,280p1:z",
+          "window_start": "2026-05-08T00:50:00.051771+00:00"
+        },
+        {
+          "first_index": 1536,
+          "group": "098p1,213p1,280p1",
+          "last_index": 2048,
+          "series": "098p1:z,280p1:z",
+          "window_start": "2026-05-08T01:16:40.051807+00:00"
+        },
+        {
+          "first_index": 2560,
+          "group": "098p1,213p1,280p1",
+          "last_index": 2560,
+          "series": "098p1:z,280p1:z",
+          "window_start": "2026-05-08T01:43:20.051843+00:00"
+        }
+      ],
+      "max_pheromone": 27.382243451050307,
+      "max_score": 17.62197606723928
+    }
+  ],
+  "top_windows": [
+    {
+      "end": "2026-01-31T16:51:09.400434+00:00",
+      "group": [
+        "181p1",
+        "202p1",
+        "256p1"
+      ],
+      "null_multi_emission_mean": 5.092503053938767,
+      "null_multi_emission_std": 2.7955847326078973,
+      "observed_minus_null": 15.265626475653907,
+      "observed_multi_emission": 20.358129529592674,
+      "paths": [
+        "data/cdip/181p1_xy.nc",
+        "data/cdip/202p1_xy.nc",
+        "data/cdip/256p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-01-31T15:57:50.181612+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "181p1,202p1",
+          "active_series": "181p1:z,202p1:z",
+          "count": 1,
+          "emission_sum": 16.047811821109082,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 16.405905020181486,
+          "max_score": 15.782435173326418
+        },
+        {
+          "active_platforms": "202p1,256p1",
+          "active_series": "202p1:z,256p1:z",
+          "count": 1,
+          "emission_sum": 4.310317708483593,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 17.599100774830596,
+          "max_score": 6.728708387765263
+        },
+        {
+          "active_platforms": "256p1",
+          "active_series": "256p1:z",
+          "count": 1,
+          "emission_sum": 2.3766171498067514,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 18.215807847154288,
+          "max_score": 5.376617149806751
+        },
+        {
+          "active_platforms": "202p1",
+          "active_series": "202p1:z",
+          "count": 1,
+          "emission_sum": 0.4420903692251903,
+          "first_index": 1024,
+          "last_index": 1024,
+          "max_pheromone": 0.4420903692251903,
+          "max_score": 3.4420903692251903
+        }
+      ]
+    },
+    {
+      "end": "2026-05-26T09:11:09.080284+00:00",
+      "group": [
+        "036p1",
+        "244p1",
+        "269p1"
+      ],
+      "null_multi_emission_mean": 23.461419949698275,
+      "null_multi_emission_std": 6.737166037552908,
+      "observed_minus_null": 14.326423186000184,
+      "observed_multi_emission": 37.78784313569846,
+      "paths": [
+        "data/cdip/036p1_xy.nc",
+        "data/cdip/244p1_xy.nc",
+        "data/cdip/269p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-05-26T08:17:49.861462+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "036p1,244p1",
+          "active_series": "036p1:z,244p1:z",
+          "count": 2,
+          "emission_sum": 25.6787288200131,
+          "first_index": 1536,
+          "last_index": 2560,
+          "max_pheromone": 27.990854277118295,
+          "max_score": 15.86600795090517
+        },
+        {
+          "active_platforms": "036p1,269p1",
+          "active_series": "036p1:z,269p1:z",
+          "count": 1,
+          "emission_sum": 12.109114315685362,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 37.300883165091825,
+          "max_score": 14.290205507724087
+        },
+        {
+          "active_platforms": "036p1",
+          "active_series": "036p1:z",
+          "count": 2,
+          "emission_sum": 10.481780698134298,
+          "first_index": 2048,
+          "last_index": 3584,
+          "max_pheromone": 38.48031930476617,
+          "max_score": 8.57225624195077
+        }
+      ]
+    },
+    {
+      "end": "2026-05-18T11:34:29.350442+00:00",
+      "group": [
+        "181p1",
+        "213p1",
+        "252p1"
+      ],
+      "null_multi_emission_mean": 18.238534379301907,
+      "null_multi_emission_std": 6.083821213273298,
+      "observed_minus_null": 14.06854151094976,
+      "observed_multi_emission": 32.30707589025167,
+      "paths": [
+        "data/cdip/181p1_xy.nc",
+        "data/cdip/213p1_xy.nc",
+        "data/cdip/252p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-05-18T10:41:10.131620+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "181p1,213p1",
+          "active_series": "181p1:z,213p1:z",
+          "count": 3,
+          "emission_sum": 32.30707589025167,
+          "first_index": 2048,
+          "last_index": 3584,
+          "max_pheromone": 27.795671751452502,
+          "max_score": 15.159224618337651
+        },
+        {
+          "active_platforms": "213p1",
+          "active_series": "213p1:z",
+          "count": 2,
+          "emission_sum": 1.064879523277778,
+          "first_index": 1024,
+          "last_index": 1536,
+          "max_pheromone": 1.0535533212487103,
+          "max_score": 3.951617502987102
+        }
+      ]
+    },
+    {
+      "end": "2026-05-29T12:44:29.307889+00:00",
+      "group": [
+        "045p1",
+        "188p1",
+        "270p1"
+      ],
+      "null_multi_emission_mean": 19.661273727363355,
+      "null_multi_emission_std": 6.848103196653614,
+      "observed_minus_null": 13.123369975879196,
+      "observed_multi_emission": 32.78464370324255,
+      "paths": [
+        "data/cdip/045p1_xy.nc",
+        "data/cdip/188p1_xy.nc",
+        "data/cdip/270p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-05-29T11:51:10.089067+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "045p1,188p1,270p1",
+          "active_series": "045p1:z,188p1:z,270p1:z",
+          "count": 2,
+          "emission_sum": 27.624790148225678,
+          "first_index": 1536,
+          "last_index": 3072,
+          "max_pheromone": 26.603766211957065,
+          "max_score": 14.899198026666605
+        },
+        {
+          "active_platforms": "188p1,270p1",
+          "active_series": "188p1:z,270p1:z",
+          "count": 1,
+          "emission_sum": 5.15985355501687,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 22.43090441940451,
+          "max_score": 7.980291763434577
+        },
+        {
+          "active_platforms": "188p1",
+          "active_series": "188p1:z",
+          "count": 1,
+          "emission_sum": 0.17857843828302755,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 24.12196802904439,
+          "max_score": 3.1785784382830276
+        }
+      ]
+    },
+    {
+      "end": "2026-05-18T09:47:49.350299+00:00",
+      "group": [
+        "181p1",
+        "191p1",
+        "252p1"
+      ],
+      "null_multi_emission_mean": 4.58358527315507,
+      "null_multi_emission_std": 2.400384636171411,
+      "observed_minus_null": 12.412118742062322,
+      "observed_multi_emission": 16.99570401521739,
+      "paths": [
+        "data/cdip/181p1_xy.nc",
+        "data/cdip/191p1_xy.nc",
+        "data/cdip/252p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-05-18T08:54:30.131477+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "181p1,191p1",
+          "active_series": "181p1:z,191p1:z",
+          "count": 1,
+          "emission_sum": 12.865100400608199,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 12.865100400608199,
+          "max_score": 14.381471623831636
+        },
+        {
+          "active_platforms": "191p1,252p1",
+          "active_series": "191p1:z,252p1:z",
+          "count": 1,
+          "emission_sum": 4.1306036146091945,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 14.551334939101835,
+          "max_score": 5.067091849380646
+        },
+        {
+          "active_platforms": "191p1",
+          "active_series": "191p1:z",
+          "count": 1,
+          "emission_sum": 2.517857567990723,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 15.614059013182374,
+          "max_score": 5.517857567990723
+        }
+      ]
+    },
+    {
+      "end": "2026-06-01T12:16:38.931633+00:00",
+      "group": [
+        "196p1",
+        "200p1",
+        "284p1"
+      ],
+      "null_multi_emission_mean": 12.032529833604809,
+      "null_multi_emission_std": 3.7307908838449926,
+      "observed_minus_null": 12.105180273286777,
+      "observed_multi_emission": 24.137710106891586,
+      "paths": [
+        "data/cdip/196p1_xy.nc",
+        "data/cdip/200p1_xy.nc",
+        "data/cdip/284p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-06-01T11:23:19.712812+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "196p1,284p1",
+          "active_series": "196p1:z,284p1:z",
+          "count": 2,
+          "emission_sum": 17.273536384090328,
+          "first_index": 2560,
+          "last_index": 3072,
+          "max_pheromone": 21.890394960890056,
+          "max_score": 12.5451936400678
+        },
+        {
+          "active_platforms": "196p1,200p1",
+          "active_series": "196p1:z,200p1:z",
+          "count": 1,
+          "emission_sum": 3.6146969620324407,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 3.6146969620324407,
+          "max_score": 5.5090246484259575
+        },
+        {
+          "active_platforms": "200p1,284p1",
+          "active_series": "200p1:z,284p1:z",
+          "count": 1,
+          "emission_sum": 3.2494767607688173,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 6.502704026598014,
+          "max_score": 5.623196078821837
+        }
+      ]
+    },
+    {
+      "end": "2026-04-21T11:36:38.751979+00:00",
+      "group": [
+        "071p1",
+        "156p1",
+        "187p1"
+      ],
+      "null_multi_emission_mean": 42.65905141414462,
+      "null_multi_emission_std": 8.722958263464305,
+      "observed_minus_null": 11.528196014898533,
+      "observed_multi_emission": 54.187247429043154,
+      "paths": [
+        "data/cdip/071p1_xy.nc",
+        "data/cdip/156p1_xy.nc",
+        "data/cdip/187p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-04-21T10:43:19.533157+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "156p1,187p1",
+          "active_series": "156p1:z,187p1:z",
+          "count": 4,
+          "emission_sum": 44.2119131888667,
+          "first_index": 1536,
+          "last_index": 3072,
+          "max_pheromone": 36.78769954017431,
+          "max_score": 20.3781606838453
+        },
+        {
+          "active_platforms": "071p1,156p1,187p1",
+          "active_series": "071p1:z,156p1:z,187p1:z",
+          "count": 1,
+          "emission_sum": 9.97533424017645,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 43.08426382633333,
+          "max_score": 10.429972436787097
+        }
+      ]
+    },
+    {
+      "end": "2026-05-27T04:29:58.809423+00:00",
+      "group": [
+        "147p1",
+        "202p1",
+        "274p1"
+      ],
+      "null_multi_emission_mean": 18.638473723662212,
+      "null_multi_emission_std": 4.637868560255417,
+      "observed_minus_null": 10.455227814963674,
+      "observed_multi_emission": 29.093701538625886,
+      "paths": [
+        "data/cdip/147p1_xy.nc",
+        "data/cdip/202p1_xy.nc",
+        "data/cdip/274p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-05-27T03:36:39.590601+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "202p1,274p1",
+          "active_series": "202p1:z,274p1:z",
+          "count": 1,
+          "emission_sum": 11.460473810182371,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 20.90146772761792,
+          "max_score": 8.985707406728785
+        },
+        {
+          "active_platforms": "147p1,202p1",
+          "active_series": "147p1:z,202p1:z",
+          "count": 1,
+          "emission_sum": 10.070648970043548,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 10.326085959912124,
+          "max_score": 11.045618293478705
+        },
+        {
+          "active_platforms": "147p1,274p1",
+          "active_series": "147p1:z,274p1:z",
+          "count": 1,
+          "emission_sum": 7.562578758399965,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 26.373899713256094,
+          "max_score": 8.761885180650701
+        },
+        {
+          "active_platforms": "274p1",
+          "active_series": "274p1:z",
+          "count": 1,
+          "emission_sum": 2.1258636140662315,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 10.489993241595053,
+          "max_score": 5.1258636140662315
+        },
+        {
+          "active_platforms": "147p1",
+          "active_series": "147p1:z",
+          "count": 1,
+          "emission_sum": 0.28381887763175184,
+          "first_index": 1024,
+          "last_index": 1024,
+          "max_pheromone": 0.28381887763175184,
+          "max_score": 3.283818877631752
+        }
+      ]
+    },
+    {
+      "end": "2026-05-29T07:16:38.743664+00:00",
+      "group": [
+        "076p1",
+        "106p1",
+        "154p1"
+      ],
+      "null_multi_emission_mean": 3.2621181206733167,
+      "null_multi_emission_std": 4.469713673842035,
+      "observed_minus_null": 10.050836194726212,
+      "observed_multi_emission": 13.312954315399528,
+      "paths": [
+        "data/cdip/076p1_xy.nc",
+        "data/cdip/106p1_xy.nc",
+        "data/cdip/154p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-05-29T06:23:19.524843+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "076p1,106p1,154p1",
+          "active_series": "076p1:z,106p1:z,154p1:z",
+          "count": 1,
+          "emission_sum": 7.658585177365712,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 11.780620278992364,
+          "max_score": 6.8545828643304665
+        },
+        {
+          "active_platforms": "106p1,154p1",
+          "active_series": "106p1:z,154p1:z",
+          "count": 1,
+          "emission_sum": 5.654369138033816,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 5.654369138033816,
+          "max_score": 8.284090378200622
+        }
+      ]
+    },
+    {
+      "end": "2026-05-29T04:29:59.058064+00:00",
+      "group": [
+        "098p1",
+        "191p1",
+        "280p1"
+      ],
+      "null_multi_emission_mean": 9.669500233497933,
+      "null_multi_emission_std": 5.342654181701475,
+      "observed_minus_null": 9.930582275996093,
+      "observed_multi_emission": 19.600082509494026,
+      "paths": [
+        "data/cdip/098p1_xy.nc",
+        "data/cdip/191p1_xy.nc",
+        "data/cdip/280p1_xy.nc"
+      ],
+      "sample_rate": 1.2799999713897705,
+      "samples": 4096,
+      "start": "2026-05-29T03:36:39.839242+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "098p1,280p1",
+          "active_series": "098p1:z,280p1:z",
+          "count": 2,
+          "emission_sum": 19.600082509494026,
+          "first_index": 2560,
+          "last_index": 3072,
+          "max_pheromone": 27.382243451050307,
+          "max_score": 17.62197606723928
+        },
+        {
+          "active_platforms": "280p1",
+          "active_series": "280p1:z",
+          "count": 2,
+          "emission_sum": 10.240241222925174,
+          "first_index": 1536,
+          "last_index": 2048,
+          "max_pheromone": 9.957585128254173,
+          "max_score": 10.413680276215171
+        }
+      ]
+    }
+  ],
+  "window_distribution": {
+    "delta_max": 15.265626475653907,
+    "delta_mean": 0.44933367403289876,
+    "delta_median": 0.16828942477226638,
+    "delta_min": -14.229990858888511,
+    "negative_or_zero_windows": 649,
+    "positive_share": 0.51818856718634,
+    "positive_windows": 698,
+    "sum_negative_delta": -1364.7411340208346,
+    "sum_positive_delta": 1969.9935929431492,
+    "top10_positive_delta_share": 0.06257182911963609,
+    "windows_retained": 1347
+  }
+}
