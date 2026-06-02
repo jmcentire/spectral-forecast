@@ -6,6 +6,16 @@ from spectral_forecast.shock import detect_shocks, ShockComponent, ShockResult, 
 from spectral_forecast.local import fit_local, forecast_local, LocalModel, LocalResult
 from spectral_forecast.wavelet import fit_wavelet, forecast_wavelet, WaveletModel, WaveletResult
 from spectral_forecast.forecast import SpectralForecaster, ForecastResult
+from spectral_forecast.observation import (
+    DecompositionState,
+    ObservationPoint,
+    ObservationResult,
+    StigmergyPoint,
+    StigmergyResult,
+    build_stigmergy,
+    decomposition_state,
+    observe_series,
+)
 
 __all__ = [
     "extract",
@@ -21,4 +31,12 @@ __all__ = [
     "ShockShape",
     "SpectralForecaster",
     "ForecastResult",
+    "DecompositionState",
+    "ObservationPoint",
+    "ObservationResult",
+    "StigmergyPoint",
+    "StigmergyResult",
+    "build_stigmergy",
+    "decomposition_state",
+    "observe_series",
 ]
