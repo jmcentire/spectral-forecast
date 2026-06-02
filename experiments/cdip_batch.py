@@ -295,6 +295,31 @@ def _shift_observation_result(
     return replace(result, points=points)
 
 
+def _permute_observation_result(
+    result: ObservationResult,
+    *,
+    repeat: int,
+) -> ObservationResult:
+    if len(result.points) <= 1:
+        return result
+    indexes = [point.index for point in result.points]
+    order = sorted(
+        range(len(indexes)),
+        key=lambda index: hashlib.sha1(
+            f"{result.series}:{repeat}:{index}".encode("utf-8")
+        ).hexdigest(),
+    )
+    permuted_indexes = [indexes[index] for index in order]
+    if permuted_indexes == indexes:
+        shift = 1 + (repeat % (len(indexes) - 1))
+        permuted_indexes = indexes[shift:] + indexes[:shift]
+    points = [
+        replace(point, index=permuted_index)
+        for point, permuted_index in zip(result.points, permuted_indexes)
+    ]
+    return replace(result, points=points)
+
+
 def _null_stigmergy_summaries(
     results: Sequence[ObservationResult],
     *,
@@ -303,6 +328,7 @@ def _null_stigmergy_summaries(
     decay: float,
     stride: int,
     repeats: int,
+    mode: str = "shift",
 ) -> list[float]:
     null_sums = []
     for repeat in range(repeats):
@@ -310,7 +336,7 @@ def _null_stigmergy_summaries(
         for idx, result in enumerate(results):
             if idx == 0:
                 shifted.append(result)
-            else:
+            elif mode == "shift":
                 shifted.append(
                     _shift_observation_result(
                         result,
@@ -318,6 +344,15 @@ def _null_stigmergy_summaries(
                         shift_steps=repeat + idx,
                     )
                 )
+            elif mode == "permute":
+                shifted.append(
+                    _permute_observation_result(
+                        result,
+                        repeat=repeat + idx,
+                    )
+                )
+            else:
+                raise ValueError(f"Unknown null mode: {mode}")
         stig = build_stigmergy(
             shifted,
             score=score,
@@ -438,6 +473,9 @@ def _summary_from_state(
     has_total_null = bool(observed_multi) and len(null_totals_array) > 0
     null_mean_total = float(np.mean(null_totals_array)) if has_total_null else 0.0
     null_total_std = float(np.std(null_totals_array)) if has_total_null else 0.0
+    unique_null_totals = (
+        np.unique(np.round(null_totals_array, decimals=12)) if has_total_null else np.array([])
+    )
     if null_window_stats is None:
         null_window_stats = _null_window_stats_from_values(null_multi or [])
     null_window_std = _null_window_std_from_stats(null_window_stats)
@@ -450,9 +488,21 @@ def _summary_from_state(
     null_total_exceedances = (
         int(np.sum(null_totals_array >= observed_total)) if has_total_null else 0
     )
+    null_total_unique_repeats = int(len(unique_null_totals)) if has_total_null else 0
+    null_total_unique_exceedances = (
+        int(np.sum(unique_null_totals >= observed_total)) if has_total_null else 0
+    )
     null_total_empirical_p_floor = 1.0 / (null_total_repeats + 1) if has_total_null else 1.0
+    null_total_unique_empirical_p_floor = (
+        1.0 / (null_total_unique_repeats + 1) if has_total_null else 1.0
+    )
     null_total_p_ge_observed = (
         float((1 + null_total_exceedances) / (null_total_repeats + 1))
+        if has_total_null
+        else 1.0
+    )
+    null_total_unique_p_ge_observed = (
+        float((1 + null_total_unique_exceedances) / (null_total_unique_repeats + 1))
         if has_total_null
         else 1.0
     )
@@ -474,6 +524,10 @@ def _summary_from_state(
         "null_total_empirical_p_floor": null_total_empirical_p_floor,
         "null_total_exceedances": null_total_exceedances,
         "null_total_repeats": null_total_repeats,
+        "null_total_unique_exceedances": null_total_unique_exceedances,
+        "null_total_unique_repeats": null_total_unique_repeats,
+        "null_total_unique_empirical_p_floor": null_total_unique_empirical_p_floor,
+        "null_total_unique_p_ge_observed": null_total_unique_p_ge_observed,
         "observed_total_z_normal_p_one_sided": observed_total_z_normal_p_one_sided,
         "null_window_emission_std": null_window_std,
     }
@@ -499,6 +553,7 @@ def _checkpoint_signature(args: argparse.Namespace, channels: Sequence[str]) -> 
         "emission_threshold": args.emission_threshold,
         "decay": args.decay,
         "null_repeats": args.null_repeats,
+        "null_mode": args.null_mode,
         "posthoc_window": args.posthoc_window or args.adaptive_window,
         "shard_count": getattr(args, "shard_count", 1),
         "shard_index": getattr(args, "shard_index", 0),
@@ -671,6 +726,7 @@ def _batch_parameters(
         "emission_threshold": args.emission_threshold,
         "decay": args.decay,
         "null_repeats": args.null_repeats,
+        "null_mode": args.null_mode,
         "posthoc_window": args.posthoc_window or args.adaptive_window,
         "shard_count": args.shard_count,
         "shard_index": args.shard_index,
@@ -872,6 +928,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             decay=args.decay,
             stride=args.stride,
             repeats=args.null_repeats,
+            mode=args.null_mode,
         )
         observed_multi.append(multi_sum)
         _add_null_window_values(null_window_stats, null_sums)
@@ -1191,6 +1248,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--emission-threshold", type=float, default=3.0, help="Emission threshold")
     parser.add_argument("--decay", type=float, default=0.9, help="Stigmergy decay")
     parser.add_argument("--null-repeats", type=int, default=5, help="Shifted null repeats per window")
+    parser.add_argument(
+        "--null-mode",
+        choices=["shift", "permute"],
+        default="shift",
+        help="Null control: circular shift or deterministic within-series timing permutation",
+    )
     parser.add_argument("--posthoc-window", type=int, default=None, help="Post-hoc metric window")
     parser.add_argument("--top", type=int, default=10, help="Rows to show")
     parser.add_argument("--top-windows", type=int, default=10, help="Windows to show")

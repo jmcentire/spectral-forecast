@@ -14,6 +14,7 @@ from experiments.cdip_batch import (
     _load_checkpoint,
     _multi_platform_emission_sum,
     _normal_survival_from_z,
+    _permute_observation_result,
     _select_shard_items,
     _shift_observation_result,
     _window_manifest_signature,
@@ -71,6 +72,24 @@ def test_shift_observation_result_wraps_anchor_indexes():
     assert [point.index for point in shifted.points] == [200, 300, 100]
 
 
+def test_permute_observation_result_preserves_scores_and_changes_indexes():
+    result = ObservationResult(
+        series="a",
+        points=[_point("a", 100), _point("a", 200), _point("a", 300), _point("a", 400)],
+        baseline_size=100,
+        adaptive_window=50,
+        stride=100,
+        residual_center=0.0,
+        residual_scale=1.0,
+    )
+
+    permuted = _permute_observation_result(result, repeat=7)
+
+    assert sorted(point.index for point in permuted.points) == [100, 200, 300, 400]
+    assert [point.index for point in permuted.points] != [100, 200, 300, 400]
+    assert [point.frozen_score for point in permuted.points] == [1.0, 1.0, 1.0, 1.0]
+
+
 def test_multi_platform_emission_sum_ignores_single_platform_rows():
     rows = [
         {"active_platforms": "a", "emission_sum": 10.0},
@@ -118,6 +137,7 @@ def test_checkpoint_round_trip_validates_signature(tmp_path):
         emission_threshold=3.0,
         decay=0.9,
         null_repeats=50,
+        null_mode="shift",
         posthoc_window=None,
         shard_count=1,
         shard_index=0,
@@ -240,6 +260,7 @@ def test_merge_reports_reconstructs_totals_and_combinations(tmp_path):
         "emission_threshold": 3.0,
         "decay": 0.9,
         "null_repeats": 2,
+        "null_mode": "shift",
         "posthoc_window": 4,
         "shard_count": 2,
     }
@@ -325,6 +346,8 @@ def test_merge_reports_reconstructs_totals_and_combinations(tmp_path):
     assert summary["observed_total_z"] == pytest.approx((30.0 - 21.5) / 1.5)
     assert summary["null_total_empirical_p_floor"] == pytest.approx(1 / 3)
     assert summary["null_total_empirical_p_ge_observed"] == pytest.approx(1 / 3)
+    assert summary["null_total_unique_repeats"] == 2
+    assert summary["null_total_unique_empirical_p_floor"] == pytest.approx(1 / 3)
     assert merged["parameters"]["shard_index"] == "merged"
     assert merged["top_combinations"][0]["active_platforms"] == "a,b"
     assert merged["top_combinations"][0]["count"] == 3
