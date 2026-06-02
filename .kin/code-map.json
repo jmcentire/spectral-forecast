@@ -7,8 +7,8 @@
       "Python"
     ],
     "frameworks": [],
-    "analyzedAt": "2026-05-24T17:35:26-05:00",
-    "gitCommitHash": "364d183ef5180e0a2d4a6b6a6ed5c9fcbd35d0d9"
+    "analyzedAt": "2026-06-01T23:36:46-05:00",
+    "gitCommitHash": "685111729ab0f0f3a90188a8c37ac2afe8266775"
   },
   "nodes": [
     {
@@ -226,6 +226,40 @@
         "python"
       ],
       "complexity": 6,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "artifact",
+        "toolTier": "C"
+      }
+    },
+    {
+      "id": "code-sym-spectral-forecast-ee03b4459fc0",
+      "type": "class",
+      "name": "CdipSeries",
+      "filePath": "experiments/cdip_observe.py",
+      "summary": "class CdipSeries (experiments/cdip_observe.py:44) ## Methods - timestamp_for_index(self, index: int) -> datetime",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 1,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "concept",
+        "toolTier": ""
+      }
+    },
+    {
+      "id": "code-mod-spectral-forecast-26853fc06661",
+      "type": "file",
+      "name": "experiments/cdip_observe.py",
+      "filePath": "experiments/cdip_observe.py",
+      "summary": "Language: Python | Path: experiments/cdip_observe.py | ~587 lines ## Classes - CdipSeries",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 18,
       "languageNotes": {
         "language": "Python",
         "kindexType": "artifact",
@@ -1655,6 +1689,13 @@
       "weight": 0.6
     },
     {
+      "source": "code-sym-spectral-forecast-ee03b4459fc0",
+      "target": "code-mod-spectral-forecast-26853fc06661",
+      "type": "contains",
+      "direction": "outbound",
+      "weight": 0.6
+    },
+    {
       "source": "code-sym-spectral-forecast-f2294eab495d",
       "target": "code-mod-spectral-forecast-49ee81e30326",
       "type": "contains",
@@ -1681,6 +1722,7 @@
         "code-mod-spectral-forecast-1630b07cb9f6",
         "code-mod-spectral-forecast-1ca423064fe8",
         "code-mod-spectral-forecast-205a767985fe",
+        "code-mod-spectral-forecast-26853fc06661",
         "code-mod-spectral-forecast-28ab2417eb6d",
         "code-mod-spectral-forecast-33154148ccd4",
         "code-mod-spectral-forecast-478895094b7b",
@@ -1750,6 +1792,7 @@
         "code-sym-spectral-forecast-cffa326d81cd",
         "code-sym-spectral-forecast-dce8209418bd",
         "code-sym-spectral-forecast-e96d78609f8d",
+        "code-sym-spectral-forecast-ee03b4459fc0",
         "code-sym-spectral-forecast-f2294eab495d",
         "code-sym-spectral-forecast-fc6ce3f9fe2d"
       ]
@@ -1788,7 +1831,7 @@
     {
       "order": 1,
       "title": "Core",
-      "description": "Review 21 node(s) in the Core layer.",
+      "description": "Review 22 node(s) in the Core layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-034a1a4da8f4",
         "code-mod-spectral-forecast-04ff12fecbe2",
@@ -1796,6 +1839,7 @@
         "code-mod-spectral-forecast-1630b07cb9f6",
         "code-mod-spectral-forecast-1ca423064fe8",
         "code-mod-spectral-forecast-205a767985fe",
+        "code-mod-spectral-forecast-26853fc06661",
         "code-mod-spectral-forecast-28ab2417eb6d",
         "code-mod-spectral-forecast-33154148ccd4",
         "code-mod-spectral-forecast-478895094b7b",
@@ -1827,7 +1871,7 @@
     {
       "order": 3,
       "title": "Domain",
-      "description": "Review 38 node(s) in the Domain layer.",
+      "description": "Review 39 node(s) in the Domain layer.",
       "nodeIds": [
         "code-sym-spectral-forecast-0cde9a123c28",
         "code-sym-spectral-forecast-0db4af7304ad",

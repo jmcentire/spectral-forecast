@@ -3,7 +3,7 @@
     "code",
     "python"
   ],
-  "node_count": 78,
+  "node_count": 80,
   "nodes": [
     {
       "domains": [
@@ -80,6 +80,17 @@
       "title": "verify_baseline.py",
       "type": "artifact",
       "updated_at": "2026-05-24T15:05:40",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
+      "id": "code-mod-spectral-forecast-26853fc06661",
+      "title": "experiments/cdip_observe.py",
+      "type": "artifact",
+      "updated_at": "2026-06-02T00:21:08",
       "weight": 0.5
     },
     {
@@ -846,6 +857,17 @@
         "code",
         "python"
       ],
+      "id": "code-sym-spectral-forecast-ee03b4459fc0",
+      "title": "CdipSeries",
+      "type": "concept",
+      "updated_at": "2026-06-02T00:21:08",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
       "id": "code-sym-spectral-forecast-f2294eab495d",
       "title": "ShockResult",
       "type": "concept",
@@ -865,6 +887,6 @@
     }
   ],
   "repo": "spectral-forecast",
-  "source_updated_at": "2026-06-01T23:35:59",
+  "source_updated_at": "2026-06-02T00:21:08",
   "version": 1
 }
