@@ -7,8 +7,8 @@
       "Python"
     ],
     "frameworks": [],
-    "analyzedAt": "2026-06-02T15:38:40-05:00",
-    "gitCommitHash": "ed3362466c99eb5a2ae3ba03c941470e1dfd34fe"
+    "analyzedAt": "2026-06-02T16:25:32-05:00",
+    "gitCommitHash": "50ee574bc0d469669c58167f876fefa622c96da0"
   },
   "nodes": [
     {
@@ -254,12 +254,12 @@
       "type": "file",
       "name": "experiments/cdip_batch.py",
       "filePath": "experiments/cdip_batch.py",
-      "summary": "Language: Python | Path: experiments/cdip_batch.py | ~1261 lines ## Classes - BatchWindow",
+      "summary": "Language: Python | Path: experiments/cdip_batch.py | ~1324 lines ## Classes - BatchWindow",
       "tags": [
         "code",
         "python"
       ],
-      "complexity": 36,
+      "complexity": 37,
       "languageNotes": {
         "language": "Python",
         "kindexType": "artifact",
