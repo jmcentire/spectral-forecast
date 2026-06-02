@@ -7,8 +7,8 @@
       "Python"
     ],
     "frameworks": [],
-    "analyzedAt": "2026-06-02T00:48:28-05:00",
-    "gitCommitHash": "928236acfbfc364988244b632f52713cf06e6c4f"
+    "analyzedAt": "2026-06-02T00:59:01-05:00",
+    "gitCommitHash": "eefb19c957c12003d6b81f32014f09a0088910f8"
   },
   "nodes": [
     {
@@ -226,6 +226,40 @@
         "python"
       ],
       "complexity": 6,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "artifact",
+        "toolTier": "C"
+      }
+    },
+    {
+      "id": "code-sym-spectral-forecast-994335706ba1",
+      "type": "class",
+      "name": "BatchWindow",
+      "filePath": "experiments/cdip_batch.py",
+      "summary": "class BatchWindow (experiments/cdip_batch.py:46) ## Methods - platforms(self) -> tuple[str,...]",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 2,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "concept",
+        "toolTier": ""
+      }
+    },
+    {
+      "id": "code-mod-spectral-forecast-e1546b1934a6",
+      "type": "file",
+      "name": "experiments/cdip_batch.py",
+      "filePath": "experiments/cdip_batch.py",
+      "summary": "Language: Python | Path: experiments/cdip_batch.py | ~545 lines ## Classes - BatchWindow",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 14,
       "languageNotes": {
         "language": "Python",
         "kindexType": "artifact",
@@ -1711,6 +1745,13 @@
       "weight": 0.6
     },
     {
+      "source": "code-sym-spectral-forecast-994335706ba1",
+      "target": "code-mod-spectral-forecast-e1546b1934a6",
+      "type": "contains",
+      "direction": "outbound",
+      "weight": 0.6
+    },
+    {
       "source": "code-sym-spectral-forecast-9c59a08d8a5b",
       "target": "code-mod-spectral-forecast-07e81bf4d958",
       "type": "contains",
@@ -1850,6 +1891,7 @@
         "code-mod-spectral-forecast-c1e4d5fb56d1",
         "code-mod-spectral-forecast-c6b714e9c4a5",
         "code-mod-spectral-forecast-c77b0edefdf1",
+        "code-mod-spectral-forecast-e1546b1934a6",
         "code-mod-spectral-forecast-e3e82688bf01"
       ]
     },
@@ -1896,6 +1938,7 @@
         "code-sym-spectral-forecast-8d22271de8c7",
         "code-sym-spectral-forecast-969b41b04746",
         "code-sym-spectral-forecast-96d2a96c8ffd",
+        "code-sym-spectral-forecast-994335706ba1",
         "code-sym-spectral-forecast-9c59a08d8a5b",
         "code-sym-spectral-forecast-9d0362ee07f3",
         "code-sym-spectral-forecast-a0c9ee5b0668",
@@ -1949,7 +1992,7 @@
     {
       "order": 1,
       "title": "Core",
-      "description": "Review 22 node(s) in the Core layer.",
+      "description": "Review 23 node(s) in the Core layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-034a1a4da8f4",
         "code-mod-spectral-forecast-04ff12fecbe2",
@@ -1972,6 +2015,7 @@
         "code-mod-spectral-forecast-c1e4d5fb56d1",
         "code-mod-spectral-forecast-c6b714e9c4a5",
         "code-mod-spectral-forecast-c77b0edefdf1",
+        "code-mod-spectral-forecast-e1546b1934a6",
         "code-mod-spectral-forecast-e3e82688bf01"
       ]
     },
@@ -1989,7 +2033,7 @@
     {
       "order": 3,
       "title": "Domain",
-      "description": "Review 43 node(s) in the Domain layer.",
+      "description": "Review 44 node(s) in the Domain layer.",
       "nodeIds": [
         "code-sym-spectral-forecast-0c898d9759aa",
         "code-sym-spectral-forecast-0cde9a123c28",

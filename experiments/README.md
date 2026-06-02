@@ -56,3 +56,25 @@ python3 experiments/cdip_observe.py \
   --sample-limit 32768 \
   --mesh
 ```
+
+For broader observation, use the batch runner. It discovers aligned buoy
+groups, runs multiple clean windows, and compares multi-buoy co-emission
+against a shifted-index null:
+
+```bash
+python3 experiments/cdip_batch.py data/cdip/*p1_xy.nc \
+  --channels z \
+  --group-size 3 \
+  --max-groups 8 \
+  --max-windows-per-group 3 \
+  --baseline 1024 \
+  --adaptive-window 512 \
+  --stride 512 \
+  --window-samples 4096 \
+  --window-step 2048 \
+  --null-repeats 5
+```
+
+If observed multi-buoy emission does not beat the shifted null, treat the
+aggregate run as exploratory and inspect only the windows/groups that do beat
+their local null.

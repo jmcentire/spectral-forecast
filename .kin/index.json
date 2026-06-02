@@ -3,7 +3,7 @@
     "code",
     "python"
   ],
-  "node_count": 85,
+  "node_count": 87,
   "nodes": [
     {
       "domains": [
@@ -439,6 +439,17 @@
         "code",
         "python"
       ],
+      "id": "code-mod-spectral-forecast-e1546b1934a6",
+      "title": "experiments/cdip_batch.py",
+      "type": "artifact",
+      "updated_at": "2026-06-02T01:10:48",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
       "id": "code-mod-spectral-forecast-e3ad60adcf4d",
       "title": "spectral_forecast/models/iterative.py",
       "type": "artifact",
@@ -769,6 +780,17 @@
         "code",
         "python"
       ],
+      "id": "code-sym-spectral-forecast-994335706ba1",
+      "title": "BatchWindow",
+      "type": "concept",
+      "updated_at": "2026-06-02T01:10:47",
+      "weight": 0.5
+    },
+    {
+      "domains": [
+        "code",
+        "python"
+      ],
       "id": "code-sym-spectral-forecast-9c59a08d8a5b",
       "title": "LinearARForecaster",
       "type": "concept",
@@ -942,6 +964,6 @@
     }
   ],
   "repo": "spectral-forecast",
-  "source_updated_at": "2026-06-02T00:58:38",
+  "source_updated_at": "2026-06-02T01:10:48",
   "version": 1
 }
