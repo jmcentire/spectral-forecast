@@ -40,6 +40,8 @@ CHANNEL_VARIABLES = {
     "z": "xyzZDisplacement",
 }
 
+PREPROCESS_MODES = ("none", "highpass")
+
 
 @dataclass(frozen=True)
 class CdipSeries:
@@ -151,6 +153,49 @@ def _select_span(
     return int(start), int(end)
 
 
+def highpass_fft(
+    values: NDArray[np.float64],
+    *,
+    sample_rate: float,
+    cutoff_period_seconds: float,
+) -> NDArray[np.float64]:
+    """Remove frequencies with periods longer than cutoff_period_seconds."""
+
+    y = np.asarray(values, dtype=np.float64)
+    if len(y) == 0:
+        return y.copy()
+    if sample_rate <= 0:
+        raise ValueError("sample_rate must be positive for high-pass preprocessing")
+    if cutoff_period_seconds <= 0:
+        raise ValueError("cutoff_period_seconds must be positive")
+
+    centered = y - float(np.mean(y))
+    freqs = np.fft.rfftfreq(len(centered), d=1.0 / sample_rate)
+    spectrum = np.fft.rfft(centered)
+    spectrum[freqs < 1.0 / cutoff_period_seconds] = 0.0
+    return np.fft.irfft(spectrum, n=len(centered)).astype(np.float64)
+
+
+def preprocess_series_values(
+    values: NDArray[np.float64],
+    *,
+    sample_rate: float,
+    mode: str = "none",
+    highpass_period_seconds: float = 30.0 * 60.0,
+) -> NDArray[np.float64]:
+    """Apply audit preprocessing before the agnostic observer sees a series."""
+
+    if mode == "none":
+        return np.asarray(values, dtype=np.float64)
+    if mode == "highpass":
+        return highpass_fft(
+            values,
+            sample_rate=sample_rate,
+            cutoff_period_seconds=highpass_period_seconds,
+        )
+    raise ValueError(f"Unknown preprocess mode: {mode}")
+
+
 def load_cdip_raw_record(
     path: str | Path,
     channels: Sequence[str],
@@ -204,6 +249,8 @@ def load_cdip_series(
     min_clean_samples: int,
     sample_limit: int | None,
     segment_offset: int = 0,
+    preprocess: str = "none",
+    highpass_period_seconds: float = 30.0 * 60.0,
 ) -> list[CdipSeries]:
     """Load aligned clean displacement segments from a CDIP NetCDF file."""
 
@@ -218,6 +265,12 @@ def load_cdip_series(
     out: list[CdipSeries] = []
     for channel, values in raw.arrays.items():
         segment = np.asarray(values[span_start:span_end], dtype=np.float64)
+        segment = preprocess_series_values(
+            segment,
+            sample_rate=raw.sample_rate,
+            mode=preprocess,
+            highpass_period_seconds=highpass_period_seconds,
+        )
         out.append(
             CdipSeries(
                 name=f"{raw.platform_id}:{channel}",
@@ -314,6 +367,8 @@ def load_aligned_cdip_series(
     min_clean_samples: int,
     sample_limit: int | None,
     segment_offset: int = 0,
+    preprocess: str = "none",
+    highpass_period_seconds: float = 30.0 * 60.0,
 ) -> list[CdipSeries]:
     """Load multiple CDIP files aligned on a common clean UTC grid."""
 
@@ -325,6 +380,8 @@ def load_aligned_cdip_series(
             min_clean_samples=min_clean_samples,
             sample_limit=sample_limit,
             segment_offset=segment_offset,
+            preprocess=preprocess,
+            highpass_period_seconds=highpass_period_seconds,
         )
 
     records = [
@@ -353,6 +410,12 @@ def load_aligned_cdip_series(
         source_x = np.arange(len(record.valid), dtype=np.float64)
         for channel, values in record.arrays.items():
             segment = np.interp(source_index, source_x, values).astype(np.float64)
+            segment = preprocess_series_values(
+                segment,
+                sample_rate=target_rate,
+                mode=preprocess,
+                highpass_period_seconds=highpass_period_seconds,
+            )
             out.append(
                 CdipSeries(
                     name=f"{record.platform_id}:{channel}",
@@ -1038,6 +1101,8 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
         min_clean_samples=min_clean_samples,
         sample_limit=args.sample_limit,
         segment_offset=args.segment_offset,
+        preprocess=args.preprocess,
+        highpass_period_seconds=args.highpass_period_minutes * 60.0,
     )
     series_by_name = {item.name: item for item in series}
 
@@ -1089,6 +1154,8 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
             "emission_threshold": args.emission_threshold,
             "decay": args.decay,
             "posthoc_window": args.posthoc_window or args.adaptive_window,
+            "preprocess": args.preprocess,
+            "highpass_period_minutes": args.highpass_period_minutes,
         },
         "readiness": _readiness_rows(series, args),
         "top_observations": _top_observation_rows(
@@ -1168,6 +1235,18 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--sample-limit", type=int, default=32768, help="Limit selected clean samples")
     parser.add_argument("--segment-offset", type=int, default=0, help="Offset into selected clean segment")
     parser.add_argument("--min-clean-samples", type=int, default=None, help="Minimum clean segment length")
+    parser.add_argument(
+        "--preprocess",
+        choices=PREPROCESS_MODES,
+        default="none",
+        help="Optional preprocessing applied before observation",
+    )
+    parser.add_argument(
+        "--highpass-period-minutes",
+        type=float,
+        default=30.0,
+        help="Remove periods longer than this when --preprocess=highpass",
+    )
     parser.add_argument(
         "--score",
         choices=["frozen", "sliding", "drift", "state", "max"],

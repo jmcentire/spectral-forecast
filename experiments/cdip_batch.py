@@ -30,6 +30,7 @@ import numpy as np
 from experiments.cdip_observe import (
     CdipRawRecord,
     CdipSeries,
+    PREPROCESS_MODES,
     _combination_rows,
     _intersect_time_spans,
     _pearson,
@@ -37,6 +38,7 @@ from experiments.cdip_observe import (
     _spearman,
     load_cdip_raw_record,
     posthoc_metrics,
+    preprocess_series_values,
 )
 from spectral_forecast.observation import (
     ObservationPoint,
@@ -78,6 +80,8 @@ def _series_from_records(
     start_time: float,
     n_samples: int,
     target_rate: float,
+    preprocess: str = "none",
+    highpass_period_seconds: float = 30.0 * 60.0,
 ) -> list[CdipSeries]:
     grid = start_time + np.arange(n_samples, dtype=np.float64) / target_rate
     series: list[CdipSeries] = []
@@ -87,6 +91,12 @@ def _series_from_records(
         for channel in channels:
             values = record.arrays[channel]
             segment = np.interp(source_index, source_x, values).astype(np.float64)
+            segment = preprocess_series_values(
+                segment,
+                sample_rate=target_rate,
+                mode=preprocess,
+                highpass_period_seconds=highpass_period_seconds,
+            )
             series.append(
                 CdipSeries(
                     name=f"{record.platform_id}:{channel}",
@@ -554,6 +564,8 @@ def _checkpoint_signature(args: argparse.Namespace, channels: Sequence[str]) -> 
         "decay": args.decay,
         "null_repeats": args.null_repeats,
         "null_mode": args.null_mode,
+        "preprocess": getattr(args, "preprocess", "none"),
+        "highpass_period_minutes": getattr(args, "highpass_period_minutes", 30.0),
         "posthoc_window": args.posthoc_window or args.adaptive_window,
         "shard_count": getattr(args, "shard_count", 1),
         "shard_index": getattr(args, "shard_index", 0),
@@ -727,6 +739,8 @@ def _batch_parameters(
         "decay": args.decay,
         "null_repeats": args.null_repeats,
         "null_mode": args.null_mode,
+        "preprocess": args.preprocess,
+        "highpass_period_minutes": args.highpass_period_minutes,
         "posthoc_window": args.posthoc_window or args.adaptive_window,
         "shard_count": args.shard_count,
         "shard_index": args.shard_index,
@@ -885,6 +899,8 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             start_time=window.start_time,
             n_samples=window.n_samples,
             target_rate=window.target_rate,
+            preprocess=args.preprocess,
+            highpass_period_seconds=args.highpass_period_minutes * 60.0,
         )
         series_by_name = {item.name: item for item in series}
         try:
@@ -1239,6 +1255,18 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--window-samples", type=int, default=4096, help="Aligned samples per batch window")
     parser.add_argument("--window-step", type=int, default=2048, help="Sample step between windows")
     parser.add_argument("--min-clean-samples", type=int, default=None, help="Minimum clean samples")
+    parser.add_argument(
+        "--preprocess",
+        choices=PREPROCESS_MODES,
+        default="none",
+        help="Optional preprocessing applied before observation",
+    )
+    parser.add_argument(
+        "--highpass-period-minutes",
+        type=float,
+        default=30.0,
+        help="Remove periods longer than this when --preprocess=highpass",
+    )
     parser.add_argument(
         "--score",
         choices=["frozen", "sliding", "drift", "state", "max"],

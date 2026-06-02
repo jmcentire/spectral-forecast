@@ -4,6 +4,7 @@ from experiments.cdip_observe import (
     _combination_rows,
     _intersect_time_spans,
     _select_aligned_window,
+    highpass_fft,
     posthoc_metrics,
 )
 
@@ -62,6 +63,22 @@ def test_posthoc_metrics_extracts_wave_and_spectrum_values():
     assert metrics.significant_wave_height > 3.0
     assert metrics.spectral_mean_period > 5.0
     assert metrics.crest_trough_correlation_proxy > 0.5
+
+
+def test_highpass_fft_removes_sub_cutoff_component():
+    sample_rate = 1.28
+    t = np.arange(8192, dtype=np.float64) / sample_rate
+    slow = 5.0 * np.sin(2 * np.pi * t / 3200.0)
+    fast = np.sin(2 * np.pi * t / 10.0)
+
+    filtered = highpass_fft(
+        slow + fast,
+        sample_rate=sample_rate,
+        cutoff_period_seconds=30.0 * 60.0,
+    )
+
+    assert abs(np.corrcoef(filtered, slow)[0, 1]) < 0.05
+    assert np.corrcoef(filtered, fast)[0, 1] > 0.95
 
 
 def test_combination_rows_summarizes_active_series_sets():

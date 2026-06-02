@@ -1,0 +1,332 @@
+{
+  "aggregate_result": {
+    "delta_ratio": 1.0015439528536385,
+    "highpass_delta": 3550.6640347609573,
+    "highpass_empirical_p_floor": 0.000999000999000999,
+    "highpass_z_effect_size": 13.128801842309292,
+    "original_delta": 3545.1904278831353,
+    "original_empirical_p_floor": 0.000999000999000999,
+    "original_z_effect_size": 13.132194179784172,
+    "unique_null_totals": 1000,
+    "z_ratio": 0.9997416777860244
+  },
+  "date": "2026-06-02",
+  "experiment": "CDIP tide/spatial validity controls, aggregate high-pass plus geographic audit",
+  "inputs": {
+    "aggregate_highpass_control": "experiments/results/2026-06-02-cdip-highpass30m-tide-control-permutation-null1000-1024groups.json",
+    "highpass_spatial_audit": "experiments/results/2026-06-02-cdip-spatial-tide-audit-highpass30m-permutation-null1000-1024groups.json",
+    "original_spatial_audit": "experiments/results/2026-06-02-cdip-spatial-tide-audit-permutation-null1000-1024groups.json"
+  },
+  "interpretation": {
+    "geography": "The balanced 1024-group corpus is overwhelmingly mixed-region: 5375 mixed-region windows vs 116 same-region windows. Mixed-region windows carry nearly all aggregate delta both before and after high-pass.",
+    "local_tide_component": "The original strongest local semidiurnal bin, 0-50 km at 9-15 h, weakens materially after high-pass. That suggests a local tide-like component exists in the spatial audit, but it is not carrying the aggregate result.",
+    "next": "Run held-out geography/distance-lag controls: train/freeze thresholds on one region mix, evaluate on held-out buoy regions, and add a spatial surrogate that preserves per-buoy spectra while breaking spatial arrangement.",
+    "propagation": "The current audit can surface lag/distance structure and high-delta follow-on candidates, but it is not yet a propagation proof because it uses centroid pairs and lacks directionality/advection constraints.",
+    "tide": "The 30-minute high-pass control leaves the aggregate observed-minus-null total and z effect size essentially unchanged, so the main coherence result is not merely tide or slower low-frequency shared forcing."
+  },
+  "question": "Is the detected cross-buoy coherence merely tide/shared low-frequency forcing, and can the existing result show propagation-like variance structure?",
+  "spatial_audit": {
+    "highpass_propagation_candidates": {
+      "events": 275,
+      "pairs": 1380,
+      "speed_km_h": {
+        "max": 12341.027522006227,
+        "median": 162.35592105907244,
+        "p10": 37.482469312621596,
+        "p90": 964.0603356696848
+      },
+      "threshold": 5.630981774204956
+    },
+    "highpass_same_vs_mixed": {
+      "mixed_region": {
+        "delta_mean": 0.6512722099208267,
+        "delta_sum": 3500.5881283244435,
+        "high_delta_windows": 269,
+        "label": "mixed_region",
+        "positive_fraction": 0.5564651162790698,
+        "windows": 5375,
+        "z_delta_mean": 0.001521469638182976
+      },
+      "same_region": {
+        "delta_mean": 0.43168884859063206,
+        "delta_sum": 50.07590643651332,
+        "high_delta_windows": 6,
+        "label": "same_region",
+        "positive_fraction": 0.4827586206896552,
+        "windows": 116,
+        "z_delta_mean": -0.07049913194166409
+      }
+    },
+    "highpass_semidiurnal_top": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.06912255002376257,
+        "pairs": 121
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.02195766463492777,
+        "pairs": 1760
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.018579200277773343,
+        "pairs": 146
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.01677526555166928,
+        "pairs": 374
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.014183293276991731,
+        "pairs": 1230
+      }
+    ],
+    "highpass_strongest_bins": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "6-9h",
+        "mean_z_product": -0.11151257965449117,
+        "pairs": 46
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "6-9h",
+        "mean_z_product": 0.11093023015506914,
+        "pairs": 113
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "3-6h",
+        "mean_z_product": 0.08220964802071874,
+        "pairs": 240
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.07082654178934965,
+        "pairs": 724
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": 0.07029669623903267,
+        "pairs": 899
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.06912255002376257,
+        "pairs": 121
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": -0.061447984592173335,
+        "pairs": 299
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "3-6h",
+        "mean_z_product": 0.054684369457215415,
+        "pairs": 410
+      }
+    ],
+    "highpass_zero_lag_bins": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.07082654178934965,
+        "pairs": 724
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.018585061086671944,
+        "pairs": 579
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.019569732328586775,
+        "pairs": 1064
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.02665408435647463,
+        "pairs": 324
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": -0.03363682815997125,
+        "pairs": 1937
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.010931238457073902,
+        "pairs": 6661
+      }
+    ],
+    "original_propagation_candidates": {
+      "events": 275,
+      "pairs": 1366,
+      "speed_km_h": {
+        "max": 12341.027522006227,
+        "median": 157.02824282007776,
+        "p10": 34.99881711636216,
+        "p90": 969.4527927831714
+      },
+      "threshold": 5.633228428182024
+    },
+    "original_same_vs_mixed": {
+      "mixed_region": {
+        "delta_mean": 0.6503595755628121,
+        "delta_sum": 3495.682718650115,
+        "high_delta_windows": 269,
+        "label": "mixed_region",
+        "positive_fraction": 0.5573953488372093,
+        "windows": 5375,
+        "z_delta_mean": 0.0015474834961842557
+      },
+      "same_region": {
+        "delta_mean": 0.42679059683629234,
+        "delta_sum": 49.50770923300991,
+        "high_delta_windows": 6,
+        "label": "same_region",
+        "positive_fraction": 0.4827586206896552,
+        "windows": 116,
+        "z_delta_mean": -0.07170451544819616
+      }
+    },
+    "original_semidiurnal_top": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "9-15h",
+        "mean_z_product": 0.24583159489182987,
+        "pairs": 123
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.06997261789262378,
+        "pairs": 131
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "9-15h",
+        "mean_z_product": 0.037673232740152565,
+        "pairs": 3419
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.03099722779497808,
+        "pairs": 1746
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.011586271566321213,
+        "pairs": 760
+      }
+    ],
+    "original_strongest_bins": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "9-15h",
+        "mean_z_product": 0.24583159489182987,
+        "pairs": 123
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "1.5-3h",
+        "mean_z_product": 0.1232402552571825,
+        "pairs": 303
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "3-6h",
+        "mean_z_product": 0.10970091415215853,
+        "pairs": 139
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.07568596136096768,
+        "pairs": 674
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "6-9h",
+        "mean_z_product": -0.07308535876761237,
+        "pairs": 41
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.06997261789262378,
+        "pairs": 131
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": -0.06646441209773063,
+        "pairs": 273
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": -0.04386160728312381,
+        "pairs": 947
+      }
+    ],
+    "original_zero_lag_bins": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.07568596136096768,
+        "pairs": 674
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": -0.004760410694610315,
+        "pairs": 608
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.008368556915243863,
+        "pairs": 1061
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": -0.02113740340323544,
+        "pairs": 350
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.0028016643223508905,
+        "pairs": 2021
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": -0.004432749991458418,
+        "pairs": 6624
+      }
+    ]
+  }
+}
