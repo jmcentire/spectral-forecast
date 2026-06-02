@@ -24,6 +24,7 @@ import numpy as np
 from numpy.typing import NDArray
 from scipy.io import netcdf_file
 
+from spectral_forecast.information import scan_information_readiness
 from spectral_forecast.observation import (
     ObservationPoint,
     ObservationResult,
@@ -377,6 +378,44 @@ def _top_observation_rows(
     return sorted(rows, key=lambda row: row["score"], reverse=True)
 
 
+def _readiness_rows(series: Sequence[CdipSeries], args: argparse.Namespace) -> list[dict[str, Any]]:
+    rows = []
+    for item in series:
+        scan = scan_information_readiness(
+            item.values,
+            sample_rate=item.sample_rate,
+            min_snr=args.readiness_min_snr,
+            min_entropy_deficit=args.readiness_min_entropy_deficit,
+            min_usable_bins=args.readiness_min_usable_bins,
+            min_size=args.readiness_min_size,
+            max_size=args.readiness_max_size,
+            step=args.readiness_step,
+            stable_windows=args.readiness_stable_windows,
+        )
+        final = scan.points[-1]
+        first = scan.first_ready
+        stable = scan.stable_ready
+        rows.append(
+            {
+                "series": item.name,
+                "first_ready_n": scan.first_ready_n,
+                "first_ready_seconds": first.seconds if first is not None else None,
+                "stable_ready_n": scan.stable_ready_n,
+                "stable_ready_seconds": stable.seconds if stable is not None else None,
+                "final_n": final.n,
+                "final_ready": final.ready,
+                "final_reason": final.reason,
+                "final_readiness_score": final.readiness_score,
+                "final_entropy_deficit": final.entropy_deficit,
+                "final_peak_surprise": final.peak_surprise,
+                "final_peak_p_value": final.peak_p_value,
+                "final_peak_period_samples": final.peak_period_samples,
+                "scan_points": [point.to_dict() for point in scan.points],
+            }
+        )
+    return rows
+
+
 def _print_text_report(report: dict[str, Any]) -> None:
     data = report["data"]
     print("CDIP observation")
@@ -393,6 +432,30 @@ def _print_text_report(report: dict[str, Any]) -> None:
     )
     print("  protocol=raw displacement, generic QC, past-only spectral observation")
     print("  mesh_terms=no labels and no published wave predictors")
+
+    if report["readiness"]:
+        print("\nInformation readiness")
+        print(
+            "%16s %8s %8s %8s %8s %10s %10s %10s %s"
+            % ("series", "first", "stable", "score", "entropy", "peak", "p_peak", "period", "reason")
+        )
+        for row in report["readiness"]:
+            first = "-" if row["first_ready_n"] is None else str(row["first_ready_n"])
+            stable = "-" if row["stable_ready_n"] is None else str(row["stable_ready_n"])
+            print(
+                "%16s %8s %8s %8.3f %8.4f %10.3f %10.3g %10.1f %s"
+                % (
+                    row["series"],
+                    first,
+                    stable,
+                    row["final_readiness_score"],
+                    row["final_entropy_deficit"],
+                    row["final_peak_surprise"],
+                    row["final_peak_p_value"],
+                    row["final_peak_period_samples"],
+                    row["final_reason"],
+                )
+            )
 
     print("\nTop observations")
     print(
@@ -518,6 +581,7 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
             "emission_threshold": args.emission_threshold,
             "decay": args.decay,
         },
+        "readiness": _readiness_rows(series, args),
         "top_observations": _top_observation_rows(
             results,
             series_by_name,
@@ -576,6 +640,18 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--emission-threshold", type=float, default=3.0, help="Emission threshold")
     parser.add_argument("--decay", type=float, default=0.9, help="Stigmergy accumulator decay")
     parser.add_argument("--top", type=int, default=10, help="Rows to show")
+    parser.add_argument("--readiness-min-size", type=int, default=512, help="Minimum prefix for readiness scan")
+    parser.add_argument("--readiness-max-size", type=int, default=None, help="Maximum prefix for readiness scan")
+    parser.add_argument("--readiness-step", type=int, default=512, help="Prefix step for readiness scan")
+    parser.add_argument("--readiness-stable-windows", type=int, default=2, help="Consecutive ready prefixes required")
+    parser.add_argument("--readiness-min-snr", type=float, default=2.0, help="Peak surprise threshold")
+    parser.add_argument("--readiness-min-usable-bins", type=int, default=16, help="Minimum FFT bins for readiness")
+    parser.add_argument(
+        "--readiness-min-entropy-deficit",
+        type=float,
+        default=0.02,
+        help="Minimum entropy gap below finite white-noise expectation",
+    )
     parser.add_argument("--mesh", action="store_true", help="Route emissions through ../stigmergy mesh")
     parser.add_argument("--mesh-src", type=Path, default=Path("../stigmergy/src"), help="Stigmergy src path")
     parser.add_argument("--mesh-max-signals", type=int, default=160, help="Maximum emissions routed to mesh")

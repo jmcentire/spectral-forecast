@@ -7,8 +7,8 @@
       "Python"
     ],
     "frameworks": [],
-    "analyzedAt": "2026-06-01T23:36:46-05:00",
-    "gitCommitHash": "685111729ab0f0f3a90188a8c37ac2afe8266775"
+    "analyzedAt": "2026-06-02T00:22:13-05:00",
+    "gitCommitHash": "657860e7569ecb180c0877527f26c283d8ea4ef1"
   },
   "nodes": [
     {
@@ -237,7 +237,7 @@
       "type": "class",
       "name": "CdipSeries",
       "filePath": "experiments/cdip_observe.py",
-      "summary": "class CdipSeries (experiments/cdip_observe.py:44) ## Methods - timestamp_for_index(self, index: int) -> datetime",
+      "summary": "class CdipSeries (experiments/cdip_observe.py:45) ## Methods - timestamp_for_index(self, index: int) -> datetime",
       "tags": [
         "code",
         "python"
@@ -254,12 +254,12 @@
       "type": "file",
       "name": "experiments/cdip_observe.py",
       "filePath": "experiments/cdip_observe.py",
-      "summary": "Language: Python | Path: experiments/cdip_observe.py | ~587 lines ## Classes - CdipSeries",
+      "summary": "Language: Python | Path: experiments/cdip_observe.py | ~663 lines ## Classes - CdipSeries",
       "tags": [
         "code",
         "python"
       ],
-      "complexity": 18,
+      "complexity": 19,
       "languageNotes": {
         "language": "Python",
         "kindexType": "artifact",
@@ -407,7 +407,7 @@
       "type": "file",
       "name": "spectral_forecast/__init__.py",
       "filePath": "spectral_forecast/__init__.py",
-      "summary": "Language: Python | Path: spectral_forecast/__init__.py | ~20 lines",
+      "summary": "Language: Python | Path: spectral_forecast/__init__.py | ~26 lines",
       "tags": [
         "code",
         "python"
@@ -736,6 +736,57 @@
         "python"
       ],
       "complexity": 2,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "artifact",
+        "toolTier": "C"
+      }
+    },
+    {
+      "id": "code-sym-spectral-forecast-0c898d9759aa",
+      "type": "class",
+      "name": "ReadinessScan",
+      "filePath": "spectral_forecast/information.py",
+      "summary": "class ReadinessScan (spectral_forecast/information.py:77) ## Methods - first_ready(self) -> InformationReadiness|None",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 3,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "concept",
+        "toolTier": ""
+      }
+    },
+    {
+      "id": "code-sym-spectral-forecast-d66816b06a71",
+      "type": "class",
+      "name": "InformationReadiness",
+      "filePath": "spectral_forecast/information.py",
+      "summary": "class InformationReadiness (spectral_forecast/information.py:20) ## Methods - seconds(self) -> float",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 2,
+      "languageNotes": {
+        "language": "Python",
+        "kindexType": "concept",
+        "toolTier": ""
+      }
+    },
+    {
+      "id": "code-mod-spectral-forecast-e7ad314a74d6",
+      "type": "file",
+      "name": "spectral_forecast/information.py",
+      "filePath": "spectral_forecast/information.py",
+      "summary": "Language: Python | Path: spectral_forecast/information.py | ~323 lines ## Classes - InformationReadiness",
+      "tags": [
+        "code",
+        "python"
+      ],
+      "complexity": 8,
       "languageNotes": {
         "language": "Python",
         "kindexType": "artifact",
@@ -1437,6 +1488,13 @@
       "weight": 0.32000000000000006
     },
     {
+      "source": "code-sym-spectral-forecast-0c898d9759aa",
+      "target": "code-mod-spectral-forecast-e7ad314a74d6",
+      "type": "contains",
+      "direction": "outbound",
+      "weight": 0.6
+    },
+    {
       "source": "code-sym-spectral-forecast-0cde9a123c28",
       "target": "code-mod-spectral-forecast-8f6db409d46a",
       "type": "contains",
@@ -1675,6 +1733,13 @@
       "weight": 0.6
     },
     {
+      "source": "code-sym-spectral-forecast-d66816b06a71",
+      "target": "code-mod-spectral-forecast-e7ad314a74d6",
+      "type": "contains",
+      "direction": "outbound",
+      "weight": 0.6
+    },
+    {
       "source": "code-sym-spectral-forecast-dce8209418bd",
       "target": "code-mod-spectral-forecast-4e01f26b56b5",
       "type": "contains",
@@ -1756,6 +1821,7 @@
       "name": "Domain",
       "description": "Kindex-inferred domain layer.",
       "nodeIds": [
+        "code-sym-spectral-forecast-0c898d9759aa",
         "code-sym-spectral-forecast-0cde9a123c28",
         "code-sym-spectral-forecast-0db4af7304ad",
         "code-sym-spectral-forecast-0e339e0ea723",
@@ -1790,6 +1856,7 @@
         "code-sym-spectral-forecast-cb9c14b71605",
         "code-sym-spectral-forecast-cbdcd78c6d50",
         "code-sym-spectral-forecast-cffa326d81cd",
+        "code-sym-spectral-forecast-d66816b06a71",
         "code-sym-spectral-forecast-dce8209418bd",
         "code-sym-spectral-forecast-e96d78609f8d",
         "code-sym-spectral-forecast-ee03b4459fc0",
@@ -1815,7 +1882,8 @@
         "code-mod-spectral-forecast-850608308cd5",
         "code-mod-spectral-forecast-8abebb23a45c",
         "code-mod-spectral-forecast-8d4c1a5a3320",
-        "code-mod-spectral-forecast-d837b04bcf31"
+        "code-mod-spectral-forecast-d837b04bcf31",
+        "code-mod-spectral-forecast-e7ad314a74d6"
       ]
     },
     {
@@ -1871,8 +1939,9 @@
     {
       "order": 3,
       "title": "Domain",
-      "description": "Review 39 node(s) in the Domain layer.",
+      "description": "Review 41 node(s) in the Domain layer.",
       "nodeIds": [
+        "code-sym-spectral-forecast-0c898d9759aa",
         "code-sym-spectral-forecast-0cde9a123c28",
         "code-sym-spectral-forecast-0db4af7304ad",
         "code-sym-spectral-forecast-0e339e0ea723",
@@ -1896,14 +1965,13 @@
         "code-sym-spectral-forecast-68b0dc6150a3",
         "code-sym-spectral-forecast-724eb9524213",
         "code-sym-spectral-forecast-8d22271de8c7",
-        "code-sym-spectral-forecast-969b41b04746",
-        "code-sym-spectral-forecast-96d2a96c8ffd"
+        "code-sym-spectral-forecast-969b41b04746"
       ]
     },
     {
       "order": 4,
       "title": "Test",
-      "description": "Review 14 node(s) in the Test layer.",
+      "description": "Review 15 node(s) in the Test layer.",
       "nodeIds": [
         "code-mod-spectral-forecast-31a78c373828",
         "code-mod-spectral-forecast-32209cb53854",
@@ -1918,7 +1986,8 @@
         "code-mod-spectral-forecast-850608308cd5",
         "code-mod-spectral-forecast-8abebb23a45c",
         "code-mod-spectral-forecast-8d4c1a5a3320",
-        "code-mod-spectral-forecast-d837b04bcf31"
+        "code-mod-spectral-forecast-d837b04bcf31",
+        "code-mod-spectral-forecast-e7ad314a74d6"
       ]
     },
     {
