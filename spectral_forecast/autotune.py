@@ -8,13 +8,15 @@ penalizing saturation and fragile threshold effects.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from typing import Mapping, Sequence
+from typing import Literal, Mapping, Sequence
 
 import numpy as np
 from numpy.typing import NDArray
 
 from spectral_forecast.information import information_readiness
 from spectral_forecast.observation import ObservationResult, ScoreName, observe_series
+
+NullMode = Literal["permute", "shift", "block-permute"]
 
 
 @dataclass(frozen=True)
@@ -45,6 +47,24 @@ class AutoTuneConfig:
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class AutoTuneObservation:
+    """Cached observer output for a candidate's expensive window settings."""
+
+    anchors: list[int]
+    matrix: NDArray[np.float64]
+    readiness_score: float
+    series_count: int
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "anchors": len(self.anchors),
+            "series_count": self.series_count,
+            "readiness_score": self.readiness_score,
+            "matrix_shape": list(self.matrix.shape),
+        }
 
 
 @dataclass(frozen=True)
@@ -226,9 +246,15 @@ def _null_summary(
     config: AutoTuneConfig,
     null_repeats: int,
     seed: int,
+    null_mode: NullMode = "permute",
+    null_block_size: int = 8,
 ) -> AutoTuneNullSummary:
     if null_repeats < 1:
         raise ValueError("null_repeats must be >= 1")
+    if null_block_size < 1:
+        raise ValueError("null_block_size must be >= 1")
+    if null_mode not in ("permute", "shift", "block-permute"):
+        raise ValueError(f"Unknown null mode: {null_mode}")
 
     observed_emissions = _emissions_from_matrix(
         matrix,
@@ -240,9 +266,12 @@ def _null_summary(
     rng = np.random.default_rng(seed)
     null_totals = []
     for _ in range(null_repeats):
-        permuted = matrix.copy()
-        for column in range(permuted.shape[1]):
-            permuted[:, column] = rng.permutation(permuted[:, column])
+        permuted = _null_matrix(
+            matrix,
+            rng=rng,
+            mode=null_mode,
+            block_size=null_block_size,
+        )
         emissions = _emissions_from_matrix(
             permuted,
             threshold=config.emission_threshold,
@@ -250,7 +279,66 @@ def _null_summary(
         )
         null_totals.append(_decayed_total(emissions, decay=config.decay))
 
+    return _null_summary_from_totals(
+        matrix,
+        config=config,
+        null_totals=null_totals,
+    )
+
+
+def _null_matrix(
+    matrix: NDArray[np.float64],
+    *,
+    rng: np.random.Generator,
+    mode: NullMode,
+    block_size: int,
+) -> NDArray[np.float64]:
+    null = matrix.copy()
+    if matrix.shape[0] <= 1:
+        return null
+
+    if mode == "permute":
+        for column in range(null.shape[1]):
+            null[:, column] = rng.permutation(null[:, column])
+        return null
+
+    if mode == "shift":
+        max_shift = max(1, null.shape[0] - 1)
+        for column in range(null.shape[1]):
+            shift = int(rng.integers(1, max_shift + 1))
+            null[:, column] = np.roll(null[:, column], shift)
+        return null
+
+    if mode == "block-permute":
+        blocks = [
+            np.arange(start, min(start + block_size, null.shape[0]))
+            for start in range(0, null.shape[0], block_size)
+        ]
+        for column in range(null.shape[1]):
+            order = rng.permutation(len(blocks))
+            reordered = np.concatenate([blocks[int(index)] for index in order])
+            null[:, column] = null[reordered, column]
+        return null
+
+    raise ValueError(f"Unknown null mode: {mode}")
+
+
+def _null_summary_from_totals(
+    matrix: NDArray[np.float64],
+    *,
+    config: AutoTuneConfig,
+    null_totals: Sequence[float],
+) -> AutoTuneNullSummary:
     null = np.asarray(null_totals, dtype=np.float64)
+    if len(null) == 0:
+        raise ValueError("at least one null total is required")
+
+    observed_emissions = _emissions_from_matrix(
+        matrix,
+        threshold=config.emission_threshold,
+        min_active_series=config.min_active_series,
+    )
+    observed_total = _decayed_total(observed_emissions, decay=config.decay)
     null_mean = float(np.mean(null))
     null_std = float(np.std(null, ddof=1)) if len(null) > 1 else 0.0
     exceedances = int(np.sum(null >= observed_total))
@@ -258,14 +346,14 @@ def _null_summary(
         anchors=int(matrix.shape[0]),
         observed_total=observed_total,
         observed_active_windows=int(np.sum(observed_emissions > 0.0)),
-        null_repeats=null_repeats,
+        null_repeats=len(null),
         null_mean=null_mean,
         null_std=null_std,
         observed_minus_null=observed_total - null_mean,
         z_effect=(observed_total - null_mean) / null_std if null_std > 0 else None,
         null_exceedances=exceedances,
-        empirical_p_ge_observed=(exceedances + 1) / (null_repeats + 1),
-        empirical_p_floor=1 / (null_repeats + 1),
+        empirical_p_ge_observed=(exceedances + 1) / (len(null) + 1),
+        empirical_p_floor=1 / (len(null) + 1),
         unique_null_totals=int(len(set(float(value) for value in null))),
     )
 
@@ -401,15 +489,14 @@ def _null_lift_score(summary: AutoTuneNullSummary) -> float:
     return float(0.4 * frac_score + 0.4 * z_score + 0.2 * empirical_score)
 
 
-def score_autotune_config(
+def build_autotune_observation(
     series: Mapping[str, NDArray[np.floating]],
     config: AutoTuneConfig,
     *,
     sample_rate: float = 1.0,
-    null_repeats: int = 100,
-    seed: int = 20260603,
-) -> AutoTuneScore:
-    """Score one candidate without using labels."""
+    results: Sequence[ObservationResult] | None = None,
+) -> AutoTuneObservation:
+    """Build the expensive observer score matrix for one candidate."""
 
     config.validate()
     if len(series) < 1:
@@ -417,7 +504,7 @@ def score_autotune_config(
     if config.min_active_series > len(series):
         raise ValueError("min_active_series cannot exceed number of series")
 
-    results = [
+    observation_results = list(results) if results is not None else [
         observe_series(
             np.asarray(values, dtype=np.float64),
             series=name,
@@ -428,15 +515,49 @@ def score_autotune_config(
         )
         for name, values in series.items()
     ]
-    _, matrix = _score_matrix(results, config.score)
-    null_summary = _null_summary(
-        matrix,
-        config=config,
-        null_repeats=null_repeats,
-        seed=seed,
+    anchors, matrix = _score_matrix(observation_results, config.score)
+    return AutoTuneObservation(
+        anchors=anchors,
+        matrix=matrix,
+        readiness_score=_readiness_score(series, config=config, sample_rate=sample_rate),
+        series_count=len(series),
     )
+
+
+def score_autotune_observation(
+    observation: AutoTuneObservation,
+    config: AutoTuneConfig,
+    *,
+    null_repeats: int = 100,
+    seed: int = 20260603,
+    null_mode: NullMode = "permute",
+    null_block_size: int = 8,
+    null_totals: Sequence[float] | None = None,
+) -> AutoTuneScore:
+    """Score cached observer output without rebuilding the observer matrix."""
+
+    config.validate()
+    if config.min_active_series > observation.series_count:
+        raise ValueError("min_active_series cannot exceed number of series")
+
+    matrix = observation.matrix
+    if null_totals is None:
+        null_summary = _null_summary(
+            matrix,
+            config=config,
+            null_repeats=null_repeats,
+            seed=seed,
+            null_mode=null_mode,
+            null_block_size=null_block_size,
+        )
+    else:
+        null_summary = _null_summary_from_totals(
+            matrix,
+            config=config,
+            null_totals=null_totals,
+        )
     active = _active_matrix(matrix, threshold=config.emission_threshold)
-    readiness = _readiness_score(series, config=config, sample_rate=sample_rate)
+    readiness = observation.readiness_score
     null_lift = _null_lift_score(null_summary)
     stability = _stability_score(matrix, config=config)
     compression = _compression_score(active)
@@ -469,6 +590,44 @@ def score_autotune_config(
     )
 
 
+def observation_total_for_config(
+    observation: AutoTuneObservation,
+    config: AutoTuneConfig,
+) -> float:
+    """Return the decayed emission total for cached observer output."""
+
+    config.validate()
+    emissions = _emissions_from_matrix(
+        observation.matrix,
+        threshold=config.emission_threshold,
+        min_active_series=config.min_active_series,
+    )
+    return _decayed_total(emissions, decay=config.decay)
+
+
+def score_autotune_config(
+    series: Mapping[str, NDArray[np.floating]],
+    config: AutoTuneConfig,
+    *,
+    sample_rate: float = 1.0,
+    null_repeats: int = 100,
+    seed: int = 20260603,
+    null_mode: NullMode = "permute",
+    null_block_size: int = 8,
+) -> AutoTuneScore:
+    """Score one candidate without using labels."""
+
+    observation = build_autotune_observation(series, config, sample_rate=sample_rate)
+    return score_autotune_observation(
+        observation,
+        config,
+        null_repeats=null_repeats,
+        seed=seed,
+        null_mode=null_mode,
+        null_block_size=null_block_size,
+    )
+
+
 def tune_observation(
     series: Mapping[str, NDArray[np.floating]],
     configs: Sequence[AutoTuneConfig] | None = None,
@@ -476,6 +635,8 @@ def tune_observation(
     sample_rate: float = 1.0,
     null_repeats: int = 100,
     seed: int = 20260603,
+    null_mode: NullMode = "permute",
+    null_block_size: int = 8,
 ) -> AutoTuneResult:
     """Rank candidate configs by label-free structure quality."""
 
@@ -495,6 +656,8 @@ def tune_observation(
                 sample_rate=sample_rate,
                 null_repeats=null_repeats,
                 seed=seed + index,
+                null_mode=null_mode,
+                null_block_size=null_block_size,
             )
         except Exception as exc:  # noqa: BLE001 - skip invalid search points with reasons.
             skipped.append({"config": config.to_dict(), "reason": str(exc)})

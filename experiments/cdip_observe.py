@@ -48,6 +48,8 @@ PREPROCESS_MODES = (
     "highpass-dominant-mask",
     "phase-randomize",
     "highpass-phase-randomize",
+    "dominant-mask-phase-randomize",
+    "highpass-dominant-mask-phase-randomize",
 )
 
 
@@ -298,6 +300,25 @@ def preprocess_series_values(
             cutoff_period_seconds=highpass_period_seconds,
         )
         return phase_randomize_fft(highpassed, seed=phase_seed)
+    if mode == "dominant-mask-phase-randomize":
+        masked = mask_dominant_fft(
+            values,
+            bins=mask_dominant_bins,
+            radius=mask_bin_radius,
+        )
+        return phase_randomize_fft(masked, seed=phase_seed)
+    if mode == "highpass-dominant-mask-phase-randomize":
+        highpassed = highpass_fft(
+            values,
+            sample_rate=sample_rate,
+            cutoff_period_seconds=highpass_period_seconds,
+        )
+        masked = mask_dominant_fft(
+            highpassed,
+            bins=mask_dominant_bins,
+            radius=mask_bin_radius,
+        )
+        return phase_randomize_fft(masked, seed=phase_seed)
     raise ValueError(f"Unknown preprocess mode: {mode}")
 
 

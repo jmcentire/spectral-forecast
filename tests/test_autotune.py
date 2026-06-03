@@ -4,8 +4,10 @@ import numpy as np
 
 from spectral_forecast.autotune import (
     AutoTuneConfig,
+    build_autotune_observation,
     default_autotune_configs,
     score_autotune_config,
+    score_autotune_observation,
     tune_observation,
 )
 
@@ -41,6 +43,53 @@ def test_score_autotune_config_reports_null_exceedances_and_quality_terms():
     assert score.readiness_score >= 0.0
     assert score.null_lift_score >= 0.0
     assert score.quality > -1.0
+
+
+def test_cached_observation_matches_direct_score_for_same_null_seed():
+    series = _shared_shift_series()
+    config = AutoTuneConfig(
+        baseline_size=144,
+        adaptive_window=72,
+        stride=12,
+        emission_threshold=2.0,
+        decay=0.8,
+        min_active_series=2,
+    )
+
+    observation = build_autotune_observation(series, config)
+    cached = score_autotune_observation(observation, config, null_repeats=12, seed=7)
+    direct = score_autotune_config(series, config, null_repeats=12, seed=7)
+
+    assert cached.null_summary.observed_total == direct.null_summary.observed_total
+    assert cached.null_summary.null_mean == direct.null_summary.null_mean
+    assert cached.quality == direct.quality
+
+
+def test_score_autotune_config_supports_shift_and_block_nulls():
+    series = _shared_shift_series()
+    config = AutoTuneConfig(
+        baseline_size=144,
+        adaptive_window=72,
+        stride=12,
+        emission_threshold=2.0,
+        decay=0.8,
+        min_active_series=2,
+    )
+
+    shift = score_autotune_config(series, config, null_repeats=8, seed=3, null_mode="shift")
+    blocks = score_autotune_config(
+        series,
+        config,
+        null_repeats=8,
+        seed=3,
+        null_mode="block-permute",
+        null_block_size=3,
+    )
+
+    assert shift.null_summary.null_repeats == 8
+    assert blocks.null_summary.null_repeats == 8
+    assert shift.null_summary.unique_null_totals > 1
+    assert blocks.null_summary.unique_null_totals > 1
 
 
 def test_tune_observation_prefers_non_saturating_threshold():

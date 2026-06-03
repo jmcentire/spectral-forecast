@@ -8,6 +8,7 @@ from experiments.cdip_observe import (
     mask_dominant_fft,
     phase_randomize_fft,
     posthoc_metrics,
+    preprocess_series_values,
 )
 
 import numpy as np
@@ -98,6 +99,35 @@ def test_phase_randomize_fft_preserves_power_spectrum():
     )
     assert not np.allclose(randomized, values)
     assert np.allclose(randomized, phase_randomize_fft(values, seed=123))
+
+
+def test_phase_surrogate_preprocess_modes_preserve_mode_spectrum():
+    sample_rate = 1.28
+    t = np.arange(2048, dtype=np.float64) / sample_rate
+    values = 3.0 * np.sin(2 * np.pi * 0.08 * t) + 0.7 * np.sin(2 * np.pi * 0.17 * t)
+
+    masked = preprocess_series_values(
+        values,
+        sample_rate=sample_rate,
+        mode="dominant-mask",
+        mask_dominant_bins=1,
+        mask_bin_radius=0,
+    )
+    randomized_masked = preprocess_series_values(
+        values,
+        sample_rate=sample_rate,
+        mode="dominant-mask-phase-randomize",
+        mask_dominant_bins=1,
+        mask_bin_radius=0,
+        phase_seed=123,
+    )
+
+    assert np.allclose(
+        np.abs(np.fft.rfft(randomized_masked)),
+        np.abs(np.fft.rfft(masked)),
+        rtol=1e-10,
+        atol=1e-10,
+    )
 
 
 def test_mask_dominant_fft_removes_strongest_non_dc_bin():
