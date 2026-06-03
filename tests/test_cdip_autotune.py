@@ -96,6 +96,36 @@ def test_aggregate_accepts_when_lift_fraction_and_z_clear_gate() -> None:
     assert report["accepted"] is True
 
 
+def test_aggregate_uses_repeat_aligned_batch_null_totals() -> None:
+    candidate = CdipAutoTuneCandidate(
+        preprocess="highpass",
+        config=AutoTuneConfig(baseline_size=64, adaptive_window=32, stride=8),
+    )
+
+    report = _aggregate_scores(
+        candidate,
+        [
+            _score(observed=20.0, null=10.0, z=2.0),
+            _score(observed=30.0, null=10.0, z=2.0),
+        ],
+        skipped=[],
+        min_accepted_fraction=0.0,
+        min_positive_window_fraction=0.5,
+        min_z_effect=1.5,
+        null_totals_by_window=[
+            [9.0, 10.0, 11.0, 12.0],
+            [10.0, 11.0, 12.0, 13.0],
+        ],
+    )
+
+    assert report["observed_total"] == 50.0
+    assert report["null_mean_total"] == 22.0
+    assert report["null_total_repeats"] == 4
+    assert report["null_total_exceedances"] == 0
+    assert report["null_total_empirical_p_floor"] == 0.2
+    assert report["accepted"] is True
+
+
 def test_combined_null_report_requires_every_null_family_to_pass() -> None:
     candidate = CdipAutoTuneCandidate(
         preprocess="highpass",

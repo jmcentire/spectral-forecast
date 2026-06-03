@@ -6,8 +6,10 @@ from spectral_forecast.autotune import (
     AutoTuneConfig,
     build_autotune_observation,
     default_autotune_configs,
+    observation_null_totals_for_config,
     score_autotune_config,
     score_autotune_observation,
+    summarize_observed_vs_null_totals,
     tune_observation,
 )
 
@@ -90,6 +92,37 @@ def test_score_autotune_config_supports_shift_and_block_nulls():
     assert blocks.null_summary.null_repeats == 8
     assert shift.null_summary.unique_null_totals > 1
     assert blocks.null_summary.unique_null_totals > 1
+
+
+def test_observation_null_totals_can_be_summarized_as_batch_distribution():
+    series = _shared_shift_series()
+    config = AutoTuneConfig(
+        baseline_size=144,
+        adaptive_window=72,
+        stride=12,
+        emission_threshold=2.0,
+        decay=0.8,
+        min_active_series=2,
+    )
+    observation = build_autotune_observation(series, config)
+    score = score_autotune_observation(observation, config, null_repeats=8, seed=11)
+    null_totals = observation_null_totals_for_config(
+        observation,
+        config,
+        null_repeats=8,
+        seed=11,
+    )
+
+    summary = summarize_observed_vs_null_totals(
+        anchors=score.null_summary.anchors,
+        observed_total=score.null_summary.observed_total,
+        observed_active_windows=score.null_summary.observed_active_windows,
+        null_totals=null_totals,
+    )
+
+    assert summary.null_repeats == 8
+    assert summary.null_mean == score.null_summary.null_mean
+    assert summary.observed_minus_null == score.null_summary.observed_minus_null
 
 
 def test_tune_observation_prefers_non_saturating_threshold():

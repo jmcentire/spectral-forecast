@@ -36,8 +36,11 @@ from spectral_forecast.autotune import (
     AutoTuneObservation,
     AutoTuneScore,
     build_autotune_observation,
+    null_lift_score,
+    observation_null_totals_for_config,
     observation_total_for_config,
     score_autotune_observation,
+    summarize_observed_vs_null_totals,
 )
 
 
@@ -118,6 +121,14 @@ class MatrixCache:
             "writes": self.writes,
             "directory": str(self.directory) if self.directory is not None else None,
         }
+
+
+@dataclass(frozen=True)
+class CdipWindowScore:
+    """One window score plus the repeat-aligned null totals used for batch aggregation."""
+
+    score: AutoTuneScore
+    null_totals: list[float]
 
 
 def _iso(seconds: float) -> str:
@@ -314,7 +325,13 @@ def _phase_surrogate_null_totals(
             phase_surrogate_seed=seed + repeat,
             preprocess=preprocess,
         )
-        totals.append(observation_total_for_config(observation, candidate.config))
+        totals.append(
+            observation_total_for_config(
+                observation,
+                candidate.config,
+                total_kind="emission",
+            )
+        )
     return totals
 
 
@@ -327,7 +344,7 @@ def _score_window(
     args: argparse.Namespace,
     null_mode: str,
     seed: int,
-) -> AutoTuneScore:
+) -> CdipWindowScore:
     observation = _observation_for_window(
         window,
         candidate,
@@ -347,19 +364,30 @@ def _score_window(
             args=args,
             seed=args.phase_surrogate_seed + seed * 1000,
         )
-        return score_autotune_observation(
+        score = score_autotune_observation(
             observation,
             candidate.config,
             null_totals=null_totals,
+            total_kind="emission",
         )
-    return score_autotune_observation(
+        return CdipWindowScore(score=score, null_totals=null_totals)
+
+    null_totals = observation_null_totals_for_config(
         observation,
         candidate.config,
         null_repeats=args.null_repeats,
         seed=seed,
         null_mode=null_mode,  # type: ignore[arg-type]
         null_block_size=args.null_block_size,
+        total_kind="emission",
     )
+    score = score_autotune_observation(
+        observation,
+        candidate.config,
+        null_totals=null_totals,
+        total_kind="emission",
+    )
+    return CdipWindowScore(score=score, null_totals=null_totals)
 
 
 def _aggregate_scores(
@@ -368,7 +396,9 @@ def _aggregate_scores(
     *,
     skipped: Sequence[dict[str, object]],
     min_accepted_fraction: float,
+    min_positive_window_fraction: float = 0.5,
     min_z_effect: float,
+    null_totals_by_window: Sequence[Sequence[float]] | None = None,
 ) -> dict[str, Any]:
     if not scores:
         return {
@@ -381,24 +411,64 @@ def _aggregate_scores(
         }
 
     observed = float(sum(score.null_summary.observed_total for score in scores))
-    null_mean = float(sum(score.null_summary.null_mean for score in scores))
-    variance = float(sum(score.null_summary.null_std**2 for score in scores))
-    z_effect = (observed - null_mean) / math.sqrt(variance) if variance > 0 else None
+    if null_totals_by_window is not None:
+        null_matrix = np.asarray(null_totals_by_window, dtype=np.float64)
+        if null_matrix.ndim != 2:
+            raise ValueError("null_totals_by_window must be a 2D collection")
+        if null_matrix.shape[0] != len(scores):
+            raise ValueError("null total window count must match score count")
+        if null_matrix.shape[1] < 1:
+            raise ValueError("at least one null repeat is required")
+        aggregate_null_totals = np.sum(null_matrix, axis=0)
+        aggregate_summary = summarize_observed_vs_null_totals(
+            anchors=sum(score.null_summary.anchors for score in scores),
+            observed_total=observed,
+            observed_active_windows=sum(
+                score.null_summary.observed_active_windows for score in scores
+            ),
+            null_totals=aggregate_null_totals,
+        )
+        null_mean = aggregate_summary.null_mean
+        z_effect = aggregate_summary.z_effect
+        null_total_repeats = aggregate_summary.null_repeats
+        null_total_exceedances = aggregate_summary.null_exceedances
+        null_total_p_ge_observed = aggregate_summary.empirical_p_ge_observed
+        null_total_empirical_p_floor = aggregate_summary.empirical_p_floor
+        null_total_unique_repeats = aggregate_summary.unique_null_totals
+        null_total_std = aggregate_summary.null_std
+        aggregate_lift = null_lift_score(aggregate_summary)
+    else:
+        null_mean = float(sum(score.null_summary.null_mean for score in scores))
+        variance = float(sum(score.null_summary.null_std**2 for score in scores))
+        z_effect = (observed - null_mean) / math.sqrt(variance) if variance > 0 else None
+        null_total_std = math.sqrt(variance)
+        null_total_repeats = int(sum(score.null_summary.null_repeats for score in scores))
+        null_total_exceedances = int(
+            sum(score.null_summary.null_exceedances for score in scores)
+        )
+        null_total_p_ge_observed = None
+        null_total_empirical_p_floor = None
+        null_total_unique_repeats = None
+        aggregate_lift = None
     accepted_windows = sum(1 for score in scores if score.accepted)
     accepted_fraction = accepted_windows / len(scores)
+    positive_windows = sum(1 for score in scores if score.null_summary.observed_minus_null > 0.0)
+    positive_window_fraction = positive_windows / len(scores)
     mean_quality = float(np.mean([score.quality for score in scores]))
     mean_saturation = float(np.mean([score.saturation_penalty for score in scores]))
     mean_lift = float(np.mean([score.null_lift_score for score in scores]))
     mean_readiness = float(np.mean([score.readiness_score for score in scores]))
-    quality = mean_quality + 0.10 * accepted_fraction
+    effective_lift = aggregate_lift if aggregate_lift is not None else mean_lift
+    quality = mean_quality + 0.20 * effective_lift + 0.05 * positive_window_fraction
     aggregate_z = z_effect if z_effect is not None else 0.0
     accepted = (
         quality > 0.0
         and observed > null_mean
         and accepted_fraction >= min_accepted_fraction
+        and positive_window_fraction >= min_positive_window_fraction
         and aggregate_z >= min_z_effect
         and mean_saturation < 1.0
-        and mean_lift > 0.0
+        and effective_lift > 0.0
     )
 
     return {
@@ -408,22 +478,32 @@ def _aggregate_scores(
         "windows_skipped": len(skipped),
         "accepted_windows": accepted_windows,
         "accepted_fraction": accepted_fraction,
+        "positive_windows": positive_windows,
+        "positive_window_fraction": positive_window_fraction,
         "quality": quality,
         "mean_quality": mean_quality,
         "mean_readiness": mean_readiness,
         "mean_null_lift": mean_lift,
+        "aggregate_null_lift": aggregate_lift,
         "mean_saturation": mean_saturation,
         "mean_stability": float(np.mean([score.stability_score for score in scores])),
         "mean_fragility": float(np.mean([score.fragility_penalty for score in scores])),
         "observed_total": observed,
         "null_mean_total": null_mean,
+        "null_std_total": null_total_std,
         "observed_minus_null_total": observed - null_mean,
         "z_effect": z_effect,
         "min_accepted_fraction": min_accepted_fraction,
+        "min_positive_window_fraction": min_positive_window_fraction,
         "min_z_effect": min_z_effect,
         "null_repeats_per_window": scores[0].null_summary.null_repeats,
         "null_exceedance_sum": int(sum(score.null_summary.null_exceedances for score in scores)),
         "null_repeat_sum": int(sum(score.null_summary.null_repeats for score in scores)),
+        "null_total_repeats": null_total_repeats,
+        "null_total_exceedances": null_total_exceedances,
+        "null_total_empirical_p_ge_observed": null_total_p_ge_observed,
+        "null_total_empirical_p_floor": null_total_empirical_p_floor,
+        "null_total_unique_repeats": null_total_unique_repeats,
         "window_scores": [
             {
                 "quality": score.quality,
@@ -452,11 +532,13 @@ def _score_candidate_windows_for_null_mode(
     seed_offset: int,
     null_mode: str,
 ) -> dict[str, Any]:
-    scores: list[AutoTuneScore] = []
+    window_scores: list[CdipWindowScore] = []
     skipped: list[dict[str, object]] = []
+    started = time.time()
+    last_progress = 0.0
     for index, window in enumerate(windows):
         try:
-            scores.append(
+            window_scores.append(
                 _score_window(
                     window,
                     candidate,
@@ -474,12 +556,49 @@ def _score_candidate_windows_for_null_mode(
                     "reason": str(exc),
                 }
             )
+        if args.progress and args.progress_every > 0:
+            now = time.time()
+            if now - last_progress >= args.progress_every:
+                elapsed = max(now - started, 1e-9)
+                processed = index + 1
+                rate = processed / elapsed
+                remaining = max(len(windows) - processed, 0)
+                eta = remaining / rate if rate > 0 else 0.0
+                print(
+                    (
+                        "cdip_autotune progress preprocess=%s baseline=%d "
+                        "adaptive=%d stride=%d threshold=%.3f null_mode=%s "
+                        "windows=%d/%d skipped=%d elapsed=%.1fs eta=%.1fs "
+                        "cache_hits=%d cache_misses=%d"
+                    )
+                    % (
+                        candidate.preprocess,
+                        candidate.config.baseline_size,
+                        candidate.config.adaptive_window,
+                        candidate.config.stride,
+                        candidate.config.emission_threshold,
+                        null_mode,
+                        processed,
+                        len(windows),
+                        len(skipped),
+                        elapsed,
+                        eta,
+                        cache.hits,
+                        cache.misses,
+                    ),
+                    file=sys.stderr,
+                    flush=True,
+                )
+                last_progress = now
+    scores = [item.score for item in window_scores]
     report = _aggregate_scores(
         candidate,
         scores,
         skipped=skipped,
         min_accepted_fraction=args.min_accepted_fraction,
+        min_positive_window_fraction=args.min_positive_window_fraction,
         min_z_effect=args.min_z_effect,
+        null_totals_by_window=[item.null_totals for item in window_scores],
     )
     report["null_mode"] = null_mode
     return report
@@ -520,17 +639,32 @@ def _combine_null_mode_reports(
         "windows_skipped": sum(int(row.get("windows_skipped", 0)) for row in reports),
         "accepted_windows": min(int(row.get("accepted_windows", 0)) for row in reports),
         "accepted_fraction": min(_number(row, "accepted_fraction", 0.0) for row in reports),
+        "positive_windows": min(int(row.get("positive_windows", 0)) for row in reports),
+        "positive_window_fraction": min(
+            _number(row, "positive_window_fraction", 0.0) for row in reports
+        ),
         "quality": quality,
         "mean_quality": min(_number(row, "mean_quality", float("-inf")) for row in reports),
         "mean_readiness": min(_number(row, "mean_readiness", 0.0) for row in reports),
         "mean_null_lift": min(_number(row, "mean_null_lift", 0.0) for row in reports),
+        "aggregate_null_lift": min(
+            _number(row, "aggregate_null_lift", 0.0) for row in reports
+        ),
         "mean_saturation": max(_number(row, "mean_saturation", 1.0) for row in reports),
         "mean_stability": min(_number(row, "mean_stability", 0.0) for row in reports),
         "mean_fragility": max(_number(row, "mean_fragility", 1.0) for row in reports),
         "observed_total": worst.get("observed_total", 0.0),
         "null_mean_total": worst.get("null_mean_total", 0.0),
+        "null_std_total": worst.get("null_std_total", 0.0),
         "observed_minus_null_total": delta,
         "z_effect": min(z_values) if z_values else None,
+        "null_total_repeats": worst.get("null_total_repeats"),
+        "null_total_exceedances": worst.get("null_total_exceedances"),
+        "null_total_empirical_p_ge_observed": worst.get(
+            "null_total_empirical_p_ge_observed"
+        ),
+        "null_total_empirical_p_floor": worst.get("null_total_empirical_p_floor"),
+        "null_total_unique_repeats": worst.get("null_total_unique_repeats"),
         "null_modes": [str(row.get("null_mode")) for row in reports],
         "worst_null_mode": worst.get("null_mode"),
         "null_mode_reports": list(reports),
@@ -773,6 +907,7 @@ def run_cdip_autotune(args: argparse.Namespace) -> dict[str, Any]:
             "null_modes": _parse_str_list(args.null_modes),
             "null_block_size": args.null_block_size,
             "min_accepted_fraction": args.min_accepted_fraction,
+            "min_positive_window_fraction": args.min_positive_window_fraction,
             "min_z_effect": args.min_z_effect,
             "preprocess_grid": _parse_str_list(args.preprocess_grid),
             "baselines": _parse_int_list(args.baselines),
@@ -781,6 +916,7 @@ def run_cdip_autotune(args: argparse.Namespace) -> dict[str, Any]:
             "thresholds": _parse_float_list(args.thresholds),
             "decays": _parse_float_list(args.decays),
             "min_active_series": _parse_int_list(args.min_active_series),
+            "progress_every": args.progress_every,
         },
         "matrix_cache": cache.to_dict(),
         "calibration": {
@@ -827,7 +963,7 @@ def print_report(report: dict[str, Any]) -> None:
         return
     candidate = best["candidate"]
     print(
-        "  best accepted=%s quality=%.4f delta=%.3f z=%s windows=%d/%d"
+        "  best accepted=%s quality=%.4f delta=%.3f z=%s windows=%d/%d positive=%d/%d"
         % (
             best["accepted"],
             best["quality"],
@@ -835,8 +971,21 @@ def print_report(report: dict[str, Any]) -> None:
             "None" if best.get("z_effect") is None else "%.2f" % best["z_effect"],
             best.get("accepted_windows", 0),
             best.get("windows_scored", 0),
+            best.get("positive_windows", 0),
+            best.get("windows_scored", 0),
         )
     )
+    if best.get("null_total_repeats") is not None:
+        print(
+            "  best null repeats=%s exceedances=%s p_ge=%s p_floor=%s null_std=%.3f"
+            % (
+                best.get("null_total_repeats"),
+                best.get("null_total_exceedances"),
+                best.get("null_total_empirical_p_ge_observed"),
+                best.get("null_total_empirical_p_floor"),
+                best.get("null_std_total", 0.0),
+            )
+        )
     if best.get("worst_null_mode"):
         print("  best worst_null_mode=%s" % best["worst_null_mode"])
     print(
@@ -854,7 +1003,7 @@ def print_report(report: dict[str, Any]) -> None:
     validation = report["validation"]["result"]
     if validation:
         print(
-            "  validation accepted=%s quality=%.4f delta=%.3f z=%s windows=%d/%d"
+            "  validation accepted=%s quality=%.4f delta=%.3f z=%s windows=%d/%d positive=%d/%d"
             % (
                 validation["accepted"],
                 validation["quality"],
@@ -862,8 +1011,21 @@ def print_report(report: dict[str, Any]) -> None:
                 "None" if validation.get("z_effect") is None else "%.2f" % validation["z_effect"],
                 validation.get("accepted_windows", 0),
                 validation.get("windows_scored", 0),
+                validation.get("positive_windows", 0),
+                validation.get("windows_scored", 0),
             )
         )
+        if validation.get("null_total_repeats") is not None:
+            print(
+                "  validation null repeats=%s exceedances=%s p_ge=%s p_floor=%s null_std=%.3f"
+                % (
+                    validation.get("null_total_repeats"),
+                    validation.get("null_total_exceedances"),
+                    validation.get("null_total_empirical_p_ge_observed"),
+                    validation.get("null_total_empirical_p_floor"),
+                    validation.get("null_std_total", 0.0),
+                )
+            )
         if validation.get("worst_null_mode"):
             print("  validation worst_null_mode=%s" % validation["worst_null_mode"])
     print("  top candidates")
@@ -945,8 +1107,17 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--min-accepted-fraction",
         type=float,
+        default=0.0,
+        help=(
+            "Minimum fraction of scored windows that must individually pass the "
+            "single-window gate; default 0 keeps the CDIP gate batch-first"
+        ),
+    )
+    parser.add_argument(
+        "--min-positive-window-fraction",
+        type=float,
         default=0.5,
-        help="Minimum fraction of scored windows that must be individually accepted",
+        help="Minimum fraction of scored windows with observed total above local null mean",
     )
     parser.add_argument(
         "--min-z-effect",
@@ -963,6 +1134,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="Optional directory for persistent cached observer matrices",
     )
     parser.add_argument("--progress", action="store_true")
+    parser.add_argument(
+        "--progress-every",
+        type=float,
+        default=30.0,
+        help="Seconds between per-candidate window progress lines when --progress is set",
+    )
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--format", choices=["text", "json"], default="text")
     args = parser.parse_args(argv)
@@ -978,8 +1155,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         parser.error("--null-block-size must be >= 1")
     if args.validation_groups is not None and args.validation_groups < 1:
         parser.error("--validation-groups must be >= 1")
+    if args.progress_every < 0:
+        parser.error("--progress-every must be >= 0")
     if not 0.0 <= args.min_accepted_fraction <= 1.0:
         parser.error("--min-accepted-fraction must be in [0, 1]")
+    if not 0.0 <= args.min_positive_window_fraction <= 1.0:
+        parser.error("--min-positive-window-fraction must be in [0, 1]")
     valid_null_modes = {"permute", "shift", "block-permute", "phase-surrogate"}
     for null_mode in _parse_str_list(args.null_modes):
         if null_mode not in valid_null_modes:

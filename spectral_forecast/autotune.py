@@ -17,6 +17,7 @@ from spectral_forecast.information import information_readiness
 from spectral_forecast.observation import ObservationResult, ScoreName, observe_series
 
 NullMode = Literal["permute", "shift", "block-permute"]
+TotalKind = Literal["decayed", "emission"]
 
 
 @dataclass(frozen=True)
@@ -240,6 +241,26 @@ def _decayed_total(emissions: NDArray[np.float64], *, decay: float) -> float:
     return float(total)
 
 
+def _observed_total_from_matrix(
+    matrix: NDArray[np.float64],
+    *,
+    config: AutoTuneConfig,
+    total_kind: TotalKind,
+) -> tuple[float, int]:
+    emissions = _emissions_from_matrix(
+        matrix,
+        threshold=config.emission_threshold,
+        min_active_series=config.min_active_series,
+    )
+    if total_kind == "decayed":
+        total = _decayed_total(emissions, decay=config.decay)
+    elif total_kind == "emission":
+        total = float(np.sum(emissions))
+    else:
+        raise ValueError(f"Unknown total_kind: {total_kind}")
+    return total, int(np.sum(emissions > 0.0))
+
+
 def _null_summary(
     matrix: NDArray[np.float64],
     *,
@@ -323,34 +344,66 @@ def _null_matrix(
     raise ValueError(f"Unknown null mode: {mode}")
 
 
+def _anchor_shift_matrix(
+    matrix: NDArray[np.float64],
+    *,
+    repeat: int,
+) -> NDArray[np.float64]:
+    shifted = matrix.copy()
+    if matrix.shape[0] <= 1:
+        return shifted
+    for column in range(1, shifted.shape[1]):
+        shift = (repeat + column) % shifted.shape[0]
+        if shift == 0:
+            shift = 1
+        shifted[:, column] = np.roll(shifted[:, column], shift)
+    return shifted
+
+
 def _null_summary_from_totals(
     matrix: NDArray[np.float64],
     *,
     config: AutoTuneConfig,
     null_totals: Sequence[float],
+    total_kind: TotalKind = "decayed",
 ) -> AutoTuneNullSummary:
+    observed_total, observed_active_windows = _observed_total_from_matrix(
+        matrix,
+        config=config,
+        total_kind=total_kind,
+    )
+    return summarize_observed_vs_null_totals(
+        anchors=int(matrix.shape[0]),
+        observed_total=observed_total,
+        observed_active_windows=observed_active_windows,
+        null_totals=null_totals,
+    )
+
+
+def summarize_observed_vs_null_totals(
+    *,
+    anchors: int,
+    observed_total: float,
+    observed_active_windows: int,
+    null_totals: Sequence[float],
+) -> AutoTuneNullSummary:
+    """Summarize an observed aggregate against an empirical null distribution."""
+
     null = np.asarray(null_totals, dtype=np.float64)
     if len(null) == 0:
         raise ValueError("at least one null total is required")
-
-    observed_emissions = _emissions_from_matrix(
-        matrix,
-        threshold=config.emission_threshold,
-        min_active_series=config.min_active_series,
-    )
-    observed_total = _decayed_total(observed_emissions, decay=config.decay)
     null_mean = float(np.mean(null))
     null_std = float(np.std(null, ddof=1)) if len(null) > 1 else 0.0
     exceedances = int(np.sum(null >= observed_total))
     return AutoTuneNullSummary(
-        anchors=int(matrix.shape[0]),
-        observed_total=observed_total,
-        observed_active_windows=int(np.sum(observed_emissions > 0.0)),
+        anchors=int(anchors),
+        observed_total=float(observed_total),
+        observed_active_windows=int(observed_active_windows),
         null_repeats=len(null),
         null_mean=null_mean,
         null_std=null_std,
-        observed_minus_null=observed_total - null_mean,
-        z_effect=(observed_total - null_mean) / null_std if null_std > 0 else None,
+        observed_minus_null=float(observed_total) - null_mean,
+        z_effect=(float(observed_total) - null_mean) / null_std if null_std > 0 else None,
         null_exceedances=exceedances,
         empirical_p_ge_observed=(exceedances + 1) / (len(null) + 1),
         empirical_p_floor=1 / (len(null) + 1),
@@ -489,6 +542,12 @@ def _null_lift_score(summary: AutoTuneNullSummary) -> float:
     return float(0.4 * frac_score + 0.4 * z_score + 0.2 * empirical_score)
 
 
+def null_lift_score(summary: AutoTuneNullSummary) -> float:
+    """Return the normalized lift score for an observed-vs-null summary."""
+
+    return _null_lift_score(summary)
+
+
 def build_autotune_observation(
     series: Mapping[str, NDArray[np.floating]],
     config: AutoTuneConfig,
@@ -533,6 +592,7 @@ def score_autotune_observation(
     null_mode: NullMode = "permute",
     null_block_size: int = 8,
     null_totals: Sequence[float] | None = None,
+    total_kind: TotalKind = "decayed",
 ) -> AutoTuneScore:
     """Score cached observer output without rebuilding the observer matrix."""
 
@@ -555,6 +615,7 @@ def score_autotune_observation(
             matrix,
             config=config,
             null_totals=null_totals,
+            total_kind=total_kind,
         )
     active = _active_matrix(matrix, threshold=config.emission_threshold)
     readiness = observation.readiness_score
@@ -593,16 +654,64 @@ def score_autotune_observation(
 def observation_total_for_config(
     observation: AutoTuneObservation,
     config: AutoTuneConfig,
+    *,
+    total_kind: TotalKind = "decayed",
 ) -> float:
-    """Return the decayed emission total for cached observer output."""
+    """Return the emission or decayed emission total for cached observer output."""
 
     config.validate()
-    emissions = _emissions_from_matrix(
+    total, _ = _observed_total_from_matrix(
         observation.matrix,
-        threshold=config.emission_threshold,
-        min_active_series=config.min_active_series,
+        config=config,
+        total_kind=total_kind,
     )
-    return _decayed_total(emissions, decay=config.decay)
+    return total
+
+
+def observation_null_totals_for_config(
+    observation: AutoTuneObservation,
+    config: AutoTuneConfig,
+    *,
+    null_repeats: int = 100,
+    seed: int = 20260603,
+    null_mode: NullMode = "permute",
+    null_block_size: int = 8,
+    total_kind: TotalKind = "decayed",
+) -> list[float]:
+    """Return empirical null totals for cached observer output."""
+
+    if null_repeats < 1:
+        raise ValueError("null_repeats must be >= 1")
+    if null_block_size < 1:
+        raise ValueError("null_block_size must be >= 1")
+    if null_mode not in ("permute", "shift", "block-permute"):
+        raise ValueError(f"Unknown null mode: {null_mode}")
+
+    config.validate()
+    rng = np.random.default_rng(seed)
+    totals = []
+    for repeat in range(null_repeats):
+        if null_mode == "shift":
+            null = _anchor_shift_matrix(observation.matrix, repeat=repeat)
+        else:
+            null = _null_matrix(
+                observation.matrix,
+                rng=rng,
+                mode=null_mode,
+                block_size=null_block_size,
+            )
+        emissions = _emissions_from_matrix(
+            null,
+            threshold=config.emission_threshold,
+            min_active_series=config.min_active_series,
+        )
+        if total_kind == "decayed":
+            totals.append(_decayed_total(emissions, decay=config.decay))
+        elif total_kind == "emission":
+            totals.append(float(np.sum(emissions)))
+        else:
+            raise ValueError(f"Unknown total_kind: {total_kind}")
+    return totals
 
 
 def score_autotune_config(
