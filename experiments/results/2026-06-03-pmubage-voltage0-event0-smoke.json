@@ -1,0 +1,1199 @@
+{
+  "created_at": "2026-06-03T04:47:30.738613+00:00",
+  "dataset": {
+    "name": "pmuBAGE synthetic PMU events",
+    "source": "https://github.com/NanpengYu/pmuBAGE",
+    "validation_boundary": "synthetic adapter smoke test, not real-grid validation"
+  },
+  "parameters": {
+    "adaptive_window": 64,
+    "baseline": 128,
+    "decay": 0.9,
+    "emission_threshold": 3.0,
+    "min_active_sensors": 3,
+    "null_repeats": 200,
+    "sample_rate": 30.0,
+    "score": "max",
+    "seed": 20260603,
+    "stride": 16
+  },
+  "summary": {
+    "coherent_top": [
+      {
+        "active_sensor_count": 23,
+        "active_sensors": [
+          {
+            "score": 20.72339895878487,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 7.808771686145847,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 19.891373569011296,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 17.638627508657706,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 8.881382405219586,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 36.404563822247454,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 14.982502997779267,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 6.114563823335444,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 20.741477516998014,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 8.389457687307203,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 14.761873743388803,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 23.650120932362608,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 15.873665961029786,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 16.289389333710258,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 18.297162030423557,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 31.15991298772145,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 17.505616901002327,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 19.93852855438921,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 6.317955612602412,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 11.862266719063749,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 6.341316685638642,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 24.287885439434778,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 10.569167106555954,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 309.43098198281024,
+        "index": 304,
+        "max_score": 36.404563822247454,
+        "mean_score": 15.879416907878172,
+        "seconds": 10.133333333333333
+      },
+      {
+        "active_sensor_count": 22,
+        "active_sensors": [
+          {
+            "score": 29.343457679444214,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 3.4518909625594105,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 5.175239397065484,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 12.462736479147392,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 10.26506194121999,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 8.169107877459833,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 10.22563471590949,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 5.889448920026337,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 13.471563207006335,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 11.56345250707344,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 19.538489918159954,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 15.63836491014822,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 15.379235113349518,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 4.610202215901807,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 3.503949644140736,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 10.141811531113888,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 7.816248320187304,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 4.456733990103122,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 16.86219299617351,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 4.923272943869587,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 21.64690534459665,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 7.8113342137436685,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 176.3463348283999,
+        "index": 512,
+        "max_score": 29.343457679444214,
+        "mean_score": 10.216994569273549,
+        "seconds": 17.066666666666666
+      },
+      {
+        "active_sensor_count": 23,
+        "active_sensors": [
+          {
+            "score": 31.975735250435527,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 3.7763744388507643,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 11.067626918901166,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 3.2960162610658563,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 6.779577362886322,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 5.2652032256706205,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 11.296026422892284,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 4.689684763305198,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 15.43559280588225,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 11.929029909002265,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 13.379485983249804,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 15.706508257708597,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 13.39892936738873,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 12.946144876442032,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 7.1690001541085815,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 5.315759377314255,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 10.070196763070392,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 10.463892124381251,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 5.383622146410668,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 11.545260940846324,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 8.971770015353236,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 14.940211416782319,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 6.028064931489134,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 171.8297137134376,
+        "index": 560,
+        "max_score": 31.975735250435527,
+        "mean_score": 10.136347313085148,
+        "seconds": 18.666666666666668
+      },
+      {
+        "active_sensor_count": 21,
+        "active_sensors": [
+          {
+            "score": 29.95751445525991,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 4.155487983512586,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 6.939964010925599,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 12.717569079272879,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 10.577383337536304,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 13.149303469532724,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 6.084728479927654,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 11.359772790842113,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 7.116495786677364,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 6.756657097471445,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 14.055508608863947,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 11.37235468335741,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 20.882201894550388,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 4.32176289120683,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 5.720130085560384,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 15.992683785395137,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 10.524369621061025,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 10.61457906990025,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 8.244575877841111,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 19.498962187312777,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 3.9021127785878904,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 170.9441179745957,
+        "index": 416,
+        "max_score": 29.95751445525991,
+        "mean_score": 9.997235537067507,
+        "seconds": 13.866666666666667
+      },
+      {
+        "active_sensor_count": 22,
+        "active_sensors": [
+          {
+            "score": 32.77514413946663,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 5.7899600142029986,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 6.22754125538716,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 5.953821612268785,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 5.5286356472978175,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 11.632322720628048,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 4.719798807589619,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 11.881794842441478,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 13.293836822506853,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 3.6045368088621226,
+            "sensor": "pmu_010"
+          },
+          {
+            "score": 13.859660497286065,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 15.756704580146646,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 12.473124122914838,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 15.655904759438263,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 7.8087457133556875,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 10.391602293770696,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 7.229778608516256,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 4.1957232691934445,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 15.067303813622907,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 5.754374497007039,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 19.045568088094203,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 5.42088124537452,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 168.06676415937207,
+        "index": 464,
+        "max_score": 32.77514413946663,
+        "mean_score": 9.828572309550266,
+        "seconds": 15.466666666666667
+      },
+      {
+        "active_sensor_count": 22,
+        "active_sensors": [
+          {
+            "score": 29.174513659138782,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 6.856752136051875,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 5.147344878088001,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 5.2958096366257035,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 4.635911534289535,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 6.913956308987983,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 9.68267327995864,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 6.261513952584778,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 13.570912816342455,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 5.576771483412841,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 4.734767331801223,
+            "sensor": "pmu_010"
+          },
+          {
+            "score": 12.173685146125365,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 17.490954373738926,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 19.01683834729905,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 4.833851299562059,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 12.550219024584997,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 11.960391191015818,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 5.138717366299212,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 17.361825205621894,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 13.298750626715288,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 14.817633336144384,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 5.539709672269833,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 166.03350260665866,
+        "index": 592,
+        "max_score": 29.174513659138782,
+        "mean_score": 9.827349679645943,
+        "seconds": 19.733333333333334
+      },
+      {
+        "active_sensor_count": 20,
+        "active_sensors": [
+          {
+            "score": 28.796349931417176,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 3.7382017629544366,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 4.916853717019978,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 7.155911286595869,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 3.1534598140285532,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 10.915444754432192,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 7.313893268974096,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 11.096626385023942,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 3.0102937824359985,
+            "sensor": "pmu_010"
+          },
+          {
+            "score": 14.386884580239364,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 19.10081668504807,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 15.684341162225765,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 13.387378216393856,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 10.207890031443412,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 3.395249352878971,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 13.060801394187566,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 4.332089289887398,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 16.9921030841312,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 7.730898449465042,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 22.097641264385445,
+            "sensor": "pmu_022"
+          }
+        ],
+        "emission": 160.4731282131683,
+        "index": 544,
+        "max_score": 28.796349931417176,
+        "mean_score": 9.566115701796166,
+        "seconds": 18.133333333333333
+      },
+      {
+        "active_sensor_count": 19,
+        "active_sensors": [
+          {
+            "score": 34.334304144552746,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 4.443160985440897,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 8.838081075211262,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 6.807032657870279,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 7.537765969401402,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 10.074755335167032,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 8.299988068311068,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 11.3367737868295,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 10.482577833040368,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 10.76551768628231,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 12.007594539906577,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 17.667407916973282,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 9.639904234921696,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 5.971463846849841,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 4.791487646925933,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 15.434923339913942,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 10.392709860165477,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 20.751735625556606,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 6.4548136082253125,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 159.03199816154552,
+        "index": 480,
+        "max_score": 34.334304144552746,
+        "mean_score": 9.415700617314696,
+        "seconds": 16.0
+      },
+      {
+        "active_sensor_count": 20,
+        "active_sensors": [
+          {
+            "score": 34.312509836820105,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 7.980894595293161,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 9.397960032850222,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 5.943205197214013,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 8.885617473956156,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 10.134208962762136,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 14.122345406197661,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 4.767302807096212,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 9.656520174281304,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 9.411199594219966,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 13.874287635415742,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 3.3784704513971557,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 4.702864722880067,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 11.910930304714357,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 4.643978662217745,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 12.70233770895298,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 13.777610335551774,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 15.673105824633566,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 11.679865109247377,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 11.467891443977072,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 158.42310627967876,
+        "index": 576,
+        "max_score": 34.312509836820105,
+        "mean_score": 9.400865775061707,
+        "seconds": 19.2
+      },
+      {
+        "active_sensor_count": 23,
+        "active_sensors": [
+          {
+            "score": 33.71740193014585,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 7.782612135839002,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 15.357398892900745,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 8.650321382124963,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 7.042870559259396,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 10.458150815744359,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 4.929987133894653,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 14.57244024419301,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 9.199356995391577,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 4.21423296487107,
+            "sensor": "pmu_010"
+          },
+          {
+            "score": 11.087443674362667,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 10.761710070190787,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 10.327916013881481,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 7.626931990131725,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 4.390620002111457,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 7.608258989974326,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 7.493246787083529,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 19.003306249568208,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 3.32097910657278,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 3.102126715950643,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 9.679977037825658,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 6.188536622853924,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 8.691414704687299,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 156.2072410195591,
+        "index": 496,
+        "max_score": 33.71740193014585,
+        "mean_score": 9.490824297012855,
+        "seconds": 16.533333333333335
+      },
+      {
+        "active_sensor_count": 20,
+        "active_sensors": [
+          {
+            "score": 28.769170976042247,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 4.212631132324736,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 8.713424357109341,
+            "sensor": "pmu_003"
+          },
+          {
+            "score": 5.021049945116209,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 5.334152847070887,
+            "sensor": "pmu_005"
+          },
+          {
+            "score": 6.653366939089398,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 4.797654274983172,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 5.656912363675148,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 7.210399513654346,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 15.9835182108638,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 18.637036768040737,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 8.972412438732729,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 6.480921027242352,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 9.044241033993057,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 6.471664939658696,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 3.5714507617484657,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 22.812927901060938,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 12.853325115632158,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 23.250294431942994,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 7.2047723459860205,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 151.65132732396745,
+        "index": 528,
+        "max_score": 28.769170976042247,
+        "mean_score": 9.090010290939924,
+        "seconds": 17.6
+      },
+      {
+        "active_sensor_count": 21,
+        "active_sensors": [
+          {
+            "score": 36.24012305937951,
+            "sensor": "pmu_000"
+          },
+          {
+            "score": 11.181996674105918,
+            "sensor": "pmu_001"
+          },
+          {
+            "score": 13.494147679042392,
+            "sensor": "pmu_002"
+          },
+          {
+            "score": 4.760085216619702,
+            "sensor": "pmu_004"
+          },
+          {
+            "score": 8.386403872223177,
+            "sensor": "pmu_006"
+          },
+          {
+            "score": 5.073515712023111,
+            "sensor": "pmu_007"
+          },
+          {
+            "score": 10.465336346920163,
+            "sensor": "pmu_008"
+          },
+          {
+            "score": 6.63885768404296,
+            "sensor": "pmu_009"
+          },
+          {
+            "score": 9.954678217455037,
+            "sensor": "pmu_011"
+          },
+          {
+            "score": 11.609818119579828,
+            "sensor": "pmu_012"
+          },
+          {
+            "score": 13.692934616106214,
+            "sensor": "pmu_013"
+          },
+          {
+            "score": 9.556024369797214,
+            "sensor": "pmu_014"
+          },
+          {
+            "score": 6.07408122379005,
+            "sensor": "pmu_015"
+          },
+          {
+            "score": 11.398950214691736,
+            "sensor": "pmu_016"
+          },
+          {
+            "score": 8.306204100083558,
+            "sensor": "pmu_017"
+          },
+          {
+            "score": 12.825959683292666,
+            "sensor": "pmu_018"
+          },
+          {
+            "score": 4.877315263939912,
+            "sensor": "pmu_019"
+          },
+          {
+            "score": 3.0651229184650512,
+            "sensor": "pmu_020"
+          },
+          {
+            "score": 13.922879610702505,
+            "sensor": "pmu_021"
+          },
+          {
+            "score": 6.630948232314503,
+            "sensor": "pmu_022"
+          },
+          {
+            "score": 5.862328643573452,
+            "sensor": "pmu_023"
+          }
+        ],
+        "emission": 151.01771145814865,
+        "index": 400,
+        "max_score": 36.24012305937951,
+        "mean_score": 9.180304221062904,
+        "seconds": 13.333333333333334
+      }
+    ],
+    "permutation_null": {
+      "anchors": 30,
+      "empirical_p_floor": 0.004975124378109453,
+      "empirical_p_ge_observed": 0.5621890547263682,
+      "min_active_channels": 3,
+      "null_exceedances": 112,
+      "null_mean": 3962.0372981826554,
+      "null_repeats": 200,
+      "null_std": 4.396429483441336e-13,
+      "observed_active_windows": 30,
+      "observed_minus_null": 0.0,
+      "observed_total": 3962.0372981826554,
+      "threshold": 3.0,
+      "unique_null_totals": 5,
+      "z_effect": 0.0
+    },
+    "points_per_sensor": 30,
+    "stigmergy_points": 30
+  },
+  "tensor": {
+    "datatype": "voltage_magnitude",
+    "datatype_index": 2,
+    "event_index": 0,
+    "path": "data/pmuBAGE/data/voltage/voltage_0.npy",
+    "sensor_count": 24,
+    "shape": [
+      20,
+      4,
+      100,
+      600
+    ]
+  }
+}

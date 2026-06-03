@@ -11,7 +11,7 @@ The CDIP experiment is now a defensible cross-domain calibration result:
 3. Post-hoc attribution against CDIP-published bulk parameters and direct CDIP spectra indicates the surfaced structure is not best described as confused or multi-modal sea state.
 4. The strongest current interpretation is organized coherent swell-like structure: longer-period energy, narrower spectral bandwidth, lower entropy, and higher concentration.
 
-This is not a rogue-wave predictor. It is evidence that the detector can surface real, physically meaningful organizing structure without being given oceanographic labels or predictors.
+The result is the observation itself: a generic detector, with no oceanographic labels or predictors, recovered physically meaningful organizing structure from raw ocean data. If the surfaced structure is classical swell-scale organization, that is not a deflation of the result. It is the calibration case: the method found known physics without being told the domain.
 
 ## Why CDIP Was a Good Calibration Dataset
 
@@ -104,20 +104,20 @@ Interpretation:
 
 March 2026 shows weaker same-direction bandwidth effects. West Coast-only shows strong differences versus broad background, but those mostly vanish under month matching. The heldout group split is the strongest current attribution evidence.
 
-## What This Result Does And Does Not Claim
+## What The Experiment Establishes
 
-Supported:
+Established:
 
 - The agnostic detector can surface coherent cross-buoy structure from raw displacement data.
 - The structure survives multiple controls aimed at tide, weak nulls, obvious dominant spectral modes, and group overfit.
 - Post-hoc direct spectra suggest the surfaced structure is organized, longer-period, narrower-band sea state.
+- The observation was label-blind: oceanographic quantities entered only after the detector had already surfaced candidate structure.
 
-Not supported:
+Open:
 
-- Predicting individual rogue waves.
-- A clean spatial propagation velocity field.
-- A multi-modal/confused-sea explanation.
-- Novel oceanography by itself.
+- Whether the structure corresponds cleanly to named swell events or broader basin-scale organization.
+- Whether masking known swell-scale structure exposes additional residual structure.
+- Whether any residual structure is related to rogue-wave precursor regimes.
 
 The method result is the important one: a domain-agnostic detector recovered physically meaningful ocean structure without being told what oceans, swells, tides, or spectra are.
 
@@ -128,6 +128,6 @@ If this line earns more time:
 1. Plot spectra for the top heldout clusters to visually confirm the narrowband/coherent read.
 2. Add event-level clustering around the strongest March 18 and late-May windows.
 3. Try an explicit known-swell conditioning or masking pass and rerun the detector on the residual.
-4. Only then ask whether any residual structure is rogue-relevant.
+4. Then, as a separate experiment, ask whether any residual structure is rogue-relevant.
 
 For now, the result is good enough as a calibration bridge into other domains.

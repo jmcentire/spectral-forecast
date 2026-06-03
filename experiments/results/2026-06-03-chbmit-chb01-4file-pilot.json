@@ -1,0 +1,2263 @@
+{
+  "created_at": "2026-06-03T04:44:57.217047+00:00",
+  "dataset": {
+    "labels_used": "posthoc attribution only",
+    "name": "CHB-MIT Scalp EEG Database",
+    "source": "https://physionet.org/content/chbmit/1.0.0/",
+    "summary_path": "data/chbmit/chb01/chb01-summary.txt"
+  },
+  "files": [
+    {
+      "channels": [
+        "FP1-F7",
+        "T7-P7",
+        "FZ-CZ",
+        "CZ-PZ",
+        "FP2-F8",
+        "P8-O2"
+      ],
+      "duration_seconds": 3600.0,
+      "file": "chb01_01.edf",
+      "observations": {
+        "points_per_series": 221,
+        "score": "max",
+        "series": 6
+      },
+      "path": "data/chbmit/chb01/chb01_01.edf",
+      "permutation_null": {
+        "anchors": 221,
+        "empirical_p_floor": 0.004975124378109453,
+        "empirical_p_ge_observed": 0.004975124378109453,
+        "min_active_channels": 2,
+        "null_exceedances": 0,
+        "null_mean": 76.03032998455518,
+        "null_repeats": 200,
+        "null_std": 21.095085887737543,
+        "observed_active_windows": 28,
+        "observed_minus_null": 125.69343040664208,
+        "observed_total": 201.72376039119726,
+        "threshold": 3.0,
+        "unique_null_totals": 200,
+        "z_effect": 5.958422311032494
+      },
+      "samples": 57600,
+      "seizures": [],
+      "source_sample_rate": 256.0,
+      "stigmergy": {
+        "coherent_top": [
+          {
+            "active_series": [
+              {
+                "score": 24.518415277620242,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.476819379012546,
+                "series": "T7-P7"
+              },
+              {
+                "score": 25.782499886768402,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 45.777734543401195,
+            "index": 55552,
+            "max_score": 25.782499886768402,
+            "mean_score": 10.213664798497826,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3472.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 10.002269579002043,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.711874773218051,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 10.612387488532331,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.47416015086972,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 20.800691991622145,
+            "index": 51968,
+            "max_score": 10.612387488532331,
+            "mean_score": 5.889846432401214,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3248.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 10.734967546110841,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 10.898800894054505,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 15.633768440165346,
+            "index": 50176,
+            "max_score": 10.898800894054505,
+            "mean_score": 4.588710437426695,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3136.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.097974271546038,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 11.436474219386449,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 14.534448490932487,
+            "index": 45312,
+            "max_score": 11.436474219386449,
+            "mean_score": 4.7703779229114724,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2832.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 10.402307783201787,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.9503742925135,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 13.352682075715286,
+            "index": 18688,
+            "max_score": 10.402307783201787,
+            "mean_score": 4.454572624493565,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1168.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.465387047828882,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.478626085978353,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 8.068144815277252,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 13.012157949084486,
+            "index": 49664,
+            "max_score": 9.465387047828882,
+            "mean_score": 4.556683634202957,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3104.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.411389946856406,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.712501754877303,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.707342904976465,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 11.831234606710176,
+            "index": 35584,
+            "max_score": 8.712501754877303,
+            "mean_score": 4.219377325322526,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2224.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.271404416744465,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.598414457131493,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 7.266732069648464,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 10.136550943524423,
+            "index": 54016,
+            "max_score": 8.271404416744465,
+            "mean_score": 3.8541721965321813,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3376.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.038099118675204,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.0612663151623694,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 7.9501257421030305,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 10.049491175940602,
+            "index": 41216,
+            "max_score": 8.038099118675204,
+            "mean_score": 3.7969741034961966,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2576.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.101057562893139,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1041840961394755,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.9621763640781325,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.004265662893342,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 6.171683686004089,
+            "index": 35072,
+            "max_score": 6.101057562893139,
+            "mean_score": 3.671094834738373,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2192.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.8586900141586336,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.725143748183557,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 4.5838337623421905,
+            "index": 43264,
+            "max_score": 5.8586900141586336,
+            "mean_score": 2.382803671980859,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2704.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.9945831348806524,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.7746853722443445,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 3.769268507124997,
+            "index": 14336,
+            "max_score": 5.7746853722443445,
+            "mean_score": 2.5287805032559922,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 896.0
+          }
+        ],
+        "coherent_top_phase_counts": {
+          "interictal": 12
+        },
+        "points": 221,
+        "top": [
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "FP2-F8"
+            ],
+            "active_series_count": 3,
+            "emission": 45.777734543401195,
+            "index": 55552,
+            "max_score": 25.782499886768402,
+            "mean_score": 10.213664798497826,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 60.24425670704889,
+            "seconds": 3472.0
+          },
+          {
+            "active_series": [],
+            "active_series_count": 0,
+            "emission": 0.0,
+            "index": 55808,
+            "max_score": 2.8290107757768346,
+            "mean_score": 1.6806207609764483,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 54.219831036344004,
+            "seconds": 3488.0
+          },
+          {
+            "active_series": [],
+            "active_series_count": 0,
+            "emission": 0.0,
+            "index": 56064,
+            "max_score": 2.116036409817139,
+            "mean_score": 1.5847528308681522,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 48.79784793270961,
+            "seconds": 3504.0
+          },
+          {
+            "active_series": [],
+            "active_series_count": 0,
+            "emission": 0.0,
+            "index": 56320,
+            "max_score": 2.3970565411907776,
+            "mean_score": 1.522829077594013,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 43.91806313943865,
+            "seconds": 3520.0
+          },
+          {
+            "active_series": [],
+            "active_series_count": 0,
+            "emission": 0.0,
+            "index": 56576,
+            "max_score": 2.2483025315886507,
+            "mean_score": 1.7623897405333793,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 39.526256825494784,
+            "seconds": 3536.0
+          },
+          {
+            "active_series": [
+              "P8-O2"
+            ],
+            "active_series_count": 1,
+            "emission": 0.4244890465083193,
+            "index": 56832,
+            "max_score": 3.4244890465083193,
+            "mean_score": 1.9654434140048753,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 35.99812018945363,
+            "seconds": 3552.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 20.800691991622145,
+            "index": 51968,
+            "max_score": 10.612387488532331,
+            "mean_score": 5.889846432401214,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 35.89837540046564,
+            "seconds": 3248.0
+          },
+          {
+            "active_series": [],
+            "active_series_count": 0,
+            "emission": 0.0,
+            "index": 57088,
+            "max_score": 2.2483025315886507,
+            "mean_score": 1.3935126644348432,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 32.398308170508265,
+            "seconds": 3568.0
+          },
+          {
+            "active_series": [
+              "CZ-PZ"
+            ],
+            "active_series_count": 1,
+            "emission": 0.0037638798478965008,
+            "index": 52224,
+            "max_score": 3.0037638798478965,
+            "mean_score": 1.8289484202734674,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 32.312301740266975,
+            "seconds": 3264.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FP2-F8"
+            ],
+            "active_series_count": 2,
+            "emission": 0.7334557939582238,
+            "index": 57344,
+            "max_score": 3.585832249734113,
+            "mean_score": 2.0768101418468956,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 29.891933147415664,
+            "seconds": 3584.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FP2-F8"
+            ],
+            "active_series_count": 2,
+            "emission": 15.633768440165346,
+            "index": 50176,
+            "max_score": 10.898800894054505,
+            "mean_score": 4.588710437426695,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 29.573488410831366,
+            "seconds": 3136.0
+          },
+          {
+            "active_series": [
+              "CZ-PZ",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 0.4601286311640762,
+            "index": 52480,
+            "max_score": 3.3724537973829762,
+            "mean_score": 2.220302493874174,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 29.541200197404354,
+            "seconds": 3280.0
+          }
+        ],
+        "top_phase_counts": {
+          "interictal": 12
+        }
+      },
+      "target_sample_rate": 16.0
+    },
+    {
+      "channels": [
+        "FP1-F7",
+        "T7-P7",
+        "FZ-CZ",
+        "CZ-PZ",
+        "FP2-F8",
+        "P8-O2"
+      ],
+      "duration_seconds": 3600.0,
+      "file": "chb01_02.edf",
+      "observations": {
+        "points_per_series": 221,
+        "score": "max",
+        "series": 6
+      },
+      "path": "data/chbmit/chb01/chb01_02.edf",
+      "permutation_null": {
+        "anchors": 221,
+        "empirical_p_floor": 0.004975124378109453,
+        "empirical_p_ge_observed": 0.004975124378109453,
+        "min_active_channels": 2,
+        "null_exceedances": 0,
+        "null_mean": 255.1089778046345,
+        "null_repeats": 200,
+        "null_std": 25.41861164281981,
+        "observed_active_windows": 49,
+        "observed_minus_null": 121.37386429195055,
+        "observed_total": 376.48284209658505,
+        "threshold": 3.0,
+        "unique_null_totals": 200,
+        "z_effect": 4.774999752051209
+      },
+      "samples": 57600,
+      "seizures": [],
+      "source_sample_rate": 256.0,
+      "stigmergy": {
+        "coherent_top": [
+          {
+            "active_series": [
+              {
+                "score": 15.529892738678432,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 16.945790838663964,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 26.475683577342394,
+            "index": 33280,
+            "max_score": 16.945790838663964,
+            "mean_score": 6.88938284192425,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2080.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 13.167894593360955,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 13.70328784225386,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 20.871182435614816,
+            "index": 33024,
+            "max_score": 13.70328784225386,
+            "mean_score": 5.702469479308945,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2064.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.734767082197626,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 10.235092712220665,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.0224863587075985,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 7.838607251623059,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.795482528188171,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 20.62643593293712,
+            "index": 29952,
+            "max_score": 10.235092712220665,
+            "mean_score": 6.053254126558013,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1872.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.694810872203377,
+                "series": "T7-P7"
+              },
+              {
+                "score": 14.767434239239389,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.587368100434533,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 20.0496132118773,
+            "index": 32256,
+            "max_score": 14.767434239239389,
+            "mean_score": 5.750762700671345,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2016.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.119502164164496,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.071205456929786,
+                "series": "T7-P7"
+              },
+              {
+                "score": 9.145236594558998,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.046944556859572,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.697731525934419,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 16.080620298447272,
+            "index": 16384,
+            "max_score": 9.145236594558998,
+            "mean_score": 5.417283793925815,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1024.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 14.555768795220379,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.148427849127261,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.1231687226870006,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 15.827365367034641,
+            "index": 18176,
+            "max_score": 14.555768795220379,
+            "mean_score": 4.8563531038176695,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1136.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.757998801671205,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.721435316336167,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.209926515948664,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 9.739490398472789,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 15.428851032428824,
+            "index": 14592,
+            "max_score": 9.739490398472789,
+            "mean_score": 5.449736325085621,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 912.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.430319863172426,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 16.187778227438287,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 2,
+            "emission": 14.618098090610712,
+            "index": 14848,
+            "max_score": 16.187778227438287,
+            "mean_score": 4.768983256413023,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 928.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.090073807309056,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.731251333551408,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.049180467670612,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.584972850081836,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.764195074041927,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 14.21967353265484,
+            "index": 16640,
+            "max_score": 6.731251333551408,
+            "mean_score": 5.065714873744778,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1040.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.857208398844203,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.599178138800621,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 10.152331936513853,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 13.608718474158678,
+            "index": 20736,
+            "max_score": 10.152331936513853,
+            "mean_score": 4.713380458000249,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1296.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.744122900917868,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.883656733847923,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.021183175135337,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 12.346468729923268,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 11.995431539824397,
+            "index": 19200,
+            "max_score": 12.346468729923268,
+            "mean_score": 4.6158494452081245,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1200.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.383702303615652,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.8969116300356963,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 10.871369185846131,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 11.15198311949748,
+            "index": 10752,
+            "max_score": 10.871369185846131,
+            "mean_score": 4.093148294191537,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 672.0
+          }
+        ],
+        "coherent_top_phase_counts": {
+          "interictal": 12
+        },
+        "points": 221,
+        "top": [
+          {
+            "active_series": [
+              "FZ-CZ",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 26.475683577342394,
+            "index": 33280,
+            "max_score": 16.945790838663964,
+            "mean_score": 6.88938284192425,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 87.27782749215872,
+            "seconds": 2080.0
+          },
+          {
+            "active_series": [
+              "FZ-CZ",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 4.809005464158327,
+            "index": 33536,
+            "max_score": 7.3467505816402365,
+            "mean_score": 2.6718152136578133,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 83.35905020710118,
+            "seconds": 2096.0
+          },
+          {
+            "active_series": [],
+            "active_series_count": 0,
+            "emission": 0.0,
+            "index": 33792,
+            "max_score": 2.86658572777553,
+            "mean_score": 1.562572536484496,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 75.02314518639106,
+            "seconds": 2112.0
+          },
+          {
+            "active_series": [
+              "P8-O2"
+            ],
+            "active_series_count": 1,
+            "emission": 5.834885663291791,
+            "index": 34048,
+            "max_score": 8.834885663291791,
+            "mean_score": 2.7616593139680288,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 73.35571633104374,
+            "seconds": 2128.0
+          },
+          {
+            "active_series": [
+              "FZ-CZ",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 20.871182435614816,
+            "index": 33024,
+            "max_score": 13.70328784225386,
+            "mean_score": 5.702469479308945,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 67.55793768312925,
+            "seconds": 2064.0
+          },
+          {
+            "active_series": [
+              "P8-O2"
+            ],
+            "active_series_count": 1,
+            "emission": 0.6074555858015591,
+            "index": 34304,
+            "max_score": 3.607455585801559,
+            "mean_score": 1.6527279297715076,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 66.62760028374093,
+            "seconds": 2144.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 5,
+            "emission": 14.21967353265484,
+            "index": 16640,
+            "max_score": 6.731251333551408,
+            "mean_score": 5.065714873744778,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 62.17732276325605,
+            "seconds": 1040.0
+          },
+          {
+            "active_series": [],
+            "active_series_count": 0,
+            "emission": 0.0,
+            "index": 34560,
+            "max_score": 2.1491862741182373,
+            "mean_score": 1.4015584998965034,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 59.96484025536684,
+            "seconds": 2160.0
+          },
+          {
+            "active_series": [
+              "P8-O2"
+            ],
+            "active_series_count": 1,
+            "emission": 2.176352139716747,
+            "index": 16896,
+            "max_score": 5.176352139716747,
+            "mean_score": 2.15479328174414,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 58.13594262664719,
+            "seconds": 1056.0
+          },
+          {
+            "active_series": [
+              "P8-O2"
+            ],
+            "active_series_count": 1,
+            "emission": 3.1437317839967065,
+            "index": 17152,
+            "max_score": 6.1437317839967065,
+            "mean_score": 2.161723807712719,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 55.466080147979184,
+            "seconds": 1072.0
+          },
+          {
+            "active_series": [
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 6.060317099034782,
+            "index": 18432,
+            "max_score": 8.25129359152334,
+            "mean_score": 3.23014840572273,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 54.75132903224206,
+            "seconds": 1152.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 3,
+            "emission": 15.827365367034641,
+            "index": 18176,
+            "max_score": 14.555768795220379,
+            "mean_score": 4.8563531038176695,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "pheromone": 54.10112437023031,
+            "seconds": 1136.0
+          }
+        ],
+        "top_phase_counts": {
+          "interictal": 12
+        }
+      },
+      "target_sample_rate": 16.0
+    },
+    {
+      "channels": [
+        "FP1-F7",
+        "T7-P7",
+        "FZ-CZ",
+        "CZ-PZ",
+        "FP2-F8",
+        "P8-O2"
+      ],
+      "duration_seconds": 3600.0,
+      "file": "chb01_03.edf",
+      "observations": {
+        "points_per_series": 221,
+        "score": "max",
+        "series": 6
+      },
+      "path": "data/chbmit/chb01/chb01_03.edf",
+      "permutation_null": {
+        "anchors": 221,
+        "empirical_p_floor": 0.004975124378109453,
+        "empirical_p_ge_observed": 0.004975124378109453,
+        "min_active_channels": 2,
+        "null_exceedances": 0,
+        "null_mean": 458.05427979279705,
+        "null_repeats": 200,
+        "null_std": 13.664447048967919,
+        "observed_active_windows": 111,
+        "observed_minus_null": 52.5487377639796,
+        "observed_total": 510.60301755677665,
+        "threshold": 3.0,
+        "unique_null_totals": 200,
+        "z_effect": 3.84565416922221
+      },
+      "samples": 57600,
+      "seizures": [
+        {
+          "end": 3036.0,
+          "start": 2996.0
+        }
+      ],
+      "source_sample_rate": 256.0,
+      "stigmergy": {
+        "coherent_top": [
+          {
+            "active_series": [
+              {
+                "score": 3.3724537973829762,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.917318399106457,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.777750009404125,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 9.632159640772,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.347933520621287,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.049400332354349,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 20.097015699641194,
+            "index": 55040,
+            "max_score": 9.632159640772,
+            "mean_score": 6.349502616606866,
+            "nearest_seizure_distance_seconds": 404.0,
+            "phase": "postictal",
+            "seconds": 3440.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.016210400594971,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.535344178124711,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 9.108772840632929,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 15.66032741935261,
+            "index": 49664,
+            "max_score": 9.108772840632929,
+            "mean_score": 4.841326252169679,
+            "nearest_seizure_distance_seconds": 68.0,
+            "phase": "postictal",
+            "seconds": 3104.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.389669416705151,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.127961950677337,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 8.01342249057992,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.046944556859572,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.734304334580056,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 15.312302749402036,
+            "index": 18688,
+            "max_score": 8.01342249057992,
+            "mean_score": 5.367283681023413,
+            "nearest_seizure_distance_seconds": 1828.0,
+            "phase": "interictal",
+            "seconds": 1168.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.369321825604384,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.478684689119069,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.049734413677951,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 13.897740928401404,
+            "index": 48896,
+            "max_score": 8.478684689119069,
+            "mean_score": 5.140439585748825,
+            "nearest_seizure_distance_seconds": 20.0,
+            "phase": "postictal",
+            "seconds": 3056.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.3470868223115255,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.2591682794596695,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.9538032233087836,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 8.997795707441771,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 9.303092715852983,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 13.860946748374733,
+            "index": 24064,
+            "max_score": 9.303092715852983,
+            "mean_score": 5.259818297713519,
+            "nearest_seizure_distance_seconds": 1492.0,
+            "phase": "interictal",
+            "seconds": 1504.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.03793693285154,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.957951963785086,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 6.506302738923476,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 6.29226542386234,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 13.794457059422442,
+            "index": 22016,
+            "max_score": 7.957951963785086,
+            "mean_score": 5.007203709732156,
+            "nearest_seizure_distance_seconds": 1620.0,
+            "phase": "interictal",
+            "seconds": 1376.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.346599354603254,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.194568101083682,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.902781210160963,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 13.443948665847898,
+            "index": 49408,
+            "max_score": 8.902781210160963,
+            "mean_score": 4.807818338249096,
+            "nearest_seizure_distance_seconds": 52.0,
+            "phase": "postictal",
+            "seconds": 3088.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.576994971161344,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.05083874206482,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.395926075812762,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 10.27234128445401,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 11.296101073492935,
+            "index": 25856,
+            "max_score": 10.27234128445401,
+            "mean_score": 4.644290240320363,
+            "nearest_seizure_distance_seconds": 1380.0,
+            "phase": "interictal",
+            "seconds": 1616.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.308126612900676,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.6682836847531575,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.4467116319519393,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.47040936270003,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 9.063341576177955,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 10.956872868483757,
+            "index": 23296,
+            "max_score": 9.063341576177955,
+            "mean_score": 4.612218730880212,
+            "nearest_seizure_distance_seconds": 1540.0,
+            "phase": "interictal",
+            "seconds": 1456.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.9886077928762322,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.666302248438052,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.2043803949035565,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.741738885739049,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 7.4193983542425475,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 10.020427676199438,
+            "index": 23552,
+            "max_score": 7.4193983542425475,
+            "mean_score": 4.5913489504375065,
+            "nearest_seizure_distance_seconds": 1524.0,
+            "phase": "interictal",
+            "seconds": 1472.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.696237431590247,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1145349403554228,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.71220529050934,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.147623544224111,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.9616193411768212,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.073461151864604,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 9.705681699720547,
+            "index": 21760,
+            "max_score": 8.073461151864604,
+            "mean_score": 4.6176136166200905,
+            "nearest_seizure_distance_seconds": 1636.0,
+            "phase": "interictal",
+            "seconds": 1360.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.838511944203175,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.303774685550178,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.070416835289357,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 7.312301363994115,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 9.525004829036824,
+            "index": 24832,
+            "max_score": 7.312301363994115,
+            "mean_score": 4.329145749133718,
+            "nearest_seizure_distance_seconds": 1444.0,
+            "phase": "interictal",
+            "seconds": 1552.0
+          }
+        ],
+        "coherent_top_phase_counts": {
+          "interictal": 8,
+          "postictal": 4
+        },
+        "points": 221,
+        "top": [
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "FZ-CZ",
+              "CZ-PZ",
+              "P8-O2"
+            ],
+            "active_series_count": 5,
+            "emission": 13.860946748374733,
+            "index": 24064,
+            "max_score": 9.303092715852983,
+            "mean_score": 5.259818297713519,
+            "nearest_seizure_distance_seconds": 1492.0,
+            "phase": "interictal",
+            "pheromone": 74.95510542169528,
+            "seconds": 1504.0
+          },
+          {
+            "active_series": [
+              "CZ-PZ",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 5.520872268728682,
+            "index": 24320,
+            "max_score": 6.4076622150276545,
+            "mean_score": 3.480172832285389,
+            "nearest_seizure_distance_seconds": 1476.0,
+            "phase": "interictal",
+            "pheromone": 72.98046714825443,
+            "seconds": 1520.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "CZ-PZ",
+              "P8-O2"
+            ],
+            "active_series_count": 3,
+            "emission": 7.0646931554638,
+            "index": 25088,
+            "max_score": 8.093889113719143,
+            "mean_score": 3.7602724093585604,
+            "nearest_seizure_distance_seconds": 1428.0,
+            "phase": "interictal",
+            "pheromone": 69.62902682488289,
+            "seconds": 1568.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 9.525004829036824,
+            "index": 24832,
+            "max_score": 7.312301363994115,
+            "mean_score": 4.329145749133718,
+            "nearest_seizure_distance_seconds": 1444.0,
+            "phase": "interictal",
+            "pheromone": 69.51592629935453,
+            "seconds": 1552.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "CZ-PZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 5,
+            "emission": 10.020427676199438,
+            "index": 23552,
+            "max_score": 7.4193983542425475,
+            "mean_score": 4.5913489504375065,
+            "nearest_seizure_distance_seconds": 1524.0,
+            "phase": "interictal",
+            "pheromone": 68.66228835347218,
+            "seconds": 1472.0
+          },
+          {
+            "active_series": [
+              "T7-P7",
+              "CZ-PZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 6.086339007786742,
+            "index": 23808,
+            "max_score": 5.864681942491351,
+            "mean_score": 3.7994378637033583,
+            "nearest_seizure_distance_seconds": 1508.0,
+            "phase": "interictal",
+            "pheromone": 67.88239852591171,
+            "seconds": 1488.0
+          },
+          {
+            "active_series": [
+              "CZ-PZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 3,
+            "emission": 0.9741589780351196,
+            "index": 24576,
+            "max_score": 3.3723046553841756,
+            "mean_score": 2.9913457628757647,
+            "nearest_seizure_distance_seconds": 1460.0,
+            "phase": "interictal",
+            "pheromone": 66.65657941146411,
+            "seconds": 1536.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "CZ-PZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 5,
+            "emission": 10.956872868483757,
+            "index": 23296,
+            "max_score": 9.063341576177955,
+            "mean_score": 4.612218730880212,
+            "nearest_seizure_distance_seconds": 1540.0,
+            "phase": "interictal",
+            "pheromone": 65.15762297474748,
+            "seconds": 1456.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 11.296101073492935,
+            "index": 25856,
+            "max_score": 10.27234128445401,
+            "mean_score": 4.644290240320363,
+            "nearest_seizure_distance_seconds": 1380.0,
+            "phase": "interictal",
+            "pheromone": 64.1426587205332,
+            "seconds": 1616.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "CZ-PZ"
+            ],
+            "active_series_count": 2,
+            "emission": 1.3245882629646468,
+            "index": 25344,
+            "max_score": 4.070513485757249,
+            "mean_score": 2.611569473517514,
+            "nearest_seizure_distance_seconds": 1412.0,
+            "phase": "interictal",
+            "pheromone": 63.99071240535925,
+            "seconds": 1584.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "CZ-PZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 6.946712502207261,
+            "index": 22784,
+            "max_score": 5.70428304214639,
+            "mean_score": 4.000242779702114,
+            "nearest_seizure_distance_seconds": 1572.0,
+            "phase": "interictal",
+            "pheromone": 62.78202729138499,
+            "seconds": 1424.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "CZ-PZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 13.794457059422442,
+            "index": 22016,
+            "max_score": 7.957951963785086,
+            "mean_score": 5.007203709732156,
+            "nearest_seizure_distance_seconds": 1620.0,
+            "phase": "interictal",
+            "pheromone": 62.21868308987633,
+            "seconds": 1376.0
+          }
+        ],
+        "top_phase_counts": {
+          "interictal": 12
+        }
+      },
+      "target_sample_rate": 16.0
+    },
+    {
+      "channels": [
+        "FP1-F7",
+        "T7-P7",
+        "FZ-CZ",
+        "CZ-PZ",
+        "FP2-F8",
+        "P8-O2"
+      ],
+      "duration_seconds": 3600.0,
+      "file": "chb01_04.edf",
+      "observations": {
+        "points_per_series": 221,
+        "score": "max",
+        "series": 6
+      },
+      "path": "data/chbmit/chb01/chb01_04.edf",
+      "permutation_null": {
+        "anchors": 221,
+        "empirical_p_floor": 0.004975124378109453,
+        "empirical_p_ge_observed": 0.09950248756218906,
+        "min_active_channels": 2,
+        "null_exceedances": 19,
+        "null_mean": 626.1847331781767,
+        "null_repeats": 200,
+        "null_std": 18.394325999670283,
+        "observed_active_windows": 118,
+        "observed_minus_null": 23.42038229340733,
+        "observed_total": 649.605115471584,
+        "threshold": 3.0,
+        "unique_null_totals": 200,
+        "z_effect": 1.2732394921035508
+      },
+      "samples": 57600,
+      "seizures": [
+        {
+          "end": 1494.0,
+          "start": 1467.0
+        }
+      ],
+      "source_sample_rate": 256.0,
+      "stigmergy": {
+        "coherent_top": [
+          {
+            "active_series": [
+              {
+                "score": 6.641998199376298,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.89743377700877,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 9.442870632672333,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.96967328994089,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 21.951975898998292,
+            "index": 27392,
+            "max_score": 9.442870632672333,
+            "mean_score": 6.207174289237919,
+            "nearest_seizure_distance_seconds": 218.0,
+            "phase": "postictal",
+            "seconds": 1712.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 10.772583247976936,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 11.63444888440036,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.682046001463516,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 19.08907813384081,
+            "index": 4608,
+            "max_score": 11.63444888440036,
+            "mean_score": 5.767261120644609,
+            "nearest_seizure_distance_seconds": 1179.0,
+            "phase": "interictal",
+            "seconds": 288.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 14.810874337816111,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.04388297008197,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.088597486808898,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 7.39389078940193,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 18.33724558410891,
+            "index": 48640,
+            "max_score": 14.810874337816111,
+            "mean_score": 5.617312045300917,
+            "nearest_seizure_distance_seconds": 1546.0,
+            "phase": "interictal",
+            "seconds": 3040.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.464832080438702,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 6.639800529019348,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 7.911892981057703,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 6.180199265210013,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 18.196724855725765,
+            "index": 47360,
+            "max_score": 9.464832080438702,
+            "mean_score": 5.792816804443213,
+            "nearest_seizure_distance_seconds": 1466.0,
+            "phase": "interictal",
+            "seconds": 2960.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.196764943556945,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 9.399308592833602,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 10.117361392148927,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.407065287015012,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 16.120500215554486,
+            "index": 26624,
+            "max_score": 10.117361392148927,
+            "mean_score": 5.069477816401044,
+            "nearest_seizure_distance_seconds": 170.0,
+            "phase": "postictal",
+            "seconds": 1664.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.053038505188585,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.79695905183396,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.37264555308982,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 6.2377309642328695,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 15.460374074345236,
+            "index": 51456,
+            "max_score": 9.053038505188585,
+            "mean_score": 5.2162438158428115,
+            "nearest_seizure_distance_seconds": 1722.0,
+            "phase": "interictal",
+            "seconds": 3216.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.0352084176446783,
+                "series": "T7-P7"
+              },
+              {
+                "score": 8.02991142974872,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.7970750132949505,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 9.683740702979234,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.630959772250982,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 15.176895335918566,
+            "index": 47104,
+            "max_score": 9.683740702979234,
+            "mean_score": 5.463941577079946,
+            "nearest_seizure_distance_seconds": 1450.0,
+            "phase": "interictal",
+            "seconds": 2944.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.902078941537678,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.34488664018845,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 7.020162980480014,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.600831809760517,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 13.86796037196666,
+            "index": 56576,
+            "max_score": 9.902078941537678,
+            "mean_score": 4.907461415308261,
+            "nearest_seizure_distance_seconds": 2042.0,
+            "phase": "interictal",
+            "seconds": 3536.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.956042840669047,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.4926029335174285,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.75,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.571126657827894,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 13.76977243201437,
+            "index": 23808,
+            "max_score": 9.956042840669047,
+            "mean_score": 4.942407102936898,
+            "nearest_seizure_distance_seconds": 0.0,
+            "phase": "ictal",
+            "seconds": 1488.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.3724537973829762,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.38646649253029,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.815486736080402,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 9.442870632672333,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 13.017277658666002,
+            "index": 47616,
+            "max_score": 9.442870632672333,
+            "mean_score": 4.585810216806102,
+            "nearest_seizure_distance_seconds": 1482.0,
+            "phase": "interictal",
+            "seconds": 2976.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.246222405015155,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 10.318484992015296,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.886838360034642,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.544032773039247,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 12.995578530104341,
+            "index": 24064,
+            "max_score": 10.318484992015296,
+            "mean_score": 4.733549010725299,
+            "nearest_seizure_distance_seconds": 10.0,
+            "phase": "postictal",
+            "seconds": 1504.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.135610756239064,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 9.552653323605385,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.010782308830911,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 12.69904638867536,
+            "index": 26880,
+            "max_score": 9.552653323605385,
+            "mean_score": 4.569940314676061,
+            "nearest_seizure_distance_seconds": 186.0,
+            "phase": "postictal",
+            "seconds": 1680.0
+          }
+        ],
+        "coherent_top_phase_counts": {
+          "ictal": 1,
+          "interictal": 7,
+          "postictal": 4
+        },
+        "points": 221,
+        "top": [
+          {
+            "active_series": [
+              "FP1-F7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 21.951975898998292,
+            "index": 27392,
+            "max_score": 9.442870632672333,
+            "mean_score": 6.207174289237919,
+            "nearest_seizure_distance_seconds": 218.0,
+            "phase": "postictal",
+            "pheromone": 83.92034199416597,
+            "seconds": 1712.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 9.857713039595163,
+            "index": 49920,
+            "max_score": 6.251328059990841,
+            "mean_score": 4.260006857788433,
+            "nearest_seizure_distance_seconds": 1626.0,
+            "phase": "interictal",
+            "pheromone": 82.803294682468,
+            "seconds": 3120.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "T7-P7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 5,
+            "emission": 10.812815036662906,
+            "index": 51712,
+            "max_score": 8.128557283590782,
+            "mean_score": 4.526966092602683,
+            "nearest_seizure_distance_seconds": 1738.0,
+            "phase": "interictal",
+            "pheromone": 81.99411424898362,
+            "seconds": 3232.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 6.990522134244554,
+            "index": 50176,
+            "max_score": 6.07364213021171,
+            "mean_score": 3.7118736416091918,
+            "nearest_seizure_distance_seconds": 1642.0,
+            "phase": "interictal",
+            "pheromone": 81.51348734846576,
+            "seconds": 3136.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FZ-CZ",
+              "P8-O2"
+            ],
+            "active_series_count": 3,
+            "emission": 9.132939158346003,
+            "index": 49664,
+            "max_score": 7.7724052359320535,
+            "mean_score": 3.9999187110576067,
+            "nearest_seizure_distance_seconds": 1610.0,
+            "phase": "interictal",
+            "pheromone": 81.0506462698587,
+            "seconds": 3104.0
+          },
+          {
+            "active_series": [
+              "T7-P7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 10.641695188150853,
+            "index": 49408,
+            "max_score": 9.442870632672333,
+            "mean_score": 4.387456773044004,
+            "nearest_seizure_distance_seconds": 1594.0,
+            "phase": "interictal",
+            "pheromone": 79.90856345723633,
+            "seconds": 3088.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FZ-CZ",
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 4,
+            "emission": 15.460374074345236,
+            "index": 51456,
+            "max_score": 9.053038505188585,
+            "mean_score": 5.2162438158428115,
+            "nearest_seizure_distance_seconds": 1722.0,
+            "phase": "interictal",
+            "pheromone": 79.09033245813411,
+            "seconds": 3216.0
+          },
+          {
+            "active_series": [
+              "T7-P7",
+              "FZ-CZ",
+              "CZ-PZ",
+              "FP2-F8"
+            ],
+            "active_series_count": 4,
+            "emission": 3.981926622117244,
+            "index": 51968,
+            "max_score": 5.561371085473578,
+            "mean_score": 3.494050595214232,
+            "nearest_seizure_distance_seconds": 1754.0,
+            "phase": "interictal",
+            "pheromone": 77.7766294462025,
+            "seconds": 3248.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "CZ-PZ",
+              "FP2-F8"
+            ],
+            "active_series_count": 3,
+            "emission": 1.7176937618056791,
+            "index": 27648,
+            "max_score": 3.8692696428048348,
+            "mean_score": 2.6510876470905775,
+            "nearest_seizure_distance_seconds": 234.0,
+            "phase": "postictal",
+            "pheromone": 77.24600155655504,
+            "seconds": 1728.0
+          },
+          {
+            "active_series": [
+              "FZ-CZ",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 7.710296636599571,
+            "index": 49152,
+            "max_score": 8.327877949779701,
+            "mean_score": 3.7002016490918095,
+            "nearest_seizure_distance_seconds": 1578.0,
+            "phase": "interictal",
+            "pheromone": 76.96318696565052,
+            "seconds": 3072.0
+          },
+          {
+            "active_series": [
+              "FP1-F7",
+              "FZ-CZ",
+              "P8-O2"
+            ],
+            "active_series_count": 3,
+            "emission": 10.448914749070006,
+            "index": 48896,
+            "max_score": 10.66710160686378,
+            "mean_score": 4.474059491500324,
+            "nearest_seizure_distance_seconds": 1562.0,
+            "phase": "interictal",
+            "pheromone": 76.94765592116772,
+            "seconds": 3056.0
+          },
+          {
+            "active_series": [
+              "FP2-F8",
+              "P8-O2"
+            ],
+            "active_series_count": 2,
+            "emission": 3.246398115335728,
+            "index": 50432,
+            "max_score": 6.139810378424446,
+            "mean_score": 2.743646886487737,
+            "nearest_seizure_distance_seconds": 1658.0,
+            "phase": "interictal",
+            "pheromone": 76.6085367289549,
+            "seconds": 3152.0
+          }
+        ],
+        "top_phase_counts": {
+          "interictal": 10,
+          "postictal": 2
+        }
+      },
+      "target_sample_rate": 16.0
+    }
+  ],
+  "parameters": {
+    "adaptive_window": 512,
+    "baseline": 1024,
+    "channels": [
+      "FP1-F7",
+      "T7-P7",
+      "FZ-CZ",
+      "CZ-PZ",
+      "FP2-F8",
+      "P8-O2"
+    ],
+    "decay": 0.9,
+    "emission_threshold": 3.0,
+    "min_active_channels": 2,
+    "null_repeats": 200,
+    "postictal_minutes": 10.0,
+    "preictal_minutes": 10.0,
+    "score": "max",
+    "seed": 20260603,
+    "stride": 256,
+    "target_sample_rate": 16.0,
+    "top": 12
+  }
+}
