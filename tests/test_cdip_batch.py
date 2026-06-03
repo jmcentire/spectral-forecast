@@ -126,6 +126,7 @@ def test_checkpoint_round_trip_validates_signature(tmp_path):
         group_strategy="balanced",
         max_groups=32,
         max_windows_per_group=8,
+        window_offset_per_group=0,
         max_total_windows=0,
         baseline=1024,
         adaptive_window=512,
@@ -176,6 +177,7 @@ def test_discover_windows_finds_overlapping_record_groups():
         window_step=128,
         max_groups=2,
         max_windows_per_group=2,
+        window_offset_per_group=0,
     )
 
     assert len(windows) == 2
@@ -194,11 +196,32 @@ def test_discover_windows_balanced_spreads_platform_usage():
         window_step=128,
         max_groups=2,
         max_windows_per_group=1,
+        window_offset_per_group=0,
         group_strategy="balanced",
     )
 
     assert len(windows) == 2
     assert set(windows[0].platforms).isdisjoint(windows[1].platforms)
+
+
+def test_discover_windows_applies_per_group_offset():
+    records = [_record(platform, 0.0, 2000) for platform in ["a", "b", "c"]]
+
+    windows = _discover_windows(
+        records,
+        group_size=3,
+        min_clean_samples=128,
+        window_samples=256,
+        window_step=128,
+        max_groups=1,
+        max_windows_per_group=2,
+        window_offset_per_group=3,
+        group_strategy="balanced",
+    )
+
+    assert len(windows) == 2
+    assert [window.window_index for window in windows] == [3, 4]
+    assert [window.start_time for window in windows] == [384.0, 512.0]
 
 
 def test_window_manifest_round_trip_validates_signature(tmp_path):
@@ -210,6 +233,7 @@ def test_window_manifest_round_trip_validates_signature(tmp_path):
         group_strategy="balanced",
         max_groups=1,
         max_windows_per_group=2,
+        window_offset_per_group=0,
         max_total_windows=0,
         window_samples=256,
         window_step=128,
@@ -223,6 +247,7 @@ def test_window_manifest_round_trip_validates_signature(tmp_path):
         window_step=128,
         max_groups=1,
         max_windows_per_group=2,
+        window_offset_per_group=0,
         group_strategy="balanced",
     )
     path = tmp_path / "windows.json"
@@ -236,6 +261,18 @@ def test_window_manifest_round_trip_validates_signature(tmp_path):
 
     assert [window.platforms for window in loaded] == [window.platforms for window in windows]
     assert [window.start_time for window in loaded] == [window.start_time for window in windows]
+
+    legacy_signature = dict(signature)
+    legacy_signature.pop("window_offset_per_group")
+    legacy_path = tmp_path / "legacy-windows.json"
+    _write_window_manifest(legacy_path, signature=legacy_signature, windows=windows)
+    legacy_loaded = _load_window_manifest(
+        legacy_path,
+        signature=signature,
+        records_by_path={str(record.path): record for record in records},
+    )
+    assert [window.start_time for window in legacy_loaded] == [window.start_time for window in windows]
+
     mismatched = dict(signature)
     mismatched["max_groups"] = 2
     with pytest.raises(ValueError, match="signature"):
@@ -256,6 +293,7 @@ def test_merge_reports_reconstructs_totals_and_combinations(tmp_path):
         "group_strategy": "balanced",
         "max_groups": 2,
         "max_windows_per_group": 1,
+        "window_offset_per_group": 0,
         "max_total_windows": 0,
         "baseline": 8,
         "adaptive_window": 4,

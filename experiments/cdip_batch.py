@@ -136,9 +136,12 @@ def _discover_windows(
     window_step: int,
     max_groups: int,
     max_windows_per_group: int,
+    window_offset_per_group: int = 0,
     group_strategy: str = "first",
 ) -> list[BatchWindow]:
     windows: list[BatchWindow] = []
+    if window_offset_per_group < 0:
+        raise ValueError("window_offset_per_group must be >= 0")
     group_index = 0
     required_samples = max(min_clean_samples, window_samples)
     usage: Counter[str] = Counter()
@@ -175,8 +178,12 @@ def _discover_windows(
         if available < required_samples:
             continue
 
-        group_windows = 0
-        for offset in range(0, available - window_samples + 1, window_step):
+        selected_windows = 0
+        for candidate_index, offset in enumerate(
+            range(0, available - window_samples + 1, window_step)
+        ):
+            if candidate_index < window_offset_per_group:
+                continue
             windows.append(
                 BatchWindow(
                     records=tuple(combo),
@@ -184,14 +191,14 @@ def _discover_windows(
                     n_samples=window_samples,
                     target_rate=target_rate,
                     group_index=group_index,
-                    window_index=group_windows,
+                    window_index=candidate_index,
                 )
             )
-            group_windows += 1
-            if group_windows >= max_windows_per_group:
+            selected_windows += 1
+            if selected_windows >= max_windows_per_group:
                 break
 
-        if group_windows:
+        if selected_windows:
             if group_strategy == "balanced":
                 usage.update(record.platform_id for record in combo)
             group_index += 1
@@ -222,6 +229,7 @@ def _window_manifest_signature(
         "group_strategy": args.group_strategy,
         "max_groups": args.max_groups,
         "max_windows_per_group": args.max_windows_per_group,
+        "window_offset_per_group": getattr(args, "window_offset_per_group", 0),
         "max_total_windows": args.max_total_windows,
         "window_samples": args.window_samples,
         "window_step": args.window_step,
@@ -279,6 +287,12 @@ def _write_window_manifest(
     _write_checkpoint(path, payload)
 
 
+def _normalized_window_manifest_signature(signature: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(signature)
+    normalized.setdefault("window_offset_per_group", 0)
+    return normalized
+
+
 def _load_window_manifest(
     path: Path,
     *,
@@ -288,7 +302,9 @@ def _load_window_manifest(
     payload = json.loads(path.read_text())
     if payload.get("version") != 1:
         raise ValueError("Unsupported window manifest version")
-    if payload.get("signature") != signature:
+    if _normalized_window_manifest_signature(
+        payload.get("signature", {})
+    ) != _normalized_window_manifest_signature(signature):
         raise ValueError("Window manifest signature does not match current run arguments")
     return [
         _window_from_manifest_row(row, records_by_path)
@@ -563,6 +579,7 @@ def _checkpoint_signature(args: argparse.Namespace, channels: Sequence[str]) -> 
         "group_strategy": args.group_strategy,
         "max_groups": args.max_groups,
         "max_windows_per_group": args.max_windows_per_group,
+        "window_offset_per_group": getattr(args, "window_offset_per_group", 0),
         "max_total_windows": args.max_total_windows,
         "baseline": args.baseline,
         "adaptive_window": args.adaptive_window,
@@ -741,6 +758,7 @@ def _batch_parameters(
         "group_strategy": args.group_strategy,
         "max_groups": args.max_groups,
         "max_windows_per_group": args.max_windows_per_group,
+        "window_offset_per_group": args.window_offset_per_group,
         "max_total_windows": args.max_total_windows,
         "baseline": args.baseline,
         "adaptive_window": args.adaptive_window,
@@ -789,6 +807,7 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             window_step=args.window_step,
             max_groups=args.max_groups,
             max_windows_per_group=args.max_windows_per_group,
+            window_offset_per_group=args.window_offset_per_group,
             group_strategy=args.group_strategy,
         )
         if args.max_total_windows > 0:
@@ -1268,6 +1287,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--max-groups", type=int, default=8, help="Maximum aligned groups to run")
     parser.add_argument("--max-windows-per-group", type=int, default=3, help="Maximum windows per group")
+    parser.add_argument(
+        "--window-offset-per-group",
+        type=int,
+        default=0,
+        help="Skip this many aligned windows within each group before selecting max-windows-per-group",
+    )
     parser.add_argument("--max-total-windows", type=int, default=0, help="Hard cap on total windows; 0 means no cap")
     parser.add_argument("--baseline", type=int, default=1024, help="Frozen baseline samples")
     parser.add_argument("--adaptive-window", type=int, default=512, help="Adaptive window samples")
@@ -1384,6 +1409,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         parser.error("--mask-dominant-bins must be >= 0")
     if args.mask_bin_radius < 0:
         parser.error("--mask-bin-radius must be >= 0")
+    if args.window_offset_per_group < 0:
+        parser.error("--window-offset-per-group must be >= 0")
     if args.read_window_manifest is not None and args.write_window_manifest is not None:
         parser.error("--read-window-manifest and --write-window-manifest are mutually exclusive")
     if args.merge_reports is None and not args.files:
