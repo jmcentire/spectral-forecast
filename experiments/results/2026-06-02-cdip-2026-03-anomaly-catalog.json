@@ -1,0 +1,3426 @@
+{
+  "interpretation_constraints": {
+    "catalog_role": "post-hoc only; these descriptors are not detector inputs",
+    "known_controls": [
+      "30-minute high-pass made tide/slow forcing unlikely for aggregate signal",
+      "dominant local FFT-bin masking reduced but did not erase aggregate signal",
+      "spatial/directional surrogate controls did not support a strong propagation/geography claim"
+    ]
+  },
+  "recurring_combinations": [
+    {
+      "active_platforms": "162p1,202p1",
+      "emission_sum": 150.19260643870092,
+      "example_starts": [
+        "2026-03-18T09:04:29.840161+00:00",
+        "2026-03-18T05:57:49.839911+00:00",
+        "2026-03-18T08:11:09.840090+00:00",
+        "2026-03-18T06:24:29.839947+00:00",
+        "2026-03-18T06:51:09.839982+00:00"
+      ],
+      "max_score": 32.57355444889781,
+      "top_window_count": 5
+    },
+    {
+      "active_platforms": "179p1,188p1",
+      "emission_sum": 50.497170156764604,
+      "example_starts": [
+        "2026-03-23T20:06:39.764778+00:00",
+        "2026-03-02T12:39:59.723624+00:00",
+        "2026-03-23T18:19:59.764635+00:00",
+        "2026-03-02T11:19:59.723517+00:00",
+        "2026-03-02T12:13:19.723588+00:00"
+      ],
+      "max_score": 11.104415897555095,
+      "top_window_count": 5
+    },
+    {
+      "active_platforms": "147p1",
+      "emission_sum": 3.4816751109782444,
+      "example_starts": [
+        "2026-03-03T06:13:19.924747+00:00",
+        "2026-03-02T12:39:59.723624+00:00",
+        "2026-03-02T04:09:59.663951+00:00",
+        "2026-03-02T02:23:19.663808+00:00",
+        "2026-03-02T01:29:59.663736+00:00"
+      ],
+      "max_score": 4.108806886368834,
+      "top_window_count": 5
+    },
+    {
+      "active_platforms": "181p1,202p1",
+      "emission_sum": 46.52033832903744,
+      "example_starts": [
+        "2026-03-18T09:04:29.840161+00:00",
+        "2026-03-18T05:57:49.839911+00:00",
+        "2026-03-18T08:11:09.840090+00:00",
+        "2026-03-18T06:51:09.839982+00:00"
+      ],
+      "max_score": 20.75697217851854,
+      "top_window_count": 4
+    },
+    {
+      "active_platforms": "179p1",
+      "emission_sum": 6.274875818167288,
+      "example_starts": [
+        "2026-03-23T20:06:39.764778+00:00",
+        "2026-03-02T12:39:59.723624+00:00",
+        "2026-03-23T18:19:59.764635+00:00",
+        "2026-03-02T11:19:59.723517+00:00"
+      ],
+      "max_score": 5.370532384482646,
+      "top_window_count": 4
+    },
+    {
+      "active_platforms": "094p1",
+      "emission_sum": 4.397081629493645,
+      "example_starts": [
+        "2026-03-13T08:23:19.913657+00:00",
+        "2026-03-13T07:27:49.898329+00:00",
+        "2026-03-13T07:54:29.898365+00:00",
+        "2026-03-13T07:54:29.898365+00:00"
+      ],
+      "max_score": 4.8652424243501,
+      "top_window_count": 4
+    },
+    {
+      "active_platforms": "188p1",
+      "emission_sum": 15.38711200146305,
+      "example_starts": [
+        "2026-03-07T21:23:19.557271+00:00",
+        "2026-03-02T12:13:19.723588+00:00",
+        "2026-03-07T23:09:59.557414+00:00",
+        "2026-03-02T10:26:39.723445+00:00"
+      ],
+      "max_score": 10.396183290502723,
+      "top_window_count": 4
+    },
+    {
+      "active_platforms": "162p1",
+      "emission_sum": 8.212762296900387,
+      "example_starts": [
+        "2026-03-18T06:24:29.839947+00:00",
+        "2026-03-16T08:57:49.928786+00:00",
+        "2026-03-31T21:21:10.029321+00:00"
+      ],
+      "max_score": 7.093759891330147,
+      "top_window_count": 3
+    },
+    {
+      "active_platforms": "147p1,188p1",
+      "emission_sum": 26.79341792581575,
+      "example_starts": [
+        "2026-03-02T12:39:59.723624+00:00",
+        "2026-03-02T12:13:19.723588+00:00",
+        "2026-03-02T10:26:39.723445+00:00"
+      ],
+      "max_score": 16.23175783941692,
+      "top_window_count": 3
+    },
+    {
+      "active_platforms": "249p1",
+      "emission_sum": 5.011772473978569,
+      "example_starts": [
+        "2026-03-31T15:17:50.028834+00:00",
+        "2026-03-31T05:51:10.028074+00:00",
+        "2026-03-31T06:44:30.028145+00:00"
+      ],
+      "max_score": 5.311392220414296,
+      "top_window_count": 3
+    },
+    {
+      "active_platforms": "092p1",
+      "emission_sum": 5.823371232401421,
+      "example_starts": [
+        "2026-03-28T08:46:39.684366+00:00",
+        "2026-03-03T19:06:39.641818+00:00",
+        "2026-03-07T23:09:59.557414+00:00"
+      ],
+      "max_score": 5.7486857553182755,
+      "top_window_count": 3
+    },
+    {
+      "active_platforms": "263p1,280p1",
+      "emission_sum": 20.855663323063606,
+      "example_starts": [
+        "2026-03-03T06:39:59.924782+00:00",
+        "2026-03-03T06:13:19.924747+00:00"
+      ],
+      "max_score": 12.813932801061377,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "202p1",
+      "emission_sum": 16.81106631969901,
+      "example_starts": [
+        "2026-03-18T05:57:49.839911+00:00",
+        "2026-03-17T20:36:40.062617+00:00"
+      ],
+      "max_score": 9.926415006796532,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "160p1,271p1",
+      "emission_sum": 31.02541983244472,
+      "example_starts": [
+        "2026-03-16T13:41:09.904624+00:00",
+        "2026-03-16T13:27:49.904606+00:00"
+      ],
+      "max_score": 14.924715617842283,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "271p1",
+      "emission_sum": 14.01186775968222,
+      "example_starts": [
+        "2026-03-16T13:41:09.904624+00:00",
+        "2026-03-13T08:47:49.898437+00:00"
+      ],
+      "max_score": 14.802250107863106,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "098p1",
+      "emission_sum": 4.272093099266492,
+      "example_starts": [
+        "2026-03-23T17:43:19.710988+00:00",
+        "2026-03-31T07:11:10.028181+00:00"
+      ],
+      "max_score": 6.022173353327822,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "076p1,188p1",
+      "emission_sum": 12.892844496649257,
+      "example_starts": [
+        "2026-03-23T20:06:39.764778+00:00",
+        "2026-03-23T18:19:59.764635+00:00"
+      ],
+      "max_score": 7.403992037057849,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "160p1,252p1",
+      "emission_sum": 23.873768923108884,
+      "example_starts": [
+        "2026-03-16T13:27:49.904606+00:00",
+        "2026-03-16T12:57:49.929108+00:00"
+      ],
+      "max_score": 17.500790387643864,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "160p1",
+      "emission_sum": 16.16120882363134,
+      "example_starts": [
+        "2026-03-16T13:27:49.904606+00:00",
+        "2026-03-24T09:54:29.944311+00:00"
+      ],
+      "max_score": 11.45677741179107,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "094p1,271p1",
+      "emission_sum": 13.118073493257356,
+      "example_starts": [
+        "2026-03-13T08:23:19.913657+00:00",
+        "2026-03-13T07:54:29.898365+00:00"
+      ],
+      "max_score": 8.385780919390832,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "036p1,147p1",
+      "emission_sum": 13.549108375415859,
+      "example_starts": [
+        "2026-03-02T04:09:59.663951+00:00",
+        "2026-03-02T02:23:19.663808+00:00"
+      ],
+      "max_score": 7.9023210952516925,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "168p1",
+      "emission_sum": 3.769960369687356,
+      "example_starts": [
+        "2026-03-13T07:54:29.898365+00:00",
+        "2026-03-18T09:10:00.077387+00:00"
+      ],
+      "max_score": 5.016173382581056,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "094p1,194p1,271p1",
+      "emission_sum": 19.905797493338945,
+      "example_starts": [
+        "2026-03-13T07:27:49.898329+00:00",
+        "2026-03-13T07:54:29.898365+00:00"
+      ],
+      "max_score": 11.093670458477133,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "194p1",
+      "emission_sum": 4.557345991215867,
+      "example_starts": [
+        "2026-03-31T15:17:50.028834+00:00",
+        "2026-03-13T07:54:29.898365+00:00"
+      ],
+      "max_score": 5.823499690889628,
+      "top_window_count": 2
+    },
+    {
+      "active_platforms": "201p1,217p1",
+      "emission_sum": 16.532435617176382,
+      "example_starts": [
+        "2026-03-15T16:41:27.941147+00:00",
+        "2026-03-15T16:14:47.941111+00:00"
+      ],
+      "max_score": 12.159083088829828,
+      "top_window_count": 2
+    }
+  ],
+  "region_summary": [
+    {
+      "observed_minus_null_sum": 66.83311964812341,
+      "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+      "top_window_count": 5
+    },
+    {
+      "observed_minus_null_sum": 16.38653599096066,
+      "region_label": "mixed:hawaii+pacific_northwest+southeast_atlantic",
+      "top_window_count": 4
+    },
+    {
+      "observed_minus_null_sum": 16.308377100610706,
+      "region_label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+      "top_window_count": 4
+    },
+    {
+      "observed_minus_null_sum": 18.38797638406289,
+      "region_label": "mixed:florida_gulf_atlantic+pacific_northwest+southern_california",
+      "top_window_count": 4
+    },
+    {
+      "observed_minus_null_sum": 16.873819719357115,
+      "region_label": "mixed:florida_gulf_atlantic+hawaii+southern_california",
+      "top_window_count": 3
+    },
+    {
+      "observed_minus_null_sum": 18.038969850280832,
+      "region_label": "mixed:northeast_atlantic+pacific_northwest+southeast_atlantic",
+      "top_window_count": 2
+    },
+    {
+      "observed_minus_null_sum": 19.05356002843929,
+      "region_label": "mixed:gulf+northeast_atlantic+southern_california",
+      "top_window_count": 2
+    },
+    {
+      "observed_minus_null_sum": 15.466349870013882,
+      "region_label": "mixed:central_california+hawaii+pacific_northwest",
+      "top_window_count": 2
+    },
+    {
+      "observed_minus_null_sum": 10.69734728843833,
+      "region_label": "mixed:pacific_northwest+southern_california",
+      "top_window_count": 2
+    },
+    {
+      "observed_minus_null_sum": 9.632648335271005,
+      "region_label": "mixed:gulf+northeast_atlantic+pacific_northwest",
+      "top_window_count": 2
+    },
+    {
+      "observed_minus_null_sum": 9.023445243810622,
+      "region_label": "mixed:southeast_atlantic+southern_california",
+      "top_window_count": 2
+    },
+    {
+      "observed_minus_null_sum": 6.283737488576616,
+      "region_label": "mixed:caribbean+florida_gulf_atlantic+southern_california",
+      "top_window_count": 2
+    },
+    {
+      "observed_minus_null_sum": 7.529237604419201,
+      "region_label": "mixed:hawaii+south_pacific+southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 6.050091081007352,
+      "region_label": "mixed:caribbean+gulf+northeast_atlantic",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 4.805235966511799,
+      "region_label": "mixed:caribbean+hawaii+southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 4.798828357562618,
+      "region_label": "mixed:caribbean+florida_gulf_atlantic+south_pacific",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 4.582289074238412,
+      "region_label": "mixed:northeast_atlantic+pacific_northwest+southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 4.350395884792693,
+      "region_label": "mixed:central_california+florida_gulf_atlantic+northeast_atlantic",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 4.226448270431671,
+      "region_label": "mixed:caribbean+pacific_northwest+southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 4.1642217725443365,
+      "region_label": "mixed:central_california+florida_gulf_atlantic+southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.9791892488187557,
+      "region_label": "southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.7404625542237575,
+      "region_label": "mixed:hawaii+pacific_northwest",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.7326505604514515,
+      "region_label": "mixed:florida_gulf_atlantic+gulf+northeast_atlantic",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.695835743923201,
+      "region_label": "mixed:florida_gulf_atlantic+northeast_atlantic+southeast_atlantic",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.6794710885892155,
+      "region_label": "mixed:gulf+hawaii+southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.5542209667982942,
+      "region_label": "mixed:florida_gulf_atlantic+northeast_atlantic",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.1382140875236044,
+      "region_label": "mixed:northeast_atlantic+southern_california",
+      "top_window_count": 1
+    },
+    {
+      "observed_minus_null_sum": 3.056413774699445,
+      "region_label": "mixed:caribbean+pacific_northwest+south_pacific",
+      "top_window_count": 1
+    }
+  ],
+  "source": {
+    "parameters": {
+      "adaptive_window": 512,
+      "baseline": 1024,
+      "channels": [
+        "z"
+      ],
+      "decay": 0.9,
+      "emission_threshold": 3.0,
+      "files": [
+        "data/cdip/028p1_xy.nc",
+        "data/cdip/029p1_xy.nc",
+        "data/cdip/036p1_xy.nc",
+        "data/cdip/045p1_xy.nc",
+        "data/cdip/071p1_xy.nc",
+        "data/cdip/076p1_xy.nc",
+        "data/cdip/092p1_xy.nc",
+        "data/cdip/094p1_xy.nc",
+        "data/cdip/098p1_xy.nc",
+        "data/cdip/100p1_xy.nc",
+        "data/cdip/106p1_xy.nc",
+        "data/cdip/132p1_xy.nc",
+        "data/cdip/142p1_xy.nc",
+        "data/cdip/143p1_xy.nc",
+        "data/cdip/144p1_xy.nc",
+        "data/cdip/147p1_xy.nc",
+        "data/cdip/150p1_xy.nc",
+        "data/cdip/153p1_xy.nc",
+        "data/cdip/154p1_xy.nc",
+        "data/cdip/156p1_xy.nc",
+        "data/cdip/157p1_xy.nc",
+        "data/cdip/160p1_xy.nc",
+        "data/cdip/162p1_xy.nc",
+        "data/cdip/166p1_xy.nc",
+        "data/cdip/168p1_xy.nc",
+        "data/cdip/179p1_xy.nc",
+        "data/cdip/181p1_xy.nc",
+        "data/cdip/187p1_xy.nc",
+        "data/cdip/188p1_xy.nc",
+        "data/cdip/189p1_xy.nc",
+        "data/cdip/191p1_xy.nc",
+        "data/cdip/192p1_xy.nc",
+        "data/cdip/194p1_xy.nc",
+        "data/cdip/196p1_xy.nc",
+        "data/cdip/197p1_xy.nc",
+        "data/cdip/200p1_xy.nc",
+        "data/cdip/201p1_xy.nc",
+        "data/cdip/202p1_xy.nc",
+        "data/cdip/203p1_xy.nc",
+        "data/cdip/204p1_xy.nc",
+        "data/cdip/209p1_xy.nc",
+        "data/cdip/213p1_xy.nc",
+        "data/cdip/214p1_xy.nc",
+        "data/cdip/215p1_xy.nc",
+        "data/cdip/217p1_xy.nc",
+        "data/cdip/220p1_xy.nc",
+        "data/cdip/222p1_xy.nc",
+        "data/cdip/225p1_xy.nc",
+        "data/cdip/226p1_xy.nc",
+        "data/cdip/240p1_xy.nc",
+        "data/cdip/243p1_xy.nc",
+        "data/cdip/244p1_xy.nc",
+        "data/cdip/248p1_xy.nc",
+        "data/cdip/249p1_xy.nc",
+        "data/cdip/250p1_xy.nc",
+        "data/cdip/252p1_xy.nc",
+        "data/cdip/256p1_xy.nc",
+        "data/cdip/262p1_xy.nc",
+        "data/cdip/263p1_xy.nc",
+        "data/cdip/264p1_xy.nc",
+        "data/cdip/265p1_xy.nc",
+        "data/cdip/268p1_xy.nc",
+        "data/cdip/269p1_xy.nc",
+        "data/cdip/270p1_xy.nc",
+        "data/cdip/271p1_xy.nc",
+        "data/cdip/274p1_xy.nc",
+        "data/cdip/279p1_xy.nc",
+        "data/cdip/280p1_xy.nc",
+        "data/cdip/284p1_xy.nc",
+        "data/cdip/430p1_xy.nc"
+      ],
+      "group_size": 3,
+      "group_strategy": "balanced",
+      "highpass_period_minutes": 30.0,
+      "keep_flags": [
+        2
+      ],
+      "mask_bin_radius": 1,
+      "mask_dominant_bins": 3,
+      "max_groups": 1024,
+      "max_total_windows": 0,
+      "max_windows_per_group": 8,
+      "merged_reports": 4,
+      "min_clean_samples": 2048,
+      "null_mode": "permute",
+      "null_repeats": 1000,
+      "phase_surrogate_seed": 20260602,
+      "posthoc_window": 512,
+      "preprocess": "highpass-dominant-mask",
+      "preset": "scale",
+      "score": "max",
+      "shard_count": 4,
+      "shard_index": "merged",
+      "stride": 512,
+      "window_offset_per_group": 0,
+      "window_samples": 4096,
+      "window_step": 2048
+    },
+    "summary": {
+      "null_total_unique_exceedances": 0,
+      "null_total_unique_p_ge_observed": 0.000999000999000999,
+      "null_total_unique_repeats": 1000,
+      "observed_minus_null_total": 204.37965156232667,
+      "observed_total_z": 3.4972117596293626,
+      "windows_run": 245
+    }
+  },
+  "time_clusters": [
+    {
+      "end": "2026-03-18T10:03:19.296208+00:00",
+      "max_observed_minus_null": 33.71781811719265,
+      "platforms": [
+        "132p1",
+        "162p1",
+        "168p1",
+        "181p1",
+        "188p1",
+        "202p1",
+        "215p1"
+      ],
+      "regions": [
+        "caribbean",
+        "florida_gulf_atlantic",
+        "hawaii",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-18T05:57:49.839911+00:00",
+      "window_indices": [
+        232,
+        233,
+        234,
+        237,
+        239,
+        220,
+        60
+      ],
+      "windows": 7
+    },
+    {
+      "end": "2026-03-16T17:24:29.609411+00:00",
+      "max_observed_minus_null": 10.078253613915997,
+      "platforms": [
+        "098p1",
+        "160p1",
+        "162p1",
+        "209p1",
+        "226p1",
+        "249p1",
+        "252p1",
+        "271p1"
+      ],
+      "regions": [
+        "caribbean",
+        "florida_gulf_atlantic",
+        "gulf",
+        "hawaii",
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-16T08:57:49.928786+00:00",
+      "window_indices": [
+        202,
+        205,
+        166,
+        192,
+        193,
+        244,
+        62
+      ],
+      "windows": 7
+    },
+    {
+      "end": "2026-03-13T09:41:09.117258+00:00",
+      "max_observed_minus_null": 6.465037388588193,
+      "platforms": [
+        "094p1",
+        "154p1",
+        "168p1",
+        "194p1",
+        "215p1",
+        "217p1",
+        "222p1",
+        "262p1",
+        "271p1",
+        "284p1"
+      ],
+      "regions": [
+        "florida_gulf_atlantic",
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-13T07:27:49.898329+00:00",
+      "window_indices": [
+        133,
+        0,
+        130,
+        134,
+        39,
+        242,
+        104
+      ],
+      "windows": 7
+    },
+    {
+      "end": "2026-03-02T13:33:18.942446+00:00",
+      "max_observed_minus_null": 6.504509338190086,
+      "platforms": [
+        "147p1",
+        "179p1",
+        "188p1"
+      ],
+      "regions": [
+        "hawaii",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-02T10:26:39.723445+00:00",
+      "window_indices": [
+        113,
+        115,
+        117,
+        118
+      ],
+      "windows": 4
+    },
+    {
+      "end": "2026-03-23T20:59:58.983600+00:00",
+      "max_observed_minus_null": 9.96150984044758,
+      "platforms": [
+        "076p1",
+        "098p1",
+        "144p1",
+        "179p1",
+        "188p1",
+        "215p1"
+      ],
+      "regions": [
+        "central_california",
+        "florida_gulf_atlantic",
+        "hawaii",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-23T17:43:19.710988+00:00",
+      "window_indices": [
+        163,
+        49,
+        53
+      ],
+      "windows": 3
+    },
+    {
+      "end": "2026-03-02T05:03:18.882772+00:00",
+      "max_observed_minus_null": 6.255959091600151,
+      "platforms": [
+        "036p1",
+        "092p1",
+        "147p1"
+      ],
+      "regions": [
+        "pacific_northwest",
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-02T01:29:59.663736+00:00",
+      "window_indices": [
+        69,
+        71,
+        75
+      ],
+      "windows": 3
+    },
+    {
+      "end": "2026-03-31T08:04:29.247003+00:00",
+      "max_observed_minus_null": 4.805235966511799,
+      "platforms": [
+        "098p1",
+        "143p1",
+        "249p1",
+        "284p1"
+      ],
+      "regions": [
+        "caribbean",
+        "florida_gulf_atlantic",
+        "hawaii",
+        "southern_california"
+      ],
+      "start": "2026-03-31T05:51:10.028074+00:00",
+      "window_indices": [
+        65,
+        67,
+        149
+      ],
+      "windows": 3
+    },
+    {
+      "end": "2026-03-31T22:14:29.248142+00:00",
+      "max_observed_minus_null": 4.798828357562618,
+      "platforms": [
+        "162p1",
+        "189p1",
+        "194p1",
+        "215p1",
+        "249p1",
+        "280p1"
+      ],
+      "regions": [
+        "caribbean",
+        "florida_gulf_atlantic",
+        "pacific_northwest",
+        "south_pacific",
+        "southern_california"
+      ],
+      "start": "2026-03-31T15:17:50.028834+00:00",
+      "window_indices": [
+        228,
+        23,
+        212
+      ],
+      "windows": 3
+    },
+    {
+      "end": "2026-03-03T07:33:19.143604+00:00",
+      "max_observed_minus_null": 10.544066384960509,
+      "platforms": [
+        "147p1",
+        "263p1",
+        "280p1"
+      ],
+      "regions": [
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-03T06:13:19.924747+00:00",
+      "window_indices": [
+        90,
+        91
+      ],
+      "windows": 2
+    },
+    {
+      "end": "2026-03-15T17:34:47.159968+00:00",
+      "max_observed_minus_null": 4.5569966422575945,
+      "platforms": [
+        "201p1",
+        "217p1",
+        "271p1"
+      ],
+      "regions": [
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-15T16:14:47.941111+00:00",
+      "window_indices": [
+        182,
+        183
+      ],
+      "windows": 2
+    },
+    {
+      "end": "2026-03-28T09:39:58.903187+00:00",
+      "max_observed_minus_null": 4.350395884792693,
+      "platforms": [
+        "092p1",
+        "094p1",
+        "132p1",
+        "154p1",
+        "156p1",
+        "201p1"
+      ],
+      "regions": [
+        "central_california",
+        "florida_gulf_atlantic",
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-28T05:43:19.976768+00:00",
+      "window_indices": [
+        173,
+        29
+      ],
+      "windows": 2
+    },
+    {
+      "end": "2026-03-08T00:03:18.776235+00:00",
+      "max_observed_minus_null": 3.7015324280101307,
+      "platforms": [
+        "092p1",
+        "144p1",
+        "188p1"
+      ],
+      "regions": [
+        "florida_gulf_atlantic",
+        "hawaii",
+        "southern_california"
+      ],
+      "start": "2026-03-07T21:23:19.557271+00:00",
+      "window_indices": [
+        5,
+        9
+      ],
+      "windows": 2
+    },
+    {
+      "end": "2026-03-17T04:47:49.149132+00:00",
+      "max_observed_minus_null": 3.695835743923201,
+      "platforms": [
+        "160p1",
+        "200p1",
+        "214p1",
+        "263p1"
+      ],
+      "regions": [
+        "florida_gulf_atlantic",
+        "northeast_atlantic",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-17T03:54:29.930310+00:00",
+      "window_indices": [
+        35,
+        181
+      ],
+      "windows": 2
+    },
+    {
+      "end": "2026-03-17T21:29:59.281438+00:00",
+      "max_observed_minus_null": 7.529237604419201,
+      "platforms": [
+        "189p1",
+        "202p1",
+        "215p1"
+      ],
+      "regions": [
+        "hawaii",
+        "south_pacific",
+        "southern_california"
+      ],
+      "start": "2026-03-17T20:36:40.062617+00:00",
+      "window_indices": [
+        157
+      ],
+      "windows": 1
+    },
+    {
+      "end": "2026-03-24T10:47:49.163133+00:00",
+      "max_observed_minus_null": 4.582289074238412,
+      "platforms": [
+        "036p1",
+        "160p1",
+        "264p1"
+      ],
+      "regions": [
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-24T09:54:29.944311+00:00",
+      "window_indices": [
+        82
+      ],
+      "windows": 1
+    },
+    {
+      "end": "2026-03-03T19:59:58.860640+00:00",
+      "max_observed_minus_null": 4.1642217725443365,
+      "platforms": [
+        "092p1",
+        "156p1",
+        "226p1"
+      ],
+      "regions": [
+        "central_california",
+        "florida_gulf_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-03T19:06:39.641818+00:00",
+      "window_indices": [
+        100
+      ],
+      "windows": 1
+    }
+  ],
+  "top_windows": [
+    {
+      "end": "2026-03-18T09:57:49.058983+00:00",
+      "global_window_index": 239,
+      "group": [
+        "162p1",
+        "181p1",
+        "202p1"
+      ],
+      "null_multi_emission_mean": 68.49347265704563,
+      "observed_minus_null": 33.71781811719265,
+      "observed_multi_emission": 102.21129077423828,
+      "rank": 1,
+      "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+      "regions": [
+        "caribbean",
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-18T09:04:29.840161+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "162p1,202p1",
+          "active_series": "162p1:z,202p1:z",
+          "count": 3,
+          "emission_sum": 72.70288078955721,
+          "first_index": 2560,
+          "last_index": 3584,
+          "max_pheromone": 86.80061873038797,
+          "max_score": 32.57355444889781
+        },
+        {
+          "active_platforms": "181p1,202p1",
+          "active_series": "181p1:z,202p1:z",
+          "count": 2,
+          "emission_sum": 29.508409984681066,
+          "first_index": 1536,
+          "last_index": 2048,
+          "max_pheromone": 27.69534713544899,
+          "max_score": 20.75697217851854
+        }
+      ]
+    },
+    {
+      "end": "2026-03-03T07:33:19.143604+00:00",
+      "global_window_index": 91,
+      "group": [
+        "147p1",
+        "263p1",
+        "280p1"
+      ],
+      "null_multi_emission_mean": 13.693505374352704,
+      "observed_minus_null": 10.544066384960509,
+      "observed_multi_emission": 24.237571759313212,
+      "rank": 2,
+      "region_label": "mixed:northeast_atlantic+pacific_northwest+southeast_atlantic",
+      "regions": [
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-03T06:39:59.924782+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "147p1,280p1",
+          "active_series": "147p1:z,280p1:z",
+          "count": 2,
+          "emission_sum": 14.543138909165014,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 22.389192744061962,
+          "max_score": 14.687887005840935
+        },
+        {
+          "active_platforms": "263p1,280p1",
+          "active_series": "263p1:z,280p1:z",
+          "count": 1,
+          "emission_sum": 9.694432850148196,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 22.11723433780083,
+          "max_score": 10.460913622565743
+        },
+        {
+          "active_platforms": "280p1",
+          "active_series": "280p1:z",
+          "count": 2,
+          "emission_sum": 4.178924972768338,
+          "first_index": 2048,
+          "last_index": 2560,
+          "max_pheromone": 13.803112764058483,
+          "max_score": 5.739200625767007
+        }
+      ]
+    },
+    {
+      "end": "2026-03-18T06:51:09.058732+00:00",
+      "global_window_index": 232,
+      "group": [
+        "162p1",
+        "181p1",
+        "202p1"
+      ],
+      "null_multi_emission_mean": 15.38502239947526,
+      "observed_minus_null": 10.472271746346594,
+      "observed_multi_emission": 25.857294145821854,
+      "rank": 3,
+      "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+      "regions": [
+        "caribbean",
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-18T05:57:49.839911+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "162p1,202p1",
+          "active_series": "162p1:z,202p1:z",
+          "count": 2,
+          "emission_sum": 23.07275922293584,
+          "first_index": 2560,
+          "last_index": 3584,
+          "max_pheromone": 28.898764033046646,
+          "max_score": 18.05483785637466
+        },
+        {
+          "active_platforms": "202p1",
+          "active_series": "202p1:z",
+          "count": 1,
+          "emission_sum": 6.660095438653647,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 6.660095438653647,
+          "max_score": 9.660095438653647
+        },
+        {
+          "active_platforms": "181p1,202p1",
+          "active_series": "181p1:z,202p1:z",
+          "count": 1,
+          "emission_sum": 2.784534922886013,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 12.612316676656818,
+          "max_score": 4.737590366026442
+        }
+      ]
+    },
+    {
+      "end": "2026-03-16T14:07:49.514034+00:00",
+      "global_window_index": 193,
+      "group": [
+        "160p1",
+        "252p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 24.92686400303438,
+      "observed_minus_null": 10.078253613915997,
+      "observed_multi_emission": 35.00511761695038,
+      "rank": 4,
+      "region_label": "mixed:gulf+northeast_atlantic+southern_california",
+      "regions": [
+        "gulf",
+        "northeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-16T13:41:09.904624+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "160p1,271p1",
+          "active_series": "160p1:z,271p1:z",
+          "count": 2,
+          "emission_sum": 25.532751991129874,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 40.681177750875186,
+          "max_score": 14.924715617842283
+        },
+        {
+          "active_platforms": "271p1",
+          "active_series": "271p1:z",
+          "count": 2,
+          "emission_sum": 13.76659157207288,
+          "first_index": 2048,
+          "last_index": 3072,
+          "max_pheromone": 26.18810914790059,
+          "max_score": 14.802250107863106
+        },
+        {
+          "active_platforms": "252p1,271p1",
+          "active_series": "252p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 9.472365625820506,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 26.91529742632313,
+          "max_score": 11.606167083891151
+        }
+      ]
+    },
+    {
+      "end": "2026-03-23T18:36:38.929809+00:00",
+      "global_window_index": 163,
+      "group": [
+        "098p1",
+        "144p1",
+        "215p1"
+      ],
+      "null_multi_emission_mean": 10.032940502147742,
+      "observed_minus_null": 9.96150984044758,
+      "observed_multi_emission": 19.99445034259532,
+      "rank": 5,
+      "region_label": "mixed:florida_gulf_atlantic+hawaii+southern_california",
+      "regions": [
+        "florida_gulf_atlantic",
+        "hawaii",
+        "southern_california"
+      ],
+      "start": "2026-03-23T17:43:19.710988+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "098p1,215p1",
+          "active_series": "098p1:z,215p1:z",
+          "count": 2,
+          "emission_sum": 19.99445034259532,
+          "first_index": 2048,
+          "last_index": 3584,
+          "max_pheromone": 16.97337199100936,
+          "max_score": 14.279565682656006
+        },
+        {
+          "active_platforms": "098p1",
+          "active_series": "098p1:z",
+          "count": 1,
+          "emission_sum": 0.17212845331425752,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 0.17212845331425752,
+          "max_score": 3.1721284533142575
+        }
+      ]
+    },
+    {
+      "end": "2026-03-23T20:59:58.983600+00:00",
+      "global_window_index": 53,
+      "group": [
+        "076p1",
+        "179p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 18.453164525387624,
+      "observed_minus_null": 9.549553437490477,
+      "observed_multi_emission": 28.0027179628781,
+      "rank": 6,
+      "region_label": "mixed:central_california+hawaii+pacific_northwest",
+      "regions": [
+        "central_california",
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-23T20:06:39.764778+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "179p1,188p1",
+          "active_series": "179p1:z,188p1:z",
+          "count": 2,
+          "emission_sum": 20.46731792927168,
+          "first_index": 3072,
+          "last_index": 3584,
+          "max_pheromone": 27.26997917945419,
+          "max_score": 10.833327395186558
+        },
+        {
+          "active_platforms": "076p1,188p1",
+          "active_series": "076p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 7.535400033606421,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 9.455531265037363,
+          "max_score": 7.189798484610429
+        },
+        {
+          "active_platforms": "179p1",
+          "active_series": "179p1:z",
+          "count": 1,
+          "emission_sum": 2.3705323844826456,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 2.3705323844826456,
+          "max_score": 5.370532384482646
+        }
+      ]
+    },
+    {
+      "end": "2026-03-16T13:54:29.514016+00:00",
+      "global_window_index": 192,
+      "group": [
+        "160p1",
+        "252p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 14.891518056384026,
+      "observed_minus_null": 8.975306414523292,
+      "observed_multi_emission": 23.866824470907318,
+      "rank": 7,
+      "region_label": "mixed:gulf+northeast_atlantic+southern_california",
+      "regions": [
+        "gulf",
+        "northeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-16T13:27:49.904606+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "160p1,252p1",
+          "active_series": "160p1:z,252p1:z",
+          "count": 1,
+          "emission_sum": 18.374156629592477,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 20.712781175911672,
+          "max_score": 17.500790387643864
+        },
+        {
+          "active_platforms": "160p1",
+          "active_series": "160p1:z",
+          "count": 3,
+          "emission_sum": 15.97718749203495,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 32.486566019524304,
+          "max_score": 11.45677741179107
+        },
+        {
+          "active_platforms": "160p1,271p1",
+          "active_series": "160p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 5.492667841314843,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 26.699765119703592,
+          "max_score": 7.587755989715519
+        }
+      ]
+    },
+    {
+      "end": "2026-03-18T09:04:29.058911+00:00",
+      "global_window_index": 237,
+      "group": [
+        "162p1",
+        "181p1",
+        "202p1"
+      ],
+      "null_multi_emission_mean": 21.497347477647814,
+      "observed_minus_null": 8.936509431745748,
+      "observed_multi_emission": 30.433856909393562,
+      "rank": 8,
+      "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+      "regions": [
+        "caribbean",
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-18T08:11:09.840090+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "162p1,202p1",
+          "active_series": "162p1:z,202p1:z",
+          "count": 3,
+          "emission_sum": 20.20986328983289,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 27.249007580034437,
+          "max_score": 17.10066676924685
+        },
+        {
+          "active_platforms": "181p1,202p1",
+          "active_series": "181p1:z,202p1:z",
+          "count": 2,
+          "emission_sum": 10.223993619560673,
+          "first_index": 2048,
+          "last_index": 3072,
+          "max_pheromone": 14.427261775714674,
+          "max_score": 7.712850003978672
+        }
+      ]
+    },
+    {
+      "end": "2026-03-18T07:17:49.058768+00:00",
+      "global_window_index": 233,
+      "group": [
+        "162p1",
+        "181p1",
+        "202p1"
+      ],
+      "null_multi_emission_mean": 18.344187723993063,
+      "observed_minus_null": 8.648778106373989,
+      "observed_multi_emission": 26.99296583036705,
+      "rank": 9,
+      "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+      "regions": [
+        "caribbean",
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-18T06:24:29.839947+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "162p1,202p1",
+          "active_series": "162p1:z,202p1:z",
+          "count": 3,
+          "emission_sum": 26.99296583036705,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 22.88381906092485,
+          "max_score": 15.315566856804917
+        },
+        {
+          "active_platforms": "162p1",
+          "active_series": "162p1:z",
+          "count": 1,
+          "emission_sum": 2.7974898848562324,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 23.392927039688598,
+          "max_score": 5.797489884856232
+        }
+      ]
+    },
+    {
+      "end": "2026-03-17T21:29:59.281438+00:00",
+      "global_window_index": 157,
+      "group": [
+        "189p1",
+        "202p1",
+        "215p1"
+      ],
+      "null_multi_emission_mean": 15.093578396224224,
+      "observed_minus_null": 7.529237604419201,
+      "observed_multi_emission": 22.622816000643425,
+      "rank": 10,
+      "region_label": "mixed:hawaii+south_pacific+southern_california",
+      "regions": [
+        "hawaii",
+        "south_pacific",
+        "southern_california"
+      ],
+      "start": "2026-03-17T20:36:40.062617+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "189p1,202p1",
+          "active_series": "189p1:z,202p1:z",
+          "count": 2,
+          "emission_sum": 17.771352169524114,
+          "first_index": 1536,
+          "last_index": 3072,
+          "max_pheromone": 27.8847899573641,
+          "max_score": 20.13894496960396
+        },
+        {
+          "active_platforms": "202p1",
+          "active_series": "202p1:z",
+          "count": 2,
+          "emission_sum": 10.15097088104536,
+          "first_index": 2560,
+          "last_index": 3584,
+          "max_pheromone": 28.32086683587652,
+          "max_score": 9.926415006796532
+        },
+        {
+          "active_platforms": "202p1,215p1",
+          "active_series": "202p1:z,215p1:z",
+          "count": 1,
+          "emission_sum": 4.851463831119309,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 5.017586633094151,
+          "max_score": 6.676983186537052
+        }
+      ]
+    },
+    {
+      "end": "2026-03-03T07:06:39.143568+00:00",
+      "global_window_index": 90,
+      "group": [
+        "147p1",
+        "263p1",
+        "280p1"
+      ],
+      "null_multi_emission_mean": 3.6663270075950862,
+      "observed_minus_null": 7.4949034653203235,
+      "observed_multi_emission": 11.16123047291541,
+      "rank": 11,
+      "region_label": "mixed:northeast_atlantic+pacific_northwest+southeast_atlantic",
+      "regions": [
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-03T06:13:19.924747+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "263p1,280p1",
+          "active_series": "263p1:z,280p1:z",
+          "count": 1,
+          "emission_sum": 11.16123047291541,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 12.15915667064736,
+          "max_score": 12.813932801061377
+        },
+        {
+          "active_platforms": "147p1",
+          "active_series": "147p1:z",
+          "count": 1,
+          "emission_sum": 1.1088068863688338,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 1.1088068863688338,
+          "max_score": 4.108806886368834
+        }
+      ]
+    },
+    {
+      "end": "2026-03-02T13:33:18.942446+00:00",
+      "global_window_index": 118,
+      "group": [
+        "147p1",
+        "179p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 18.047418575946896,
+      "observed_minus_null": 6.504509338190086,
+      "observed_multi_emission": 24.551927914136982,
+      "rank": 12,
+      "region_label": "mixed:hawaii+pacific_northwest+southeast_atlantic",
+      "regions": [
+        "hawaii",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-02T12:39:59.723624+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "147p1,188p1",
+          "active_series": "147p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 13.616675825874173,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 24.37029990095691,
+          "max_score": 16.23175783941692
+        },
+        {
+          "active_platforms": "179p1,188p1",
+          "active_series": "179p1:z,188p1:z",
+          "count": 2,
+          "emission_sum": 10.93525208826281,
+          "first_index": 2048,
+          "last_index": 3072,
+          "max_pheromone": 22.743088971295915,
+          "max_score": 11.104415897555095
+        },
+        {
+          "active_platforms": "179p1",
+          "active_series": "179p1:z",
+          "count": 1,
+          "emission_sum": 2.0255979630091794,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 2.0255979630091794,
+          "max_score": 5.025597963009179
+        },
+        {
+          "active_platforms": "147p1",
+          "active_series": "147p1:z",
+          "count": 1,
+          "emission_sum": 0.09087789673947766,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 20.559657970905803,
+          "max_score": 3.0908778967394777
+        }
+      ]
+    },
+    {
+      "end": "2026-03-13T09:16:39.132478+00:00",
+      "global_window_index": 242,
+      "group": [
+        "094p1",
+        "271p1",
+        "284p1"
+      ],
+      "null_multi_emission_mean": 18.529268864608994,
+      "observed_minus_null": 6.465037388588193,
+      "observed_multi_emission": 24.994306253197188,
+      "rank": 13,
+      "region_label": "mixed:pacific_northwest+southern_california",
+      "regions": [
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-13T08:23:19.913657+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "094p1,271p1,284p1",
+          "active_series": "094p1:z,271p1:z,284p1:z",
+          "count": 1,
+          "emission_sum": 12.022456506705772,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 23.158331695567114,
+          "max_score": 10.250415804363902
+        },
+        {
+          "active_platforms": "094p1,271p1",
+          "active_series": "094p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 6.985298824481033,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 12.373194654290376,
+          "max_score": 8.385780919390832
+        },
+        {
+          "active_platforms": "094p1,284p1",
+          "active_series": "094p1:z,284p1:z",
+          "count": 1,
+          "emission_sum": 5.986550922010382,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 5.986550922010382,
+          "max_score": 6.845562264424751
+        },
+        {
+          "active_platforms": "094p1",
+          "active_series": "094p1:z",
+          "count": 2,
+          "emission_sum": 1.9868061793038674,
+          "first_index": 3072,
+          "last_index": 3584,
+          "max_pheromone": 20.96406228096417,
+          "max_score": 4.8652424243501
+        }
+      ]
+    },
+    {
+      "end": "2026-03-02T05:03:18.882772+00:00",
+      "global_window_index": 75,
+      "group": [
+        "036p1",
+        "092p1",
+        "147p1"
+      ],
+      "null_multi_emission_mean": 5.473617511943266,
+      "observed_minus_null": 6.255959091600151,
+      "observed_multi_emission": 11.729576603543418,
+      "rank": 14,
+      "region_label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+      "regions": [
+        "pacific_northwest",
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-02T04:09:59.663951+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "036p1,147p1",
+          "active_series": "036p1:z,147p1:z",
+          "count": 2,
+          "emission_sum": 11.729576603543418,
+          "first_index": 3072,
+          "last_index": 3584,
+          "max_pheromone": 12.164441444965657,
+          "max_score": 7.9023210952516925
+        },
+        {
+          "active_platforms": "147p1",
+          "active_series": "147p1:z",
+          "count": 2,
+          "emission_sum": 1.6879035945834966,
+          "first_index": 1024,
+          "last_index": 1536,
+          "max_pheromone": 1.5988339071579811,
+          "max_score": 3.8906968742551546
+        }
+      ]
+    },
+    {
+      "end": "2026-03-16T17:24:29.609411+00:00",
+      "global_window_index": 62,
+      "group": [
+        "209p1",
+        "249p1",
+        "252p1"
+      ],
+      "null_multi_emission_mean": 121.24181453088867,
+      "observed_minus_null": 6.050091081007352,
+      "observed_multi_emission": 127.29190561189603,
+      "rank": 15,
+      "region_label": "mixed:caribbean+gulf+northeast_atlantic",
+      "regions": [
+        "caribbean",
+        "gulf",
+        "northeast_atlantic"
+      ],
+      "start": "2026-03-16T16:57:50+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "209p1,249p1,252p1",
+          "active_series": "209p1:z,249p1:z,252p1:z",
+          "count": 4,
+          "emission_sum": 110.37099397408443,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 100.57355253900303,
+          "max_score": 32.588758729307095
+        },
+        {
+          "active_platforms": "249p1,252p1",
+          "active_series": "249p1:z,252p1:z",
+          "count": 1,
+          "emission_sum": 16.9209116378116,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 93.93703930217747,
+          "max_score": 18.205576747771634
+        }
+      ]
+    },
+    {
+      "end": "2026-03-23T19:13:18.983457+00:00",
+      "global_window_index": 49,
+      "group": [
+        "076p1",
+        "179p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 5.683251068640804,
+      "observed_minus_null": 5.916796432523404,
+      "observed_multi_emission": 11.600047501164209,
+      "rank": 16,
+      "region_label": "mixed:central_california+hawaii+pacific_northwest",
+      "regions": [
+        "central_california",
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-23T18:19:59.764635+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "179p1,188p1",
+          "active_series": "179p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 6.2426030381213735,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 7.108859429855143,
+          "max_score": 8.523840302755318
+        },
+        {
+          "active_platforms": "076p1,188p1",
+          "active_series": "076p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 5.357444463042835,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 11.755417949912465,
+          "max_score": 7.403992037057849
+        },
+        {
+          "active_platforms": "179p1",
+          "active_series": "179p1:z",
+          "count": 1,
+          "emission_sum": 1.0694523354737901,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 1.0694523354737901,
+          "max_score": 4.06945233547379
+        }
+      ]
+    },
+    {
+      "end": "2026-03-13T08:47:49.117187+00:00",
+      "global_window_index": 130,
+      "group": [
+        "168p1",
+        "194p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 10.782376093268743,
+      "observed_minus_null": 5.064928489867841,
+      "observed_multi_emission": 15.847304583136584,
+      "rank": 17,
+      "region_label": "mixed:florida_gulf_atlantic+pacific_northwest+southern_california",
+      "regions": [
+        "florida_gulf_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-13T07:54:29.898365+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "194p1,271p1",
+          "active_series": "194p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 11.132102993815536,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 14.203060423129171,
+          "max_score": 11.093670458477133
+        },
+        {
+          "active_platforms": "168p1,194p1",
+          "active_series": "168p1:z,194p1:z",
+          "count": 1,
+          "emission_sum": 4.7152015893210475,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 16.219680532055676,
+          "max_score": 5.823499690889628
+        },
+        {
+          "active_platforms": "168p1",
+          "active_series": "168p1:z",
+          "count": 2,
+          "emission_sum": 3.6137922597177,
+          "first_index": 1536,
+          "last_index": 2048,
+          "max_pheromone": 3.4121749214595942,
+          "max_score": 5.016173382581056
+        }
+      ]
+    },
+    {
+      "end": "2026-03-18T07:44:29.058804+00:00",
+      "global_window_index": 234,
+      "group": [
+        "162p1",
+        "181p1",
+        "202p1"
+      ],
+      "null_multi_emission_mean": 40.85488238361522,
+      "observed_minus_null": 5.057742246464429,
+      "observed_multi_emission": 45.91262463007965,
+      "rank": 18,
+      "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+      "regions": [
+        "caribbean",
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-18T06:51:09.839982+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "162p1,181p1,202p1",
+          "active_series": "162p1:z,181p1:z,202p1:z",
+          "count": 2,
+          "emission_sum": 30.09308618191701,
+          "first_index": 2560,
+          "last_index": 3072,
+          "max_pheromone": 34.86358289875295,
+          "max_score": 17.42245617880905
+        },
+        {
+          "active_platforms": "162p1,202p1",
+          "active_series": "162p1:z,202p1:z",
+          "count": 1,
+          "emission_sum": 7.21413730600794,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 38.591361914885596,
+          "max_score": 8.729865090845749
+        },
+        {
+          "active_platforms": "162p1,181p1",
+          "active_series": "162p1:z,181p1:z",
+          "count": 1,
+          "emission_sum": 4.602001340245001,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 4.602001340245001,
+          "max_score": 6.306039568248582
+        },
+        {
+          "active_platforms": "181p1,202p1",
+          "active_series": "181p1:z,202p1:z",
+          "count": 1,
+          "emission_sum": 4.003399801909695,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 8.145201008130195,
+          "max_score": 6.173578442250538
+        }
+      ]
+    },
+    {
+      "end": "2026-03-16T10:04:29.538250+00:00",
+      "global_window_index": 205,
+      "group": [
+        "160p1",
+        "162p1",
+        "252p1"
+      ],
+      "null_multi_emission_mean": 74.694901020099,
+      "observed_minus_null": 5.046960022878011,
+      "observed_multi_emission": 79.741861042977,
+      "rank": 19,
+      "region_label": "mixed:gulf+northeast_atlantic+pacific_northwest",
+      "regions": [
+        "gulf",
+        "northeast_atlantic",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-16T09:37:49.928839+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "160p1,162p1,252p1",
+          "active_series": "160p1:z,162p1:z,252p1:z",
+          "count": 3,
+          "emission_sum": 54.28266160462442,
+          "first_index": 2048,
+          "last_index": 3584,
+          "max_pheromone": 69.25390046962629,
+          "max_score": 20.441872149656092
+        },
+        {
+          "active_platforms": "162p1,252p1",
+          "active_series": "162p1:z,252p1:z",
+          "count": 2,
+          "emission_sum": 25.459199438352584,
+          "first_index": 1536,
+          "last_index": 2560,
+          "max_pheromone": 32.480966302155956,
+          "max_score": 14.832086198574988
+        }
+      ]
+    },
+    {
+      "end": "2026-03-13T08:21:09.117151+00:00",
+      "global_window_index": 133,
+      "group": [
+        "094p1",
+        "194p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 8.340189184844167,
+      "observed_minus_null": 4.841820290481852,
+      "observed_multi_emission": 13.18200947532602,
+      "rank": 20,
+      "region_label": "mixed:florida_gulf_atlantic+pacific_northwest+southern_california",
+      "regions": [
+        "florida_gulf_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-13T07:27:49.898329+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "094p1,194p1",
+          "active_series": "094p1:z,194p1:z",
+          "count": 1,
+          "emission_sum": 7.502657109240528,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 7.502657109240528,
+          "max_score": 7.522150036898535
+        },
+        {
+          "active_platforms": "094p1,194p1,271p1",
+          "active_series": "094p1:z,194p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 5.6793523660854905,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 11.723011749551631,
+          "max_score": 5.713665887629861
+        },
+        {
+          "active_platforms": "094p1",
+          "active_series": "094p1:z",
+          "count": 2,
+          "emission_sum": 1.280497807070724,
+          "first_index": 2048,
+          "last_index": 3072,
+          "max_pheromone": 6.935326908668651,
+          "max_score": 4.097562296718548
+        }
+      ]
+    },
+    {
+      "end": "2026-03-31T08:04:29.247003+00:00",
+      "global_window_index": 149,
+      "group": [
+        "098p1",
+        "249p1",
+        "284p1"
+      ],
+      "null_multi_emission_mean": 6.5776187420923575,
+      "observed_minus_null": 4.805235966511799,
+      "observed_multi_emission": 11.382854708604157,
+      "rank": 21,
+      "region_label": "mixed:caribbean+hawaii+southern_california",
+      "regions": [
+        "caribbean",
+        "hawaii",
+        "southern_california"
+      ],
+      "start": "2026-03-31T07:11:10.028181+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "098p1,249p1",
+          "active_series": "098p1:z,249p1:z",
+          "count": 2,
+          "emission_sum": 11.382854708604157,
+          "first_index": 1536,
+          "last_index": 2048,
+          "max_pheromone": 11.97460448718577,
+          "max_score": 9.110845405573766
+        },
+        {
+          "active_platforms": "098p1",
+          "active_series": "098p1:z",
+          "count": 2,
+          "emission_sum": 4.099964645952234,
+          "first_index": 1024,
+          "last_index": 2560,
+          "max_pheromone": 13.799317391795014,
+          "max_score": 6.022173353327822
+        }
+      ]
+    },
+    {
+      "end": "2026-03-31T16:11:09.247655+00:00",
+      "global_window_index": 228,
+      "group": [
+        "189p1",
+        "194p1",
+        "249p1"
+      ],
+      "null_multi_emission_mean": 9.099096216533573,
+      "observed_minus_null": 4.798828357562618,
+      "observed_multi_emission": 13.89792457409619,
+      "rank": 22,
+      "region_label": "mixed:caribbean+florida_gulf_atlantic+south_pacific",
+      "regions": [
+        "caribbean",
+        "florida_gulf_atlantic",
+        "south_pacific"
+      ],
+      "start": "2026-03-31T15:17:50.028834+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "189p1,194p1",
+          "active_series": "189p1:z,194p1:z",
+          "count": 1,
+          "emission_sum": 9.892252920018134,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 11.764480618553714,
+          "max_score": 9.543840927926576
+        },
+        {
+          "active_platforms": "194p1,249p1",
+          "active_series": "194p1:z,249p1:z",
+          "count": 1,
+          "emission_sum": 4.005671654078058,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 14.593704210776401,
+          "max_score": 6.897916643361206
+        },
+        {
+          "active_platforms": "249p1",
+          "active_series": "249p1:z",
+          "count": 1,
+          "emission_sum": 2.3113922204142963,
+          "first_index": 1024,
+          "last_index": 1024,
+          "max_pheromone": 2.3113922204142963,
+          "max_score": 5.311392220414296
+        },
+        {
+          "active_platforms": "194p1",
+          "active_series": "194p1:z",
+          "count": 1,
+          "emission_sum": 1.7338463003262392,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 14.868180090025,
+          "max_score": 4.733846300326239
+        }
+      ]
+    },
+    {
+      "end": "2026-03-16T09:24:29.538197+00:00",
+      "global_window_index": 202,
+      "group": [
+        "160p1",
+        "162p1",
+        "252p1"
+      ],
+      "null_multi_emission_mean": 12.628082565926492,
+      "observed_minus_null": 4.585688312392994,
+      "observed_multi_emission": 17.213770878319487,
+      "rank": 23,
+      "region_label": "mixed:gulf+northeast_atlantic+pacific_northwest",
+      "regions": [
+        "gulf",
+        "northeast_atlantic",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-16T08:57:49.928786+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "160p1,162p1",
+          "active_series": "160p1:z,162p1:z",
+          "count": 3,
+          "emission_sum": 17.213770878319487,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 18.244423955224573,
+          "max_score": 11.522131853266918
+        },
+        {
+          "active_platforms": "162p1",
+          "active_series": "162p1:z",
+          "count": 1,
+          "emission_sum": 4.093759891330147,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 7.3695866576641205,
+          "max_score": 7.093759891330147
+        }
+      ]
+    },
+    {
+      "end": "2026-03-24T10:47:49.163133+00:00",
+      "global_window_index": 82,
+      "group": [
+        "036p1",
+        "160p1",
+        "264p1"
+      ],
+      "null_multi_emission_mean": 10.10896717945379,
+      "observed_minus_null": 4.582289074238412,
+      "observed_multi_emission": 14.691256253692202,
+      "rank": 24,
+      "region_label": "mixed:northeast_atlantic+pacific_northwest+southern_california",
+      "regions": [
+        "northeast_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-24T09:54:29.944311+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "036p1,264p1",
+          "active_series": "036p1:z,264p1:z",
+          "count": 1,
+          "emission_sum": 5.823946662518462,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 12.785839008533664,
+          "max_score": 5.920762220707444
+        },
+        {
+          "active_platforms": "036p1,160p1,264p1",
+          "active_series": "036p1:z,160p1:z,264p1:z",
+          "count": 1,
+          "emission_sum": 4.76848915150962,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 4.76848915150962,
+          "max_score": 6.0403464226840455
+        },
+        {
+          "active_platforms": "036p1,160p1",
+          "active_series": "036p1:z,160p1:z",
+          "count": 1,
+          "emission_sum": 4.09882043966412,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 8.390460676022778,
+          "max_score": 7.043407420042688
+        },
+        {
+          "active_platforms": "160p1",
+          "active_series": "160p1:z",
+          "count": 1,
+          "emission_sum": 0.18402133159639122,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 7.735435940016892,
+          "max_score": 3.1840213315963912
+        }
+      ]
+    },
+    {
+      "end": "2026-03-15T17:34:47.159968+00:00",
+      "global_window_index": 183,
+      "group": [
+        "201p1",
+        "217p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 29.364370108243456,
+      "observed_minus_null": 4.5569966422575945,
+      "observed_multi_emission": 33.92136675050105,
+      "rank": 25,
+      "region_label": "mixed:southeast_atlantic+southern_california",
+      "regions": [
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-15T16:41:27.941147+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "201p1,217p1,271p1",
+          "active_series": "201p1:z,217p1:z,271p1:z",
+          "count": 2,
+          "emission_sum": 20.34924950171581,
+          "first_index": 1536,
+          "last_index": 2560,
+          "max_pheromone": 18.84640016279436,
+          "max_score": 11.540461104368818
+        },
+        {
+          "active_platforms": "201p1,217p1",
+          "active_series": "201p1:z,217p1:z",
+          "count": 1,
+          "emission_sum": 7.1423696863822865,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 28.194726624408375,
+          "max_score": 9.536378457784965
+        },
+        {
+          "active_platforms": "217p1,271p1",
+          "active_series": "217p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 6.429747562402951,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 23.391507708917878,
+          "max_score": 6.496585369477897
+        },
+        {
+          "active_platforms": "201p1",
+          "active_series": "201p1:z",
+          "count": 1,
+          "emission_sum": 1.1278159152066438,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 13.054633264399737,
+          "max_score": 4.127815915206644
+        }
+      ]
+    },
+    {
+      "end": "2026-03-15T17:08:07.159933+00:00",
+      "global_window_index": 182,
+      "group": [
+        "201p1",
+        "217p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 4.9236173292410665,
+      "observed_minus_null": 4.466448601553028,
+      "observed_multi_emission": 9.390065930794094,
+      "rank": 26,
+      "region_label": "mixed:southeast_atlantic+southern_california",
+      "regions": [
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-15T16:14:47.941111+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "201p1,217p1",
+          "active_series": "201p1:z,217p1:z",
+          "count": 1,
+          "emission_sum": 9.390065930794094,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 11.418786607495587,
+          "max_score": 12.159083088829828
+        },
+        {
+          "active_platforms": "217p1",
+          "active_series": "217p1:z",
+          "count": 1,
+          "emission_sum": 2.645093094332738,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 11.894310246404164,
+          "max_score": 5.645093094332738
+        },
+        {
+          "active_platforms": "201p1",
+          "active_series": "201p1:z",
+          "count": 1,
+          "emission_sum": 2.254134085223882,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 2.254134085223882,
+          "max_score": 5.254134085223882
+        }
+      ]
+    },
+    {
+      "end": "2026-03-18T09:57:49.058983+00:00",
+      "global_window_index": 220,
+      "group": [
+        "132p1",
+        "162p1",
+        "215p1"
+      ],
+      "null_multi_emission_mean": 9.112006921502235,
+      "observed_minus_null": 4.43446856691099,
+      "observed_multi_emission": 13.546475488413225,
+      "rank": 27,
+      "region_label": "mixed:florida_gulf_atlantic+pacific_northwest+southern_california",
+      "regions": [
+        "florida_gulf_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-18T09:04:29.840161+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "162p1,215p1",
+          "active_series": "162p1:z,215p1:z",
+          "count": 2,
+          "emission_sum": 12.60310572401676,
+          "first_index": 2560,
+          "last_index": 3584,
+          "max_pheromone": 12.495782582300377,
+          "max_score": 10.532417459339987
+        },
+        {
+          "active_platforms": "132p1,162p1",
+          "active_series": "132p1:z,162p1:z",
+          "count": 1,
+          "emission_sum": 0.8589171770216018,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 5.3530207408558965,
+          "max_score": 3.5048874350175496
+        },
+        {
+          "active_platforms": "132p1,215p1",
+          "active_series": "132p1:z,215p1:z",
+          "count": 1,
+          "emission_sum": 0.08445258737486139,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 0.08445258737486139,
+          "max_score": 3.060423363641963
+        }
+      ]
+    },
+    {
+      "end": "2026-03-28T06:36:39.195590+00:00",
+      "global_window_index": 173,
+      "group": [
+        "132p1",
+        "154p1",
+        "156p1"
+      ],
+      "null_multi_emission_mean": 18.42771568069734,
+      "observed_minus_null": 4.350395884792693,
+      "observed_multi_emission": 22.778111565490033,
+      "rank": 28,
+      "region_label": "mixed:central_california+florida_gulf_atlantic+northeast_atlantic",
+      "regions": [
+        "central_california",
+        "florida_gulf_atlantic",
+        "northeast_atlantic"
+      ],
+      "start": "2026-03-28T05:43:19.976768+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "132p1,156p1",
+          "active_series": "132p1:z,156p1:z",
+          "count": 2,
+          "emission_sum": 15.364967991274654,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 22.487231843730143,
+          "max_score": 10.635580963058242
+        },
+        {
+          "active_platforms": "154p1,156p1",
+          "active_series": "154p1:z,156p1:z",
+          "count": 1,
+          "emission_sum": 7.413143574215379,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 14.26554234400053,
+          "max_score": 7.572143577112045
+        },
+        {
+          "active_platforms": "132p1",
+          "active_series": "132p1:z",
+          "count": 2,
+          "emission_sum": 3.2396709585031838,
+          "first_index": 2048,
+          "last_index": 2560,
+          "max_pheromone": 7.709463790612805,
+          "max_score": 5.564411959182319
+        }
+      ]
+    },
+    {
+      "end": "2026-03-28T09:39:58.903187+00:00",
+      "global_window_index": 29,
+      "group": [
+        "092p1",
+        "094p1",
+        "201p1"
+      ],
+      "null_multi_emission_mean": 18.67570603250663,
+      "observed_minus_null": 4.2323098998501365,
+      "observed_multi_emission": 22.908015932356765,
+      "rank": 29,
+      "region_label": "mixed:pacific_northwest+southern_california",
+      "regions": [
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-28T08:46:39.684366+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "092p1,094p1",
+          "active_series": "092p1:z,094p1:z",
+          "count": 3,
+          "emission_sum": 22.140965600435695,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 20.477753061776628,
+          "max_score": 11.441565094625014
+        },
+        {
+          "active_platforms": "092p1",
+          "active_series": "092p1:z",
+          "count": 1,
+          "emission_sum": 2.7486857553182755,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 12.655668472782803,
+          "max_score": 5.7486857553182755
+        },
+        {
+          "active_platforms": "094p1,201p1",
+          "active_series": "094p1:z,201p1:z",
+          "count": 1,
+          "emission_sum": 0.7670503319210695,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 11.007758574960587,
+          "max_score": 3.6916181929968723
+        }
+      ]
+    },
+    {
+      "end": "2026-03-31T22:14:29.248142+00:00",
+      "global_window_index": 212,
+      "group": [
+        "162p1",
+        "215p1",
+        "249p1"
+      ],
+      "null_multi_emission_mean": 12.866345878099242,
+      "observed_minus_null": 4.226448270431671,
+      "observed_multi_emission": 17.092794148530913,
+      "rank": 30,
+      "region_label": "mixed:caribbean+pacific_northwest+southern_california",
+      "regions": [
+        "caribbean",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-31T21:21:10.029321+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "215p1,249p1",
+          "active_series": "215p1:z,249p1:z",
+          "count": 2,
+          "emission_sum": 12.45596470646159,
+          "first_index": 1536,
+          "last_index": 2560,
+          "max_pheromone": 11.63339998733072,
+          "max_score": 12.34688414463679
+        },
+        {
+          "active_platforms": "162p1,249p1",
+          "active_series": "162p1:z,249p1:z",
+          "count": 1,
+          "emission_sum": 4.636829442069322,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 14.185655170000501,
+          "max_score": 6.423226042822905
+        },
+        {
+          "active_platforms": "162p1",
+          "active_series": "162p1:z",
+          "count": 1,
+          "emission_sum": 1.3215125207140064,
+          "first_index": 1024,
+          "last_index": 1024,
+          "max_pheromone": 1.3215125207140064,
+          "max_score": 4.321512520714006
+        },
+        {
+          "active_platforms": "215p1",
+          "active_series": "215p1:z",
+          "count": 1,
+          "emission_sum": 0.13974637577032922,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 10.609806364367977,
+          "max_score": 3.1397463757703292
+        }
+      ]
+    },
+    {
+      "end": "2026-03-03T19:59:58.860640+00:00",
+      "global_window_index": 100,
+      "group": [
+        "092p1",
+        "156p1",
+        "226p1"
+      ],
+      "null_multi_emission_mean": 1.0972464716215942,
+      "observed_minus_null": 4.1642217725443365,
+      "observed_multi_emission": 5.261468244165931,
+      "rank": 31,
+      "region_label": "mixed:central_california+florida_gulf_atlantic+southern_california",
+      "regions": [
+        "central_california",
+        "florida_gulf_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-03T19:06:39.641818+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "092p1,226p1",
+          "active_series": "092p1:z,226p1:z",
+          "count": 1,
+          "emission_sum": 5.261468244165931,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 5.261468244165931,
+          "max_score": 8.226259826521252
+        },
+        {
+          "active_platforms": "092p1",
+          "active_series": "092p1:z",
+          "count": 1,
+          "emission_sum": 1.8555224130658914,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 6.59084383281523,
+          "max_score": 4.855522413065891
+        }
+      ]
+    },
+    {
+      "end": "2026-03-13T08:47:49.117187+00:00",
+      "global_window_index": 134,
+      "group": [
+        "094p1",
+        "194p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 10.17968609045125,
+      "observed_minus_null": 4.0467590368022055,
+      "observed_multi_emission": 14.226445127253456,
+      "rank": 32,
+      "region_label": "mixed:florida_gulf_atlantic+pacific_northwest+southern_california",
+      "regions": [
+        "florida_gulf_atlantic",
+        "pacific_northwest",
+        "southern_california"
+      ],
+      "start": "2026-03-13T07:54:29.898365+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "094p1,194p1,271p1",
+          "active_series": "094p1:z,194p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 14.226445127253456,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 14.881108510902202,
+          "max_score": 11.093670458477133
+        },
+        {
+          "active_platforms": "194p1",
+          "active_series": "194p1:z",
+          "count": 1,
+          "emission_sum": 2.823499690889628,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 14.877197584720413,
+          "max_score": 5.823499690889628
+        },
+        {
+          "active_platforms": "094p1",
+          "active_series": "094p1:z",
+          "count": 2,
+          "emission_sum": 0.7639832035651111,
+          "first_index": 1536,
+          "last_index": 2048,
+          "max_pheromone": 0.7274037596097168,
+          "max_score": 3.3981887640111683
+        }
+      ]
+    },
+    {
+      "end": "2026-03-13T08:21:09.117151+00:00",
+      "global_window_index": 0,
+      "group": [
+        "215p1",
+        "262p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 4.391423082020102,
+      "observed_minus_null": 3.9791892488187557,
+      "observed_multi_emission": 8.370612330838858,
+      "rank": 33,
+      "region_label": "southern_california",
+      "regions": [
+        "southern_california"
+      ],
+      "start": "2026-03-13T07:27:49.898329+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "215p1,262p1",
+          "active_series": "215p1:z,262p1:z",
+          "count": 1,
+          "emission_sum": 6.860513990587724,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 6.860513990587724,
+          "max_score": 7.945014476661071
+        },
+        {
+          "active_platforms": "215p1,271p1",
+          "active_series": "215p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 1.510098340251134,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 6.903092861306382,
+          "max_score": 4.231710669995163
+        },
+        {
+          "active_platforms": "262p1",
+          "active_series": "262p1:z",
+          "count": 1,
+          "emission_sum": 1.2233351053918264,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 7.397797696920778,
+          "max_score": 4.223335105391826
+        }
+      ]
+    },
+    {
+      "end": "2026-03-18T10:03:19.296208+00:00",
+      "global_window_index": 60,
+      "group": [
+        "162p1",
+        "168p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 6.611555833468827,
+      "observed_minus_null": 3.7404625542237575,
+      "observed_multi_emission": 10.352018387692585,
+      "rank": 34,
+      "region_label": "mixed:hawaii+pacific_northwest",
+      "regions": [
+        "hawaii",
+        "pacific_northwest"
+      ],
+      "start": "2026-03-18T09:10:00.077387+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "162p1,168p1",
+          "active_series": "162p1:z,168p1:z",
+          "count": 2,
+          "emission_sum": 7.285081120479816,
+          "first_index": 3072,
+          "last_index": 3584,
+          "max_pheromone": 9.186730284821227,
+          "max_score": 5.988657167007384
+        },
+        {
+          "active_platforms": "162p1,168p1,188p1",
+          "active_series": "162p1:z,168p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 3.066937267212769,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 3.066937267212769,
+          "max_score": 4.516802075511902
+        },
+        {
+          "active_platforms": "168p1",
+          "active_series": "168p1:z",
+          "count": 1,
+          "emission_sum": 0.15616810996965613,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 2.640387296411999,
+          "max_score": 3.156168109969656
+        }
+      ]
+    },
+    {
+      "end": "2026-03-16T13:51:09.147929+00:00",
+      "global_window_index": 166,
+      "group": [
+        "160p1",
+        "226p1",
+        "252p1"
+      ],
+      "null_multi_emission_mean": 1.766961733064956,
+      "observed_minus_null": 3.7326505604514515,
+      "observed_multi_emission": 5.499612293516408,
+      "rank": 35,
+      "region_label": "mixed:florida_gulf_atlantic+gulf+northeast_atlantic",
+      "regions": [
+        "florida_gulf_atlantic",
+        "gulf",
+        "northeast_atlantic"
+      ],
+      "start": "2026-03-16T12:57:49.929108+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "160p1,252p1",
+          "active_series": "160p1:z,252p1:z",
+          "count": 1,
+          "emission_sum": 5.499612293516408,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 5.499612293516408,
+          "max_score": 7.807322081044119
+        },
+        {
+          "active_platforms": "226p1",
+          "active_series": "226p1:z",
+          "count": 1,
+          "emission_sum": 0.4543010044649929,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 4.908986962213284,
+          "max_score": 3.454301004464993
+        }
+      ]
+    },
+    {
+      "end": "2026-03-02T03:16:38.882629+00:00",
+      "global_window_index": 71,
+      "group": [
+        "036p1",
+        "092p1",
+        "147p1"
+      ],
+      "null_multi_emission_mean": 2.2343378155793077,
+      "observed_minus_null": 3.710224542336363,
+      "observed_multi_emission": 5.944562357915671,
+      "rank": 36,
+      "region_label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+      "regions": [
+        "pacific_northwest",
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-02T02:23:19.663808+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "092p1,147p1",
+          "active_series": "092p1:z,147p1:z",
+          "count": 1,
+          "emission_sum": 4.125030586043229,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 4.125030586043229,
+          "max_score": 6.765207970245892
+        },
+        {
+          "active_platforms": "036p1,147p1",
+          "active_series": "036p1:z,147p1:z",
+          "count": 1,
+          "emission_sum": 1.819531771872442,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 5.307283686777799,
+          "max_score": 4.7036372309618715
+        },
+        {
+          "active_platforms": "147p1",
+          "active_series": "147p1:z",
+          "count": 1,
+          "emission_sum": 0.5933390341726463,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 4.305866561611552,
+          "max_score": 3.5933390341726463
+        }
+      ]
+    },
+    {
+      "end": "2026-03-07T22:16:38.776092+00:00",
+      "global_window_index": 5,
+      "group": [
+        "092p1",
+        "144p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 4.063406825740917,
+      "observed_minus_null": 3.7015324280101307,
+      "observed_multi_emission": 7.764939253751048,
+      "rank": 37,
+      "region_label": "mixed:florida_gulf_atlantic+hawaii+southern_california",
+      "regions": [
+        "florida_gulf_atlantic",
+        "hawaii",
+        "southern_california"
+      ],
+      "start": "2026-03-07T21:23:19.557271+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "188p1",
+          "active_series": "188p1:z",
+          "count": 3,
+          "emission_sum": 12.408830611979727,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 17.964651433592884,
+          "max_score": 10.396183290502723
+        },
+        {
+          "active_platforms": "092p1,188p1",
+          "active_series": "092p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 7.764939253751048,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 11.74274238121129,
+          "max_score": 9.371632175507797
+        }
+      ]
+    },
+    {
+      "end": "2026-03-17T04:47:49.149132+00:00",
+      "global_window_index": 35,
+      "group": [
+        "160p1",
+        "200p1",
+        "214p1"
+      ],
+      "null_multi_emission_mean": 2.744679095121553,
+      "observed_minus_null": 3.695835743923201,
+      "observed_multi_emission": 6.440514839044754,
+      "rank": 38,
+      "region_label": "mixed:florida_gulf_atlantic+northeast_atlantic+southeast_atlantic",
+      "regions": [
+        "florida_gulf_atlantic",
+        "northeast_atlantic",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-17T03:54:29.930310+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "160p1,200p1",
+          "active_series": "160p1:z,200p1:z",
+          "count": 1,
+          "emission_sum": 6.440514839044754,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 10.21660790704648,
+          "max_score": 6.668513046761508
+        },
+        {
+          "active_platforms": "200p1",
+          "active_series": "200p1:z",
+          "count": 2,
+          "emission_sum": 4.519882584803805,
+          "first_index": 2560,
+          "last_index": 3072,
+          "max_pheromone": 4.195658964446363,
+          "max_score": 6.242236203574429
+        }
+      ]
+    },
+    {
+      "end": "2026-03-16T15:21:09.229081+00:00",
+      "global_window_index": 244,
+      "group": [
+        "098p1",
+        "252p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 3.8046136713095713,
+      "observed_minus_null": 3.6794710885892155,
+      "observed_multi_emission": 7.484084759898787,
+      "rank": 39,
+      "region_label": "mixed:gulf+hawaii+southern_california",
+      "regions": [
+        "gulf",
+        "hawaii",
+        "southern_california"
+      ],
+      "start": "2026-03-16T14:27:50.010259+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "098p1,271p1",
+          "active_series": "098p1:z,271p1:z",
+          "count": 3,
+          "emission_sum": 7.484084759898787,
+          "first_index": 1536,
+          "last_index": 2560,
+          "max_pheromone": 6.726772927354904,
+          "max_score": 6.590603252164079
+        }
+      ]
+    },
+    {
+      "end": "2026-03-17T04:47:49.149132+00:00",
+      "global_window_index": 181,
+      "group": [
+        "160p1",
+        "214p1",
+        "263p1"
+      ],
+      "null_multi_emission_mean": 3.2629990564900146,
+      "observed_minus_null": 3.5542209667982942,
+      "observed_multi_emission": 6.817220023288309,
+      "rank": 40,
+      "region_label": "mixed:florida_gulf_atlantic+northeast_atlantic",
+      "regions": [
+        "florida_gulf_atlantic",
+        "northeast_atlantic"
+      ],
+      "start": "2026-03-17T03:54:29.930310+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "160p1,263p1",
+          "active_series": "160p1:z,263p1:z",
+          "count": 1,
+          "emission_sum": 6.817220023288309,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 9.91580101327189,
+          "max_score": 7.045218231005063
+        },
+        {
+          "active_platforms": "263p1",
+          "active_series": "263p1:z",
+          "count": 3,
+          "emission_sum": 4.404356837513857,
+          "first_index": 1536,
+          "last_index": 3072,
+          "max_pheromone": 4.083954572166521,
+          "max_score": 5.414115252782379
+        }
+      ]
+    },
+    {
+      "end": "2026-03-02T12:13:18.942338+00:00",
+      "global_window_index": 115,
+      "group": [
+        "147p1",
+        "179p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 14.105208621805739,
+      "observed_minus_null": 3.398872775588538,
+      "observed_multi_emission": 17.504081397394277,
+      "rank": 41,
+      "region_label": "mixed:hawaii+pacific_northwest+southeast_atlantic",
+      "regions": [
+        "hawaii",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-02T11:19:59.723517+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "179p1,188p1",
+          "active_series": "179p1:z,188p1:z",
+          "count": 2,
+          "emission_sum": 8.908876112604807,
+          "first_index": 2560,
+          "last_index": 3584,
+          "max_pheromone": 14.827032014318533,
+          "max_score": 8.588548727390524
+        },
+        {
+          "active_platforms": "147p1,179p1",
+          "active_series": "147p1:z,179p1:z",
+          "count": 1,
+          "emission_sum": 5.150649704078371,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 5.879013525759877,
+          "max_score": 6.096420550955035
+        },
+        {
+          "active_platforms": "147p1,179p1,188p1",
+          "active_series": "147p1:z,179p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 3.4445555807111004,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 15.159032763338146,
+          "max_score": 5.175074669812016
+        },
+        {
+          "active_platforms": "179p1",
+          "active_series": "179p1:z",
+          "count": 1,
+          "emission_sum": 0.8092931352016728,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 0.8092931352016728,
+          "max_score": 3.809293135201673
+        }
+      ]
+    },
+    {
+      "end": "2026-03-02T13:06:38.942410+00:00",
+      "global_window_index": 117,
+      "group": [
+        "147p1",
+        "179p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 6.796139574109287,
+      "observed_minus_null": 3.342651051198531,
+      "observed_multi_emission": 10.138790625307818,
+      "rank": 42,
+      "region_label": "mixed:hawaii+pacific_northwest+southeast_atlantic",
+      "regions": [
+        "hawaii",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-02T12:13:19.723588+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "147p1,179p1,188p1",
+          "active_series": "147p1:z,179p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 5.438953275083418,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 6.119998000631834,
+          "max_score": 6.094549609501699
+        },
+        {
+          "active_platforms": "179p1,188p1",
+          "active_series": "179p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 3.9431209885039378,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 8.954689305634014,
+          "max_score": 5.7178241609557485
+        },
+        {
+          "active_platforms": "147p1,188p1",
+          "active_series": "147p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 0.756716361720462,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 0.756716361720462,
+          "max_score": 3.667369403485697
+        },
+        {
+          "active_platforms": "188p1",
+          "active_series": "188p1:z",
+          "count": 1,
+          "emission_sum": 0.06041104068698999,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 5.56840924125564,
+          "max_score": 3.06041104068699
+        }
+      ]
+    },
+    {
+      "end": "2026-03-08T00:03:18.776235+00:00",
+      "global_window_index": 9,
+      "group": [
+        "092p1",
+        "144p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 4.129129234945605,
+      "observed_minus_null": 3.2107774508994034,
+      "observed_multi_emission": 7.339906685845008,
+      "rank": 43,
+      "region_label": "mixed:florida_gulf_atlantic+hawaii+southern_california",
+      "regions": [
+        "florida_gulf_atlantic",
+        "hawaii",
+        "southern_california"
+      ],
+      "start": "2026-03-07T23:09:59.557414+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "144p1,188p1",
+          "active_series": "144p1:z,188p1:z",
+          "count": 1,
+          "emission_sum": 7.339906685845008,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 9.92126328747072,
+          "max_score": 8.472674237839488
+        },
+        {
+          "active_platforms": "188p1",
+          "active_series": "188p1:z",
+          "count": 2,
+          "emission_sum": 2.3454158989026466,
+          "first_index": 1536,
+          "last_index": 3072,
+          "max_pheromone": 9.442318482305081,
+          "max_score": 4.832234375321215
+        },
+        {
+          "active_platforms": "092p1",
+          "active_series": "092p1:z",
+          "count": 1,
+          "emission_sum": 1.2191630640172537,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 2.868174001806347,
+          "max_score": 4.219163064017254
+        }
+      ]
+    },
+    {
+      "end": "2026-03-31T06:44:29.246895+00:00",
+      "global_window_index": 65,
+      "group": [
+        "143p1",
+        "249p1",
+        "284p1"
+      ],
+      "null_multi_emission_mean": 5.671222863573919,
+      "observed_minus_null": 3.196312124269345,
+      "observed_multi_emission": 8.867534987843264,
+      "rank": 44,
+      "region_label": "mixed:caribbean+florida_gulf_atlantic+southern_california",
+      "regions": [
+        "caribbean",
+        "florida_gulf_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-31T05:51:10.028074+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "143p1,249p1,284p1",
+          "active_series": "143p1:z,249p1:z,284p1:z",
+          "count": 1,
+          "emission_sum": 8.867534987843264,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 12.08468546737512,
+          "max_score": 7.113141876889932
+        },
+        {
+          "active_platforms": "284p1",
+          "active_series": "284p1:z",
+          "count": 1,
+          "emission_sum": 2.4829114038406574,
+          "first_index": 3072,
+          "last_index": 3072,
+          "max_pheromone": 3.574611643924285,
+          "max_score": 5.4829114038406574
+        },
+        {
+          "active_platforms": "249p1",
+          "active_series": "249p1:z",
+          "count": 1,
+          "emission_sum": 1.213000266759586,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 1.213000266759586,
+          "max_score": 4.213000266759586
+        }
+      ]
+    },
+    {
+      "end": "2026-03-13T08:47:49.117187+00:00",
+      "global_window_index": 39,
+      "group": [
+        "094p1",
+        "217p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 4.251382947553807,
+      "observed_minus_null": 3.182874348711488,
+      "observed_multi_emission": 7.4342572962652955,
+      "rank": 45,
+      "region_label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+      "regions": [
+        "pacific_northwest",
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-13T07:54:29.898365+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "094p1,271p1",
+          "active_series": "094p1:z,271p1:z",
+          "count": 1,
+          "emission_sum": 6.132774668776323,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 7.600402529555092,
+          "max_score": 6.0943421334379195
+        },
+        {
+          "active_platforms": "094p1,217p1",
+          "active_series": "094p1:z,217p1:z",
+          "count": 1,
+          "emission_sum": 1.3014826274889733,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 1.6306976230875216,
+          "max_score": 3.903293863477805
+        },
+        {
+          "active_platforms": "094p1",
+          "active_series": "094p1:z",
+          "count": 1,
+          "emission_sum": 0.36579443955394275,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 0.36579443955394275,
+          "max_score": 3.3657944395539428
+        },
+        {
+          "active_platforms": "217p1",
+          "active_series": "217p1:z",
+          "count": 1,
+          "emission_sum": 0.15127537056946228,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 6.307601419509087,
+          "max_score": 3.1512753705694623
+        }
+      ]
+    },
+    {
+      "end": "2026-03-02T02:23:18.882558+00:00",
+      "global_window_index": 69,
+      "group": [
+        "036p1",
+        "092p1",
+        "147p1"
+      ],
+      "null_multi_emission_mean": 2.2889355730309173,
+      "observed_minus_null": 3.1593191179627045,
+      "observed_multi_emission": 5.448254690993622,
+      "rank": 46,
+      "region_label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+      "regions": [
+        "pacific_northwest",
+        "southeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-02T01:29:59.663736+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "092p1,147p1",
+          "active_series": "092p1:z,147p1:z",
+          "count": 2,
+          "emission_sum": 5.448254690993622,
+          "first_index": 2560,
+          "last_index": 3584,
+          "max_pheromone": 4.631088380207028,
+          "max_score": 5.957132793812851
+        },
+        {
+          "active_platforms": "147p1",
+          "active_series": "147p1:z",
+          "count": 1,
+          "emission_sum": 0.0007476991137900235,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 0.0007476991137900235,
+          "max_score": 3.00074769911379
+        }
+      ]
+    },
+    {
+      "end": "2026-03-02T11:19:58.942267+00:00",
+      "global_window_index": 113,
+      "group": [
+        "147p1",
+        "179p1",
+        "188p1"
+      ],
+      "null_multi_emission_mean": 9.661736679789328,
+      "observed_minus_null": 3.1405028259835017,
+      "observed_multi_emission": 12.80223950577283,
+      "rank": 47,
+      "region_label": "mixed:hawaii+pacific_northwest+southeast_atlantic",
+      "regions": [
+        "hawaii",
+        "pacific_northwest",
+        "southeast_atlantic"
+      ],
+      "start": "2026-03-02T10:26:39.723445+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "147p1,188p1",
+          "active_series": "147p1:z,188p1:z",
+          "count": 3,
+          "emission_sum": 12.420025738221113,
+          "first_index": 1536,
+          "last_index": 3584,
+          "max_pheromone": 11.150186709387118,
+          "max_score": 7.420965331394483
+        },
+        {
+          "active_platforms": "188p1",
+          "active_series": "188p1:z",
+          "count": 1,
+          "emission_sum": 0.5724544498936859,
+          "first_index": 2048,
+          "last_index": 2048,
+          "max_pheromone": 5.227383156319167,
+          "max_score": 3.572454449893686
+        },
+        {
+          "active_platforms": "147p1,179p1",
+          "active_series": "147p1:z,179p1:z",
+          "count": 1,
+          "emission_sum": 0.3822137675517161,
+          "first_index": 2560,
+          "last_index": 2560,
+          "max_pheromone": 5.086858608238966,
+          "max_score": 3.208825979964958
+        }
+      ]
+    },
+    {
+      "end": "2026-03-13T09:41:09.117258+00:00",
+      "global_window_index": 104,
+      "group": [
+        "154p1",
+        "222p1",
+        "271p1"
+      ],
+      "null_multi_emission_mean": 3.5781901780732723,
+      "observed_minus_null": 3.1382140875236044,
+      "observed_multi_emission": 6.716404265596877,
+      "rank": 48,
+      "region_label": "mixed:northeast_atlantic+southern_california",
+      "regions": [
+        "northeast_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-13T08:47:49.898437+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "222p1,271p1",
+          "active_series": "222p1:z,271p1:z",
+          "count": 2,
+          "emission_sum": 6.716404265596877,
+          "first_index": 2560,
+          "last_index": 3072,
+          "max_pheromone": 6.880241344149104,
+          "max_score": 6.063730430128209
+        },
+        {
+          "active_platforms": "271p1",
+          "active_series": "271p1:z",
+          "count": 1,
+          "emission_sum": 0.2452761876093401,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 0.45432507129717925,
+          "max_score": 3.24527618760934
+        },
+        {
+          "active_platforms": "154p1",
+          "active_series": "154p1:z",
+          "count": 1,
+          "emission_sum": 0.23227653743093235,
+          "first_index": 1024,
+          "last_index": 1024,
+          "max_pheromone": 0.23227653743093235,
+          "max_score": 3.2322765374309324
+        }
+      ]
+    },
+    {
+      "end": "2026-03-31T07:37:49.246967+00:00",
+      "global_window_index": 67,
+      "group": [
+        "143p1",
+        "249p1",
+        "284p1"
+      ],
+      "null_multi_emission_mean": 4.472203453927661,
+      "observed_minus_null": 3.087425364307271,
+      "observed_multi_emission": 7.559628818234932,
+      "rank": 49,
+      "region_label": "mixed:caribbean+florida_gulf_atlantic+southern_california",
+      "regions": [
+        "caribbean",
+        "florida_gulf_atlantic",
+        "southern_california"
+      ],
+      "start": "2026-03-31T06:44:30.028145+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "249p1,284p1",
+          "active_series": "249p1:z,284p1:z",
+          "count": 1,
+          "emission_sum": 7.559628818234932,
+          "first_index": 3584,
+          "last_index": 3584,
+          "max_pheromone": 9.262189170741507,
+          "max_score": 8.485368431300564
+        },
+        {
+          "active_platforms": "249p1",
+          "active_series": "249p1:z",
+          "count": 1,
+          "emission_sum": 1.4873799868046866,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 1.4873799868046866,
+          "max_score": 4.487379986804687
+        },
+        {
+          "active_platforms": "284p1",
+          "active_series": "284p1:z",
+          "count": 2,
+          "emission_sum": 0.9266175826082632,
+          "first_index": 2048,
+          "last_index": 2560,
+          "max_pheromone": 2.1019263611192285,
+          "max_score": 3.631927474599957
+        }
+      ]
+    },
+    {
+      "end": "2026-03-31T18:44:29.247861+00:00",
+      "global_window_index": 23,
+      "group": [
+        "189p1",
+        "249p1",
+        "280p1"
+      ],
+      "null_multi_emission_mean": 8.029873484964993,
+      "observed_minus_null": 3.056413774699445,
+      "observed_multi_emission": 11.086287259664438,
+      "rank": 50,
+      "region_label": "mixed:caribbean+pacific_northwest+south_pacific",
+      "regions": [
+        "caribbean",
+        "pacific_northwest",
+        "south_pacific"
+      ],
+      "start": "2026-03-31T17:51:10.029039+00:00",
+      "top_combinations": [
+        {
+          "active_platforms": "249p1,280p1",
+          "active_series": "249p1:z,280p1:z",
+          "count": 3,
+          "emission_sum": 6.343233327664666,
+          "first_index": 2048,
+          "last_index": 3584,
+          "max_pheromone": 8.658192517671171,
+          "max_score": 5.713304322162176
+        },
+        {
+          "active_platforms": "189p1,249p1,280p1",
+          "active_series": "189p1:z,249p1:z,280p1:z",
+          "count": 1,
+          "emission_sum": 4.743053931999773,
+          "first_index": 1536,
+          "last_index": 1536,
+          "max_pheromone": 4.743053931999773,
+          "max_score": 6.1883511673696985
+        }
+      ]
+    }
+  ]
+}

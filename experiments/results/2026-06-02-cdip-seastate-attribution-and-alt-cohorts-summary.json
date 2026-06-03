@@ -1,0 +1,918 @@
+{
+  "cross_run_read": {
+    "next_discriminator": "pull actual spectral energy arrays for top windows and count spectral peaks/bandwidth directly; wave_agg proxies are insufficient to name modal structure definitively",
+    "not_multimodal_by_proxy": "High-delta windows did not consistently show larger Tp-Ta/Tp-Tz gaps, larger cross-platform peak-direction spread, or larger across-platform Tp spread.",
+    "plain_name_for_now": "organized longer-period energy / event-conditioned coherent sea state, not yet confused or multi-modal sea state",
+    "stronger_common_clue": "Against broad background controls, high-delta windows often have longer average/zero-cross periods and higher peak concentration; many shifts weaken under month-matched controls."
+  },
+  "method_boundary": {
+    "attribution_role": "post-hoc explanatory pass over CDIP wave_agg published parameters",
+    "detector_inputs": "raw CDIP displacement only; no CDIP bulk sea-state fields are used for detection",
+    "proxy_caution": "wave_agg does not publish literal bandwidth/directional-spread columns, so period gaps/ratios, peak PSD per Hs^2, and cross-platform peak-direction spread are proxies only",
+    "wave_agg_source": "https://erddap.cdip.ucsd.edu/erddap/tabledap/wave_agg.html"
+  },
+  "runs": {
+    "heldout_groups512_1023": {
+      "aggregate": {
+        "groups_discovered": 512,
+        "null_total_unique_exceedances": 0,
+        "null_total_unique_p_ge_observed": 0.000999000999000999,
+        "null_total_unique_repeats": 1000,
+        "observed_minus_null_per_window": 0.4969539129742503,
+        "observed_minus_null_total": 1352.7085511159094,
+        "observed_total_z_effect_size": 7.785037157902106,
+        "windows_run": 2722
+      },
+      "attribution_selection": {
+        "background_baseline_windows": 250,
+        "month_matched_baseline_windows": 100,
+        "pad_minutes": 45.0,
+        "top_windows": 100
+      },
+      "description": "held-out group split from the 70-file corpus, groups 512-1023",
+      "feature_shifts": {
+        "high_delta_vs_background_baseline": {
+          "tp_ta_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.11024,
+            "mann_whitney_u_p_two_sided": 0.10720951156720057,
+            "mean_difference_high_minus_baseline": -0.25508309744666624,
+            "standardized_mean_difference": -0.17960015103553514
+          },
+          "tp_ta_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.19264,
+            "mann_whitney_u_p_two_sided": 0.004872316048053878,
+            "mean_difference_high_minus_baseline": -0.06814521079072655,
+            "standardized_mean_difference": -0.2996578247069939
+          },
+          "tp_tz_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.08032,
+            "mann_whitney_u_p_two_sided": 0.24059386920024373,
+            "mean_difference_high_minus_baseline": -0.20737076297333346,
+            "standardized_mean_difference": -0.12941871831120344
+          },
+          "tp_tz_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.18864,
+            "mann_whitney_u_p_two_sided": 0.005835471004460577,
+            "mean_difference_high_minus_baseline": -0.08813066293546679,
+            "standardized_mean_difference": -0.2995533669016424
+          },
+          "waveDp_spread_deg_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.14856,
+            "mann_whitney_u_p_two_sided": 0.02993033314353775,
+            "mean_difference_high_minus_baseline": -7.397400656234566,
+            "standardized_mean_difference": -0.2751206172989752
+          },
+          "waveHs_mean": {
+            "cliffs_delta_high_vs_baseline": 0.20736,
+            "mann_whitney_u_p_two_sided": 0.002441251615349073,
+            "mean_difference_high_minus_baseline": 0.16314933333333315,
+            "standardized_mean_difference": 0.31768782969879816
+          },
+          "wavePeakPSD_per_hs2_mean": {
+            "cliffs_delta_high_vs_baseline": 0.21056,
+            "mann_whitney_u_p_two_sided": 0.002088818384908622,
+            "mean_difference_high_minus_baseline": 0.15668259795276596,
+            "standardized_mean_difference": 0.3682644459954962
+          },
+          "waveTa_mean": {
+            "cliffs_delta_high_vs_baseline": 0.26544,
+            "mann_whitney_u_p_two_sided": 0.000104662690956115,
+            "mean_difference_high_minus_baseline": 0.5987844224099987,
+            "standardized_mean_difference": 0.5077682725957623
+          },
+          "waveTp_mean": {
+            "cliffs_delta_high_vs_baseline": 0.09016,
+            "mann_whitney_u_p_two_sided": 0.1877242684707391,
+            "mean_difference_high_minus_baseline": 0.34370132496333383,
+            "standardized_mean_difference": 0.16356147261841208
+          },
+          "waveTp_std_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.08712,
+            "mann_whitney_u_p_two_sided": 0.20305224179234327,
+            "mean_difference_high_minus_baseline": -0.225959793633983,
+            "standardized_mean_difference": -0.1313686542791911
+          },
+          "waveTz_mean": {
+            "cliffs_delta_high_vs_baseline": 0.30808,
+            "mann_whitney_u_p_two_sided": 6.705888028137784e-06,
+            "mean_difference_high_minus_baseline": 0.5510720879366664,
+            "standardized_mean_difference": 0.588150188852979
+          }
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "tp_ta_gap_mean": {
+            "cliffs_delta_high_vs_baseline": 0.0452,
+            "mann_whitney_u_p_two_sided": 0.5816443681108767,
+            "mean_difference_high_minus_baseline": 0.08588659138333332,
+            "standardized_mean_difference": 0.06179760724517648
+          },
+          "tp_ta_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.016,
+            "mann_whitney_u_p_two_sided": 0.8459805338699623,
+            "mean_difference_high_minus_baseline": -0.006368851495379468,
+            "standardized_mean_difference": -0.029052175941357925
+          },
+          "tp_tz_gap_mean": {
+            "cliffs_delta_high_vs_baseline": 0.0464,
+            "mann_whitney_u_p_two_sided": 0.5716353078175516,
+            "mean_difference_high_minus_baseline": 0.10977610124999959,
+            "standardized_mean_difference": 0.07048718641608123
+          },
+          "tp_tz_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.0242,
+            "mann_whitney_u_p_two_sided": 0.7684305136015965,
+            "mean_difference_high_minus_baseline": -0.008704249468201919,
+            "standardized_mean_difference": -0.030964815733497002
+          },
+          "waveDp_spread_deg_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.0572,
+            "mann_whitney_u_p_two_sided": 0.4854350203743938,
+            "mean_difference_high_minus_baseline": -3.087641455233168,
+            "standardized_mean_difference": -0.11135643963039225
+          },
+          "waveHs_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1365,
+            "mann_whitney_u_p_two_sided": 0.09563477189885775,
+            "mean_difference_high_minus_baseline": 0.11098333333333343,
+            "standardized_mean_difference": 0.21992255369086572
+          },
+          "wavePeakPSD_per_hs2_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1066,
+            "mann_whitney_u_p_two_sided": 0.19322249248138934,
+            "mean_difference_high_minus_baseline": 0.060095321265905666,
+            "standardized_mean_difference": 0.12340599546587132
+          },
+          "waveTa_mean": {
+            "cliffs_delta_high_vs_baseline": 0.155,
+            "mann_whitney_u_p_two_sided": 0.05843698673930295,
+            "mean_difference_high_minus_baseline": 0.3106615050833321,
+            "standardized_mean_difference": 0.2381123139383053
+          },
+          "waveTp_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1156,
+            "mann_whitney_u_p_two_sided": 0.15822731531230194,
+            "mean_difference_high_minus_baseline": 0.3965480964666668,
+            "standardized_mean_difference": 0.1909155546407371
+          },
+          "waveTp_std_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.0348,
+            "mann_whitney_u_p_two_sided": 0.6716179958533891,
+            "mean_difference_high_minus_baseline": -0.07042261173471331,
+            "standardized_mean_difference": -0.04161156310321069
+          },
+          "waveTz_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1724,
+            "mann_whitney_u_p_two_sided": 0.03529302156700438,
+            "mean_difference_high_minus_baseline": 0.2867719952166645,
+            "standardized_mean_difference": 0.27650198398424986
+          }
+        }
+      },
+      "manifest": "/tmp/cdip_1p5gb_1024groups_groups512_1023_windows.json",
+      "result_paths": {
+        "attribution": "experiments/results/2026-06-02-cdip-heldout-groups512-1023-seastate-attribution.json",
+        "catalog": "experiments/results/2026-06-02-cdip-heldout-groups512-1023-anomaly-catalog.json",
+        "merged_tmp": "/tmp/cdip_1p5gb_groups512_1023_highpass_mask3_r1_permute_null1000_8shards/merged.json",
+        "spatial": "experiments/results/2026-06-02-cdip-spatial-validity-heldout-groups512-1023-highpass-mask3-r1-surrogate100.json"
+      },
+      "spatial_checks": {
+        "bounded_speed_fraction": 0.2865853658536585,
+        "bounded_speed_pairs": 94,
+        "directional_surrogate_bounded_speed_fraction_p_ge": 0.8118811881188119,
+        "directional_surrogate_bounded_speed_pairs_p_ge": 0.8514851485148515,
+        "spatial_surrogate_mixed_region_delta_mean_p_ge": 0.8811881188118812
+      },
+      "top_region_labels": [
+        {
+          "observed_minus_null_sum": 71.2657851513533,
+          "region_label": "mixed:pacific_northwest+southern_california",
+          "top_window_count": 10
+        },
+        {
+          "observed_minus_null_sum": 48.1499735044498,
+          "region_label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+          "top_window_count": 6
+        },
+        {
+          "observed_minus_null_sum": 61.77537740165898,
+          "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+          "top_window_count": 4
+        },
+        {
+          "observed_minus_null_sum": 33.34974429003962,
+          "region_label": "mixed:florida_gulf_atlantic+hawaii+southern_california",
+          "top_window_count": 4
+        },
+        {
+          "observed_minus_null_sum": 30.461959521193315,
+          "region_label": "mixed:central_california+florida_gulf_atlantic+gulf",
+          "top_window_count": 3
+        }
+      ],
+      "top_time_clusters": [
+        {
+          "end": "2026-05-31T05:24:29.711884+00:00",
+          "max_observed_minus_null": 8.609008705770812,
+          "platforms": [
+            "045p1",
+            "071p1",
+            "150p1",
+            "153p1",
+            "154p1",
+            "157p1",
+            "168p1",
+            "179p1",
+            "187p1",
+            "188p1",
+            "189p1",
+            "192p1",
+            "209p1",
+            "222p1",
+            "243p1",
+            "262p1",
+            "268p1",
+            "430p1"
+          ],
+          "regions": [
+            "central_california",
+            "great_lakes",
+            "hawaii",
+            "northeast_atlantic",
+            "pacific_northwest",
+            "south_pacific",
+            "southeast_atlantic",
+            "southern_california"
+          ],
+          "start": "2026-05-30T22:10:00.074570+00:00",
+          "window_indices": [
+            255,
+            2404,
+            1922,
+            192,
+            2341,
+            890,
+            1068,
+            1925,
+            2132,
+            1868,
+            2133,
+            268
+          ],
+          "windows": 12
+        },
+        {
+          "end": "2026-06-01T14:33:19.061206+00:00",
+          "max_observed_minus_null": 10.461692678746253,
+          "platforms": [
+            "098p1",
+            "100p1",
+            "147p1",
+            "153p1",
+            "156p1",
+            "179p1",
+            "181p1",
+            "189p1",
+            "192p1",
+            "194p1",
+            "196p1",
+            "200p1",
+            "201p1",
+            "215p1",
+            "250p1",
+            "262p1"
+          ],
+          "regions": [
+            "caribbean",
+            "central_california",
+            "florida_gulf_atlantic",
+            "hawaii",
+            "pacific_northwest",
+            "south_pacific",
+            "southeast_atlantic",
+            "southern_california",
+            "west_pacific"
+          ],
+          "start": "2026-05-31T23:59:59.578482+00:00",
+          "window_indices": [
+            2569,
+            1838,
+            758,
+            2008,
+            1091,
+            1220,
+            974
+          ],
+          "windows": 7
+        },
+        {
+          "end": "2026-05-27T08:27:49.056649+00:00",
+          "max_observed_minus_null": 12.549396663928938,
+          "platforms": [
+            "029p1",
+            "100p1",
+            "147p1",
+            "156p1",
+            "157p1",
+            "179p1",
+            "187p1",
+            "202p1",
+            "269p1",
+            "274p1",
+            "279p1"
+          ],
+          "regions": [
+            "central_california",
+            "great_lakes",
+            "gulf",
+            "hawaii",
+            "pacific_northwest",
+            "southeast_atlantic",
+            "southern_california"
+          ],
+          "start": "2026-05-26T23:09:59.888620+00:00",
+          "window_indices": [
+            933,
+            1083,
+            1086,
+            1498,
+            2272
+          ],
+          "windows": 5
+        }
+      ]
+    },
+    "march_2026": {
+      "aggregate": {
+        "groups_discovered": 58,
+        "null_total_unique_exceedances": 0,
+        "null_total_unique_p_ge_observed": 0.000999000999000999,
+        "null_total_unique_repeats": 1000,
+        "observed_minus_null_per_window": 0.834202659438068,
+        "observed_minus_null_total": 204.37965156232667,
+        "observed_total_z_effect_size": 3.4972117596293626,
+        "windows_run": 245
+      },
+      "attribution_selection": {
+        "background_baseline_windows": 100,
+        "month_matched_baseline_windows": 50,
+        "pad_minutes": 45.0,
+        "top_windows": 50
+      },
+      "description": "different date range control, windows with starts in 2026-03",
+      "feature_shifts": {
+        "high_delta_vs_background_baseline": {
+          "tp_ta_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.259,
+            "mann_whitney_u_p_two_sided": 0.009896614531472272,
+            "mean_difference_high_minus_baseline": -0.7030102632499999,
+            "standardized_mean_difference": -0.4598674005223337
+          },
+          "tp_ta_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.2882,
+            "mann_whitney_u_p_two_sided": 0.004098843356751903,
+            "mean_difference_high_minus_baseline": -0.09291471505981397,
+            "standardized_mean_difference": -0.5152692819441304
+          },
+          "tp_tz_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.2538,
+            "mann_whitney_u_p_two_sided": 0.011484733923933654,
+            "mean_difference_high_minus_baseline": -0.8352523214666672,
+            "standardized_mean_difference": -0.43803108063800583
+          },
+          "tp_tz_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.2842,
+            "mann_whitney_u_p_two_sided": 0.0046462900051079436,
+            "mean_difference_high_minus_baseline": -0.13473816897440294,
+            "standardized_mean_difference": -0.49434233690549073
+          },
+          "waveDp_spread_deg_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.0502,
+            "mann_whitney_u_p_two_sided": 0.61824265255867,
+            "mean_difference_high_minus_baseline": 0.11996529628862618,
+            "standardized_mean_difference": 0.004154511264777837
+          },
+          "waveHs_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1874,
+            "mann_whitney_u_p_two_sided": 0.06206944744490955,
+            "mean_difference_high_minus_baseline": 0.12999166666666628,
+            "standardized_mean_difference": 0.2957949209695255
+          },
+          "wavePeakPSD_per_hs2_mean": {
+            "cliffs_delta_high_vs_baseline": -0.1554,
+            "mann_whitney_u_p_two_sided": 0.12189818033172745,
+            "mean_difference_high_minus_baseline": -0.2029396447371623,
+            "standardized_mean_difference": -0.25026574809390006
+          },
+          "waveTa_mean": {
+            "cliffs_delta_high_vs_baseline": -0.073,
+            "mann_whitney_u_p_two_sided": 0.46809218326707147,
+            "mean_difference_high_minus_baseline": -0.1685648409166678,
+            "standardized_mean_difference": -0.13339750316317509
+          },
+          "waveTp_mean": {
+            "cliffs_delta_high_vs_baseline": -0.1962,
+            "mann_whitney_u_p_two_sided": 0.05075903860151128,
+            "mean_difference_high_minus_baseline": -0.8715751041666682,
+            "standardized_mean_difference": -0.35063936853175065
+          },
+          "waveTp_std_across_platforms": {
+            "cliffs_delta_high_vs_baseline": 0.02,
+            "mann_whitney_u_p_two_sided": 0.8435580876667752,
+            "mean_difference_high_minus_baseline": 0.04246998675501912,
+            "standardized_mean_difference": 0.024550151712511955
+          },
+          "waveTz_mean": {
+            "cliffs_delta_high_vs_baseline": -0.0454,
+            "mann_whitney_u_p_two_sided": 0.6523487820256942,
+            "mean_difference_high_minus_baseline": -0.03632278269999922,
+            "standardized_mean_difference": -0.04105858706207546
+          }
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "tp_ta_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.1272,
+            "mann_whitney_u_p_two_sided": 0.27453419863321193,
+            "mean_difference_high_minus_baseline": -0.34902515483333385,
+            "standardized_mean_difference": -0.2760095556814718
+          },
+          "tp_ta_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.2128,
+            "mann_whitney_u_p_two_sided": 0.06720125784318495,
+            "mean_difference_high_minus_baseline": -0.06158771740210023,
+            "standardized_mean_difference": -0.4197913247267107
+          },
+          "tp_tz_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.1368,
+            "mann_whitney_u_p_two_sided": 0.23983197687586677,
+            "mean_difference_high_minus_baseline": -0.3972075641333346,
+            "standardized_mean_difference": -0.24488860669032153
+          },
+          "tp_tz_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.2104,
+            "mann_whitney_u_p_two_sided": 0.07035101103551072,
+            "mean_difference_high_minus_baseline": -0.08343889073577526,
+            "standardized_mean_difference": -0.36758546466705305
+          },
+          "waveDp_spread_deg_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.1552,
+            "mann_whitney_u_p_two_sided": 0.18221494946099226,
+            "mean_difference_high_minus_baseline": -4.7357413320351895,
+            "standardized_mean_difference": -0.18016333913887334
+          },
+          "waveHs_mean": {
+            "cliffs_delta_high_vs_baseline": 0.17,
+            "mann_whitney_u_p_two_sided": 0.14387385396214145,
+            "mean_difference_high_minus_baseline": 0.11906000000000017,
+            "standardized_mean_difference": 0.29501995257909824
+          },
+          "wavePeakPSD_per_hs2_mean": {
+            "cliffs_delta_high_vs_baseline": -0.0352,
+            "mann_whitney_u_p_two_sided": 0.7642657430136771,
+            "mean_difference_high_minus_baseline": -0.005766351585104301,
+            "standardized_mean_difference": -0.008775509514656143
+          },
+          "waveTa_mean": {
+            "cliffs_delta_high_vs_baseline": 0.004,
+            "mann_whitney_u_p_two_sided": 0.9752516208865674,
+            "mean_difference_high_minus_baseline": 0.06774880673333428,
+            "standardized_mean_difference": 0.056955541738386246
+          },
+          "waveTp_mean": {
+            "cliffs_delta_high_vs_baseline": -0.066,
+            "mann_whitney_u_p_two_sided": 0.5718685656526482,
+            "mean_difference_high_minus_baseline": -0.28127634810000046,
+            "standardized_mean_difference": -0.128080794657161
+          },
+          "waveTp_std_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.0012,
+            "mann_whitney_u_p_two_sided": 0.9944994886089706,
+            "mean_difference_high_minus_baseline": -0.054641145020061455,
+            "standardized_mean_difference": -0.03136399751440894
+          },
+          "waveTz_mean": {
+            "cliffs_delta_high_vs_baseline": 0.0352,
+            "mann_whitney_u_p_two_sided": 0.7642657430136771,
+            "mean_difference_high_minus_baseline": 0.11593121603333412,
+            "standardized_mean_difference": 0.13601062782893913
+          }
+        }
+      },
+      "manifest": "/tmp/cdip_1p5gb_2026_03_windows.json",
+      "result_paths": {
+        "attribution": "experiments/results/2026-06-02-cdip-2026-03-seastate-attribution.json",
+        "catalog": "experiments/results/2026-06-02-cdip-2026-03-anomaly-catalog.json",
+        "merged_tmp": "/tmp/cdip_2026_03_highpass_mask3_r1_permute_null1000_4shards/merged.json",
+        "spatial": "experiments/results/2026-06-02-cdip-spatial-validity-2026-03-highpass-mask3-r1-surrogate100.json"
+      },
+      "spatial_checks": {
+        "bounded_speed_fraction": 0.0,
+        "bounded_speed_pairs": 0,
+        "directional_surrogate_bounded_speed_fraction_p_ge": 1.0,
+        "directional_surrogate_bounded_speed_pairs_p_ge": 1.0,
+        "spatial_surrogate_mixed_region_delta_mean_p_ge": 0.24752475247524752
+      },
+      "top_region_labels": [
+        {
+          "observed_minus_null_sum": 66.83311964812341,
+          "region_label": "mixed:caribbean+hawaii+pacific_northwest",
+          "top_window_count": 5
+        },
+        {
+          "observed_minus_null_sum": 16.38653599096066,
+          "region_label": "mixed:hawaii+pacific_northwest+southeast_atlantic",
+          "top_window_count": 4
+        },
+        {
+          "observed_minus_null_sum": 16.308377100610706,
+          "region_label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+          "top_window_count": 4
+        },
+        {
+          "observed_minus_null_sum": 18.38797638406289,
+          "region_label": "mixed:florida_gulf_atlantic+pacific_northwest+southern_california",
+          "top_window_count": 4
+        },
+        {
+          "observed_minus_null_sum": 16.873819719357115,
+          "region_label": "mixed:florida_gulf_atlantic+hawaii+southern_california",
+          "top_window_count": 3
+        }
+      ],
+      "top_time_clusters": [
+        {
+          "end": "2026-03-18T10:03:19.296208+00:00",
+          "max_observed_minus_null": 33.71781811719265,
+          "platforms": [
+            "132p1",
+            "162p1",
+            "168p1",
+            "181p1",
+            "188p1",
+            "202p1",
+            "215p1"
+          ],
+          "regions": [
+            "caribbean",
+            "florida_gulf_atlantic",
+            "hawaii",
+            "pacific_northwest",
+            "southern_california"
+          ],
+          "start": "2026-03-18T05:57:49.839911+00:00",
+          "window_indices": [
+            232,
+            233,
+            234,
+            237,
+            239,
+            220,
+            60
+          ],
+          "windows": 7
+        },
+        {
+          "end": "2026-03-16T17:24:29.609411+00:00",
+          "max_observed_minus_null": 10.078253613915997,
+          "platforms": [
+            "098p1",
+            "160p1",
+            "162p1",
+            "209p1",
+            "226p1",
+            "249p1",
+            "252p1",
+            "271p1"
+          ],
+          "regions": [
+            "caribbean",
+            "florida_gulf_atlantic",
+            "gulf",
+            "hawaii",
+            "northeast_atlantic",
+            "pacific_northwest",
+            "southern_california"
+          ],
+          "start": "2026-03-16T08:57:49.928786+00:00",
+          "window_indices": [
+            202,
+            205,
+            166,
+            192,
+            193,
+            244,
+            62
+          ],
+          "windows": 7
+        },
+        {
+          "end": "2026-03-13T09:41:09.117258+00:00",
+          "max_observed_minus_null": 6.465037388588193,
+          "platforms": [
+            "094p1",
+            "154p1",
+            "168p1",
+            "194p1",
+            "215p1",
+            "217p1",
+            "222p1",
+            "262p1",
+            "271p1",
+            "284p1"
+          ],
+          "regions": [
+            "florida_gulf_atlantic",
+            "northeast_atlantic",
+            "pacific_northwest",
+            "southeast_atlantic",
+            "southern_california"
+          ],
+          "start": "2026-03-13T07:27:49.898329+00:00",
+          "window_indices": [
+            133,
+            0,
+            130,
+            134,
+            39,
+            242,
+            104
+          ],
+          "windows": 7
+        }
+      ]
+    },
+    "westcoast_all": {
+      "aggregate": {
+        "groups_discovered": 67,
+        "null_total_unique_exceedances": 0,
+        "null_total_unique_p_ge_observed": 0.000999000999000999,
+        "null_total_unique_repeats": 1000,
+        "observed_minus_null_per_window": 0.9579417908647085,
+        "observed_minus_null_total": 415.7467372352835,
+        "observed_total_z_effect_size": 5.651652481524665,
+        "windows_run": 434
+      },
+      "attribution_selection": {
+        "background_baseline_windows": 100,
+        "month_matched_baseline_windows": 50,
+        "pad_minutes": 45.0,
+        "top_windows": 50
+      },
+      "description": "geography control, all platforms in southern/central CA or Pacific Northwest regions",
+      "feature_shifts": {
+        "high_delta_vs_background_baseline": {
+          "tp_ta_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.226,
+            "mann_whitney_u_p_two_sided": 0.02441654132123523,
+            "mean_difference_high_minus_baseline": -0.7217094219666658,
+            "standardized_mean_difference": -0.3763665884905399
+          },
+          "tp_ta_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.3028,
+            "mann_whitney_u_p_two_sided": 0.0025616410399341644,
+            "mean_difference_high_minus_baseline": -0.17773925195344087,
+            "standardized_mean_difference": -0.4654678235396344
+          },
+          "tp_tz_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.17,
+            "mann_whitney_u_p_two_sided": 0.09057580238676848,
+            "mean_difference_high_minus_baseline": -0.5373127477499997,
+            "standardized_mean_difference": -0.2807009650219682
+          },
+          "tp_tz_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.2732,
+            "mann_whitney_u_p_two_sided": 0.006509554213593524,
+            "mean_difference_high_minus_baseline": -0.21316368908066696,
+            "standardized_mean_difference": -0.4529222872419383
+          },
+          "waveDp_spread_deg_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.0872,
+            "mann_whitney_u_p_two_sided": 0.3858793204652249,
+            "mean_difference_high_minus_baseline": -1.9807834293755349,
+            "standardized_mean_difference": -0.12866618352372344
+          },
+          "waveHs_mean": {
+            "cliffs_delta_high_vs_baseline": -0.0498,
+            "mann_whitney_u_p_two_sided": 0.6210546369986326,
+            "mean_difference_high_minus_baseline": -0.04255666666666702,
+            "standardized_mean_difference": -0.06515718290876761
+          },
+          "wavePeakPSD_per_hs2_mean": {
+            "cliffs_delta_high_vs_baseline": 0.3076,
+            "mann_whitney_u_p_two_sided": 0.002185418317931058,
+            "mean_difference_high_minus_baseline": 0.33593745164400546,
+            "standardized_mean_difference": 0.41924059739276676
+          },
+          "waveTa_mean": {
+            "cliffs_delta_high_vs_baseline": 0.3352,
+            "mann_whitney_u_p_two_sided": 0.0008411421084647935,
+            "mean_difference_high_minus_baseline": 1.0442400697666647,
+            "standardized_mean_difference": 0.6804991618440978
+          },
+          "waveTp_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1424,
+            "mann_whitney_u_p_two_sided": 0.15639856429477944,
+            "mean_difference_high_minus_baseline": 0.32253064780000074,
+            "standardized_mean_difference": 0.1930688532852897
+          },
+          "waveTp_std_across_platforms": {
+            "cliffs_delta_high_vs_baseline": -0.0986,
+            "mann_whitney_u_p_two_sided": 0.32672150339489336,
+            "mean_difference_high_minus_baseline": -0.21302809513645315,
+            "standardized_mean_difference": -0.2088692804815767
+          },
+          "waveTz_mean": {
+            "cliffs_delta_high_vs_baseline": 0.3604,
+            "mann_whitney_u_p_two_sided": 0.0003306106875399392,
+            "mean_difference_high_minus_baseline": 0.8598433955499996,
+            "standardized_mean_difference": 0.6840204002712336
+          }
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "tp_ta_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.036,
+            "mann_whitney_u_p_two_sided": 0.7590146502526539,
+            "mean_difference_high_minus_baseline": -0.08986679796666674,
+            "standardized_mean_difference": -0.04670238550212083
+          },
+          "tp_ta_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.0744,
+            "mann_whitney_u_p_two_sided": 0.5236830890423975,
+            "mean_difference_high_minus_baseline": -0.02369521409816744,
+            "standardized_mean_difference": -0.06607371155143592
+          },
+          "tp_tz_gap_mean": {
+            "cliffs_delta_high_vs_baseline": -0.0144,
+            "mann_whitney_u_p_two_sided": 0.9039747211325873,
+            "mean_difference_high_minus_baseline": -0.05254048183333282,
+            "standardized_mean_difference": -0.028104986246059574
+          },
+          "tp_tz_ratio_mean": {
+            "cliffs_delta_high_vs_baseline": -0.0688,
+            "mann_whitney_u_p_two_sided": 0.55557849072207,
+            "mean_difference_high_minus_baseline": -0.03444793439962712,
+            "standardized_mean_difference": -0.07843465415713374
+          },
+          "waveDp_spread_deg_across_platforms": {
+            "cliffs_delta_high_vs_baseline": 0.0448,
+            "mann_whitney_u_p_two_sided": 0.7020111769696078,
+            "mean_difference_high_minus_baseline": 0.926982900396176,
+            "standardized_mean_difference": 0.059852763520926014
+          },
+          "waveHs_mean": {
+            "cliffs_delta_high_vs_baseline": 0.0256,
+            "mann_whitney_u_p_two_sided": 0.8280862830672682,
+            "mean_difference_high_minus_baseline": -0.023250000000000215,
+            "standardized_mean_difference": -0.03565898592401743
+          },
+          "wavePeakPSD_per_hs2_mean": {
+            "cliffs_delta_high_vs_baseline": 0.0448,
+            "mann_whitney_u_p_two_sided": 0.7020111769696078,
+            "mean_difference_high_minus_baseline": 0.08718019841365221,
+            "standardized_mean_difference": 0.12503960727698835
+          },
+          "waveTa_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1088,
+            "mann_whitney_u_p_two_sided": 0.350245816633188,
+            "mean_difference_high_minus_baseline": 0.27322913463333265,
+            "standardized_mean_difference": 0.17655032759169076
+          },
+          "waveTp_mean": {
+            "cliffs_delta_high_vs_baseline": 0.0908,
+            "mann_whitney_u_p_two_sided": 0.4359677305245797,
+            "mean_difference_high_minus_baseline": 0.18336233666666857,
+            "standardized_mean_difference": 0.11747131518949196
+          },
+          "waveTp_std_across_platforms": {
+            "cliffs_delta_high_vs_baseline": 0.0092,
+            "mann_whitney_u_p_two_sided": 0.9395518371910341,
+            "mean_difference_high_minus_baseline": 0.04575695333738339,
+            "standardized_mean_difference": 0.054210412970675026
+          },
+          "waveTz_mean": {
+            "cliffs_delta_high_vs_baseline": 0.1,
+            "mann_whitney_u_p_two_sided": 0.390737553235738,
+            "mean_difference_high_minus_baseline": 0.2359028184999996,
+            "standardized_mean_difference": 0.18181247788634056
+          }
+        }
+      },
+      "manifest": "/tmp/cdip_1p5gb_westcoast_all_windows.json",
+      "result_paths": {
+        "attribution": "experiments/results/2026-06-02-cdip-westcoast-all-seastate-attribution.json",
+        "catalog": "experiments/results/2026-06-02-cdip-westcoast-all-anomaly-catalog.json",
+        "merged_tmp": "/tmp/cdip_westcoast_all_highpass_mask3_r1_permute_null1000_4shards/merged.json",
+        "spatial": "experiments/results/2026-06-02-cdip-spatial-validity-westcoast-all-highpass-mask3-r1-surrogate100.json"
+      },
+      "spatial_checks": {
+        "bounded_speed_fraction": 0.8571428571428571,
+        "bounded_speed_pairs": 6,
+        "directional_surrogate_bounded_speed_fraction_p_ge": 0.32673267326732675,
+        "directional_surrogate_bounded_speed_pairs_p_ge": 0.7623762376237624,
+        "spatial_surrogate_mixed_region_delta_mean_p_ge": 0.04950495049504951
+      },
+      "top_region_labels": [
+        {
+          "observed_minus_null_sum": 178.39259500606406,
+          "region_label": "mixed:pacific_northwest+southern_california",
+          "top_window_count": 24
+        },
+        {
+          "observed_minus_null_sum": 80.84927809735264,
+          "region_label": "mixed:central_california+southern_california",
+          "top_window_count": 14
+        },
+        {
+          "observed_minus_null_sum": 36.786217633593,
+          "region_label": "southern_california",
+          "top_window_count": 6
+        },
+        {
+          "observed_minus_null_sum": 22.089502809009463,
+          "region_label": "mixed:central_california+pacific_northwest+southern_california",
+          "top_window_count": 3
+        },
+        {
+          "observed_minus_null_sum": 20.198261334102888,
+          "region_label": "mixed:central_california+pacific_northwest",
+          "top_window_count": 3
+        }
+      ],
+      "top_time_clusters": [
+        {
+          "end": "2026-04-06T08:27:53.218743+00:00",
+          "max_observed_minus_null": 18.67210080782781,
+          "platforms": [
+            "076p1",
+            "092p1",
+            "094p1",
+            "168p1",
+            "215p1",
+            "264p1"
+          ],
+          "regions": [
+            "central_california",
+            "pacific_northwest",
+            "southern_california"
+          ],
+          "start": "2026-04-06T05:47:53.999779+00:00",
+          "window_indices": [
+            4,
+            137,
+            279,
+            138,
+            7,
+            139
+          ],
+          "windows": 6
+        },
+        {
+          "end": "2026-01-21T07:59:09.556843+00:00",
+          "max_observed_minus_null": 9.666671550234085,
+          "platforms": [
+            "036p1",
+            "153p1",
+            "201p1",
+            "262p1"
+          ],
+          "regions": [
+            "pacific_northwest",
+            "southern_california"
+          ],
+          "start": "2026-01-21T03:59:59.823985+00:00",
+          "window_indices": [
+            352,
+            353,
+            355,
+            398,
+            399,
+            401
+          ],
+          "windows": 6
+        },
+        {
+          "end": "2026-02-02T07:29:58.763155+00:00",
+          "max_observed_minus_null": 7.741867688220079,
+          "platforms": [
+            "076p1",
+            "153p1",
+            "220p1"
+          ],
+          "regions": [
+            "central_california",
+            "southern_california"
+          ],
+          "start": "2026-02-02T03:56:39.544119+00:00",
+          "window_indices": [
+            183,
+            184,
+            186,
+            187,
+            188,
+            189
+          ],
+          "windows": 6
+        }
+      ]
+    }
+  }
+}

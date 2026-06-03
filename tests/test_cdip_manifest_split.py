@@ -33,6 +33,53 @@ def test_filter_manifest_windows_by_group_range_and_parity():
     assert [row["group_index"] for row in selected] == [3, 3, 5, 5]
 
 
+def test_filter_manifest_windows_by_time_and_region():
+    rows = [_row(group, 0) for group in range(4)]
+    lookup = {
+        "1_a.nc": "alpha",
+        "1_b.nc": "alpha",
+        "1_c.nc": "alpha",
+        "2_a.nc": "alpha",
+        "2_b.nc": "beta",
+        "2_c.nc": "alpha",
+        "3_a.nc": "beta",
+        "3_b.nc": "beta",
+        "3_c.nc": "beta",
+    }
+
+    selected = filter_manifest_windows(
+        rows,
+        start_time=100.0,
+        end_time=350.0,
+        include_regions=["alpha"],
+        region_mode="all",
+        region_lookup=lookup,
+    )
+
+    assert [row["group_index"] for row in selected] == [1]
+
+
+def test_filter_manifest_windows_by_region_label():
+    rows = [_row(group, 0) for group in range(3)]
+    lookup = {
+        "1_a.nc": "alpha",
+        "1_b.nc": "beta",
+        "1_c.nc": "alpha",
+        "2_a.nc": "alpha",
+        "2_b.nc": "alpha",
+        "2_c.nc": "alpha",
+    }
+
+    selected = filter_manifest_windows(
+        rows,
+        include_regions=["mixed:alpha+beta"],
+        region_mode="label",
+        region_lookup=lookup,
+    )
+
+    assert [row["group_index"] for row in selected] == [1]
+
+
 def test_subset_manifest_preserves_signature_and_records_split_metadata():
     manifest = {
         "version": 1,
@@ -45,11 +92,24 @@ def test_subset_manifest_preserves_signature_and_records_split_metadata():
         manifest,
         group_start=3,
         group_end=6,
+        include_regions=["alpha"],
+        region_lookup={
+            "3_a.nc": "alpha",
+            "3_b.nc": "alpha",
+            "3_c.nc": "alpha",
+            "4_a.nc": "alpha",
+            "4_b.nc": "alpha",
+            "4_c.nc": "alpha",
+            "5_a.nc": "alpha",
+            "5_b.nc": "alpha",
+            "5_c.nc": "alpha",
+        },
         label="last-half",
     )
 
     assert subset["signature"] == manifest["signature"]
     assert subset["split"]["label"] == "last-half"
+    assert subset["split"]["include_regions"] == ["alpha"]
     assert subset["split"]["groups"] == 3
     assert [row["group_index"] for row in subset["windows"]] == [3, 4, 5]
 

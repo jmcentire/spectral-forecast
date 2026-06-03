@@ -1,0 +1,853 @@
+{
+  "bins": [
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.07673319440353998,
+      "pairs": 418
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.020078277865500777,
+      "pairs": 100
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.09423378294014059,
+      "pairs": 137
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.29679531256406566,
+      "pairs": 187
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.032509831280764886,
+      "pairs": 52
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": -0.3480793822236194,
+      "pairs": 16
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": 0.06810487090789086,
+      "pairs": 598
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": 0.06048473619543917,
+      "pairs": 68
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": 0.09467085175691772,
+      "pairs": 138
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": -0.005140694182509757,
+      "pairs": 147
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": -0.1752514312666687,
+      "pairs": 42
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": -0.359754900766154,
+      "pairs": 4
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.019778856184340728,
+      "pairs": 437
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": -0.09478618162166219,
+      "pairs": 69
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.07068652607231633,
+      "pairs": 144
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": -0.04649236058801301,
+      "pairs": 160
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.030636153658500434,
+      "pairs": 54
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": -0.09752714923180235,
+      "pairs": 12
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "15-24h",
+      "mean_z_product": -0.10351246511352344,
+      "pairs": 94
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "15-24h",
+      "mean_z_product": 0.026828984068840118,
+      "pairs": 366
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "15-24h",
+      "mean_z_product": 0.002997937091918516,
+      "pairs": 445
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "15-24h",
+      "mean_z_product": 0.008856924485678224,
+      "pairs": 314
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "15-24h",
+      "mean_z_product": -0.007144997538327879,
+      "pairs": 414
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "15-24h",
+      "mean_z_product": -0.2112496425699696,
+      "pairs": 31
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.025408598470072263,
+      "pairs": 400
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.03196977993921056,
+      "pairs": 884
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "24-48h",
+      "mean_z_product": -4.630273824876086e-05,
+      "pairs": 1592
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.0003136347200692782,
+      "pairs": 705
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.020133999592118,
+      "pairs": 742
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "24-48h",
+      "mean_z_product": -0.29451957521783106,
+      "pairs": 34
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "3-6h",
+      "mean_z_product": -0.03200767571242614,
+      "pairs": 112
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "3-6h",
+      "mean_z_product": -0.039306645496496005,
+      "pairs": 125
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "3-6h",
+      "mean_z_product": -0.01581535780868007,
+      "pairs": 200
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 0.07606305185834894,
+      "pairs": 117
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 0.05427072387246426,
+      "pairs": 123
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.07294855300428642,
+      "pairs": 48
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "6-9h",
+      "mean_z_product": -0.047071553989206455,
+      "pairs": 155
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.02666919859980221,
+      "pairs": 332
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "6-9h",
+      "mean_z_product": -0.11954613493053892,
+      "pairs": 42
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "6-9h",
+      "mean_z_product": -0.07189002346750575,
+      "pairs": 158
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "9-15h",
+      "mean_z_product": 0.013232442477793102,
+      "pairs": 52
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "9-15h",
+      "mean_z_product": -0.017855774515540112,
+      "pairs": 198
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "9-15h",
+      "mean_z_product": -0.016169844212459688,
+      "pairs": 457
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "9-15h",
+      "mean_z_product": 0.02714775704428344,
+      "pairs": 184
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "9-15h",
+      "mean_z_product": 0.08903737035632937,
+      "pairs": 76
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "9-15h",
+      "mean_z_product": -0.19977670528634386,
+      "pairs": 3
+    }
+  ],
+  "parameters": {
+    "distance_edges_km": [
+      0.0,
+      50.0,
+      150.0,
+      300.0,
+      600.0,
+      1200.0,
+      Infinity
+    ],
+    "high_delta_quantile": 0.95,
+    "lag_edges_hours": [
+      0.0,
+      0.75,
+      1.5,
+      3.0,
+      6.0,
+      9.0,
+      15.0,
+      24.0,
+      48.0
+    ],
+    "max_pairs": 2000000,
+    "report": "/tmp/cdip_westcoast_all_highpass_mask3_r1_permute_null1000_4shards/merged.json",
+    "spatial_surrogate_pair_count": 250000,
+    "spatial_surrogate_repeats": 100,
+    "spatial_surrogate_seed": 20260602
+  },
+  "summary": {
+    "delta_mean": 0.9579417908647089,
+    "delta_std": 3.27321006484729,
+    "directional_propagation_candidates": {
+      "bearing_histogram": {
+        "N": 1,
+        "S": 4,
+        "SE": 1,
+        "W": 1
+      },
+      "bounded_bearing_histogram": {
+        "N": 1,
+        "S": 3,
+        "SE": 1,
+        "W": 1
+      },
+      "bounded_speed_fraction": 0.8571428571428571,
+      "bounded_speed_km_h": {
+        "max": 67.52344356392415,
+        "median": 54.041932241214326,
+        "p10": 25.324493325221347,
+        "p90": 64.07292312325599
+      },
+      "bounded_speed_pairs": 6,
+      "bounded_speed_range_km_h": [
+        10.0,
+        120.0
+      ],
+      "events": 22,
+      "pairs": 7,
+      "speed_km_h": {
+        "max": 131.89767654285288,
+        "median": 55.796165797015156,
+        "p10": 27.426181410508978,
+        "p90": 93.27313675549567
+      },
+      "threshold": 6.200485111726799,
+      "top_bounded_region_corridors": [
+        {
+          "corridor": "mixed:pacific_northwest+southern_california->mixed:central_california+pacific_northwest+southern_california",
+          "pairs": 2
+        },
+        {
+          "corridor": "mixed:pacific_northwest+southern_california->mixed:central_california+southern_california",
+          "pairs": 2
+        },
+        {
+          "corridor": "mixed:central_california+pacific_northwest+southern_california->mixed:central_california+southern_california",
+          "pairs": 1
+        },
+        {
+          "corridor": "mixed:central_california+southern_california->mixed:central_california+pacific_northwest",
+          "pairs": 1
+        }
+      ]
+    },
+    "directional_surrogate_control": {
+      "description": "Randomly permutes platform geometry and recomputes directional high-delta candidate metrics while preserving detected window times and deltas.",
+      "metrics": {
+        "bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.27722772277227725,
+          "empirical_p_ge_observed": 0.27722772277227725,
+          "null_mean": 0.4771111111111111,
+          "null_median": 0.4722222222222222,
+          "null_p05": 0.3,
+          "null_p95": 0.6666666666666666,
+          "null_std": 0.11851163576008737,
+          "observed": 0.5714285714285714
+        },
+        "bounded_bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.6039603960396039,
+          "empirical_p_ge_observed": 0.6039603960396039,
+          "null_mean": 0.5124880952380952,
+          "null_median": 0.5,
+          "null_p05": 0.3333333333333333,
+          "null_p95": 0.7513888888888888,
+          "null_std": 0.1363290108179553,
+          "observed": 0.5
+        },
+        "bounded_speed_fraction": {
+          "empirical_p_abs_ge_observed": 0.32673267326732675,
+          "empirical_p_ge_observed": 0.32673267326732675,
+          "null_mean": 0.7283015873015873,
+          "null_median": 0.7,
+          "null_p05": 0.44365079365079363,
+          "null_p95": 1.0,
+          "null_std": 0.17716490944832647,
+          "observed": 0.8571428571428571
+        },
+        "bounded_speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.1782178217821782,
+          "empirical_p_ge_observed": 0.1782178217821782,
+          "null_mean": 39.428828586247754,
+          "null_median": 37.67891124198857,
+          "null_p05": 20.73787044389504,
+          "null_p95": 68.86122698271005,
+          "null_std": 14.631921629968899,
+          "observed": 54.041932241214326
+        },
+        "bounded_speed_pairs": {
+          "empirical_p_abs_ge_observed": 0.7623762376237624,
+          "empirical_p_ge_observed": 0.7623762376237624,
+          "null_mean": 6.79,
+          "null_median": 7.0,
+          "null_p05": 4.0,
+          "null_p95": 9.0,
+          "null_std": 1.6987936896515716,
+          "observed": 6.0
+        },
+        "speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.3465346534653465,
+          "empirical_p_ge_observed": 0.3465346534653465,
+          "null_mean": 47.38545422926807,
+          "null_median": 45.62733300363537,
+          "null_p05": 19.85892230977602,
+          "null_p95": 83.16063517357205,
+          "null_std": 20.23322517593387,
+          "observed": 55.796165797015156
+        }
+      },
+      "repeats": 100,
+      "seed": 20260619
+    },
+    "geographic_stratification": {
+      "high_delta_threshold": 6.200485111726799,
+      "leave_one_region_out": [
+        {
+          "region": "southern_california",
+          "with_region": {
+            "delta_mean": 0.9813537039479401,
+            "delta_sum": 408.24314084234305,
+            "high_delta_windows": 20,
+            "label": "with_region",
+            "positive_fraction": 0.5769230769230769,
+            "windows": 416,
+            "z_delta_mean": 0.007152584960758887
+          },
+          "without_region": {
+            "delta_mean": 0.4168664662744772,
+            "delta_sum": 7.50359639294059,
+            "high_delta_windows": 2,
+            "label": "without_region",
+            "positive_fraction": 0.4444444444444444,
+            "windows": 18,
+            "z_delta_mean": -0.1653041857597597
+          }
+        },
+        {
+          "region": "pacific_northwest",
+          "with_region": {
+            "delta_mean": 1.1558917652476797,
+            "delta_sum": 301.6877507296444,
+            "high_delta_windows": 16,
+            "label": "with_region",
+            "positive_fraction": 0.6245210727969349,
+            "windows": 261,
+            "z_delta_mean": 0.060475793017032126
+          },
+          "without_region": {
+            "delta_mean": 0.6593005000325975,
+            "delta_sum": 114.05898650563938,
+            "high_delta_windows": 6,
+            "label": "without_region",
+            "positive_fraction": 0.4913294797687861,
+            "windows": 173,
+            "z_delta_mean": -0.09123804611240074
+          }
+        },
+        {
+          "region": "central_california",
+          "with_region": {
+            "delta_mean": 1.1727272819916976,
+            "delta_sum": 138.38181927502032,
+            "high_delta_windows": 9,
+            "label": "with_region",
+            "positive_fraction": 0.6101694915254238,
+            "windows": 118,
+            "z_delta_mean": 0.06561921993143136
+          },
+          "without_region": {
+            "delta_mean": 0.8777370821527325,
+            "delta_sum": 277.3649179602635,
+            "high_delta_windows": 13,
+            "label": "without_region",
+            "positive_fraction": 0.5569620253164557,
+            "windows": 316,
+            "z_delta_mean": -0.024503379594648277
+          }
+        }
+      ],
+      "pair_exposure": {
+        "mixed_pair_fraction": 0.5353302611367128,
+        "mixed_region_delta": 271.05139163169906,
+        "mixed_region_delta_per_pair": 0.38888291482309767,
+        "mixed_region_pairs": 697,
+        "same_region_delta": 144.69534560358449,
+        "same_region_delta_per_pair": 0.23916586050179253,
+        "same_region_pairs": 605
+      },
+      "regions": [
+        {
+          "delta_mean": 1.1110384495796017,
+          "delta_sum": 242.20638200835316,
+          "high_delta_windows": 12,
+          "label": "mixed:pacific_northwest+southern_california",
+          "positive_fraction": 0.6192660550458715,
+          "windows": 218,
+          "z_delta_mean": 0.046772634716933645
+        },
+        {
+          "delta_mean": 1.0888374937492842,
+          "delta_sum": 82.7516495249456,
+          "high_delta_windows": 5,
+          "label": "mixed:central_california+southern_california",
+          "positive_fraction": 0.5921052631578947,
+          "windows": 76,
+          "z_delta_mean": 0.03999000989589176
+        },
+        {
+          "delta_mean": 2.0791108931340236,
+          "delta_sum": 51.97777232835059,
+          "high_delta_windows": 2,
+          "label": "mixed:central_california+pacific_northwest+southern_california",
+          "positive_fraction": 0.8,
+          "windows": 25,
+          "z_delta_mean": 0.3425289181131803
+        },
+        {
+          "delta_mean": 0.32275605134735835,
+          "delta_sum": 31.30733698069376,
+          "high_delta_windows": 1,
+          "label": "southern_california",
+          "positive_fraction": 0.41237113402061853,
+          "windows": 97,
+          "z_delta_mean": -0.19405590442817627
+        },
+        {
+          "delta_mean": 3.851198971216462,
+          "delta_sum": 3.851198971216462,
+          "high_delta_windows": 0,
+          "label": "pacific_northwest",
+          "positive_fraction": 1.0,
+          "windows": 1,
+          "z_delta_mean": 0.8839204093327071
+        },
+        {
+          "delta_mean": 0.21484690716024274,
+          "delta_sum": 3.6523974217241264,
+          "high_delta_windows": 2,
+          "label": "mixed:central_california+pacific_northwest",
+          "positive_fraction": 0.4117647058823529,
+          "windows": 17,
+          "z_delta_mean": -0.22702327958872837
+        }
+      ],
+      "same_region": {
+        "mixed_region": {
+          "delta_mean": 1.13270298001004,
+          "delta_sum": 380.58820128337345,
+          "high_delta_windows": 21,
+          "label": "mixed_region",
+          "positive_fraction": 0.6160714285714286,
+          "windows": 336,
+          "z_delta_mean": 0.05339137595297748
+        },
+        "same_region": {
+          "delta_mean": 0.3587605709378594,
+          "delta_sum": 35.158535951910224,
+          "high_delta_windows": 1,
+          "label": "same_region",
+          "positive_fraction": 0.41836734693877553,
+          "windows": 98,
+          "z_delta_mean": -0.1830561461244938
+        }
+      }
+    },
+    "propagation_candidates": {
+      "events": 22,
+      "pairs": 7,
+      "speed_km_h": {
+        "max": 131.89767654285288,
+        "median": 55.796165797015156,
+        "p10": 27.426181410508978,
+        "p90": 93.27313675549567
+      },
+      "threshold": 6.200485111726799
+    },
+    "semidiurnal_lag_bins": [
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "15-24h",
+        "mean_z_product": 0.026828984068840118,
+        "pairs": 366
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "15-24h",
+        "mean_z_product": 0.002997937091918516,
+        "pairs": 445
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "15-24h",
+        "mean_z_product": 0.008856924485678224,
+        "pairs": 314
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.007144997538327879,
+        "pairs": 414
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.017855774515540112,
+        "pairs": 198
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.016169844212459688,
+        "pairs": 457
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "9-15h",
+        "mean_z_product": 0.02714775704428344,
+        "pairs": 184
+      }
+    ],
+    "spatial_surrogate_control": {
+      "description": "Randomly permutes platform coordinates/regions across platform IDs while preserving each window's time, group membership, and detector delta.",
+      "metrics": {
+        "max_abs_lag_distance_mean_z_product": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 1.0,
+          "null_mean": 2.188128835907348,
+          "null_median": 2.100051494256304,
+          "null_p05": 1.1958000502918533,
+          "null_p95": 3.4556782433156057,
+          "null_std": 0.6979455560646979,
+          "observed": 0.8590096673639669
+        },
+        "mixed_region_delta_mean": {
+          "empirical_p_abs_ge_observed": 0.04950495049504951,
+          "empirical_p_ge_observed": 0.04950495049504951,
+          "null_mean": 0.9612502726802876,
+          "null_median": 0.9695859502745754,
+          "null_p05": 0.7755887854472253,
+          "null_p95": 1.1068794004990872,
+          "null_std": 0.0965427848834166,
+          "observed": 1.13270298001004
+        },
+        "mixed_region_delta_sum": {
+          "empirical_p_abs_ge_observed": 0.16831683168316833,
+          "empirical_p_ge_observed": 0.16831683168316833,
+          "null_mean": 340.41659642131765,
+          "null_median": 342.12004146343196,
+          "null_p05": 269.47178401716724,
+          "null_p95": 407.32912043240003,
+          "null_std": 41.21944518202132,
+          "observed": 380.58820128337345
+        },
+        "near_semidiurnal_9_15h_0_50km_mean_z_product": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 0.9900990099009901,
+          "null_mean": 0.07133947849544979,
+          "null_median": 0.0,
+          "null_p05": 0.0,
+          "null_p95": 0.40509995543585003,
+          "null_std": 0.14110897405286843,
+          "observed": 0.0
+        },
+        "near_semidiurnal_9_15h_0_50km_pairs": {
+          "empirical_p_abs_ge_observed": 0.6435643564356436,
+          "empirical_p_ge_observed": 0.6435643564356436,
+          "null_mean": 69.62,
+          "null_median": 64.5,
+          "null_p05": 1.9000000000000004,
+          "null_p95": 178.25,
+          "null_std": 58.86947935900232,
+          "observed": 45.0
+        },
+        "near_zero_lag_0_075h_0_50km_mean_z_product": {
+          "empirical_p_abs_ge_observed": 0.39603960396039606,
+          "empirical_p_ge_observed": 0.39603960396039606,
+          "null_mean": 0.5762048215350194,
+          "null_median": 0.5641572495641661,
+          "null_p05": 0.43331813823583604,
+          "null_p95": 0.7799375850685055,
+          "null_std": 0.10833668317797038,
+          "observed": 0.5932491650791873
+        },
+        "near_zero_lag_0_075h_0_50km_pairs": {
+          "empirical_p_abs_ge_observed": 0.5841584158415841,
+          "empirical_p_ge_observed": 0.5841584158415841,
+          "null_mean": 431.05,
+          "null_median": 428.5,
+          "null_p05": 373.95,
+          "null_p95": 495.65,
+          "null_std": 41.76179474112673,
+          "observed": 416.0
+        },
+        "same_region_delta_mean": {
+          "empirical_p_abs_ge_observed": 0.9306930693069307,
+          "empirical_p_ge_observed": 0.9207920792079208,
+          "null_mean": 0.938133361997471,
+          "null_median": 0.9170358511418991,
+          "null_p05": 0.19669977458823873,
+          "null_p95": 1.8956127386817503,
+          "null_std": 0.534318163940972,
+          "observed": 0.3587605709378594
+        },
+        "same_region_delta_sum": {
+          "empirical_p_abs_ge_observed": 0.8415841584158416,
+          "empirical_p_ge_observed": 0.8415841584158416,
+          "null_mean": 75.33014081396604,
+          "null_median": 73.62669577185183,
+          "null_p05": 8.417616802883833,
+          "null_p95": 146.27495321811656,
+          "null_std": 41.21944518202132,
+          "observed": 35.158535951910224
+        }
+      },
+      "min_pairs": 100,
+      "pair_count": 250000,
+      "repeats": 100,
+      "seed": 20260602
+    },
+    "strongest_bins": [
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": -0.359754900766154,
+        "pairs": 4
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": -0.3480793822236194,
+        "pairs": 16
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.29679531256406566,
+        "pairs": 187
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "24-48h",
+        "mean_z_product": -0.29451957521783106,
+        "pairs": 34
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.2112496425699696,
+        "pairs": 31
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.19977670528634386,
+        "pairs": 3
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": -0.1752514312666687,
+        "pairs": 42
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "6-9h",
+        "mean_z_product": -0.11954613493053892,
+        "pairs": 42
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.10351246511352344,
+        "pairs": 94
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "1.5-3h",
+        "mean_z_product": -0.09752714923180235,
+        "pairs": 12
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "1.5-3h",
+        "mean_z_product": -0.09478618162166219,
+        "pairs": 69
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": 0.09467085175691772,
+        "pairs": 138
+      }
+    ],
+    "time_span_hours": 5366.129673976368,
+    "windows": 434,
+    "zero_lag_bins": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.07673319440353998,
+        "pairs": 418
+      },
+      {
+        "distance_bin": "150-300km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.020078277865500777,
+        "pairs": 100
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.09423378294014059,
+        "pairs": 137
+      },
+      {
+        "distance_bin": "50-150km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.29679531256406566,
+        "pairs": 187
+      }
+    ]
+  }
+}

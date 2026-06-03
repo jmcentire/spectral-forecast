@@ -1,0 +1,1262 @@
+{
+  "bins": [
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.03781218029159321,
+      "pairs": 223
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.009734214163611483,
+      "pairs": 99
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": -0.027434685494707886,
+      "pairs": 129
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.00392128813959478,
+      "pairs": 50
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": 0.029404003847552075,
+      "pairs": 233
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "0-0.75h",
+      "mean_z_product": -0.06249420902471635,
+      "pairs": 523
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": -0.15510622853867567,
+      "pairs": 256
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": -0.05203763686560431,
+      "pairs": 54
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": 0.08378259770116202,
+      "pairs": 76
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": 0.07206618280436707,
+      "pairs": 28
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": 0.01567984097251239,
+      "pairs": 137
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "0.75-1.5h",
+      "mean_z_product": -0.01911160198465577,
+      "pairs": 354
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.17917825269941698,
+      "pairs": 151
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.2393318133741289,
+      "pairs": 18
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "1.5-3h",
+      "mean_z_product": -0.2711996648847713,
+      "pairs": 173
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "15-24h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "15-24h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "15-24h",
+      "mean_z_product": -0.2777930306027431,
+      "pairs": 36
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "15-24h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "15-24h",
+      "mean_z_product": 0.4804699655108705,
+      "pairs": 30
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "15-24h",
+      "mean_z_product": -0.005704604655656028,
+      "pairs": 380
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "24-48h",
+      "mean_z_product": -0.10909087086832683,
+      "pairs": 60
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.023008643355054263,
+      "pairs": 464
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "24-48h",
+      "mean_z_product": 0.0177450642525716,
+      "pairs": 897
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 1.4448439696828315,
+      "pairs": 15
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 0.5635483448161457,
+      "pairs": 12
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "3-6h",
+      "mean_z_product": -0.1313994851808418,
+      "pairs": 22
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "3-6h",
+      "mean_z_product": 0.0803206977355429,
+      "pairs": 140
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "6-9h",
+      "mean_z_product": -0.24751846232771257,
+      "pairs": 17
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "6-9h",
+      "mean_z_product": 0.02564444255717091,
+      "pairs": 116
+    },
+    {
+      "distance_bin": "0-50km",
+      "lag_bin": "9-15h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "150-300km",
+      "lag_bin": "9-15h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "300-600km",
+      "lag_bin": "9-15h",
+      "mean_z_product": -0.5050012423225768,
+      "pairs": 39
+    },
+    {
+      "distance_bin": "50-150km",
+      "lag_bin": "9-15h",
+      "mean_z_product": 0.0,
+      "pairs": 0
+    },
+    {
+      "distance_bin": "600-1200km",
+      "lag_bin": "9-15h",
+      "mean_z_product": -0.022854352554618696,
+      "pairs": 130
+    },
+    {
+      "distance_bin": ">=1200km",
+      "lag_bin": "9-15h",
+      "mean_z_product": -0.008910736008356008,
+      "pairs": 678
+    }
+  ],
+  "parameters": {
+    "distance_edges_km": [
+      0.0,
+      50.0,
+      150.0,
+      300.0,
+      600.0,
+      1200.0,
+      Infinity
+    ],
+    "high_delta_quantile": 0.95,
+    "lag_edges_hours": [
+      0.0,
+      0.75,
+      1.5,
+      3.0,
+      6.0,
+      9.0,
+      15.0,
+      24.0,
+      48.0
+    ],
+    "max_pairs": 2000000,
+    "report": "/tmp/cdip_2026_03_highpass_mask3_r1_permute_null1000_4shards/merged.json",
+    "spatial_surrogate_pair_count": 250000,
+    "spatial_surrogate_repeats": 100,
+    "spatial_surrogate_seed": 20260602
+  },
+  "summary": {
+    "delta_mean": 0.8342026594380687,
+    "delta_std": 3.8518497613517586,
+    "directional_propagation_candidates": {
+      "bearing_histogram": {
+        "NE": 6,
+        "NW": 1
+      },
+      "bounded_bearing_histogram": {},
+      "bounded_speed_fraction": 0.0,
+      "bounded_speed_km_h": {},
+      "bounded_speed_pairs": 0,
+      "bounded_speed_range_km_h": [
+        10.0,
+        120.0
+      ],
+      "events": 13,
+      "pairs": 7,
+      "speed_km_h": {
+        "max": 610.4983551612568,
+        "median": 322.48777394793285,
+        "p10": 138.0248594178015,
+        "p90": 483.6662145809028
+      },
+      "threshold": 6.4232217291905815,
+      "top_bounded_region_corridors": []
+    },
+    "directional_surrogate_control": {
+      "description": "Randomly permutes platform geometry and recomputes directional high-delta candidate metrics while preserving detected window times and deltas.",
+      "metrics": {
+        "bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.16831683168316833,
+          "empirical_p_ge_observed": 0.16831683168316833,
+          "null_mean": 0.655142857142857,
+          "null_median": 0.5714285714285714,
+          "null_p05": 0.5714285714285714,
+          "null_p95": 0.8571428571428571,
+          "null_std": 0.11885542581177334,
+          "observed": 0.8571428571428571
+        },
+        "bounded_bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 1.0,
+          "null_mean": 0.7513333333333334,
+          "null_median": 1.0,
+          "null_p05": 0.0,
+          "null_p95": 1.0,
+          "null_std": 0.34552440016750063,
+          "observed": 0.0
+        },
+        "bounded_speed_fraction": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 1.0,
+          "null_mean": 0.43857142857142856,
+          "null_median": 0.42857142857142855,
+          "null_p05": 0.0,
+          "null_p95": 0.8571428571428571,
+          "null_std": 0.2757216875394314,
+          "observed": 0.0
+        },
+        "bounded_speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 1.0,
+          "null_mean": 59.45962480826922,
+          "null_median": 63.3376831391062,
+          "null_p05": 0.0,
+          "null_p95": 113.9696703552385,
+          "null_std": 36.355701499074996,
+          "observed": 0.0
+        },
+        "bounded_speed_pairs": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 1.0,
+          "null_mean": 3.07,
+          "null_median": 3.0,
+          "null_p05": 0.0,
+          "null_p95": 6.0,
+          "null_std": 1.9300518127760198,
+          "observed": 0.0
+        },
+        "speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.0594059405940594,
+          "empirical_p_ge_observed": 0.0594059405940594,
+          "null_mean": 141.2507290236732,
+          "null_median": 123.12728465828275,
+          "null_p05": 25.659599371932888,
+          "null_p95": 314.65146169562684,
+          "null_std": 91.57704673346687,
+          "observed": 322.48777394793285
+        }
+      },
+      "repeats": 100,
+      "seed": 20260619
+    },
+    "geographic_stratification": {
+      "high_delta_threshold": 6.4232217291905815,
+      "leave_one_region_out": [
+        {
+          "region": "pacific_northwest",
+          "with_region": {
+            "delta_mean": 1.215690325064877,
+            "delta_sum": 133.72593575713645,
+            "high_delta_windows": 9,
+            "label": "with_region",
+            "positive_fraction": 0.6181818181818182,
+            "windows": 110,
+            "z_delta_mean": 0.09904012078937628
+          },
+          "without_region": {
+            "delta_mean": 0.5233608578162244,
+            "delta_sum": 70.6537158051903,
+            "high_delta_windows": 4,
+            "label": "without_region",
+            "positive_fraction": 0.5407407407407407,
+            "windows": 135,
+            "z_delta_mean": -0.08069935768023266
+          }
+        },
+        {
+          "region": "southern_california",
+          "with_region": {
+            "delta_mean": 0.6619706973921242,
+            "delta_sum": 107.23925297752413,
+            "high_delta_windows": 5,
+            "label": "with_region",
+            "positive_fraction": 0.5864197530864198,
+            "windows": 162,
+            "z_delta_mean": -0.044714091337119524
+          },
+          "without_region": {
+            "delta_mean": 1.1703662480096706,
+            "delta_sum": 97.14039858480267,
+            "high_delta_windows": 8,
+            "label": "without_region",
+            "positive_fraction": 0.5542168674698795,
+            "windows": 83,
+            "z_delta_mean": 0.0872732867061849
+          }
+        },
+        {
+          "region": "hawaii",
+          "with_region": {
+            "delta_mean": 1.228117142870793,
+            "delta_sum": 95.79313714392187,
+            "high_delta_windows": 8,
+            "label": "with_region",
+            "positive_fraction": 0.5769230769230769,
+            "windows": 78,
+            "z_delta_mean": 0.10226631562454432
+          },
+          "without_region": {
+            "delta_mean": 0.6502186492120053,
+            "delta_sum": 108.58651441840489,
+            "high_delta_windows": 5,
+            "label": "without_region",
+            "positive_fraction": 0.5748502994011976,
+            "windows": 167,
+            "z_delta_mean": -0.04776510550128425
+          }
+        },
+        {
+          "region": "caribbean",
+          "with_region": {
+            "delta_mean": 1.5089239162286767,
+            "delta_sum": 75.44619581143384,
+            "high_delta_windows": 4,
+            "label": "with_region",
+            "positive_fraction": 0.66,
+            "windows": 50,
+            "z_delta_mean": 0.17516811365815654
+          },
+          "without_region": {
+            "delta_mean": 0.6611972089789381,
+            "delta_sum": 128.93345575089293,
+            "high_delta_windows": 9,
+            "label": "without_region",
+            "positive_fraction": 0.5538461538461539,
+            "windows": 195,
+            "z_delta_mean": -0.04491490093798897
+          }
+        },
+        {
+          "region": "southeast_atlantic",
+          "with_region": {
+            "delta_mean": 1.6206909920439168,
+            "delta_sum": 58.344875713581004,
+            "high_delta_windows": 3,
+            "label": "with_region",
+            "positive_fraction": 0.6944444444444444,
+            "windows": 36,
+            "z_delta_mean": 0.20418458178125826
+          },
+          "without_region": {
+            "delta_mean": 0.6987309849222288,
+            "delta_sum": 146.03477584874582,
+            "high_delta_windows": 10,
+            "label": "without_region",
+            "positive_fraction": 0.5550239234449761,
+            "windows": 209,
+            "z_delta_mean": -0.03517054997189142
+          }
+        },
+        {
+          "region": "gulf",
+          "with_region": {
+            "delta_mean": 2.7871539207685436,
+            "delta_sum": 44.5944627322967,
+            "high_delta_windows": 2,
+            "label": "with_region",
+            "positive_fraction": 0.75,
+            "windows": 16,
+            "z_delta_mean": 0.5070164680164242
+          },
+          "without_region": {
+            "delta_mean": 0.697751916288341,
+            "delta_sum": 159.78518883003008,
+            "high_delta_windows": 11,
+            "label": "without_region",
+            "positive_fraction": 0.5633187772925764,
+            "windows": 229,
+            "z_delta_mean": -0.03542473138979388
+          }
+        },
+        {
+          "region": "northeast_atlantic",
+          "with_region": {
+            "delta_mean": 0.8739493706328088,
+            "delta_sum": 41.07562041974201,
+            "high_delta_windows": 4,
+            "label": "with_region",
+            "positive_fraction": 0.48936170212765956,
+            "windows": 47,
+            "z_delta_mean": 0.01031886331433442
+          },
+          "without_region": {
+            "delta_mean": 0.8247678340534585,
+            "delta_sum": 163.3040311425848,
+            "high_delta_windows": 9,
+            "label": "without_region",
+            "positive_fraction": 0.5959595959595959,
+            "windows": 198,
+            "z_delta_mean": -0.0024494271503724555
+          }
+        },
+        {
+          "region": "florida_gulf_atlantic",
+          "with_region": {
+            "delta_mean": 0.3924043107780968,
+            "delta_sum": 38.848026767031584,
+            "high_delta_windows": 1,
+            "label": "with_region",
+            "positive_fraction": 0.5252525252525253,
+            "windows": 99,
+            "z_delta_mean": -0.11469771045922836
+          },
+          "without_region": {
+            "delta_mean": 1.1337782520225697,
+            "delta_sum": 165.53162479529516,
+            "high_delta_windows": 12,
+            "label": "without_region",
+            "positive_fraction": 0.6095890410958904,
+            "windows": 146,
+            "z_delta_mean": 0.07777447490043563
+          }
+        },
+        {
+          "region": "south_pacific",
+          "with_region": {
+            "delta_mean": 0.5252462767621595,
+            "delta_sum": 9.979679258481031,
+            "high_delta_windows": 1,
+            "label": "with_region",
+            "positive_fraction": 0.631578947368421,
+            "windows": 19,
+            "z_delta_mean": -0.08020987364976682
+          },
+          "without_region": {
+            "delta_mean": 0.8601768686010877,
+            "delta_sum": 194.3999723038458,
+            "high_delta_windows": 12,
+            "label": "without_region",
+            "positive_fraction": 0.5707964601769911,
+            "windows": 226,
+            "z_delta_mean": 0.006743307961705954
+          }
+        },
+        {
+          "region": "central_california",
+          "with_region": {
+            "delta_mean": -0.11154995891863308,
+            "delta_sum": -5.4659479870130205,
+            "high_delta_windows": 1,
+            "label": "with_region",
+            "positive_fraction": 0.46938775510204084,
+            "windows": 49,
+            "z_delta_mean": -0.24553206302231317
+          },
+          "without_region": {
+            "delta_mean": 1.070640814027244,
+            "delta_sum": 209.84559954933982,
+            "high_delta_windows": 12,
+            "label": "without_region",
+            "positive_fraction": 0.6020408163265306,
+            "windows": 196,
+            "z_delta_mean": 0.06138301575557824
+          }
+        }
+      ],
+      "pair_exposure": {
+        "mixed_pair_fraction": 0.8965986394557823,
+        "mixed_region_delta": 197.9768261532446,
+        "mixed_region_delta_per_pair": 0.3004200700352725,
+        "mixed_region_pairs": 659,
+        "same_region_delta": 6.402825409082238,
+        "same_region_delta_per_pair": 0.08424770275108208,
+        "same_region_pairs": 76
+      },
+      "regions": [
+        {
+          "delta_mean": 6.817697222158014,
+          "delta_sum": 54.54157777726411,
+          "high_delta_windows": 4,
+          "label": "mixed:caribbean+hawaii+pacific_northwest",
+          "positive_fraction": 0.75,
+          "windows": 8,
+          "z_delta_mean": 1.5534080853195353
+        },
+        {
+          "delta_mean": 6.35118667614643,
+          "delta_sum": 19.05356002843929,
+          "high_delta_windows": 2,
+          "label": "mixed:gulf+northeast_atlantic+southern_california",
+          "positive_fraction": 0.6666666666666666,
+          "windows": 3,
+          "z_delta_mean": 1.4322947047582264
+        },
+        {
+          "delta_mean": 1.5334330295395835,
+          "delta_sum": 18.401196354475,
+          "high_delta_windows": 0,
+          "label": "mixed:pacific_northwest+southeast_atlantic+southern_california",
+          "positive_fraction": 0.75,
+          "windows": 12,
+          "z_delta_mean": 0.18153105999028604
+        },
+        {
+          "delta_mean": 1.1181210406004123,
+          "delta_sum": 13.417452487204947,
+          "high_delta_windows": 0,
+          "label": "mixed:caribbean+florida_gulf_atlantic+southern_california",
+          "positive_fraction": 0.75,
+          "windows": 12,
+          "z_delta_mean": 0.07370961972896524
+        },
+        {
+          "delta_mean": 0.5963067933877352,
+          "delta_sum": 11.926135867754704,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+pacific_northwest+southern_california",
+          "positive_fraction": 0.6,
+          "windows": 20,
+          "z_delta_mean": -0.06176146028261673
+        },
+        {
+          "delta_mean": 0.9100992428584164,
+          "delta_sum": 10.921190914300997,
+          "high_delta_windows": 1,
+          "label": "mixed:pacific_northwest+southern_california",
+          "positive_fraction": 0.5833333333333334,
+          "windows": 12,
+          "z_delta_mean": 0.019703931389502816
+        },
+        {
+          "delta_mean": -1.360327469323993,
+          "delta_sum": -10.882619754591945,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+pacific_northwest",
+          "positive_fraction": 0.25,
+          "windows": 8,
+          "z_delta_mean": -0.5697340926381091
+        },
+        {
+          "delta_mean": 1.323237250434301,
+          "delta_sum": 10.585898003474409,
+          "high_delta_windows": 1,
+          "label": "mixed:hawaii+pacific_northwest+southeast_atlantic",
+          "positive_fraction": 0.75,
+          "windows": 8,
+          "z_delta_mean": 0.12696097233673304
+        },
+        {
+          "delta_mean": 0.5217949657178608,
+          "delta_sum": 10.435899314357215,
+          "high_delta_windows": 1,
+          "label": "mixed:florida_gulf_atlantic+hawaii+southern_california",
+          "positive_fraction": 0.5,
+          "windows": 20,
+          "z_delta_mean": -0.0811058875802499
+        },
+        {
+          "delta_mean": -3.461857251290495,
+          "delta_sum": -10.385571753871485,
+          "high_delta_windows": 0,
+          "label": "mixed:hawaii+northeast_atlantic",
+          "positive_fraction": 0.0,
+          "windows": 3,
+          "z_delta_mean": -1.1153238513697676
+        },
+        {
+          "delta_mean": 1.296122662838784,
+          "delta_sum": 10.368981302710273,
+          "high_delta_windows": 2,
+          "label": "mixed:northeast_atlantic+pacific_northwest+southeast_atlantic",
+          "positive_fraction": 0.5,
+          "windows": 8,
+          "z_delta_mean": 0.11992160442898747
+        },
+        {
+          "delta_mean": 1.2937113722823002,
+          "delta_sum": 10.349690978258401,
+          "high_delta_windows": 1,
+          "label": "mixed:central_california+hawaii+pacific_northwest",
+          "positive_fraction": 0.625,
+          "windows": 8,
+          "z_delta_mean": 0.11929559596399542
+        },
+        {
+          "delta_mean": 4.511722621905311,
+          "delta_sum": 9.023445243810622,
+          "high_delta_windows": 0,
+          "label": "mixed:southeast_atlantic+southern_california",
+          "positive_fraction": 1.0,
+          "windows": 2,
+          "z_delta_mean": 0.9547412776495889
+        },
+        {
+          "delta_mean": -0.8891621104237146,
+          "delta_sum": -8.891621104237146,
+          "high_delta_windows": 0,
+          "label": "mixed:central_california+florida_gulf_atlantic+northeast_atlantic",
+          "positive_fraction": 0.2,
+          "windows": 10,
+          "z_delta_mean": -0.4474122503825253
+        },
+        {
+          "delta_mean": 1.9928251326915984,
+          "delta_sum": 7.971300530766394,
+          "high_delta_windows": 0,
+          "label": "mixed:gulf+northeast_atlantic+pacific_northwest",
+          "positive_fraction": 0.75,
+          "windows": 4,
+          "z_delta_mean": 0.30079638226775623
+        },
+        {
+          "delta_mean": -0.9400361099763155,
+          "delta_sum": -7.520288879810524,
+          "high_delta_windows": 0,
+          "label": "mixed:central_california+southern_california",
+          "positive_fraction": 0.5,
+          "windows": 8,
+          "z_delta_mean": -0.46061993051144795
+        },
+        {
+          "delta_mean": 0.7314803936286534,
+          "delta_sum": 7.314803936286534,
+          "high_delta_windows": 1,
+          "label": "mixed:hawaii+south_pacific+southern_california",
+          "positive_fraction": 0.6,
+          "windows": 10,
+          "z_delta_mean": -0.026668295020251875
+        },
+        {
+          "delta_mean": 3.229430767834303,
+          "delta_sum": 6.458861535668606,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+northeast_atlantic+southeast_atlantic",
+          "positive_fraction": 1.0,
+          "windows": 2,
+          "z_delta_mean": 0.6218384040907293
+        },
+        {
+          "delta_mean": 0.7892724286329859,
+          "delta_sum": 6.314179429063887,
+          "high_delta_windows": 0,
+          "label": "mixed:hawaii+pacific_northwest",
+          "positive_fraction": 0.625,
+          "windows": 8,
+          "z_delta_mean": -0.011664585481993256
+        },
+        {
+          "delta_mean": 6.050091081007352,
+          "delta_sum": 6.050091081007352,
+          "high_delta_windows": 0,
+          "label": "mixed:caribbean+gulf+northeast_atlantic",
+          "positive_fraction": 1.0,
+          "windows": 1,
+          "z_delta_mean": 1.3541256135957993
+        },
+        {
+          "delta_mean": 3.0047677625711056,
+          "delta_sum": 6.009535525142211,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+northeast_atlantic",
+          "positive_fraction": 1.0,
+          "windows": 2,
+          "z_delta_mean": 0.5635123999154381
+        },
+        {
+          "delta_mean": 0.8072514477717104,
+          "delta_sum": 5.650760134401973,
+          "high_delta_windows": 0,
+          "label": "southern_california",
+          "positive_fraction": 0.5714285714285714,
+          "windows": 7,
+          "z_delta_mean": -0.006996952980040423
+        },
+        {
+          "delta_mean": 1.8663252802257257,
+          "delta_sum": 3.7326505604514515,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+gulf+northeast_atlantic",
+          "positive_fraction": 0.5,
+          "windows": 2,
+          "z_delta_mean": 0.2679550565921986
+        },
+        {
+          "delta_mean": 3.6794710885892155,
+          "delta_sum": 3.6794710885892155,
+          "high_delta_windows": 0,
+          "label": "mixed:gulf+hawaii+southern_california",
+          "positive_fraction": 1.0,
+          "windows": 1,
+          "z_delta_mean": 0.7386758584666695
+        },
+        {
+          "delta_mean": -0.4321602586851057,
+          "delta_sum": -3.4572820694808457,
+          "high_delta_windows": 0,
+          "label": "mixed:caribbean+central_california+southern_california",
+          "positive_fraction": 0.375,
+          "windows": 8,
+          "z_delta_mean": -0.32876747448186044
+        },
+        {
+          "delta_mean": -0.7664219142080512,
+          "delta_sum": -3.0656876568322047,
+          "high_delta_windows": 0,
+          "label": "mixed:northeast_atlantic+southern_california",
+          "positive_fraction": 0.5,
+          "windows": 4,
+          "z_delta_mean": -0.41554698984012317
+        },
+        {
+          "delta_mean": 0.5873810215795701,
+          "delta_sum": 2.93690510789785,
+          "high_delta_windows": 0,
+          "label": "mixed:caribbean+florida_gulf_atlantic+south_pacific",
+          "positive_fraction": 0.8,
+          "windows": 5,
+          "z_delta_mean": -0.06407872922122478
+        },
+        {
+          "delta_mean": 1.422083031298397,
+          "delta_sum": 2.844166062596794,
+          "high_delta_windows": 0,
+          "label": "mixed:central_california+northeast_atlantic+southern_california",
+          "positive_fraction": 1.0,
+          "windows": 2,
+          "z_delta_mean": 0.15262287168075295
+        },
+        {
+          "delta_mean": 1.2020974238983149,
+          "delta_sum": 2.4041948477966297,
+          "high_delta_windows": 0,
+          "label": "mixed:gulf+pacific_northwest+southern_california",
+          "positive_fraction": 1.0,
+          "windows": 2,
+          "z_delta_mean": 0.09551119260973928
+        },
+        {
+          "delta_mean": 0.385187983101861,
+          "delta_sum": 2.311127898611166,
+          "high_delta_windows": 0,
+          "label": "mixed:caribbean+hawaii+southern_california",
+          "positive_fraction": 0.6666666666666666,
+          "windows": 6,
+          "z_delta_mean": -0.11657118116118625
+        },
+        {
+          "delta_mean": 1.1262845757508209,
+          "delta_sum": 2.2525691515016417,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+hawaii+southeast_atlantic",
+          "positive_fraction": 0.5,
+          "windows": 2,
+          "z_delta_mean": 0.07582900019710256
+        },
+        {
+          "delta_mean": 0.21028827489462254,
+          "delta_sum": 1.6823061991569803,
+          "high_delta_windows": 0,
+          "label": "mixed:central_california+florida_gulf_atlantic+southern_california",
+          "positive_fraction": 0.625,
+          "windows": 8,
+          "z_delta_mean": -0.16197786081991195
+        },
+        {
+          "delta_mean": -0.40162716990330516,
+          "delta_sum": -1.6065086796132206,
+          "high_delta_windows": 0,
+          "label": "mixed:central_california+hawaii+southern_california",
+          "positive_fraction": 0.25,
+          "windows": 4,
+          "z_delta_mean": -0.32084061059216257
+        },
+        {
+          "delta_mean": -0.751227895487157,
+          "delta_sum": -1.502455790974314,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+northeast_atlantic+southern_california",
+          "positive_fraction": 0.0,
+          "windows": 2,
+          "z_delta_mean": -0.4116023866852062
+        },
+        {
+          "delta_mean": 0.21206794461656453,
+          "delta_sum": 1.2724076676993872,
+          "high_delta_windows": 0,
+          "label": "mixed:florida_gulf_atlantic+southern_california",
+          "positive_fraction": 0.3333333333333333,
+          "windows": 6,
+          "z_delta_mean": -0.161515830929806
+        },
+        {
+          "delta_mean": 0.6269620609702238,
+          "delta_sum": 1.2539241219404476,
+          "high_delta_windows": 0,
+          "label": "mixed:northeast_atlantic+southeast_atlantic+southern_california",
+          "positive_fraction": 0.5,
+          "windows": 2,
+          "z_delta_mean": -0.053802876879371436
+        },
+        {
+          "delta_mean": 0.5889429884671795,
+          "delta_sum": 1.177885976934359,
+          "high_delta_windows": 0,
+          "label": "mixed:northeast_atlantic+pacific_northwest+southern_california",
+          "positive_fraction": 0.5,
+          "windows": 2,
+          "z_delta_mean": -0.06367321836686035
+        },
+        {
+          "delta_mean": 1.1335895061165409,
+          "delta_sum": 1.1335895061165409,
+          "high_delta_windows": 0,
+          "label": "mixed:central_california+gulf+southern_california",
+          "positive_fraction": 1.0,
+          "windows": 1,
+          "z_delta_mean": 0.07772547353285297
+        },
+        {
+          "delta_mean": 0.2848025445649143,
+          "delta_sum": 0.5696050891298285,
+          "high_delta_windows": 0,
+          "label": "mixed:gulf+southern_california",
+          "positive_fraction": 0.5,
+          "windows": 2,
+          "z_delta_mean": -0.1426327995410572
+        },
+        {
+          "delta_mean": -0.06800744642583689,
+          "delta_sum": -0.27202978570334757,
+          "high_delta_windows": 0,
+          "label": "mixed:caribbean+pacific_northwest+south_pacific",
+          "positive_fraction": 0.5,
+          "windows": 4,
+          "z_delta_mean": -0.23422775075923166
+        },
+        {
+          "delta_mean": -0.013607780894567748,
+          "delta_sum": -0.08164668536740649,
+          "high_delta_windows": 0,
+          "label": "mixed:caribbean+pacific_northwest+southern_california",
+          "positive_fraction": 0.6666666666666666,
+          "windows": 6,
+          "z_delta_mean": -0.22010475300446508
+        }
+      ],
+      "same_region": {
+        "mixed_region": {
+          "delta_mean": 0.8349953421341378,
+          "delta_sum": 198.7288914279248,
+          "high_delta_windows": 13,
+          "label": "mixed_region",
+          "positive_fraction": 0.5756302521008403,
+          "windows": 238,
+          "z_delta_mean": 0.00020579273470699614
+        },
+        "same_region": {
+          "delta_mean": 0.8072514477717104,
+          "delta_sum": 5.650760134401973,
+          "high_delta_windows": 0,
+          "label": "same_region",
+          "positive_fraction": 0.5714285714285714,
+          "windows": 7,
+          "z_delta_mean": -0.006996952980040423
+        }
+      }
+    },
+    "propagation_candidates": {
+      "events": 13,
+      "pairs": 7,
+      "speed_km_h": {
+        "max": 610.4983551612568,
+        "median": 322.48777394793285,
+        "p10": 138.0248594178015,
+        "p90": 483.6662145809028
+      },
+      "threshold": 6.4232217291905815
+    },
+    "semidiurnal_lag_bins": [
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.005704604655656028,
+        "pairs": 380
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.022854352554618696,
+        "pairs": 130
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.008910736008356008,
+        "pairs": 678
+      }
+    ],
+    "spatial_surrogate_control": {
+      "description": "Randomly permutes platform coordinates/regions across platform IDs while preserving each window's time, group membership, and detector delta.",
+      "metrics": {
+        "max_abs_lag_distance_mean_z_product": {
+          "empirical_p_abs_ge_observed": 0.5841584158415841,
+          "empirical_p_ge_observed": 0.5841584158415841,
+          "null_mean": 1.2517962050314975,
+          "null_median": 1.1153250421635696,
+          "null_p05": 0.714205901277022,
+          "null_p95": 2.3312085253013857,
+          "null_std": 0.4707536806205132,
+          "observed": 1.0471164448889774
+        },
+        "mixed_region_delta_mean": {
+          "empirical_p_abs_ge_observed": 0.24752475247524752,
+          "empirical_p_ge_observed": 0.24752475247524752,
+          "null_mean": 0.8337425221799574,
+          "null_median": 0.8342026594380687,
+          "null_p05": 0.8036674241430088,
+          "null_p95": 0.8858444900080226,
+          "null_std": 0.030233180773896844,
+          "observed": 0.8349953421341378
+        },
+        "mixed_region_delta_sum": {
+          "empirical_p_abs_ge_observed": 0.693069306930693,
+          "empirical_p_ge_observed": 0.693069306930693,
+          "null_mean": 200.81145279334342,
+          "null_median": 204.37965156232684,
+          "null_p05": 189.97967448517363,
+          "null_p95": 207.83588003893001,
+          "null_std": 8.335717755780166,
+          "observed": 198.7288914279248
+        },
+        "near_semidiurnal_9_15h_0_50km_mean_z_product": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 1.0,
+          "null_mean": 0.0,
+          "null_median": 0.0,
+          "null_p05": 0.0,
+          "null_p95": 0.0,
+          "null_std": 0.0,
+          "observed": 0.0
+        },
+        "near_semidiurnal_9_15h_0_50km_pairs": {
+          "empirical_p_abs_ge_observed": 1.0,
+          "empirical_p_ge_observed": 1.0,
+          "null_mean": 1.45,
+          "null_median": 0.0,
+          "null_p05": 0.0,
+          "null_p95": 11.0,
+          "null_std": 4.259988262894629,
+          "observed": 0.0
+        },
+        "near_zero_lag_0_075h_0_50km_mean_z_product": {
+          "empirical_p_abs_ge_observed": 0.9207920792079208,
+          "empirical_p_ge_observed": 0.9207920792079208,
+          "null_mean": 0.21459581618764464,
+          "null_median": 0.21221048286080896,
+          "null_p05": 0.09962583748716161,
+          "null_p95": 0.3464571645903343,
+          "null_std": 0.0755420545313909,
+          "observed": 0.1260011534539247
+        },
+        "near_zero_lag_0_075h_0_50km_pairs": {
+          "empirical_p_abs_ge_observed": 0.039603960396039604,
+          "empirical_p_ge_observed": 0.039603960396039604,
+          "null_mean": 192.86,
+          "null_median": 190.0,
+          "null_p05": 167.9,
+          "null_p95": 219.0,
+          "null_std": 21.451349607891807,
+          "observed": 222.0
+        },
+        "same_region_delta_mean": {
+          "empirical_p_abs_ge_observed": 0.38613861386138615,
+          "empirical_p_ge_observed": 0.32673267326732675,
+          "null_mean": 0.5593239906346974,
+          "null_median": 0.0,
+          "null_p05": -0.8377431686493345,
+          "null_p95": 3.2519327838720473,
+          "null_std": 1.3065170237656156,
+          "observed": 0.8072514477717104
+        },
+        "same_region_delta_sum": {
+          "empirical_p_abs_ge_observed": 0.3564356435643564,
+          "empirical_p_ge_observed": 0.31683168316831684,
+          "null_mean": 3.5681987689833754,
+          "null_median": 0.0,
+          "null_p05": -3.4562284766032265,
+          "null_p95": 14.399977077153148,
+          "null_std": 8.33571775578016,
+          "observed": 5.650760134401973
+        }
+      },
+      "min_pairs": 100,
+      "pair_count": 250000,
+      "repeats": 100,
+      "seed": 20260602
+    },
+    "strongest_bins": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "3-6h",
+        "mean_z_product": 1.4448439696828315,
+        "pairs": 15
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "3-6h",
+        "mean_z_product": 0.5635483448161457,
+        "pairs": 12
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "9-15h",
+        "mean_z_product": -0.5050012423225768,
+        "pairs": 39
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "15-24h",
+        "mean_z_product": 0.4804699655108705,
+        "pairs": 30
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "15-24h",
+        "mean_z_product": -0.2777930306027431,
+        "pairs": 36
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "1.5-3h",
+        "mean_z_product": -0.2711996648847713,
+        "pairs": 173
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "6-9h",
+        "mean_z_product": -0.24751846232771257,
+        "pairs": 17
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "1.5-3h",
+        "mean_z_product": 0.2393318133741289,
+        "pairs": 18
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "1.5-3h",
+        "mean_z_product": 0.17917825269941698,
+        "pairs": 151
+      },
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0.75-1.5h",
+        "mean_z_product": -0.15510622853867567,
+        "pairs": 256
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "3-6h",
+        "mean_z_product": -0.1313994851808418,
+        "pairs": 22
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "24-48h",
+        "mean_z_product": -0.10909087086832683,
+        "pairs": 60
+      }
+    ],
+    "time_span_hours": 715.8528793291251,
+    "windows": 245,
+    "zero_lag_bins": [
+      {
+        "distance_bin": "0-50km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.03781218029159321,
+        "pairs": 223
+      },
+      {
+        "distance_bin": "300-600km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": -0.027434685494707886,
+        "pairs": 129
+      },
+      {
+        "distance_bin": "600-1200km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": 0.029404003847552075,
+        "pairs": 233
+      },
+      {
+        "distance_bin": ">=1200km",
+        "lag_bin": "0-0.75h",
+        "mean_z_product": -0.06249420902471635,
+        "pairs": 523
+      }
+    ]
+  }
+}
