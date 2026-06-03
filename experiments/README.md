@@ -111,3 +111,28 @@ If interrupted, rerun the same command with `--resume`. The reported
 `p_emp_ge` is the shifted-null empirical exceedance estimate and is resolution
 limited by `1 / (null_repeats + 1)`. Use `p_floor` to see that limit and
 `p_norm` as a separate normal approximation from the aggregate null z score.
+
+For sharded local runs, do not launch every shard process in the shell at once.
+Each `cdip_batch.py` shard loads the selected CDIP record set independently, so
+`--shard-count 16` can be a deterministic partitioning choice while local
+concurrency stays at 2 or 3 workers. Use the bounded launcher:
+
+```bash
+python3 experiments/cdip_sharded_run.py \
+  --run-dir /tmp/cdip-scale-shards \
+  --shard-count 16 \
+  --max-workers 2 \
+  -- \
+  data/cdip/*p1_xy.nc \
+  --preset scale \
+  --channels z \
+  --max-groups 1024 \
+  --read-window-manifest /tmp/cdip_1p5gb_1024groups_windows.json \
+  --null-mode permute \
+  --null-repeats 1000 \
+  --top-windows 100000
+```
+
+The launcher writes one report, log, and checkpoint per shard, prints aggregate
+checkpoint progress, refuses unsafe memory estimates by default, and merges only
+the shard report files into `merged.json`.
