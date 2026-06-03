@@ -1,0 +1,1309 @@
+{
+  "cross_run_read": {
+    "answer": "The direct spectra do not support the multi-modal/confused-sea hypothesis for high-delta windows.",
+    "month_matched_caution": "The heldout split keeps a modest narrower-band/longer-period signal under month matching; March weakens; West Coast broad-background shifts mostly disappear under month matching.",
+    "next": "If needed, add event-level clustering around specific top windows and inspect spectra visually, but the modal-count discriminator has already moved against the multi-modal label.",
+    "positive_signal": "High-delta windows are more consistent with organized coherent swell-like structure: longer-period energy, narrower energy width, lower spectral entropy, and higher concentration."
+  },
+  "method_boundary": {
+    "cdip_spectrum_notebook_url": "https://cdip.ucsd.edu/themes/media/docs/documents/html_pages/spectrum_plot.html",
+    "detector_inputs": "raw CDIP displacement only; CDIP spectra are post-hoc attribution inputs only",
+    "historic_full_file_caution": "historic station NetCDF files are hundreds of MB, so this bounded pass used realtime deployment files and reports coverage; no historic bulk download was done",
+    "spectra_source": "CDIP THREDDS NetCDF waveEnergyDensity, waveFrequency, waveBandwidth, waveSpread"
+  },
+  "runs": {
+    "heldout_groups512_1023": {
+      "coverage": {
+        "high_delta_vs_background_baseline": {
+          "spectra_records_baseline_mean": 14.25,
+          "spectra_records_high_mean": 14.52,
+          "stations_with_spectra_baseline_mean": 3.0,
+          "stations_with_spectra_high_mean": 3.0
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "spectra_records_baseline_mean": 14.52,
+          "spectra_records_high_mean": 14.52,
+          "stations_with_spectra_baseline_mean": 3.0,
+          "stations_with_spectra_high_mean": 3.0
+        }
+      },
+      "description": "heldout group split direct spectra attribution",
+      "feature_shifts": {
+        "high_delta_vs_background_baseline": {
+          "bandwidth_hz_mean": {
+            "baseline_mean": 0.08519034301673711,
+            "cliffs_delta_high_vs_baseline": -0.4148,
+            "high_mean": 0.0764592015668308,
+            "mann_whitney_u_p_two_sided": 3.592256532769249e-05,
+            "mean_difference_high_minus_baseline": -0.008731141449906318,
+            "standardized_mean_difference": -0.7161176274807709
+          },
+          "directional_spread_energy_weighted_deg_mean": {
+            "baseline_mean": 31.86419062016916,
+            "cliffs_delta_high_vs_baseline": -0.0864,
+            "high_mean": 30.844454498642875,
+            "mann_whitney_u_p_two_sided": 0.39026233362526574,
+            "mean_difference_high_minus_baseline": -1.019736121526286,
+            "standardized_mean_difference": -0.18965024926067725
+          },
+          "effective_bin_count_mean": {
+            "baseline_mean": 18.99773771815619,
+            "cliffs_delta_high_vs_baseline": -0.2196,
+            "high_mean": 17.534141374125955,
+            "mann_whitney_u_p_two_sided": 0.02876260724622832,
+            "mean_difference_high_minus_baseline": -1.4635963440302362,
+            "standardized_mean_difference": -0.39941232119481623
+          },
+          "energy_width_90_hz_mean": {
+            "baseline_mean": 0.2533612505948792,
+            "cliffs_delta_high_vs_baseline": -0.4604,
+            "high_mean": 0.21782708392540612,
+            "mann_whitney_u_p_two_sided": 4.502200257443519e-06,
+            "mean_difference_high_minus_baseline": -0.035534166669473066,
+            "standardized_mean_difference": -0.7911966521618291
+          },
+          "hm0_estimate_mean": {
+            "baseline_mean": 1.5671188192956396,
+            "cliffs_delta_high_vs_baseline": 0.3292,
+            "high_mean": 1.8484392972003727,
+            "mann_whitney_u_p_two_sided": 0.0010414212958988979,
+            "mean_difference_high_minus_baseline": 0.28132047790473313,
+            "standardized_mean_difference": 0.5212390736556902
+          },
+          "mean_period_s_mean": {
+            "baseline_mean": 6.30994989645151,
+            "cliffs_delta_high_vs_baseline": 0.3448,
+            "high_mean": 7.0540848422242695,
+            "mann_whitney_u_p_two_sided": 0.0005934870948504257,
+            "mean_difference_high_minus_baseline": 0.7441349457727595,
+            "standardized_mean_difference": 0.6358608437547258
+          },
+          "multimodal_candidate_mean": {
+            "baseline_mean": 0.6255000000000001,
+            "cliffs_delta_high_vs_baseline": -0.1708,
+            "high_mean": 0.572,
+            "mann_whitney_u_p_two_sided": 0.08802058593460553,
+            "mean_difference_high_minus_baseline": -0.0535000000000001,
+            "standardized_mean_difference": -0.2716772955979718
+          },
+          "normalized_bandwidth_mean": {
+            "baseline_mean": 0.5208145462448709,
+            "cliffs_delta_high_vs_baseline": -0.1032,
+            "high_mean": 0.509242396953654,
+            "mann_whitney_u_p_two_sided": 0.30461608454227473,
+            "mean_difference_high_minus_baseline": -0.01157214929121686,
+            "standardized_mean_difference": -0.1469188926743082
+          },
+          "peak_count_max": {
+            "baseline_mean": 4.54,
+            "cliffs_delta_high_vs_baseline": -0.0932,
+            "high_mean": 4.3,
+            "mann_whitney_u_p_two_sided": 0.34168169968790285,
+            "mean_difference_high_minus_baseline": -0.2400000000000002,
+            "standardized_mean_difference": -0.16243852866518071
+          },
+          "peak_count_mean": {
+            "baseline_mean": 2.451,
+            "cliffs_delta_high_vs_baseline": -0.191,
+            "high_mean": 2.224666666666667,
+            "mann_whitney_u_p_two_sided": 0.05711061905342798,
+            "mean_difference_high_minus_baseline": -0.22633333333333328,
+            "standardized_mean_difference": -0.3701797112190069
+          },
+          "primary_peak_period_s_mean": {
+            "baseline_mean": 10.214218729270819,
+            "cliffs_delta_high_vs_baseline": 0.084,
+            "high_mean": 10.488084351451018,
+            "mann_whitney_u_p_two_sided": 0.4035931198129621,
+            "mean_difference_high_minus_baseline": 0.2738656221801996,
+            "standardized_mean_difference": 0.1337909617177212
+          },
+          "second_peak_ratio_mean": {
+            "baseline_mean": 0.47458813193891713,
+            "cliffs_delta_high_vs_baseline": -0.1788,
+            "high_mean": 0.4276362425194279,
+            "mann_whitney_u_p_two_sided": 0.07506322078487648,
+            "mean_difference_high_minus_baseline": -0.046951889419489246,
+            "standardized_mean_difference": -0.3237396780275943
+          },
+          "spectral_concentration_mean": {
+            "baseline_mean": 0.06000536678843984,
+            "cliffs_delta_high_vs_baseline": 0.2992,
+            "high_mean": 0.0677257291870282,
+            "mann_whitney_u_p_two_sided": 0.0028816790083885514,
+            "mean_difference_high_minus_baseline": 0.007720362398588358,
+            "standardized_mean_difference": 0.5252036480703816
+          },
+          "spectral_entropy_mean": {
+            "baseline_mean": 0.7721577450043364,
+            "cliffs_delta_high_vs_baseline": -0.408,
+            "high_mean": 0.7406462794396584,
+            "mann_whitney_u_p_two_sided": 4.814010577728374e-05,
+            "mean_difference_high_minus_baseline": -0.03151146556467799,
+            "standardized_mean_difference": -0.7389516652283391
+          }
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "bandwidth_hz_mean": {
+            "baseline_mean": 0.08210329773703276,
+            "cliffs_delta_high_vs_baseline": -0.2904,
+            "high_mean": 0.0764592015668308,
+            "mann_whitney_u_p_two_sided": 0.012453826540728498,
+            "mean_difference_high_minus_baseline": -0.005644096170201965,
+            "standardized_mean_difference": -0.476447935954247
+          },
+          "directional_spread_energy_weighted_deg_mean": {
+            "baseline_mean": 31.45621092587523,
+            "cliffs_delta_high_vs_baseline": -0.0536,
+            "high_mean": 30.844454498642875,
+            "mann_whitney_u_p_two_sided": 0.646636074320882,
+            "mean_difference_high_minus_baseline": -0.6117564272323541,
+            "standardized_mean_difference": -0.09745881153837785
+          },
+          "effective_bin_count_mean": {
+            "baseline_mean": 18.742925027101364,
+            "cliffs_delta_high_vs_baseline": -0.196,
+            "high_mean": 17.534141374125955,
+            "mann_whitney_u_p_two_sided": 0.0918836599384205,
+            "mean_difference_high_minus_baseline": -1.2087836529754092,
+            "standardized_mean_difference": -0.3126158412226882
+          },
+          "energy_width_90_hz_mean": {
+            "baseline_mean": 0.2387737498469651,
+            "cliffs_delta_high_vs_baseline": -0.2608,
+            "high_mean": 0.21782708392540612,
+            "mann_whitney_u_p_two_sided": 0.024835933750728286,
+            "mean_difference_high_minus_baseline": -0.02094666592155897,
+            "standardized_mean_difference": -0.4727213125006803
+          },
+          "hm0_estimate_mean": {
+            "baseline_mean": 1.6250709257283233,
+            "cliffs_delta_high_vs_baseline": 0.26,
+            "high_mean": 1.8484392972003727,
+            "mann_whitney_u_p_two_sided": 0.025282989888976343,
+            "mean_difference_high_minus_baseline": 0.22336837147204935,
+            "standardized_mean_difference": 0.43744352174317924
+          },
+          "mean_period_s_mean": {
+            "baseline_mean": 6.534884877846438,
+            "cliffs_delta_high_vs_baseline": 0.2528,
+            "high_mean": 7.0540848422242695,
+            "mann_whitney_u_p_two_sided": 0.029629614579719788,
+            "mean_difference_high_minus_baseline": 0.5191999643778313,
+            "standardized_mean_difference": 0.3856526278191162
+          },
+          "multimodal_candidate_mean": {
+            "baseline_mean": 0.6013333333333333,
+            "cliffs_delta_high_vs_baseline": -0.092,
+            "high_mean": 0.572,
+            "mann_whitney_u_p_two_sided": 0.4279522984468743,
+            "mean_difference_high_minus_baseline": -0.029333333333333322,
+            "standardized_mean_difference": -0.1431071559147023
+          },
+          "normalized_bandwidth_mean": {
+            "baseline_mean": 0.506444480344963,
+            "cliffs_delta_high_vs_baseline": 0.032,
+            "high_mean": 0.509242396953654,
+            "mann_whitney_u_p_two_sided": 0.785386203357897,
+            "mean_difference_high_minus_baseline": 0.002797916608690998,
+            "standardized_mean_difference": 0.035448091186066344
+          },
+          "peak_count_max": {
+            "baseline_mean": 4.56,
+            "cliffs_delta_high_vs_baseline": -0.1084,
+            "high_mean": 4.3,
+            "mann_whitney_u_p_two_sided": 0.34297573492405375,
+            "mean_difference_high_minus_baseline": -0.2599999999999998,
+            "standardized_mean_difference": -0.1703907678018819
+          },
+          "peak_count_mean": {
+            "baseline_mean": 2.335,
+            "cliffs_delta_high_vs_baseline": -0.1012,
+            "high_mean": 2.224666666666667,
+            "mann_whitney_u_p_two_sided": 0.3847831983946757,
+            "mean_difference_high_minus_baseline": -0.11033333333333317,
+            "standardized_mean_difference": -0.1862209554903392
+          },
+          "primary_peak_period_s_mean": {
+            "baseline_mean": 9.805223552822191,
+            "cliffs_delta_high_vs_baseline": 0.1816,
+            "high_mean": 10.488084351451018,
+            "mann_whitney_u_p_two_sided": 0.11841646023837263,
+            "mean_difference_high_minus_baseline": 0.6828607986288269,
+            "standardized_mean_difference": 0.33682891232037365
+          },
+          "second_peak_ratio_mean": {
+            "baseline_mean": 0.45980967840846615,
+            "cliffs_delta_high_vs_baseline": -0.1448,
+            "high_mean": 0.4276362425194279,
+            "mann_whitney_u_p_two_sided": 0.2133751097547092,
+            "mean_difference_high_minus_baseline": -0.03217343588903826,
+            "standardized_mean_difference": -0.206751730123337
+          },
+          "spectral_concentration_mean": {
+            "baseline_mean": 0.06485701161450942,
+            "cliffs_delta_high_vs_baseline": 0.1776,
+            "high_mean": 0.0677257291870282,
+            "mann_whitney_u_p_two_sided": 0.12676457131374225,
+            "mean_difference_high_minus_baseline": 0.0028687175725187752,
+            "standardized_mean_difference": 0.16618559688593404
+          },
+          "spectral_entropy_mean": {
+            "baseline_mean": 0.7553864237477771,
+            "cliffs_delta_high_vs_baseline": -0.2128,
+            "high_mean": 0.7406462794396584,
+            "mann_whitney_u_p_two_sided": 0.06720289921945866,
+            "mean_difference_high_minus_baseline": -0.014740144308118652,
+            "standardized_mean_difference": -0.32601883979063573
+          }
+        }
+      },
+      "ranked_feature_shifts": {
+        "high_delta_vs_background_baseline": [
+          {
+            "cliffs_delta_high_vs_baseline": -0.4604,
+            "feature": "energy_width_90_hz_mean",
+            "mann_whitney_u_p_two_sided": 4.502200257443519e-06,
+            "mean_difference_high_minus_baseline": -0.035534166669473066,
+            "standardized_mean_difference": -0.7911966521618291
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.408,
+            "feature": "spectral_entropy_mean",
+            "mann_whitney_u_p_two_sided": 4.814010577728374e-05,
+            "mean_difference_high_minus_baseline": -0.03151146556467799,
+            "standardized_mean_difference": -0.7389516652283391
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.4148,
+            "feature": "bandwidth_hz_mean",
+            "mann_whitney_u_p_two_sided": 3.592256532769249e-05,
+            "mean_difference_high_minus_baseline": -0.008731141449906318,
+            "standardized_mean_difference": -0.7161176274807709
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.3448,
+            "feature": "mean_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.0005934870948504257,
+            "mean_difference_high_minus_baseline": 0.7441349457727595,
+            "standardized_mean_difference": 0.6358608437547258
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.2992,
+            "feature": "spectral_concentration_mean",
+            "mann_whitney_u_p_two_sided": 0.0028816790083885514,
+            "mean_difference_high_minus_baseline": 0.007720362398588358,
+            "standardized_mean_difference": 0.5252036480703816
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.3292,
+            "feature": "hm0_estimate_mean",
+            "mann_whitney_u_p_two_sided": 0.0010414212958988979,
+            "mean_difference_high_minus_baseline": 0.28132047790473313,
+            "standardized_mean_difference": 0.5212390736556902
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.3156,
+            "feature": "energy_total_mean",
+            "mann_whitney_u_p_two_sided": 0.001669166102904678,
+            "mean_difference_high_minus_baseline": 0.06690416412415176,
+            "standardized_mean_difference": 0.4580180525025436
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.2196,
+            "feature": "effective_bin_count_mean",
+            "mann_whitney_u_p_two_sided": 0.02876260724622832,
+            "mean_difference_high_minus_baseline": -1.4635963440302362,
+            "standardized_mean_difference": -0.39941232119481623
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.191,
+            "feature": "peak_count_mean",
+            "mann_whitney_u_p_two_sided": 0.05711061905342798,
+            "mean_difference_high_minus_baseline": -0.22633333333333328,
+            "standardized_mean_difference": -0.3701797112190069
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1788,
+            "feature": "second_peak_ratio_mean",
+            "mann_whitney_u_p_two_sided": 0.07506322078487648,
+            "mean_difference_high_minus_baseline": -0.046951889419489246,
+            "standardized_mean_difference": -0.3237396780275943
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1708,
+            "feature": "multimodal_candidate_mean",
+            "mann_whitney_u_p_two_sided": 0.08802058593460553,
+            "mean_difference_high_minus_baseline": -0.0535000000000001,
+            "standardized_mean_difference": -0.2716772955979718
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1052,
+            "feature": "spectra_records",
+            "mann_whitney_u_p_two_sided": 0.1542857331110837,
+            "mean_difference_high_minus_baseline": 0.2699999999999996,
+            "standardized_mean_difference": 0.21939645524313206
+          }
+        ],
+        "high_delta_vs_month_matched_baseline": [
+          {
+            "cliffs_delta_high_vs_baseline": -0.2904,
+            "feature": "bandwidth_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.012453826540728498,
+            "mean_difference_high_minus_baseline": -0.005644096170201965,
+            "standardized_mean_difference": -0.476447935954247
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.2608,
+            "feature": "energy_width_90_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.024835933750728286,
+            "mean_difference_high_minus_baseline": -0.02094666592155897,
+            "standardized_mean_difference": -0.4727213125006803
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.26,
+            "feature": "hm0_estimate_mean",
+            "mann_whitney_u_p_two_sided": 0.025282989888976343,
+            "mean_difference_high_minus_baseline": 0.22336837147204935,
+            "standardized_mean_difference": 0.43744352174317924
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.2528,
+            "feature": "mean_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.029629614579719788,
+            "mean_difference_high_minus_baseline": 0.5191999643778313,
+            "standardized_mean_difference": 0.3856526278191162
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.22,
+            "feature": "energy_total_mean",
+            "mann_whitney_u_p_two_sided": 0.05844313376240492,
+            "mean_difference_high_minus_baseline": 0.05192174038947103,
+            "standardized_mean_difference": 0.3695444511267673
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1816,
+            "feature": "primary_peak_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.11841646023837263,
+            "mean_difference_high_minus_baseline": 0.6828607986288269,
+            "standardized_mean_difference": 0.33682891232037365
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.2128,
+            "feature": "spectral_entropy_mean",
+            "mann_whitney_u_p_two_sided": 0.06720289921945866,
+            "mean_difference_high_minus_baseline": -0.014740144308118652,
+            "standardized_mean_difference": -0.32601883979063573
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.196,
+            "feature": "effective_bin_count_mean",
+            "mann_whitney_u_p_two_sided": 0.0918836599384205,
+            "mean_difference_high_minus_baseline": -1.2087836529754092,
+            "standardized_mean_difference": -0.3126158412226882
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1448,
+            "feature": "second_peak_ratio_mean",
+            "mann_whitney_u_p_two_sided": 0.2133751097547092,
+            "mean_difference_high_minus_baseline": -0.03217343588903826,
+            "standardized_mean_difference": -0.206751730123337
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1012,
+            "feature": "peak_count_mean",
+            "mann_whitney_u_p_two_sided": 0.3847831983946757,
+            "mean_difference_high_minus_baseline": -0.11033333333333317,
+            "standardized_mean_difference": -0.1862209554903392
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.086,
+            "feature": "second_peak_ratio_max",
+            "mann_whitney_u_p_two_sided": 0.4605779022370331,
+            "mean_difference_high_minus_baseline": -0.018991923430331625,
+            "standardized_mean_difference": -0.17244213636629746
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1084,
+            "feature": "peak_count_max",
+            "mann_whitney_u_p_two_sided": 0.34297573492405375,
+            "mean_difference_high_minus_baseline": -0.2599999999999998,
+            "standardized_mean_difference": -0.1703907678018819
+          }
+        ]
+      },
+      "result_path": "experiments/results/2026-06-03-cdip-heldout-groups512-1023-spectral-attribution.json",
+      "selection": {
+        "background_baseline_windows": 100,
+        "month_matched_baseline_windows": 50,
+        "multimodal_second_peak_ratio": 0.35,
+        "pad_minutes": 45.0,
+        "peak_min_height_fraction": 0.15,
+        "peak_min_prominence_fraction": 0.1,
+        "top_windows": 50
+      }
+    },
+    "march_2026": {
+      "coverage": {
+        "high_delta_vs_background_baseline": {
+          "spectra_records_baseline_mean": 14.04,
+          "spectra_records_high_mean": 14.16,
+          "stations_with_spectra_baseline_mean": 3.0,
+          "stations_with_spectra_high_mean": 3.0
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "spectra_records_baseline_mean": 14.16,
+          "spectra_records_high_mean": 14.16,
+          "stations_with_spectra_baseline_mean": 3.0,
+          "stations_with_spectra_high_mean": 3.0
+        }
+      },
+      "description": "different date range control direct spectra attribution",
+      "feature_shifts": {
+        "high_delta_vs_background_baseline": {
+          "bandwidth_hz_mean": {
+            "baseline_mean": 0.08355450462220232,
+            "cliffs_delta_high_vs_baseline": -0.2022,
+            "high_mean": 0.08041101546048424,
+            "mann_whitney_u_p_two_sided": 0.04408268655130371,
+            "mean_difference_high_minus_baseline": -0.0031434891617180827,
+            "standardized_mean_difference": -0.319769244697944
+          },
+          "directional_spread_energy_weighted_deg_mean": {
+            "baseline_mean": 31.661287165156565,
+            "cliffs_delta_high_vs_baseline": 0.0258,
+            "high_mean": 31.6996542307032,
+            "mann_whitney_u_p_two_sided": 0.798606194382274,
+            "mean_difference_high_minus_baseline": 0.03836706554663394,
+            "standardized_mean_difference": 0.0070018699399419385
+          },
+          "effective_bin_count_mean": {
+            "baseline_mean": 16.396430978760733,
+            "cliffs_delta_high_vs_baseline": -0.0742,
+            "high_mean": 16.573719396312374,
+            "mann_whitney_u_p_two_sided": 0.4607898272217763,
+            "mean_difference_high_minus_baseline": 0.17728841755164026,
+            "standardized_mean_difference": 0.045317610179440346
+          },
+          "energy_width_90_hz_mean": {
+            "baseline_mean": 0.23954333299274247,
+            "cliffs_delta_high_vs_baseline": -0.1646,
+            "high_mean": 0.230167915870746,
+            "mann_whitney_u_p_two_sided": 0.10130697905566122,
+            "mean_difference_high_minus_baseline": -0.009375417121996465,
+            "standardized_mean_difference": -0.2534752496298797
+          },
+          "hm0_estimate_mean": {
+            "baseline_mean": 1.530902740378712,
+            "cliffs_delta_high_vs_baseline": 0.1882,
+            "high_mean": 1.6611141259238207,
+            "mann_whitney_u_p_two_sided": 0.06096243292750023,
+            "mean_difference_high_minus_baseline": 0.13021138554510858,
+            "standardized_mean_difference": 0.29629644050931303
+          },
+          "mean_period_s_mean": {
+            "baseline_mean": 7.127772664969837,
+            "cliffs_delta_high_vs_baseline": -0.0726,
+            "high_mean": 6.959229914837017,
+            "mann_whitney_u_p_two_sided": 0.47054047016187894,
+            "mean_difference_high_minus_baseline": -0.16854275013281939,
+            "standardized_mean_difference": -0.13341093504547977
+          },
+          "multimodal_candidate_mean": {
+            "baseline_mean": 0.4956666666666667,
+            "cliffs_delta_high_vs_baseline": -0.062,
+            "high_mean": 0.494,
+            "mann_whitney_u_p_two_sided": 0.5360173198596989,
+            "mean_difference_high_minus_baseline": -0.0016666666666667052,
+            "standardized_mean_difference": -0.008331568006628367
+          },
+          "normalized_bandwidth_mean": {
+            "baseline_mean": 0.575047461771241,
+            "cliffs_delta_high_vs_baseline": -0.221,
+            "high_mean": 0.5399888486489759,
+            "mann_whitney_u_p_two_sided": 0.027758649577969727,
+            "mean_difference_high_minus_baseline": -0.0350586131222651,
+            "standardized_mean_difference": -0.34408781152079576
+          },
+          "peak_count_max": {
+            "baseline_mean": 4.33,
+            "cliffs_delta_high_vs_baseline": -0.175,
+            "high_mean": 3.84,
+            "mann_whitney_u_p_two_sided": 0.07413347339277253,
+            "mean_difference_high_minus_baseline": -0.4900000000000002,
+            "standardized_mean_difference": -0.31752433029422
+          },
+          "peak_count_mean": {
+            "baseline_mean": 2.1304999999999996,
+            "cliffs_delta_high_vs_baseline": -0.1434,
+            "high_mean": 2.007333333333334,
+            "mann_whitney_u_p_two_sided": 0.1533015010496955,
+            "mean_difference_high_minus_baseline": -0.12316666666666576,
+            "standardized_mean_difference": -0.24342734224622176
+          },
+          "primary_peak_period_s_mean": {
+            "baseline_mean": 11.154667556090972,
+            "cliffs_delta_high_vs_baseline": -0.1966,
+            "high_mean": 10.283152661997338,
+            "mann_whitney_u_p_two_sided": 0.05028893889329816,
+            "mean_difference_high_minus_baseline": -0.8715148940936341,
+            "standardized_mean_difference": -0.3504792180553526
+          },
+          "second_peak_ratio_mean": {
+            "baseline_mean": 0.3905911069521509,
+            "cliffs_delta_high_vs_baseline": -0.0828,
+            "high_mean": 0.37881057605590407,
+            "mann_whitney_u_p_two_sided": 0.41035454299712415,
+            "mean_difference_high_minus_baseline": -0.01178053089624681,
+            "standardized_mean_difference": -0.07633862131768707
+          },
+          "spectral_concentration_mean": {
+            "baseline_mean": 0.08172456312657023,
+            "cliffs_delta_high_vs_baseline": -0.0254,
+            "high_mean": 0.07595418774410762,
+            "mann_whitney_u_p_two_sided": 0.8016868345139889,
+            "mean_difference_high_minus_baseline": -0.005770375382462611,
+            "standardized_mean_difference": -0.17486837736371447
+          },
+          "spectral_entropy_mean": {
+            "baseline_mean": 0.7300890315083898,
+            "cliffs_delta_high_vs_baseline": -0.0398,
+            "high_mean": 0.7298574587480391,
+            "mann_whitney_u_p_two_sided": 0.6930737022291942,
+            "mean_difference_high_minus_baseline": -0.00023157276035068453,
+            "standardized_mean_difference": -0.004385274963163446
+          }
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "bandwidth_hz_mean": {
+            "baseline_mean": 0.08392515568366107,
+            "cliffs_delta_high_vs_baseline": -0.2032,
+            "high_mean": 0.08041101546048424,
+            "mann_whitney_u_p_two_sided": 0.08053347677047254,
+            "mean_difference_high_minus_baseline": -0.003514140223176837,
+            "standardized_mean_difference": -0.36086764823139067
+          },
+          "directional_spread_energy_weighted_deg_mean": {
+            "baseline_mean": 32.0569105014613,
+            "cliffs_delta_high_vs_baseline": -0.0432,
+            "high_mean": 31.6996542307032,
+            "mann_whitney_u_p_two_sided": 0.7122598961583189,
+            "mean_difference_high_minus_baseline": -0.3572562707581035,
+            "standardized_mean_difference": -0.06802101369246549
+          },
+          "effective_bin_count_mean": {
+            "baseline_mean": 17.1182648039018,
+            "cliffs_delta_high_vs_baseline": -0.1288,
+            "high_mean": 16.573719396312374,
+            "mann_whitney_u_p_two_sided": 0.2685239858660573,
+            "mean_difference_high_minus_baseline": -0.5445454075894247,
+            "standardized_mean_difference": -0.1460838923629327
+          },
+          "energy_width_90_hz_mean": {
+            "baseline_mean": 0.24202499940743052,
+            "cliffs_delta_high_vs_baseline": -0.1856,
+            "high_mean": 0.230167915870746,
+            "mann_whitney_u_p_two_sided": 0.11050360411645353,
+            "mean_difference_high_minus_baseline": -0.01185708353668452,
+            "standardized_mean_difference": -0.31874819078513933
+          },
+          "hm0_estimate_mean": {
+            "baseline_mean": 1.5418703619920315,
+            "cliffs_delta_high_vs_baseline": 0.1712,
+            "high_mean": 1.6611141259238207,
+            "mann_whitney_u_p_two_sided": 0.14106306507637165,
+            "mean_difference_high_minus_baseline": 0.11924376393178915,
+            "standardized_mean_difference": 0.29548105080441783
+          },
+          "mean_period_s_mean": {
+            "baseline_mean": 6.89141266013605,
+            "cliffs_delta_high_vs_baseline": 0.0048,
+            "high_mean": 6.959229914837017,
+            "mann_whitney_u_p_two_sided": 0.9697543765312099,
+            "mean_difference_high_minus_baseline": 0.06781725470096767,
+            "standardized_mean_difference": 0.05702796139148554
+          },
+          "multimodal_candidate_mean": {
+            "baseline_mean": 0.5189999999999999,
+            "cliffs_delta_high_vs_baseline": -0.0772,
+            "high_mean": 0.494,
+            "mann_whitney_u_p_two_sided": 0.5065877530425599,
+            "mean_difference_high_minus_baseline": -0.02499999999999991,
+            "standardized_mean_difference": -0.1271231168185962
+          },
+          "normalized_bandwidth_mean": {
+            "baseline_mean": 0.5579446937013963,
+            "cliffs_delta_high_vs_baseline": -0.132,
+            "high_mean": 0.5399888486489759,
+            "mann_whitney_u_p_two_sided": 0.25677626933819653,
+            "mean_difference_high_minus_baseline": -0.017955845052420427,
+            "standardized_mean_difference": -0.1928020772329017
+          },
+          "peak_count_max": {
+            "baseline_mean": 4.22,
+            "cliffs_delta_high_vs_baseline": -0.1408,
+            "high_mean": 3.84,
+            "mann_whitney_u_p_two_sided": 0.2126562302066295,
+            "mean_difference_high_minus_baseline": -0.3799999999999999,
+            "standardized_mean_difference": -0.2858866489246893
+          },
+          "peak_count_mean": {
+            "baseline_mean": 2.147333333333333,
+            "cliffs_delta_high_vs_baseline": -0.1628,
+            "high_mean": 2.007333333333334,
+            "mann_whitney_u_p_two_sided": 0.16131059531682213,
+            "mean_difference_high_minus_baseline": -0.13999999999999924,
+            "standardized_mean_difference": -0.31505137904504377
+          },
+          "primary_peak_period_s_mean": {
+            "baseline_mean": 10.564434080083188,
+            "cliffs_delta_high_vs_baseline": -0.0668,
+            "high_mean": 10.283152661997338,
+            "mann_whitney_u_p_two_sided": 0.5671894453462805,
+            "mean_difference_high_minus_baseline": -0.2812814180858503,
+            "standardized_mean_difference": -0.12799750873502735
+          },
+          "second_peak_ratio_mean": {
+            "baseline_mean": 0.4195798843834688,
+            "cliffs_delta_high_vs_baseline": -0.1584,
+            "high_mean": 0.37881057605590407,
+            "mann_whitney_u_p_two_sided": 0.17334257101234307,
+            "mean_difference_high_minus_baseline": -0.04076930832756476,
+            "standardized_mean_difference": -0.2813214484057271
+          },
+          "spectral_concentration_mean": {
+            "baseline_mean": 0.07436670315556353,
+            "cliffs_delta_high_vs_baseline": 0.0064,
+            "high_mean": 0.07595418774410762,
+            "mann_whitney_u_p_two_sided": 0.9587644587686994,
+            "mean_difference_high_minus_baseline": 0.0015874845885440886,
+            "standardized_mean_difference": 0.059500955490268397
+          },
+          "spectral_entropy_mean": {
+            "baseline_mean": 0.7384608359510899,
+            "cliffs_delta_high_vs_baseline": -0.1088,
+            "high_mean": 0.7298574587480391,
+            "mann_whitney_u_p_two_sided": 0.35024147998675914,
+            "mean_difference_high_minus_baseline": -0.008603377203050822,
+            "standardized_mean_difference": -0.1941564262290504
+          }
+        }
+      },
+      "ranked_feature_shifts": {
+        "high_delta_vs_background_baseline": [
+          {
+            "cliffs_delta_high_vs_baseline": -0.1966,
+            "feature": "primary_peak_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.05028893889329816,
+            "mean_difference_high_minus_baseline": -0.8715148940936341,
+            "standardized_mean_difference": -0.3504792180553526
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.221,
+            "feature": "normalized_bandwidth_mean",
+            "mann_whitney_u_p_two_sided": 0.027758649577969727,
+            "mean_difference_high_minus_baseline": -0.0350586131222651,
+            "standardized_mean_difference": -0.34408781152079576
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.2022,
+            "feature": "bandwidth_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.04408268655130371,
+            "mean_difference_high_minus_baseline": -0.0031434891617180827,
+            "standardized_mean_difference": -0.319769244697944
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.175,
+            "feature": "peak_count_max",
+            "mann_whitney_u_p_two_sided": 0.07413347339277253,
+            "mean_difference_high_minus_baseline": -0.4900000000000002,
+            "standardized_mean_difference": -0.31752433029422
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1882,
+            "feature": "hm0_estimate_mean",
+            "mann_whitney_u_p_two_sided": 0.06096243292750023,
+            "mean_difference_high_minus_baseline": 0.13021138554510858,
+            "standardized_mean_difference": 0.29629644050931303
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1742,
+            "feature": "energy_total_mean",
+            "mann_whitney_u_p_two_sided": 0.08287694093499037,
+            "mean_difference_high_minus_baseline": 0.02735328481668406,
+            "standardized_mean_difference": 0.2667013115124403
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1646,
+            "feature": "energy_width_90_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.10130697905566122,
+            "mean_difference_high_minus_baseline": -0.009375417121996465,
+            "standardized_mean_difference": -0.2534752496298797
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1434,
+            "feature": "peak_count_mean",
+            "mann_whitney_u_p_two_sided": 0.1533015010496955,
+            "mean_difference_high_minus_baseline": -0.12316666666666576,
+            "standardized_mean_difference": -0.24342734224622176
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1006,
+            "feature": "second_peak_ratio_max",
+            "mann_whitney_u_p_two_sided": 0.3168680572586938,
+            "mean_difference_high_minus_baseline": 0.03945422489533479,
+            "standardized_mean_difference": 0.21337399298302687
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.0254,
+            "feature": "spectral_concentration_mean",
+            "mann_whitney_u_p_two_sided": 0.8016868345139889,
+            "mean_difference_high_minus_baseline": -0.005770375382462611,
+            "standardized_mean_difference": -0.17486837736371447
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.03,
+            "feature": "multimodal_candidate_max",
+            "mann_whitney_u_p_two_sided": 0.3815415921137143,
+            "mean_difference_high_minus_baseline": 0.030000000000000027,
+            "standardized_mean_difference": 0.15258194519667143
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.0726,
+            "feature": "mean_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.47054047016187894,
+            "mean_difference_high_minus_baseline": -0.16854275013281939,
+            "standardized_mean_difference": -0.13341093504547977
+          }
+        ],
+        "high_delta_vs_month_matched_baseline": [
+          {
+            "cliffs_delta_high_vs_baseline": -0.2032,
+            "feature": "bandwidth_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.08053347677047254,
+            "mean_difference_high_minus_baseline": -0.003514140223176837,
+            "standardized_mean_difference": -0.36086764823139067
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1856,
+            "feature": "energy_width_90_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.11050360411645353,
+            "mean_difference_high_minus_baseline": -0.01185708353668452,
+            "standardized_mean_difference": -0.31874819078513933
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1628,
+            "feature": "peak_count_mean",
+            "mann_whitney_u_p_two_sided": 0.16131059531682213,
+            "mean_difference_high_minus_baseline": -0.13999999999999924,
+            "standardized_mean_difference": -0.31505137904504377
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1648,
+            "feature": "energy_total_mean",
+            "mann_whitney_u_p_two_sided": 0.15657278175199574,
+            "mean_difference_high_minus_baseline": 0.028724800266903466,
+            "standardized_mean_difference": 0.3104851193418907
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1712,
+            "feature": "hm0_estimate_mean",
+            "mann_whitney_u_p_two_sided": 0.14106306507637165,
+            "mean_difference_high_minus_baseline": 0.11924376393178915,
+            "standardized_mean_difference": 0.29548105080441783
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1408,
+            "feature": "peak_count_max",
+            "mann_whitney_u_p_two_sided": 0.2126562302066295,
+            "mean_difference_high_minus_baseline": -0.3799999999999999,
+            "standardized_mean_difference": -0.2858866489246893
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1584,
+            "feature": "second_peak_ratio_mean",
+            "mann_whitney_u_p_two_sided": 0.17334257101234307,
+            "mean_difference_high_minus_baseline": -0.04076930832756476,
+            "standardized_mean_difference": -0.2813214484057271
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1088,
+            "feature": "spectral_entropy_mean",
+            "mann_whitney_u_p_two_sided": 0.35024147998675914,
+            "mean_difference_high_minus_baseline": -0.008603377203050822,
+            "standardized_mean_difference": -0.1941564262290504
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.132,
+            "feature": "normalized_bandwidth_mean",
+            "mann_whitney_u_p_two_sided": 0.25677626933819653,
+            "mean_difference_high_minus_baseline": -0.017955845052420427,
+            "standardized_mean_difference": -0.1928020772329017
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1288,
+            "feature": "effective_bin_count_mean",
+            "mann_whitney_u_p_two_sided": 0.2685239858660573,
+            "mean_difference_high_minus_baseline": -0.5445454075894247,
+            "standardized_mean_difference": -0.1460838923629327
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.0668,
+            "feature": "primary_peak_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.5671894453462805,
+            "mean_difference_high_minus_baseline": -0.2812814180858503,
+            "standardized_mean_difference": -0.12799750873502735
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.0772,
+            "feature": "multimodal_candidate_mean",
+            "mann_whitney_u_p_two_sided": 0.5065877530425599,
+            "mean_difference_high_minus_baseline": -0.02499999999999991,
+            "standardized_mean_difference": -0.1271231168185962
+          }
+        ]
+      },
+      "result_path": "experiments/results/2026-06-03-cdip-2026-03-spectral-attribution.json",
+      "selection": {
+        "background_baseline_windows": 100,
+        "month_matched_baseline_windows": 50,
+        "multimodal_second_peak_ratio": 0.35,
+        "pad_minutes": 45.0,
+        "peak_min_height_fraction": 0.15,
+        "peak_min_prominence_fraction": 0.1,
+        "top_windows": 50
+      }
+    },
+    "westcoast_all": {
+      "coverage": {
+        "high_delta_vs_background_baseline": {
+          "spectra_records_baseline_mean": 14.28,
+          "spectra_records_high_mean": 14.46,
+          "stations_with_spectra_baseline_mean": 3.0,
+          "stations_with_spectra_high_mean": 3.0
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "spectra_records_baseline_mean": 14.1,
+          "spectra_records_high_mean": 14.46,
+          "stations_with_spectra_baseline_mean": 3.0,
+          "stations_with_spectra_high_mean": 3.0
+        }
+      },
+      "description": "West Coast-only geography control direct spectra attribution",
+      "feature_shifts": {
+        "high_delta_vs_background_baseline": {
+          "bandwidth_hz_mean": {
+            "baseline_mean": 0.08652561491782208,
+            "cliffs_delta_high_vs_baseline": -0.3388,
+            "high_mean": 0.07698121405372685,
+            "mann_whitney_u_p_two_sided": 0.0007387755257755337,
+            "mean_difference_high_minus_baseline": -0.009544400864095234,
+            "standardized_mean_difference": -0.5370321038442405
+          },
+          "directional_spread_energy_weighted_deg_mean": {
+            "baseline_mean": 29.789146808162013,
+            "cliffs_delta_high_vs_baseline": -0.2196,
+            "high_mean": 27.73948053127091,
+            "mann_whitney_u_p_two_sided": 0.028762749235261988,
+            "mean_difference_high_minus_baseline": -2.0496662768911023,
+            "standardized_mean_difference": -0.3894689671761323
+          },
+          "effective_bin_count_mean": {
+            "baseline_mean": 17.755342926489085,
+            "cliffs_delta_high_vs_baseline": -0.3172,
+            "high_mean": 14.953127312743982,
+            "mann_whitney_u_p_two_sided": 0.0015804776140743797,
+            "mean_difference_high_minus_baseline": -2.802215613745103,
+            "standardized_mean_difference": -0.49110483777166164
+          },
+          "energy_width_90_hz_mean": {
+            "baseline_mean": 0.2482279172719766,
+            "cliffs_delta_high_vs_baseline": -0.344,
+            "high_mean": 0.2120237506441772,
+            "mann_whitney_u_p_two_sided": 0.00061119545802063,
+            "mean_difference_high_minus_baseline": -0.036204166627799406,
+            "standardized_mean_difference": -0.5600064425806051
+          },
+          "hm0_estimate_mean": {
+            "baseline_mean": 1.525773557959401,
+            "cliffs_delta_high_vs_baseline": -0.05,
+            "high_mean": 1.4830125516683037,
+            "mann_whitney_u_p_two_sided": 0.6196487267853198,
+            "mean_difference_high_minus_baseline": -0.04276100629109725,
+            "standardized_mean_difference": -0.06546132598832509
+          },
+          "mean_period_s_mean": {
+            "baseline_mean": 7.60843039052319,
+            "cliffs_delta_high_vs_baseline": 0.3352,
+            "high_mean": 8.652610124447598,
+            "mann_whitney_u_p_two_sided": 0.0008411421084647935,
+            "mean_difference_high_minus_baseline": 1.044179733924408,
+            "standardized_mean_difference": 0.6805182795199411
+          },
+          "multimodal_candidate_mean": {
+            "baseline_mean": 0.617,
+            "cliffs_delta_high_vs_baseline": -0.1506,
+            "high_mean": 0.567,
+            "mann_whitney_u_p_two_sided": 0.13306352446025158,
+            "mean_difference_high_minus_baseline": -0.050000000000000044,
+            "standardized_mean_difference": -0.2245931708727833
+          },
+          "normalized_bandwidth_mean": {
+            "baseline_mean": 0.6269534092978548,
+            "cliffs_delta_high_vs_baseline": 0.058,
+            "high_mean": 0.6323446511573482,
+            "mann_whitney_u_p_two_sided": 0.564559139999254,
+            "mean_difference_high_minus_baseline": 0.0053912418594933564,
+            "standardized_mean_difference": 0.06626046590732784
+          },
+          "peak_count_max": {
+            "baseline_mean": 4.12,
+            "cliffs_delta_high_vs_baseline": -0.1122,
+            "high_mean": 4.04,
+            "mann_whitney_u_p_two_sided": 0.2477452272584385,
+            "mean_difference_high_minus_baseline": -0.08000000000000007,
+            "standardized_mean_difference": -0.061430808198030734
+          },
+          "peak_count_mean": {
+            "baseline_mean": 2.392,
+            "cliffs_delta_high_vs_baseline": -0.1896,
+            "high_mean": 2.2356666666666665,
+            "mann_whitney_u_p_two_sided": 0.05893310060570163,
+            "mean_difference_high_minus_baseline": -0.15633333333333344,
+            "standardized_mean_difference": -0.25536757917521713
+          },
+          "primary_peak_period_s_mean": {
+            "baseline_mean": 13.341499034701604,
+            "cliffs_delta_high_vs_baseline": 0.1396,
+            "high_mean": 13.654923911542856,
+            "mann_whitney_u_p_two_sided": 0.16471643433294858,
+            "mean_difference_high_minus_baseline": 0.31342487684125153,
+            "standardized_mean_difference": 0.18731092771702526
+          },
+          "second_peak_ratio_mean": {
+            "baseline_mean": 0.4664047340190789,
+            "cliffs_delta_high_vs_baseline": -0.1542,
+            "high_mean": 0.42695658794077934,
+            "mann_whitney_u_p_two_sided": 0.12480830065333445,
+            "mean_difference_high_minus_baseline": -0.03944814607829955,
+            "standardized_mean_difference": -0.23214164424355477
+          },
+          "spectral_concentration_mean": {
+            "baseline_mean": 0.07079778393506951,
+            "cliffs_delta_high_vs_baseline": 0.3176,
+            "high_mean": 0.0855980834117811,
+            "mann_whitney_u_p_two_sided": 0.0015589902192423418,
+            "mean_difference_high_minus_baseline": 0.01480029947671159,
+            "standardized_mean_difference": 0.4218522643417164
+          },
+          "spectral_entropy_mean": {
+            "baseline_mean": 0.7563075622949167,
+            "cliffs_delta_high_vs_baseline": -0.3388,
+            "high_mean": 0.7137493333921984,
+            "mann_whitney_u_p_two_sided": 0.0007387755257755337,
+            "mean_difference_high_minus_baseline": -0.04255822890271832,
+            "standardized_mean_difference": -0.5495684819053822
+          }
+        },
+        "high_delta_vs_month_matched_baseline": {
+          "bandwidth_hz_mean": {
+            "baseline_mean": 0.07963111034696108,
+            "cliffs_delta_high_vs_baseline": -0.1112,
+            "high_mean": 0.07698121405372685,
+            "mann_whitney_u_p_two_sided": 0.3396818555406652,
+            "mean_difference_high_minus_baseline": -0.0026498962932342274,
+            "standardized_mean_difference": -0.15685418776851381
+          },
+          "directional_spread_energy_weighted_deg_mean": {
+            "baseline_mean": 27.504322691798325,
+            "cliffs_delta_high_vs_baseline": 0.004,
+            "high_mean": 27.73948053127091,
+            "mann_whitney_u_p_two_sided": 0.9752518435738073,
+            "mean_difference_high_minus_baseline": 0.23515783947258484,
+            "standardized_mean_difference": 0.043692777989273485
+          },
+          "effective_bin_count_mean": {
+            "baseline_mean": 15.250442105500476,
+            "cliffs_delta_high_vs_baseline": -0.0496,
+            "high_mean": 14.953127312743982,
+            "mann_whitney_u_p_two_sided": 0.6715877488632371,
+            "mean_difference_high_minus_baseline": -0.2973147927564934,
+            "standardized_mean_difference": -0.05622732025064457
+          },
+          "energy_width_90_hz_mean": {
+            "baseline_mean": 0.22224875032156707,
+            "cliffs_delta_high_vs_baseline": -0.0964,
+            "high_mean": 0.2120237506441772,
+            "mann_whitney_u_p_two_sided": 0.4080892190116684,
+            "mean_difference_high_minus_baseline": -0.010224999677389879,
+            "standardized_mean_difference": -0.16286268957382485
+          },
+          "hm0_estimate_mean": {
+            "baseline_mean": 1.506576234732542,
+            "cliffs_delta_high_vs_baseline": 0.0232,
+            "high_mean": 1.4830125516683037,
+            "mann_whitney_u_p_two_sided": 0.8442392855727232,
+            "mean_difference_high_minus_baseline": -0.023563683064238283,
+            "standardized_mean_difference": -0.03612169167137651
+          },
+          "mean_period_s_mean": {
+            "baseline_mean": 8.379156598145407,
+            "cliffs_delta_high_vs_baseline": 0.1104,
+            "high_mean": 8.652610124447598,
+            "mann_whitney_u_p_two_sided": 0.34318024639305234,
+            "mean_difference_high_minus_baseline": 0.2734535263021911,
+            "standardized_mean_difference": 0.1767044267454456
+          },
+          "multimodal_candidate_mean": {
+            "baseline_mean": 0.5683333333333332,
+            "cliffs_delta_high_vs_baseline": 0.0024,
+            "high_mean": 0.567,
+            "mann_whitney_u_p_two_sided": 0.9862165452951093,
+            "mean_difference_high_minus_baseline": -0.0013333333333332975,
+            "standardized_mean_difference": -0.0060264857103179935
+          },
+          "normalized_bandwidth_mean": {
+            "baseline_mean": 0.6369190754639047,
+            "cliffs_delta_high_vs_baseline": -0.036,
+            "high_mean": 0.6323446511573482,
+            "mann_whitney_u_p_two_sided": 0.7590146502526539,
+            "mean_difference_high_minus_baseline": -0.004574424306556524,
+            "standardized_mean_difference": -0.0636483608913942
+          },
+          "peak_count_max": {
+            "baseline_mean": 3.8,
+            "cliffs_delta_high_vs_baseline": 0.0368,
+            "high_mean": 4.04,
+            "mann_whitney_u_p_two_sided": 0.7421168482628302,
+            "mean_difference_high_minus_baseline": 0.2400000000000002,
+            "standardized_mean_difference": 0.19036261653825942
+          },
+          "peak_count_mean": {
+            "baseline_mean": 2.1703333333333337,
+            "cliffs_delta_high_vs_baseline": 0.0276,
+            "high_mean": 2.2356666666666665,
+            "mann_whitney_u_p_two_sided": 0.8144739787222707,
+            "mean_difference_high_minus_baseline": 0.0653333333333328,
+            "standardized_mean_difference": 0.11337330307308306
+          },
+          "primary_peak_period_s_mean": {
+            "baseline_mean": 13.471481387671274,
+            "cliffs_delta_high_vs_baseline": 0.088,
+            "high_mean": 13.654923911542856,
+            "mann_whitney_u_p_two_sided": 0.4503100713542234,
+            "mean_difference_high_minus_baseline": 0.183442523871582,
+            "standardized_mean_difference": 0.11707087854987884
+          },
+          "second_peak_ratio_mean": {
+            "baseline_mean": 0.4274387747804987,
+            "cliffs_delta_high_vs_baseline": -0.0056,
+            "high_mean": 0.42695658794077934,
+            "mann_whitney_u_p_two_sided": 0.9642585689117217,
+            "mean_difference_high_minus_baseline": -0.00048218683971934517,
+            "standardized_mean_difference": -0.002746716830777135
+          },
+          "spectral_concentration_mean": {
+            "baseline_mean": 0.08070234999920775,
+            "cliffs_delta_high_vs_baseline": 0.0432,
+            "high_mean": 0.0855980834117811,
+            "mann_whitney_u_p_two_sided": 0.712262370771201,
+            "mean_difference_high_minus_baseline": 0.00489573341257335,
+            "standardized_mean_difference": 0.1588217426700442
+          },
+          "spectral_entropy_mean": {
+            "baseline_mean": 0.7228126384209639,
+            "cliffs_delta_high_vs_baseline": -0.0712,
+            "high_mean": 0.7137493333921984,
+            "mann_whitney_u_p_two_sided": 0.541793540419147,
+            "mean_difference_high_minus_baseline": -0.009063305028765511,
+            "standardized_mean_difference": -0.1216632946135761
+          }
+        }
+      },
+      "ranked_feature_shifts": {
+        "high_delta_vs_background_baseline": [
+          {
+            "cliffs_delta_high_vs_baseline": 0.3352,
+            "feature": "mean_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.0008411421084647935,
+            "mean_difference_high_minus_baseline": 1.044179733924408,
+            "standardized_mean_difference": 0.6805182795199411
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.344,
+            "feature": "energy_width_90_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.00061119545802063,
+            "mean_difference_high_minus_baseline": -0.036204166627799406,
+            "standardized_mean_difference": -0.5600064425806051
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.3388,
+            "feature": "spectral_entropy_mean",
+            "mann_whitney_u_p_two_sided": 0.0007387755257755337,
+            "mean_difference_high_minus_baseline": -0.04255822890271832,
+            "standardized_mean_difference": -0.5495684819053822
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.3388,
+            "feature": "bandwidth_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.0007387755257755337,
+            "mean_difference_high_minus_baseline": -0.009544400864095234,
+            "standardized_mean_difference": -0.5370321038442405
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.3172,
+            "feature": "effective_bin_count_mean",
+            "mann_whitney_u_p_two_sided": 0.0015804776140743797,
+            "mean_difference_high_minus_baseline": -2.802215613745103,
+            "standardized_mean_difference": -0.49110483777166164
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.3176,
+            "feature": "spectral_concentration_mean",
+            "mann_whitney_u_p_two_sided": 0.0015589902192423418,
+            "mean_difference_high_minus_baseline": 0.01480029947671159,
+            "standardized_mean_difference": 0.4218522643417164
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.2196,
+            "feature": "directional_spread_energy_weighted_deg_mean",
+            "mann_whitney_u_p_two_sided": 0.028762749235261988,
+            "mean_difference_high_minus_baseline": -2.0496662768911023,
+            "standardized_mean_difference": -0.3894689671761323
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1896,
+            "feature": "peak_count_mean",
+            "mann_whitney_u_p_two_sided": 0.05893310060570163,
+            "mean_difference_high_minus_baseline": -0.15633333333333344,
+            "standardized_mean_difference": -0.25536757917521713
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1542,
+            "feature": "second_peak_ratio_mean",
+            "mann_whitney_u_p_two_sided": 0.12480830065333445,
+            "mean_difference_high_minus_baseline": -0.03944814607829955,
+            "standardized_mean_difference": -0.23214164424355477
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1506,
+            "feature": "multimodal_candidate_mean",
+            "mann_whitney_u_p_two_sided": 0.13306352446025158,
+            "mean_difference_high_minus_baseline": -0.050000000000000044,
+            "standardized_mean_difference": -0.2245931708727833
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.03,
+            "feature": "multimodal_candidate_max",
+            "mann_whitney_u_p_two_sided": 0.22064003306824875,
+            "mean_difference_high_minus_baseline": 0.030000000000000027,
+            "standardized_mean_difference": 0.21357023411037238
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1396,
+            "feature": "primary_peak_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.16471643433294858,
+            "mean_difference_high_minus_baseline": 0.31342487684125153,
+            "standardized_mean_difference": 0.18731092771702526
+          }
+        ],
+        "high_delta_vs_month_matched_baseline": [
+          {
+            "cliffs_delta_high_vs_baseline": 0.12,
+            "feature": "spectra_records",
+            "mann_whitney_u_p_two_sided": 0.16356620691251156,
+            "mean_difference_high_minus_baseline": 0.3600000000000012,
+            "standardized_mean_difference": 0.2795673348888289
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.0368,
+            "feature": "peak_count_max",
+            "mann_whitney_u_p_two_sided": 0.7421168482628302,
+            "mean_difference_high_minus_baseline": 0.2400000000000002,
+            "standardized_mean_difference": 0.19036261653825942
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.0784,
+            "feature": "second_peak_ratio_max",
+            "mann_whitney_u_p_two_sided": 0.500979432626175,
+            "mean_difference_high_minus_baseline": 0.027309285538864247,
+            "standardized_mean_difference": 0.17833576038188892
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.1104,
+            "feature": "mean_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.34318024639305234,
+            "mean_difference_high_minus_baseline": 0.2734535263021911,
+            "standardized_mean_difference": 0.1767044267454456
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.0964,
+            "feature": "energy_width_90_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.4080892190116684,
+            "mean_difference_high_minus_baseline": -0.010224999677389879,
+            "standardized_mean_difference": -0.16286268957382485
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.0432,
+            "feature": "spectral_concentration_mean",
+            "mann_whitney_u_p_two_sided": 0.712262370771201,
+            "mean_difference_high_minus_baseline": 0.00489573341257335,
+            "standardized_mean_difference": 0.1588217426700442
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.1112,
+            "feature": "bandwidth_hz_mean",
+            "mann_whitney_u_p_two_sided": 0.3396818555406652,
+            "mean_difference_high_minus_baseline": -0.0026498962932342274,
+            "standardized_mean_difference": -0.15685418776851381
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.0712,
+            "feature": "spectral_entropy_mean",
+            "mann_whitney_u_p_two_sided": 0.541793540419147,
+            "mean_difference_high_minus_baseline": -0.009063305028765511,
+            "standardized_mean_difference": -0.1216632946135761
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.088,
+            "feature": "primary_peak_period_s_mean",
+            "mann_whitney_u_p_two_sided": 0.4503100713542234,
+            "mean_difference_high_minus_baseline": 0.183442523871582,
+            "standardized_mean_difference": 0.11707087854987884
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.0276,
+            "feature": "peak_count_mean",
+            "mann_whitney_u_p_two_sided": 0.8144739787222707,
+            "mean_difference_high_minus_baseline": 0.0653333333333328,
+            "standardized_mean_difference": 0.11337330307308306
+          },
+          {
+            "cliffs_delta_high_vs_baseline": -0.036,
+            "feature": "normalized_bandwidth_mean",
+            "mann_whitney_u_p_two_sided": 0.7590146502526539,
+            "mean_difference_high_minus_baseline": -0.004574424306556524,
+            "standardized_mean_difference": -0.0636483608913942
+          },
+          {
+            "cliffs_delta_high_vs_baseline": 0.0376,
+            "feature": "energy_total_mean",
+            "mann_whitney_u_p_two_sided": 0.7485418654676034,
+            "mean_difference_high_minus_baseline": -0.00994913882579121,
+            "standardized_mean_difference": -0.06036304423478255
+          }
+        ]
+      },
+      "result_path": "experiments/results/2026-06-03-cdip-westcoast-all-spectral-attribution.json",
+      "selection": {
+        "background_baseline_windows": 100,
+        "month_matched_baseline_windows": 50,
+        "multimodal_second_peak_ratio": 0.35,
+        "pad_minutes": 45.0,
+        "peak_min_height_fraction": 0.15,
+        "peak_min_prominence_fraction": 0.1,
+        "top_windows": 50
+      }
+    }
+  }
+}
