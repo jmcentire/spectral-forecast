@@ -83,6 +83,8 @@ def _series_from_records(
     target_rate: float,
     preprocess: str = "none",
     highpass_period_seconds: float = 30.0 * 60.0,
+    mask_dominant_bins: int = 3,
+    mask_bin_radius: int = 1,
     phase_surrogate_seed: int = 20260602,
 ) -> list[CdipSeries]:
     grid = start_time + np.arange(n_samples, dtype=np.float64) / target_rate
@@ -102,6 +104,8 @@ def _series_from_records(
                 sample_rate=target_rate,
                 mode=preprocess,
                 highpass_period_seconds=highpass_period_seconds,
+                mask_dominant_bins=mask_dominant_bins,
+                mask_bin_radius=mask_bin_radius,
                 phase_seed=seed,
             )
             series.append(
@@ -573,6 +577,8 @@ def _checkpoint_signature(args: argparse.Namespace, channels: Sequence[str]) -> 
         "null_mode": args.null_mode,
         "preprocess": getattr(args, "preprocess", "none"),
         "highpass_period_minutes": getattr(args, "highpass_period_minutes", 30.0),
+        "mask_dominant_bins": getattr(args, "mask_dominant_bins", 3),
+        "mask_bin_radius": getattr(args, "mask_bin_radius", 1),
         "phase_surrogate_seed": getattr(args, "phase_surrogate_seed", 20260602),
         "posthoc_window": args.posthoc_window or args.adaptive_window,
         "shard_count": getattr(args, "shard_count", 1),
@@ -749,6 +755,8 @@ def _batch_parameters(
         "null_mode": args.null_mode,
         "preprocess": args.preprocess,
         "highpass_period_minutes": args.highpass_period_minutes,
+        "mask_dominant_bins": args.mask_dominant_bins,
+        "mask_bin_radius": args.mask_bin_radius,
         "phase_surrogate_seed": args.phase_surrogate_seed,
         "posthoc_window": args.posthoc_window or args.adaptive_window,
         "shard_count": args.shard_count,
@@ -910,6 +918,8 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             target_rate=window.target_rate,
             preprocess=args.preprocess,
             highpass_period_seconds=args.highpass_period_minutes * 60.0,
+            mask_dominant_bins=args.mask_dominant_bins,
+            mask_bin_radius=args.mask_bin_radius,
             phase_surrogate_seed=args.phase_surrogate_seed,
         )
         series_by_name = {item.name: item for item in series}
@@ -1278,6 +1288,18 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="Remove periods longer than this when --preprocess=highpass",
     )
     parser.add_argument(
+        "--mask-dominant-bins",
+        type=int,
+        default=3,
+        help="Number of strongest non-DC Fourier bins to remove for dominant-mask modes",
+    )
+    parser.add_argument(
+        "--mask-bin-radius",
+        type=int,
+        default=1,
+        help="Neighbor radius around each selected dominant Fourier bin to remove",
+    )
+    parser.add_argument(
         "--phase-surrogate-seed",
         type=int,
         default=20260602,
@@ -1358,6 +1380,10 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         parser.error("--shard-count must be >= 1")
     if not 0 <= args.shard_index < args.shard_count:
         parser.error("--shard-index must satisfy 0 <= shard_index < shard_count")
+    if args.mask_dominant_bins < 0:
+        parser.error("--mask-dominant-bins must be >= 0")
+    if args.mask_bin_radius < 0:
+        parser.error("--mask-bin-radius must be >= 0")
     if args.read_window_manifest is not None and args.write_window_manifest is not None:
         parser.error("--read-window-manifest and --write-window-manifest are mutually exclusive")
     if args.merge_reports is None and not args.files:

@@ -5,6 +5,7 @@ from experiments.cdip_observe import (
     _intersect_time_spans,
     _select_aligned_window,
     highpass_fft,
+    mask_dominant_fft,
     phase_randomize_fft,
     posthoc_metrics,
 )
@@ -97,6 +98,26 @@ def test_phase_randomize_fft_preserves_power_spectrum():
     )
     assert not np.allclose(randomized, values)
     assert np.allclose(randomized, phase_randomize_fft(values, seed=123))
+
+
+def test_mask_dominant_fft_removes_strongest_non_dc_bin():
+    n = 2048
+    t = np.arange(n, dtype=np.float64)
+    strong_bin = 64
+    weak_bin = 211
+    values = (
+        2.5
+        + 3.0 * np.sin(2 * np.pi * strong_bin * t / n)
+        + 0.5 * np.sin(2 * np.pi * weak_bin * t / n)
+    )
+
+    masked = mask_dominant_fft(values, bins=1, radius=0)
+    original_spectrum = np.abs(np.fft.rfft(values - np.mean(values)))
+    masked_spectrum = np.abs(np.fft.rfft(masked - np.mean(masked)))
+
+    assert np.isclose(np.mean(masked), np.mean(values))
+    assert masked_spectrum[strong_bin] < original_spectrum[strong_bin] * 1e-10
+    assert masked_spectrum[weak_bin] > original_spectrum[weak_bin] * 0.95
 
 
 def test_combination_rows_summarizes_active_series_sets():

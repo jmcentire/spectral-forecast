@@ -41,7 +41,14 @@ CHANNEL_VARIABLES = {
     "z": "xyzZDisplacement",
 }
 
-PREPROCESS_MODES = ("none", "highpass", "phase-randomize", "highpass-phase-randomize")
+PREPROCESS_MODES = (
+    "none",
+    "highpass",
+    "dominant-mask",
+    "highpass-dominant-mask",
+    "phase-randomize",
+    "highpass-phase-randomize",
+)
 
 
 @dataclass(frozen=True)
@@ -205,12 +212,54 @@ def phase_randomize_fft(
     return np.fft.irfft(randomized, n=len(y)).astype(np.float64)
 
 
+def mask_dominant_fft(
+    values: NDArray[np.float64],
+    *,
+    bins: int = 3,
+    radius: int = 1,
+) -> NDArray[np.float64]:
+    """Remove the strongest non-DC Fourier bins from a series."""
+
+    y = np.asarray(values, dtype=np.float64)
+    if len(y) < 4 or bins <= 0:
+        return y.copy()
+    if radius < 0:
+        raise ValueError("radius must be non-negative")
+
+    mean = float(np.mean(y))
+    centered = y - mean
+    spectrum = np.fft.rfft(centered)
+    if len(spectrum) <= 1:
+        return y.copy()
+
+    magnitudes = np.abs(spectrum)
+    magnitudes[0] = 0.0
+    blocked = np.zeros(len(spectrum), dtype=bool)
+    blocked[0] = True
+    masked = spectrum.copy()
+    selected = 0
+    for index in np.argsort(magnitudes)[::-1]:
+        if selected >= bins:
+            break
+        if blocked[index] or magnitudes[index] <= 0.0:
+            continue
+        left = max(1, int(index) - radius)
+        right = min(len(spectrum), int(index) + radius + 1)
+        masked[left:right] = 0.0
+        blocked[left:right] = True
+        selected += 1
+
+    return (np.fft.irfft(masked, n=len(centered)) + mean).astype(np.float64)
+
+
 def preprocess_series_values(
     values: NDArray[np.float64],
     *,
     sample_rate: float,
     mode: str = "none",
     highpass_period_seconds: float = 30.0 * 60.0,
+    mask_dominant_bins: int = 3,
+    mask_bin_radius: int = 1,
     phase_seed: int = 0,
 ) -> NDArray[np.float64]:
     """Apply audit preprocessing before the agnostic observer sees a series."""
@@ -222,6 +271,23 @@ def preprocess_series_values(
             values,
             sample_rate=sample_rate,
             cutoff_period_seconds=highpass_period_seconds,
+        )
+    if mode == "dominant-mask":
+        return mask_dominant_fft(
+            values,
+            bins=mask_dominant_bins,
+            radius=mask_bin_radius,
+        )
+    if mode == "highpass-dominant-mask":
+        highpassed = highpass_fft(
+            values,
+            sample_rate=sample_rate,
+            cutoff_period_seconds=highpass_period_seconds,
+        )
+        return mask_dominant_fft(
+            highpassed,
+            bins=mask_dominant_bins,
+            radius=mask_bin_radius,
         )
     if mode == "phase-randomize":
         return phase_randomize_fft(values, seed=phase_seed)
@@ -290,6 +356,8 @@ def load_cdip_series(
     segment_offset: int = 0,
     preprocess: str = "none",
     highpass_period_seconds: float = 30.0 * 60.0,
+    mask_dominant_bins: int = 3,
+    mask_bin_radius: int = 1,
     phase_surrogate_seed: int = 20260602,
 ) -> list[CdipSeries]:
     """Load aligned clean displacement segments from a CDIP NetCDF file."""
@@ -314,6 +382,8 @@ def load_cdip_series(
             sample_rate=raw.sample_rate,
             mode=preprocess,
             highpass_period_seconds=highpass_period_seconds,
+            mask_dominant_bins=mask_dominant_bins,
+            mask_bin_radius=mask_bin_radius,
             phase_seed=seed,
         )
         out.append(
@@ -414,6 +484,8 @@ def load_aligned_cdip_series(
     segment_offset: int = 0,
     preprocess: str = "none",
     highpass_period_seconds: float = 30.0 * 60.0,
+    mask_dominant_bins: int = 3,
+    mask_bin_radius: int = 1,
     phase_surrogate_seed: int = 20260602,
 ) -> list[CdipSeries]:
     """Load multiple CDIP files aligned on a common clean UTC grid."""
@@ -428,6 +500,8 @@ def load_aligned_cdip_series(
             segment_offset=segment_offset,
             preprocess=preprocess,
             highpass_period_seconds=highpass_period_seconds,
+            mask_dominant_bins=mask_dominant_bins,
+            mask_bin_radius=mask_bin_radius,
             phase_surrogate_seed=phase_surrogate_seed,
         )
 
@@ -466,6 +540,8 @@ def load_aligned_cdip_series(
                 sample_rate=target_rate,
                 mode=preprocess,
                 highpass_period_seconds=highpass_period_seconds,
+                mask_dominant_bins=mask_dominant_bins,
+                mask_bin_radius=mask_bin_radius,
                 phase_seed=seed,
             )
             out.append(
@@ -1155,6 +1231,8 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
         segment_offset=args.segment_offset,
         preprocess=args.preprocess,
         highpass_period_seconds=args.highpass_period_minutes * 60.0,
+        mask_dominant_bins=args.mask_dominant_bins,
+        mask_bin_radius=args.mask_bin_radius,
         phase_surrogate_seed=args.phase_surrogate_seed,
     )
     series_by_name = {item.name: item for item in series}
@@ -1209,6 +1287,8 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
             "posthoc_window": args.posthoc_window or args.adaptive_window,
             "preprocess": args.preprocess,
             "highpass_period_minutes": args.highpass_period_minutes,
+            "mask_dominant_bins": args.mask_dominant_bins,
+            "mask_bin_radius": args.mask_bin_radius,
             "phase_surrogate_seed": args.phase_surrogate_seed,
         },
         "readiness": _readiness_rows(series, args),
@@ -1302,6 +1382,18 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="Remove periods longer than this when --preprocess=highpass",
     )
     parser.add_argument(
+        "--mask-dominant-bins",
+        type=int,
+        default=3,
+        help="Number of strongest non-DC Fourier bins to remove for dominant-mask modes",
+    )
+    parser.add_argument(
+        "--mask-bin-radius",
+        type=int,
+        default=1,
+        help="Neighbor radius around each selected dominant Fourier bin to remove",
+    )
+    parser.add_argument(
         "--phase-surrogate-seed",
         type=int,
         default=20260602,
@@ -1344,7 +1436,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="Neutral mesh priming mode to avoid empty-worker collapse",
     )
     parser.add_argument("--format", choices=["text", "json"], default="text", help="Report format")
-    return parser.parse_args(argv)
+    args = parser.parse_args(argv)
+    if args.mask_dominant_bins < 0:
+        parser.error("--mask-dominant-bins must be >= 0")
+    if args.mask_bin_radius < 0:
+        parser.error("--mask-bin-radius must be >= 0")
+    return args
 
 
 def main(argv: Sequence[str] | None = None) -> None:

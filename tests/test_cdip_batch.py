@@ -140,12 +140,16 @@ def test_checkpoint_round_trip_validates_signature(tmp_path):
         null_mode="shift",
         preprocess="none",
         highpass_period_minutes=30.0,
+        mask_dominant_bins=3,
+        mask_bin_radius=1,
         phase_surrogate_seed=20260602,
         posthoc_window=None,
         shard_count=1,
         shard_index=0,
     )
     signature = _checkpoint_signature(args, ["z"])
+    assert signature["mask_dominant_bins"] == 3
+    assert signature["mask_bin_radius"] == 1
     path = tmp_path / "checkpoint.json"
 
     _write_checkpoint(path, {"signature": signature, "next_window_index": 7})
@@ -266,6 +270,8 @@ def test_merge_reports_reconstructs_totals_and_combinations(tmp_path):
         "null_mode": "shift",
         "preprocess": "none",
         "highpass_period_minutes": 30.0,
+        "mask_dominant_bins": 3,
+        "mask_bin_radius": 1,
         "phase_surrogate_seed": 20260602,
         "posthoc_window": 4,
         "shard_count": 2,
