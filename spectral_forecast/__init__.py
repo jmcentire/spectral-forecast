@@ -22,6 +22,15 @@ from spectral_forecast.observation import (
     decomposition_state,
     observe_series,
 )
+from spectral_forecast.autotune import (
+    AutoTuneConfig,
+    AutoTuneNullSummary,
+    AutoTuneResult,
+    AutoTuneScore,
+    default_autotune_configs,
+    score_autotune_config,
+    tune_observation,
+)
 
 __all__ = [
     "extract",
@@ -49,4 +58,11 @@ __all__ = [
     "build_stigmergy",
     "decomposition_state",
     "observe_series",
+    "AutoTuneConfig",
+    "AutoTuneNullSummary",
+    "AutoTuneResult",
+    "AutoTuneScore",
+    "default_autotune_configs",
+    "score_autotune_config",
+    "tune_observation",
 ]
