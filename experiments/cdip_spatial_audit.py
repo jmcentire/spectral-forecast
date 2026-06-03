@@ -10,8 +10,10 @@ import argparse
 import json
 import math
 import sys
-from dataclasses import dataclass
+from collections import Counter
+from dataclasses import dataclass, replace
 from datetime import datetime
+from itertools import combinations
 from pathlib import Path
 from typing import Any, Sequence
 
@@ -40,6 +42,8 @@ class WindowPoint:
     latitude: float
     longitude: float
     platforms: tuple[str, ...]
+    platform_latitudes: tuple[float, ...]
+    platform_longitudes: tuple[float, ...]
     regions: tuple[str, ...]
     region_label: str
 
@@ -137,6 +141,21 @@ def haversine_km(lat_a: float, lon_a: float, lat_b: float, lon_b: float) -> floa
     return 2.0 * EARTH_RADIUS_KM * math.asin(min(1.0, math.sqrt(a)))
 
 
+def initial_bearing_degrees(lat_a: float, lon_a: float, lat_b: float, lon_b: float) -> float:
+    phi_a = math.radians(lat_a)
+    phi_b = math.radians(lat_b)
+    d_lambda = math.radians(lon_b - lon_a)
+    y = math.sin(d_lambda) * math.cos(phi_b)
+    x = math.cos(phi_a) * math.sin(phi_b) - math.sin(phi_a) * math.cos(phi_b) * math.cos(d_lambda)
+    return (math.degrees(math.atan2(y, x)) + 360.0) % 360.0
+
+
+def bearing_bucket(bearing: float) -> str:
+    labels = ("N", "NE", "E", "SE", "S", "SW", "W", "NW")
+    index = int(((float(bearing) + 22.5) % 360.0) // 45.0)
+    return labels[index]
+
+
 def _parse_epoch(value: str) -> float:
     return datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp()
 
@@ -193,11 +212,76 @@ def _load_window_points(report: dict[str, Any]) -> list[WindowPoint]:
                 latitude=lat,
                 longitude=lon,
                 platforms=group,
+                platform_latitudes=tuple(location.latitude for location in coords),
+                platform_longitudes=tuple(location.longitude for location in coords),
                 regions=regions,
                 region_label=_group_region_label(regions),
             )
         )
     return points
+
+
+def _platform_locations_from_points(points: Sequence[WindowPoint]) -> dict[str, PlatformLocation]:
+    locations: dict[str, PlatformLocation] = {}
+    for point in points:
+        for platform, lat, lon, region in zip(
+            point.platforms,
+            point.platform_latitudes,
+            point.platform_longitudes,
+            point.regions,
+        ):
+            locations.setdefault(
+                platform,
+                PlatformLocation(
+                    platform_id=platform,
+                    latitude=lat,
+                    longitude=lon,
+                    water_depth=None,
+                    region=region,
+                ),
+            )
+    return locations
+
+
+def _replace_point_geometry(
+    point: WindowPoint,
+    locations: dict[str, PlatformLocation],
+) -> WindowPoint:
+    coords = [locations[platform] for platform in point.platforms]
+    regions = tuple(location.region for location in coords)
+    return replace(
+        point,
+        latitude=float(np.mean([location.latitude for location in coords])),
+        longitude=float(np.mean([location.longitude for location in coords])),
+        platform_latitudes=tuple(location.latitude for location in coords),
+        platform_longitudes=tuple(location.longitude for location in coords),
+        regions=regions,
+        region_label=_group_region_label(regions),
+    )
+
+
+def permute_platform_geometry(
+    points: Sequence[WindowPoint],
+    *,
+    rng: np.random.Generator,
+) -> list[WindowPoint]:
+    """Shuffle platform locations/regions while preserving each window's scores."""
+
+    locations = _platform_locations_from_points(points)
+    platforms = sorted(locations)
+    shuffled = [locations[platform] for platform in platforms]
+    order = rng.permutation(len(shuffled))
+    reassigned = {
+        platform: PlatformLocation(
+            platform_id=platform,
+            latitude=shuffled[int(order[index])].latitude,
+            longitude=shuffled[int(order[index])].longitude,
+            water_depth=shuffled[int(order[index])].water_depth,
+            region=shuffled[int(order[index])].region,
+        )
+        for index, platform in enumerate(platforms)
+    }
+    return [_replace_point_geometry(point, reassigned) for point in points]
 
 
 def geographic_stratification(
@@ -211,11 +295,25 @@ def geographic_stratification(
     threshold = float(np.quantile([point.delta for point in points], high_delta_quantile))
     buckets: dict[str, list[WindowPoint]] = {}
     same_region_buckets: dict[str, list[WindowPoint]] = {"same_region": [], "mixed_region": []}
+    pair_exposure = {
+        "same_region_pairs": 0,
+        "mixed_region_pairs": 0,
+        "same_region_delta": 0.0,
+        "mixed_region_delta": 0.0,
+    }
 
     for point in points:
         buckets.setdefault(point.region_label, []).append(point)
         same_key = "same_region" if len(set(point.regions)) == 1 else "mixed_region"
         same_region_buckets[same_key].append(point)
+        pairs = list(combinations(point.regions, 2))
+        if pairs:
+            same_pairs = sum(1 for left, right in pairs if left == right)
+            mixed_pairs = len(pairs) - same_pairs
+            pair_exposure["same_region_pairs"] += same_pairs
+            pair_exposure["mixed_region_pairs"] += mixed_pairs
+            pair_exposure["same_region_delta"] += point.delta * same_pairs / len(pairs)
+            pair_exposure["mixed_region_delta"] += point.delta * mixed_pairs / len(pairs)
 
     def summarize(label: str, values: Sequence[WindowPoint]) -> dict[str, Any]:
         deltas = np.asarray([point.delta for point in values], dtype=np.float64)
@@ -236,10 +334,38 @@ def geographic_stratification(
         label: summarize(label, values)
         for label, values in same_region_buckets.items()
     }
+    all_regions = sorted({region for point in points for region in point.regions})
+    holdouts = []
+    for region in all_regions:
+        with_region = [point for point in points if region in point.regions]
+        without_region = [point for point in points if region not in point.regions]
+        holdouts.append(
+            {
+                "region": region,
+                "with_region": summarize("with_region", with_region),
+                "without_region": summarize("without_region", without_region),
+            }
+        )
+    holdouts.sort(key=lambda row: abs(row["with_region"]["delta_sum"]), reverse=True)
+    same_pairs = pair_exposure["same_region_pairs"]
+    mixed_pairs = pair_exposure["mixed_region_pairs"]
     return {
         "high_delta_threshold": threshold,
         "regions": region_rows,
         "same_region": same_rows,
+        "pair_exposure": {
+            **pair_exposure,
+            "same_region_delta_per_pair": pair_exposure["same_region_delta"] / same_pairs
+            if same_pairs
+            else 0.0,
+            "mixed_region_delta_per_pair": pair_exposure["mixed_region_delta"] / mixed_pairs
+            if mixed_pairs
+            else 0.0,
+            "mixed_pair_fraction": mixed_pairs / (same_pairs + mixed_pairs)
+            if same_pairs + mixed_pairs
+            else 0.0,
+        },
+        "leave_one_region_out": holdouts,
     }
 
 
@@ -293,6 +419,188 @@ def spatiotemporal_correlation(
     return rows
 
 
+def sampled_spatiotemporal_correlation(
+    points: Sequence[WindowPoint],
+    *,
+    lag_edges_hours: Sequence[float],
+    distance_edges_km: Sequence[float],
+    pair_count: int,
+    rng: np.random.Generator,
+) -> list[dict[str, Any]]:
+    sums = np.zeros((len(lag_edges_hours) - 1, len(distance_edges_km) - 1), dtype=np.float64)
+    counts = np.zeros_like(sums)
+    n = len(points)
+    if n < 2 or pair_count <= 0:
+        return _empty_correlation_rows(lag_edges_hours, distance_edges_km, sums, counts)
+    total_pairs = n * (n - 1) // 2
+    count = min(pair_count, total_pairs)
+    left_indexes = rng.integers(0, n - 1, size=count)
+    spans = n - left_indexes - 1
+    right_indexes = left_indexes + 1 + np.floor(rng.random(size=count) * spans).astype(np.int64)
+    for i, j in zip(left_indexes, right_indexes):
+        a = points[int(i)]
+        b = points[int(j)]
+        lag_hours = abs(b.start_epoch - a.start_epoch) / 3600.0
+        distance_km = haversine_km(a.latitude, a.longitude, b.latitude, b.longitude)
+        lag_index = _bin_index(lag_hours, lag_edges_hours)
+        distance_index = _bin_index(distance_km, distance_edges_km)
+        if lag_index is None or distance_index is None:
+            continue
+        sums[lag_index, distance_index] += a.z_delta * b.z_delta
+        counts[lag_index, distance_index] += 1.0
+    return _empty_correlation_rows(lag_edges_hours, distance_edges_km, sums, counts)
+
+
+def _empty_correlation_rows(
+    lag_edges_hours: Sequence[float],
+    distance_edges_km: Sequence[float],
+    sums: np.ndarray,
+    counts: np.ndarray,
+) -> list[dict[str, Any]]:
+    rows = []
+    for lag_index in range(sums.shape[0]):
+        for distance_index in range(sums.shape[1]):
+            count = int(counts[lag_index, distance_index])
+            rows.append(
+                {
+                    "lag_bin": _bin_label(lag_edges_hours, lag_index, "h"),
+                    "distance_bin": _bin_label(distance_edges_km, distance_index, "km"),
+                    "pairs": count,
+                    "mean_z_product": float(sums[lag_index, distance_index] / count)
+                    if count
+                    else 0.0,
+                }
+            )
+    rows.sort(key=lambda row: (row["lag_bin"], row["distance_bin"]))
+    return rows
+
+
+def _correlation_row(
+    rows: Sequence[dict[str, Any]],
+    *,
+    lag_bin: str,
+    distance_bin: str,
+) -> dict[str, Any]:
+    for row in rows:
+        if row["lag_bin"] == lag_bin and row["distance_bin"] == distance_bin:
+            return row
+    return {"lag_bin": lag_bin, "distance_bin": distance_bin, "pairs": 0, "mean_z_product": 0.0}
+
+
+def _spatial_metric_values(
+    points: Sequence[WindowPoint],
+    rows: Sequence[dict[str, Any]],
+    *,
+    high_delta_quantile: float,
+    min_pairs: int,
+) -> dict[str, float]:
+    valid_rows = [row for row in rows if row["pairs"] >= min_pairs]
+    geo = geographic_stratification(points, high_delta_quantile=high_delta_quantile)
+    same = geo["same_region"].get("same_region", {})
+    mixed = geo["same_region"].get("mixed_region", {})
+    near_semidiurnal = _correlation_row(rows, lag_bin="9-15h", distance_bin="0-50km")
+    near_zero_lag = _correlation_row(rows, lag_bin="0-0.75h", distance_bin="0-50km")
+    near_semidiurnal_value = (
+        float(near_semidiurnal["mean_z_product"])
+        if int(near_semidiurnal["pairs"]) >= min_pairs
+        else 0.0
+    )
+    near_zero_lag_value = (
+        float(near_zero_lag["mean_z_product"])
+        if int(near_zero_lag["pairs"]) >= min_pairs
+        else 0.0
+    )
+    return {
+        "max_abs_lag_distance_mean_z_product": float(
+            max((abs(row["mean_z_product"]) for row in valid_rows), default=0.0)
+        ),
+        "near_semidiurnal_9_15h_0_50km_mean_z_product": near_semidiurnal_value,
+        "near_semidiurnal_9_15h_0_50km_pairs": float(near_semidiurnal["pairs"]),
+        "near_zero_lag_0_075h_0_50km_mean_z_product": near_zero_lag_value,
+        "near_zero_lag_0_075h_0_50km_pairs": float(near_zero_lag["pairs"]),
+        "same_region_delta_sum": float(same.get("delta_sum", 0.0)),
+        "same_region_delta_mean": float(same.get("delta_mean", 0.0)),
+        "mixed_region_delta_sum": float(mixed.get("delta_sum", 0.0)),
+        "mixed_region_delta_mean": float(mixed.get("delta_mean", 0.0)),
+    }
+
+
+def spatial_surrogate_control(
+    points: Sequence[WindowPoint],
+    *,
+    lag_edges_hours: Sequence[float],
+    distance_edges_km: Sequence[float],
+    high_delta_quantile: float,
+    repeats: int,
+    pair_count: int,
+    seed: int,
+    min_pairs: int,
+) -> dict[str, Any]:
+    if not points or repeats <= 0:
+        return {"repeats": 0, "metrics": {}}
+    rng = np.random.default_rng(seed)
+    observed_rows = sampled_spatiotemporal_correlation(
+        points,
+        lag_edges_hours=lag_edges_hours,
+        distance_edges_km=distance_edges_km,
+        pair_count=pair_count,
+        rng=rng,
+    )
+    observed = _spatial_metric_values(
+        points,
+        observed_rows,
+        high_delta_quantile=high_delta_quantile,
+        min_pairs=min_pairs,
+    )
+    null_values: dict[str, list[float]] = {key: [] for key in observed}
+    for _ in range(repeats):
+        surrogate = permute_platform_geometry(points, rng=rng)
+        rows = sampled_spatiotemporal_correlation(
+            surrogate,
+            lag_edges_hours=lag_edges_hours,
+            distance_edges_km=distance_edges_km,
+            pair_count=pair_count,
+            rng=rng,
+        )
+        values = _spatial_metric_values(
+            surrogate,
+            rows,
+            high_delta_quantile=high_delta_quantile,
+            min_pairs=min_pairs,
+        )
+        for key, value in values.items():
+            null_values[key].append(float(value))
+
+    metrics = {}
+    for key, values in null_values.items():
+        arr = np.asarray(values, dtype=np.float64)
+        obs = float(observed[key])
+        metrics[key] = {
+            "observed": obs,
+            "null_mean": float(np.mean(arr)),
+            "null_std": float(np.std(arr)),
+            "null_p05": float(np.quantile(arr, 0.05)),
+            "null_median": float(np.median(arr)),
+            "null_p95": float(np.quantile(arr, 0.95)),
+            "empirical_p_ge_observed": float((1 + np.sum(arr >= obs)) / (len(arr) + 1)),
+            "empirical_p_abs_ge_observed": float(
+                (1 + np.sum(np.abs(arr) >= abs(obs))) / (len(arr) + 1)
+            ),
+        }
+
+    return {
+        "seed": seed,
+        "repeats": repeats,
+        "pair_count": pair_count,
+        "min_pairs": min_pairs,
+        "description": (
+            "Randomly permutes platform coordinates/regions across platform IDs "
+            "while preserving each window's time, group membership, and detector delta."
+        ),
+        "metrics": metrics,
+    }
+
+
 def propagation_candidates(
     points: Sequence[WindowPoint],
     *,
@@ -332,6 +640,158 @@ def propagation_candidates(
     }
 
 
+def directional_propagation_candidates(
+    points: Sequence[WindowPoint],
+    *,
+    quantile: float,
+    max_lag_hours: float,
+    min_lag_hours: float,
+    min_distance_km: float,
+    min_speed_km_h: float,
+    max_speed_km_h: float,
+) -> dict[str, Any]:
+    if not points:
+        return {"threshold": 0.0, "events": 0, "pairs": 0, "bounded_speed_pairs": 0}
+    threshold = float(np.quantile([point.delta for point in points], quantile))
+    high = sorted([point for point in points if point.delta >= threshold], key=lambda point: point.start_epoch)
+    speeds = []
+    bounded_speeds = []
+    bearings = Counter()
+    bounded_bearings = Counter()
+    corridors = Counter()
+    for a in high:
+        for b in high:
+            lag_hours = (b.start_epoch - a.start_epoch) / 3600.0
+            if lag_hours < min_lag_hours or lag_hours > max_lag_hours:
+                continue
+            distance_km = haversine_km(a.latitude, a.longitude, b.latitude, b.longitude)
+            if distance_km < min_distance_km:
+                continue
+            speed = distance_km / lag_hours
+            bearing = initial_bearing_degrees(a.latitude, a.longitude, b.latitude, b.longitude)
+            bucket = bearing_bucket(bearing)
+            speeds.append(speed)
+            bearings[bucket] += 1
+            if min_speed_km_h <= speed <= max_speed_km_h:
+                bounded_speeds.append(speed)
+                bounded_bearings[bucket] += 1
+                corridors[f"{a.region_label}->{b.region_label}"] += 1
+
+    def summarize(values: Sequence[float]) -> dict[str, float]:
+        if not values:
+            return {}
+        arr = np.asarray(values, dtype=np.float64)
+        return {
+            "p10": float(np.quantile(arr, 0.10)),
+            "median": float(np.median(arr)),
+            "p90": float(np.quantile(arr, 0.90)),
+            "max": float(np.max(arr)),
+        }
+
+    return {
+        "threshold": threshold,
+        "events": len(high),
+        "pairs": len(speeds),
+        "speed_km_h": summarize(speeds),
+        "bearing_histogram": dict(sorted(bearings.items())),
+        "bounded_speed_range_km_h": [min_speed_km_h, max_speed_km_h],
+        "bounded_speed_pairs": len(bounded_speeds),
+        "bounded_speed_fraction": float(len(bounded_speeds) / len(speeds)) if speeds else 0.0,
+        "bounded_speed_km_h": summarize(bounded_speeds),
+        "bounded_bearing_histogram": dict(sorted(bounded_bearings.items())),
+        "top_bounded_region_corridors": [
+            {"corridor": corridor, "pairs": count}
+            for corridor, count in corridors.most_common(10)
+        ],
+    }
+
+
+def _directional_metric_values(summary: dict[str, Any]) -> dict[str, float]:
+    bearing_counts = list(summary.get("bearing_histogram", {}).values())
+    bounded_bearing_counts = list(summary.get("bounded_bearing_histogram", {}).values())
+    pairs = float(summary.get("pairs", 0))
+    bounded_pairs = float(summary.get("bounded_speed_pairs", 0))
+    speed = summary.get("speed_km_h", {})
+    bounded_speed = summary.get("bounded_speed_km_h", {})
+    return {
+        "bounded_speed_fraction": float(summary.get("bounded_speed_fraction", 0.0)),
+        "bounded_speed_pairs": bounded_pairs,
+        "speed_median_km_h": float(speed.get("median", 0.0)),
+        "bounded_speed_median_km_h": float(bounded_speed.get("median", 0.0)),
+        "bearing_max_fraction": float(max(bearing_counts) / pairs) if pairs else 0.0,
+        "bounded_bearing_max_fraction": float(max(bounded_bearing_counts) / bounded_pairs)
+        if bounded_pairs
+        else 0.0,
+    }
+
+
+def directional_surrogate_control(
+    points: Sequence[WindowPoint],
+    *,
+    high_delta_quantile: float,
+    repeats: int,
+    seed: int,
+    max_lag_hours: float,
+    min_lag_hours: float,
+    min_distance_km: float,
+    min_speed_km_h: float,
+    max_speed_km_h: float,
+) -> dict[str, Any]:
+    if not points or repeats <= 0:
+        return {"repeats": 0, "metrics": {}}
+    rng = np.random.default_rng(seed)
+    observed_summary = directional_propagation_candidates(
+        points,
+        quantile=high_delta_quantile,
+        max_lag_hours=max_lag_hours,
+        min_lag_hours=min_lag_hours,
+        min_distance_km=min_distance_km,
+        min_speed_km_h=min_speed_km_h,
+        max_speed_km_h=max_speed_km_h,
+    )
+    observed = _directional_metric_values(observed_summary)
+    null_values: dict[str, list[float]] = {key: [] for key in observed}
+    for _ in range(repeats):
+        surrogate = permute_platform_geometry(points, rng=rng)
+        summary = directional_propagation_candidates(
+            surrogate,
+            quantile=high_delta_quantile,
+            max_lag_hours=max_lag_hours,
+            min_lag_hours=min_lag_hours,
+            min_distance_km=min_distance_km,
+            min_speed_km_h=min_speed_km_h,
+            max_speed_km_h=max_speed_km_h,
+        )
+        values = _directional_metric_values(summary)
+        for key, value in values.items():
+            null_values[key].append(float(value))
+    metrics = {}
+    for key, values in null_values.items():
+        arr = np.asarray(values, dtype=np.float64)
+        obs = float(observed[key])
+        metrics[key] = {
+            "observed": obs,
+            "null_mean": float(np.mean(arr)),
+            "null_std": float(np.std(arr)),
+            "null_p05": float(np.quantile(arr, 0.05)),
+            "null_median": float(np.median(arr)),
+            "null_p95": float(np.quantile(arr, 0.95)),
+            "empirical_p_ge_observed": float((1 + np.sum(arr >= obs)) / (len(arr) + 1)),
+            "empirical_p_abs_ge_observed": float(
+                (1 + np.sum(np.abs(arr) >= abs(obs))) / (len(arr) + 1)
+            ),
+        }
+    return {
+        "seed": seed,
+        "repeats": repeats,
+        "description": (
+            "Randomly permutes platform geometry and recomputes directional high-delta "
+            "candidate metrics while preserving detected window times and deltas."
+        ),
+        "metrics": metrics,
+    }
+
+
 def audit_report(args: argparse.Namespace) -> dict[str, Any]:
     report = json.loads(args.report.read_text())
     points = _load_window_points(report)
@@ -364,6 +824,9 @@ def audit_report(args: argparse.Namespace) -> dict[str, Any]:
             "lag_edges_hours": lag_edges,
             "distance_edges_km": distance_edges,
             "high_delta_quantile": args.high_delta_quantile,
+            "spatial_surrogate_repeats": args.spatial_surrogate_repeats,
+            "spatial_surrogate_pair_count": args.spatial_surrogate_pair_count,
+            "spatial_surrogate_seed": args.spatial_surrogate_seed,
         },
         "summary": {
             "windows": len(points),
@@ -386,6 +849,36 @@ def audit_report(args: argparse.Namespace) -> dict[str, Any]:
                 max_lag_hours=args.max_propagation_lag_hours,
                 min_lag_hours=args.min_propagation_lag_hours,
                 min_distance_km=args.min_propagation_distance_km,
+            ),
+            "directional_propagation_candidates": directional_propagation_candidates(
+                points,
+                quantile=args.high_delta_quantile,
+                max_lag_hours=args.max_propagation_lag_hours,
+                min_lag_hours=args.min_propagation_lag_hours,
+                min_distance_km=args.min_propagation_distance_km,
+                min_speed_km_h=args.min_directional_speed_km_h,
+                max_speed_km_h=args.max_directional_speed_km_h,
+            ),
+            "spatial_surrogate_control": spatial_surrogate_control(
+                points,
+                lag_edges_hours=lag_edges,
+                distance_edges_km=distance_edges,
+                high_delta_quantile=args.high_delta_quantile,
+                repeats=args.spatial_surrogate_repeats,
+                pair_count=args.spatial_surrogate_pair_count,
+                seed=args.spatial_surrogate_seed,
+                min_pairs=args.min_pairs_for_summary,
+            ),
+            "directional_surrogate_control": directional_surrogate_control(
+                points,
+                high_delta_quantile=args.high_delta_quantile,
+                repeats=args.spatial_surrogate_repeats,
+                seed=args.spatial_surrogate_seed + 17,
+                max_lag_hours=args.max_propagation_lag_hours,
+                min_lag_hours=args.min_propagation_lag_hours,
+                min_distance_km=args.min_propagation_distance_km,
+                min_speed_km_h=args.min_directional_speed_km_h,
+                max_speed_km_h=args.max_directional_speed_km_h,
             ),
         },
         "bins": rows,
@@ -414,6 +907,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--min-propagation-lag-hours", type=float, default=0.75)
     parser.add_argument("--max-propagation-lag-hours", type=float, default=24.0)
     parser.add_argument("--min-propagation-distance-km", type=float, default=25.0)
+    parser.add_argument("--min-directional-speed-km-h", type=float, default=10.0)
+    parser.add_argument("--max-directional-speed-km-h", type=float, default=120.0)
+    parser.add_argument("--spatial-surrogate-repeats", type=int, default=0)
+    parser.add_argument("--spatial-surrogate-pair-count", type=int, default=250_000)
+    parser.add_argument("--spatial-surrogate-seed", type=int, default=20260602)
     parser.add_argument("--min-pairs-for-summary", type=int, default=100)
     return parser.parse_args(argv)
 
@@ -448,6 +946,43 @@ def _print_text(report: dict[str, Any]) -> None:
             json.dumps(prop["speed_km_h"], sort_keys=True),
         )
     )
+    directional = summary["directional_propagation_candidates"]
+    print("\nDirectional high-delta candidates")
+    print(
+        "  bounded_speed_range=%s bounded_pairs=%d fraction=%.3f bearings=%s"
+        % (
+            json.dumps(directional["bounded_speed_range_km_h"]),
+            directional["bounded_speed_pairs"],
+            directional["bounded_speed_fraction"],
+            json.dumps(directional["bounded_bearing_histogram"], sort_keys=True),
+        )
+    )
+    surrogate = summary["spatial_surrogate_control"]
+    if surrogate["repeats"]:
+        print("\nSpatial surrogate control")
+        for name, row in surrogate["metrics"].items():
+            print(
+                "  %s observed=%.4f null_median=%.4f null_p95=%.4f p_abs=%.4f"
+                % (
+                    name,
+                    row["observed"],
+                    row["null_median"],
+                    row["null_p95"],
+                    row["empirical_p_abs_ge_observed"],
+                )
+            )
+        print("\nDirectional surrogate control")
+        for name, row in summary["directional_surrogate_control"]["metrics"].items():
+            print(
+                "  %s observed=%.4f null_median=%.4f null_p95=%.4f p_abs=%.4f"
+                % (
+                    name,
+                    row["observed"],
+                    row["null_median"],
+                    row["null_p95"],
+                    row["empirical_p_abs_ge_observed"],
+                )
+            )
     geo = summary["geographic_stratification"]
     print("\nGeographic stratification")
     same = geo["same_region"]

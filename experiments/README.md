@@ -136,3 +136,29 @@ python3 experiments/cdip_sharded_run.py \
 The launcher writes one report, log, and checkpoint per shard, prints aggregate
 checkpoint progress, refuses unsafe memory estimates by default, and merges only
 the shard report files into `merged.json`.
+
+Known-structure controls should be run as preprocessing modes, not as detector
+features. `--preprocess highpass` removes sub-cutoff low-frequency content before
+observation. `--preprocess highpass-phase-randomize` first applies the high-pass
+control, then preserves each window's Fourier magnitudes while deterministically
+randomizing phase. Use it to test whether coherence depends on original
+phase/time structure or survives as shared spectral/score-distribution
+organization:
+
+```bash
+python3 experiments/cdip_sharded_run.py \
+  --run-dir /tmp/cdip-phase-surrogate-shards \
+  --shard-count 16 \
+  --max-workers 2 \
+  -- \
+  data/cdip/*p1_xy.nc \
+  --preset scale \
+  --channels z \
+  --max-groups 1024 \
+  --read-window-manifest /tmp/cdip_1p5gb_1024groups_windows.json \
+  --null-mode permute \
+  --null-repeats 1000 \
+  --preprocess highpass-phase-randomize \
+  --phase-surrogate-seed 20260602 \
+  --top-windows 100000
+```

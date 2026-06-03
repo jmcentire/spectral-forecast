@@ -5,6 +5,7 @@ from experiments.cdip_observe import (
     _intersect_time_spans,
     _select_aligned_window,
     highpass_fft,
+    phase_randomize_fft,
     posthoc_metrics,
 )
 
@@ -79,6 +80,23 @@ def test_highpass_fft_removes_sub_cutoff_component():
 
     assert abs(np.corrcoef(filtered, slow)[0, 1]) < 0.05
     assert np.corrcoef(filtered, fast)[0, 1] > 0.95
+
+
+def test_phase_randomize_fft_preserves_power_spectrum():
+    sample_rate = 1.28
+    t = np.arange(2048, dtype=np.float64) / sample_rate
+    values = 2.0 * np.sin(2 * np.pi * 0.08 * t) + 0.5 * np.sin(2 * np.pi * 0.17 * t)
+
+    randomized = phase_randomize_fft(values, seed=123)
+
+    assert np.allclose(
+        np.abs(np.fft.rfft(randomized)),
+        np.abs(np.fft.rfft(values)),
+        rtol=1e-10,
+        atol=1e-10,
+    )
+    assert not np.allclose(randomized, values)
+    assert np.allclose(randomized, phase_randomize_fft(values, seed=123))
 
 
 def test_combination_rows_summarizes_active_series_sets():

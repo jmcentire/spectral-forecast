@@ -2,9 +2,12 @@
 
 from experiments.cdip_spatial_audit import (
     WindowPoint,
+    bearing_bucket,
     classify_region,
     geographic_stratification,
     haversine_km,
+    initial_bearing_degrees,
+    spatial_surrogate_control,
 )
 
 
@@ -18,6 +21,8 @@ def _point(index: int, delta: float, regions: tuple[str, ...]) -> WindowPoint:
         latitude=0.0,
         longitude=0.0,
         platforms=tuple(f"p{idx}" for idx in range(len(regions))),
+        platform_latitudes=tuple(float(idx) for idx in range(len(regions))),
+        platform_longitudes=tuple(float(idx) for idx in range(len(regions))),
         regions=regions,
         region_label=label,
     )
@@ -25,6 +30,13 @@ def _point(index: int, delta: float, regions: tuple[str, ...]) -> WindowPoint:
 
 def test_haversine_km_matches_one_degree_equator():
     assert 110.0 < haversine_km(0.0, 0.0, 0.0, 1.0) < 112.0
+
+
+def test_initial_bearing_and_bucket_cardinals():
+    assert 89.0 < initial_bearing_degrees(0.0, 0.0, 0.0, 1.0) < 91.0
+    assert bearing_bucket(0.0) == "N"
+    assert bearing_bucket(90.0) == "E"
+    assert bearing_bucket(225.0) == "SW"
 
 
 def test_classify_region_uses_coarse_cdip_basins():
@@ -46,3 +58,22 @@ def test_geographic_stratification_separates_same_and_mixed_regions():
     assert result["same_region"]["same_region"]["delta_sum"] == 4.0
     assert result["same_region"]["mixed_region"]["windows"] == 1
     assert result["same_region"]["mixed_region"]["delta_sum"] == -2.0
+    assert result["pair_exposure"]["same_region_pairs"] == 2
+    assert result["pair_exposure"]["mixed_region_pairs"] == 1
+    assert result["pair_exposure"]["same_region_delta_per_pair"] == 2.0
+    assert result["pair_exposure"]["mixed_region_delta_per_pair"] == -2.0
+
+
+def test_spatial_surrogate_control_can_be_disabled():
+    result = spatial_surrogate_control(
+        [_point(0, 1.0, ("hawaii", "southern_california"))],
+        lag_edges_hours=[0.0, 1.0],
+        distance_edges_km=[0.0, 100.0],
+        high_delta_quantile=0.95,
+        repeats=0,
+        pair_count=10,
+        seed=1,
+        min_pairs=1,
+    )
+
+    assert result == {"repeats": 0, "metrics": {}}

@@ -1,0 +1,585 @@
+{
+  "aggregate": {
+    "highpass": {
+      "groups_discovered": 1024,
+      "null_multi_emission_total_estimate": 41379.5262405643,
+      "null_multi_emission_total_std": 270.44844437505907,
+      "null_total_empirical_p_floor": 0.000999000999000999,
+      "null_total_unique_p_ge_observed": 0.000999000999000999,
+      "null_total_unique_repeats": 1000,
+      "observed_minus_null_total": 3550.6640347609573,
+      "observed_multi_emission_total": 44930.19027532526,
+      "observed_total_z": 13.128801842309292,
+      "records_loaded": 70,
+      "windows_run": 5491
+    },
+    "highpass_phase_surrogate": {
+      "groups_discovered": 1024,
+      "null_multi_emission_total_estimate": 40310.890590451614,
+      "null_multi_emission_total_std": 264.3064713861949,
+      "null_total_empirical_p_floor": 0.000999000999000999,
+      "null_total_unique_p_ge_observed": 0.000999000999000999,
+      "null_total_unique_repeats": 1000,
+      "observed_minus_null_total": 3798.9173392892844,
+      "observed_multi_emission_total": 44109.8079297409,
+      "observed_total_z": 14.373152951440398,
+      "records_loaded": 70,
+      "windows_run": 5491
+    },
+    "original": {
+      "groups_discovered": 1024,
+      "null_multi_emission_total_estimate": 41421.50591878177,
+      "null_multi_emission_total_std": 269.96177328390684,
+      "null_total_empirical_p_floor": 0.000999000999000999,
+      "null_total_unique_p_ge_observed": 0.000999000999000999,
+      "null_total_unique_repeats": 1000,
+      "observed_minus_null_total": 3545.1904278831353,
+      "observed_multi_emission_total": 44966.6963466649,
+      "observed_total_z": 13.132194179784172,
+      "records_loaded": 70,
+      "windows_run": 5491
+    }
+  },
+  "comparison": {
+    "original_vs_highpass_delta_ratio": 1.0015439528536385,
+    "phase_vs_highpass_delta_change": 248.25330452832713,
+    "phase_vs_highpass_delta_ratio": 1.0699174301195298,
+    "phase_vs_highpass_z_change": 1.244351109131106
+  },
+  "date": "2026-06-02",
+  "experiment": "CDIP spatial and spectral-surrogate validity controls",
+  "inputs": {
+    "aggregate_reports": {
+      "highpass": "/tmp/cdip_1p5gb_1024_highpass30m_permute_null1000_16shards/merged.json",
+      "highpass_phase_surrogate": "/tmp/cdip_1p5gb_1024_highpass_phase_surrogate_permute_null1000_16shards/merged.json",
+      "original": "/tmp/cdip_1p5gb_1024_permute_null1000_16shards_merged.json"
+    },
+    "spatial_reports": {
+      "highpass": "experiments/results/2026-06-02-cdip-spatial-validity-highpass30m-surrogate100-1024groups.json",
+      "highpass_phase_surrogate": "experiments/results/2026-06-02-cdip-spatial-validity-highpass-phase-surrogate100-1024groups.json",
+      "original": "experiments/results/2026-06-02-cdip-spatial-validity-original-surrogate100-1024groups.json"
+    }
+  },
+  "interpretation": {
+    "directional_surroundings": "The directional bounded-speed excess seen in original/high-pass (p around 0.09 to 0.11 against geometry surrogate) disappears after phase randomization (p around 0.64). Propagation-like geometry is therefore not robust under the spectral surrogate, even though aggregate coherence survives.",
+    "method_frame": "This supports the generic anomaly-plus-surroundings workflow: surface anomalous entities, inspect surrounding dimensions such as time, space, frequency, phase, velocity, period, region, and graph recurrence, then mask known structures and rerun on residuals.",
+    "next": "Build a known-structure masking pass rather than declaring novelty: identify dominant spectral/swell modes, subtract or condition on them, then rerun detector and surroundings audits on residual structure.",
+    "region_counting": "Raw mixed-region delta is mostly pair/window exposure. Pair-normalized original/high-pass same-region and mixed-region deltas are nearly equal, so cross-region dominance alone should not be treated as physical evidence.",
+    "spectral_surrogate": "High-pass phase-randomized windows preserve each buoy/window power spectrum while breaking phase/time structure. Aggregate coherence did not collapse; delta increased from 3550.6640 to 3798.9173. This means the agnostic system still finds organization when original phase relationships are destroyed. It may be recovering score/spectral-distribution structure rather than propagation timing.",
+    "tide": "The 30-minute high-pass control leaves aggregate delta and z effect size essentially unchanged, so tide/slow forcing is not carrying the result."
+  },
+  "purpose": "Test whether CDIP multi-buoy coherence is explained by tide, region-count exposure, or shared spectral occupancy/swell, using agnostic detector outputs and post-hoc surroundings audits.",
+  "reporting_constraints": {
+    "p_value": "Use empirical permutation-null floor/exceedance; z is standardized effect size only, not normal-theory p evidence.",
+    "rogue_prediction": "No claim of rogue-wave point prediction. Current result is label-agnostic recovery of coherent structure plus surroundings characterization."
+  },
+  "scope": {
+    "bounded_launcher": "experiments/cdip_sharded_run.py with --max-workers 2 for phase-surrogate scale run",
+    "corpus": "70 CDIP files, 1024 deterministic balanced groups, 5491 windows",
+    "manifest": "/tmp/cdip_1p5gb_1024groups_windows.json",
+    "null": "deterministic permutation null, 1000 repeats, 1000 unique merged null totals"
+  },
+  "spatial_surroundings": {
+    "highpass": {
+      "delta_mean": 0.6466334064398026,
+      "delta_std": 3.0488965172937283,
+      "directional_candidates": {
+        "bounded_bearing_histogram": {
+          "E": 90,
+          "N": 49,
+          "NE": 71,
+          "NW": 76,
+          "S": 40,
+          "SE": 53,
+          "SW": 52,
+          "W": 70
+        },
+        "bounded_speed_fraction": 0.3630434782608696,
+        "bounded_speed_km_h": {
+          "max": 119.98003138515315,
+          "median": 65.84077962312108,
+          "p10": 21.60863043688463,
+          "p90": 112.91346163968446
+        },
+        "bounded_speed_pairs": 501,
+        "events": 275,
+        "pairs": 1380
+      },
+      "directional_surrogate_metrics": {
+        "bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.44554455445544555,
+          "empirical_p_ge_observed": 0.44554455445544555,
+          "null_mean": 0.2581357026827429,
+          "null_median": 0.2567252139390006,
+          "null_p05": 0.21703269910731196,
+          "null_p95": 0.29881383774280557,
+          "null_std": 0.025389129097949267,
+          "observed": 0.2608695652173913
+        },
+        "bounded_bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.7524752475247525,
+          "empirical_p_ge_observed": 0.7524752475247525,
+          "null_mean": 0.2013959405746536,
+          "null_median": 0.19796949082663368,
+          "null_p05": 0.1648314210389514,
+          "null_p95": 0.2517318712891241,
+          "null_std": 0.028500773562596348,
+          "observed": 0.17964071856287425
+        },
+        "bounded_speed_fraction": {
+          "empirical_p_abs_ge_observed": 0.10891089108910891,
+          "empirical_p_ge_observed": 0.10891089108910891,
+          "null_mean": 0.3268652307510182,
+          "null_median": 0.3247650957444577,
+          "null_p05": 0.2777012327773749,
+          "null_p95": 0.3854277054886886,
+          "null_std": 0.030993174428012398,
+          "observed": 0.3630434782608696
+        },
+        "bounded_speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.8118811881188119,
+          "empirical_p_ge_observed": 0.8118811881188119,
+          "null_mean": 68.26609088343223,
+          "null_median": 68.36361022608277,
+          "null_p05": 63.42357568557051,
+          "null_p95": 72.87701109090021,
+          "null_std": 2.8588181798871983,
+          "observed": 65.84077962312108
+        },
+        "bounded_speed_pairs": {
+          "empirical_p_abs_ge_observed": 0.10891089108910891,
+          "empirical_p_ge_observed": 0.10891089108910891,
+          "null_mean": 451.59,
+          "null_median": 448.5,
+          "null_p05": 382.95,
+          "null_p95": 533.0,
+          "null_std": 42.8562935868234,
+          "observed": 501.0
+        },
+        "speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.9603960396039604,
+          "empirical_p_ge_observed": 0.9603960396039604,
+          "null_mean": 196.51194129767214,
+          "null_median": 196.61581585331572,
+          "null_p05": 166.32606338087314,
+          "null_p95": 227.90086357350552,
+          "null_std": 19.924663013178076,
+          "observed": 162.35592105907244
+        }
+      },
+      "pair_exposure": {
+        "mixed_pair_fraction": 0.8771929824561403,
+        "mixed_region_delta": 3116.854275370277,
+        "mixed_region_delta_per_pair": 0.2156992578110918,
+        "mixed_region_pairs": 14450,
+        "same_region_delta": 433.8097593906603,
+        "same_region_delta_per_pair": 0.21443883311451326,
+        "same_region_pairs": 2023
+      },
+      "same_vs_mixed_window_buckets": {
+        "mixed_region": {
+          "delta_mean": 0.6512722099208267,
+          "delta_sum": 3500.5881283244435,
+          "high_delta_windows": 269,
+          "label": "mixed_region",
+          "positive_fraction": 0.5564651162790698,
+          "windows": 5375,
+          "z_delta_mean": 0.001521469638182976
+        },
+        "same_region": {
+          "delta_mean": 0.43168884859063206,
+          "delta_sum": 50.07590643651332,
+          "high_delta_windows": 6,
+          "label": "same_region",
+          "positive_fraction": 0.4827586206896552,
+          "windows": 116,
+          "z_delta_mean": -0.07049913194166409
+        }
+      },
+      "strongest_lag_distance_bins": [
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "6-9h",
+          "mean_z_product": -0.11151257965449117,
+          "pairs": 46
+        },
+        {
+          "distance_bin": "50-150km",
+          "lag_bin": "6-9h",
+          "mean_z_product": 0.11093023015506914,
+          "pairs": 113
+        },
+        {
+          "distance_bin": "50-150km",
+          "lag_bin": "3-6h",
+          "mean_z_product": 0.08220964802071874,
+          "pairs": 240
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "0-0.75h",
+          "mean_z_product": 0.07082654178934965,
+          "pairs": 724
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "0.75-1.5h",
+          "mean_z_product": 0.07029669623903267,
+          "pairs": 899
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "9-15h",
+          "mean_z_product": -0.06912255002376257,
+          "pairs": 121
+        },
+        {
+          "distance_bin": "50-150km",
+          "lag_bin": "0.75-1.5h",
+          "mean_z_product": -0.061447984592173335,
+          "pairs": 299
+        },
+        {
+          "distance_bin": "150-300km",
+          "lag_bin": "3-6h",
+          "mean_z_product": 0.054684369457215415,
+          "pairs": 410
+        }
+      ]
+    },
+    "highpass_phase_surrogate": {
+      "delta_mean": 0.6918443524475117,
+      "delta_std": 3.089773802231705,
+      "directional_candidates": {
+        "bounded_bearing_histogram": {
+          "E": 82,
+          "N": 41,
+          "NE": 60,
+          "NW": 67,
+          "S": 38,
+          "SE": 65,
+          "SW": 62,
+          "W": 74
+        },
+        "bounded_speed_fraction": 0.32491694352159467,
+        "bounded_speed_km_h": {
+          "max": 119.84449397988122,
+          "median": 65.95019590470679,
+          "p10": 24.692026093743902,
+          "p90": 111.58404110718479
+        },
+        "bounded_speed_pairs": 489,
+        "events": 275,
+        "pairs": 1505
+      },
+      "directional_surrogate_metrics": {
+        "bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.594059405940594,
+          "empirical_p_ge_observed": 0.594059405940594,
+          "null_mean": 0.26705107447617626,
+          "null_median": 0.2637651320137754,
+          "null_p05": 0.2251646903820817,
+          "null_p95": 0.322766097240473,
+          "null_std": 0.02985435736781612,
+          "observed": 0.2571428571428571
+        },
+        "bounded_bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.9900990099009901,
+          "empirical_p_ge_observed": 0.9900990099009901,
+          "null_mean": 0.2114235971535088,
+          "null_median": 0.2096838926687562,
+          "null_p05": 0.17290926320777067,
+          "null_p95": 0.25648344437714515,
+          "null_std": 0.02614523983797304,
+          "observed": 0.16768916155419222
+        },
+        "bounded_speed_fraction": {
+          "empirical_p_abs_ge_observed": 0.6435643564356436,
+          "empirical_p_ge_observed": 0.6435643564356436,
+          "null_mean": 0.3382931886353307,
+          "null_median": 0.3371786420566908,
+          "null_p05": 0.2746594895865161,
+          "null_p95": 0.40225883358625364,
+          "null_std": 0.03825942221234521,
+          "observed": 0.32491694352159467
+        },
+        "bounded_speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.6732673267326733,
+          "empirical_p_ge_observed": 0.6732673267326733,
+          "null_mean": 67.76484516816458,
+          "null_median": 67.47433237817637,
+          "null_p05": 61.81714445347561,
+          "null_p95": 73.78030355480008,
+          "null_std": 3.592858265027667,
+          "observed": 65.95019590470679
+        },
+        "bounded_speed_pairs": {
+          "empirical_p_abs_ge_observed": 0.693069306930693,
+          "empirical_p_ge_observed": 0.693069306930693,
+          "null_mean": 513.23,
+          "null_median": 512.0,
+          "null_p05": 418.2,
+          "null_p95": 607.25,
+          "null_std": 57.89729786440815,
+          "observed": 489.0
+        },
+        "speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.31683168316831684,
+          "empirical_p_ge_observed": 0.31683168316831684,
+          "null_mean": 191.53409925489095,
+          "null_median": 187.60058181957936,
+          "null_p05": 158.1584919928202,
+          "null_p95": 235.6581631783423,
+          "null_std": 26.207686483019927,
+          "observed": 200.99089591202252
+        }
+      },
+      "pair_exposure": {
+        "mixed_pair_fraction": 0.8771929824561403,
+        "mixed_region_delta": 3257.2642197651826,
+        "mixed_region_delta_per_pair": 0.22541620898028944,
+        "mixed_region_pairs": 14450,
+        "same_region_delta": 541.653119524124,
+        "same_region_delta_per_pair": 0.26774746392690263,
+        "same_region_pairs": 2023
+      },
+      "same_vs_mixed_window_buckets": {
+        "mixed_region": {
+          "delta_mean": 0.6912945436859851,
+          "delta_sum": 3715.70817231217,
+          "high_delta_windows": 272,
+          "label": "mixed_region",
+          "positive_fraction": 0.557953488372093,
+          "windows": 5375,
+          "z_delta_mean": -0.0001779446641464537
+        },
+        "same_region": {
+          "delta_mean": 0.7173204049751652,
+          "delta_sum": 83.20916697711917,
+          "high_delta_windows": 3,
+          "label": "same_region",
+          "positive_fraction": 0.5431034482758621,
+          "windows": 116,
+          "z_delta_mean": 0.008245280774033548
+        }
+      },
+      "strongest_lag_distance_bins": [
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "9-15h",
+          "mean_z_product": -0.1021596792792867,
+          "pairs": 112
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "0-0.75h",
+          "mean_z_product": 0.08775513932522348,
+          "pairs": 665
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "6-9h",
+          "mean_z_product": -0.08337879590348743,
+          "pairs": 49
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "0.75-1.5h",
+          "mean_z_product": 0.0797353288388164,
+          "pairs": 915
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "15-24h",
+          "mean_z_product": -0.06800159729694272,
+          "pairs": 145
+        },
+        {
+          "distance_bin": "600-1200km",
+          "lag_bin": "0.75-1.5h",
+          "mean_z_product": 0.06022807447579357,
+          "pairs": 1686
+        },
+        {
+          "distance_bin": "300-600km",
+          "lag_bin": "0-0.75h",
+          "mean_z_product": 0.05945495276795166,
+          "pairs": 1088
+        },
+        {
+          "distance_bin": "50-150km",
+          "lag_bin": "0-0.75h",
+          "mean_z_product": 0.057955672551185534,
+          "pairs": 333
+        }
+      ]
+    },
+    "original": {
+      "delta_mean": 0.6456365740089467,
+      "delta_std": 3.0520529398286285,
+      "directional_candidates": {
+        "bounded_bearing_histogram": {
+          "E": 90,
+          "N": 50,
+          "NE": 72,
+          "NW": 77,
+          "S": 45,
+          "SE": 55,
+          "SW": 55,
+          "W": 73
+        },
+        "bounded_speed_fraction": 0.3784773060029283,
+        "bounded_speed_km_h": {
+          "max": 119.98003138515315,
+          "median": 64.58398655157625,
+          "p10": 21.550387188194744,
+          "p90": 112.61700440127095
+        },
+        "bounded_speed_pairs": 517,
+        "events": 275,
+        "pairs": 1366
+      },
+      "directional_surrogate_metrics": {
+        "bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.5247524752475248,
+          "empirical_p_ge_observed": 0.5247524752475248,
+          "null_mean": 0.2577737999747111,
+          "null_median": 0.25695263584657013,
+          "null_p05": 0.22029423193346587,
+          "null_p95": 0.29293624659249584,
+          "null_std": 0.025210668062401926,
+          "observed": 0.2554904831625183
+        },
+        "bounded_bearing_max_fraction": {
+          "empirical_p_abs_ge_observed": 0.8118811881188119,
+          "empirical_p_ge_observed": 0.8118811881188119,
+          "null_mean": 0.2022508493997244,
+          "null_median": 0.1995487907896667,
+          "null_p05": 0.16136427345036616,
+          "null_p95": 0.250573845241895,
+          "null_std": 0.028760950066623478,
+          "observed": 0.17408123791102514
+        },
+        "bounded_speed_fraction": {
+          "empirical_p_abs_ge_observed": 0.0891089108910891,
+          "empirical_p_ge_observed": 0.0891089108910891,
+          "null_mean": 0.33172202663278116,
+          "null_median": 0.3289424641277723,
+          "null_p05": 0.2793383071573367,
+          "null_p95": 0.39504006272083764,
+          "null_std": 0.032988983446213725,
+          "observed": 0.3784773060029283
+        },
+        "bounded_speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.900990099009901,
+          "empirical_p_ge_observed": 0.900990099009901,
+          "null_mean": 68.07089729821733,
+          "null_median": 68.04577653289047,
+          "null_p05": 63.41095000426939,
+          "null_p95": 72.26112444859359,
+          "null_std": 2.7100997534615807,
+          "observed": 64.58398655157625
+        },
+        "bounded_speed_pairs": {
+          "empirical_p_abs_ge_observed": 0.0891089108910891,
+          "empirical_p_ge_observed": 0.0891089108910891,
+          "null_mean": 453.11,
+          "null_median": 449.5,
+          "null_p05": 380.85,
+          "null_p95": 540.0,
+          "null_std": 45.09764849745495,
+          "observed": 517.0
+        },
+        "speed_median_km_h": {
+          "empirical_p_abs_ge_observed": 0.9603960396039604,
+          "empirical_p_ge_observed": 0.9603960396039604,
+          "null_mean": 194.375230506042,
+          "null_median": 194.2926408763335,
+          "null_p05": 159.78536050523098,
+          "null_p95": 227.25972485751603,
+          "null_std": 21.215655364987843,
+          "observed": 157.02824282007776
+        }
+      },
+      "pair_exposure": {
+        "mixed_pair_fraction": 0.8771929824561403,
+        "mixed_region_delta": 3116.3013556230844,
+        "mixed_region_delta_per_pair": 0.21566099346872555,
+        "mixed_region_pairs": 14450,
+        "same_region_delta": 428.8890722600163,
+        "same_region_delta_per_pair": 0.21200646181908864,
+        "same_region_pairs": 2023
+      },
+      "same_vs_mixed_window_buckets": {
+        "mixed_region": {
+          "delta_mean": 0.6503595755628121,
+          "delta_sum": 3495.682718650115,
+          "high_delta_windows": 269,
+          "label": "mixed_region",
+          "positive_fraction": 0.5573953488372093,
+          "windows": 5375,
+          "z_delta_mean": 0.0015474834961842557
+        },
+        "same_region": {
+          "delta_mean": 0.42679059683629234,
+          "delta_sum": 49.50770923300991,
+          "high_delta_windows": 6,
+          "label": "same_region",
+          "positive_fraction": 0.4827586206896552,
+          "windows": 116,
+          "z_delta_mean": -0.07170451544819616
+        }
+      },
+      "strongest_lag_distance_bins": [
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "9-15h",
+          "mean_z_product": 0.24583159489182987,
+          "pairs": 123
+        },
+        {
+          "distance_bin": "50-150km",
+          "lag_bin": "1.5-3h",
+          "mean_z_product": 0.1232402552571825,
+          "pairs": 303
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "3-6h",
+          "mean_z_product": 0.10970091415215853,
+          "pairs": 139
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "0-0.75h",
+          "mean_z_product": 0.07568596136096768,
+          "pairs": 674
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "6-9h",
+          "mean_z_product": -0.07308535876761237,
+          "pairs": 41
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "15-24h",
+          "mean_z_product": -0.06997261789262378,
+          "pairs": 131
+        },
+        {
+          "distance_bin": "50-150km",
+          "lag_bin": "0.75-1.5h",
+          "mean_z_product": -0.06646441209773063,
+          "pairs": 273
+        },
+        {
+          "distance_bin": "0-50km",
+          "lag_bin": "0.75-1.5h",
+          "mean_z_product": -0.04386160728312381,
+          "pairs": 947
+        }
+      ]
+    }
+  }
+}

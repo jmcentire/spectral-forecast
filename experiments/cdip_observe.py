@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import json
 import sys
 from dataclasses import dataclass
@@ -40,7 +41,7 @@ CHANNEL_VARIABLES = {
     "z": "xyzZDisplacement",
 }
 
-PREPROCESS_MODES = ("none", "highpass")
+PREPROCESS_MODES = ("none", "highpass", "phase-randomize", "highpass-phase-randomize")
 
 
 @dataclass(frozen=True)
@@ -176,12 +177,41 @@ def highpass_fft(
     return np.fft.irfft(spectrum, n=len(centered)).astype(np.float64)
 
 
+def _stable_seed(base_seed: int, key: str) -> int:
+    digest = hashlib.sha1(f"{base_seed}:{key}".encode("utf-8")).digest()
+    return int.from_bytes(digest[:8], "big", signed=False)
+
+
+def phase_randomize_fft(
+    values: NDArray[np.float64],
+    *,
+    seed: int,
+) -> NDArray[np.float64]:
+    """Preserve the Fourier magnitudes while randomizing non-DC phases."""
+
+    y = np.asarray(values, dtype=np.float64)
+    if len(y) < 4:
+        return y.copy()
+    rng = np.random.default_rng(seed)
+    spectrum = np.fft.rfft(y)
+    phases = rng.uniform(0.0, 2.0 * np.pi, size=len(spectrum))
+    phases[0] = 0.0
+    if len(y) % 2 == 0:
+        phases[-1] = 0.0
+    randomized = np.abs(spectrum) * np.exp(1j * phases)
+    randomized[0] = spectrum[0]
+    if len(y) % 2 == 0:
+        randomized[-1] = spectrum[-1]
+    return np.fft.irfft(randomized, n=len(y)).astype(np.float64)
+
+
 def preprocess_series_values(
     values: NDArray[np.float64],
     *,
     sample_rate: float,
     mode: str = "none",
     highpass_period_seconds: float = 30.0 * 60.0,
+    phase_seed: int = 0,
 ) -> NDArray[np.float64]:
     """Apply audit preprocessing before the agnostic observer sees a series."""
 
@@ -193,6 +223,15 @@ def preprocess_series_values(
             sample_rate=sample_rate,
             cutoff_period_seconds=highpass_period_seconds,
         )
+    if mode == "phase-randomize":
+        return phase_randomize_fft(values, seed=phase_seed)
+    if mode == "highpass-phase-randomize":
+        highpassed = highpass_fft(
+            values,
+            sample_rate=sample_rate,
+            cutoff_period_seconds=highpass_period_seconds,
+        )
+        return phase_randomize_fft(highpassed, seed=phase_seed)
     raise ValueError(f"Unknown preprocess mode: {mode}")
 
 
@@ -251,6 +290,7 @@ def load_cdip_series(
     segment_offset: int = 0,
     preprocess: str = "none",
     highpass_period_seconds: float = 30.0 * 60.0,
+    phase_surrogate_seed: int = 20260602,
 ) -> list[CdipSeries]:
     """Load aligned clean displacement segments from a CDIP NetCDF file."""
 
@@ -265,11 +305,16 @@ def load_cdip_series(
     out: list[CdipSeries] = []
     for channel, values in raw.arrays.items():
         segment = np.asarray(values[span_start:span_end], dtype=np.float64)
+        seed = _stable_seed(
+            phase_surrogate_seed,
+            f"{raw.platform_id}:{channel}:{span_start}:{span_end}",
+        )
         segment = preprocess_series_values(
             segment,
             sample_rate=raw.sample_rate,
             mode=preprocess,
             highpass_period_seconds=highpass_period_seconds,
+            phase_seed=seed,
         )
         out.append(
             CdipSeries(
@@ -369,6 +414,7 @@ def load_aligned_cdip_series(
     segment_offset: int = 0,
     preprocess: str = "none",
     highpass_period_seconds: float = 30.0 * 60.0,
+    phase_surrogate_seed: int = 20260602,
 ) -> list[CdipSeries]:
     """Load multiple CDIP files aligned on a common clean UTC grid."""
 
@@ -382,6 +428,7 @@ def load_aligned_cdip_series(
             segment_offset=segment_offset,
             preprocess=preprocess,
             highpass_period_seconds=highpass_period_seconds,
+            phase_surrogate_seed=phase_surrogate_seed,
         )
 
     records = [
@@ -410,11 +457,16 @@ def load_aligned_cdip_series(
         source_x = np.arange(len(record.valid), dtype=np.float64)
         for channel, values in record.arrays.items():
             segment = np.interp(source_index, source_x, values).astype(np.float64)
+            seed = _stable_seed(
+                phase_surrogate_seed,
+                f"{record.platform_id}:{channel}:{aligned_start:.6f}:{n_samples}",
+            )
             segment = preprocess_series_values(
                 segment,
                 sample_rate=target_rate,
                 mode=preprocess,
                 highpass_period_seconds=highpass_period_seconds,
+                phase_seed=seed,
             )
             out.append(
                 CdipSeries(
@@ -1103,6 +1155,7 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
         segment_offset=args.segment_offset,
         preprocess=args.preprocess,
         highpass_period_seconds=args.highpass_period_minutes * 60.0,
+        phase_surrogate_seed=args.phase_surrogate_seed,
     )
     series_by_name = {item.name: item for item in series}
 
@@ -1156,6 +1209,7 @@ async def _main_async(args: argparse.Namespace) -> dict[str, Any]:
             "posthoc_window": args.posthoc_window or args.adaptive_window,
             "preprocess": args.preprocess,
             "highpass_period_minutes": args.highpass_period_minutes,
+            "phase_surrogate_seed": args.phase_surrogate_seed,
         },
         "readiness": _readiness_rows(series, args),
         "top_observations": _top_observation_rows(
@@ -1246,6 +1300,12 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         type=float,
         default=30.0,
         help="Remove periods longer than this when --preprocess=highpass",
+    )
+    parser.add_argument(
+        "--phase-surrogate-seed",
+        type=int,
+        default=20260602,
+        help="Base seed for deterministic phase-randomized preprocessing controls",
     )
     parser.add_argument(
         "--score",
