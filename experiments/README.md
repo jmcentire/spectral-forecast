@@ -162,3 +162,38 @@ python3 experiments/cdip_sharded_run.py \
   --phase-surrogate-seed 20260602 \
   --top-windows 100000
 ```
+
+For temporal organizational networks, use directional quality to test several
+forms of organization rather than assuming simultaneous positive coactivation
+is the only useful structure:
+
+```bash
+python3 experiments/org_network_directional_quality.py \
+  --dataset email-eu \
+  --surface-mode full \
+  --event-order timestamp \
+  --event-bin-size 1024 \
+  --null-repeats 100 \
+  --output experiments/results/email-eu-directional-quality.json
+```
+
+The runner validates itself against known-answer synthetic coactivation,
+exclusion, lagged-succession, phase-offset, and noise cases. It then holds
+calibration and validation apart. A mechanism is not considered replicated
+unless it separates from the independent block-permutation null in both.
+
+Use the second-level order null to test whether a candidate ordering reveals
+more structure than repeated random orderings of the same events. The control
+runs freeze the candidate-selected feature names so order is the intended
+experimental difference:
+
+```bash
+python3 experiments/org_network_directional_order_null.py \
+  --candidate-report experiments/results/email-eu-directional-quality.json \
+  --repeats 100 \
+  --inner-null-repeats 30 \
+  --output experiments/results/email-eu-directional-order-null100.json
+```
+
+These diagnostics identify statistical organization. They do not identify its
+meaning, usefulness, or predictive value.
