@@ -2,6 +2,18 @@
 
 Date: 2026-06-03
 
+## Superseded Status
+
+The original interpretation below is superseded by
+`2026-06-04-cdip-validation-ladder-assessment.md`.
+
+A trajectory-regroup null later preserved every complete observer-score
+trajectory and shared anchor-position profile while destroying original buoy
+group membership. The group-specific surplus did not replicate. The supported
+result is reproducible anchor-aligned observer-score structure plus post-hoc
+swell-like attribution of high-scoring windows, not established multi-buoy
+coherence.
+
 ## Summary
 
 The CDIP experiment is now a defensible cross-domain calibration result:

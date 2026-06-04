@@ -1,0 +1,2293 @@
+{
+  "created_at": "2026-06-04T19:28:10.080391+00:00",
+  "elapsed_seconds": 6.900314092636108,
+  "feature_cache": {
+    "directory": "/tmp/spectral-forecast-chbmit-population-cache",
+    "hits": 252,
+    "misses": 0,
+    "requests": 252
+  },
+  "folds": [
+    {
+      "heldout": {
+        "active_rows_same_shape": 10,
+        "anchor_permute": {
+          "anchors": 2925,
+          "empirical_p_floor": 0.000999000999000999,
+          "empirical_p_ge_observed": 0.000999000999000999,
+          "empirical_p_le_observed": 1.0,
+          "empirical_p_two_sided": 0.001998001998001998,
+          "null_below_or_equal": 1000,
+          "null_exceedances": 0,
+          "null_mean": 2.035724651261483,
+          "null_repeats": 1000,
+          "null_std": 2.0960016799748913,
+          "observed_active_windows": 10,
+          "observed_minus_null": 17.20662902894945,
+          "observed_total": 19.242353680210933,
+          "unique_null_totals": 755,
+          "z_effect": 8.209262995035182
+        },
+        "cell_score_median": 1.148782174789714,
+        "cell_score_q95": 2.3010423440048307,
+        "channel_attribution": {
+          "CZ-PZ": {
+            "median_score": 1.2333555393542843,
+            "positive_fraction": 0.02964169381107492,
+            "q95_score": 2.1964396857291755
+          },
+          "FP1-F7": {
+            "median_score": 1.1494195720193048,
+            "positive_fraction": 0.012052117263843648,
+            "q95_score": 2.063499426651398
+          },
+          "FP2-F8": {
+            "median_score": 1.1732839789951288,
+            "positive_fraction": 0.016938110749185668,
+            "q95_score": 2.139825464926239
+          },
+          "FZ-CZ": {
+            "median_score": 0.9491699972455647,
+            "positive_fraction": 0.003257328990228013,
+            "q95_score": 1.7254963815371247
+          },
+          "P8-O2": {
+            "median_score": 1.269150614224714,
+            "positive_fraction": 0.1495114006514658,
+            "q95_score": 3.663714129098074
+          },
+          "T7-P7": {
+            "median_score": 1.1463862726420637,
+            "positive_fraction": 0.013680781758957655,
+            "q95_score": 2.0100894946041197
+          }
+        },
+        "channel_preserving_recording_regroup": {
+          "anchors": 2925,
+          "empirical_p_floor": 0.000999000999000999,
+          "empirical_p_ge_observed": 0.000999000999000999,
+          "empirical_p_le_observed": 1.0,
+          "empirical_p_two_sided": 0.001998001998001998,
+          "null_below_or_equal": 1000,
+          "null_exceedances": 0,
+          "null_mean": 2.4696790175119943,
+          "null_repeats": 1000,
+          "null_std": 2.896601824902849,
+          "observed_active_windows": 10,
+          "observed_minus_null": 16.77267466269894,
+          "observed_total": 19.242353680210933,
+          "unique_null_totals": 467,
+          "z_effect": 5.7904660966860675
+        },
+        "files": 14,
+        "matrix_shapes": [
+          "145x6",
+          "225x6"
+        ],
+        "observed_total_same_shape": 19.242353680210933,
+        "phase_attribution": {
+          "label_use": "posthoc attribution only",
+          "phase_counts": {
+            "ictal": 27,
+            "interictal": 2550,
+            "postictal": 246,
+            "preictal": 247
+          },
+          "positive_phase_counts": {
+            "ictal": 0,
+            "interictal": 12,
+            "postictal": 1,
+            "preictal": 2
+          },
+          "positive_rates": {
+            "ictal": 0.0,
+            "interictal": 0.004705882352941176,
+            "postictal": 0.0040650406504065045,
+            "preictal": 0.008097165991902834
+          }
+        },
+        "positive_row_fraction": 0.004885993485342019,
+        "recording_specific_structure": true,
+        "row_emission_median": 0.0,
+        "row_emission_q95": 0.0,
+        "same_shape_files": 13,
+        "top_feature_attribution": [
+          {
+            "feature": "spectral_peak_fraction",
+            "mean_abs_z": 0.8209428744190068,
+            "median_abs_z": 0.6609716712447337,
+            "q95_abs_z": 2.189723692926577
+          },
+          {
+            "feature": "lag1_autocorrelation",
+            "mean_abs_z": 0.7778164548916763,
+            "median_abs_z": 0.6453773495089616,
+            "q95_abs_z": 2.0082915150719076
+          },
+          {
+            "feature": "log_power_fraction_3",
+            "mean_abs_z": 0.7759711372596257,
+            "median_abs_z": 0.6390380785806964,
+            "q95_abs_z": 1.9506310455779083
+          },
+          {
+            "feature": "spectral_entropy",
+            "mean_abs_z": 0.7754962065382472,
+            "median_abs_z": 0.6396824952359506,
+            "q95_abs_z": 1.934357774281466
+          },
+          {
+            "feature": "log_power_fraction_5",
+            "mean_abs_z": 0.8293438129495412,
+            "median_abs_z": 0.7109093761135736,
+            "q95_abs_z": 1.9191329230155278
+          },
+          {
+            "feature": "spectral_bandwidth",
+            "mean_abs_z": 0.7592560217687517,
+            "median_abs_z": 0.6225075855678738,
+            "q95_abs_z": 1.9045680432047345
+          },
+          {
+            "feature": "spectral_centroid",
+            "mean_abs_z": 0.7341166685643665,
+            "median_abs_z": 0.6080371026413494,
+            "q95_abs_z": 1.883581754826877
+          },
+          {
+            "feature": "log_power_fraction_6",
+            "mean_abs_z": 0.798986480280276,
+            "median_abs_z": 0.6796453984536734,
+            "q95_abs_z": 1.8815414266749189
+          },
+          {
+            "feature": "log_power_fraction_4",
+            "mean_abs_z": 0.7807553183620491,
+            "median_abs_z": 0.6579936496114007,
+            "q95_abs_z": 1.876432910844062
+          },
+          {
+            "feature": "log_power_fraction_1",
+            "mean_abs_z": 0.7351628735855076,
+            "median_abs_z": 0.594933791662064,
+            "q95_abs_z": 1.8749980806313242
+          }
+        ]
+      },
+      "heldout_subject": "chb01",
+      "population_nominal": {
+        "centers_shape": [
+          6,
+          14
+        ],
+        "entity_names": [
+          "FP1-F7",
+          "T7-P7",
+          "FZ-CZ",
+          "CZ-PZ",
+          "FP2-F8",
+          "P8-O2"
+        ],
+        "feature_names": [
+          "log_power_fraction_0",
+          "log_power_fraction_1",
+          "log_power_fraction_2",
+          "log_power_fraction_3",
+          "log_power_fraction_4",
+          "log_power_fraction_5",
+          "log_power_fraction_6",
+          "log_power_fraction_7",
+          "spectral_entropy",
+          "spectral_centroid",
+          "spectral_bandwidth",
+          "spectral_peak_fraction",
+          "spectral_flatness",
+          "lag1_autocorrelation"
+        ],
+        "observations": 6134,
+        "scales_shape": [
+          6,
+          14
+        ],
+        "source_groups": 28
+      },
+      "selected_candidate": {
+        "emission_threshold": 2.5,
+        "feature_quantile": 0.9,
+        "min_active_channels": 3,
+        "spectral_bins": 8,
+        "stride": 256,
+        "window_samples": 256
+      },
+      "selection": {
+        "best": {
+          "accepted": true,
+          "candidate": {
+            "emission_threshold": 2.5,
+            "feature_quantile": 0.9,
+            "min_active_channels": 3,
+            "spectral_bins": 8,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "file_support": 0.8571428571428571,
+          "files_scored": 14,
+          "group_null": {
+            "anchors": 3150,
+            "empirical_p_floor": 0.009900990099009901,
+            "empirical_p_ge_observed": 0.009900990099009901,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.019801980198019802,
+            "null_below_or_equal": 100,
+            "null_exceedances": 0,
+            "null_mean": 91.1199517883002,
+            "null_repeats": 100,
+            "null_std": 26.10746728195479,
+            "observed_active_windows": 158,
+            "observed_minus_null": 348.99564868579546,
+            "observed_total": 440.1156004740957,
+            "unique_null_totals": 100,
+            "z_effect": 13.367656269247444
+          },
+          "quality": 13.918979020570195,
+          "row_support": 0.05015873015873016,
+          "same_shape_files": 14,
+          "saturation": 0.088994708994709
+        },
+        "candidate_count": 48,
+        "label_use": "none",
+        "top_candidates": [
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 2.5,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.8571428571428571,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 3150,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 91.1199517883002,
+              "null_repeats": 100,
+              "null_std": 26.10746728195479,
+              "observed_active_windows": 158,
+              "observed_minus_null": 348.99564868579546,
+              "observed_total": 440.1156004740957,
+              "unique_null_totals": 100,
+              "z_effect": 13.367656269247444
+            },
+            "quality": 13.918979020570195,
+            "row_support": 0.05015873015873016,
+            "same_shape_files": 14,
+            "saturation": 0.088994708994709
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 1.0,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 1.0,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 3150,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 273.5120587820083,
+              "null_repeats": 100,
+              "null_std": 65.6503591581185,
+              "observed_active_windows": 231,
+              "observed_minus_null": 777.5136731660216,
+              "observed_total": 1051.02573194803,
+              "unique_null_totals": 100,
+              "z_effect": 11.843250869250912
+            },
+            "quality": 12.45012917612922,
+            "row_support": 0.07333333333333333,
+            "same_shape_files": 14,
+            "saturation": 0.11661375661375661
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.5714285714285714,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 3150,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 12.515288253653626,
+              "null_repeats": 100,
+              "null_std": 10.14888657276347,
+              "observed_active_windows": 40,
+              "observed_minus_null": 121.42370338439353,
+              "observed_total": 133.93899163804716,
+              "unique_null_totals": 100,
+              "z_effect": 11.964238886091987
+            },
+            "quality": 12.388789150642252,
+            "row_support": 0.012698412698412698,
+            "same_shape_files": 14,
+            "saturation": 0.03989417989417989
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 2.5,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 16,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.7857142857142857,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 3150,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 46.61137716272139,
+              "null_repeats": 100,
+              "null_std": 18.401233992783002,
+              "observed_active_windows": 120,
+              "observed_minus_null": 216.62509412693458,
+              "observed_total": 263.236471289656,
+              "unique_null_totals": 100,
+              "z_effect": 11.772313433539042
+            },
+            "quality": 12.28966793089354,
+            "row_support": 0.0380952380952381,
+            "same_shape_files": 14,
+            "saturation": 0.07661375661375662
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 1.0,
+              "min_active_channels": 3,
+              "spectral_bins": 16,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 1.0,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 3150,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 423.4192033545776,
+              "null_repeats": 100,
+              "null_std": 69.47016271628304,
+              "observed_active_windows": 336,
+              "observed_minus_null": 810.639814626523,
+              "observed_total": 1234.0590179811006,
+              "unique_null_totals": 100,
+              "z_effect": 11.668891836876583
+            },
+            "quality": 12.18487067285542,
+            "row_support": 0.10666666666666667,
+            "same_shape_files": 14,
+            "saturation": 0.14767195767195768
+          }
+        ]
+      },
+      "training_subjects": [
+        "chb02",
+        "chb03"
+      ]
+    },
+    {
+      "heldout": {
+        "active_rows_same_shape": 68,
+        "anchor_permute": {
+          "anchors": 2925,
+          "empirical_p_floor": 0.000999000999000999,
+          "empirical_p_ge_observed": 0.000999000999000999,
+          "empirical_p_le_observed": 1.0,
+          "empirical_p_two_sided": 0.001998001998001998,
+          "null_below_or_equal": 1000,
+          "null_exceedances": 0,
+          "null_mean": 41.162839710293326,
+          "null_repeats": 1000,
+          "null_std": 10.415417559547599,
+          "observed_active_windows": 68,
+          "observed_minus_null": 161.46340040545155,
+          "observed_total": 202.62624011574488,
+          "unique_null_totals": 1000,
+          "z_effect": 15.50234539156247
+        },
+        "cell_score_median": 1.6612568719993328,
+        "cell_score_q95": 3.4199755219672183,
+        "channel_attribution": {
+          "CZ-PZ": {
+            "median_score": 1.7368314313194315,
+            "positive_fraction": 0.07406166219839141,
+            "q95_score": 3.242794757084328
+          },
+          "FP1-F7": {
+            "median_score": 1.4735410693237863,
+            "positive_fraction": 0.044906166219839144,
+            "q95_score": 2.935147827557485
+          },
+          "FP2-F8": {
+            "median_score": 1.5094220006246193,
+            "positive_fraction": 0.06400804289544236,
+            "q95_score": 3.1594810490426584
+          },
+          "FZ-CZ": {
+            "median_score": 2.1516607763588165,
+            "positive_fraction": 0.24966487935656836,
+            "q95_score": 4.261557534262991
+          },
+          "P8-O2": {
+            "median_score": 1.633906971443725,
+            "positive_fraction": 0.05697050938337802,
+            "q95_score": 3.118017885209242
+          },
+          "T7-P7": {
+            "median_score": 1.6023799812583457,
+            "positive_fraction": 0.03753351206434316,
+            "q95_score": 2.819821249811675
+          }
+        },
+        "channel_preserving_recording_regroup": {
+          "anchors": 2925,
+          "empirical_p_floor": 0.000999000999000999,
+          "empirical_p_ge_observed": 0.000999000999000999,
+          "empirical_p_le_observed": 1.0,
+          "empirical_p_two_sided": 0.001998001998001998,
+          "null_below_or_equal": 1000,
+          "null_exceedances": 0,
+          "null_mean": 56.07052435814887,
+          "null_repeats": 1000,
+          "null_std": 15.329114671017251,
+          "observed_active_windows": 68,
+          "observed_minus_null": 146.555715757596,
+          "observed_total": 202.62624011574488,
+          "unique_null_totals": 1000,
+          "z_effect": 9.560611875041213
+        },
+        "files": 14,
+        "matrix_shapes": [
+          "225x6",
+          "59x6"
+        ],
+        "observed_total_same_shape": 202.62624011574488,
+        "phase_attribution": {
+          "label_use": "posthoc attribution only",
+          "phase_counts": {
+            "ictal": 11,
+            "interictal": 2805,
+            "postictal": 86,
+            "preictal": 82
+          },
+          "positive_phase_counts": {
+            "ictal": 6,
+            "interictal": 59,
+            "postictal": 9,
+            "preictal": 0
+          },
+          "positive_rates": {
+            "ictal": 0.5454545454545454,
+            "interictal": 0.021033868092691622,
+            "postictal": 0.10465116279069768,
+            "preictal": 0.0
+          }
+        },
+        "positive_row_fraction": 0.024798927613941018,
+        "recording_specific_structure": true,
+        "row_emission_median": 0.0,
+        "row_emission_q95": 0.0,
+        "same_shape_files": 13,
+        "top_feature_attribution": [
+          {
+            "feature": "log_power_fraction_7",
+            "mean_abs_z": 1.114725133923376,
+            "median_abs_z": 0.9632022370347675,
+            "q95_abs_z": 2.644905466621916
+          },
+          {
+            "feature": "lag1_autocorrelation",
+            "mean_abs_z": 0.9012008769590621,
+            "median_abs_z": 0.7123530411186396,
+            "q95_abs_z": 2.5226194511777105
+          },
+          {
+            "feature": "spectral_centroid",
+            "mean_abs_z": 0.9104298747340193,
+            "median_abs_z": 0.7270984264312239,
+            "q95_abs_z": 2.4697492281675273
+          },
+          {
+            "feature": "spectral_bandwidth",
+            "mean_abs_z": 0.9275398911038307,
+            "median_abs_z": 0.7677691599421084,
+            "q95_abs_z": 2.323869978815955
+          },
+          {
+            "feature": "log_power_fraction_1",
+            "mean_abs_z": 0.8646545032934008,
+            "median_abs_z": 0.698530549450576,
+            "q95_abs_z": 2.2271018682732957
+          },
+          {
+            "feature": "spectral_peak_fraction",
+            "mean_abs_z": 0.8070189383366174,
+            "median_abs_z": 0.6536806977625004,
+            "q95_abs_z": 2.172921916152601
+          },
+          {
+            "feature": "log_power_fraction_0",
+            "mean_abs_z": 0.8392224239624538,
+            "median_abs_z": 0.6943990311370907,
+            "q95_abs_z": 2.146024750953144
+          },
+          {
+            "feature": "log_power_fraction_6",
+            "mean_abs_z": 0.7847940441293043,
+            "median_abs_z": 0.6650070070019296,
+            "q95_abs_z": 1.9136249243822627
+          },
+          {
+            "feature": "log_power_fraction_2",
+            "mean_abs_z": 0.7549890685185797,
+            "median_abs_z": 0.6338898686201091,
+            "q95_abs_z": 1.8557401106415574
+          },
+          {
+            "feature": "spectral_flatness",
+            "mean_abs_z": 0.7869458971256088,
+            "median_abs_z": 0.7079434102155814,
+            "q95_abs_z": 1.798806024392527
+          }
+        ]
+      },
+      "heldout_subject": "chb02",
+      "population_nominal": {
+        "centers_shape": [
+          6,
+          14
+        ],
+        "entity_names": [
+          "FP1-F7",
+          "T7-P7",
+          "FZ-CZ",
+          "CZ-PZ",
+          "FP2-F8",
+          "P8-O2"
+        ],
+        "feature_names": [
+          "log_power_fraction_0",
+          "log_power_fraction_1",
+          "log_power_fraction_2",
+          "log_power_fraction_3",
+          "log_power_fraction_4",
+          "log_power_fraction_5",
+          "log_power_fraction_6",
+          "log_power_fraction_7",
+          "spectral_entropy",
+          "spectral_centroid",
+          "spectral_bandwidth",
+          "spectral_peak_fraction",
+          "spectral_flatness",
+          "lag1_autocorrelation"
+        ],
+        "observations": 6220,
+        "scales_shape": [
+          6,
+          14
+        ],
+        "source_groups": 28
+      },
+      "selected_candidate": {
+        "emission_threshold": 3.0,
+        "feature_quantile": 1.0,
+        "min_active_channels": 3,
+        "spectral_bins": 8,
+        "stride": 256,
+        "window_samples": 256
+      },
+      "selection": {
+        "best": {
+          "accepted": true,
+          "candidate": {
+            "emission_threshold": 3.0,
+            "feature_quantile": 1.0,
+            "min_active_channels": 3,
+            "spectral_bins": 8,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "file_support": 0.8571428571428571,
+          "files_scored": 14,
+          "group_null": {
+            "anchors": 2925,
+            "empirical_p_floor": 0.009900990099009901,
+            "empirical_p_ge_observed": 0.009900990099009901,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.019801980198019802,
+            "null_below_or_equal": 100,
+            "null_exceedances": 0,
+            "null_mean": 333.9668151226017,
+            "null_repeats": 100,
+            "null_std": 74.41082540114252,
+            "observed_active_windows": 254,
+            "observed_minus_null": 944.3530023668663,
+            "observed_total": 1278.319817489468,
+            "unique_null_totals": 100,
+            "z_effect": 12.691070113467207
+          },
+          "quality": 13.146041417949913,
+          "row_support": 0.08925081433224756,
+          "same_shape_files": 13,
+          "saturation": 0.12285559174809989
+        },
+        "candidate_count": 48,
+        "label_use": "none",
+        "top_candidates": [
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 1.0,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.8571428571428571,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 333.9668151226017,
+              "null_repeats": 100,
+              "null_std": 74.41082540114252,
+              "observed_active_windows": 254,
+              "observed_minus_null": 944.3530023668663,
+              "observed_total": 1278.319817489468,
+              "unique_null_totals": 100,
+              "z_effect": 12.691070113467207
+            },
+            "quality": 13.146041417949913,
+            "row_support": 0.08925081433224756,
+            "same_shape_files": 13,
+            "saturation": 0.12285559174809989
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.5,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 19.79274372816919,
+              "null_repeats": 100,
+              "null_std": 14.324852118452357,
+              "observed_active_windows": 57,
+              "observed_minus_null": 183.45929377793922,
+              "observed_total": 203.25203750610842,
+              "unique_null_totals": 100,
+              "z_effect": 12.80706371422981
+            },
+            "quality": 13.134859588279756,
+            "row_support": 0.018892508143322474,
+            "same_shape_files": 13,
+            "saturation": 0.04777415852334419
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 2.5,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.8571428571428571,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 109.07941085526313,
+              "null_repeats": 100,
+              "null_std": 37.79755656135742,
+              "observed_active_windows": 186,
+              "observed_minus_null": 462.03042162137393,
+              "observed_total": 571.109832476637,
+              "unique_null_totals": 100,
+              "z_effect": 12.223817189646956
+            },
+            "quality": 12.766302066333788,
+            "row_support": 0.06384364820846905,
+            "same_shape_files": 13,
+            "saturation": 0.09462540716612378
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 2.5,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 16,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.7857142857142857,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 60.58111258753946,
+              "null_repeats": 100,
+              "null_std": 24.098597879584155,
+              "observed_active_windows": 146,
+              "observed_minus_null": 287.0860780774869,
+              "observed_total": 347.66719066502634,
+              "unique_null_totals": 100,
+              "z_effect": 11.912978485802297
+            },
+            "quality": 12.429528819290741,
+            "row_support": 0.049185667752443,
+            "same_shape_files": 13,
+            "saturation": 0.07958740499457112
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 1.0,
+              "min_active_channels": 3,
+              "spectral_bins": 16,
+              "stride": 256,
+              "window_samples": 512
+            },
+            "file_support": 0.8571428571428571,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2912,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 537.5261423540519,
+              "null_repeats": 100,
+              "null_std": 104.55263906334748,
+              "observed_active_windows": 335,
+              "observed_minus_null": 1235.6570968345368,
+              "observed_total": 1773.1832391885887,
+              "unique_null_totals": 100,
+              "z_effect": 11.818516566433713
+            },
+            "quality": 12.198892407869764,
+            "row_support": 0.11681937172774869,
+            "same_shape_files": 13,
+            "saturation": 0.14839659685863874
+          }
+        ]
+      },
+      "training_subjects": [
+        "chb01",
+        "chb03"
+      ]
+    },
+    {
+      "heldout": {
+        "active_rows_same_shape": 596,
+        "anchor_permute": {
+          "anchors": 3150,
+          "empirical_p_floor": 0.000999000999000999,
+          "empirical_p_ge_observed": 0.000999000999000999,
+          "empirical_p_le_observed": 1.0,
+          "empirical_p_two_sided": 0.001998001998001998,
+          "null_below_or_equal": 1000,
+          "null_exceedances": 0,
+          "null_mean": 1108.736964670825,
+          "null_repeats": 1000,
+          "null_std": 34.90978555221951,
+          "observed_active_windows": 596,
+          "observed_minus_null": 659.3496364639334,
+          "observed_total": 1768.0866011347584,
+          "unique_null_totals": 1000,
+          "z_effect": 18.887243964236067
+        },
+        "cell_score_median": 1.681121925282354,
+        "cell_score_q95": 3.6504887167164357,
+        "channel_attribution": {
+          "CZ-PZ": {
+            "median_score": 1.566062345500137,
+            "positive_fraction": 0.09777777777777778,
+            "q95_score": 2.799909426032575
+          },
+          "FP1-F7": {
+            "median_score": 1.8100871405439216,
+            "positive_fraction": 0.2761904761904762,
+            "q95_score": 4.072558227342021
+          },
+          "FP2-F8": {
+            "median_score": 2.074466053482898,
+            "positive_fraction": 0.3450793650793651,
+            "q95_score": 4.406764878288432
+          },
+          "FZ-CZ": {
+            "median_score": 1.7891420501785706,
+            "positive_fraction": 0.20539682539682538,
+            "q95_score": 3.296989395200345
+          },
+          "P8-O2": {
+            "median_score": 1.3554577486852004,
+            "positive_fraction": 0.06476190476190476,
+            "q95_score": 2.6832198143067023
+          },
+          "T7-P7": {
+            "median_score": 1.8197410991056289,
+            "positive_fraction": 0.2876190476190476,
+            "q95_score": 3.771346754508653
+          }
+        },
+        "channel_preserving_recording_regroup": {
+          "anchors": 3150,
+          "empirical_p_floor": 0.000999000999000999,
+          "empirical_p_ge_observed": 0.000999000999000999,
+          "empirical_p_le_observed": 1.0,
+          "empirical_p_two_sided": 0.001998001998001998,
+          "null_below_or_equal": 1000,
+          "null_exceedances": 0,
+          "null_mean": 914.8703723644202,
+          "null_repeats": 1000,
+          "null_std": 85.9566029915792,
+          "observed_active_windows": 596,
+          "observed_minus_null": 853.2162287703383,
+          "observed_total": 1768.0866011347584,
+          "unique_null_totals": 1000,
+          "z_effect": 9.92612782585096
+        },
+        "files": 14,
+        "matrix_shapes": [
+          "225x6"
+        ],
+        "observed_total_same_shape": 1768.0866011347584,
+        "phase_attribution": {
+          "label_use": "posthoc attribution only",
+          "phase_counts": {
+            "ictal": 27,
+            "interictal": 2627,
+            "postictal": 262,
+            "preictal": 234
+          },
+          "positive_phase_counts": {
+            "ictal": 1,
+            "interictal": 487,
+            "postictal": 68,
+            "preictal": 40
+          },
+          "positive_rates": {
+            "ictal": 0.037037037037037035,
+            "interictal": 0.18538256566425582,
+            "postictal": 0.2595419847328244,
+            "preictal": 0.17094017094017094
+          }
+        },
+        "positive_row_fraction": 0.1892063492063492,
+        "recording_specific_structure": true,
+        "row_emission_median": 0.0,
+        "row_emission_q95": 3.724208030897852,
+        "same_shape_files": 14,
+        "top_feature_attribution": [
+          {
+            "feature": "spectral_peak_fraction",
+            "mean_abs_z": 1.41343871412483,
+            "median_abs_z": 0.8266809066896522,
+            "q95_abs_z": 4.741988215799469
+          },
+          {
+            "feature": "spectral_entropy",
+            "mean_abs_z": 1.5131466850721416,
+            "median_abs_z": 1.070991061071441,
+            "q95_abs_z": 4.270104343221362
+          },
+          {
+            "feature": "log_power_fraction_10",
+            "mean_abs_z": 1.2116389940445118,
+            "median_abs_z": 0.9851187873087728,
+            "q95_abs_z": 3.12827198154462
+          },
+          {
+            "feature": "log_power_fraction_9",
+            "mean_abs_z": 1.173020377514422,
+            "median_abs_z": 0.9253219591407086,
+            "q95_abs_z": 3.0995489012012682
+          },
+          {
+            "feature": "log_power_fraction_12",
+            "mean_abs_z": 1.250105507029503,
+            "median_abs_z": 1.0509238611965128,
+            "q95_abs_z": 3.0687329924668543
+          },
+          {
+            "feature": "log_power_fraction_8",
+            "mean_abs_z": 1.1230808382547548,
+            "median_abs_z": 0.8718823329846234,
+            "q95_abs_z": 3.057008844571041
+          },
+          {
+            "feature": "log_power_fraction_11",
+            "mean_abs_z": 1.1957694973325672,
+            "median_abs_z": 0.9881584840780929,
+            "q95_abs_z": 2.971413447528175
+          },
+          {
+            "feature": "log_power_fraction_13",
+            "mean_abs_z": 1.2027187169582967,
+            "median_abs_z": 1.0372481162608822,
+            "q95_abs_z": 2.8589882639914435
+          },
+          {
+            "feature": "spectral_bandwidth",
+            "mean_abs_z": 1.228012224833323,
+            "median_abs_z": 1.0880303930741388,
+            "q95_abs_z": 2.8314883645582625
+          },
+          {
+            "feature": "log_power_fraction_7",
+            "mean_abs_z": 1.067800986600469,
+            "median_abs_z": 0.8385957395808596,
+            "q95_abs_z": 2.8309210272286407
+          }
+        ]
+      },
+      "heldout_subject": "chb03",
+      "population_nominal": {
+        "centers_shape": [
+          6,
+          22
+        ],
+        "entity_names": [
+          "FP1-F7",
+          "T7-P7",
+          "FZ-CZ",
+          "CZ-PZ",
+          "FP2-F8",
+          "P8-O2"
+        ],
+        "feature_names": [
+          "log_power_fraction_0",
+          "log_power_fraction_1",
+          "log_power_fraction_2",
+          "log_power_fraction_3",
+          "log_power_fraction_4",
+          "log_power_fraction_5",
+          "log_power_fraction_6",
+          "log_power_fraction_7",
+          "log_power_fraction_8",
+          "log_power_fraction_9",
+          "log_power_fraction_10",
+          "log_power_fraction_11",
+          "log_power_fraction_12",
+          "log_power_fraction_13",
+          "log_power_fraction_14",
+          "log_power_fraction_15",
+          "spectral_entropy",
+          "spectral_centroid",
+          "spectral_bandwidth",
+          "spectral_peak_fraction",
+          "spectral_flatness",
+          "lag1_autocorrelation"
+        ],
+        "observations": 6054,
+        "scales_shape": [
+          6,
+          22
+        ],
+        "source_groups": 28
+      },
+      "selected_candidate": {
+        "emission_threshold": 2.5,
+        "feature_quantile": 0.9,
+        "min_active_channels": 3,
+        "spectral_bins": 16,
+        "stride": 256,
+        "window_samples": 256
+      },
+      "selection": {
+        "best": {
+          "accepted": true,
+          "candidate": {
+            "emission_threshold": 2.5,
+            "feature_quantile": 0.9,
+            "min_active_channels": 3,
+            "spectral_bins": 16,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "file_support": 0.9285714285714286,
+          "files_scored": 14,
+          "group_null": {
+            "anchors": 2925,
+            "empirical_p_floor": 0.009900990099009901,
+            "empirical_p_ge_observed": 0.009900990099009901,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.019801980198019802,
+            "null_below_or_equal": 100,
+            "null_exceedances": 0,
+            "null_mean": 36.406764029678264,
+            "null_repeats": 100,
+            "null_std": 10.442372532013628,
+            "observed_active_windows": 110,
+            "observed_minus_null": 169.15043693567455,
+            "observed_total": 205.55720096535282,
+            "unique_null_totals": 100,
+            "z_effect": 16.198467964737212
+          },
+          "quality": 16.84734341068106,
+          "row_support": 0.040390879478827364,
+          "same_shape_files": 13,
+          "saturation": 0.08002171552660152
+        },
+        "candidate_count": 48,
+        "label_use": "none",
+        "top_candidates": [
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 2.5,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 16,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.9285714285714286,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 36.406764029678264,
+              "null_repeats": 100,
+              "null_std": 10.442372532013628,
+              "observed_active_windows": 110,
+              "observed_minus_null": 169.15043693567455,
+              "observed_total": 205.55720096535282,
+              "unique_null_totals": 100,
+              "z_effect": 16.198467964737212
+            },
+            "quality": 16.84734341068106,
+            "row_support": 0.040390879478827364,
+            "same_shape_files": 13,
+            "saturation": 0.08002171552660152
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 1.0,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.9285714285714286,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 183.2309563739052,
+              "null_repeats": 100,
+              "null_std": 28.280539742264448,
+              "observed_active_windows": 166,
+              "observed_minus_null": 409.8730615505624,
+              "observed_total": 593.1040179244676,
+              "unique_null_totals": 100,
+              "z_effect": 14.49311311898404
+            },
+            "quality": 15.01983872779434,
+            "row_support": 0.061563517915309444,
+            "same_shape_files": 13,
+            "saturation": 0.11585233441910966
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.7142857142857143,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 8.254772073342972,
+              "null_repeats": 100,
+              "null_std": 5.230759894024793,
+              "observed_active_windows": 36,
+              "observed_minus_null": 68.17773085525259,
+              "observed_total": 76.43250292859557,
+              "unique_null_totals": 99,
+              "z_effect": 13.03400122286887
+            },
+            "quality": 13.598341225971087,
+            "row_support": 0.014006514657980456,
+            "same_shape_files": 13,
+            "saturation": 0.04098805646036916
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 3.0,
+              "feature_quantile": 1.0,
+              "min_active_channels": 3,
+              "spectral_bins": 16,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 1.0,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 342.5801863864858,
+              "null_repeats": 100,
+              "null_std": 42.805304737164086,
+              "observed_active_windows": 316,
+              "observed_minus_null": 542.6742026609465,
+              "observed_total": 885.2543890474324,
+              "unique_null_totals": 100,
+              "z_effect": 12.677732491173932
+            },
+            "quality": 13.17425800691769,
+            "row_support": 0.11302931596091205,
+            "same_shape_files": 13,
+            "saturation": 0.1541259500542888
+          },
+          {
+            "accepted": true,
+            "candidate": {
+              "emission_threshold": 2.5,
+              "feature_quantile": 0.9,
+              "min_active_channels": 3,
+              "spectral_bins": 8,
+              "stride": 256,
+              "window_samples": 256
+            },
+            "file_support": 0.9285714285714286,
+            "files_scored": 14,
+            "group_null": {
+              "anchors": 2925,
+              "empirical_p_floor": 0.009900990099009901,
+              "empirical_p_ge_observed": 0.009900990099009901,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.019801980198019802,
+              "null_below_or_equal": 100,
+              "null_exceedances": 0,
+              "null_mean": 76.57560692875029,
+              "null_repeats": 100,
+              "null_std": 19.19132809554853,
+              "observed_active_windows": 131,
+              "observed_minus_null": 236.64520262845895,
+              "observed_total": 313.22080955720924,
+              "unique_null_totals": 100,
+              "z_effect": 12.330840338420836
+            },
+            "quality": 12.92890145211713,
+            "row_support": 0.04820846905537459,
+            "same_shape_files": 13,
+            "saturation": 0.09467969598262758
+          }
+        ]
+      },
+      "training_subjects": [
+        "chb01",
+        "chb02"
+      ]
+    }
+  ],
+  "method": {
+    "heldout": "heldout subject contributes to neither selection nor nominal",
+    "limits": "detects population spectral-shape/relationship difference; does not assess absolute voltage amplitude or establish medical abnormality",
+    "nominal": "robust channel-feature population nominal fit on all training-subject recordings after selection",
+    "nuisance_normalization": "per-recording robust location/scale removal before scale-free spectral shape extraction",
+    "selection": "candidate geometry selected without labels on aggregate training-subject calibration/validation files",
+    "split": "outer leave-one-subject-out"
+  },
+  "parameters": {
+    "candidate_count_per_fold": 48,
+    "channels": [
+      "FP1-F7",
+      "T7-P7",
+      "FZ-CZ",
+      "CZ-PZ",
+      "FP2-F8",
+      "P8-O2"
+    ],
+    "feature_geometries": [
+      {
+        "spectral_bins": 8,
+        "stride": 256,
+        "window_samples": 256
+      },
+      {
+        "spectral_bins": 16,
+        "stride": 256,
+        "window_samples": 256
+      },
+      {
+        "spectral_bins": 8,
+        "stride": 256,
+        "window_samples": 512
+      },
+      {
+        "spectral_bins": 16,
+        "stride": 256,
+        "window_samples": 512
+      },
+      {
+        "spectral_bins": 8,
+        "stride": 256,
+        "window_samples": 1024
+      },
+      {
+        "spectral_bins": 16,
+        "stride": 256,
+        "window_samples": 1024
+      }
+    ],
+    "heldout_null_repeats": 1000,
+    "max_files_per_subject": 0,
+    "selection_null_repeats": 100,
+    "subjects": [
+      "chb01",
+      "chb02",
+      "chb03"
+    ],
+    "target_sample_rate": 16.0
+  },
+  "shared_population_instrument": {
+    "selected_candidate": {
+      "emission_threshold": 2.5,
+      "feature_quantile": 0.9,
+      "min_active_channels": 3,
+      "spectral_bins": 8,
+      "stride": 256,
+      "window_samples": 256
+    },
+    "selection": {
+      "best": {
+        "accepted_folds": 3,
+        "candidate": {
+          "emission_threshold": 2.5,
+          "feature_quantile": 0.9,
+          "min_active_channels": 3,
+          "spectral_bins": 8,
+          "stride": 256,
+          "window_samples": 256
+        },
+        "folds": {
+          "chb01": {
+            "accepted": true,
+            "file_support": 0.8571428571428571,
+            "group_delta": 348.99564868579546,
+            "group_empirical_p": 0.009900990099009901,
+            "group_z_effect": 13.367656269247444,
+            "quality": 13.918979020570195,
+            "row_support": 0.05015873015873016,
+            "saturation": 0.088994708994709
+          },
+          "chb02": {
+            "accepted": true,
+            "file_support": 0.8571428571428571,
+            "group_delta": 462.03042162137393,
+            "group_empirical_p": 0.009900990099009901,
+            "group_z_effect": 12.223817189646956,
+            "quality": 12.766302066333788,
+            "row_support": 0.06384364820846905,
+            "saturation": 0.09462540716612378
+          },
+          "chb03": {
+            "accepted": true,
+            "file_support": 0.9285714285714286,
+            "group_delta": 236.64520262845895,
+            "group_empirical_p": 0.009900990099009901,
+            "group_z_effect": 12.330840338420836,
+            "quality": 12.92890145211713,
+            "row_support": 0.04820846905537459,
+            "saturation": 0.09467969598262758
+          }
+        },
+        "maximum_group_p": 0.009900990099009901,
+        "maximum_saturation": 0.09467969598262758,
+        "median_quality": 12.92890145211713,
+        "minimum_file_support": 0.8571428571428571,
+        "minimum_group_delta": 236.64520262845895,
+        "minimum_quality": 12.766302066333788
+      },
+      "label_use": "none",
+      "method": "choose one common candidate by accepted-fold count, then conservative minimum quality across all cross-fitted development folds",
+      "scope": "aggregate-developed common instrument; a new unseen subject is still required for strict external generalization",
+      "top_candidates": [
+        {
+          "accepted_folds": 3,
+          "candidate": {
+            "emission_threshold": 2.5,
+            "feature_quantile": 0.9,
+            "min_active_channels": 3,
+            "spectral_bins": 8,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "folds": {
+            "chb01": {
+              "accepted": true,
+              "file_support": 0.8571428571428571,
+              "group_delta": 348.99564868579546,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 13.367656269247444,
+              "quality": 13.918979020570195,
+              "row_support": 0.05015873015873016,
+              "saturation": 0.088994708994709
+            },
+            "chb02": {
+              "accepted": true,
+              "file_support": 0.8571428571428571,
+              "group_delta": 462.03042162137393,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 12.223817189646956,
+              "quality": 12.766302066333788,
+              "row_support": 0.06384364820846905,
+              "saturation": 0.09462540716612378
+            },
+            "chb03": {
+              "accepted": true,
+              "file_support": 0.9285714285714286,
+              "group_delta": 236.64520262845895,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 12.330840338420836,
+              "quality": 12.92890145211713,
+              "row_support": 0.04820846905537459,
+              "saturation": 0.09467969598262758
+            }
+          },
+          "maximum_group_p": 0.009900990099009901,
+          "maximum_saturation": 0.09467969598262758,
+          "median_quality": 12.92890145211713,
+          "minimum_file_support": 0.8571428571428571,
+          "minimum_group_delta": 236.64520262845895,
+          "minimum_quality": 12.766302066333788
+        },
+        {
+          "accepted_folds": 3,
+          "candidate": {
+            "emission_threshold": 3.0,
+            "feature_quantile": 1.0,
+            "min_active_channels": 3,
+            "spectral_bins": 8,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "folds": {
+            "chb01": {
+              "accepted": true,
+              "file_support": 1.0,
+              "group_delta": 777.5136731660216,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 11.843250869250912,
+              "quality": 12.45012917612922,
+              "row_support": 0.07333333333333333,
+              "saturation": 0.11661375661375661
+            },
+            "chb02": {
+              "accepted": true,
+              "file_support": 0.8571428571428571,
+              "group_delta": 944.3530023668663,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 12.691070113467207,
+              "quality": 13.146041417949913,
+              "row_support": 0.08925081433224756,
+              "saturation": 0.12285559174809989
+            },
+            "chb03": {
+              "accepted": true,
+              "file_support": 0.9285714285714286,
+              "group_delta": 409.8730615505624,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 14.49311311898404,
+              "quality": 15.01983872779434,
+              "row_support": 0.061563517915309444,
+              "saturation": 0.11585233441910966
+            }
+          },
+          "maximum_group_p": 0.009900990099009901,
+          "maximum_saturation": 0.12285559174809989,
+          "median_quality": 13.146041417949913,
+          "minimum_file_support": 0.8571428571428571,
+          "minimum_group_delta": 409.8730615505624,
+          "minimum_quality": 12.45012917612922
+        },
+        {
+          "accepted_folds": 3,
+          "candidate": {
+            "emission_threshold": 3.0,
+            "feature_quantile": 0.9,
+            "min_active_channels": 3,
+            "spectral_bins": 8,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "folds": {
+            "chb01": {
+              "accepted": true,
+              "file_support": 0.5714285714285714,
+              "group_delta": 121.42370338439353,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 11.964238886091987,
+              "quality": 12.388789150642252,
+              "row_support": 0.012698412698412698,
+              "saturation": 0.03989417989417989
+            },
+            "chb02": {
+              "accepted": true,
+              "file_support": 0.5,
+              "group_delta": 183.45929377793922,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 12.80706371422981,
+              "quality": 13.134859588279756,
+              "row_support": 0.018892508143322474,
+              "saturation": 0.04777415852334419
+            },
+            "chb03": {
+              "accepted": true,
+              "file_support": 0.7142857142857143,
+              "group_delta": 68.17773085525259,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 13.03400122286887,
+              "quality": 13.598341225971087,
+              "row_support": 0.014006514657980456,
+              "saturation": 0.04098805646036916
+            }
+          },
+          "maximum_group_p": 0.009900990099009901,
+          "maximum_saturation": 0.04777415852334419,
+          "median_quality": 13.134859588279756,
+          "minimum_file_support": 0.5,
+          "minimum_group_delta": 68.17773085525259,
+          "minimum_quality": 12.388789150642252
+        },
+        {
+          "accepted_folds": 3,
+          "candidate": {
+            "emission_threshold": 2.5,
+            "feature_quantile": 0.9,
+            "min_active_channels": 3,
+            "spectral_bins": 16,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "folds": {
+            "chb01": {
+              "accepted": true,
+              "file_support": 0.7857142857142857,
+              "group_delta": 216.62509412693458,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 11.772313433539042,
+              "quality": 12.28966793089354,
+              "row_support": 0.0380952380952381,
+              "saturation": 0.07661375661375662
+            },
+            "chb02": {
+              "accepted": true,
+              "file_support": 0.7857142857142857,
+              "group_delta": 287.0860780774869,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 11.912978485802297,
+              "quality": 12.429528819290741,
+              "row_support": 0.049185667752443,
+              "saturation": 0.07958740499457112
+            },
+            "chb03": {
+              "accepted": true,
+              "file_support": 0.9285714285714286,
+              "group_delta": 169.15043693567455,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 16.198467964737212,
+              "quality": 16.84734341068106,
+              "row_support": 0.040390879478827364,
+              "saturation": 0.08002171552660152
+            }
+          },
+          "maximum_group_p": 0.009900990099009901,
+          "maximum_saturation": 0.08002171552660152,
+          "median_quality": 12.429528819290741,
+          "minimum_file_support": 0.7857142857142857,
+          "minimum_group_delta": 169.15043693567455,
+          "minimum_quality": 12.28966793089354
+        },
+        {
+          "accepted_folds": 3,
+          "candidate": {
+            "emission_threshold": 3.0,
+            "feature_quantile": 1.0,
+            "min_active_channels": 3,
+            "spectral_bins": 16,
+            "stride": 256,
+            "window_samples": 256
+          },
+          "folds": {
+            "chb01": {
+              "accepted": true,
+              "file_support": 1.0,
+              "group_delta": 810.639814626523,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 11.668891836876583,
+              "quality": 12.18487067285542,
+              "row_support": 0.10666666666666667,
+              "saturation": 0.14767195767195768
+            },
+            "chb02": {
+              "accepted": true,
+              "file_support": 0.9285714285714286,
+              "group_delta": 973.9326209213855,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 10.780459772334359,
+              "quality": 11.235849876258666,
+              "row_support": 0.10944625407166124,
+              "saturation": 0.14565689467969598
+            },
+            "chb03": {
+              "accepted": true,
+              "file_support": 1.0,
+              "group_delta": 542.6742026609465,
+              "group_empirical_p": 0.009900990099009901,
+              "group_z_effect": 12.677732491173932,
+              "quality": 13.17425800691769,
+              "row_support": 0.11302931596091205,
+              "saturation": 0.1541259500542888
+            }
+          },
+          "maximum_group_p": 0.009900990099009901,
+          "maximum_saturation": 0.1541259500542888,
+          "median_quality": 12.18487067285542,
+          "minimum_file_support": 0.9285714285714286,
+          "minimum_group_delta": 542.6742026609465,
+          "minimum_quality": 11.235849876258666
+        }
+      ]
+    },
+    "subject_runs": [
+      {
+        "heldout": {
+          "active_rows_same_shape": 10,
+          "anchor_permute": {
+            "anchors": 2925,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 2.0192464654046023,
+            "null_repeats": 1000,
+            "null_std": 1.9833631251661341,
+            "observed_active_windows": 10,
+            "observed_minus_null": 17.22310721480633,
+            "observed_total": 19.242353680210933,
+            "unique_null_totals": 767,
+            "z_effect": 8.683789164106626
+          },
+          "cell_score_median": 1.148782174789714,
+          "cell_score_q95": 2.3010423440048307,
+          "channel_attribution": {
+            "CZ-PZ": {
+              "median_score": 1.2333555393542843,
+              "positive_fraction": 0.02964169381107492,
+              "q95_score": 2.1964396857291755
+            },
+            "FP1-F7": {
+              "median_score": 1.1494195720193048,
+              "positive_fraction": 0.012052117263843648,
+              "q95_score": 2.063499426651398
+            },
+            "FP2-F8": {
+              "median_score": 1.1732839789951288,
+              "positive_fraction": 0.016938110749185668,
+              "q95_score": 2.139825464926239
+            },
+            "FZ-CZ": {
+              "median_score": 0.9491699972455647,
+              "positive_fraction": 0.003257328990228013,
+              "q95_score": 1.7254963815371247
+            },
+            "P8-O2": {
+              "median_score": 1.269150614224714,
+              "positive_fraction": 0.1495114006514658,
+              "q95_score": 3.663714129098074
+            },
+            "T7-P7": {
+              "median_score": 1.1463862726420637,
+              "positive_fraction": 0.013680781758957655,
+              "q95_score": 2.0100894946041197
+            }
+          },
+          "channel_preserving_recording_regroup": {
+            "anchors": 2925,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.001998001998001998,
+            "empirical_p_le_observed": 0.999000999000999,
+            "empirical_p_two_sided": 0.003996003996003996,
+            "null_below_or_equal": 999,
+            "null_exceedances": 1,
+            "null_mean": 2.5479008940738024,
+            "null_repeats": 1000,
+            "null_std": 2.8360951305985824,
+            "observed_active_windows": 10,
+            "observed_minus_null": 16.69445278613713,
+            "observed_total": 19.242353680210933,
+            "unique_null_totals": 483,
+            "z_effect": 5.886422005390779
+          },
+          "files": 14,
+          "matrix_shapes": [
+            "145x6",
+            "225x6"
+          ],
+          "observed_total_same_shape": 19.242353680210933,
+          "phase_attribution": {
+            "label_use": "posthoc attribution only",
+            "phase_counts": {
+              "ictal": 27,
+              "interictal": 2550,
+              "postictal": 246,
+              "preictal": 247
+            },
+            "positive_phase_counts": {
+              "ictal": 0,
+              "interictal": 12,
+              "postictal": 1,
+              "preictal": 2
+            },
+            "positive_rates": {
+              "ictal": 0.0,
+              "interictal": 0.004705882352941176,
+              "postictal": 0.0040650406504065045,
+              "preictal": 0.008097165991902834
+            }
+          },
+          "positive_row_fraction": 0.004885993485342019,
+          "recording_specific_structure": true,
+          "row_emission_median": 0.0,
+          "row_emission_q95": 0.0,
+          "same_shape_files": 13,
+          "top_feature_attribution": [
+            {
+              "feature": "spectral_peak_fraction",
+              "mean_abs_z": 0.8209428744190068,
+              "median_abs_z": 0.6609716712447337,
+              "q95_abs_z": 2.189723692926577
+            },
+            {
+              "feature": "lag1_autocorrelation",
+              "mean_abs_z": 0.7778164548916763,
+              "median_abs_z": 0.6453773495089616,
+              "q95_abs_z": 2.0082915150719076
+            },
+            {
+              "feature": "log_power_fraction_3",
+              "mean_abs_z": 0.7759711372596257,
+              "median_abs_z": 0.6390380785806964,
+              "q95_abs_z": 1.9506310455779083
+            },
+            {
+              "feature": "spectral_entropy",
+              "mean_abs_z": 0.7754962065382472,
+              "median_abs_z": 0.6396824952359506,
+              "q95_abs_z": 1.934357774281466
+            },
+            {
+              "feature": "log_power_fraction_5",
+              "mean_abs_z": 0.8293438129495412,
+              "median_abs_z": 0.7109093761135736,
+              "q95_abs_z": 1.9191329230155278
+            },
+            {
+              "feature": "spectral_bandwidth",
+              "mean_abs_z": 0.7592560217687517,
+              "median_abs_z": 0.6225075855678738,
+              "q95_abs_z": 1.9045680432047345
+            },
+            {
+              "feature": "spectral_centroid",
+              "mean_abs_z": 0.7341166685643665,
+              "median_abs_z": 0.6080371026413494,
+              "q95_abs_z": 1.883581754826877
+            },
+            {
+              "feature": "log_power_fraction_6",
+              "mean_abs_z": 0.798986480280276,
+              "median_abs_z": 0.6796453984536734,
+              "q95_abs_z": 1.8815414266749189
+            },
+            {
+              "feature": "log_power_fraction_4",
+              "mean_abs_z": 0.7807553183620491,
+              "median_abs_z": 0.6579936496114007,
+              "q95_abs_z": 1.876432910844062
+            },
+            {
+              "feature": "log_power_fraction_1",
+              "mean_abs_z": 0.7351628735855076,
+              "median_abs_z": 0.594933791662064,
+              "q95_abs_z": 1.8749980806313242
+            }
+          ]
+        },
+        "heldout_subject": "chb01",
+        "nominal_training_subjects": [
+          "chb02",
+          "chb03"
+        ],
+        "population_nominal": {
+          "centers_shape": [
+            6,
+            14
+          ],
+          "entity_names": [
+            "FP1-F7",
+            "T7-P7",
+            "FZ-CZ",
+            "CZ-PZ",
+            "FP2-F8",
+            "P8-O2"
+          ],
+          "feature_names": [
+            "log_power_fraction_0",
+            "log_power_fraction_1",
+            "log_power_fraction_2",
+            "log_power_fraction_3",
+            "log_power_fraction_4",
+            "log_power_fraction_5",
+            "log_power_fraction_6",
+            "log_power_fraction_7",
+            "spectral_entropy",
+            "spectral_centroid",
+            "spectral_bandwidth",
+            "spectral_peak_fraction",
+            "spectral_flatness",
+            "lag1_autocorrelation"
+          ],
+          "observations": 6134,
+          "scales_shape": [
+            6,
+            14
+          ],
+          "source_groups": 28
+        }
+      },
+      {
+        "heldout": {
+          "active_rows_same_shape": 45,
+          "anchor_permute": {
+            "anchors": 2925,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 11.775263226411154,
+            "null_repeats": 1000,
+            "null_std": 4.5823791972827355,
+            "observed_active_windows": 45,
+            "observed_minus_null": 72.83757267274369,
+            "observed_total": 84.61283589915485,
+            "unique_null_totals": 1000,
+            "z_effect": 15.8951430112844
+          },
+          "cell_score_median": 1.2869019313114909,
+          "cell_score_q95": 2.7273168811958897,
+          "channel_attribution": {
+            "CZ-PZ": {
+              "median_score": 1.3225562859133098,
+              "positive_fraction": 0.049597855227882036,
+              "q95_score": 2.488786819327843
+            },
+            "FP1-F7": {
+              "median_score": 1.1404075897693993,
+              "positive_fraction": 0.02982573726541555,
+              "q95_score": 2.318710260759949
+            },
+            "FP2-F8": {
+              "median_score": 1.1801968338856006,
+              "positive_fraction": 0.054289544235924934,
+              "q95_score": 2.5203179515824727
+            },
+            "FZ-CZ": {
+              "median_score": 1.6842958615340584,
+              "positive_fraction": 0.24597855227882037,
+              "q95_score": 3.649682765739572
+            },
+            "P8-O2": {
+              "median_score": 1.271807958840145,
+              "positive_fraction": 0.035522788203753354,
+              "q95_score": 2.340853281941249
+            },
+            "T7-P7": {
+              "median_score": 1.2367454038594188,
+              "positive_fraction": 0.0217828418230563,
+              "q95_score": 2.1363073271403867
+            }
+          },
+          "channel_preserving_recording_regroup": {
+            "anchors": 2925,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 18.341828694427985,
+            "null_repeats": 1000,
+            "null_std": 7.334174949291452,
+            "observed_active_windows": 45,
+            "observed_minus_null": 66.27100720472686,
+            "observed_total": 84.61283589915485,
+            "unique_null_totals": 1000,
+            "z_effect": 9.03591851338769
+          },
+          "files": 14,
+          "matrix_shapes": [
+            "225x6",
+            "59x6"
+          ],
+          "observed_total_same_shape": 84.61283589915485,
+          "phase_attribution": {
+            "label_use": "posthoc attribution only",
+            "phase_counts": {
+              "ictal": 11,
+              "interictal": 2805,
+              "postictal": 86,
+              "preictal": 82
+            },
+            "positive_phase_counts": {
+              "ictal": 4,
+              "interictal": 40,
+              "postictal": 5,
+              "preictal": 0
+            },
+            "positive_rates": {
+              "ictal": 0.36363636363636365,
+              "interictal": 0.0142602495543672,
+              "postictal": 0.05813953488372093,
+              "preictal": 0.0
+            }
+          },
+          "positive_row_fraction": 0.016420911528150135,
+          "recording_specific_structure": true,
+          "row_emission_median": 0.0,
+          "row_emission_q95": 0.0,
+          "same_shape_files": 13,
+          "top_feature_attribution": [
+            {
+              "feature": "log_power_fraction_7",
+              "mean_abs_z": 1.114725133923376,
+              "median_abs_z": 0.9632022370347675,
+              "q95_abs_z": 2.644905466621916
+            },
+            {
+              "feature": "lag1_autocorrelation",
+              "mean_abs_z": 0.9012008769590621,
+              "median_abs_z": 0.7123530411186396,
+              "q95_abs_z": 2.5226194511777105
+            },
+            {
+              "feature": "spectral_centroid",
+              "mean_abs_z": 0.9104298747340193,
+              "median_abs_z": 0.7270984264312239,
+              "q95_abs_z": 2.4697492281675273
+            },
+            {
+              "feature": "spectral_bandwidth",
+              "mean_abs_z": 0.9275398911038307,
+              "median_abs_z": 0.7677691599421084,
+              "q95_abs_z": 2.323869978815955
+            },
+            {
+              "feature": "log_power_fraction_1",
+              "mean_abs_z": 0.8646545032934008,
+              "median_abs_z": 0.698530549450576,
+              "q95_abs_z": 2.2271018682732957
+            },
+            {
+              "feature": "spectral_peak_fraction",
+              "mean_abs_z": 0.8070189383366174,
+              "median_abs_z": 0.6536806977625004,
+              "q95_abs_z": 2.172921916152601
+            },
+            {
+              "feature": "log_power_fraction_0",
+              "mean_abs_z": 0.8392224239624538,
+              "median_abs_z": 0.6943990311370907,
+              "q95_abs_z": 2.146024750953144
+            },
+            {
+              "feature": "log_power_fraction_6",
+              "mean_abs_z": 0.7847940441293043,
+              "median_abs_z": 0.6650070070019296,
+              "q95_abs_z": 1.9136249243822627
+            },
+            {
+              "feature": "log_power_fraction_2",
+              "mean_abs_z": 0.7549890685185797,
+              "median_abs_z": 0.6338898686201091,
+              "q95_abs_z": 1.8557401106415574
+            },
+            {
+              "feature": "spectral_flatness",
+              "mean_abs_z": 0.7869458971256088,
+              "median_abs_z": 0.7079434102155814,
+              "q95_abs_z": 1.798806024392527
+            }
+          ]
+        },
+        "heldout_subject": "chb02",
+        "nominal_training_subjects": [
+          "chb01",
+          "chb03"
+        ],
+        "population_nominal": {
+          "centers_shape": [
+            6,
+            14
+          ],
+          "entity_names": [
+            "FP1-F7",
+            "T7-P7",
+            "FZ-CZ",
+            "CZ-PZ",
+            "FP2-F8",
+            "P8-O2"
+          ],
+          "feature_names": [
+            "log_power_fraction_0",
+            "log_power_fraction_1",
+            "log_power_fraction_2",
+            "log_power_fraction_3",
+            "log_power_fraction_4",
+            "log_power_fraction_5",
+            "log_power_fraction_6",
+            "log_power_fraction_7",
+            "spectral_entropy",
+            "spectral_centroid",
+            "spectral_bandwidth",
+            "spectral_peak_fraction",
+            "spectral_flatness",
+            "lag1_autocorrelation"
+          ],
+          "observations": 6220,
+          "scales_shape": [
+            6,
+            14
+          ],
+          "source_groups": 28
+        }
+      },
+      {
+        "heldout": {
+          "active_rows_same_shape": 700,
+          "anchor_permute": {
+            "anchors": 3150,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 1856.8135783164696,
+            "null_repeats": 1000,
+            "null_std": 47.11035667682491,
+            "observed_active_windows": 700,
+            "observed_minus_null": 892.8829745733858,
+            "observed_total": 2749.6965528898554,
+            "unique_null_totals": 1000,
+            "z_effect": 18.9530081612102
+          },
+          "cell_score_median": 1.629109148712583,
+          "cell_score_q95": 4.089854196500222,
+          "channel_attribution": {
+            "CZ-PZ": {
+              "median_score": 1.5028913575368636,
+              "positive_fraction": 0.11523809523809524,
+              "q95_score": 2.9373909356876986
+            },
+            "FP1-F7": {
+              "median_score": 1.76645149136729,
+              "positive_fraction": 0.28825396825396826,
+              "q95_score": 4.7809206104415125
+            },
+            "FP2-F8": {
+              "median_score": 2.0647637947736985,
+              "positive_fraction": 0.36603174603174604,
+              "q95_score": 5.124793998346558
+            },
+            "FZ-CZ": {
+              "median_score": 1.776020660856207,
+              "positive_fraction": 0.22984126984126985,
+              "q95_score": 3.652217352509417
+            },
+            "P8-O2": {
+              "median_score": 1.2507252103147808,
+              "positive_fraction": 0.0784126984126984,
+              "q95_score": 2.8667535227756544
+            },
+            "T7-P7": {
+              "median_score": 1.771081181144246,
+              "positive_fraction": 0.31333333333333335,
+              "q95_score": 4.299463607876338
+            }
+          },
+          "channel_preserving_recording_regroup": {
+            "anchors": 3150,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 1521.2249012725013,
+            "null_repeats": 1000,
+            "null_std": 135.70680449546163,
+            "observed_active_windows": 700,
+            "observed_minus_null": 1228.4716516173542,
+            "observed_total": 2749.6965528898554,
+            "unique_null_totals": 1000,
+            "z_effect": 9.052395391554867
+          },
+          "files": 14,
+          "matrix_shapes": [
+            "225x6"
+          ],
+          "observed_total_same_shape": 2749.6965528898554,
+          "phase_attribution": {
+            "label_use": "posthoc attribution only",
+            "phase_counts": {
+              "ictal": 27,
+              "interictal": 2627,
+              "postictal": 262,
+              "preictal": 234
+            },
+            "positive_phase_counts": {
+              "ictal": 3,
+              "interictal": 569,
+              "postictal": 81,
+              "preictal": 47
+            },
+            "positive_rates": {
+              "ictal": 0.1111111111111111,
+              "interictal": 0.21659687856870954,
+              "postictal": 0.30916030534351147,
+              "preictal": 0.20085470085470086
+            }
+          },
+          "positive_row_fraction": 0.2222222222222222,
+          "recording_specific_structure": true,
+          "row_emission_median": 0.0,
+          "row_emission_q95": 5.443860200945738,
+          "same_shape_files": 14,
+          "top_feature_attribution": [
+            {
+              "feature": "spectral_peak_fraction",
+              "mean_abs_z": 1.41343871412483,
+              "median_abs_z": 0.8266809066896522,
+              "q95_abs_z": 4.741988215799469
+            },
+            {
+              "feature": "spectral_entropy",
+              "mean_abs_z": 1.5131466850721416,
+              "median_abs_z": 1.070991061071441,
+              "q95_abs_z": 4.270104343221362
+            },
+            {
+              "feature": "log_power_fraction_4",
+              "mean_abs_z": 1.2763436953551826,
+              "median_abs_z": 0.9804072783153935,
+              "q95_abs_z": 3.4457021574300413
+            },
+            {
+              "feature": "log_power_fraction_5",
+              "mean_abs_z": 1.3151176127791797,
+              "median_abs_z": 1.0697787361041549,
+              "q95_abs_z": 3.3452945273951618
+            },
+            {
+              "feature": "log_power_fraction_6",
+              "mean_abs_z": 1.3225260130933663,
+              "median_abs_z": 1.1342100139297462,
+              "q95_abs_z": 3.1648169747318913
+            },
+            {
+              "feature": "log_power_fraction_3",
+              "mean_abs_z": 1.162481193045585,
+              "median_abs_z": 0.9161091757084951,
+              "q95_abs_z": 3.1247074793646425
+            },
+            {
+              "feature": "log_power_fraction_2",
+              "mean_abs_z": 1.1089899673543036,
+              "median_abs_z": 0.8660066244447522,
+              "q95_abs_z": 3.040024753488597
+            },
+            {
+              "feature": "spectral_bandwidth",
+              "mean_abs_z": 1.228012224833323,
+              "median_abs_z": 1.0880303930741388,
+              "q95_abs_z": 2.8314883645582625
+            },
+            {
+              "feature": "log_power_fraction_7",
+              "mean_abs_z": 1.150151598243114,
+              "median_abs_z": 0.9916237069091463,
+              "q95_abs_z": 2.7397541426670213
+            },
+            {
+              "feature": "log_power_fraction_1",
+              "mean_abs_z": 1.0064438077320204,
+              "median_abs_z": 0.7676627583608674,
+              "q95_abs_z": 2.73133670120495
+            }
+          ]
+        },
+        "heldout_subject": "chb03",
+        "nominal_training_subjects": [
+          "chb01",
+          "chb02"
+        ],
+        "population_nominal": {
+          "centers_shape": [
+            6,
+            14
+          ],
+          "entity_names": [
+            "FP1-F7",
+            "T7-P7",
+            "FZ-CZ",
+            "CZ-PZ",
+            "FP2-F8",
+            "P8-O2"
+          ],
+          "feature_names": [
+            "log_power_fraction_0",
+            "log_power_fraction_1",
+            "log_power_fraction_2",
+            "log_power_fraction_3",
+            "log_power_fraction_4",
+            "log_power_fraction_5",
+            "log_power_fraction_6",
+            "log_power_fraction_7",
+            "spectral_entropy",
+            "spectral_centroid",
+            "spectral_bandwidth",
+            "spectral_peak_fraction",
+            "spectral_flatness",
+            "lag1_autocorrelation"
+          ],
+          "observations": 6054,
+          "scales_shape": [
+            6,
+            14
+          ],
+          "source_groups": 28
+        }
+      }
+    ]
+  }
+}

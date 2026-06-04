@@ -57,10 +57,12 @@ For every result, distinguish:
 
 Current status:
 
-- Ocean/CDIP: broad multi-buoy structure and controls completed; needs migration
-  into the common layer-by-layer report.
-- EEG/CHB-MIT: cross-subject and predictor-contribution work completed; needs
-  the same directional layer comparison and domain-appropriate controls.
+- Ocean/CDIP: migrated and reassessed. The earlier multi-buoy-coherence framing
+  is superseded; trajectory regrouping shows the aggregate is dominated by
+  group-independent/shared-template effects.
+- EEG/CHB-MIT: within-brain recording-regroup and cross-fitted population
+  nominal assessments completed. Population result is promising but bounded by
+  three epilepsy subjects and no healthy controls.
 - Social/organizational: feature-surface and frozen-observer directional audits
   completed. SocioPatterns preserves order-sensitive coactivation; Email-Eu
   does not preserve its raw coactivation/phase mechanisms in the selected

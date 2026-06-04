@@ -2,6 +2,17 @@
 
 Date: 2026-06-03
 
+## Superseded Status
+
+The CDIP multi-buoy-coherence interpretation and the broad thesis below are
+superseded by `2026-06-04-cross-domain-quality-assessment.md`.
+
+A later trajectory-regroup control showed that the CDIP aggregate is dominated
+by group-independent/shared-template effects rather than replicated original
+buoy-group coherence. The later assessment retains the narrower ocean result,
+adds calibrated social positive/negative outcomes, and separates EEG
+self-referential from population-nominal structure.
+
 ## Thesis
 
 The experiments now support a stronger and more general claim than the original
@@ -191,4 +202,3 @@ multi-sensor infrastructure-like stream with event context, such as BGP routing
 incidents or public outage telemetry. The method is now calibrated enough to
 move from proving that it can find structure to asking what structure it finds
 in operational systems.
-

@@ -1,0 +1,354 @@
+{
+  "cache_dir": "/tmp/spectral-forecast-cdip-autotune-big-naive-cache",
+  "candidate": {
+    "adaptive_window": 512,
+    "baseline_size": 1024,
+    "decay": 0.9,
+    "emission_threshold": 3.0,
+    "min_active_series": 2,
+    "preprocess": "none",
+    "score": "max",
+    "stride": 512
+  },
+  "created_at": "2026-06-04T19:11:17.936353+00:00",
+  "method": {
+    "anchor_permute": "preserve each trajectory score distribution; independently destroy anchor alignment",
+    "selection": "frozen candidate from source report",
+    "trajectory_regroup": "preserve every complete trajectory and shared anchor-position profile; destroy original buoy group membership"
+  },
+  "null_repeats": 1000,
+  "phase_surrogate_seed": 20260602,
+  "preprocess": {
+    "highpass": {
+      "calibration": {
+        "comparison": {
+          "anchor_permute": {
+            "anchors": 16614,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 20305.4733835904,
+            "null_repeats": 1000,
+            "null_std": 162.8042463705845,
+            "observed_active_windows": 4731,
+            "observed_minus_null": 1694.5466466032776,
+            "observed_total": 22000.02003019368,
+            "unique_null_totals": 1000,
+            "z_effect": 10.4084916971149
+          },
+          "diagnosis": "shared_anchor_template_or_group_independent_distribution",
+          "group_specific_fraction_of_anchor_permute_surplus": 0.1759440231219675,
+          "trajectory_regroup": {
+            "anchors": 16614,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.058941058941058944,
+            "empirical_p_le_observed": 0.942057942057942,
+            "empirical_p_two_sided": 0.11788211788211789,
+            "null_below_or_equal": 942,
+            "null_exceedances": 58,
+            "null_mean": 21701.87467582246,
+            "null_repeats": 1000,
+            "null_std": 191.57465758315226,
+            "observed_active_windows": 4731,
+            "observed_minus_null": 298.1453543712196,
+            "observed_total": 22000.02003019368,
+            "unique_null_totals": 1000,
+            "z_effect": 1.556288071358346
+          }
+        },
+        "elapsed_seconds": 1.652940034866333,
+        "load": {
+          "loaded_windows": 2769,
+          "missing_examples": [],
+          "missing_windows": 0,
+          "requested_windows": 2769,
+          "shape_counts": {
+            "6x3": 2769
+          }
+        },
+        "matrix_shape": [
+          6,
+          3
+        ]
+      },
+      "validation": {
+        "comparison": {
+          "anchor_permute": {
+            "anchors": 16332,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 21070.821688232594,
+            "null_repeats": 1000,
+            "null_std": 159.05301030087568,
+            "observed_active_windows": 4950,
+            "observed_minus_null": 1859.3485568989854,
+            "observed_total": 22930.17024513158,
+            "unique_null_totals": 1000,
+            "z_effect": 11.690118617571041
+          },
+          "diagnosis": "shared_anchor_template_or_group_independent_distribution",
+          "group_specific_fraction_of_anchor_permute_surplus": 0.09082801816095029,
+          "trajectory_regroup": {
+            "anchors": 16332,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.17782217782217782,
+            "empirical_p_le_observed": 0.8231768231768232,
+            "empirical_p_two_sided": 0.35564435564435565,
+            "null_below_or_equal": 823,
+            "null_exceedances": 177,
+            "null_mean": 22761.28930063802,
+            "null_repeats": 1000,
+            "null_std": 191.2682388322299,
+            "observed_active_windows": 4950,
+            "observed_minus_null": 168.88094449355776,
+            "observed_total": 22930.17024513158,
+            "unique_null_totals": 1000,
+            "z_effect": 0.882953414140499
+          }
+        },
+        "elapsed_seconds": 1.5985360145568848,
+        "load": {
+          "loaded_windows": 2722,
+          "missing_examples": [],
+          "missing_windows": 0,
+          "requested_windows": 2722,
+          "shape_counts": {
+            "6x3": 2722
+          }
+        },
+        "matrix_shape": [
+          6,
+          3
+        ]
+      }
+    },
+    "highpass-dominant-mask": {
+      "calibration": {
+        "comparison": {
+          "anchor_permute": {
+            "anchors": 16614,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 17490.881522556694,
+            "null_repeats": 1000,
+            "null_std": 151.27529085291144,
+            "observed_active_windows": 4358,
+            "observed_minus_null": 1553.548139308441,
+            "observed_total": 19044.429661865135,
+            "unique_null_totals": 1000,
+            "z_effect": 10.26967544104075
+          },
+          "diagnosis": "group_specific_structure",
+          "group_specific_fraction_of_anchor_permute_surplus": 0.2324565450667929,
+          "trajectory_regroup": {
+            "anchors": 16614,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.03496503496503497,
+            "empirical_p_le_observed": 0.9660339660339661,
+            "empirical_p_two_sided": 0.06993006993006994,
+            "null_below_or_equal": 966,
+            "null_exceedances": 34,
+            "null_mean": 18683.29722880655,
+            "null_repeats": 1000,
+            "null_std": 187.07834477769546,
+            "observed_active_windows": 4358,
+            "observed_minus_null": 361.13243305858487,
+            "observed_total": 19044.429661865135,
+            "unique_null_totals": 1000,
+            "z_effect": 1.930380736945889
+          }
+        },
+        "elapsed_seconds": 1.6395196914672852,
+        "load": {
+          "loaded_windows": 2769,
+          "missing_examples": [],
+          "missing_windows": 0,
+          "requested_windows": 2769,
+          "shape_counts": {
+            "6x3": 2769
+          }
+        },
+        "matrix_shape": [
+          6,
+          3
+        ]
+      },
+      "validation": {
+        "comparison": {
+          "anchor_permute": {
+            "anchors": 16332,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 18326.22531063726,
+            "null_repeats": 1000,
+            "null_std": 156.94422549985876,
+            "observed_active_windows": 4597,
+            "observed_minus_null": 1355.5939482656613,
+            "observed_total": 19681.81925890292,
+            "unique_null_totals": 1000,
+            "z_effect": 8.637424817307988
+          },
+          "diagnosis": "shared_anchor_template_or_group_independent_distribution",
+          "group_specific_fraction_of_anchor_permute_surplus": -0.1603105423198934,
+          "trajectory_regroup": {
+            "anchors": 16332,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.8891108891108891,
+            "empirical_p_le_observed": 0.11188811188811189,
+            "empirical_p_two_sided": 0.22377622377622378,
+            "null_below_or_equal": 111,
+            "null_exceedances": 889,
+            "null_mean": 19899.135259914954,
+            "null_repeats": 1000,
+            "null_std": 177.26428981530512,
+            "observed_active_windows": 4597,
+            "observed_minus_null": -217.31600101203367,
+            "observed_total": 19681.81925890292,
+            "unique_null_totals": 1000,
+            "z_effect": -1.225943483814248
+          }
+        },
+        "elapsed_seconds": 1.6753637790679932,
+        "load": {
+          "loaded_windows": 2722,
+          "missing_examples": [],
+          "missing_windows": 0,
+          "requested_windows": 2722,
+          "shape_counts": {
+            "6x3": 2722
+          }
+        },
+        "matrix_shape": [
+          6,
+          3
+        ]
+      }
+    },
+    "none": {
+      "calibration": {
+        "comparison": {
+          "anchor_permute": {
+            "anchors": 16614,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 20352.991254943387,
+            "null_repeats": 1000,
+            "null_std": 168.31455778668857,
+            "observed_active_windows": 4736,
+            "observed_minus_null": 1680.753653856249,
+            "observed_total": 22033.744908799636,
+            "unique_null_totals": 1000,
+            "z_effect": 9.98578896536289
+          },
+          "diagnosis": "shared_anchor_template_or_group_independent_distribution",
+          "group_specific_fraction_of_anchor_permute_surplus": 0.1761509139258465,
+          "trajectory_regroup": {
+            "anchors": 16614,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.06493506493506493,
+            "empirical_p_le_observed": 0.936063936063936,
+            "empirical_p_two_sided": 0.12987012987012986,
+            "null_below_or_equal": 936,
+            "null_exceedances": 64,
+            "null_mean": 21737.67861658865,
+            "null_repeats": 1000,
+            "null_std": 192.74510530120858,
+            "observed_active_windows": 4736,
+            "observed_minus_null": 296.0662922109841,
+            "observed_total": 22033.744908799636,
+            "unique_null_totals": 1000,
+            "z_effect": 1.5360508986638721
+          }
+        },
+        "elapsed_seconds": 1.621150016784668,
+        "load": {
+          "loaded_windows": 2769,
+          "missing_examples": [],
+          "missing_windows": 0,
+          "requested_windows": 2769,
+          "shape_counts": {
+            "6x3": 2769
+          }
+        },
+        "matrix_shape": [
+          6,
+          3
+        ]
+      },
+      "validation": {
+        "comparison": {
+          "anchor_permute": {
+            "anchors": 16332,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.000999000999000999,
+            "empirical_p_le_observed": 1.0,
+            "empirical_p_two_sided": 0.001998001998001998,
+            "null_below_or_equal": 1000,
+            "null_exceedances": 0,
+            "null_mean": 21056.236123031504,
+            "null_repeats": 1000,
+            "null_std": 170.21011750053222,
+            "observed_active_windows": 4950,
+            "observed_minus_null": 1876.7153148337566,
+            "observed_total": 22932.95143786526,
+            "unique_null_totals": 1000,
+            "z_effect": 11.025874033768224
+          },
+          "diagnosis": "shared_anchor_template_or_group_independent_distribution",
+          "group_specific_fraction_of_anchor_permute_surplus": 0.09408533830460125,
+          "trajectory_regroup": {
+            "anchors": 16332,
+            "empirical_p_floor": 0.000999000999000999,
+            "empirical_p_ge_observed": 0.18281718281718282,
+            "empirical_p_le_observed": 0.8181818181818182,
+            "empirical_p_two_sided": 0.36563436563436563,
+            "null_below_or_equal": 818,
+            "null_exceedances": 182,
+            "null_mean": 22756.3800425677,
+            "null_repeats": 1000,
+            "null_std": 188.4234819875359,
+            "observed_active_windows": 4950,
+            "observed_minus_null": 176.57139529756023,
+            "observed_total": 22932.95143786526,
+            "unique_null_totals": 1000,
+            "z_effect": 0.9370986749371308
+          }
+        },
+        "elapsed_seconds": 1.6430788040161133,
+        "load": {
+          "loaded_windows": 2722,
+          "missing_examples": [],
+          "missing_windows": 0,
+          "requested_windows": 2722,
+          "shape_counts": {
+            "6x3": 2722
+          }
+        },
+        "matrix_shape": [
+          6,
+          3
+        ]
+      }
+    }
+  },
+  "source_report": "experiments/results/2026-06-03-cdip-autotune-big-ocean-naive-512-512-heldout-shift-permute50.json"
+}

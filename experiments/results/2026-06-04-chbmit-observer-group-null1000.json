@@ -1,0 +1,517 @@
+{
+  "created_at": "2026-06-04T19:21:17.310030+00:00",
+  "method": {
+    "label_use": "none",
+    "selection": "frozen candidate from each source report",
+    "shape_handling": "assess the dominant observer-matrix shape in each split; report excluded short files",
+    "trajectory_regroup": "preserve complete channel score trajectories and shared anchor profile; destroy original recording membership",
+    "trajectory_regroup_within_channel": "preserve complete trajectories and electrode/channel identity; destroy only shared recording membership"
+  },
+  "null_repeats": 1000,
+  "subjects": [
+    {
+      "candidate": {
+        "adaptive_window": 256,
+        "baseline_size": 1024,
+        "decay": 0.9,
+        "emission_threshold": 2.5,
+        "min_active_series": 3,
+        "score": "max",
+        "stride": 256
+      },
+      "elapsed_seconds": 46.340139865875244,
+      "label_use": "none",
+      "matrix_cache": {
+        "directory": "/tmp/spectral-forecast-chbmit-group-null-cache",
+        "hits": 0,
+        "misses": 14
+      },
+      "segments": {
+        "calibration": {
+          "comparison": {
+            "anchor_permute": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 3416.6353812322527,
+              "null_repeats": 1000,
+              "null_std": 77.40608662244033,
+              "observed_active_windows": 345,
+              "observed_minus_null": 941.6840940252055,
+              "observed_total": 4358.319475257458,
+              "unique_null_totals": 1000,
+              "z_effect": 12.165504485692571
+            },
+            "diagnosis": "recording_specific_channel_structure",
+            "group_specific_fraction_of_anchor_permute_surplus": 2.2106400865440787,
+            "trajectory_regroup": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 2252.9914836632393,
+              "null_repeats": 1000,
+              "null_std": 327.633812855532,
+              "observed_active_windows": 345,
+              "observed_minus_null": 2105.327991594219,
+              "observed_total": 4358.319475257458,
+              "unique_null_totals": 1000,
+              "z_effect": 6.425856883466877
+            },
+            "trajectory_regroup_within_channel": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 2276.5948681443956,
+              "null_repeats": 1000,
+              "null_std": 326.8151190776071,
+              "observed_active_windows": 345,
+              "observed_minus_null": 2081.7246071130626,
+              "observed_total": 4358.319475257458,
+              "unique_null_totals": 1000,
+              "z_effect": 6.36973164824338
+            }
+          },
+          "files_assessed": 7,
+          "files_requested": 7,
+          "shape": {
+            "dominant_shape": [
+              221,
+              6
+            ],
+            "dominant_shape_files": 7,
+            "excluded_non_dominant_shape": [],
+            "shape_counts": {
+              "221x6": 7
+            }
+          }
+        },
+        "validation": {
+          "comparison": {
+            "anchor_permute": {
+              "anchors": 1326,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 598.2702560957342,
+              "null_repeats": 1000,
+              "null_std": 50.186013604153636,
+              "observed_active_windows": 202,
+              "observed_minus_null": 777.1862183739078,
+              "observed_total": 1375.456474469642,
+              "unique_null_totals": 1000,
+              "z_effect": 15.486111818006284
+            },
+            "diagnosis": "recording_specific_channel_structure",
+            "group_specific_fraction_of_anchor_permute_surplus": 0.7466416260587131,
+            "trajectory_regroup": {
+              "anchors": 1326,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 781.2047534565298,
+              "null_repeats": 1000,
+              "null_std": 74.98913862494696,
+              "observed_active_windows": 202,
+              "observed_minus_null": 594.2517210131122,
+              "observed_total": 1375.456474469642,
+              "unique_null_totals": 1000,
+              "z_effect": 7.9245038936268015
+            },
+            "trajectory_regroup_within_channel": {
+              "anchors": 1326,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 795.1768926325254,
+              "null_repeats": 1000,
+              "null_std": 79.26010810734792,
+              "observed_active_windows": 202,
+              "observed_minus_null": 580.2795818371166,
+              "observed_total": 1375.456474469642,
+              "unique_null_totals": 1000,
+              "z_effect": 7.32120603533874
+            }
+          },
+          "files_assessed": 6,
+          "files_requested": 7,
+          "shape": {
+            "dominant_shape": [
+              221,
+              6
+            ],
+            "dominant_shape_files": 6,
+            "excluded_non_dominant_shape": [
+              {
+                "file": "chb01_26.edf",
+                "shape": [
+                  142,
+                  6
+                ]
+              }
+            ],
+            "shape_counts": {
+              "142x6": 1,
+              "221x6": 6
+            }
+          }
+        }
+      },
+      "source_report": "experiments/results/2026-06-03-chbmit-autotune-chb01-expanded.json",
+      "subject": "data/chbmit/chb01/chb01-summary.txt"
+    },
+    {
+      "candidate": {
+        "adaptive_window": 256,
+        "baseline_size": 1024,
+        "decay": 0.9,
+        "emission_threshold": 3.0,
+        "min_active_series": 3,
+        "score": "max",
+        "stride": 256
+      },
+      "elapsed_seconds": 46.21617102622986,
+      "label_use": "none",
+      "matrix_cache": {
+        "directory": "/tmp/spectral-forecast-chbmit-group-null-cache",
+        "hits": 0,
+        "misses": 14
+      },
+      "segments": {
+        "calibration": {
+          "comparison": {
+            "anchor_permute": {
+              "anchors": 1326,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 185.27130081910326,
+              "null_repeats": 1000,
+              "null_std": 30.6466470716616,
+              "observed_active_windows": 111,
+              "observed_minus_null": 576.0630147861214,
+              "observed_total": 761.3343156052247,
+              "unique_null_totals": 1000,
+              "z_effect": 18.796934406530767
+            },
+            "diagnosis": "recording_specific_channel_structure",
+            "group_specific_fraction_of_anchor_permute_surplus": 0.8419915403411722,
+            "trajectory_regroup": {
+              "anchors": 1326,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 272.10340384990604,
+              "null_repeats": 1000,
+              "null_std": 51.763165586359,
+              "observed_active_windows": 111,
+              "observed_minus_null": 489.23091175531863,
+              "observed_total": 761.3343156052247,
+              "unique_null_totals": 1000,
+              "z_effect": 9.451332935562277
+            },
+            "trajectory_regroup_within_channel": {
+              "anchors": 1326,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 276.2941304518789,
+              "null_repeats": 1000,
+              "null_std": 55.23036274750221,
+              "observed_active_windows": 111,
+              "observed_minus_null": 485.04018515334576,
+              "observed_total": 761.3343156052247,
+              "unique_null_totals": 1000,
+              "z_effect": 8.782129267751037
+            }
+          },
+          "files_assessed": 6,
+          "files_requested": 7,
+          "shape": {
+            "dominant_shape": [
+              221,
+              6
+            ],
+            "dominant_shape_files": 6,
+            "excluded_non_dominant_shape": [
+              {
+                "file": "chb02_16.edf",
+                "shape": [
+                  56,
+                  6
+                ]
+              }
+            ],
+            "shape_counts": {
+              "221x6": 6,
+              "56x6": 1
+            }
+          }
+        },
+        "validation": {
+          "comparison": {
+            "anchor_permute": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 2901.19797521703,
+              "null_repeats": 1000,
+              "null_std": 234.06954488074157,
+              "observed_active_windows": 105,
+              "observed_minus_null": 1092.4366963036891,
+              "observed_total": 3993.634671520719,
+              "unique_null_totals": 1000,
+              "z_effect": 4.667145812840733
+            },
+            "diagnosis": "recording_specific_channel_structure",
+            "group_specific_fraction_of_anchor_permute_surplus": 2.0825812825801098,
+            "trajectory_regroup": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.11588411588411589,
+              "empirical_p_le_observed": 0.8851148851148851,
+              "empirical_p_two_sided": 0.23176823176823177,
+              "null_below_or_equal": 885,
+              "null_exceedances": 115,
+              "null_mean": 2228.7123520551268,
+              "null_repeats": 1000,
+              "null_std": 1481.6934114159258,
+              "observed_active_windows": 105,
+              "observed_minus_null": 1764.9223194655924,
+              "observed_total": 3993.634671520719,
+              "unique_null_totals": 1000,
+              "z_effect": 1.1911521680986685
+            },
+            "trajectory_regroup_within_channel": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.001998001998001998,
+              "empirical_p_le_observed": 0.999000999000999,
+              "empirical_p_two_sided": 0.003996003996003996,
+              "null_below_or_equal": 999,
+              "null_exceedances": 1,
+              "null_mean": 1718.5464553950042,
+              "null_repeats": 1000,
+              "null_std": 668.6209735425044,
+              "observed_active_windows": 105,
+              "observed_minus_null": 2275.088216125715,
+              "observed_total": 3993.634671520719,
+              "unique_null_totals": 1000,
+              "z_effect": 3.4026575685650204
+            }
+          },
+          "files_assessed": 7,
+          "files_requested": 7,
+          "shape": {
+            "dominant_shape": [
+              221,
+              6
+            ],
+            "dominant_shape_files": 7,
+            "excluded_non_dominant_shape": [],
+            "shape_counts": {
+              "221x6": 7
+            }
+          }
+        }
+      },
+      "source_report": "experiments/results/2026-06-03-chbmit-autotune-chb02.json",
+      "subject": "data/chbmit/chb02/chb02-summary.txt"
+    },
+    {
+      "candidate": {
+        "adaptive_window": 256,
+        "baseline_size": 1024,
+        "decay": 0.9,
+        "emission_threshold": 3.0,
+        "min_active_series": 3,
+        "score": "max",
+        "stride": 256
+      },
+      "elapsed_seconds": 58.962559938430786,
+      "label_use": "none",
+      "matrix_cache": {
+        "directory": "/tmp/spectral-forecast-chbmit-group-null-cache",
+        "hits": 0,
+        "misses": 14
+      },
+      "segments": {
+        "calibration": {
+          "comparison": {
+            "anchor_permute": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 5293.429571544162,
+              "null_repeats": 1000,
+              "null_std": 173.4712172659368,
+              "observed_active_windows": 346,
+              "observed_minus_null": 1122.1908473086205,
+              "observed_total": 6415.620418852783,
+              "unique_null_totals": 1000,
+              "z_effect": 6.469031952362834
+            },
+            "diagnosis": "shared_anchor_template_or_recording_independent_distribution",
+            "group_specific_fraction_of_anchor_permute_surplus": -0.24117097943585805,
+            "trajectory_regroup": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.45354645354645357,
+              "empirical_p_le_observed": 0.5474525474525475,
+              "empirical_p_two_sided": 0.9070929070929071,
+              "null_below_or_equal": 547,
+              "null_exceedances": 453,
+              "null_mean": 6577.1573597581755,
+              "null_repeats": 1000,
+              "null_std": 1750.5215197916584,
+              "observed_active_windows": 346,
+              "observed_minus_null": -161.53694090539284,
+              "observed_total": 6415.620418852783,
+              "unique_null_totals": 1000,
+              "z_effect": -0.09227932309259383
+            },
+            "trajectory_regroup_within_channel": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.4675324675324675,
+              "empirical_p_le_observed": 0.5334665334665335,
+              "empirical_p_two_sided": 0.935064935064935,
+              "null_below_or_equal": 533,
+              "null_exceedances": 467,
+              "null_mean": 6686.260284612158,
+              "null_repeats": 1000,
+              "null_std": 1860.6466218839398,
+              "observed_active_windows": 346,
+              "observed_minus_null": -270.6398657593754,
+              "observed_total": 6415.620418852783,
+              "unique_null_totals": 1000,
+              "z_effect": -0.1454547373887404
+            }
+          },
+          "files_assessed": 7,
+          "files_requested": 7,
+          "shape": {
+            "dominant_shape": [
+              221,
+              6
+            ],
+            "dominant_shape_files": 7,
+            "excluded_non_dominant_shape": [],
+            "shape_counts": {
+              "221x6": 7
+            }
+          }
+        },
+        "validation": {
+          "comparison": {
+            "anchor_permute": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.000999000999000999,
+              "empirical_p_le_observed": 1.0,
+              "empirical_p_two_sided": 0.001998001998001998,
+              "null_below_or_equal": 1000,
+              "null_exceedances": 0,
+              "null_mean": 21316.89623852811,
+              "null_repeats": 1000,
+              "null_std": 178.6604191271418,
+              "observed_active_windows": 671,
+              "observed_minus_null": 1542.7969403017378,
+              "observed_total": 22859.693178829846,
+              "unique_null_totals": 1000,
+              "z_effect": 8.635359459242187
+            },
+            "diagnosis": "recording_specific_channel_structure",
+            "group_specific_fraction_of_anchor_permute_surplus": 4.21068431532883,
+            "trajectory_regroup": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.01898101898101898,
+              "empirical_p_le_observed": 0.9820179820179821,
+              "empirical_p_two_sided": 0.03796203796203796,
+              "null_below_or_equal": 982,
+              "null_exceedances": 18,
+              "null_mean": 17154.006872207807,
+              "null_repeats": 1000,
+              "null_std": 2526.047245956053,
+              "observed_active_windows": 671,
+              "observed_minus_null": 5705.686306622039,
+              "observed_total": 22859.693178829846,
+              "unique_null_totals": 1000,
+              "z_effect": 2.258740930422528
+            },
+            "trajectory_regroup_within_channel": {
+              "anchors": 1547,
+              "empirical_p_floor": 0.000999000999000999,
+              "empirical_p_ge_observed": 0.004995004995004995,
+              "empirical_p_le_observed": 0.996003996003996,
+              "empirical_p_two_sided": 0.00999000999000999,
+              "null_below_or_equal": 996,
+              "null_exceedances": 4,
+              "null_mean": 16363.46230056401,
+              "null_repeats": 1000,
+              "null_std": 2343.144911980284,
+              "observed_active_windows": 671,
+              "observed_minus_null": 6496.2308782658365,
+              "observed_total": 22859.693178829846,
+              "unique_null_totals": 1000,
+              "z_effect": 2.7724409382668593
+            }
+          },
+          "files_assessed": 7,
+          "files_requested": 7,
+          "shape": {
+            "dominant_shape": [
+              221,
+              6
+            ],
+            "dominant_shape_files": 7,
+            "excluded_non_dominant_shape": [],
+            "shape_counts": {
+              "221x6": 7
+            }
+          }
+        }
+      },
+      "source_report": "experiments/results/2026-06-03-chbmit-autotune-chb03.json",
+      "subject": "data/chbmit/chb03/chb03-summary.txt"
+    }
+  ]
+}

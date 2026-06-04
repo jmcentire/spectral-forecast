@@ -2,6 +2,15 @@
 
 Draft date: 2026-06-04
 
+## Superseded Draft
+
+Do not release this draft as written. The CDIP multi-buoy-coherence framing was
+later invalidated by a trajectory-regroup control that preserves complete score
+trajectories while breaking original buoy membership. Use
+`2026-06-04-cross-domain-quality-assessment.md` and the domain validation-ladder
+assessments as the current source of truth before preparing a replacement
+methods report.
+
 ## Status
 
 This is a draft methods report for a Zenodo-style artifact release. It is not

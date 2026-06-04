@@ -247,3 +247,30 @@ python3 experiments/org_network_observer_directional_order_null.py \
 
 Resume the same command with `--resume`. The checkpoint persists completed
 random-order deltas after every repeat.
+
+For grouped observer matrices, a timing-permutation null does not establish
+that original group membership matters. Apply a trajectory-regroup null that
+preserves complete score trajectories and the shared anchor-position profile
+while destroying only group membership:
+
+```bash
+python3 experiments/cdip_observer_group_null.py \
+  --autotune-report experiments/results/cdip-autotune-heldout.json \
+  --null-repeats 1000 \
+  --checkpoint /tmp/cdip-group-null.checkpoint.json \
+  --output experiments/results/cdip-group-null.json
+```
+
+For EEG, keep self-referential and population nominals separate. The
+cross-fitted population runner develops one common label-free instrument on
+aggregate training folds, excludes each held-out subject from its nominal, and
+uses seizure labels only after scoring:
+
+```bash
+python3 experiments/chbmit_population_nominal.py \
+  --selection-null-repeats 100 \
+  --heldout-null-repeats 1000 \
+  --workers 4 \
+  --checkpoint /tmp/chbmit-population.checkpoint.json \
+  --output experiments/results/chbmit-population.json
+```
