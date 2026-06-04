@@ -36,12 +36,15 @@ from spectral_forecast.autotune import AutoTuneConfig
 from spectral_forecast.observation import ObservationResult, ScoreName, observe_series
 
 try:
+    from sklearn.feature_selection import SelectKBest, f_classif
     from sklearn.impute import SimpleImputer
     from sklearn.linear_model import LogisticRegression
     from sklearn.metrics import average_precision_score, brier_score_loss, roc_auc_score
     from sklearn.pipeline import Pipeline
     from sklearn.preprocessing import StandardScaler
 except Exception as exc:  # pragma: no cover - exercised only when optional sklearn is absent.
+    SelectKBest = None  # type: ignore[assignment]
+    f_classif = None  # type: ignore[assignment]
     SimpleImputer = None  # type: ignore[assignment]
     LogisticRegression = None  # type: ignore[assignment]
     Pipeline = None  # type: ignore[assignment]
@@ -469,36 +472,69 @@ def _parse_float_list(text: str) -> list[float]:
     return values
 
 
-def _make_model(args: argparse.Namespace, *, regularization_c: float) -> Any:
-    return Pipeline(
-        steps=[
-            ("impute", SimpleImputer(strategy="median")),
-            ("scale", StandardScaler()),
-            (
-                "logistic",
-                LogisticRegression(
-                    C=regularization_c,
-                    class_weight="balanced",
-                    max_iter=args.max_iter,
-                    random_state=args.seed,
-                ),
+def _parse_int_list(text: str) -> list[int]:
+    values = [int(item.strip()) for item in text.split(",") if item.strip()]
+    if not values:
+        raise ValueError("expected at least one integer")
+    return values
+
+
+def _candidate_feature_counts(feature_count: int, text: str) -> list[int]:
+    if feature_count < 1:
+        return []
+    values = _parse_int_list(text)
+    values.append(feature_count)
+    return sorted({min(max(1, value), feature_count) for value in values})
+
+
+def _make_model(
+    args: argparse.Namespace,
+    *,
+    regularization_c: float,
+    selected_k: int | None = None,
+) -> Any:
+    steps: list[tuple[str, Any]] = [
+        ("impute", SimpleImputer(strategy="median")),
+        ("scale", StandardScaler()),
+    ]
+    if selected_k is not None:
+        steps.append(("select", SelectKBest(score_func=f_classif, k=selected_k)))
+    steps.append(
+        (
+            "logistic",
+            LogisticRegression(
+                C=regularization_c,
+                class_weight="balanced",
+                max_iter=args.max_iter,
+                random_state=args.seed,
             ),
-        ]
+        )
+    )
+    return Pipeline(
+        steps=steps,
     )
 
 
-def _select_regularization_c(
+def _select_model_hyperparameters(
     train_rows: Sequence[FeatureRow],
     names: Sequence[str],
     args: argparse.Namespace,
+    *,
+    feature_selection: bool,
 ) -> dict[str, Any]:
-    """Select C with labels from training subjects only."""
+    """Select model settings with labels from training subjects only."""
 
     c_values = _parse_float_list(args.regularization_cs)
+    k_values: list[int | None]
+    if feature_selection:
+        k_values = _candidate_feature_counts(len(names), args.selection_ks)
+    else:
+        k_values = [None]
     train_subjects = sorted({row.subject for row in train_rows})
     if len(train_subjects) < 2:
         return {
             "selected_c": c_values[0],
+            "selected_k": k_values[0],
             "inner_pr_auc": None,
             "candidates": [],
             "reason": "fewer than two training subjects",
@@ -506,41 +542,71 @@ def _select_regularization_c(
 
     candidate_rows = []
     for regularization_c in c_values:
-        scores = []
-        for validation_subject in train_subjects:
-            inner_train = [row for row in train_rows if row.subject != validation_subject]
-            inner_validation = [row for row in train_rows if row.subject == validation_subject]
-            inner_train_y = _labels(inner_train)
-            inner_validation_y = _labels(inner_validation)
-            if len(np.unique(inner_train_y)) < 2 or len(np.unique(inner_validation_y)) < 2:
-                continue
-            model = _make_model(args, regularization_c=regularization_c)
-            model.fit(_matrix(inner_train, names), inner_train_y)
-            probabilities = model.predict_proba(_matrix(inner_validation, names))[:, 1]
-            scores.append(float(average_precision_score(inner_validation_y, probabilities)))
-        candidate_rows.append(
-            {
-                "c": regularization_c,
-                "inner_pr_auc": _finite(float(np.mean(scores))) if scores else None,
-                "folds": len(scores),
-            }
-        )
+        for selected_k in k_values:
+            scores = []
+            for validation_subject in train_subjects:
+                inner_train = [row for row in train_rows if row.subject != validation_subject]
+                inner_validation = [row for row in train_rows if row.subject == validation_subject]
+                inner_train_y = _labels(inner_train)
+                inner_validation_y = _labels(inner_validation)
+                if len(np.unique(inner_train_y)) < 2 or len(np.unique(inner_validation_y)) < 2:
+                    continue
+                model = _make_model(
+                    args,
+                    regularization_c=regularization_c,
+                    selected_k=selected_k,
+                )
+                model.fit(_matrix(inner_train, names), inner_train_y)
+                probabilities = model.predict_proba(_matrix(inner_validation, names))[:, 1]
+                scores.append(float(average_precision_score(inner_validation_y, probabilities)))
+            candidate_rows.append(
+                {
+                    "c": regularization_c,
+                    "k": selected_k,
+                    "inner_pr_auc": _finite(float(np.mean(scores))) if scores else None,
+                    "folds": len(scores),
+                }
+            )
 
     scored = [row for row in candidate_rows if row["inner_pr_auc"] is not None]
     if not scored:
         return {
             "selected_c": c_values[0],
+            "selected_k": k_values[0],
             "inner_pr_auc": None,
             "candidates": candidate_rows,
             "reason": "no valid inner folds",
         }
-    best = max(scored, key=lambda row: (float(row["inner_pr_auc"]), -float(row["c"])))
+    best = max(
+        scored,
+        key=lambda row: (
+            float(row["inner_pr_auc"]),
+            -float(row["k"] if row["k"] is not None else len(names)),
+            -float(row["c"]),
+        ),
+    )
     return {
         "selected_c": float(best["c"]),
+        "selected_k": best["k"],
         "inner_pr_auc": float(best["inner_pr_auc"]),
         "candidates": candidate_rows,
         "reason": "training-subject inner PR-AUC",
     }
+
+
+def _select_regularization_c(
+    train_rows: Sequence[FeatureRow],
+    names: Sequence[str],
+    args: argparse.Namespace,
+) -> dict[str, Any]:
+    """Backward-compatible wrapper for non-selected models."""
+
+    return _select_model_hyperparameters(
+        train_rows,
+        names,
+        args,
+        feature_selection=False,
+    )
 
 
 def _threshold_for_false_alarm_rate(
@@ -648,6 +714,208 @@ def _mean_metric(rows: Sequence[Mapping[str, float | None]], key: str) -> float 
     return _finite(float(np.mean(values)))
 
 
+def _evaluate_probability_model(
+    *,
+    train_rows: Sequence[FeatureRow],
+    test_rows: Sequence[FeatureRow],
+    train_prob: NDArray[np.float64],
+    test_prob: NDArray[np.float64],
+    row_hours: float,
+    args: argparse.Namespace,
+) -> dict[str, float | None]:
+    threshold = _threshold_for_false_alarm_rate(
+        train_prob,
+        _labels(train_rows),
+        row_hours=row_hours,
+        false_alarms_per_hour=args.false_alarms_per_hour,
+    )
+    return _classification_metrics(
+        test_rows,
+        test_prob,
+        threshold,
+        row_hours=row_hours,
+    )
+
+
+def _fit_one_model(
+    train_rows: Sequence[FeatureRow],
+    test_rows: Sequence[FeatureRow],
+    names: Sequence[str],
+    args: argparse.Namespace,
+    *,
+    row_hours: float,
+    feature_selection: bool,
+) -> dict[str, Any]:
+    selection = _select_model_hyperparameters(
+        train_rows,
+        names,
+        args,
+        feature_selection=feature_selection,
+    )
+    model = _make_model(
+        args,
+        regularization_c=float(selection["selected_c"]),
+        selected_k=selection["selected_k"],
+    )
+    train_x = _matrix(train_rows, names)
+    test_x = _matrix(test_rows, names)
+    model.fit(train_x, _labels(train_rows))
+    train_prob = model.predict_proba(train_x)[:, 1]
+    test_prob = model.predict_proba(test_x)[:, 1]
+    metrics = _evaluate_probability_model(
+        train_rows=train_rows,
+        test_rows=test_rows,
+        train_prob=train_prob,
+        test_prob=test_prob,
+        row_hours=row_hours,
+        args=args,
+    )
+    metrics["feature_count"] = float(len(names))
+    metrics["selected_c"] = float(selection["selected_c"])
+    metrics["selected_k"] = (
+        float(selection["selected_k"]) if selection["selected_k"] is not None else None
+    )
+    metrics["feature_selection"] = bool(feature_selection)  # type: ignore[assignment]
+    metrics["inner_pr_auc"] = selection["inner_pr_auc"]
+    metrics["model_selection"] = selection  # type: ignore[assignment]
+    return metrics
+
+
+def _family_probability_matrix(
+    source_rows: Sequence[FeatureRow],
+    target_rows: Sequence[FeatureRow],
+    family_groups: Mapping[str, Sequence[str]],
+    args: argparse.Namespace,
+    *,
+    feature_selection: bool,
+) -> tuple[NDArray[np.float64], list[dict[str, Any]]]:
+    columns = []
+    selections = []
+    for family_name, names in family_groups.items():
+        selection = _select_model_hyperparameters(
+            source_rows,
+            names,
+            args,
+            feature_selection=feature_selection,
+        )
+        model = _make_model(
+            args,
+            regularization_c=float(selection["selected_c"]),
+            selected_k=selection["selected_k"],
+        )
+        model.fit(_matrix(source_rows, names), _labels(source_rows))
+        columns.append(model.predict_proba(_matrix(target_rows, names))[:, 1])
+        selections.append(
+            {
+                "family": family_name,
+                "feature_count": len(names),
+                "selected_c": selection["selected_c"],
+                "selected_k": selection["selected_k"],
+                "inner_pr_auc": selection["inner_pr_auc"],
+                "reason": selection["reason"],
+            }
+        )
+    if not columns:
+        raise ValueError("late fusion requires at least one feature family")
+    return np.column_stack(columns).astype(np.float64), selections
+
+
+def _late_fusion_models(
+    train_rows: Sequence[FeatureRow],
+    test_rows: Sequence[FeatureRow],
+    family_groups: Mapping[str, Sequence[str]],
+    args: argparse.Namespace,
+    *,
+    row_hours: float,
+) -> dict[str, dict[str, Any]]:
+    """Train late-fusion controls using only outer-training labels."""
+
+    train_subjects = sorted({row.subject for row in train_rows})
+    if len(train_subjects) < 2:
+        return {}
+    train_family_prob = np.zeros((len(train_rows), len(family_groups)), dtype=np.float64)
+    oof_family_selections: list[dict[str, Any]] = []
+    for validation_subject in train_subjects:
+        validation_indices = [
+            index for index, row in enumerate(train_rows)
+            if row.subject == validation_subject
+        ]
+        inner_train = [
+            row for row in train_rows
+            if row.subject != validation_subject
+        ]
+        inner_validation = [train_rows[index] for index in validation_indices]
+        if len(np.unique(_labels(inner_train))) < 2 or len(np.unique(_labels(inner_validation))) < 2:
+            continue
+        probabilities, selections = _family_probability_matrix(
+            inner_train,
+            inner_validation,
+            family_groups,
+            args,
+            feature_selection=False,
+        )
+        for local_index, row_index in enumerate(validation_indices):
+            train_family_prob[row_index] = probabilities[local_index]
+        oof_family_selections.append(
+            {
+                "validation_subject": validation_subject,
+                "families": selections,
+            }
+        )
+
+    test_family_prob, test_family_selections = _family_probability_matrix(
+        train_rows,
+        test_rows,
+        family_groups,
+        args,
+        feature_selection=False,
+    )
+    reports: dict[str, dict[str, Any]] = {}
+
+    train_mean = np.mean(train_family_prob, axis=1)
+    test_mean = np.mean(test_family_prob, axis=1)
+    mean_metrics = _evaluate_probability_model(
+        train_rows=train_rows,
+        test_rows=test_rows,
+        train_prob=train_mean,
+        test_prob=test_mean,
+        row_hours=row_hours,
+        args=args,
+    )
+    mean_metrics["feature_count"] = float(len(family_groups))
+    mean_metrics["fusion"] = "mean_family_probability"  # type: ignore[assignment]
+    mean_metrics["families"] = list(family_groups)  # type: ignore[assignment]
+    mean_metrics["family_model_selection"] = test_family_selections  # type: ignore[assignment]
+    mean_metrics["oof_family_model_selection"] = oof_family_selections  # type: ignore[assignment]
+    reports["late_fusion_mean"] = mean_metrics
+
+    meta = LogisticRegression(
+        C=args.fusion_meta_c,
+        class_weight="balanced",
+        max_iter=args.max_iter,
+        random_state=args.seed,
+    )
+    meta.fit(train_family_prob, _labels(train_rows))
+    train_meta = meta.predict_proba(train_family_prob)[:, 1]
+    test_meta = meta.predict_proba(test_family_prob)[:, 1]
+    meta_metrics = _evaluate_probability_model(
+        train_rows=train_rows,
+        test_rows=test_rows,
+        train_prob=train_meta,
+        test_prob=test_meta,
+        row_hours=row_hours,
+        args=args,
+    )
+    meta_metrics["feature_count"] = float(len(family_groups))
+    meta_metrics["fusion"] = "logistic_family_probability"  # type: ignore[assignment]
+    meta_metrics["families"] = list(family_groups)  # type: ignore[assignment]
+    meta_metrics["selected_c"] = float(args.fusion_meta_c)
+    meta_metrics["family_model_selection"] = test_family_selections  # type: ignore[assignment]
+    meta_metrics["oof_family_model_selection"] = oof_family_selections  # type: ignore[assignment]
+    reports["late_fusion_logistic"] = meta_metrics
+    return reports
+
+
 def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, Any]:
     if _SKLEARN_IMPORT_ERROR is not None:
         raise RuntimeError(
@@ -668,6 +936,15 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         "spectral_latent": groups["spectral"] + groups["latent"],
         "pedestrian_spectral_latent": groups["pedestrian"] + groups["spectral"] + groups["latent"],
     }
+    selected_ablations = {
+        f"{name}_selected": names
+        for name, names in ablations.items()
+        if name != "pedestrian"
+    }
+    model_order = list(ablations) + list(selected_ablations) + [
+        "late_fusion_mean",
+        "late_fusion_logistic",
+    ]
     subjects = sorted({row.subject for row in rows})
     if len(subjects) < 2:
         raise ValueError("leave-one-subject-out evaluation requires at least two subjects")
@@ -689,29 +966,34 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         for model_name, names in ablations.items():
             if not names:
                 continue
-            c_selection = _select_regularization_c(train_rows, names, args)
-            model = _make_model(args, regularization_c=float(c_selection["selected_c"]))
-            train_x = _matrix(train_rows, names)
-            test_x = _matrix(test_rows, names)
-            model.fit(train_x, train_y)
-            train_prob = model.predict_proba(train_x)[:, 1]
-            test_prob = model.predict_proba(test_x)[:, 1]
-            threshold = _threshold_for_false_alarm_rate(
-                train_prob,
-                train_y,
-                row_hours=row_hours,
-                false_alarms_per_hour=args.false_alarms_per_hour,
-            )
-            split["models"][model_name] = _classification_metrics(
+            split["models"][model_name] = _fit_one_model(
+                train_rows,
                 test_rows,
-                test_prob,
-                threshold,
+                names,
+                args,
+                row_hours=row_hours,
+                feature_selection=False,
+            )
+        for model_name, names in selected_ablations.items():
+            if not names:
+                continue
+            split["models"][model_name] = _fit_one_model(
+                train_rows,
+                test_rows,
+                names,
+                args,
+                row_hours=row_hours,
+                feature_selection=True,
+            )
+        split["models"].update(
+            _late_fusion_models(
+                train_rows,
+                test_rows,
+                groups,
+                args,
                 row_hours=row_hours,
             )
-            split["models"][model_name]["feature_count"] = float(len(names))
-            split["models"][model_name]["selected_c"] = float(c_selection["selected_c"])
-            split["models"][model_name]["inner_pr_auc"] = c_selection["inner_pr_auc"]
-            split["models"][model_name]["regularization_selection"] = c_selection
+        )
         split_reports.append(split)
 
     aggregate: dict[str, dict[str, float | None]] = {}
@@ -725,49 +1007,101 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         "event_recall",
         "lead_time_minutes_mean",
     )
-    for model_name in ablations:
+    for model_name in model_order:
         model_rows = [
             split["models"][model_name]
             for split in split_reports
             if model_name in split["models"]
         ]
+        if not model_rows:
+            continue
         aggregate[model_name] = {
             key: _mean_metric(model_rows, key)
             for key in metric_keys
         }
-        aggregate[model_name]["feature_count"] = float(len(ablations[model_name]))
+        aggregate[model_name]["feature_count"] = _mean_metric(model_rows, "feature_count")
 
-    baseline = aggregate.get("pedestrian_spectral", {})
-    full = aggregate.get("pedestrian_spectral_latent", {})
+    def _delta(model_name: str, baseline_name: str, key: str) -> float | None:
+        model_row = aggregate.get(model_name, {})
+        baseline_row = aggregate.get(baseline_name, {})
+        if model_row.get(key) is None or baseline_row.get(key) is None:
+            return None
+        return float(model_row[key]) - float(baseline_row[key])
+
+    scored_models = [
+        (name, row)
+        for name, row in aggregate.items()
+        if row.get("pr_auc") is not None
+    ]
+    best_model = (
+        max(scored_models, key=lambda item: float(item[1]["pr_auc"]))
+        if scored_models
+        else None
+    )
+    latent_candidates = [
+        (name, row)
+        for name, row in scored_models
+        if "latent" in name or name.startswith("late_fusion")
+    ]
+    best_latent_model = (
+        max(latent_candidates, key=lambda item: float(item[1]["pr_auc"]))
+        if latent_candidates
+        else None
+    )
     comparison = {
         "baseline": "pedestrian_spectral",
         "full": "pedestrian_spectral_latent",
-        "delta_pr_auc": (
-            full["pr_auc"] - baseline["pr_auc"]
-            if full.get("pr_auc") is not None and baseline.get("pr_auc") is not None
+        "delta_pr_auc": _delta("pedestrian_spectral_latent", "pedestrian_spectral", "pr_auc"),
+        "delta_event_recall": _delta(
+            "pedestrian_spectral_latent",
+            "pedestrian_spectral",
+            "event_recall",
+        ),
+        "delta_recall": _delta("pedestrian_spectral_latent", "pedestrian_spectral", "recall"),
+        "delta_false_alarms_per_hour": _delta(
+            "pedestrian_spectral_latent",
+            "pedestrian_spectral",
+            "false_alarms_per_hour",
+        ),
+        "selected_baseline": "pedestrian_spectral_selected",
+        "selected_full": "pedestrian_spectral_latent_selected",
+        "selected_delta_pr_auc": _delta(
+            "pedestrian_spectral_latent_selected",
+            "pedestrian_spectral_selected",
+            "pr_auc",
+        ),
+        "selected_delta_event_recall": _delta(
+            "pedestrian_spectral_latent_selected",
+            "pedestrian_spectral_selected",
+            "event_recall",
+        ),
+        "late_fusion_mean_delta_pr_auc": _delta("late_fusion_mean", "pedestrian_spectral", "pr_auc"),
+        "late_fusion_logistic_delta_pr_auc": _delta(
+            "late_fusion_logistic",
+            "pedestrian_spectral",
+            "pr_auc",
+        ),
+        "best_model": (
+            {"name": best_model[0], "pr_auc": best_model[1]["pr_auc"]}
+            if best_model is not None
             else None
         ),
-        "delta_event_recall": (
-            full["event_recall"] - baseline["event_recall"]
-            if full.get("event_recall") is not None and baseline.get("event_recall") is not None
-            else None
-        ),
-        "delta_recall": (
-            full["recall"] - baseline["recall"]
-            if full.get("recall") is not None and baseline.get("recall") is not None
-            else None
-        ),
-        "delta_false_alarms_per_hour": (
-            full["false_alarms_per_hour"] - baseline["false_alarms_per_hour"]
-            if full.get("false_alarms_per_hour") is not None
-            and baseline.get("false_alarms_per_hour") is not None
+        "best_latent_model": (
+            {"name": best_latent_model[0], "pr_auc": best_latent_model[1]["pr_auc"]}
+            if best_latent_model is not None
             else None
         ),
     }
     return {
         "feature_names": feature_names,
         "feature_groups": {name: len(values) for name, values in groups.items()},
-        "ablations": {name: len(values) for name, values in ablations.items()},
+        "ablations": {
+            **{name: len(values) for name, values in ablations.items()},
+            **{name: len(values) for name, values in selected_ablations.items()},
+            "late_fusion_mean": len(groups),
+            "late_fusion_logistic": len(groups),
+        },
+        "model_order": model_order,
         "splits": split_reports,
         "aggregate": aggregate,
         "comparison": comparison,
@@ -825,7 +1159,14 @@ def run_ablation(args: argparse.Namespace) -> dict[str, Any]:
             ),
             "split": "leave-one-subject-out",
             "predictor": "median imputer + standard scaler + class-balanced logistic regression",
-            "model_selection": "regularization C selected by inner leave-one-subject-out on training subjects only",
+            "model_selection": (
+                "regularization C and optional feature count selected by inner "
+                "leave-one-subject-out on training subjects only"
+            ),
+            "integration_controls": (
+                "selected-feature logistic models and late fusion over pedestrian/spectral/latent "
+                "family probabilities are trained without outer-held-out labels"
+            ),
             "positive_label": "anchor falls inside the preictal horizon before a labeled seizure",
             "negative_label": "anchor is outside seizure, postictal, and near-seizure exclusion gaps",
             "event_note": "events are file-local CHB-MIT summary seizures with at least one eligible preictal row",
@@ -847,6 +1188,8 @@ def run_ablation(args: argparse.Namespace) -> dict[str, Any]:
             "postictal_minutes": args.postictal_minutes,
             "false_alarms_per_hour": args.false_alarms_per_hour,
             "regularization_cs": _parse_float_list(args.regularization_cs),
+            "selection_ks": _parse_int_list(args.selection_ks),
+            "fusion_meta_c": args.fusion_meta_c,
             "max_files_per_subject": args.max_files_per_subject,
             "seed": args.seed,
         },
@@ -876,7 +1219,8 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
         "# CHB-MIT predictor ablation",
         "",
         "This is a supervised measurement harness, not a label-free discovery run. Labels train and evaluate the predictor; the feature layers remain generic.",
-        "Logistic regularization is selected by inner leave-one-subject-out on training subjects only.",
+        "Logistic regularization and optional feature counts are selected by inner leave-one-subject-out on training subjects only.",
+        "Late-fusion controls combine pedestrian/spectral/latent family probabilities without using outer-held-out labels.",
         "",
         "## Dataset",
         "",
@@ -890,13 +1234,9 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
         "| Model | Features | PR-AUC | ROC-AUC | Brier | Recall | Event recall | False alarms/hr | Lead min |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
-    for model_name in (
-        "pedestrian",
-        "pedestrian_spectral",
-        "latent_only",
-        "spectral_latent",
-        "pedestrian_spectral_latent",
-    ):
+    for model_name in evaluation["model_order"]:
+        if model_name not in aggregate:
+            continue
         metrics = aggregate[model_name]
         lines.append(
             "| %s | %d | %s | %s | %s | %s | %s | %s | %s |"
@@ -923,6 +1263,20 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
             f"- Delta event recall: {_fmt(comparison['delta_event_recall'])}",
             f"- Delta recall: {_fmt(comparison['delta_recall'])}",
             f"- Delta false alarms/hr: {_fmt(comparison['delta_false_alarms_per_hour'])}",
+            f"- Selected baseline: `{comparison['selected_baseline']}`",
+            f"- Selected full: `{comparison['selected_full']}`",
+            f"- Selected delta PR-AUC: {_fmt(comparison['selected_delta_pr_auc'])}",
+            f"- Selected delta event recall: {_fmt(comparison['selected_delta_event_recall'])}",
+            f"- Late-fusion mean delta PR-AUC: {_fmt(comparison['late_fusion_mean_delta_pr_auc'])}",
+            f"- Late-fusion logistic delta PR-AUC: {_fmt(comparison['late_fusion_logistic_delta_pr_auc'])}",
+            f"- Best model: `{comparison['best_model']['name'] if comparison['best_model'] else 'n/a'}` PR-AUC {_fmt(comparison['best_model']['pr_auc'] if comparison['best_model'] else None)}",
+            f"- Best latent-bearing model: `{comparison['best_latent_model']['name'] if comparison['best_latent_model'] else 'n/a'}` PR-AUC {_fmt(comparison['best_latent_model']['pr_auc'] if comparison['best_latent_model'] else None)}",
+            "",
+            "## Integration Readout",
+            "",
+            "- Raw full-stack integration remains worse than raw pedestrian+spectral on PR-AUC.",
+            "- Train-only feature selection makes the full stack beat the selected pedestrian+spectral baseline, but the best model is still latent-only selected.",
+            "- Late fusion improves PR-AUC over raw pedestrian+spectral, but the fixed false-alarm threshold can still suppress recall.",
             "",
             "## Split Details",
             "",
@@ -982,6 +1336,17 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         default="0.01,0.03,0.1,0.3,1.0",
         help="Comma-separated logistic C values selected by training-subject inner CV",
     )
+    parser.add_argument(
+        "--selection-ks",
+        default="8,16,32,64",
+        help="Comma-separated feature counts for selected-feature logistic controls",
+    )
+    parser.add_argument(
+        "--fusion-meta-c",
+        type=float,
+        default=1.0,
+        help="Fixed logistic C for the late-fusion meta model",
+    )
     parser.add_argument("--max-files-per-subject", type=int, default=0)
     parser.add_argument("--max-iter", type=int, default=1000)
     parser.add_argument("--seed", type=int, default=20260603)
@@ -1010,6 +1375,14 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         parser.error(str(exc))
     if any(value <= 0 for value in regularization_cs):
         parser.error("--regularization-cs values must be positive")
+    try:
+        selection_ks = _parse_int_list(args.selection_ks)
+    except ValueError as exc:
+        parser.error(str(exc))
+    if any(value <= 0 for value in selection_ks):
+        parser.error("--selection-ks values must be positive")
+    if args.fusion_meta_c <= 0:
+        parser.error("--fusion-meta-c must be positive")
     if args.max_files_per_subject < 0:
         parser.error("--max-files-per-subject must be >= 0")
     return args
@@ -1051,6 +1424,19 @@ def print_report(report: Mapping[str, Any]) -> None:
             _fmt(comparison["delta_false_alarms_per_hour"]),
         )
     )
+    print(
+        "  selected full delta: pr_auc=%s event_recall=%s"
+        % (
+            _fmt(comparison["selected_delta_pr_auc"]),
+            _fmt(comparison["selected_delta_event_recall"]),
+        )
+    )
+    best_latent = comparison["best_latent_model"]
+    if best_latent:
+        print("  best latent-bearing model=%s pr_auc=%s" % (
+            best_latent["name"],
+            _fmt(best_latent["pr_auc"]),
+        ))
 
 
 def main(argv: Sequence[str] | None = None) -> None:

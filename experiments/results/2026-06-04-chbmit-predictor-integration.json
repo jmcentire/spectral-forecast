@@ -1,0 +1,4359 @@
+{
+  "created_at": "2026-06-04T05:19:41.731646+00:00",
+  "dataset": {
+    "data_root": "data/chbmit",
+    "file_validation": "each EDF is parsed with load_edf_signals before use; parser failures are skipped",
+    "labels_used": "supervised predictor ablation only",
+    "name": "CHB-MIT Scalp EEG Database",
+    "subjects": [
+      "chb01",
+      "chb02",
+      "chb03"
+    ]
+  },
+  "elapsed_seconds": 537.9524028301239,
+  "evaluation": {
+    "ablations": {
+      "late_fusion_logistic": 3,
+      "late_fusion_mean": 3,
+      "latent_only": 66,
+      "latent_only_selected": 66,
+      "pedestrian": 79,
+      "pedestrian_spectral": 134,
+      "pedestrian_spectral_latent": 200,
+      "pedestrian_spectral_latent_selected": 200,
+      "pedestrian_spectral_selected": 134,
+      "spectral_latent": 121,
+      "spectral_latent_selected": 121
+    },
+    "aggregate": {
+      "late_fusion_logistic": {
+        "brier": 0.2977225998258864,
+        "event_recall": 0.0,
+        "false_alarms_per_hour": 0.0,
+        "feature_count": 3.0,
+        "lead_time_minutes_mean": null,
+        "pr_auc": 0.1060239428303854,
+        "precision": null,
+        "recall": 0.0,
+        "roc_auc": 0.4833529597164931
+      },
+      "late_fusion_mean": {
+        "brier": 0.22205869250482935,
+        "event_recall": 0.14285714285714285,
+        "false_alarms_per_hour": 7.87292817679558,
+        "feature_count": 3.0,
+        "lead_time_minutes_mean": 5.377777777777777,
+        "pr_auc": 0.1159245658816066,
+        "precision": 0.07766990291262135,
+        "recall": 0.024242424242424242,
+        "roc_auc": 0.5565988697741914
+      },
+      "latent_only": {
+        "brier": 0.29835620218835035,
+        "event_recall": 0.20634920634920637,
+        "false_alarms_per_hour": 7.641003130070916,
+        "feature_count": 66.0,
+        "lead_time_minutes_mean": 7.9875,
+        "pr_auc": 0.14814442709027342,
+        "precision": 0.11219015908250092,
+        "recall": 0.14686868686868687,
+        "roc_auc": 0.5386990441779492
+      },
+      "latent_only_selected": {
+        "brier": 0.2949769398313467,
+        "event_recall": 0.2698412698412698,
+        "false_alarms_per_hour": 1.4088397790055247,
+        "feature_count": 66.0,
+        "lead_time_minutes_mean": 7.070833333333334,
+        "pr_auc": 0.1784220228524944,
+        "precision": 0.7605633802816901,
+        "recall": 0.06494949494949495,
+        "roc_auc": 0.5950604010987458
+      },
+      "pedestrian": {
+        "brier": 0.24155697687399455,
+        "event_recall": 0.14285714285714285,
+        "false_alarms_per_hour": 3.03832509474111,
+        "feature_count": 79.0,
+        "lead_time_minutes_mean": 7.527777777777779,
+        "pr_auc": 0.11457234783099358,
+        "precision": 0.13201320132013203,
+        "recall": 0.06060606060606061,
+        "roc_auc": 0.3955441800309239
+      },
+      "pedestrian_spectral": {
+        "brier": 0.2912915451470884,
+        "event_recall": 0.30158730158730157,
+        "false_alarms_per_hour": 11.45967299351301,
+        "feature_count": 134.0,
+        "lead_time_minutes_mean": 3.41875,
+        "pr_auc": 0.07953117943304404,
+        "precision": 0.09338482867894632,
+        "recall": 0.08,
+        "roc_auc": 0.3459689279214891
+      },
+      "pedestrian_spectral_latent": {
+        "brier": 0.32660029530228657,
+        "event_recall": 0.25396825396825395,
+        "false_alarms_per_hour": 23.603095129814538,
+        "feature_count": 200.0,
+        "lead_time_minutes_mean": 5.661111111111111,
+        "pr_auc": 0.06966132786871156,
+        "precision": 0.03554328635125834,
+        "recall": 0.08474747474747474,
+        "roc_auc": 0.32960197513185197
+      },
+      "pedestrian_spectral_latent_selected": {
+        "brier": 0.36148259730251175,
+        "event_recall": 0.25396825396825395,
+        "false_alarms_per_hour": 21.333047960003217,
+        "feature_count": 200.0,
+        "lead_time_minutes_mean": 6.6194444444444445,
+        "pr_auc": 0.10473569782789864,
+        "precision": 0.3276201733648542,
+        "recall": 0.11585858585858587,
+        "roc_auc": 0.30571297158468697
+      },
+      "pedestrian_spectral_selected": {
+        "brier": 0.36327485646854957,
+        "event_recall": 0.19047619047619047,
+        "false_alarms_per_hour": 8.40312973559268,
+        "feature_count": 134.0,
+        "lead_time_minutes_mean": 5.504166666666666,
+        "pr_auc": 0.07227738712784139,
+        "precision": 0.05439330543933055,
+        "recall": 0.05909090909090909,
+        "roc_auc": 0.3218481706707447
+      },
+      "spectral_latent": {
+        "brier": 0.29296423867888477,
+        "event_recall": 0.30158730158730157,
+        "false_alarms_per_hour": 12.44763296432506,
+        "feature_count": 121.0,
+        "lead_time_minutes_mean": 8.21875,
+        "pr_auc": 0.16392332353164277,
+        "precision": 0.13360739979445016,
+        "recall": 0.1818181818181818,
+        "roc_auc": 0.5329579417767146
+      },
+      "spectral_latent_selected": {
+        "brier": 0.29559602620666564,
+        "event_recall": 0.15873015873015872,
+        "false_alarms_per_hour": 1.976994944230168,
+        "feature_count": 121.0,
+        "lead_time_minutes_mean": 7.95,
+        "pr_auc": 0.15816061813302698,
+        "precision": 0.47023809523809523,
+        "recall": 0.060505050505050506,
+        "roc_auc": 0.6177150495349061
+      }
+    },
+    "comparison": {
+      "baseline": "pedestrian_spectral",
+      "best_latent_model": {
+        "name": "latent_only_selected",
+        "pr_auc": 0.1784220228524944
+      },
+      "best_model": {
+        "name": "latent_only_selected",
+        "pr_auc": 0.1784220228524944
+      },
+      "delta_event_recall": -0.047619047619047616,
+      "delta_false_alarms_per_hour": 12.143422136301528,
+      "delta_pr_auc": -0.009869851564332482,
+      "delta_recall": 0.004747474747474736,
+      "full": "pedestrian_spectral_latent",
+      "late_fusion_logistic_delta_pr_auc": 0.026492763397341357,
+      "late_fusion_mean_delta_pr_auc": 0.03639338644856256,
+      "selected_baseline": "pedestrian_spectral_selected",
+      "selected_delta_event_recall": 0.06349206349206349,
+      "selected_delta_pr_auc": 0.03245831070005725,
+      "selected_full": "pedestrian_spectral_latent_selected"
+    },
+    "feature_groups": {
+      "latent": 66,
+      "pedestrian": 79,
+      "spectral": 55
+    },
+    "feature_names": [
+      "latent_active_count",
+      "latent_active_fraction",
+      "latent_active_jaccard_prev",
+      "latent_excess_abs_mean",
+      "latent_excess_entropy",
+      "latent_excess_max",
+      "latent_excess_mean",
+      "latent_excess_median",
+      "latent_excess_min",
+      "latent_excess_q25",
+      "latent_excess_q75",
+      "latent_excess_std",
+      "latent_gated_emission",
+      "latent_raw_emission",
+      "latent_recent_active_count_abs_mean",
+      "latent_recent_active_count_max",
+      "latent_recent_active_count_mean",
+      "latent_recent_active_count_median",
+      "latent_recent_active_count_min",
+      "latent_recent_active_count_q25",
+      "latent_recent_active_count_q75",
+      "latent_recent_active_count_std",
+      "latent_recent_active_hamming_abs_mean",
+      "latent_recent_active_hamming_max",
+      "latent_recent_active_hamming_mean",
+      "latent_recent_active_hamming_median",
+      "latent_recent_active_hamming_min",
+      "latent_recent_active_hamming_q25",
+      "latent_recent_active_hamming_q75",
+      "latent_recent_active_hamming_std",
+      "latent_recent_channel_persistence_abs_mean",
+      "latent_recent_channel_persistence_max",
+      "latent_recent_channel_persistence_mean",
+      "latent_recent_channel_persistence_median",
+      "latent_recent_channel_persistence_min",
+      "latent_recent_channel_persistence_q25",
+      "latent_recent_channel_persistence_q75",
+      "latent_recent_channel_persistence_std",
+      "latent_recent_emission_abs_mean",
+      "latent_recent_emission_max",
+      "latent_recent_emission_mean",
+      "latent_recent_emission_median",
+      "latent_recent_emission_min",
+      "latent_recent_emission_q25",
+      "latent_recent_emission_q75",
+      "latent_recent_emission_slope",
+      "latent_recent_emission_std",
+      "latent_recent_excess_entropy_mean",
+      "latent_recent_pattern_entropy",
+      "latent_recent_pheromone",
+      "latent_recent_score_drift_l2_abs_mean",
+      "latent_recent_score_drift_l2_max",
+      "latent_recent_score_drift_l2_mean",
+      "latent_recent_score_drift_l2_median",
+      "latent_recent_score_drift_l2_min",
+      "latent_recent_score_drift_l2_q25",
+      "latent_recent_score_drift_l2_q75",
+      "latent_recent_score_drift_l2_std",
+      "latent_row_score_abs_mean",
+      "latent_row_score_max",
+      "latent_row_score_mean",
+      "latent_row_score_median",
+      "latent_row_score_min",
+      "latent_row_score_q25",
+      "latent_row_score_q75",
+      "latent_row_score_std",
+      "ped_channel_corr_abs_abs_mean",
+      "ped_channel_corr_abs_max",
+      "ped_channel_corr_abs_mean",
+      "ped_channel_corr_abs_median",
+      "ped_channel_corr_abs_min",
+      "ped_channel_corr_abs_q25",
+      "ped_channel_corr_abs_q75",
+      "ped_channel_corr_abs_std",
+      "ped_channel_corr_max",
+      "ped_channel_corr_mean",
+      "ped_channel_corr_median",
+      "ped_channel_corr_min",
+      "ped_channel_corr_q25",
+      "ped_channel_corr_q75",
+      "ped_channel_corr_std",
+      "ped_channel_diff_std_abs_mean",
+      "ped_channel_diff_std_max",
+      "ped_channel_diff_std_mean",
+      "ped_channel_diff_std_median",
+      "ped_channel_diff_std_min",
+      "ped_channel_diff_std_q25",
+      "ped_channel_diff_std_q75",
+      "ped_channel_diff_std_std",
+      "ped_channel_energy_abs_mean",
+      "ped_channel_energy_max",
+      "ped_channel_energy_mean",
+      "ped_channel_energy_median",
+      "ped_channel_energy_min",
+      "ped_channel_energy_q25",
+      "ped_channel_energy_q75",
+      "ped_channel_energy_std",
+      "ped_channel_line_length_abs_mean",
+      "ped_channel_line_length_max",
+      "ped_channel_line_length_mean",
+      "ped_channel_line_length_median",
+      "ped_channel_line_length_min",
+      "ped_channel_line_length_q25",
+      "ped_channel_line_length_q75",
+      "ped_channel_line_length_std",
+      "ped_channel_mean_abs_mean",
+      "ped_channel_mean_max",
+      "ped_channel_mean_mean",
+      "ped_channel_mean_median",
+      "ped_channel_mean_min",
+      "ped_channel_mean_q25",
+      "ped_channel_mean_q75",
+      "ped_channel_mean_std",
+      "ped_channel_range_abs_mean",
+      "ped_channel_range_max",
+      "ped_channel_range_mean",
+      "ped_channel_range_median",
+      "ped_channel_range_min",
+      "ped_channel_range_q25",
+      "ped_channel_range_q75",
+      "ped_channel_range_std",
+      "ped_channel_slope_abs_mean",
+      "ped_channel_slope_max",
+      "ped_channel_slope_mean",
+      "ped_channel_slope_median",
+      "ped_channel_slope_min",
+      "ped_channel_slope_q25",
+      "ped_channel_slope_q75",
+      "ped_channel_slope_std",
+      "ped_channel_std_abs_mean",
+      "ped_channel_std_max",
+      "ped_channel_std_mean",
+      "ped_channel_std_median",
+      "ped_channel_std_min",
+      "ped_channel_std_q25",
+      "ped_channel_std_q75",
+      "ped_channel_std_std",
+      "ped_channel_zero_crossing_abs_mean",
+      "ped_channel_zero_crossing_max",
+      "ped_channel_zero_crossing_mean",
+      "ped_channel_zero_crossing_median",
+      "ped_channel_zero_crossing_min",
+      "ped_channel_zero_crossing_q25",
+      "ped_channel_zero_crossing_q75",
+      "ped_channel_zero_crossing_std",
+      "spectral_drift_abs_mean",
+      "spectral_drift_count_ge_1",
+      "spectral_drift_count_ge_2",
+      "spectral_drift_count_ge_3",
+      "spectral_drift_max",
+      "spectral_drift_mean",
+      "spectral_drift_median",
+      "spectral_drift_min",
+      "spectral_drift_q25",
+      "spectral_drift_q75",
+      "spectral_drift_std",
+      "spectral_frozen_abs_mean",
+      "spectral_frozen_count_ge_1",
+      "spectral_frozen_count_ge_2",
+      "spectral_frozen_count_ge_3",
+      "spectral_frozen_max",
+      "spectral_frozen_mean",
+      "spectral_frozen_median",
+      "spectral_frozen_min",
+      "spectral_frozen_q25",
+      "spectral_frozen_q75",
+      "spectral_frozen_std",
+      "spectral_max_abs_mean",
+      "spectral_max_count_ge_1",
+      "spectral_max_count_ge_2",
+      "spectral_max_count_ge_3",
+      "spectral_max_max",
+      "spectral_max_mean",
+      "spectral_max_median",
+      "spectral_max_min",
+      "spectral_max_q25",
+      "spectral_max_q75",
+      "spectral_max_std",
+      "spectral_sliding_abs_mean",
+      "spectral_sliding_count_ge_1",
+      "spectral_sliding_count_ge_2",
+      "spectral_sliding_count_ge_3",
+      "spectral_sliding_max",
+      "spectral_sliding_mean",
+      "spectral_sliding_median",
+      "spectral_sliding_min",
+      "spectral_sliding_q25",
+      "spectral_sliding_q75",
+      "spectral_sliding_std",
+      "spectral_state_abs_mean",
+      "spectral_state_count_ge_1",
+      "spectral_state_count_ge_2",
+      "spectral_state_count_ge_3",
+      "spectral_state_max",
+      "spectral_state_mean",
+      "spectral_state_median",
+      "spectral_state_min",
+      "spectral_state_q25",
+      "spectral_state_q75",
+      "spectral_state_std"
+    ],
+    "model_order": [
+      "pedestrian",
+      "pedestrian_spectral",
+      "latent_only",
+      "spectral_latent",
+      "pedestrian_spectral_latent",
+      "pedestrian_spectral_selected",
+      "latent_only_selected",
+      "spectral_latent_selected",
+      "pedestrian_spectral_latent_selected",
+      "late_fusion_mean",
+      "late_fusion_logistic"
+    ],
+    "splits": [
+      {
+        "models": {
+          "late_fusion_logistic": {
+            "brier": 0.2029856083013436,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.0,
+            "families": [
+              "pedestrian",
+              "spectral",
+              "latent"
+            ],
+            "family_model_selection": [
+              {
+                "family": "pedestrian",
+                "feature_count": 79,
+                "inner_pr_auc": 0.34745933003257645,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              },
+              {
+                "family": "spectral",
+                "feature_count": 55,
+                "inner_pr_auc": 0.1718388666583125,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              },
+              {
+                "family": "latent",
+                "feature_count": 66,
+                "inner_pr_auc": 0.2010635431224193,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              }
+            ],
+            "feature_count": 3.0,
+            "fn": 240.0,
+            "fp": 0.0,
+            "fusion": "logistic_family_probability",
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1737.0,
+            "oof_family_model_selection": [
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb02"
+              },
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb03"
+              }
+            ],
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.1531421871261206,
+            "precision": null,
+            "recall": 0.0,
+            "roc_auc": 0.5524179620034543,
+            "rows": 1977.0,
+            "selected_c": 1.0,
+            "threshold": 0.7360145116525055,
+            "tn": 1737.0,
+            "tp": 0.0
+          },
+          "late_fusion_mean": {
+            "brier": 0.16898570820084285,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.0,
+            "families": [
+              "pedestrian",
+              "spectral",
+              "latent"
+            ],
+            "family_model_selection": [
+              {
+                "family": "pedestrian",
+                "feature_count": 79,
+                "inner_pr_auc": 0.34745933003257645,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              },
+              {
+                "family": "spectral",
+                "feature_count": 55,
+                "inner_pr_auc": 0.1718388666583125,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              },
+              {
+                "family": "latent",
+                "feature_count": 66,
+                "inner_pr_auc": 0.2010635431224193,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              }
+            ],
+            "feature_count": 3.0,
+            "fn": 240.0,
+            "fp": 0.0,
+            "fusion": "mean_family_probability",
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1737.0,
+            "oof_family_model_selection": [
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb02"
+              },
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb03"
+              }
+            ],
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.09935900100587125,
+            "precision": null,
+            "recall": 0.0,
+            "roc_auc": 0.4309777393974285,
+            "rows": 1977.0,
+            "threshold": 0.952181845821476,
+            "tn": 1737.0,
+            "tp": 0.0
+          },
+          "latent_only": {
+            "brier": 0.16131291495381922,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.1295336787564767,
+            "feature_count": 66.0,
+            "feature_selection": false,
+            "fn": 240.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.2010635431224193,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2010635431224193,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1792611883325104,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1646193984101995,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15629677975515754,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14917749467010655,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.2010635431224193,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.13915065407023886,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.5630876990980618,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9738126716139301,
+            "tn": 1736.0,
+            "tp": 0.0
+          },
+          "latent_only_selected": {
+            "brier": 0.155517898334052,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.0,
+            "feature_count": 66.0,
+            "feature_selection": true,
+            "fn": 240.0,
+            "fp": 0.0,
+            "inner_pr_auc": 0.26813437150549446,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.190323989540785,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.23932129443222644,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2585308321273496,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1964364664388743,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2010635431224193,
+                  "k": 66
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1929974707482074,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.20554490216301274,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26813437150549446,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1821061490682257,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1792611883325104,
+                  "k": 66
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19908293554324505,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18780645869758253,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2591020528093091,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.16487044294142988,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1646193984101995,
+                  "k": 66
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19814391652727975,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18295540296802937,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2610188482609297,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1571658273560585,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15629677975515754,
+                  "k": 66
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19210862018599212,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18318766694900446,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2591334645069786,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14801509574372504,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14917749467010655,
+                  "k": 66
+                }
+              ],
+              "inner_pr_auc": 0.26813437150549446,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.03,
+              "selected_k": 32
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.13416449333418096,
+            "precision": null,
+            "recall": 0.0,
+            "roc_auc": 0.541961715601612,
+            "rows": 1977.0,
+            "selected_c": 0.03,
+            "selected_k": 32.0,
+            "threshold": 0.9819693243066747,
+            "tn": 1737.0,
+            "tp": 0.0
+          },
+          "pedestrian": {
+            "brier": 0.2669341525562372,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.6476683937823834,
+            "feature_count": 79.0,
+            "feature_selection": false,
+            "fn": 240.0,
+            "fp": 5.0,
+            "inner_pr_auc": 0.34745933003257645,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.34745933003257645,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.27846438875172974,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.21731682141957576,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19502743137084233,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1810215355014596,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.34745933003257645,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.0734702986950809,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.21850172711571675,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9913255111965809,
+            "tn": 1732.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral": {
+            "brier": 0.21537515462911425,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.1295336787564767,
+            "feature_count": 134.0,
+            "feature_selection": false,
+            "fn": 240.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.3250348146941423,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3250348146941423,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18755106421766254,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13299263499273747,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11472412697118187,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10246905839101801,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.3250348146941423,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.0740902191257623,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.2265616004605642,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9854176237377335,
+            "tn": 1736.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral_latent": {
+            "brier": 0.2328387362285377,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.38860103626943004,
+            "feature_count": 200.0,
+            "feature_selection": false,
+            "fn": 240.0,
+            "fp": 3.0,
+            "inner_pr_auc": 0.26714440107078447,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26714440107078447,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17508874439874528,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12558766098494714,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11108397918610523,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10394807897397862,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.26714440107078447,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.07327557911820126,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.2187176165803109,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9790481801194395,
+            "tn": 1734.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral_latent_selected": {
+            "brier": 0.23532684188348138,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.38860103626943004,
+            "feature_count": 200.0,
+            "feature_selection": true,
+            "fn": 240.0,
+            "fp": 3.0,
+            "inner_pr_auc": 0.34974047040032846,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22383770297296865,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2959977914166184,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3048697852807617,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.34974047040032846,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26714440107078447,
+                  "k": 200
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.20430615053008344,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2878580989440669,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2978794999597688,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.20874981812877558,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17508874439874528,
+                  "k": 200
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.16665851065283638,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24796553364995524,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.28034283495029977,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18891081781529012,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12558766098494714,
+                  "k": 200
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15262932873081117,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.21256848231716458,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26113061768477475,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18077702683121052,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11108397918610523,
+                  "k": 200
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14671478654502879,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18337818194906563,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2400389444479809,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17120436442104378,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10394807897397862,
+                  "k": 200
+                }
+              ],
+              "inner_pr_auc": 0.34974047040032846,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": 64
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.06992455332768853,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.17019526002686625,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "selected_k": 64.0,
+            "threshold": 0.9705145300796822,
+            "tn": 1734.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral_selected": {
+            "brier": 0.22665194221232396,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.2590673575129534,
+            "feature_count": 134.0,
+            "feature_selection": true,
+            "fn": 240.0,
+            "fp": 2.0,
+            "inner_pr_auc": 0.4244392625893654,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.30193247797436595,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.31915529738474313,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.4244392625893654,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2786220416002022,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3250348146941423,
+                  "k": 134
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2950277267883792,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3163334483490373,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3414474472970137,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1788189604407887,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18755106421766254,
+                  "k": 134
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26605046570252283,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26338811801472556,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2703369459407352,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14257203603353866,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13299263499273747,
+                  "k": 134
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.23645799950988267,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.20143316089117536,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2438369080550535,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12185113162475095,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11472412697118187,
+                  "k": 134
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2190325083865619,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1673051608479233,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22063613526584053,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10708203456916861,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10246905839101801,
+                  "k": 134
+                }
+              ],
+              "inner_pr_auc": 0.4244392625893654,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": 32
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.07093316456609726,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.18610871233928228,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "selected_k": 32.0,
+            "threshold": 0.9728694606973393,
+            "tn": 1735.0,
+            "tp": 0.0
+          },
+          "spectral_latent": {
+            "brier": 0.1545053474900737,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.1295336787564767,
+            "feature_count": 121.0,
+            "feature_selection": false,
+            "fn": 240.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.19564923424914757,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19564923424914757,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17494463694434698,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.16160223710178448,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14932694176992303,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14392833182533804,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.19564923424914757,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.14569917837624508,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.5659590289771637,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9755889696551546,
+            "tn": 1736.0,
+            "tp": 0.0
+          },
+          "spectral_latent_selected": {
+            "brier": 0.15803152669236864,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.0,
+            "feature_count": 121.0,
+            "feature_selection": true,
+            "fn": 240.0,
+            "fp": 0.0,
+            "inner_pr_auc": 0.22097147661926284,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17505159096822737,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18102162701883937,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19286370613082127,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2027997684179677,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19564923424914757,
+                  "k": 121
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15991433156311508,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17036119309442405,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18004227101172404,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18449256894580213,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17494463694434698,
+                  "k": 121
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1419365991727666,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.16032203217211194,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17807927873955112,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19291155447669273,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.16160223710178448,
+                  "k": 121
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12028097671918533,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15680040472807452,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18631614727187357,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2125932395834627,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14932694176992303,
+                  "k": 121
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10413673469739379,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15686080807298647,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2114189975006533,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22097147661926284,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14392833182533804,
+                  "k": 121
+                }
+              ],
+              "inner_pr_auc": 0.22097147661926284,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0,
+              "selected_k": 64
+            },
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.14521818812264925,
+            "precision": null,
+            "recall": 0.0,
+            "roc_auc": 0.5573426405680292,
+            "rows": 1977.0,
+            "selected_c": 1.0,
+            "selected_k": 64.0,
+            "threshold": 0.9692643069220866,
+            "tn": 1737.0,
+            "tp": 0.0
+          }
+        },
+        "test_positives": 240,
+        "test_rows": 1977,
+        "test_subject": "chb01",
+        "train_positives": 295,
+        "train_rows": 4649
+      },
+      {
+        "models": {
+          "late_fusion_logistic": {
+            "brier": 0.39192561143232135,
+            "event_count": 3.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.0,
+            "families": [
+              "pedestrian",
+              "spectral",
+              "latent"
+            ],
+            "family_model_selection": [
+              {
+                "family": "pedestrian",
+                "feature_count": 79,
+                "inner_pr_auc": 0.08449914725031113,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 1.0,
+                "selected_k": null
+              },
+              {
+                "family": "spectral",
+                "feature_count": 55,
+                "inner_pr_auc": 0.11041891938983975,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 1.0,
+                "selected_k": null
+              },
+              {
+                "family": "latent",
+                "feature_count": 66,
+                "inner_pr_auc": 0.08933093721471166,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.1,
+                "selected_k": null
+              }
+            ],
+            "feature_count": 3.0,
+            "fn": 75.0,
+            "fp": 0.0,
+            "fusion": "logistic_family_probability",
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 2544.0,
+            "oof_family_model_selection": [
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb01"
+              },
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb03"
+              }
+            ],
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.06788577215999783,
+            "precision": null,
+            "recall": 0.0,
+            "roc_auc": 0.47051886792452835,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "threshold": 0.9473154112333788,
+            "tn": 2544.0,
+            "tp": 0.0
+          },
+          "late_fusion_mean": {
+            "brier": 0.17397148760873957,
+            "event_count": 3.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.0,
+            "families": [
+              "pedestrian",
+              "spectral",
+              "latent"
+            ],
+            "family_model_selection": [
+              {
+                "family": "pedestrian",
+                "feature_count": 79,
+                "inner_pr_auc": 0.08449914725031113,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 1.0,
+                "selected_k": null
+              },
+              {
+                "family": "spectral",
+                "feature_count": 55,
+                "inner_pr_auc": 0.11041891938983975,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 1.0,
+                "selected_k": null
+              },
+              {
+                "family": "latent",
+                "feature_count": 66,
+                "inner_pr_auc": 0.08933093721471166,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.1,
+                "selected_k": null
+              }
+            ],
+            "feature_count": 3.0,
+            "fn": 75.0,
+            "fp": 0.0,
+            "fusion": "mean_family_probability",
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 2544.0,
+            "oof_family_model_selection": [
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb01"
+              },
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb03"
+              }
+            ],
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.1425868010060226,
+            "precision": null,
+            "recall": 0.0,
+            "roc_auc": 0.7425104821802935,
+            "rows": 2619.0,
+            "threshold": 0.973585584252073,
+            "tn": 2544.0,
+            "tp": 0.0
+          },
+          "latent_only": {
+            "brier": 0.21076141488793224,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 6.633254716981132,
+            "feature_count": 66.0,
+            "feature_selection": false,
+            "fn": 44.0,
+            "fp": 75.0,
+            "inner_pr_auc": 0.08933093721471166,
+            "lead_time_minutes_mean": 9.75,
+            "lead_time_minutes_median": 9.75,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08845224645961042,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08907179553130862,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08933093721471166,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08887491236505879,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08797422578717307,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.08933093721471166,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.1,
+              "selected_k": null
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.2188445695564023,
+            "precision": 0.29245283018867924,
+            "recall": 0.41333333333333333,
+            "roc_auc": 0.670985324947589,
+            "rows": 2619.0,
+            "selected_c": 0.1,
+            "selected_k": null,
+            "threshold": 0.8469249415623813,
+            "tn": 2469.0,
+            "tp": 31.0
+          },
+          "latent_only_selected": {
+            "brier": 0.21616351947927223,
+            "event_count": 3.0,
+            "event_recall": 0.6666666666666666,
+            "false_alarms_per_hour": 0.0,
+            "feature_count": 66.0,
+            "feature_selection": true,
+            "fn": 73.0,
+            "fp": 0.0,
+            "inner_pr_auc": 0.18733737456547123,
+            "lead_time_minutes_mean": 4.308333333333334,
+            "lead_time_minutes_median": 4.308333333333334,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18733737456547123,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1857845573390953,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13226869329518962,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08826746385315534,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08845224645961042,
+                  "k": 66
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18489034407017768,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17417269223751627,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13709852204662115,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08892281504273565,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08907179553130862,
+                  "k": 66
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18468148059732542,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13458408004567063,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1499017769124078,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08932744509074855,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08933093721471166,
+                  "k": 66
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.178714760173801,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09484221043933455,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15736938176728202,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08885937085385351,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08887491236505879,
+                  "k": 66
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1761367854872254,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08973288571209564,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.16964546142759518,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08788345586474007,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08797422578717307,
+                  "k": 66
+                }
+              ],
+              "inner_pr_auc": 0.18733737456547123,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": 8
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.19876527418445905,
+            "precision": 1.0,
+            "recall": 0.02666666666666667,
+            "roc_auc": 0.7149999999999999,
+            "rows": 2619.0,
+            "selected_c": 0.01,
+            "selected_k": 8.0,
+            "threshold": 0.7305831287265873,
+            "tn": 2544.0,
+            "tp": 2.0
+          },
+          "pedestrian": {
+            "brier": 0.1930884783063449,
+            "event_count": 3.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.8844339622641509,
+            "feature_count": 79.0,
+            "feature_selection": false,
+            "fn": 75.0,
+            "fp": 10.0,
+            "inner_pr_auc": 0.08449914725031113,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06922381227089963,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07064829223974964,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07191017867866031,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07387576492793564,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08449914725031113,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.08449914725031113,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0,
+              "selected_k": null
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.03235274498731254,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.4243186582809224,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "selected_k": null,
+            "threshold": 0.978170769092668,
+            "tn": 2534.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral": {
+            "brier": 0.22013520346534352,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 1.6804245283018868,
+            "feature_count": 134.0,
+            "feature_selection": false,
+            "fn": 72.0,
+            "fp": 19.0,
+            "inner_pr_auc": 0.06813065598982515,
+            "lead_time_minutes_mean": 1.5333333333333334,
+            "lead_time_minutes_median": 1.5333333333333334,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0667125744934873,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06646627066135796,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06640041494694379,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06684715297583449,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06813065598982515,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.06813065598982515,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0,
+              "selected_k": null
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.03272725021047642,
+            "precision": 0.13636363636363635,
+            "recall": 0.04,
+            "roc_auc": 0.319979035639413,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "selected_k": null,
+            "threshold": 0.9786736452704616,
+            "tn": 2525.0,
+            "tp": 3.0
+          },
+          "pedestrian_spectral_latent": {
+            "brier": 0.23944733715043554,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 6.898584905660377,
+            "feature_count": 200.0,
+            "feature_selection": false,
+            "fn": 74.0,
+            "fp": 78.0,
+            "inner_pr_auc": 0.06880098613376505,
+            "lead_time_minutes_mean": 3.8833333333333333,
+            "lead_time_minutes_median": 3.8833333333333333,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06702690953288971,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06799310098964759,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0685446478728938,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06846823874259347,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06880098613376505,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.06880098613376505,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0,
+              "selected_k": null
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.02648793321371673,
+            "precision": 0.012658227848101266,
+            "recall": 0.013333333333333334,
+            "roc_auc": 0.4039255765199161,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "selected_k": null,
+            "threshold": 0.9693682410996656,
+            "tn": 2466.0,
+            "tp": 1.0
+          },
+          "pedestrian_spectral_latent_selected": {
+            "brier": 0.34160613749616725,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 0.08844339622641509,
+            "feature_count": 200.0,
+            "feature_selection": true,
+            "fn": 67.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.07876383424477966,
+            "lead_time_minutes_mean": 5.8,
+            "lead_time_minutes_median": 5.8,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06977049791372583,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06669170048592311,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0709308738709315,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07236851174876843,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06702690953288971,
+                  "k": 200
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07064128267787878,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06731958394679985,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07176775339367164,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07457321063521624,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06799310098964759,
+                  "k": 200
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07247156940933339,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0686277405452647,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0727346909304405,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07820474007524528,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0685446478728938,
+                  "k": 200
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0749746806109909,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07012265114257851,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07277588406226812,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07876383424477966,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06846823874259347,
+                  "k": 200
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07772443728280379,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07142818649133262,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07370235550126736,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07463322287461036,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06880098613376505,
+                  "k": 200
+                }
+              ],
+              "inner_pr_auc": 0.07876383424477966,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.3,
+              "selected_k": 64
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.13506206888179073,
+            "precision": 0.8888888888888888,
+            "recall": 0.10666666666666667,
+            "roc_auc": 0.3807809224318658,
+            "rows": 2619.0,
+            "selected_c": 0.3,
+            "selected_k": 64.0,
+            "threshold": 0.9917045267011877,
+            "tn": 2543.0,
+            "tp": 8.0
+          },
+          "pedestrian_spectral_selected": {
+            "brier": 0.30863545168108897,
+            "event_count": 3.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.08844339622641509,
+            "feature_count": 134.0,
+            "feature_selection": true,
+            "fn": 75.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.07660179212512518,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06922314131569197,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06680671800953206,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07135139349080871,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07369255895311981,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0667125744934873,
+                  "k": 134
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0700249028269819,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06755999773949353,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07255599976120874,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07205832541598306,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06646627066135796,
+                  "k": 134
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07171465130954766,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06882046074729306,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0740279923531374,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07130929066260168,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06640041494694379,
+                  "k": 134
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07400278255300335,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07082019670773863,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07467694796084454,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07004364671796026,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06684715297583449,
+                  "k": 134
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07657177292797537,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07549565562240995,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07660179212512518,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06868660601458579,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06813065598982515,
+                  "k": 134
+                }
+              ],
+              "inner_pr_auc": 0.07660179212512518,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0,
+              "selected_k": 32
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.020727079453035868,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.2935744234800839,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "selected_k": 32.0,
+            "threshold": 0.9910577903555867,
+            "tn": 2543.0,
+            "tp": 0.0
+          },
+          "spectral_latent": {
+            "brier": 0.21577154199731774,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 6.633254716981132,
+            "feature_count": 121.0,
+            "feature_selection": false,
+            "fn": 45.0,
+            "fp": 75.0,
+            "inner_pr_auc": 0.09169324385546375,
+            "lead_time_minutes_mean": 9.75,
+            "lead_time_minutes_median": 9.75,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09157416517025764,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09169324385546375,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09146754089825038,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09097180450237093,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09028804066874418,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.09169324385546375,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.03,
+              "selected_k": null
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.25436421021759364,
+            "precision": 0.2857142857142857,
+            "recall": 0.4,
+            "roc_auc": 0.6372693920335428,
+            "rows": 2619.0,
+            "selected_c": 0.03,
+            "selected_k": null,
+            "threshold": 0.8614000391827991,
+            "tn": 2469.0,
+            "tp": 30.0
+          },
+          "spectral_latent_selected": {
+            "brier": 0.21348249051207682,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 0.08844339622641509,
+            "feature_count": 121.0,
+            "feature_selection": true,
+            "fn": 74.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.19499681237136546,
+            "lead_time_minutes_mean": 6.066666666666666,
+            "lead_time_minutes_median": 6.066666666666666,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19499681237136546,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1312063332274342,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1383879829140537,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09431223596899035,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09157416517025764,
+                  "k": 121
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.164681080964663,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10257192331691779,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10695309780123273,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0926328848863272,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09169324385546375,
+                  "k": 121
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11255957927458836,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09714484724457662,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09805403361818171,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09235855737106843,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09146754089825038,
+                  "k": 121
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09910918661995095,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09635919795856165,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09700317617512871,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09272168110879894,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09097180450237093,
+                  "k": 121
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09509448286595279,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09620664504326834,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09771855269042443,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09336115860376488,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09028804066874418,
+                  "k": 121
+                }
+              ],
+              "inner_pr_auc": 0.19499681237136546,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": 8
+            },
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.15597182128763193,
+            "precision": 0.5,
+            "recall": 0.013333333333333334,
+            "roc_auc": 0.7692505241090147,
+            "rows": 2619.0,
+            "selected_c": 0.01,
+            "selected_k": 8.0,
+            "threshold": 0.7600095043665707,
+            "tn": 2543.0,
+            "tp": 1.0
+          }
+        },
+        "test_positives": 75,
+        "test_rows": 2619,
+        "test_subject": "chb02",
+        "train_positives": 460,
+        "train_rows": 4007
+      },
+      {
+        "models": {
+          "late_fusion_logistic": {
+            "brier": 0.2982565797439943,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.0,
+            "families": [
+              "pedestrian",
+              "spectral",
+              "latent"
+            ],
+            "family_model_selection": [
+              {
+                "family": "pedestrian",
+                "feature_count": 79,
+                "inner_pr_auc": 0.15312571911387673,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 1.0,
+                "selected_k": null
+              },
+              {
+                "family": "spectral",
+                "feature_count": 55,
+                "inner_pr_auc": 0.27371900239545666,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              },
+              {
+                "family": "latent",
+                "feature_count": 66,
+                "inner_pr_auc": 0.24148654969149996,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              }
+            ],
+            "feature_count": 3.0,
+            "fn": 220.0,
+            "fp": 0.0,
+            "fusion": "logistic_family_probability",
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1810.0,
+            "oof_family_model_selection": [
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb01"
+              },
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb02"
+              }
+            ],
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.09704386920503774,
+            "precision": null,
+            "recall": 0.0,
+            "roc_auc": 0.42712204922149666,
+            "rows": 2030.0,
+            "selected_c": 1.0,
+            "threshold": 0.7469484769241653,
+            "tn": 1810.0,
+            "tp": 0.0
+          },
+          "late_fusion_mean": {
+            "brier": 0.3232188817049057,
+            "event_count": 7.0,
+            "event_recall": 0.42857142857142855,
+            "false_alarms_per_hour": 23.61878453038674,
+            "families": [
+              "pedestrian",
+              "spectral",
+              "latent"
+            ],
+            "family_model_selection": [
+              {
+                "family": "pedestrian",
+                "feature_count": 79,
+                "inner_pr_auc": 0.15312571911387673,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 1.0,
+                "selected_k": null
+              },
+              {
+                "family": "spectral",
+                "feature_count": 55,
+                "inner_pr_auc": 0.27371900239545666,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              },
+              {
+                "family": "latent",
+                "feature_count": 66,
+                "inner_pr_auc": 0.24148654969149996,
+                "reason": "training-subject inner PR-AUC",
+                "selected_c": 0.01,
+                "selected_k": null
+              }
+            ],
+            "feature_count": 3.0,
+            "fn": 204.0,
+            "fp": 190.0,
+            "fusion": "mean_family_probability",
+            "lead_time_minutes_mean": 5.377777777777777,
+            "lead_time_minutes_median": 5.6,
+            "negatives": 1810.0,
+            "oof_family_model_selection": [
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb01"
+              },
+              {
+                "families": [
+                  {
+                    "family": "pedestrian",
+                    "feature_count": 79,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "spectral",
+                    "feature_count": 55,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  },
+                  {
+                    "family": "latent",
+                    "feature_count": 66,
+                    "inner_pr_auc": null,
+                    "reason": "fewer than two training subjects",
+                    "selected_c": 0.01,
+                    "selected_k": null
+                  }
+                ],
+                "validation_subject": "chb02"
+              }
+            ],
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.10582789563292593,
+            "precision": 0.07766990291262135,
+            "recall": 0.07272727272727272,
+            "roc_auc": 0.49630838774485186,
+            "rows": 2030.0,
+            "threshold": 0.801844266724972,
+            "tn": 1620.0,
+            "tp": 16.0
+          },
+          "latent_only": {
+            "brier": 0.5229942767232996,
+            "event_count": 7.0,
+            "event_recall": 0.2857142857142857,
+            "false_alarms_per_hour": 16.16022099447514,
+            "feature_count": 66.0,
+            "feature_selection": false,
+            "fn": 214.0,
+            "fp": 130.0,
+            "inner_pr_auc": 0.24148654969149996,
+            "lead_time_minutes_mean": 6.225,
+            "lead_time_minutes_median": 6.225,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24148654969149996,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.23295258211838255,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2288060165579347,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2235443305185644,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.21949786523219159,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.24148654969149996,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.0864380576441791,
+            "precision": 0.04411764705882353,
+            "recall": 0.02727272727272727,
+            "roc_auc": 0.3820241084881969,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9550300212572116,
+            "tn": 1680.0,
+            "tp": 6.0
+          },
+          "latent_only_selected": {
+            "brier": 0.5132494016807159,
+            "event_count": 7.0,
+            "event_recall": 0.14285714285714285,
+            "false_alarms_per_hour": 4.226519337016574,
+            "feature_count": 66.0,
+            "feature_selection": true,
+            "fn": 183.0,
+            "fp": 34.0,
+            "inner_pr_auc": 0.3712907610045044,
+            "lead_time_minutes_mean": 9.833333333333334,
+            "lead_time_minutes_median": 9.833333333333334,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3712907610045044,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3650304816643144,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24608656550750996,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2251754866032685,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24148654969149996,
+                  "k": 66
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.37061347611414996,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.33203771266516113,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.23475620891619933,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2254370654073185,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.23295258211838255,
+                  "k": 66
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.362136259326891,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2932860021627177,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22977565948528483,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22253867990647563,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2288060165579347,
+                  "k": 66
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.35873422141432676,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2735553435151902,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22976011094552784,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2173050857100121,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2235443305185644,
+                  "k": 66
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3557237145708218,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26105760906295117,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22969936459987683,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2140929073926392,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.21949786523219159,
+                  "k": 66
+                }
+              ],
+              "inner_pr_auc": 0.3712907610045044,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": 8
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.20233630103884315,
+            "precision": 0.5211267605633803,
+            "recall": 0.16818181818181818,
+            "roc_auc": 0.5282194876946258,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "selected_k": 8.0,
+            "threshold": 0.9754524464573354,
+            "tn": 1776.0,
+            "tp": 37.0
+          },
+          "pedestrian": {
+            "brier": 0.2646482997594015,
+            "event_count": 7.0,
+            "event_recall": 0.42857142857142855,
+            "false_alarms_per_hour": 7.582872928176796,
+            "feature_count": 79.0,
+            "feature_selection": false,
+            "fn": 180.0,
+            "fp": 61.0,
+            "inner_pr_auc": 0.15312571911387673,
+            "lead_time_minutes_mean": 7.527777777777779,
+            "lead_time_minutes_median": 7.15,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06595212711604899,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0709485902534002,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0762389234661196,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11092283835175835,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15312571911387673,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.15312571911387673,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0,
+              "selected_k": null
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.23789399981058731,
+            "precision": 0.39603960396039606,
+            "recall": 0.18181818181818182,
+            "roc_auc": 0.5438121546961325,
+            "rows": 2030.0,
+            "selected_c": 1.0,
+            "selected_k": null,
+            "threshold": 0.9799116690052684,
+            "tn": 1749.0,
+            "tp": 40.0
+          },
+          "pedestrian_spectral": {
+            "brier": 0.43836427734680744,
+            "event_count": 7.0,
+            "event_recall": 0.5714285714285714,
+            "false_alarms_per_hour": 32.569060773480665,
+            "feature_count": 134.0,
+            "feature_selection": false,
+            "fn": 176.0,
+            "fp": 262.0,
+            "inner_pr_auc": 0.11548766367822688,
+            "lead_time_minutes_mean": 5.304166666666667,
+            "lead_time_minutes_median": 4.8,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10224040718192305,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10850276687928695,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11548766367822688,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11526159982682475,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10676689507010001,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.11548766367822688,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.1,
+              "selected_k": null
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.13177606896289337,
+            "precision": 0.1437908496732026,
+            "recall": 0.2,
+            "roc_auc": 0.49136614766449016,
+            "rows": 2030.0,
+            "selected_c": 0.1,
+            "selected_k": null,
+            "threshold": 0.9799322204662608,
+            "tn": 1548.0,
+            "tp": 44.0
+          },
+          "pedestrian_spectral_latent": {
+            "brier": 0.5075148125278865,
+            "event_count": 7.0,
+            "event_recall": 0.42857142857142855,
+            "false_alarms_per_hour": 63.52209944751381,
+            "feature_count": 200.0,
+            "feature_selection": false,
+            "fn": 167.0,
+            "fp": 511.0,
+            "inner_pr_auc": 0.13709473578753667,
+            "lead_time_minutes_mean": 7.438888888888889,
+            "lead_time_minutes_median": 8.533333333333333,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13709473578753667,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13657063150995252,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13288372061418907,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12865553286513548,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12524661714164442,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.13709473578753667,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.10922047127421666,
+            "precision": 0.09397163120567376,
+            "recall": 0.2409090909090909,
+            "roc_auc": 0.3661627322953289,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9403569884069491,
+            "tn": 1299.0,
+            "tp": 53.0
+          },
+          "pedestrian_spectral_latent_selected": {
+            "brier": 0.5075148125278867,
+            "event_count": 7.0,
+            "event_recall": 0.42857142857142855,
+            "false_alarms_per_hour": 63.52209944751381,
+            "feature_count": 200.0,
+            "feature_selection": true,
+            "fn": 167.0,
+            "fp": 511.0,
+            "inner_pr_auc": 0.13709473578753667,
+            "lead_time_minutes_mean": 7.438888888888889,
+            "lead_time_minutes_median": 8.533333333333333,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09749872580498685,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1022184794796814,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07689558629862125,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08224434733255259,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13709473578753667,
+                  "k": 200
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09781008085511972,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10405797396711162,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06807355507111816,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07434542408853785,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13657063150995252,
+                  "k": 200
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10577977733104485,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10872487923091839,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06384190085497571,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0676822710772279,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13288372061418907,
+                  "k": 200
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11649728132815573,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11105630891147117,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06222835587683334,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06481775479586638,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12865553286513548,
+                  "k": 200
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11973874841602168,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11604101900958952,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06200759743540176,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0645618479143124,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12524661714164442,
+                  "k": 200
+                }
+              ],
+              "inner_pr_auc": 0.13709473578753667,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": 200
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.10922047127421666,
+            "precision": 0.09397163120567376,
+            "recall": 0.2409090909090909,
+            "roc_auc": 0.3661627322953289,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "selected_k": 200.0,
+            "threshold": 0.9403569884069494,
+            "tn": 1299.0,
+            "tp": 53.0
+          },
+          "pedestrian_spectral_selected": {
+            "brier": 0.5545371755122358,
+            "event_count": 7.0,
+            "event_recall": 0.5714285714285714,
+            "false_alarms_per_hour": 24.861878453038674,
+            "feature_count": 134.0,
+            "feature_selection": true,
+            "fn": 181.0,
+            "fp": 200.0,
+            "inner_pr_auc": 0.1609545084799651,
+            "lead_time_minutes_mean": 5.504166666666666,
+            "lead_time_minutes_median": 5.333333333333333,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.047028766491972684,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07667405378342963,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.05804178670632056,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07261572336669841,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10224040718192305,
+                  "k": 134
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.047917983205239253,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10137704312454536,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.05761067934464516,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06626488664742752,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10850276687928695,
+                  "k": 134
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.05594761517729132,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12930913121877605,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.059722086018753104,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0640365338734793,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11548766367822688,
+                  "k": 134
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06782638593073188,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14574032612039717,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06279936854152407,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0651397678118111,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11526159982682475,
+                  "k": 134
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07253484665156532,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1609545084799651,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06645296578481796,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10382458806546166,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10676689507010001,
+                  "k": 134
+                }
+              ],
+              "inner_pr_auc": 0.1609545084799651,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0,
+              "selected_k": 16
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.12517191736439104,
+            "precision": 0.16317991631799164,
+            "recall": 0.17727272727272728,
+            "roc_auc": 0.4858613761928679,
+            "rows": 2030.0,
+            "selected_c": 1.0,
+            "selected_k": 16.0,
+            "threshold": 0.997157478142339,
+            "tn": 1610.0,
+            "tp": 39.0
+          },
+          "spectral_latent": {
+            "brier": 0.5086158265492629,
+            "event_count": 7.0,
+            "event_recall": 0.5714285714285714,
+            "false_alarms_per_hour": 30.58011049723757,
+            "feature_count": 121.0,
+            "feature_selection": false,
+            "fn": 188.0,
+            "fp": 246.0,
+            "inner_pr_auc": 0.2893657384325162,
+            "lead_time_minutes_mean": 6.6875,
+            "lead_time_minutes_median": 7.0249999999999995,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2893657384325162,
+                  "k": null
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2861800724836641,
+                  "k": null
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26640721761219005,
+                  "k": null
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2559995323066329,
+                  "k": null
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24100898640658802,
+                  "k": null
+                }
+              ],
+              "inner_pr_auc": 0.2893657384325162,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": null
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.09170658200108958,
+            "precision": 0.11510791366906475,
+            "recall": 0.14545454545454545,
+            "roc_auc": 0.39564540431943745,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "selected_k": null,
+            "threshold": 0.9268676696073267,
+            "tn": 1564.0,
+            "tp": 32.0
+          },
+          "spectral_latent_selected": {
+            "brier": 0.5152740614155515,
+            "event_count": 7.0,
+            "event_recall": 0.14285714285714285,
+            "false_alarms_per_hour": 5.842541436464089,
+            "feature_count": 121.0,
+            "feature_selection": true,
+            "fn": 183.0,
+            "fp": 47.0,
+            "inner_pr_auc": 0.3337497106002192,
+            "lead_time_minutes_mean": 9.833333333333334,
+            "lead_time_minutes_median": 9.833333333333334,
+            "model_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3337497106002192,
+                  "k": 8
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.32492507434314155,
+                  "k": 16
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3055717518068138,
+                  "k": 32
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24142845245977174,
+                  "k": 64
+                },
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2893657384325162,
+                  "k": 121
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.32542351176108497,
+                  "k": 8
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.30901448958111205,
+                  "k": 16
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2867650766170655,
+                  "k": 32
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.22458442895379754,
+                  "k": 64
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2861800724836641,
+                  "k": 121
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.31735819101035107,
+                  "k": 8
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.29996269354897714,
+                  "k": 16
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.27211391927405204,
+                  "k": 32
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2231497074931969,
+                  "k": 64
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26640721761219005,
+                  "k": 121
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3114386676354074,
+                  "k": 8
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.30092987829813356,
+                  "k": 16
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2679162719314936,
+                  "k": 32
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2263390990461664,
+                  "k": 64
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2559995323066329,
+                  "k": 121
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3054311715812137,
+                  "k": 8
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.29970157678099346,
+                  "k": 16
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2704683473100486,
+                  "k": 32
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2259208296506307,
+                  "k": 64
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24100898640658802,
+                  "k": 121
+                }
+              ],
+              "inner_pr_auc": 0.3337497106002192,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01,
+              "selected_k": 8
+            },
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.17329184498879974,
+            "precision": 0.44047619047619047,
+            "recall": 0.16818181818181818,
+            "roc_auc": 0.5265519839276745,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "selected_k": 8.0,
+            "threshold": 0.9765961128876852,
+            "tn": 1763.0,
+            "tp": 37.0
+          }
+        },
+        "test_positives": 220,
+        "test_rows": 2030,
+        "test_subject": "chb03",
+        "train_positives": 315,
+        "train_rows": 4596
+      }
+    ]
+  },
+  "method": {
+    "event_note": "events are file-local CHB-MIT summary seizures with at least one eligible preictal row",
+    "integration_controls": "selected-feature logistic models and late fusion over pedestrian/spectral/latent family probabilities are trained without outer-held-out labels",
+    "model_selection": "regularization C and optional feature count selected by inner leave-one-subject-out on training subjects only",
+    "negative_label": "anchor is outside seizure, postictal, and near-seizure exclusion gaps",
+    "positive_label": "anchor falls inside the preictal horizon before a labeled seizure",
+    "predictor": "median imputer + standard scaler + class-balanced logistic regression",
+    "purpose": "measure whether agnostic latent/stigmergic structure features improve a simple held-out-subject predictor over pedestrian and spectral features",
+    "split": "leave-one-subject-out"
+  },
+  "parameters": {
+    "adaptive_window": 256,
+    "baseline": 1024,
+    "channels": [
+      "FP1-F7",
+      "T7-P7",
+      "FZ-CZ",
+      "CZ-PZ",
+      "FP2-F8",
+      "P8-O2"
+    ],
+    "decay": 0.9,
+    "emission_threshold": 3.0,
+    "false_alarms_per_hour": 1.0,
+    "feature_window_seconds": 120.0,
+    "fusion_meta_c": 1.0,
+    "history_rows": 6,
+    "max_files_per_subject": 0,
+    "min_active_channels": 3,
+    "negative_gap_minutes": 30.0,
+    "postictal_minutes": 10.0,
+    "preictal_minutes": 10.0,
+    "regularization_cs": [
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0
+    ],
+    "score": "max",
+    "seed": 20260603,
+    "selection_ks": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "stride": 256,
+    "target_sample_rate": 16.0
+  },
+  "rows": {
+    "negative": 6091,
+    "phase_counts": {
+      "interictal": 6091,
+      "preictal": 535
+    },
+    "positive": 535,
+    "skipped": [],
+    "subjects": {
+      "chb01": {
+        "events": 7,
+        "files": 14,
+        "positives": 240,
+        "rows": 1977
+      },
+      "chb02": {
+        "events": 3,
+        "files": 14,
+        "positives": 75,
+        "rows": 2619
+      },
+      "chb03": {
+        "events": 7,
+        "files": 14,
+        "positives": 220,
+        "rows": 2030
+      }
+    },
+    "total": 6626
+  }
+}

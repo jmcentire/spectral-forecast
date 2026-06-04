@@ -2,7 +2,9 @@ import numpy as np
 
 from experiments.chbmit_predictor_ablation import (
     FeatureRow,
+    _candidate_feature_counts,
     _classification_metrics,
+    _late_fusion_models,
     _label_anchor,
     _latent_features,
     _threshold_for_false_alarm_rate,
@@ -114,3 +116,61 @@ def test_classification_metrics_report_event_recall_and_false_alarm_rate() -> No
     assert metrics["event_recall"] == 1.0
     assert metrics["recall"] == 0.5
     assert metrics["false_alarms_per_hour"] == 2.0
+
+
+def test_candidate_feature_counts_caps_and_deduplicates() -> None:
+    assert _candidate_feature_counts(20, "4,8,50") == [4, 8, 20]
+    assert _candidate_feature_counts(3, "8,16") == [3]
+
+
+def test_late_fusion_models_return_mean_and_logistic_controls() -> None:
+    class Args:
+        regularization_cs = "0.1"
+        selection_ks = "2"
+        false_alarms_per_hour = 100.0
+        fusion_meta_c = 1.0
+        max_iter = 500
+        seed = 7
+
+    rows = []
+    for subject_index, subject in enumerate(("s1", "s2", "s3")):
+        for i in range(20):
+            label = int(i >= 10)
+            value = float(i + subject_index * 0.1)
+            rows.append(
+                FeatureRow(
+                    subject,
+                    "f",
+                    i,
+                    float(i),
+                    label,
+                    "preictal" if label else "interictal",
+                    f"{subject}:evt" if label else None,
+                    20.0 if label else None,
+                    {
+                        "ped_a": value,
+                        "spectral_a": value * 0.5,
+                        "latent_a": value * 2.0,
+                    },
+                )
+            )
+    train_rows = [row for row in rows if row.subject != "s3"]
+    test_rows = [row for row in rows if row.subject == "s3"]
+    groups = {
+        "pedestrian": ["ped_a"],
+        "spectral": ["spectral_a"],
+        "latent": ["latent_a"],
+    }
+
+    reports = _late_fusion_models(
+        train_rows,
+        test_rows,
+        groups,
+        Args(),
+        row_hours=0.1,
+    )
+
+    assert set(reports) == {"late_fusion_mean", "late_fusion_logistic"}
+    assert reports["late_fusion_mean"]["feature_count"] == 3.0
+    assert reports["late_fusion_logistic"]["feature_count"] == 3.0
+    assert reports["late_fusion_logistic"]["pr_auc"] is not None
