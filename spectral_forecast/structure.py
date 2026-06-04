@@ -109,6 +109,9 @@ def covariance_entropy(matrix: NDArray[np.floating]) -> float:
     x = np.asarray(matrix, dtype=np.float64)
     if x.ndim != 2:
         raise ValueError("matrix must be 2D")
+    finite = np.where(np.isfinite(x), x, 0.0)
+    usable = np.std(finite, axis=0) > 1e-10
+    x = finite[:, usable]
     if x.shape[1] <= 1:
         return 0.0
     corr = np.corrcoef(x, rowvar=False)
@@ -133,6 +136,8 @@ def _temporal_memory(matrix: NDArray[np.floating]) -> float:
     for column in range(matrix.shape[1]):
         y = np.asarray(matrix[:, column], dtype=np.float64)
         if len(y) < 3 or float(np.std(y)) < 1e-10:
+            continue
+        if float(np.std(y[:-1])) < 1e-10 or float(np.std(y[1:])) < 1e-10:
             continue
         corr = float(np.corrcoef(y[:-1], y[1:])[0, 1])
         if np.isfinite(corr):

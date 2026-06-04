@@ -1,0 +1,333 @@
+{
+  "args": {
+    "bin_seconds": 86400.0,
+    "data_dir": "data/org_networks",
+    "data_format": "edges",
+    "dataset": "email-eu",
+    "directed": true,
+    "download": false,
+    "edges": null,
+    "force_download": false,
+    "format": "text",
+    "labels": null,
+    "max_bins": 0,
+    "max_edges": 0,
+    "no_group_series": true,
+    "no_node_series": false,
+    "seed": 20260604,
+    "simplex_prefix": "email-Enron",
+    "source_col": 0,
+    "structure_null_repeats": 100,
+    "target_col": 1,
+    "time_col": 2,
+    "top_groups": 0,
+    "top_nodes": 10,
+    "transform": "log-robust"
+  },
+  "created_at": "2026-06-04T16:42:13.213101+00:00",
+  "dataset": {
+    "data_format": "edges",
+    "dataset": "email-eu",
+    "edge_path": "data/org_networks/email-eu/email-Eu-core-temporal.txt.gz",
+    "edge_url": "https://snap.stanford.edu/data/email-Eu-core-temporal.txt.gz",
+    "label_path": null,
+    "label_url": null,
+    "notes": "SNAP temporal Email-Eu full graph. Static department labels do not share node IDs with this temporal graph; do not use them here."
+  },
+  "guardrails": [
+    "Treat view/order as a hypothesis, not as ground truth.",
+    "Run artifact-control orders before trusting any ordered signal.",
+    "Map all surfaced evidence back to canonical event/entity IDs.",
+    "Do not use labels or future-derived information in the feature path.",
+    "Prediction features must be available with the same distribution at serve time."
+  ],
+  "order_candidates": [
+    {
+      "name": "timestamp",
+      "reason": "Chronological order is plausible only if time carries structure.",
+      "role": "candidate"
+    },
+    {
+      "name": "first_seen_pair",
+      "reason": "Orders ties by relationship emergence; useful for churn surfaces.",
+      "role": "candidate"
+    },
+    {
+      "name": "degree_descending",
+      "reason": "Topology-aligned order; tests whether hubs organize the signal.",
+      "role": "candidate"
+    },
+    {
+      "name": "group_then_time",
+      "reason": "Only valid when canonical group labels exist and are allowed.",
+      "role": "unavailable"
+    },
+    {
+      "name": "stable_id_or_alphabetic",
+      "reason": "Arbitrary stable order; signal here is suspect unless explained as a proxy.",
+      "role": "artifact_control"
+    },
+    {
+      "name": "hash_order",
+      "reason": "Stable but semantically arbitrary order-control.",
+      "role": "artifact_control"
+    },
+    {
+      "name": "random_order",
+      "reason": "Destroys order while preserving the event set.",
+      "role": "null_control"
+    },
+    {
+      "name": "silly_proxy_order",
+      "reason": "Sort by a nonsense/proxy key such as string length or digit frequency to expose order artifacts.",
+      "role": "artifact_probe"
+    },
+    {
+      "name": "timestamp_bucket_partial_order",
+      "reason": "Preserve within-bucket simultaneity instead of imposing arbitrary tie order.",
+      "role": "candidate"
+    }
+  ],
+  "profile": {
+    "cross_group_fraction": null,
+    "data_format": "edges",
+    "degree_gini": 0.6912159052433515,
+    "directed": true,
+    "edge_count": 332334,
+    "graph_density": 0.025667981178118016,
+    "group_count": 0,
+    "label_coverage": 0.0,
+    "max_same_timestamp": 58,
+    "node_count": 986,
+    "repeated_edge_fraction": 0.9249881143668719,
+    "returning_pair_fraction": 0.66260178908099,
+    "simultaneity_fraction": 0.49458677113987737,
+    "span": 69459254.0,
+    "timestamp_count": 207880,
+    "timestamp_resolution": 0.6255152948539722,
+    "top_degree_fraction": 0.11756696576335855,
+    "unique_pair_count": 24929
+  },
+  "recommended_views": [
+    {
+      "evidence": {
+        "full_temporal_z": 203.70149685290366,
+        "simultaneity_fraction": 0.49458677113987737,
+        "timestamp_count": 207880,
+        "timestamp_resolution": 0.6255152948539722
+      },
+      "grade": "strong",
+      "name": "temporal_total_order",
+      "reason": "Use timestamp order as a primary sequence only if it beats order-control nulls.",
+      "score": 0.8074614694855176
+    },
+    {
+      "evidence": {
+        "relation_ready": true,
+        "relation_score": 0.7,
+        "repeated_edge_fraction": 0.9249881143668719,
+        "returning_pair_fraction": 0.66260178908099
+      },
+      "grade": "strong",
+      "name": "relation_churn",
+      "reason": "Use novelty, returning ties, lost ties, and neighbor turnover as the main surface.",
+      "score": 0.7806480701436219
+    },
+    {
+      "evidence": {
+        "degree_gini": 0.6912159052433515,
+        "relation_covariance_z": 1125.4207463744956,
+        "returning_pair_fraction": 0.66260178908099,
+        "top_degree_fraction": 0.11756696576335855
+      },
+      "grade": "strong",
+      "name": "relationship_graph",
+      "reason": "Use graph adjacency and node/pair topology without forcing a total order.",
+      "score": 0.7156380856458217
+    },
+    {
+      "evidence": {
+        "data_format": "edges",
+        "max_same_timestamp": 58,
+        "simultaneity_fraction": 0.49458677113987737
+      },
+      "grade": "promising",
+      "name": "partial_order_or_hyperedge",
+      "reason": "Preserve simultaneity or higher-order events instead of serializing them.",
+      "score": 0.5224956382611056
+    }
+  ],
+  "surfaces": {
+    "full": {
+      "metadata": {
+        "bin_count": 804,
+        "bin_seconds": 86400.0,
+        "directed": true,
+        "dropped_series_count": 0,
+        "edge_count": 332334,
+        "end_timestamp": 69465600.0,
+        "included_edge_count": 332334,
+        "label_count": 0,
+        "raw_series_count": 97,
+        "selected_groups": [],
+        "selected_nodes": [
+          "987",
+          "168",
+          "629",
+          "586",
+          "356",
+          "178",
+          "912",
+          "915",
+          "98",
+          "746"
+        ],
+        "series_count": 97,
+        "start_timestamp": 0.0,
+        "transform": "log-robust"
+      },
+      "structure_readiness": {
+        "active_fraction": 0.1847207262655793,
+        "active_z_threshold": 1.5,
+        "covariance_entropy": 0.5528184797173076,
+        "covariance_entropy_deficit": 0.43411781824479234,
+        "covariance_null_mean": 0.9869362979620999,
+        "covariance_null_std": 0.00027118295282636394,
+        "covariance_z_effect": 1600.8300437776934,
+        "n": 804,
+        "null_repeats": 100,
+        "pattern_entropy": 0.7599724881394302,
+        "pattern_entropy_deficit": 0.2400275118605698,
+        "pattern_null_mean": 1.0,
+        "pattern_null_std": 0.0,
+        "pattern_z_effect": null,
+        "ready": true,
+        "reason": "ready",
+        "series_count": 97,
+        "structure_score": 0.7,
+        "temporal_memory": 0.510973555349697,
+        "temporal_memory_lift": 0.4831630057367926,
+        "temporal_null_mean": 0.02781054961290444,
+        "temporal_null_std": 0.0023719168155435445,
+        "temporal_z_effect": 203.70149685290366,
+        "usable_series_count": 97
+      }
+    },
+    "relation_only": {
+      "metadata": {
+        "bin_count": 804,
+        "bin_seconds": 86400.0,
+        "directed": true,
+        "dropped_series_count": 37,
+        "edge_count": 332334,
+        "end_timestamp": 69465600.0,
+        "included_edge_count": 332334,
+        "label_count": 0,
+        "raw_series_count": 60,
+        "relation_only": true,
+        "selected_groups": [],
+        "selected_nodes": [
+          "987",
+          "168",
+          "629",
+          "586",
+          "356",
+          "178",
+          "912",
+          "915",
+          "98",
+          "746"
+        ],
+        "series_count": 60,
+        "start_timestamp": 0.0,
+        "transform": "log-robust"
+      },
+      "structure_readiness": {
+        "active_fraction": 0.17547678275290216,
+        "active_z_threshold": 1.5,
+        "covariance_entropy": 0.6476743254513438,
+        "covariance_entropy_deficit": 0.3434093508286692,
+        "covariance_null_mean": 0.991083676280013,
+        "covariance_null_std": 0.0003051386354258624,
+        "covariance_z_effect": 1125.4207463744956,
+        "n": 804,
+        "null_repeats": 100,
+        "pattern_entropy": 0.7589298956346948,
+        "pattern_entropy_deficit": 0.24107010436530518,
+        "pattern_null_mean": 1.0,
+        "pattern_null_std": 0.0,
+        "pattern_z_effect": null,
+        "ready": true,
+        "reason": "ready",
+        "series_count": 60,
+        "structure_score": 0.7,
+        "temporal_memory": 0.4435397094281816,
+        "temporal_memory_lift": 0.41574346442894355,
+        "temporal_null_mean": 0.02779624499923807,
+        "temporal_null_std": 0.002480049866976547,
+        "temporal_z_effect": 167.6351229726604,
+        "usable_series_count": 60
+      }
+    }
+  },
+  "view_candidates": [
+    {
+      "evidence": {
+        "full_temporal_z": 203.70149685290366,
+        "simultaneity_fraction": 0.49458677113987737,
+        "timestamp_count": 207880,
+        "timestamp_resolution": 0.6255152948539722
+      },
+      "grade": "strong",
+      "name": "temporal_total_order",
+      "reason": "Use timestamp order as a primary sequence only if it beats order-control nulls.",
+      "score": 0.8074614694855176
+    },
+    {
+      "evidence": {
+        "relation_ready": true,
+        "relation_score": 0.7,
+        "repeated_edge_fraction": 0.9249881143668719,
+        "returning_pair_fraction": 0.66260178908099
+      },
+      "grade": "strong",
+      "name": "relation_churn",
+      "reason": "Use novelty, returning ties, lost ties, and neighbor turnover as the main surface.",
+      "score": 0.7806480701436219
+    },
+    {
+      "evidence": {
+        "degree_gini": 0.6912159052433515,
+        "relation_covariance_z": 1125.4207463744956,
+        "returning_pair_fraction": 0.66260178908099,
+        "top_degree_fraction": 0.11756696576335855
+      },
+      "grade": "strong",
+      "name": "relationship_graph",
+      "reason": "Use graph adjacency and node/pair topology without forcing a total order.",
+      "score": 0.7156380856458217
+    },
+    {
+      "evidence": {
+        "data_format": "edges",
+        "max_same_timestamp": 58,
+        "simultaneity_fraction": 0.49458677113987737
+      },
+      "grade": "promising",
+      "name": "partial_order_or_hyperedge",
+      "reason": "Preserve simultaneity or higher-order events instead of serializing them.",
+      "score": 0.5224956382611056
+    },
+    {
+      "evidence": {
+        "cross_group_fraction": null,
+        "group_count": 0,
+        "label_coverage": 0.0
+      },
+      "grade": "poor",
+      "name": "group_multilayer",
+      "reason": "Use group/department layers when labels are canonical and available at analysis time.",
+      "score": 0.13999999999999999
+    }
+  ]
+}
