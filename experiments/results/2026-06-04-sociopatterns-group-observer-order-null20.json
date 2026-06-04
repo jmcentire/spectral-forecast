@@ -1,0 +1,193 @@
+{
+  "candidate_projection": {
+    "analysis_bin_seconds": 512.0,
+    "coordinate_kind": "event_rank",
+    "event_order": "group_then_time",
+    "requested_bin_seconds": 86400.0,
+    "surface_mode": "group"
+  },
+  "created_at": "2026-06-04T19:02:06.810361+00:00",
+  "dataset": {
+    "data_format": "edges",
+    "dataset": "sociopatterns-workplace",
+    "edge_path": "data/org_networks/sociopatterns-workplace/workplace_InVS15_tij.dat.gz",
+    "edge_url": "https://sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz",
+    "label_path": "data/org_networks/sociopatterns-workplace/workplace_InVS15_metadata.txt",
+    "label_url": "https://sociopatterns.org/assets/data/workplace_InVS15_metadata.txt",
+    "notes": "SocioPatterns workplace contacts with matching department metadata."
+  },
+  "elapsed_seconds": 1672.2972428798676,
+  "observer_config": {
+    "adaptive_window": 16,
+    "baseline_size": 48,
+    "decay": 0.5,
+    "emission_threshold": 0.5,
+    "min_active_series": 1,
+    "score": "max",
+    "stride": 1
+  },
+  "order_null": {
+    "checkpoint": "/tmp/sociopatterns-group-observer-order-null20.checkpoint.json",
+    "comparison_statistic": "minimum segment observed-minus-block-null delta",
+    "inner_null_repeats": 30,
+    "input_feature_selection": "frozen_candidate_segment_features",
+    "mode": "random_order",
+    "repeats": 20,
+    "resumed_from_repeat": 0,
+    "score_feature_selection": "frozen_candidate_segment_scores",
+    "seed": 20260604
+  },
+  "random_order_min_deltas": {
+    "coactivation": [
+      -0.0017660548287367073,
+      -0.00011256698102901641,
+      0.001766560683268574,
+      0.0014824886670977075,
+      0.0004412557395289188,
+      0.0032832591117491206,
+      0.00225002971673844,
+      0.002642189083935431,
+      0.001473301734865394,
+      0.0017767179137567757,
+      0.0019508722674526774,
+      -0.0005902030904102462,
+      0.005036622403003128,
+      0.00024691315173493156,
+      0.0013267857189855417,
+      0.005729330747452889,
+      0.0007753255931119835,
+      0.004267921207632905,
+      0.001701830923576196,
+      0.005871969136006537
+    ],
+    "exclusion": [
+      -4.1935438763185395e-06,
+      -0.00035377181666375324,
+      -0.0007439667133601058,
+      -0.002018523711118901,
+      -0.00010866974480810976,
+      -0.0023793489795354145,
+      0.0005936473188545149,
+      -0.0005050801127941956,
+      -0.003550527957122452,
+      -0.0017997021382615414,
+      0.0002897342354163182,
+      -0.0011531442886486207,
+      -0.0014725234525659256,
+      0.0005314265583713923,
+      -0.002528168360256794,
+      -0.0008249697818226501,
+      -0.0005917147850293819,
+      -0.00032755389859770445,
+      -0.0028517764092247655,
+      0.0008978926021459208
+    ],
+    "lagged_succession": [
+      -0.00042422723892568404,
+      -0.0013793846390694336,
+      -0.001685767040859848,
+      -0.00036445445947376476,
+      -0.0011457379277165919,
+      -0.0041032431632593985,
+      -0.0010702199986277333,
+      -0.003886056258468343,
+      -0.0018070247427088432,
+      -0.0011333344873858536,
+      -0.0024072530066683584,
+      -0.0006876512622417813,
+      -0.001873549731655072,
+      0.00022243425028706243,
+      0.00034535291223981857,
+      -0.0029519350344458795,
+      -0.002159778911229107,
+      0.00010009197259022717,
+      -0.0005641225640682784,
+      -0.0010760926429195239
+    ],
+    "phase_offset": [
+      -0.025444395592648217,
+      -0.028041585433774663,
+      -0.02390037506793663,
+      -0.012047509922374022,
+      0.008888477669710904,
+      0.00502947102662421,
+      -0.020438760258497113,
+      0.0027224091338498013,
+      0.002376168130198808,
+      -0.013832737640036452,
+      -0.010108918670552858,
+      -0.0444931887635297,
+      -0.007081345453351373,
+      -0.028947517804951417,
+      -0.024597191433597843,
+      -0.018805048248362488,
+      -0.024556618262786545,
+      -0.003140497401635911,
+      -0.017789531646118406,
+      -0.03460984705646608
+    ]
+  },
+  "summary": {
+    "candidate_replicated_mechanisms": [
+      "coactivation"
+    ],
+    "confirmed_order_sensitive_mechanisms": [
+      "coactivation"
+    ],
+    "grade": "confirmed_order_sensitive_structure",
+    "metrics": {
+      "coactivation": {
+        "candidate_min_delta": 0.05336935063776205,
+        "candidate_minus_random_order_mean": 0.05139162319277599,
+        "candidate_replicated": true,
+        "confirmed_order_sensitive": true,
+        "empirical_p_floor": 0.047619047619047616,
+        "empirical_p_ge_candidate": 0.047619047619047616,
+        "random_order_exceedances": 0,
+        "random_order_mean_min_delta": 0.001977727444986059,
+        "random_order_std_min_delta": 0.0020381693000573915,
+        "unique_random_order_values": 20,
+        "z_effect_size": 25.21459978389866
+      },
+      "exclusion": {
+        "candidate_min_delta": -0.020125506716201468,
+        "candidate_minus_random_order_mean": -0.019180459967256543,
+        "candidate_replicated": false,
+        "confirmed_order_sensitive": false,
+        "empirical_p_floor": 0.047619047619047616,
+        "empirical_p_ge_candidate": 1.0,
+        "random_order_exceedances": 20,
+        "random_order_mean_min_delta": -0.0009450467489449244,
+        "random_order_std_min_delta": 0.0012428645819337037,
+        "unique_random_order_values": 20,
+        "z_effect_size": -15.43246162620125
+      },
+      "lagged_succession": {
+        "candidate_min_delta": -0.004789074662195025,
+        "candidate_minus_random_order_mean": -0.003386476963464706,
+        "candidate_replicated": false,
+        "confirmed_order_sensitive": false,
+        "empirical_p_floor": 0.047619047619047616,
+        "empirical_p_ge_candidate": 1.0,
+        "random_order_exceedances": 20,
+        "random_order_mean_min_delta": -0.0014025976987303193,
+        "random_order_std_min_delta": 0.001245392996547664,
+        "unique_random_order_values": 20,
+        "z_effect_size": -2.7192034746078626
+      },
+      "phase_offset": {
+        "candidate_min_delta": 0.015220042848562598,
+        "candidate_minus_random_order_mean": 0.0311609699833744,
+        "candidate_replicated": false,
+        "confirmed_order_sensitive": false,
+        "empirical_p_floor": 0.047619047619047616,
+        "empirical_p_ge_candidate": 0.047619047619047616,
+        "random_order_exceedances": 0,
+        "random_order_mean_min_delta": -0.0159409271348118,
+        "random_order_std_min_delta": 0.014235038427556348,
+        "unique_random_order_values": 20,
+        "z_effect_size": 2.1890330779193854
+      }
+    }
+  }
+}

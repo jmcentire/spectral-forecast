@@ -197,3 +197,53 @@ python3 experiments/org_network_directional_order_null.py \
 
 These diagnostics identify statistical organization. They do not identify its
 meaning, usefulness, or predictive value.
+
+To diagnose the next layer, apply the same mechanisms to frozen
+spectral-observer score matrices. High observer scores use positive-tail
+activation; low anomaly scores are not silently reclassified as active:
+
+```bash
+python3 experiments/org_network_observer_directional_quality.py \
+  --surface-report experiments/results/email-eu-directional-quality.json \
+  --baseline-size 48 \
+  --adaptive-window 16 \
+  --observer-stride 4 \
+  --output experiments/results/email-eu-observer-directional-quality.json
+```
+
+The runner grades insufficient observer anchors explicitly. A sparse
+four-anchor score matrix can support aggregate arithmetic, but it cannot support
+a defensible lag, phase, or directional diagnosis. A denser stride changes
+measurement resolution without refitting the frozen baseline or changing the
+adaptive-window geometry.
+
+Calibrate the matrix shape independently before interpreting an absent
+mechanism:
+
+```bash
+python3 experiments/directional_resolution_calibration.py \
+  --observations 29 \
+  --series-count 48 \
+  --trials 20 \
+  --output experiments/results/directional-resolution-29x48.json
+```
+
+The calibration injects known positive-valued score mechanisms and independent
+noise. It reports which mechanisms the observed geometry can recover; it does
+not call the real-data result adequate merely because that result is positive.
+
+Observer-layer random-order controls rebuild the observer for every randomized
+event order. These runs are substantially more expensive, so use a checkpoint:
+
+```bash
+python3 experiments/org_network_observer_directional_order_null.py \
+  --candidate-report experiments/results/email-eu-observer-directional-quality.json \
+  --surface-report experiments/results/email-eu-directional-quality.json \
+  --repeats 30 \
+  --inner-null-repeats 30 \
+  --checkpoint /tmp/email-eu-observer-order-null.checkpoint.json \
+  --output experiments/results/email-eu-observer-order-null30.json
+```
+
+Resume the same command with `--resume`. The checkpoint persists completed
+random-order deltas after every repeat.

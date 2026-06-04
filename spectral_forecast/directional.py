@@ -15,10 +15,12 @@ The diagnostics identify statistical organization, not its meaning or utility.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from typing import Mapping
+from typing import Literal, Mapping
 
 import numpy as np
 from numpy.typing import NDArray
+
+ActivationMode = Literal["absolute", "positive"]
 
 
 @dataclass(frozen=True)
@@ -50,6 +52,7 @@ class DirectionalQuality:
     usable_series_count: int
     selected_series: list[str]
     active_z_threshold: float
+    activation_mode: ActivationMode
     max_lag: int
     aggregate_quantile: float
     null_repeats: int
@@ -130,6 +133,7 @@ def directional_metric_values(
     matrix: NDArray[np.floating],
     *,
     active_z_threshold: float = 1.5,
+    activation_mode: ActivationMode = "absolute",
     max_lag: int = 12,
     aggregate_quantile: float = 0.9,
 ) -> dict[str, float]:
@@ -142,13 +146,18 @@ def directional_metric_values(
         raise ValueError("matrix is too short for directional diagnostics")
     if active_z_threshold <= 0:
         raise ValueError("active_z_threshold must be positive")
+    if activation_mode not in ("absolute", "positive"):
+        raise ValueError("activation_mode must be 'absolute' or 'positive'")
     if not 0.5 <= aggregate_quantile < 1.0:
         raise ValueError("aggregate_quantile must be in [0.5, 1.0)")
     effective_max_lag = min(max_lag, max(1, x.shape[0] // 4))
     if effective_max_lag < 1:
         raise ValueError("max_lag must be positive")
 
-    active = np.asarray(np.abs(x) >= active_z_threshold, dtype=np.float64)
+    if activation_mode == "absolute":
+        active = np.asarray(np.abs(x) >= active_z_threshold, dtype=np.float64)
+    else:
+        active = np.asarray(x >= active_z_threshold, dtype=np.float64)
     n, series_count = active.shape
     upper = np.triu(np.ones((series_count, series_count), dtype=bool), k=1)
     off_diagonal = ~np.eye(series_count, dtype=bool)
@@ -266,6 +275,7 @@ def directional_quality(
     null_repeats: int = 100,
     seed: int = 20260604,
     active_z_threshold: float = 1.5,
+    activation_mode: ActivationMode = "absolute",
     max_lag: int = 12,
     aggregate_quantile: float = 0.9,
     null_block_size: int = 8,
@@ -284,6 +294,7 @@ def directional_quality(
     observed = directional_metric_values(
         matrix,
         active_z_threshold=active_z_threshold,
+        activation_mode=activation_mode,
         max_lag=max_lag,
         aggregate_quantile=aggregate_quantile,
     )
@@ -295,6 +306,7 @@ def directional_quality(
         values = directional_metric_values(
             null,
             active_z_threshold=active_z_threshold,
+            activation_mode=activation_mode,
             max_lag=max_lag,
             aggregate_quantile=aggregate_quantile,
         )
@@ -340,6 +352,7 @@ def directional_quality(
         usable_series_count=len(names),
         selected_series=names,
         active_z_threshold=active_z_threshold,
+        activation_mode=activation_mode,
         max_lag=min(max_lag, max(1, matrix.shape[0] // 4)),
         aggregate_quantile=aggregate_quantile,
         null_repeats=null_repeats,

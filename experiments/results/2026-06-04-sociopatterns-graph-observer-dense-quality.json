@@ -1,0 +1,472 @@
+{
+  "analysis_projection": {
+    "analysis_bin_seconds": 512.0,
+    "coordinate_kind": "event_rank",
+    "event_order": "degree_descending",
+    "requested_bin_seconds": 86400.0,
+    "surface_mode": "graph"
+  },
+  "args": {
+    "active_z_threshold": 1.5,
+    "adaptive_window": 16,
+    "aggregate_quantile": 0.9,
+    "baseline_size": 48,
+    "decay": 0.5,
+    "emission_threshold": 0.5,
+    "feature_selection": "all",
+    "format": "text",
+    "max_lag": 6,
+    "max_score_series": 64,
+    "min_active_series": 1,
+    "min_observer_anchors": 16,
+    "min_z_effect": 2.0,
+    "null_block_size": 4,
+    "null_repeats": 100,
+    "observer_stride": 1,
+    "reference_autotune_report": "experiments/results/2026-06-04-sociopatterns-degree-graph-autotune-expanded.json",
+    "resolution_max_false_positive_rate": 0.1,
+    "resolution_min_detection_rate": 0.8,
+    "resolution_null_repeats": 24,
+    "resolution_trials": 20,
+    "sample_rate": 1.0,
+    "score": "max",
+    "seed": 20260604,
+    "significance_level": 0.05,
+    "surface_report": "experiments/results/2026-06-04-sociopatterns-graph-directional-quality.json"
+  },
+  "calibration": {
+    "activation_mode": "positive",
+    "active_z_threshold": 1.5,
+    "aggregate_quantile": 0.9,
+    "detected_mechanisms": [
+      "coactivation",
+      "phase_offset"
+    ],
+    "effective_null_block_size": 4,
+    "input_bins": 76,
+    "input_feature_count": 21,
+    "input_feature_names": [
+      "global_total_edges",
+      "global_unique_sources",
+      "global_unique_targets",
+      "global_active_nodes",
+      "global_source_concentration",
+      "global_target_concentration",
+      "global_cross_group_edges",
+      "global_cross_group_ratio",
+      "global_group_entropy",
+      "node_366_total",
+      "node_267_total",
+      "node_39_total",
+      "node_387_total",
+      "node_603_total",
+      "node_322_total",
+      "node_198_total",
+      "node_119_total",
+      "node_882_total",
+      "node_99_total",
+      "node_147_total",
+      "node_426_total"
+    ],
+    "input_series_count": 21,
+    "max_lag": 6,
+    "metrics": {
+      "coactivation": {
+        "detected": true,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.009900990099009901,
+        "name": "coactivation",
+        "null_exceedances": 0,
+        "null_mean": 0.04613733715760565,
+        "null_std": 0.006196712306446076,
+        "observed": 0.07999271137026237,
+        "observed_minus_null": 0.03385537421265672,
+        "unique_null_values": 99,
+        "z_effect": 5.4634413441203264
+      },
+      "exclusion": {
+        "detected": false,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.9504950495049505,
+        "name": "exclusion",
+        "null_exceedances": 95,
+        "null_mean": 0.030076284113504177,
+        "null_std": 0.004156170978909097,
+        "observed": 0.024190710767065447,
+        "observed_minus_null": -0.00588557334643873,
+        "unique_null_values": 94,
+        "z_effect": -1.416104721462533
+      },
+      "lagged_succession": {
+        "detected": false,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.2871287128712871,
+        "name": "lagged_succession",
+        "null_exceedances": 28,
+        "null_mean": 0.07220082852590357,
+        "null_std": 0.003750893604991868,
+        "observed": 0.0742678223856433,
+        "observed_minus_null": 0.002066993859739741,
+        "unique_null_values": 100,
+        "z_effect": 0.5510670462603596
+      },
+      "phase_offset": {
+        "detected": true,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.009900990099009901,
+        "name": "phase_offset",
+        "null_exceedances": 0,
+        "null_mean": 0.6773947821233379,
+        "null_std": 0.03867991802446896,
+        "observed": 0.763497010803615,
+        "observed_minus_null": 0.08610222868027706,
+        "unique_null_values": 100,
+        "z_effect": 2.2260189027755612
+      }
+    },
+    "min_z_effect": 2.0,
+    "n": 28,
+    "null_repeats": 100,
+    "observer_anchor_count": 28,
+    "observer_anchor_first": 48,
+    "observer_anchor_last": 75,
+    "observer_readiness_score": 0.3023267675794724,
+    "positive_coactivation_aggregate": {
+      "coherence_direction": "surplus",
+      "decay": 0.5,
+      "emission_threshold": 0.5,
+      "empirical_p_ge_observed": 0.4752475247524752,
+      "empirical_p_le_observed": 0.5346534653465347,
+      "empirical_p_two_sided": 0.9504950495049505,
+      "min_active_series": 1,
+      "null_block_size": 4,
+      "observed_minus_null_total": 0.28271486640187504,
+      "z_effect": 0.01937618599870887
+    },
+    "quality_score": 1.0,
+    "requested_null_block_size": 4,
+    "resolution_calibration": {
+      "activation_mode": "positive",
+      "false_positive_controlled": true,
+      "max_false_positive_rate": 0.1,
+      "mechanism_detection_rates": {
+        "coactivation": 1.0,
+        "exclusion": 0.0,
+        "lagged_succession": 0.0,
+        "phase_offset": 1.0
+      },
+      "mechanism_strongest_correct_rates": {
+        "coactivation": 1.0,
+        "exclusion": 0.15,
+        "lagged_succession": 0.1,
+        "phase_offset": 1.0
+      },
+      "min_detection_rate": 0.8,
+      "n": 28,
+      "noise_false_positive_rate": 0.1,
+      "null_repeats": 24,
+      "reason": "known_answer_calibrated",
+      "series_count": 20,
+      "supported_mechanisms": [
+        "coactivation",
+        "phase_offset"
+      ],
+      "trials": 20,
+      "usable": true
+    },
+    "selected_series": [
+      "node_426_total",
+      "node_198_total",
+      "node_147_total",
+      "global_source_concentration",
+      "node_119_total",
+      "global_unique_sources",
+      "global_target_concentration",
+      "global_cross_group_ratio",
+      "global_unique_targets",
+      "global_cross_group_edges",
+      "node_882_total",
+      "node_99_total",
+      "global_active_nodes",
+      "node_387_total",
+      "node_322_total",
+      "node_603_total",
+      "node_267_total",
+      "global_group_entropy",
+      "node_366_total",
+      "node_39_total"
+    ],
+    "significance_level": 0.05,
+    "status": "ok",
+    "strongest_mechanism": "coactivation",
+    "strongest_z_effect": 5.4634413441203264,
+    "usable_series_count": 20,
+    "verdict": "structured"
+  },
+  "calibration_bins": 76,
+  "created_at": "2026-06-04T19:02:37.926369+00:00",
+  "dataset": {
+    "data_format": "edges",
+    "dataset": "sociopatterns-workplace",
+    "edge_path": "data/org_networks/sociopatterns-workplace/workplace_InVS15_tij.dat.gz",
+    "edge_url": "https://sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz",
+    "label_path": "data/org_networks/sociopatterns-workplace/workplace_InVS15_metadata.txt",
+    "label_url": "https://sociopatterns.org/assets/data/workplace_InVS15_metadata.txt",
+    "notes": "SocioPatterns workplace contacts with matching department metadata."
+  },
+  "layer_comparison": {
+    "appeared_at_observer": [],
+    "interpretable_absences": [],
+    "not_observed_at_observer": [],
+    "observer_resolution_sufficient": true,
+    "observer_stable_mechanisms": [
+      "coactivation"
+    ],
+    "surface_stable_mechanisms": [
+      "coactivation"
+    ],
+    "survived_surface_to_observer": [
+      "coactivation"
+    ],
+    "underpowered_or_unresolved_absences": []
+  },
+  "observer_config": {
+    "adaptive_window": 16,
+    "baseline_size": 48,
+    "decay": 0.5,
+    "emission_threshold": 0.5,
+    "min_active_series": 1,
+    "score": "max",
+    "stride": 1
+  },
+  "reference_positive_coactivation_result": {
+    "path": "experiments/results/2026-06-04-sociopatterns-degree-graph-autotune-expanded.json",
+    "segments": {
+      "calibration": {
+        "anchors": 4,
+        "coherence_direction": "deficit",
+        "empirical_p_le_observed": 0.019801980198019802,
+        "observed_minus_null_total": -5.924282956099972,
+        "z_effect": -2.4712400203505256
+      },
+      "validation": {
+        "anchors": 4,
+        "coherence_direction": "deficit",
+        "empirical_p_le_observed": 0.039603960396039604,
+        "observed_minus_null_total": -9.489127382808846,
+        "z_effect": -1.9833697040326292
+      }
+    }
+  },
+  "replication": {
+    "calibration_strongest": "coactivation",
+    "conservative_quality_score": 0.5054730346919051,
+    "grade": "replicated_observer_directional_structure",
+    "resolution_supported_mechanisms": [
+      "coactivation",
+      "phase_offset"
+    ],
+    "same_strongest_mechanism": true,
+    "segment_statuses": {
+      "calibration": "ok",
+      "validation": "ok"
+    },
+    "stable_detected_mechanisms": [
+      "coactivation"
+    ],
+    "validation_strongest": "coactivation"
+  },
+  "series_metadata": {
+    "bin_count": 153,
+    "bin_seconds": 512.0,
+    "directed": false,
+    "dropped_series_count": 1,
+    "edge_count": 78249,
+    "end_timestamp": 78336.0,
+    "event_order": "degree_descending",
+    "included_edge_count": 78249,
+    "label_count": 232,
+    "raw_series_count": 22,
+    "selected_groups": [],
+    "selected_nodes": [
+      "366",
+      "267",
+      "39",
+      "387",
+      "603",
+      "322",
+      "198",
+      "119",
+      "882",
+      "99",
+      "147",
+      "426"
+    ],
+    "series_count": 21,
+    "start_timestamp": 0.0,
+    "surface_mode": "graph",
+    "transform": "log-robust"
+  },
+  "validation": {
+    "activation_mode": "positive",
+    "active_z_threshold": 1.5,
+    "aggregate_quantile": 0.9,
+    "detected_mechanisms": [
+      "coactivation"
+    ],
+    "effective_null_block_size": 4,
+    "input_bins": 77,
+    "input_feature_count": 21,
+    "input_feature_names": [
+      "global_total_edges",
+      "global_unique_sources",
+      "global_unique_targets",
+      "global_active_nodes",
+      "global_source_concentration",
+      "global_target_concentration",
+      "global_cross_group_edges",
+      "global_cross_group_ratio",
+      "global_group_entropy",
+      "node_366_total",
+      "node_267_total",
+      "node_39_total",
+      "node_387_total",
+      "node_603_total",
+      "node_322_total",
+      "node_198_total",
+      "node_119_total",
+      "node_882_total",
+      "node_99_total",
+      "node_147_total",
+      "node_426_total"
+    ],
+    "input_series_count": 21,
+    "max_lag": 6,
+    "metrics": {
+      "coactivation": {
+        "detected": true,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.019801980198019802,
+        "name": "coactivation",
+        "null_exceedances": 1,
+        "null_mean": 0.03088224095893537,
+        "null_std": 0.006952687482945355,
+        "observed": 0.04845422116527943,
+        "observed_minus_null": 0.017571980206344057,
+        "unique_null_values": 92,
+        "z_effect": 2.5273651734595255
+      },
+      "exclusion": {
+        "detected": false,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.38613861386138615,
+        "name": "exclusion",
+        "null_exceedances": 38,
+        "null_mean": 0.02721506083426416,
+        "null_std": 0.0035663768651228644,
+        "observed": 0.028240190249702736,
+        "observed_minus_null": 0.0010251294154385755,
+        "unique_null_values": 82,
+        "z_effect": 0.28744281779745645
+      },
+      "lagged_succession": {
+        "detected": false,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.07920792079207921,
+        "name": "lagged_succession",
+        "null_exceedances": 7,
+        "null_mean": 0.057533802677875466,
+        "null_std": 0.0045197876843229646,
+        "observed": 0.06412363006068417,
+        "observed_minus_null": 0.006589827382808701,
+        "unique_null_values": 100,
+        "z_effect": 1.4579948977837474
+      },
+      "phase_offset": {
+        "detected": false,
+        "empirical_p_floor": 0.009900990099009901,
+        "empirical_p_ge_observed": 0.6831683168316832,
+        "name": "phase_offset",
+        "null_exceedances": 68,
+        "null_mean": 0.6545877257589825,
+        "null_std": 0.06999600991192285,
+        "observed": 0.6147905435142504,
+        "observed_minus_null": -0.039797182244732054,
+        "unique_null_values": 100,
+        "z_effect": -0.5685635837644104
+      }
+    },
+    "min_z_effect": 2.0,
+    "n": 29,
+    "null_repeats": 100,
+    "observer_anchor_count": 29,
+    "observer_anchor_first": 48,
+    "observer_anchor_last": 76,
+    "observer_readiness_score": 0.05070403534146004,
+    "positive_coactivation_aggregate": {
+      "coherence_direction": "deficit",
+      "decay": 0.5,
+      "emission_threshold": 0.5,
+      "empirical_p_ge_observed": 0.8316831683168316,
+      "empirical_p_le_observed": 0.1782178217821782,
+      "empirical_p_two_sided": 0.3564356435643564,
+      "min_active_series": 1,
+      "null_block_size": 4,
+      "observed_minus_null_total": -7.359191708671915,
+      "z_effect": -0.27505382257801037
+    },
+    "quality_score": 0.5054730346919051,
+    "requested_null_block_size": 4,
+    "resolution_calibration": {
+      "activation_mode": "positive",
+      "false_positive_controlled": true,
+      "max_false_positive_rate": 0.1,
+      "mechanism_detection_rates": {
+        "coactivation": 1.0,
+        "exclusion": 0.05,
+        "lagged_succession": 0.0,
+        "phase_offset": 1.0
+      },
+      "mechanism_strongest_correct_rates": {
+        "coactivation": 1.0,
+        "exclusion": 0.2,
+        "lagged_succession": 0.2,
+        "phase_offset": 1.0
+      },
+      "min_detection_rate": 0.8,
+      "n": 29,
+      "noise_false_positive_rate": 0.05,
+      "null_repeats": 24,
+      "reason": "known_answer_calibrated",
+      "series_count": 13,
+      "supported_mechanisms": [
+        "coactivation",
+        "phase_offset"
+      ],
+      "trials": 20,
+      "usable": true
+    },
+    "selected_series": [
+      "global_unique_sources",
+      "global_active_nodes",
+      "global_source_concentration",
+      "node_99_total",
+      "global_group_entropy",
+      "global_cross_group_ratio",
+      "global_target_concentration",
+      "global_cross_group_edges",
+      "global_unique_targets",
+      "global_total_edges",
+      "node_426_total",
+      "node_882_total",
+      "node_147_total"
+    ],
+    "significance_level": 0.05,
+    "status": "ok",
+    "strongest_mechanism": "coactivation",
+    "strongest_z_effect": 2.5273651734595255,
+    "usable_series_count": 13,
+    "verdict": "structured"
+  },
+  "validation_bins": 77
+}

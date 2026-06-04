@@ -1,0 +1,16 @@
+{
+  "activation_mode": "positive",
+  "false_positive_controlled": false,
+  "max_false_positive_rate": 0.1,
+  "mechanism_detection_rates": {},
+  "mechanism_strongest_correct_rates": {},
+  "min_detection_rate": 0.8,
+  "n": 4,
+  "noise_false_positive_rate": 1.0,
+  "null_repeats": 24,
+  "reason": "too_few_observations",
+  "series_count": 64,
+  "supported_mechanisms": [],
+  "trials": 20,
+  "usable": false
+}

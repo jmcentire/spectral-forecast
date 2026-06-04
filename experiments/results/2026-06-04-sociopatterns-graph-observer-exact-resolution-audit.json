@@ -1,0 +1,254 @@
+{
+  "analysis_projection": {
+    "analysis_bin_seconds": 512.0,
+    "coordinate_kind": "event_rank",
+    "event_order": "degree_descending",
+    "requested_bin_seconds": 86400.0,
+    "surface_mode": "graph"
+  },
+  "args": {
+    "active_z_threshold": 1.5,
+    "adaptive_window": 16,
+    "aggregate_quantile": 0.9,
+    "baseline_size": 48,
+    "decay": 0.5,
+    "emission_threshold": 0.5,
+    "feature_selection": "all",
+    "format": "text",
+    "max_lag": 6,
+    "max_score_series": 64,
+    "min_active_series": 1,
+    "min_observer_anchors": 16,
+    "min_z_effect": 2.0,
+    "null_block_size": 4,
+    "null_repeats": 100,
+    "observer_stride": 8,
+    "reference_autotune_report": "experiments/results/2026-06-04-sociopatterns-degree-graph-autotune-expanded.json",
+    "resolution_max_false_positive_rate": 0.1,
+    "resolution_min_detection_rate": 0.8,
+    "resolution_null_repeats": 24,
+    "resolution_trials": 20,
+    "sample_rate": 1.0,
+    "score": "max",
+    "seed": 20260604,
+    "significance_level": 0.05,
+    "surface_report": "experiments/results/2026-06-04-sociopatterns-graph-directional-quality.json"
+  },
+  "calibration": {
+    "input_bins": 76,
+    "input_feature_count": 21,
+    "input_feature_names": [
+      "global_total_edges",
+      "global_unique_sources",
+      "global_unique_targets",
+      "global_active_nodes",
+      "global_source_concentration",
+      "global_target_concentration",
+      "global_cross_group_edges",
+      "global_cross_group_ratio",
+      "global_group_entropy",
+      "node_366_total",
+      "node_267_total",
+      "node_39_total",
+      "node_387_total",
+      "node_603_total",
+      "node_322_total",
+      "node_198_total",
+      "node_119_total",
+      "node_882_total",
+      "node_99_total",
+      "node_147_total",
+      "node_426_total"
+    ],
+    "observer_anchor_count": 4,
+    "observer_anchor_first": 48,
+    "observer_anchor_last": 72,
+    "positive_coactivation_aggregate": {
+      "coherence_direction": "deficit",
+      "decay": 0.5,
+      "emission_threshold": 0.5,
+      "empirical_p_ge_observed": 1.0,
+      "empirical_p_le_observed": 0.009900990099009901,
+      "empirical_p_two_sided": 0.019801980198019802,
+      "min_active_series": 1,
+      "null_block_size": 2,
+      "observed_minus_null_total": -5.749495282136394,
+      "z_effect": -2.217492832839995
+    },
+    "required_observer_anchors": 16,
+    "resolution_calibration": {
+      "activation_mode": "positive",
+      "false_positive_controlled": false,
+      "max_false_positive_rate": 0.1,
+      "mechanism_detection_rates": {},
+      "mechanism_strongest_correct_rates": {},
+      "min_detection_rate": 0.8,
+      "n": 4,
+      "noise_false_positive_rate": 1.0,
+      "null_repeats": 24,
+      "reason": "too_few_observations",
+      "series_count": 21,
+      "supported_mechanisms": [],
+      "trials": 20,
+      "usable": false
+    },
+    "status": "insufficient_observer_anchors"
+  },
+  "calibration_bins": 76,
+  "created_at": "2026-06-04T19:02:24.965154+00:00",
+  "dataset": {
+    "data_format": "edges",
+    "dataset": "sociopatterns-workplace",
+    "edge_path": "data/org_networks/sociopatterns-workplace/workplace_InVS15_tij.dat.gz",
+    "edge_url": "https://sociopatterns.org/assets/data/workplace_InVS15_tij.dat.gz",
+    "label_path": "data/org_networks/sociopatterns-workplace/workplace_InVS15_metadata.txt",
+    "label_url": "https://sociopatterns.org/assets/data/workplace_InVS15_metadata.txt",
+    "notes": "SocioPatterns workplace contacts with matching department metadata."
+  },
+  "layer_comparison": {
+    "appeared_at_observer": [],
+    "interpretable_absences": [],
+    "not_observed_at_observer": [
+      "coactivation"
+    ],
+    "observer_resolution_sufficient": false,
+    "observer_stable_mechanisms": [],
+    "surface_stable_mechanisms": [
+      "coactivation"
+    ],
+    "survived_surface_to_observer": [],
+    "underpowered_or_unresolved_absences": [
+      "coactivation"
+    ]
+  },
+  "observer_config": {
+    "adaptive_window": 16,
+    "baseline_size": 48,
+    "decay": 0.5,
+    "emission_threshold": 0.5,
+    "min_active_series": 1,
+    "score": "max",
+    "stride": 8
+  },
+  "reference_positive_coactivation_result": {
+    "path": "experiments/results/2026-06-04-sociopatterns-degree-graph-autotune-expanded.json",
+    "segments": {
+      "calibration": {
+        "anchors": 4,
+        "coherence_direction": "deficit",
+        "empirical_p_le_observed": 0.019801980198019802,
+        "observed_minus_null_total": -5.924282956099972,
+        "z_effect": -2.4712400203505256
+      },
+      "validation": {
+        "anchors": 4,
+        "coherence_direction": "deficit",
+        "empirical_p_le_observed": 0.039603960396039604,
+        "observed_minus_null_total": -9.489127382808846,
+        "z_effect": -1.9833697040326292
+      }
+    }
+  },
+  "replication": {
+    "conservative_quality_score": 0.0,
+    "grade": "insufficient_observer_resolution",
+    "same_strongest_mechanism": false,
+    "segment_statuses": {
+      "calibration": "insufficient_observer_anchors",
+      "validation": "insufficient_observer_anchors"
+    },
+    "stable_detected_mechanisms": []
+  },
+  "series_metadata": {
+    "bin_count": 153,
+    "bin_seconds": 512.0,
+    "directed": false,
+    "dropped_series_count": 1,
+    "edge_count": 78249,
+    "end_timestamp": 78336.0,
+    "event_order": "degree_descending",
+    "included_edge_count": 78249,
+    "label_count": 232,
+    "raw_series_count": 22,
+    "selected_groups": [],
+    "selected_nodes": [
+      "366",
+      "267",
+      "39",
+      "387",
+      "603",
+      "322",
+      "198",
+      "119",
+      "882",
+      "99",
+      "147",
+      "426"
+    ],
+    "series_count": 21,
+    "start_timestamp": 0.0,
+    "surface_mode": "graph",
+    "transform": "log-robust"
+  },
+  "validation": {
+    "input_bins": 77,
+    "input_feature_count": 21,
+    "input_feature_names": [
+      "global_total_edges",
+      "global_unique_sources",
+      "global_unique_targets",
+      "global_active_nodes",
+      "global_source_concentration",
+      "global_target_concentration",
+      "global_cross_group_edges",
+      "global_cross_group_ratio",
+      "global_group_entropy",
+      "node_366_total",
+      "node_267_total",
+      "node_39_total",
+      "node_387_total",
+      "node_603_total",
+      "node_322_total",
+      "node_198_total",
+      "node_119_total",
+      "node_882_total",
+      "node_99_total",
+      "node_147_total",
+      "node_426_total"
+    ],
+    "observer_anchor_count": 4,
+    "observer_anchor_first": 48,
+    "observer_anchor_last": 72,
+    "positive_coactivation_aggregate": {
+      "coherence_direction": "deficit",
+      "decay": 0.5,
+      "emission_threshold": 0.5,
+      "empirical_p_ge_observed": 0.9801980198019802,
+      "empirical_p_le_observed": 0.0297029702970297,
+      "empirical_p_two_sided": 0.0594059405940594,
+      "min_active_series": 1,
+      "null_block_size": 2,
+      "observed_minus_null_total": -8.274133999504329,
+      "z_effect": -1.85561241310402
+    },
+    "required_observer_anchors": 16,
+    "resolution_calibration": {
+      "activation_mode": "positive",
+      "false_positive_controlled": false,
+      "max_false_positive_rate": 0.1,
+      "mechanism_detection_rates": {},
+      "mechanism_strongest_correct_rates": {},
+      "min_detection_rate": 0.8,
+      "n": 4,
+      "noise_false_positive_rate": 1.0,
+      "null_repeats": 24,
+      "reason": "too_few_observations",
+      "series_count": 21,
+      "supported_mechanisms": [],
+      "trials": 20,
+      "usable": false
+    },
+    "status": "insufficient_observer_anchors"
+  },
+  "validation_bins": 77
+}

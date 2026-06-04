@@ -1,0 +1,29 @@
+{
+  "activation_mode": "positive",
+  "false_positive_controlled": true,
+  "max_false_positive_rate": 0.1,
+  "mechanism_detection_rates": {
+    "coactivation": 1.0,
+    "exclusion": 0.1,
+    "lagged_succession": 0.05,
+    "phase_offset": 1.0
+  },
+  "mechanism_strongest_correct_rates": {
+    "coactivation": 1.0,
+    "exclusion": 0.4,
+    "lagged_succession": 0.15,
+    "phase_offset": 1.0
+  },
+  "min_detection_rate": 0.8,
+  "n": 29,
+  "noise_false_positive_rate": 0.05,
+  "null_repeats": 24,
+  "reason": "known_answer_calibrated",
+  "series_count": 48,
+  "supported_mechanisms": [
+    "coactivation",
+    "phase_offset"
+  ],
+  "trials": 20,
+  "usable": true
+}

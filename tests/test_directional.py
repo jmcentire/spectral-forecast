@@ -88,3 +88,29 @@ def test_directional_quality_identifies_phase_offset() -> None:
 
     assert result.strongest_mechanism == "phase_offset"
     assert result.metrics["phase_offset"].detected
+
+
+def test_positive_activation_does_not_treat_low_tail_as_active() -> None:
+    rng = np.random.default_rng(4)
+    series = {
+        f"s{i}": rng.normal(0.0, 0.1, 768)
+        for i in range(6)
+    }
+    for start in range(40, 720, 80):
+        for values in series.values():
+            values[start : start + 4] -= 8.0
+
+    absolute = directional_quality(
+        series,
+        null_repeats=24,
+        seed=16,
+        activation_mode="absolute",
+    )
+    positive = directional_quality(
+        series,
+        null_repeats=24,
+        seed=16,
+        activation_mode="positive",
+    )
+
+    assert absolute.metrics["coactivation"].observed > positive.metrics["coactivation"].observed
