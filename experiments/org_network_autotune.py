@@ -10,10 +10,12 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import itertools
 import json
 import math
 import re
 import sys
+import tarfile
 import time
 import urllib.request
 from collections import Counter
@@ -46,6 +48,7 @@ class DatasetSpec:
     label_url: str | None
     edge_file: str
     label_file: str | None
+    data_format: str
     source_col: int
     target_col: int
     time_col: int
@@ -98,6 +101,7 @@ DATASETS: dict[str, DatasetSpec] = {
         label_url=None,
         edge_file="email-Eu-core-temporal.txt.gz",
         label_file=None,
+        data_format="edges",
         source_col=0,
         target_col=1,
         time_col=2,
@@ -113,6 +117,7 @@ DATASETS: dict[str, DatasetSpec] = {
         label_url=None,
         edge_file="email-Eu-core-temporal-Dept1.txt.gz",
         label_file=None,
+        data_format="edges",
         source_col=0,
         target_col=1,
         time_col=2,
@@ -125,6 +130,7 @@ DATASETS: dict[str, DatasetSpec] = {
         label_url=None,
         edge_file="email-Eu-core-temporal-Dept2.txt.gz",
         label_file=None,
+        data_format="edges",
         source_col=0,
         target_col=1,
         time_col=2,
@@ -137,6 +143,7 @@ DATASETS: dict[str, DatasetSpec] = {
         label_url=None,
         edge_file="email-Eu-core-temporal-Dept3.txt.gz",
         label_file=None,
+        data_format="edges",
         source_col=0,
         target_col=1,
         time_col=2,
@@ -149,6 +156,7 @@ DATASETS: dict[str, DatasetSpec] = {
         label_url=None,
         edge_file="email-Eu-core-temporal-Dept4.txt.gz",
         label_file=None,
+        data_format="edges",
         source_col=0,
         target_col=1,
         time_col=2,
@@ -161,11 +169,29 @@ DATASETS: dict[str, DatasetSpec] = {
         label_url="https://sociopatterns.org/assets/data/workplace_InVS15_metadata.txt",
         edge_file="workplace_InVS15_tij.dat.gz",
         label_file="workplace_InVS15_metadata.txt",
+        data_format="edges",
         source_col=1,
         target_col=2,
         time_col=0,
         directed=False,
         notes="SocioPatterns workplace contacts with matching department metadata.",
+    ),
+    "enron-email-simplices": DatasetSpec(
+        name="enron-email-simplices",
+        edge_url="https://drive.google.com/uc?export=download&id=1tTVZkdpgRW47WWmsrdUCukHz0x2M6N77",
+        label_url=None,
+        edge_file="email-Enron.tar.gz",
+        label_file=None,
+        data_format="simplices",
+        source_col=0,
+        target_col=1,
+        time_col=2,
+        directed=False,
+        notes=(
+            "Cornell temporal higher-order Enron email dataset. Each simplex is "
+            "sender plus recipients among core Enron employees; projected to "
+            "co-participation edges for this adapter."
+        ),
     ),
 }
 
@@ -201,6 +227,16 @@ def _download(url: str, path: Path) -> None:
     tmp.replace(path)
 
 
+def _safe_extract_tar(path: Path, directory: Path) -> None:
+    directory.mkdir(parents=True, exist_ok=True)
+    with tarfile.open(path, "r:gz") as archive:
+        for member in archive.getmembers():
+            target = (directory / member.name).resolve()
+            if not str(target).startswith(str(directory.resolve())):
+                raise ValueError(f"archive member escapes extraction directory: {member.name}")
+        archive.extractall(directory)
+
+
 def resolve_dataset_files(args: argparse.Namespace) -> tuple[Path, Path | None, dict[str, Any]]:
     metadata: dict[str, Any] = {}
     if args.dataset:
@@ -220,6 +256,7 @@ def resolve_dataset_files(args: argparse.Namespace) -> tuple[Path, Path | None, 
                 "dataset": spec.name,
                 "edge_url": spec.edge_url,
                 "label_url": spec.label_url,
+                "data_format": spec.data_format,
                 "notes": spec.notes,
             }
         )
@@ -227,10 +264,16 @@ def resolve_dataset_files(args: argparse.Namespace) -> tuple[Path, Path | None, 
         args.target_col = spec.target_col
         args.time_col = spec.time_col
         args.directed = spec.directed
+        if spec.data_format == "simplices":
+            extracted = dataset_dir / "email-Enron"
+            if not extracted.exists():
+                _safe_extract_tar(edge_path, dataset_dir)
+            return extracted, label_path, metadata
         return edge_path, label_path, metadata
 
     if args.edges is None:
         raise ValueError("either --dataset or --edges is required")
+    metadata["data_format"] = args.data_format
     return args.edges, args.labels, metadata
 
 
@@ -265,6 +308,48 @@ def read_edges(
             )
             if max_edges > 0 and len(edges) >= max_edges:
                 break
+    edges.sort(key=lambda edge: edge.timestamp)
+    return edges
+
+
+def read_simplicial_edges(
+    directory: Path,
+    *,
+    prefix: str,
+    max_edges: int,
+) -> list[TemporalEdge]:
+    """Project timestamped simplices to unordered co-participation edges."""
+
+    nverts_path = directory / f"{prefix}-nverts.txt"
+    simplices_path = directory / f"{prefix}-simplices.txt"
+    times_path = directory / f"{prefix}-times.txt"
+    if not nverts_path.exists() or not simplices_path.exists() or not times_path.exists():
+        raise ValueError(f"missing simplicial dataset files under {directory}")
+
+    nverts = [int(line.strip()) for line in nverts_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    times = [float(line.strip()) for line in times_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    nodes = [
+        line.strip()
+        for line in simplices_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    if len(nverts) != len(times):
+        raise ValueError("simplicial nverts and times files have different lengths")
+    if sum(nverts) != len(nodes):
+        raise ValueError("simplicial node count does not match nverts sum")
+
+    edges: list[TemporalEdge] = []
+    cursor = 0
+    for simplex_size, timestamp in zip(nverts, times, strict=True):
+        simplex = nodes[cursor : cursor + simplex_size]
+        cursor += simplex_size
+        if len(simplex) < 2:
+            continue
+        for source, target in itertools.combinations(sorted(set(simplex)), 2):
+            edges.append(TemporalEdge(source=source, target=target, timestamp=timestamp))
+            if max_edges > 0 and len(edges) >= max_edges:
+                edges.sort(key=lambda edge: edge.timestamp)
+                return edges
     edges.sort(key=lambda edge: edge.timestamp)
     return edges
 
@@ -340,6 +425,7 @@ def build_network_series(
     include_global: bool,
     include_nodes: bool,
     include_groups: bool,
+    include_relation: bool,
     directed: bool,
     transform: str,
     max_bins: int,
@@ -395,6 +481,20 @@ def build_network_series(
         if labels:
             for name in ("global_cross_group_edges", "global_cross_group_ratio", "global_group_entropy"):
                 _add_series(raw, name, n_bins)
+        if include_relation:
+            for name in (
+                "global_unique_pairs",
+                "global_new_pairs",
+                "global_returning_pairs",
+                "global_persistent_pairs",
+                "global_lost_pairs",
+                "global_pair_churn",
+                "global_pair_jaccard_to_previous",
+                "global_new_pair_ratio",
+                "global_returning_pair_ratio",
+                "global_active_node_churn",
+            ):
+                _add_series(raw, name, n_bins)
 
     if include_nodes:
         for node in selected_nodes:
@@ -403,6 +503,15 @@ def build_network_series(
             if directed:
                 _add_series(raw, f"{prefix}_out", n_bins)
                 _add_series(raw, f"{prefix}_in", n_bins)
+            if include_relation:
+                for suffix in (
+                    "neighbor_count",
+                    "new_neighbors",
+                    "lost_neighbors",
+                    "neighbor_churn",
+                    "neighbor_jaccard_to_previous",
+                ):
+                    _add_series(raw, f"{prefix}_{suffix}", n_bins)
 
     if include_groups:
         for group in selected_groups:
@@ -412,12 +521,33 @@ def build_network_series(
             if directed:
                 _add_series(raw, f"{prefix}_sent", n_bins)
                 _add_series(raw, f"{prefix}_received", n_bins)
+            if include_relation:
+                for suffix in (
+                    "unique_internal_pairs",
+                    "unique_external_pairs",
+                    "new_internal_pairs",
+                    "new_external_pairs",
+                    "external_pair_churn",
+                ):
+                    _add_series(raw, f"{prefix}_{suffix}", n_bins)
 
     sources_by_bin: list[Counter[str]] = [Counter() for _ in range(n_bins)]
     targets_by_bin: list[Counter[str]] = [Counter() for _ in range(n_bins)]
     groups_by_bin: list[Counter[str]] = [Counter() for _ in range(n_bins)]
     active_nodes_by_bin: list[set[str]] = [set() for _ in range(n_bins)]
     pair_sets: list[set[tuple[str, str]]] = [set() for _ in range(n_bins)]
+    node_neighbors_by_bin: list[dict[str, set[str]]] = [
+        {node: set() for node in selected_nodes}
+        for _ in range(n_bins)
+    ]
+    group_internal_pairs_by_bin: list[dict[str, set[tuple[str, str]]]] = [
+        {group: set() for group in selected_groups}
+        for _ in range(n_bins)
+    ]
+    group_external_pairs_by_bin: list[dict[str, set[tuple[str, str]]]] = [
+        {group: set() for group in selected_groups}
+        for _ in range(n_bins)
+    ]
 
     for edge in included_edges:
         bin_index = _bin_index(edge.timestamp, start=start, bin_seconds=bin_seconds)
@@ -433,10 +563,29 @@ def build_network_series(
         active_nodes_by_bin[bin_index].update((edge.source, edge.target))
         sources_by_bin[bin_index][edge.source] += 1
         targets_by_bin[bin_index][edge.target] += 1
-        pair_sets[bin_index].add((edge.source, edge.target))
+        pair_key = (
+            (edge.source, edge.target)
+            if directed
+            else tuple(sorted((edge.source, edge.target)))
+        )
+        pair_sets[bin_index].add(pair_key)
         if labels:
             groups_by_bin[bin_index][source_group] += 1
             groups_by_bin[bin_index][target_group] += 1
+        if include_relation and include_nodes:
+            if edge.source in selected_node_set:
+                node_neighbors_by_bin[bin_index][edge.source].add(edge.target)
+            if edge.target in selected_node_set:
+                node_neighbors_by_bin[bin_index][edge.target].add(edge.source)
+        if include_relation and include_groups and labels:
+            if source_group == target_group:
+                if source_group in selected_group_set:
+                    group_internal_pairs_by_bin[bin_index][source_group].add(pair_key)
+            else:
+                if source_group in selected_group_set:
+                    group_external_pairs_by_bin[bin_index][source_group].add(pair_key)
+                if target_group in selected_group_set:
+                    group_external_pairs_by_bin[bin_index][target_group].add(pair_key)
 
         if include_nodes:
             if edge.source in selected_node_set:
@@ -484,6 +633,104 @@ def build_network_series(
                 )
                 raw["global_group_entropy"][bin_index] = _entropy(groups_by_bin[bin_index])
 
+    if include_relation:
+        seen_pairs: set[tuple[str, str]] = set()
+        previous_pairs: set[tuple[str, str]] = set()
+        previous_nodes: set[str] = set()
+        seen_neighbors: dict[str, set[str]] = {node: set() for node in selected_nodes}
+        previous_neighbors: dict[str, set[str]] = {node: set() for node in selected_nodes}
+        seen_group_internal: dict[str, set[tuple[str, str]]] = {
+            group: set() for group in selected_groups
+        }
+        seen_group_external: dict[str, set[tuple[str, str]]] = {
+            group: set() for group in selected_groups
+        }
+        previous_group_external: dict[str, set[tuple[str, str]]] = {
+            group: set() for group in selected_groups
+        }
+
+        for bin_index in range(n_bins):
+            pairs = pair_sets[bin_index]
+            nodes = active_nodes_by_bin[bin_index]
+            new_pairs = pairs - seen_pairs
+            returning_pairs = pairs & seen_pairs
+            persistent_pairs = pairs & previous_pairs
+            lost_pairs = previous_pairs - pairs
+            pair_union = pairs | previous_pairs
+            node_union = nodes | previous_nodes
+            if include_global:
+                raw["global_unique_pairs"][bin_index] = len(pairs)
+                raw["global_new_pairs"][bin_index] = len(new_pairs)
+                raw["global_returning_pairs"][bin_index] = len(returning_pairs)
+                raw["global_persistent_pairs"][bin_index] = len(persistent_pairs)
+                raw["global_lost_pairs"][bin_index] = len(lost_pairs)
+                raw["global_pair_churn"][bin_index] = (
+                    (len(new_pairs) + len(lost_pairs)) / len(pair_union)
+                    if pair_union
+                    else 0.0
+                )
+                raw["global_pair_jaccard_to_previous"][bin_index] = (
+                    len(persistent_pairs) / len(pair_union) if pair_union else 0.0
+                )
+                raw["global_new_pair_ratio"][bin_index] = (
+                    len(new_pairs) / len(pairs) if pairs else 0.0
+                )
+                raw["global_returning_pair_ratio"][bin_index] = (
+                    len(returning_pairs) / len(pairs) if pairs else 0.0
+                )
+                raw["global_active_node_churn"][bin_index] = (
+                    len(nodes ^ previous_nodes) / len(node_union) if node_union else 0.0
+                )
+
+            if include_nodes:
+                for node in selected_nodes:
+                    neighbors = node_neighbors_by_bin[bin_index][node]
+                    new_neighbors = neighbors - seen_neighbors[node]
+                    lost_neighbors = previous_neighbors[node] - neighbors
+                    neighbor_union = neighbors | previous_neighbors[node]
+                    prefix = f"node_{_clean_name(node)}"
+                    raw[f"{prefix}_neighbor_count"][bin_index] = len(neighbors)
+                    raw[f"{prefix}_new_neighbors"][bin_index] = len(new_neighbors)
+                    raw[f"{prefix}_lost_neighbors"][bin_index] = len(lost_neighbors)
+                    raw[f"{prefix}_neighbor_churn"][bin_index] = (
+                        (len(new_neighbors) + len(lost_neighbors)) / len(neighbor_union)
+                        if neighbor_union
+                        else 0.0
+                    )
+                    raw[f"{prefix}_neighbor_jaccard_to_previous"][bin_index] = (
+                        len(neighbors & previous_neighbors[node]) / len(neighbor_union)
+                        if neighbor_union
+                        else 0.0
+                    )
+                    seen_neighbors[node].update(neighbors)
+                    previous_neighbors[node] = set(neighbors)
+
+            if include_groups and labels:
+                for group in selected_groups:
+                    internal = group_internal_pairs_by_bin[bin_index][group]
+                    external = group_external_pairs_by_bin[bin_index][group]
+                    new_internal = internal - seen_group_internal[group]
+                    new_external = external - seen_group_external[group]
+                    lost_external = previous_group_external[group] - external
+                    external_union = external | previous_group_external[group]
+                    prefix = f"group_{_clean_name(group)}"
+                    raw[f"{prefix}_unique_internal_pairs"][bin_index] = len(internal)
+                    raw[f"{prefix}_unique_external_pairs"][bin_index] = len(external)
+                    raw[f"{prefix}_new_internal_pairs"][bin_index] = len(new_internal)
+                    raw[f"{prefix}_new_external_pairs"][bin_index] = len(new_external)
+                    raw[f"{prefix}_external_pair_churn"][bin_index] = (
+                        (len(new_external) + len(lost_external)) / len(external_union)
+                        if external_union
+                        else 0.0
+                    )
+                    seen_group_internal[group].update(internal)
+                    seen_group_external[group].update(external)
+                    previous_group_external[group] = set(external)
+
+            seen_pairs.update(pairs)
+            previous_pairs = set(pairs)
+            previous_nodes = set(nodes)
+
     transformed: dict[str, NDArray[np.float64]] = {}
     dropped: list[str] = []
     for name, values in raw.items():
@@ -529,6 +776,53 @@ def slice_series(
         name: np.asarray(values[start:end], dtype=np.float64)
         for name, values in series.items()
     }
+
+
+def relation_only_network(network: NetworkSeries) -> NetworkSeries:
+    """Keep only relational-change series from a built feature surface."""
+
+    relation_markers = (
+        "new_",
+        "new_pair",
+        "returning",
+        "lost",
+        "churn",
+        "jaccard",
+        "neighbor",
+        "unique_pairs",
+        "unique_internal_pairs",
+        "unique_external_pairs",
+        "persistent",
+    )
+    series = {
+        name: values
+        for name, values in network.series.items()
+        if any(marker in name for marker in relation_markers)
+    }
+    raw = {
+        name: network.raw_series[name]
+        for name in series
+        if name in network.raw_series
+    }
+    if len(series) < 2:
+        raise ValueError("relation-only filtering left fewer than two series")
+    metadata = {
+        **network.metadata,
+        "relation_only": True,
+        "series_count": len(series),
+        "raw_series_count": len(raw),
+        "dropped_series_count": int(network.metadata.get("raw_series_count", 0)) - len(raw),
+    }
+    return NetworkSeries(
+        series=series,
+        raw_series=raw,
+        dropped_series=[
+            name
+            for name in network.raw_series
+            if name not in raw
+        ],
+        metadata=metadata,
+    )
 
 
 def build_configs(args: argparse.Namespace) -> list[AutoTuneConfig]:
@@ -811,13 +1105,23 @@ def _config_from_report(report: Mapping[str, Any]) -> AutoTuneConfig:
 
 def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
     edge_path, label_path, dataset_metadata = resolve_dataset_files(args)
-    edges = read_edges(
-        edge_path,
-        source_col=args.source_col,
-        target_col=args.target_col,
-        time_col=args.time_col,
-        max_edges=args.max_edges,
-    )
+    data_format = str(dataset_metadata.get("data_format", args.data_format))
+    if data_format == "edges":
+        edges = read_edges(
+            edge_path,
+            source_col=args.source_col,
+            target_col=args.target_col,
+            time_col=args.time_col,
+            max_edges=args.max_edges,
+        )
+    elif data_format == "simplices":
+        edges = read_simplicial_edges(
+            edge_path,
+            prefix=args.simplex_prefix,
+            max_edges=args.max_edges,
+        )
+    else:
+        raise ValueError(f"unknown data format: {data_format}")
     labels = read_labels(label_path)
     network = build_network_series(
         edges,
@@ -828,10 +1132,13 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
         include_global=not args.no_global_series,
         include_nodes=not args.no_node_series,
         include_groups=not args.no_group_series,
+        include_relation=not args.no_relation_series,
         directed=args.directed,
         transform=args.transform,
         max_bins=args.max_bins,
     )
+    if args.relation_only:
+        network = relation_only_network(network)
     n_bins = int(network.metadata["bin_count"])
     split = int(n_bins * args.validation_start_fraction)
     if args.no_validation:
@@ -901,6 +1208,7 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
             **dataset_metadata,
             "edge_path": str(edge_path),
             "label_path": str(label_path) if label_path else None,
+            "data_format": data_format,
         },
         "series_metadata": network.metadata,
         "dropped_series": network.dropped_series[:50],
@@ -999,6 +1307,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--data-dir", type=Path, default=Path("data/org_networks"))
     parser.add_argument("--edges", type=Path, default=None)
     parser.add_argument("--labels", type=Path, default=None)
+    parser.add_argument("--data-format", choices=["edges", "simplices"], default="edges")
+    parser.add_argument("--simplex-prefix", default="email-Enron")
     parser.add_argument("--source-col", type=int, default=0)
     parser.add_argument("--target-col", type=int, default=1)
     parser.add_argument("--time-col", type=int, default=2)
@@ -1011,6 +1321,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--no-global-series", action="store_true")
     parser.add_argument("--no-node-series", action="store_true")
     parser.add_argument("--no-group-series", action="store_true")
+    parser.add_argument("--no-relation-series", action="store_true")
+    parser.add_argument("--relation-only", action="store_true")
     parser.add_argument("--transform", choices=["none", "log", "robust", "log-robust"], default="log-robust")
     parser.add_argument("--validation-start-fraction", type=float, default=0.5)
     parser.add_argument("--no-validation", action="store_true")

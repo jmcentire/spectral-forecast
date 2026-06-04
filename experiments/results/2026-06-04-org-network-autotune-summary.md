@@ -38,13 +38,18 @@ Result JSON:
 
 - `experiments/results/2026-06-04-email-eu-org-network-autotune-smoke.json`
 - `experiments/results/2026-06-04-email-eu-org-network-autotune-permute-smoke.json`
+- `experiments/results/2026-06-04-email-eu-relation-only-autotune-permute-smoke.json`
+- `experiments/results/2026-06-04-enron-email-simplices-relation-autotune-permute-smoke.json`
+- `experiments/results/2026-06-04-enron-email-simplices-relation-only-autotune-permute-smoke.json`
 - `experiments/results/2026-06-04-sociopatterns-workplace-org-network-autotune-smoke.json`
 - `experiments/results/2026-06-04-sociopatterns-workplace-org-network-autotune-permute-smoke.json`
+- `experiments/results/2026-06-04-sociopatterns-workplace-relation-only-autotune-permute-smoke.json`
 
 Data sources:
 
 - SNAP Email-Eu temporal: https://snap.stanford.edu/data/email-Eu-core-temporal.html
 - SocioPatterns workplace contacts: https://sociopatterns.org/datasets/test/
+- Cornell Enron temporal higher-order email: https://www.cs.cornell.edu/~arb/data/email-Enron/
 
 ## Email-Eu Full Temporal Graph
 
@@ -146,21 +151,102 @@ The likely issue is not "organizational data has no structure." It is that
 simple volume/concentration series are too pedestrian and too schedule-driven.
 The nulls can reproduce or exceed the same aggregate structure.
 
+## Relation-Change Follow-Up
+
+After the volume/concentration surface failed, the adapter was expanded with
+relational-change features:
+
+- novel pairs;
+- returning pairs;
+- persistent and lost pairs;
+- pair churn and pair Jaccard to the previous bin;
+- active-node churn;
+- top-node neighbor count, new neighbors, lost neighbors, and neighbor churn;
+- group internal/external pair churn where valid group labels exist.
+
+The script also gained `--relation-only`, which drops plain activity/count
+features and tests only relationship change.
+
+### Email-Eu Relation-Only
+
+| Segment | Accepted | Delta | z effect | Empirical p_ge | Unique null totals |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Calibration | no | +208.927 | 0.55 | 0.3137 | 50 |
+| Validation | no | -8845.283 | -12.38 | 1.0000 | 50 |
+
+Read: weak calibration positivity did not transfer. This is a bad sign for the
+current Email-Eu relation-only surface.
+
+### SocioPatterns Relation-Only
+
+| Segment | Accepted | Delta | z effect | Empirical p_ge | Unique null totals |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Calibration | no | +6.956 | 0.12 | 0.3922 | 50 |
+| Validation | no | -107.083 | -0.28 | 0.6667 | 50 |
+
+Read: relation-only features are more semantically plausible than volume, but
+they still do not show a stable surface on this bounded workplace slice.
+
+### Cornell Enron Email Simplices
+
+Cornell's `email-Enron` data is a temporal higher-order dataset: each simplex
+is the sender plus recipients among core Enron employees. This adapter projects
+each simplex to unordered co-participation pairs. That means the run tests
+changing co-participation structure, not directed sender-to-recipient flow.
+
+Mixed activity + relation features:
+
+| Segment | Accepted | Delta | z effect | Empirical p_ge | Unique null totals |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Calibration | no | -2131.165 | -3.33 | 1.0000 | 50 |
+| Validation | no | +252.972 | 0.39 | 0.4118 | 50 |
+
+Relation-only features:
+
+| Segment | Accepted | Delta | z effect | Empirical p_ge | Unique null totals |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Calibration | no | -1467.498 | -3.05 | 1.0000 | 50 |
+| Validation | no | +244.026 | 0.39 | 0.4706 | 50 |
+
+Read: Enron relation-change/co-participation did not produce an accepted
+surface. The validation slice is weakly positive, but it is nowhere near enough
+to trust, especially because calibration was below null.
+
+## Current Honest Read
+
+The organizational-network adapter is operational, and the relation-change
+features are the right direction conceptually. But the current organizational
+network experiments are negative:
+
+- volume/concentration features failed;
+- relation-change features also failed;
+- mild calibration positives did not transfer;
+- Enron co-participation churn did not beat nulls in calibration;
+- SocioPatterns block-permutation showed one degenerate null case, which the
+  unique-null-total instrumentation caught.
+
+This does not prove there is no exploitable organizational structure. It does
+show that these first edge-stream representations are not enough. The method is
+behaving conservatively, which is good, but the organizational result itself is
+not yet promising.
+
 ## Next Adapter Step
 
-The next feature surface should move from volume to relational change:
+The next feature surface should move from generic edge churn to richer
+organizational structure:
 
-1. Novel dyads per bin and returning-dyad ratio.
-2. Edge persistence and churn.
-3. Ego-network turnover for top nodes.
-4. Cross-group bridge churn where valid group labels exist.
-5. Temporal motif counts, such as repeated A-to-B contact, reciprocal reply
-   latency buckets, and triadic closure bursts.
-6. Detrended or difference features, so the detector sees change in structure
+1. Temporal motifs, such as repeated A-to-B contact, reciprocal reply latency
+   buckets, and triadic closure bursts.
+2. Detrended or difference features, so the detector sees change in structure
    rather than raw meeting/email volume.
+3. Role-aware features for datasets that actually have roles, titles, or
+   reliable groups.
+4. Thread/conversation features where message text or subject lines are
+   available.
+5. Explicit event-time attribution after discovery, especially Enron's public
+   crisis timeline, but not as a tuning target.
 
-Then rerun Email-Eu and SocioPatterns before moving to Enron. If relational
-change also fails, that is a stronger boundary on this method for
-organizational communication streams. If it succeeds, Enron becomes the right
-third dataset because it has a known external crisis timeline for post-hoc
-attribution.
+The next dataset should probably not be another bare temporal edge list. Use a
+dataset with richer semantics, such as GitHub project activity or MAEC earnings
+calls, because this method may need a more meaningful component vocabulary than
+"edge happened" to find organizational structure.
