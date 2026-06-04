@@ -1,9 +1,11 @@
 """Tests for Layer 2: long-period trend fitting."""
 
+import warnings
+
 import numpy as np
 import pytest
 
-from spectral_forecast.trend import TrendType, fit_trend
+from spectral_forecast.trend import TrendModel, TrendType, fit_trend
 
 
 class TestLinearTrend:
@@ -53,6 +55,22 @@ class TestExponentialTrend:
         pred = result.model.predict(t)
         r2 = 1 - np.sum((signal - pred) ** 2) / np.sum((signal - np.mean(signal)) ** 2)
         assert r2 > 0.90, f"R² = {r2}"
+
+    def test_exponential_prediction_saturates_without_warning(self):
+        model = TrendModel(
+            trend_type=TrendType.EXPONENTIAL,
+            params={"a": 1.0, "b": 10.0, "c": 0.0},
+            bic=0.0,
+            residual_std=0.0,
+        )
+
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            pred = model.predict(np.array([0.0, 1000.0], dtype=np.float64))
+
+        assert not caught
+        assert np.all(np.isfinite(pred))
+        assert pred[1] > pred[0]
 
 
 class TestNoTrend:

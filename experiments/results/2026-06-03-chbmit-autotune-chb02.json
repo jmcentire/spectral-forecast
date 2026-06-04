@@ -1,0 +1,5313 @@
+{
+  "cache": {
+    "entries": 28,
+    "hits": 77,
+    "misses": 28
+  },
+  "calibration": {
+    "best": {
+      "accepted": true,
+      "aggregate_null_lift": 0.998019801980198,
+      "candidate": {
+        "adaptive_window": 256,
+        "baseline_size": 1024,
+        "decay": 0.9,
+        "emission_threshold": 3.0,
+        "min_active_series": 3,
+        "score": "max",
+        "stride": 256
+      },
+      "files_scored": 7,
+      "files_skipped": 0,
+      "mean_fragility": 0.3197278911564626,
+      "mean_quality": 0.5012668506832567,
+      "mean_saturation": 0.015306122448979591,
+      "mean_stability": 0.03679653679653679,
+      "null_mean_total": 330.89016652995866,
+      "null_mode_reports": [
+        {
+          "accepted": true,
+          "aggregate_null_lift": 0.998019801980198,
+          "candidate": {
+            "adaptive_window": 256,
+            "baseline_size": 1024,
+            "decay": 0.9,
+            "emission_threshold": 3.0,
+            "min_active_series": 3,
+            "score": "max",
+            "stride": 256
+          },
+          "file_scores": [
+            {
+              "delta": 164.1146726791678,
+              "exceedances": 0,
+              "file": "chb02_01.edf",
+              "null_mean": 47.173353951225465,
+              "observed": 211.28802663039326,
+              "z_effect": 9.289586602564038
+            },
+            {
+              "delta": 112.74940814980056,
+              "exceedances": 0,
+              "file": "chb02_03.edf",
+              "null_mean": 25.64600520691386,
+              "observed": 138.3954133567144,
+              "z_effect": 7.826462136618864
+            },
+            {
+              "delta": 48.22618340091438,
+              "exceedances": 0,
+              "file": "chb02_05.edf",
+              "null_mean": 5.143237163889155,
+              "observed": 53.369420564803534,
+              "z_effect": 7.927254858189006
+            },
+            {
+              "delta": 29.562279863941626,
+              "exceedances": 0,
+              "file": "chb02_07.edf",
+              "null_mean": 9.745134972858382,
+              "observed": 39.30741483680001,
+              "z_effect": 4.141651077028356
+            },
+            {
+              "delta": 79.90320889850966,
+              "exceedances": 0,
+              "file": "chb02_09.edf",
+              "null_mean": 42.99985851692978,
+              "observed": 122.90306741543944,
+              "z_effect": 6.965900971111051
+            },
+            {
+              "delta": 136.08472523935856,
+              "exceedances": 0,
+              "file": "chb02_11.edf",
+              "null_mean": 59.98624756171532,
+              "observed": 196.07097280107388,
+              "z_effect": 8.909017015984828
+            },
+            {
+              "delta": 51.83645887211887,
+              "exceedances": 0,
+              "file": "chb02_16.edf",
+              "null_mean": 140.1963291564267,
+              "observed": 192.03278802854558,
+              "z_effect": 2.3664723196108164
+            }
+          ],
+          "files_scored": 7,
+          "files_skipped": 0,
+          "mean_fragility": 0.3197278911564626,
+          "mean_quality": 0.5012668506832567,
+          "mean_saturation": 0.015306122448979591,
+          "mean_stability": 0.03679653679653679,
+          "null_mean_total": 330.89016652995866,
+          "null_mode": "permute",
+          "null_std_total": 37.15147505453263,
+          "null_total_empirical_p_floor": 0.009900990099009901,
+          "null_total_empirical_p_ge_observed": 0.009900990099009901,
+          "null_total_exceedances": 0,
+          "null_total_repeats": 100,
+          "null_total_unique_repeats": 100,
+          "observed_active_windows": 129,
+          "observed_minus_null_total": 622.4769371038115,
+          "observed_total": 953.3671036337701,
+          "positive_file_fraction": 1.0,
+          "positive_files": 7,
+          "quality": 0.8007718011783063,
+          "skipped": [],
+          "z_effect": 16.75510692886652
+        }
+      ],
+      "null_modes": [
+        "permute"
+      ],
+      "null_std_total": 37.15147505453263,
+      "null_total_empirical_p_floor": 0.009900990099009901,
+      "null_total_empirical_p_ge_observed": 0.009900990099009901,
+      "null_total_exceedances": 0,
+      "null_total_repeats": 100,
+      "null_total_unique_repeats": 100,
+      "observed_minus_null_total": 622.4769371038115,
+      "observed_total": 953.3671036337701,
+      "positive_file_fraction": 1.0,
+      "quality": 0.8007718011783063,
+      "worst_null_mode": "permute",
+      "z_effect": 16.75510692886652
+    },
+    "candidates": [
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.998019801980198,
+        "candidate": {
+          "adaptive_window": 256,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 3.0,
+          "min_active_series": 3,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.3197278911564626,
+        "mean_quality": 0.5012668506832567,
+        "mean_saturation": 0.015306122448979591,
+        "mean_stability": 0.03679653679653679,
+        "null_mean_total": 330.89016652995866,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.998019801980198,
+            "candidate": {
+              "adaptive_window": 256,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 3.0,
+              "min_active_series": 3,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 164.1146726791678,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 47.173353951225465,
+                "observed": 211.28802663039326,
+                "z_effect": 9.289586602564038
+              },
+              {
+                "delta": 112.74940814980056,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 25.64600520691386,
+                "observed": 138.3954133567144,
+                "z_effect": 7.826462136618864
+              },
+              {
+                "delta": 48.22618340091438,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 5.143237163889155,
+                "observed": 53.369420564803534,
+                "z_effect": 7.927254858189006
+              },
+              {
+                "delta": 29.562279863941626,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 9.745134972858382,
+                "observed": 39.30741483680001,
+                "z_effect": 4.141651077028356
+              },
+              {
+                "delta": 79.90320889850966,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 42.99985851692978,
+                "observed": 122.90306741543944,
+                "z_effect": 6.965900971111051
+              },
+              {
+                "delta": 136.08472523935856,
+                "exceedances": 0,
+                "file": "chb02_11.edf",
+                "null_mean": 59.98624756171532,
+                "observed": 196.07097280107388,
+                "z_effect": 8.909017015984828
+              },
+              {
+                "delta": 51.83645887211887,
+                "exceedances": 0,
+                "file": "chb02_16.edf",
+                "null_mean": 140.1963291564267,
+                "observed": 192.03278802854558,
+                "z_effect": 2.3664723196108164
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.3197278911564626,
+            "mean_quality": 0.5012668506832567,
+            "mean_saturation": 0.015306122448979591,
+            "mean_stability": 0.03679653679653679,
+            "null_mean_total": 330.89016652995866,
+            "null_mode": "permute",
+            "null_std_total": 37.15147505453263,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 129,
+            "observed_minus_null_total": 622.4769371038115,
+            "observed_total": 953.3671036337701,
+            "positive_file_fraction": 1.0,
+            "positive_files": 7,
+            "quality": 0.8007718011783063,
+            "skipped": [],
+            "z_effect": 16.75510692886652
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 37.15147505453263,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 622.4769371038115,
+        "observed_total": 953.3671036337701,
+        "positive_file_fraction": 1.0,
+        "quality": 0.8007718011783063,
+        "worst_null_mode": "permute",
+        "z_effect": 16.75510692886652
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.9701747415803894,
+        "candidate": {
+          "adaptive_window": 256,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 2.5,
+          "min_active_series": 3,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.34523809523809523,
+        "mean_quality": 0.4997818029692135,
+        "mean_saturation": 0.05189768214978298,
+        "mean_stability": 0.0796485260770975,
+        "null_mean_total": 823.1951434328022,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.9701747415803894,
+            "candidate": {
+              "adaptive_window": 256,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 2.5,
+              "min_active_series": 3,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 194.58370436072687,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 116.3333679828325,
+                "observed": 310.91707234355937,
+                "z_effect": 8.115550535523692
+              },
+              {
+                "delta": 129.8749334787149,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 76.86969259216886,
+                "observed": 206.74462607088375,
+                "z_effect": 6.9094440450655075
+              },
+              {
+                "delta": 103.57218101713347,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 22.07351736766874,
+                "observed": 125.64569838480222,
+                "z_effect": 9.384000095049048
+              },
+              {
+                "delta": 60.287031007589384,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 40.52612861802711,
+                "observed": 100.81315962561649,
+                "z_effect": 4.103626674688762
+              },
+              {
+                "delta": 86.79077257243299,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 128.83605558980577,
+                "observed": 215.62682816223875,
+                "z_effect": 5.587471333475504
+              },
+              {
+                "delta": 150.33291542853365,
+                "exceedances": 0,
+                "file": "chb02_11.edf",
+                "null_mean": 173.7624353248793,
+                "observed": 324.09535075341296,
+                "z_effect": 7.674997773439974
+              },
+              {
+                "delta": 40.4488093433817,
+                "exceedances": 0,
+                "file": "chb02_16.edf",
+                "null_mean": 264.79394595742,
+                "observed": 305.2427553008017,
+                "z_effect": 2.447683296175774
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.34523809523809523,
+            "mean_quality": 0.4997818029692135,
+            "mean_saturation": 0.05189768214978298,
+            "mean_stability": 0.0796485260770975,
+            "null_mean_total": 823.1951434328022,
+            "null_mode": "permute",
+            "null_std_total": 47.14057266862158,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 234,
+            "observed_minus_null_total": 765.8903472085132,
+            "observed_total": 1589.0854906413153,
+            "positive_file_fraction": 1.0,
+            "positive_files": 7,
+            "quality": 0.7923254883643109,
+            "skipped": [],
+            "z_effect": 16.246946183543432
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 47.14057266862158,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 765.8903472085132,
+        "observed_total": 1589.0854906413153,
+        "positive_file_fraction": 1.0,
+        "quality": 0.7923254883643109,
+        "worst_null_mode": "permute",
+        "z_effect": 16.246946183543432
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.9503018528377014,
+        "candidate": {
+          "adaptive_window": 512,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 3.0,
+          "min_active_series": 3,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.2987887462677379,
+        "mean_quality": 0.49933420422078484,
+        "mean_saturation": 0.07379875026933849,
+        "mean_stability": 0.040259740259740266,
+        "null_mean_total": 1283.5308160045015,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.9503018528377014,
+            "candidate": {
+              "adaptive_window": 512,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 3.0,
+              "min_active_series": 3,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 172.60357358199946,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 45.08631108795351,
+                "observed": 217.68988466995296,
+                "z_effect": 11.008549878751792
+              },
+              {
+                "delta": 157.82006558382506,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 91.31500688684814,
+                "observed": 249.1350724706732,
+                "z_effect": 6.743191301761532
+              },
+              {
+                "delta": 53.929264865713876,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 6.825229409662933,
+                "observed": 60.75449427537681,
+                "z_effect": 8.215921270644131
+              },
+              {
+                "delta": 58.651091205825466,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 30.880440108647505,
+                "observed": 89.53153131447297,
+                "z_effect": 5.674704680722322
+              },
+              {
+                "delta": 272.8706885856787,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 368.35707241276674,
+                "observed": 641.2277609984454,
+                "z_effect": 8.469159117494355
+              },
+              {
+                "delta": 368.9104336539283,
+                "exceedances": 0,
+                "file": "chb02_11.edf",
+                "null_mean": 303.08121970065156,
+                "observed": 671.9916533545799,
+                "z_effect": 9.56798288674293
+              },
+              {
+                "delta": 45.62705302520601,
+                "exceedances": 3,
+                "file": "chb02_16.edf",
+                "null_mean": 437.9855363979708,
+                "observed": 483.6125894231768,
+                "z_effect": 1.8108972464414017
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.2987887462677379,
+            "mean_quality": 0.49933420422078484,
+            "mean_saturation": 0.07379875026933849,
+            "mean_stability": 0.040259740259740266,
+            "null_mean_total": 1283.5308160045015,
+            "null_mode": "permute",
+            "null_std_total": 63.27136501249141,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 251,
+            "observed_minus_null_total": 1130.4121705021767,
+            "observed_total": 2413.942986506678,
+            "positive_file_fraction": 1.0,
+            "positive_files": 7,
+            "quality": 0.7869096674302103,
+            "skipped": [],
+            "z_effect": 17.866094247832397
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 63.27136501249141,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 1130.4121705021767,
+        "observed_total": 2413.942986506678,
+        "positive_file_fraction": 1.0,
+        "quality": 0.7869096674302103,
+        "worst_null_mode": "permute",
+        "z_effect": 17.866094247832397
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.812265694761779,
+        "candidate": {
+          "adaptive_window": 256,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 3.0,
+          "min_active_series": 2,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.26287596623731074,
+        "mean_quality": 0.4889651742557866,
+        "mean_saturation": 0.03296703296703297,
+        "mean_stability": 0.12257058353832548,
+        "null_mean_total": 966.6482670273019,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.812265694761779,
+            "candidate": {
+              "adaptive_window": 256,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 3.0,
+              "min_active_series": 2,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 125.40714031750699,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 180.99111555635002,
+                "observed": 306.398255873857,
+                "z_effect": 6.034112820621041
+              },
+              {
+                "delta": 111.75992428399458,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 126.87503743138286,
+                "observed": 238.63496171537744,
+                "z_effect": 6.317061201057325
+              },
+              {
+                "delta": 77.34569619908888,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 45.610617467737974,
+                "observed": 122.95631366682684,
+                "z_effect": 6.710589097195494
+              },
+              {
+                "delta": 63.124426813904066,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 64.52957758875029,
+                "observed": 127.65400440265435,
+                "z_effect": 4.731557945753146
+              },
+              {
+                "delta": 57.02259906651716,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 139.31916597165562,
+                "observed": 196.34176503817278,
+                "z_effect": 5.598853790380147
+              },
+              {
+                "delta": 72.15115378840522,
+                "exceedances": 0,
+                "file": "chb02_11.edf",
+                "null_mean": 177.12371414147856,
+                "observed": 249.27486792988378,
+                "z_effect": 4.565361517618647
+              },
+              {
+                "delta": 10.940111968164018,
+                "exceedances": 16,
+                "file": "chb02_16.edf",
+                "null_mean": 232.19903886994652,
+                "observed": 243.13915083811054,
+                "z_effect": 0.9409686826849913
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.26287596623731074,
+            "mean_quality": 0.4889651742557866,
+            "mean_saturation": 0.03296703296703297,
+            "mean_stability": 0.12257058353832548,
+            "null_mean_total": 966.6482670273019,
+            "null_mode": "permute",
+            "null_std_total": 34.29560554176764,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 294,
+            "observed_minus_null_total": 517.7510524375809,
+            "observed_total": 1484.3993194648829,
+            "positive_file_fraction": 1.0,
+            "positive_files": 7,
+            "quality": 0.7420315979462314,
+            "skipped": [],
+            "z_effect": 15.096717035861246
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 34.29560554176764,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 517.7510524375809,
+        "observed_total": 1484.3993194648829,
+        "positive_file_fraction": 1.0,
+        "quality": 0.7420315979462314,
+        "worst_null_mode": "permute",
+        "z_effect": 15.096717035861246
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.7893882261132796,
+        "candidate": {
+          "adaptive_window": 512,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 2.5,
+          "min_active_series": 3,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.28253788999130613,
+        "mean_quality": 0.4604598583760368,
+        "mean_saturation": 0.14673048706662153,
+        "mean_stability": 0.12035391079508727,
+        "null_mean_total": 2384.110431987696,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.7893882261132796,
+            "candidate": {
+              "adaptive_window": 512,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 2.5,
+              "min_active_series": 3,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 184.48144581245444,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 150.74969330614547,
+                "observed": 335.2311391185999,
+                "z_effect": 7.01039359806116
+              },
+              {
+                "delta": 221.60074812131907,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 237.03180336054,
+                "observed": 458.6325514818591,
+                "z_effect": 7.434974208212957
+              },
+              {
+                "delta": 87.9100548104493,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 31.841401394776952,
+                "observed": 119.75145620522625,
+                "z_effect": 8.298527810760769
+              },
+              {
+                "delta": 89.07500726613215,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 121.44307555568308,
+                "observed": 210.51808282181523,
+                "z_effect": 4.962745803168699
+              },
+              {
+                "delta": 276.7321776285153,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 656.8721748759101,
+                "observed": 933.6043525044254,
+                "z_effect": 8.944915205013858
+              },
+              {
+                "delta": 271.914309942929,
+                "exceedances": 0,
+                "file": "chb02_11.edf",
+                "null_mean": 593.9573294570736,
+                "observed": 865.8716394000026,
+                "z_effect": 7.354766514135968
+              },
+              {
+                "delta": 8.894897240015212,
+                "exceedances": 30,
+                "file": "chb02_16.edf",
+                "null_mean": 592.2149540375665,
+                "observed": 601.1098512775817,
+                "z_effect": 0.5767771165643364
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.28253788999130613,
+            "mean_quality": 0.4604598583760368,
+            "mean_saturation": 0.14673048706662153,
+            "mean_stability": 0.12035391079508727,
+            "null_mean_total": 2384.110431987696,
+            "null_mode": "permute",
+            "null_std_total": 71.7600240300009,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 389,
+            "observed_minus_null_total": 1140.6086408218143,
+            "observed_total": 3524.71907280951,
+            "positive_file_fraction": 1.0,
+            "positive_files": 7,
+            "quality": 0.7078069149043568,
+            "skipped": [],
+            "z_effect": 15.894763919601768
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 71.7600240300009,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 1140.6086408218143,
+        "observed_total": 3524.71907280951,
+        "positive_file_fraction": 1.0,
+        "quality": 0.7078069149043568,
+        "worst_null_mode": "permute",
+        "z_effect": 15.894763919601768
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.6853628767322101,
+        "candidate": {
+          "adaptive_window": 512,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 3.0,
+          "min_active_series": 2,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.23789652703186537,
+        "mean_quality": 0.3831486359582984,
+        "mean_saturation": 0.16357785717837434,
+        "mean_stability": 0.18940730890260982,
+        "null_mean_total": 2617.948074551831,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.6853628767322101,
+            "candidate": {
+              "adaptive_window": 512,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 3.0,
+              "min_active_series": 2,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 116.03725642399996,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 184.2135044547215,
+                "observed": 300.25076087872145,
+                "z_effect": 5.427120128771765
+              },
+              {
+                "delta": 123.27095478781087,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 332.4368714381785,
+                "observed": 455.7078262259894,
+                "z_effect": 4.465820931573984
+              },
+              {
+                "delta": 69.57518652518364,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 47.619899799908836,
+                "observed": 117.19508632509248,
+                "z_effect": 6.221344998182539
+              },
+              {
+                "delta": 44.983534875082086,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 134.86909286163237,
+                "observed": 179.85262773671445,
+                "z_effect": 2.750717211479539
+              },
+              {
+                "delta": 106.15602070093166,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 765.3786013947529,
+                "observed": 871.5346220956845,
+                "z_effect": 5.22378209399749
+              },
+              {
+                "delta": 105.9757520626697,
+                "exceedances": 0,
+                "file": "chb02_11.edf",
+                "null_mean": 631.5269093593427,
+                "observed": 737.5026614220124,
+                "z_effect": 4.688694793544713
+              },
+              {
+                "delta": 5.650380555487914,
+                "exceedances": 26,
+                "file": "chb02_16.edf",
+                "null_mean": 521.9031952432944,
+                "observed": 527.5535757987823,
+                "z_effect": 0.6948106269742076
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.23789652703186537,
+            "mean_quality": 0.3831486359582984,
+            "mean_saturation": 0.16357785717837434,
+            "mean_stability": 0.18940730890260982,
+            "null_mean_total": 2617.948074551831,
+            "null_mode": "permute",
+            "null_std_total": 49.03597326754957,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 457,
+            "observed_minus_null_total": 571.6490859311662,
+            "observed_total": 3189.597160482997,
+            "positive_file_fraction": 1.0,
+            "positive_files": 7,
+            "quality": 0.6044893551413509,
+            "skipped": [],
+            "z_effect": 11.657749359070335
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 49.03597326754957,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 571.6490859311662,
+        "observed_total": 3189.597160482997,
+        "positive_file_fraction": 1.0,
+        "quality": 0.6044893551413509,
+        "worst_null_mode": "permute",
+        "z_effect": 11.657749359070335
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.7009602592875495,
+        "candidate": {
+          "adaptive_window": 256,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 2.5,
+          "min_active_series": 2,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.25868060044530633,
+        "mean_quality": 0.35988723055739086,
+        "mean_saturation": 0.12764158918005072,
+        "mean_stability": 0.15697355865423093,
+        "null_mean_total": 1743.433505393246,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.7009602592875495,
+            "candidate": {
+              "adaptive_window": 256,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 2.5,
+              "min_active_series": 2,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 103.78265449388311,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 318.16289235970487,
+                "observed": 421.945546853588,
+                "z_effect": 5.280850433979771
+              },
+              {
+                "delta": 94.80458063145082,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 239.8189356625372,
+                "observed": 334.623516293988,
+                "z_effect": 4.8913062648928225
+              },
+              {
+                "delta": 76.76051049185486,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 100.70716841891954,
+                "observed": 177.4676789107744,
+                "z_effect": 5.48160415570156
+              },
+              {
+                "delta": 73.25022950272933,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 142.63318418025926,
+                "observed": 215.8834136829886,
+                "z_effect": 4.684937819992634
+              },
+              {
+                "delta": 47.2295378196377,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 281.1275810684998,
+                "observed": 328.3571188881375,
+                "z_effect": 4.188936201147639
+              },
+              {
+                "delta": 56.59708024831781,
+                "exceedances": 0,
+                "file": "chb02_11.edf",
+                "null_mean": 337.97371498887713,
+                "observed": 394.57079523719494,
+                "z_effect": 3.6122667847241097
+              },
+              {
+                "delta": -3.7499873625250757,
+                "exceedances": 75,
+                "file": "chb02_16.edf",
+                "null_mean": 323.01002871444837,
+                "observed": 319.2600413519233,
+                "z_effect": -0.5301804254877059
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.25868060044530633,
+            "mean_quality": 0.35988723055739086,
+            "mean_saturation": 0.12764158918005072,
+            "mean_stability": 0.15697355865423093,
+            "null_mean_total": 1743.433505393246,
+            "null_mode": "permute",
+            "null_std_total": 39.76548995073613,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 485,
+            "observed_minus_null_total": 448.67460582534886,
+            "observed_total": 2192.108111218595,
+            "positive_file_fraction": 0.8571428571428571,
+            "positive_files": 6,
+            "quality": 0.5779844382364211,
+            "skipped": [],
+            "z_effect": 11.28301465369077
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 39.76548995073613,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 448.67460582534886,
+        "observed_total": 2192.108111218595,
+        "positive_file_fraction": 0.8571428571428571,
+        "quality": 0.5779844382364211,
+        "worst_null_mode": "permute",
+        "z_effect": 11.28301465369077
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.6367106885974259,
+        "candidate": {
+          "adaptive_window": 512,
+          "baseline_size": 1024,
+          "decay": 0.9,
+          "emission_threshold": 2.5,
+          "min_active_series": 2,
+          "score": "max",
+          "stride": 256
+        },
+        "files_scored": 7,
+        "files_skipped": 0,
+        "mean_fragility": 0.19598479980788827,
+        "mean_quality": 0.23978082498734427,
+        "mean_saturation": 0.29751663979201154,
+        "mean_stability": 0.2123912755141991,
+        "null_mean_total": 3871.057692657279,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.6367106885974259,
+            "candidate": {
+              "adaptive_window": 512,
+              "baseline_size": 1024,
+              "decay": 0.9,
+              "emission_threshold": 2.5,
+              "min_active_series": 2,
+              "score": "max",
+              "stride": 256
+            },
+            "file_scores": [
+              {
+                "delta": 69.63697005980532,
+                "exceedances": 0,
+                "file": "chb02_01.edf",
+                "null_mean": 349.1986945222637,
+                "observed": 418.835664582069,
+                "z_effect": 3.550953143691412
+              },
+              {
+                "delta": 77.07984356417501,
+                "exceedances": 0,
+                "file": "chb02_03.edf",
+                "null_mean": 536.1730784993076,
+                "observed": 613.2529220634826,
+                "z_effect": 3.153082651777887
+              },
+              {
+                "delta": 61.50602635752645,
+                "exceedances": 0,
+                "file": "chb02_05.edf",
+                "null_mean": 128.9896577692146,
+                "observed": 190.49568412674105,
+                "z_effect": 4.621032830664717
+              },
+              {
+                "delta": 50.21871356866126,
+                "exceedances": 0,
+                "file": "chb02_07.edf",
+                "null_mean": 282.74594036092054,
+                "observed": 332.9646539295818,
+                "z_effect": 3.3196685910058146
+              },
+              {
+                "delta": 64.48849946451992,
+                "exceedances": 0,
+                "file": "chb02_09.edf",
+                "null_mean": 1035.0078600967238,
+                "observed": 1099.4963595612437,
+                "z_effect": 3.181139475023507
+              },
+              {
+                "delta": 48.67418729796509,
+                "exceedances": 1,
+                "file": "chb02_11.edf",
+                "null_mean": 911.2975008518385,
+                "observed": 959.9716881498036,
+                "z_effect": 2.238109586599041
+              },
+              {
+                "delta": 2.832395375721944,
+                "exceedances": 35,
+                "file": "chb02_16.edf",
+                "null_mean": 627.6449605570107,
+                "observed": 630.4773559327326,
+                "z_effect": 0.5912243777670584
+              }
+            ],
+            "files_scored": 7,
+            "files_skipped": 0,
+            "mean_fragility": 0.19598479980788827,
+            "mean_quality": 0.23978082498734427,
+            "mean_saturation": 0.29751663979201154,
+            "mean_stability": 0.2123912755141991,
+            "null_mean_total": 3871.057692657279,
+            "null_mode": "permute",
+            "null_std_total": 46.79880149351177,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 669,
+            "observed_minus_null_total": 374.4366356883752,
+            "observed_total": 4245.494328345654,
+            "positive_file_fraction": 1.0,
+            "positive_files": 7,
+            "quality": 0.4489584971367007,
+            "skipped": [],
+            "z_effect": 8.000987712052572
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 46.79880149351177,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 374.4366356883752,
+        "observed_total": 4245.494328345654,
+        "positive_file_fraction": 1.0,
+        "quality": 0.4489584971367007,
+        "worst_null_mode": "permute",
+        "z_effect": 8.000987712052572
+      }
+    ],
+    "files": [
+      "chb02_01.edf",
+      "chb02_03.edf",
+      "chb02_05.edf",
+      "chb02_07.edf",
+      "chb02_09.edf",
+      "chb02_11.edf",
+      "chb02_16.edf"
+    ],
+    "phase_reports": [
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_01.edf",
+        "path": "data/chbmit/chb02/chb02_01.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 23,
+            "positive_rate": 0.10407239819004525,
+            "top": 12
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 23
+        },
+        "positive_windows": 23,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 12
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 20.868402656916224,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 9.270246740394978,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.680300243616745,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 27.818949640927947,
+            "index": 41728,
+            "max_score": 20.868402656916224,
+            "mean_score": 6.977804946631515,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2608.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 12.018787642586783,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 10.325969198144858,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.235626253332764,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 20.580383094064405,
+            "index": 41984,
+            "max_score": 12.018787642586783,
+            "mean_score": 5.673525998012327,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2624.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 14.530031467659697,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1652198258889475,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 8.922791796639105,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 17.618043090187747,
+            "index": 44800,
+            "max_score": 14.530031467659697,
+            "mean_score": 5.266879924129176,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2800.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 14.728239084741897,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.557277895383689,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.9688219204376898,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.687412337462599,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.329364895417938,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 17.271116133443815,
+            "index": 54272,
+            "max_score": 14.728239084741897,
+            "mean_score": 5.500315790538436,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3392.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 11.234793759270694,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.570949825112559,
+                "series": "T7-P7"
+              },
+              {
+                "score": 8.17398659616004,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 14.979730180543294,
+            "index": 43776,
+            "max_score": 11.234793759270694,
+            "mean_score": 4.95583438083004,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2736.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.607412550002475,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 10.064693378702543,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.181661523306891,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 11.85376745201191,
+            "index": 27392,
+            "max_score": 10.064693378702543,
+            "mean_score": 4.28771674807569,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1712.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.554187010454289,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.272862383203806,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.8281290609333,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.22966593301992,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 9.884844387611315,
+            "index": 44288,
+            "max_score": 6.554187010454289,
+            "mean_score": 4.044631726044844,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2768.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.024671490283946,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.631584146754691,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 8.18399201769061,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 9.840247654729247,
+            "index": 43520,
+            "max_score": 8.18399201769061,
+            "mean_score": 3.966442444583603,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2720.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.100617441410709,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.148785342222513,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.281417194696509,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 9.530819978329731,
+            "index": 40192,
+            "max_score": 7.281417194696509,
+            "mean_score": 3.7438518579055455,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2512.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.885182825058023,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.366738420284099,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.30348702221274,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.9060903227661816,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 9.461498590321042,
+            "index": 42496,
+            "max_score": 6.885182825058023,
+            "mean_score": 4.154516701753155,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2656.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.614608855032567,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.615508982574752,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.038292959257184,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 8.268410796864504,
+            "index": 44032,
+            "max_score": 7.614608855032567,
+            "mean_score": 3.5618586123491034,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2752.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.260630371927072,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.606883875993665,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.364905515720262,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 8.232419763641,
+            "index": 17664,
+            "max_score": 7.606883875993665,
+            "mean_score": 3.6159595034794183,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1104.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_03.edf",
+        "path": "data/chbmit/chb02/chb02_03.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 14,
+            "positive_rate": 0.06334841628959276,
+            "top": 12
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 14
+        },
+        "positive_windows": 14,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 12
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 16.56904197292444,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 14.339530628043951,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.234293332070289,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 29.142865933038678,
+            "index": 47360,
+            "max_score": 16.56904197292444,
+            "mean_score": 6.937587485938473,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2960.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.347662176967662,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.147317125784984,
+                "series": "T7-P7"
+              },
+              {
+                "score": 9.738431336128315,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 13.23341063888096,
+            "index": 7680,
+            "max_score": 9.738431336128315,
+            "mean_score": 4.280727341510849,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 480.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.567240833822794,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.740908138753263,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.2664201903062855,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 12.57456916288234,
+            "index": 35584,
+            "max_score": 8.567240833822794,
+            "mean_score": 4.156009890429511,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2224.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.7919962867243,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.648603890622599,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.813905851748929,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 9.296662013347776,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 12.551168042443603,
+            "index": 33280,
+            "max_score": 9.296662013347776,
+            "mean_score": 4.800422913085391,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2080.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.596429870890004,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.571163225780328,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.990296284526577,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 12.15788938119691,
+            "index": 36352,
+            "max_score": 8.596429870890004,
+            "mean_score": 4.540884150043994,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2272.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.891624081812165,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.381385805989433,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.977134008956059,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 9.250143896757656,
+            "index": 8704,
+            "max_score": 7.977134008956059,
+            "mean_score": 3.757270120920572,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 544.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.0780806957957134,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.430601140072506,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.388525286055839,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 10.801250384323389,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 8.698457506247447,
+            "index": 40448,
+            "max_score": 10.801250384323389,
+            "mean_score": 4.2110080257985185,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2528.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.170733010558416,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.518667076635653,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.13747393839643,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.827117725033068,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 7.653991750623566,
+            "index": 49920,
+            "max_score": 7.518667076635653,
+            "mean_score": 3.8142205641106863,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3120.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.034819815470177,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.11251888240749,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.0574123425086093,
+                "series": "CZ-PZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 7.2047510403862765,
+            "index": 5632,
+            "max_score": 7.11251888240749,
+            "mean_score": 3.3918014179677543,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 352.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.833268290566417,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.061149029919325,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 7.080582591232576,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.974999911718319,
+            "index": 6400,
+            "max_score": 7.080582591232576,
+            "mean_score": 3.349260934879084,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 400.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.109428047775594,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.4090198217476124,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.411262915217369,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.929710784740575,
+            "index": 14336,
+            "max_score": 6.411262915217369,
+            "mean_score": 3.304863256701059,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 896.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.018093522305896,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.4975328345256615,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.7983184762266005,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.313944833058158,
+            "index": 56576,
+            "max_score": 5.018093522305896,
+            "mean_score": 2.9575433621231526,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3536.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_05.edf",
+        "path": "data/chbmit/chb02/chb02_05.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 7,
+            "positive_rate": 0.03167420814479638,
+            "top": 7
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 7
+        },
+        "positive_windows": 7,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 7
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 7.678593102567539,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.842104674435899,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 6.770936305214374,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 8.539137927132527,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 15.830772009350339,
+            "index": 30720,
+            "max_score": 8.539137927132527,
+            "mean_score": 5.093390403874677,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1920.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.88382848969842,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.2872973220152684,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.064929467924949,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.3555724609421724,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 8.29873745443496,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 13.89036519501577,
+            "index": 52736,
+            "max_score": 9.88382848969842,
+            "mean_score": 5.033348115610145,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3296.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.95750009861955,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.037033252737292,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.2654506956342,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.961060153939553,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 7.221044200930595,
+            "index": 35584,
+            "max_score": 5.95750009861955,
+            "mean_score": 3.38024933671646,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2224.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.396230934314645,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.365703153788589,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.595936078495249,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.357870166598484,
+            "index": 25856,
+            "max_score": 6.595936078495249,
+            "mean_score": 3.6955452306251755,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1616.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.7004636604800356,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.852792965350966,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.3202624701885552,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.873519096019558,
+            "index": 43008,
+            "max_score": 7.852792965350966,
+            "mean_score": 3.398673001711378,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2688.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.314853316710451,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.736671399257844,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.9883703575101794,
+                "series": "CZ-PZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 3.0398950734784744,
+            "index": 22528,
+            "max_score": 4.314853316710451,
+            "mean_score": 3.0274611076801263,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1408.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.050278269777414,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.7650172143389433,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.3406593392939525,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 1.1559548234103096,
+            "index": 19712,
+            "max_score": 3.7650172143389433,
+            "mean_score": 2.231406265893812,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1232.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_07.edf",
+        "path": "data/chbmit/chb02/chb02_07.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 8,
+            "positive_rate": 0.03619909502262444,
+            "top": 8
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 8
+        },
+        "positive_windows": 8,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 8
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 4.686703252801386,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 11.431095301910089,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.08533092253679,
+                "series": "FZ-CZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 10.203129477248265,
+            "index": 48384,
+            "max_score": 11.431095301910089,
+            "mean_score": 4.023399057707498,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3024.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.767517932533563,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.927486842514892,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.25,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.330206264096337,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 9.275211039144793,
+            "index": 52736,
+            "max_score": 8.927486842514892,
+            "mean_score": 3.991423732620284,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3296.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.464149451503173,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.891761827251134,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.333075490347805,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.6889867691021125,
+            "index": 51712,
+            "max_score": 5.333075490347805,
+            "mean_score": 3.001936802705252,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3232.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.237607911412074,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.064665557800776,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.241339178670329,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.5436126478831795,
+            "index": 52224,
+            "max_score": 5.241339178670329,
+            "mean_score": 3.338966532007518,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3264.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.878946802874849,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.2257924233701454,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.659606509725959,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 3.7643457359709536,
+            "index": 6912,
+            "max_score": 5.659606509725959,
+            "mean_score": 2.9847164083040583,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 432.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.2116368864684426,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.7880459865173486,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.754059707711664,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.2066307157041027,
+                "series": "CZ-PZ"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 1.960373296401558,
+            "index": 14848,
+            "max_score": 3.7880459865173486,
+            "mean_score": 3.119826483001999,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 928.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.27698179393015,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.039579800223711,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.409099973854632,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 1.7256615680084932,
+            "index": 26112,
+            "max_score": 4.27698179393015,
+            "mean_score": 2.860938416232392,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1632.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.780514292461926,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.0503707462437446,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.3152092643349826,
+                "series": "CZ-PZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 1.1460943030406532,
+            "index": 21248,
+            "max_score": 3.780514292461926,
+            "mean_score": 2.4005977688503695,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1328.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_09.edf",
+        "path": "data/chbmit/chb02/chb02_09.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 27,
+            "positive_rate": 0.12217194570135746,
+            "top": 12
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 27
+        },
+        "positive_windows": 27,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 12
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 4.7498290342647165,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.8925397908229935,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.344556895193596,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 6.404004878800135,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 8.390930599081441,
+            "index": 52224,
+            "max_score": 6.404004878800135,
+            "mean_score": 3.752744222728276,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3264.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.330892979049286,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.308417510018142,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.551379209784969,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 7.190689698852397,
+            "index": 33280,
+            "max_score": 7.308417510018142,
+            "mean_score": 3.3267941811966364,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2080.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.740803455368304,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.701701726429957,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.479437435632366,
+                "series": "CZ-PZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.921942617430626,
+            "index": 46848,
+            "max_score": 6.740803455368304,
+            "mean_score": 3.839660892659752,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2928.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.017380832753102,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1388659117784425,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.3894628026570395,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.544035223555022,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.6587273461890457,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 6.748472116932653,
+            "index": 41728,
+            "max_score": 6.3894628026570395,
+            "mean_score": 4.079900648684475,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2608.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.897848856023659,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.197717947599687,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.633433871020845,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.72900067464419,
+            "index": 47104,
+            "max_score": 5.633433871020845,
+            "mean_score": 3.5911474635585807,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2944.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.205327641716266,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.478776647575542,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.991361034549638,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.675465323841447,
+            "index": 57344,
+            "max_score": 6.205327641716266,
+            "mean_score": 3.721451337325179,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3584.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.117749282386726,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.917267414007384,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.534709326050881,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.569726022444991,
+            "index": 54784,
+            "max_score": 6.917267414007384,
+            "mean_score": 3.4889518404370605,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3424.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.754822612039906,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.47252032743294,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.311824761053993,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.539167700526839,
+            "index": 37120,
+            "max_score": 6.754822612039906,
+            "mean_score": 3.7019094156787133,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2320.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.1017186413280315,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.6033465565324168,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.55459759514263,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.0659675102639525,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.050742712034087,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 6.376373015301119,
+            "index": 52736,
+            "max_score": 7.1017186413280315,
+            "mean_score": 3.7963852417022195,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3296.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.441127430670315,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.0437606121430685,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.7174226384777946,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.077100172817507,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.8479294876138286,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 6.127340341722514,
+            "index": 37632,
+            "max_score": 5.077100172817507,
+            "mean_score": 3.843247680999665,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2352.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.531902440333919,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.629459571456366,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.362071841888378,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.523433853678664,
+            "index": 55808,
+            "max_score": 6.629459571456366,
+            "mean_score": 3.4228383007853167,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3488.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.351321973172564,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.8948954746752573,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.594500511534978,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 4.8407179593828,
+            "index": 48128,
+            "max_score": 5.594500511534978,
+            "mean_score": 3.139206986237085,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3008.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_11.edf",
+        "path": "data/chbmit/chb02/chb02_11.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 32,
+            "positive_rate": 0.14479638009049775,
+            "top": 12
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 32
+        },
+        "positive_windows": 32,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 12
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 11.39523839278819,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.3145878620022375,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.042536359156244,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 16.413398231102924,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.046944556859572,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 25.21270540190917,
+            "index": 35584,
+            "max_score": 16.413398231102924,
+            "mean_score": 7.03962479885126,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2224.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.643400933474106,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 16.93576468304029,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.721435316336167,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 19.30060093285056,
+            "index": 38144,
+            "max_score": 16.93576468304029,
+            "mean_score": 5.347456235610039,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2384.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.6134476064474175,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.046944556859572,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.2421115438552865,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 6.115481086029138,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.075981549717645,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 11.093966342909058,
+            "index": 33024,
+            "max_score": 7.6134476064474175,
+            "mean_score": 4.7512981996755554,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2064.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.054263282538729,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.922029499132264,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 7.94747094071864,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.173061824184491,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 10.096825546574124,
+            "index": 24576,
+            "max_score": 7.94747094071864,
+            "mean_score": 4.030428184370783,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1536.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.9425693156659145,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.470243639699751,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.062430117860033,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.44128164369299,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 9.916524716918687,
+            "index": 27648,
+            "max_score": 7.9425693156659145,
+            "mean_score": 4.43332328746462,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1728.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.59003562039864,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.132908479589208,
+                "series": "T7-P7"
+              },
+              {
+                "score": 10.864482169294549,
+                "series": "FZ-CZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 9.587426269282396,
+            "index": 13824,
+            "max_score": 10.864482169294549,
+            "mean_score": 4.111010739641565,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 864.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.368738350090023,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.188279850844562,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 7.368131820842846,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 7.925150021777432,
+            "index": 4608,
+            "max_score": 7.368131820842846,
+            "mean_score": 3.7000546410924495,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 288.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.3133831172143555,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.084061172995136,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.161749526391553,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.559193816601044,
+            "index": 16384,
+            "max_score": 6.084061172995136,
+            "mean_score": 3.2624215746585836,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1024.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.362514873928922,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.012012352336607,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.746706737068477,
+                "series": "CZ-PZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.1212339633340065,
+            "index": 5376,
+            "max_score": 5.362514873928922,
+            "mean_score": 3.3041311653071954,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 336.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.2115942172922765,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1645157115619855,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.0142558324712425,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.607180901267292,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 5.997546662592797,
+            "index": 33536,
+            "max_score": 5.2115942172922765,
+            "mean_score": 3.796528744574745,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2096.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.2115942172922765,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1083609483762076,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.558873590289135,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.878828755957619,
+            "index": 36096,
+            "max_score": 6.558873590289135,
+            "mean_score": 3.5496001622243067,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2256.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.7096991771212737,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.5704604655182197,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.003431609563031,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 6.942592060412486,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.6489073760558677,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 5.875090688670878,
+            "index": 32000,
+            "max_score": 6.942592060412486,
+            "mean_score": 3.85190981781783,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2000.0
+          }
+        ]
+      },
+      {
+        "anchors": 56,
+        "duration_seconds": 959.0,
+        "file": "chb02_16.edf",
+        "path": "data/chbmit/chb02/chb02_16.edf",
+        "phase_counts": {
+          "ictal": 5,
+          "interictal": 9,
+          "postictal": 37,
+          "preictal": 5
+        },
+        "phase_rates": {
+          "ictal": {
+            "anchors": 5,
+            "positive": 5,
+            "positive_rate": 1.0,
+            "top": 3
+          },
+          "interictal": {
+            "anchors": 9,
+            "positive": 1,
+            "positive_rate": 0.1111111111111111,
+            "top": 1
+          },
+          "postictal": {
+            "anchors": 37,
+            "positive": 12,
+            "positive_rate": 0.32432432432432434,
+            "top": 8
+          },
+          "preictal": {
+            "anchors": 5,
+            "positive": 0,
+            "positive_rate": 0.0,
+            "top": 0
+          }
+        },
+        "positive_phase_counts": {
+          "ictal": 5,
+          "interictal": 1,
+          "postictal": 12
+        },
+        "positive_windows": 18,
+        "seizures": [
+          {
+            "end": 212.0,
+            "start": 130.0
+          }
+        ],
+        "top_phase_counts": {
+          "ictal": 3,
+          "interictal": 1,
+          "postictal": 8
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 18.531528922143792,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.077071237520298,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.893550273991066,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 7.517974520065059,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 17.188456268385078,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.9848313095125425,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 42.19341253161784,
+            "index": 8448,
+            "max_score": 18.531528922143792,
+            "mean_score": 10.032235421936306,
+            "nearest_seizure_distance_seconds": 316.0,
+            "phase": "postictal",
+            "seconds": 528.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.1425459580564326,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.128034272137779,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 8.390795587599564,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 16.982573943355963,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 7.074510616262323,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 26.71846037741206,
+            "index": 8704,
+            "max_score": 16.982573943355963,
+            "mean_score": 7.4061390935802685,
+            "nearest_seizure_distance_seconds": 332.0,
+            "phase": "postictal",
+            "seconds": 544.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.346925914931448,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.306749183993374,
+                "series": "T7-P7"
+              },
+              {
+                "score": 9.705438022301562,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.486881919028288,
+                "series": "CZ-PZ"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 14.845995040254671,
+            "index": 2816,
+            "max_score": 9.705438022301562,
+            "mean_score": 5.133800108111134,
+            "nearest_seizure_distance_seconds": 0.0,
+            "phase": "ictal",
+            "seconds": 176.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 9.800395139394666,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.634047438345571,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 7.5774659283835835,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.519097635130794,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 14.531006141254615,
+            "index": 3840,
+            "max_score": 9.800395139394666,
+            "mean_score": 4.970196408613261,
+            "nearest_seizure_distance_seconds": 28.0,
+            "phase": "postictal",
+            "seconds": 240.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.876439730613137,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.82656569613735,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.135186034625848,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.8528645384785025,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.2115942172922765,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 9.902650217147114,
+            "index": 4096,
+            "max_score": 5.876439730613137,
+            "mean_score": 4.4851833639085825,
+            "nearest_seizure_distance_seconds": 44.0,
+            "phase": "postictal",
+            "seconds": 256.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.774813861643464,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.169298621190575,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.395926075812762,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 9.3400385586468,
+            "index": 6400,
+            "max_score": 8.774813861643464,
+            "mean_score": 3.760234234536226,
+            "nearest_seizure_distance_seconds": 188.0,
+            "phase": "postictal",
+            "seconds": 400.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.270217608895714,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.436623058097507,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.531049933162109,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.046944556859572,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 9.284835157014902,
+            "index": 6656,
+            "max_score": 7.270217608895714,
+            "mean_score": 4.333328961025857,
+            "nearest_seizure_distance_seconds": 204.0,
+            "phase": "postictal",
+            "seconds": 416.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.7589542741264936,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.597284050541841,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.5498194063469892,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 10.117361392148927,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 9.02341912316425,
+            "index": 14592,
+            "max_score": 10.117361392148927,
+            "mean_score": 4.156121150282654,
+            "nearest_seizure_distance_seconds": 700.0,
+            "phase": "interictal",
+            "seconds": 912.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.644028523116482,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.498459209114807,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 7.059847610555692,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 8.20233534278698,
+            "index": 3328,
+            "max_score": 7.059847610555692,
+            "mean_score": 3.8070192798717817,
+            "nearest_seizure_distance_seconds": 0.0,
+            "phase": "ictal",
+            "seconds": 208.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.1237904500218168,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.8158264712823904,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 6.988030487962601,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.2115942172922765,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 7.139241626559085,
+            "index": 5376,
+            "max_score": 6.988030487962601,
+            "mean_score": 3.7349074017820665,
+            "nearest_seizure_distance_seconds": 124.0,
+            "phase": "postictal",
+            "seconds": 336.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.454614349694091,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.7926205962515636,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.9477345984542436,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.6501135251621943,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.2115942172922765,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 7.056677286854368,
+            "index": 3072,
+            "max_score": 5.454614349694091,
+            "mean_score": 4.105957946214556,
+            "nearest_seizure_distance_seconds": 0.0,
+            "phase": "ictal",
+            "seconds": 192.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.756595032367253,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.407470439567015,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.0701443111064384,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.721435316336167,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 6.955645099376873,
+            "index": 4352,
+            "max_score": 6.407470439567015,
+            "mean_score": 3.807748634534944,
+            "nearest_seizure_distance_seconds": 60.0,
+            "phase": "postictal",
+            "seconds": 272.0
+          }
+        ]
+      }
+    ],
+    "phase_summary": {
+      "anchor_phase_counts": {
+        "ictal": 5,
+        "interictal": 1335,
+        "postictal": 37,
+        "preictal": 5
+      },
+      "positive_phase_counts": {
+        "ictal": 5,
+        "interictal": 112,
+        "postictal": 12
+      },
+      "top_phase_counts": {
+        "ictal": 3,
+        "interictal": 64,
+        "postictal": 8
+      }
+    }
+  },
+  "created_at": "2026-06-04T02:46:28.906325+00:00",
+  "dataset": {
+    "labels_used": "posthoc attribution only",
+    "name": "CHB-MIT Scalp EEG Database",
+    "summary_path": "data/chbmit/chb02/chb02-summary.txt"
+  },
+  "elapsed_seconds": 274.89485907554626,
+  "method": {
+    "label_use": "none during selection",
+    "selection": "rank candidate settings by label-free aggregate cross-channel emission lift on calibration files",
+    "validation": "freeze selected candidate and score disjoint heldout files"
+  },
+  "parameters": {
+    "adaptive_windows": [
+      256,
+      512
+    ],
+    "baselines": [
+      512,
+      1024
+    ],
+    "candidate_count": 12,
+    "channels": [
+      "FP1-F7",
+      "T7-P7",
+      "FZ-CZ",
+      "CZ-PZ",
+      "FP2-F8",
+      "P8-O2"
+    ],
+    "decays": [
+      0.9
+    ],
+    "files": [
+      "data/chbmit/chb02/chb02_01.edf",
+      "data/chbmit/chb02/chb02_02.edf",
+      "data/chbmit/chb02/chb02_03.edf",
+      "data/chbmit/chb02/chb02_04.edf",
+      "data/chbmit/chb02/chb02_05.edf",
+      "data/chbmit/chb02/chb02_06.edf",
+      "data/chbmit/chb02/chb02_07.edf",
+      "data/chbmit/chb02/chb02_08.edf",
+      "data/chbmit/chb02/chb02_09.edf",
+      "data/chbmit/chb02/chb02_10.edf",
+      "data/chbmit/chb02/chb02_11.edf",
+      "data/chbmit/chb02/chb02_16+.edf",
+      "data/chbmit/chb02/chb02_16.edf",
+      "data/chbmit/chb02/chb02_19.edf"
+    ],
+    "min_active_channels": [
+      2,
+      3
+    ],
+    "min_positive_file_fraction": 0.5,
+    "min_z_effect": 2.0,
+    "null_block_size": 8,
+    "null_modes": [
+      "permute"
+    ],
+    "null_repeats": 100,
+    "postictal_minutes": 10.0,
+    "preictal_minutes": 10.0,
+    "strides": [
+      256
+    ],
+    "target_sample_rate": 16.0,
+    "thresholds": [
+      2.5,
+      3.0
+    ],
+    "validation_count": 4,
+    "validation_split": "alternate"
+  },
+  "validation": {
+    "files": [
+      "chb02_02.edf",
+      "chb02_04.edf",
+      "chb02_06.edf",
+      "chb02_08.edf",
+      "chb02_10.edf",
+      "chb02_16+.edf",
+      "chb02_19.edf"
+    ],
+    "phase_reports": [
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_02.edf",
+        "path": "data/chbmit/chb02/chb02_02.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 2,
+            "positive_rate": 0.00904977375565611,
+            "top": 2
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 2
+        },
+        "positive_windows": 2,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 2
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 3.2772877742772204,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.228677638465987,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 6.603088775560199,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.109054188303406,
+            "index": 30720,
+            "max_score": 6.603088775560199,
+            "mean_score": 3.850929073763145,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1920.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.212194085024419,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.2548353276563358,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.735452286940181,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 3.2024816996209355,
+            "index": 16384,
+            "max_score": 5.212194085024419,
+            "mean_score": 2.5721166205512875,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1024.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_04.edf",
+        "path": "data/chbmit/chb02/chb02_04.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 2,
+            "positive_rate": 0.00904977375565611,
+            "top": 2
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 2
+        },
+        "positive_windows": 2,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 2
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 8.21204633186254,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.4741151768781147,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.993266144285059,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 8.679427653025714,
+            "index": 23552,
+            "max_score": 8.21204633186254,
+            "mean_score": 3.82179623323362,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1472.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.4257924907331505,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.832776122816399,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.834000053028289,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 3.0925686665778382,
+            "index": 11008,
+            "max_score": 4.834000053028289,
+            "mean_score": 2.879388926648739,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 688.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_06.edf",
+        "path": "data/chbmit/chb02/chb02_06.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 5,
+            "positive_rate": 0.02262443438914027,
+            "top": 5
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 5
+        },
+        "positive_windows": 5,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 5
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 8.622513434854524,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.7419184742068303,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.335468809335398,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 9.699900718396751,
+            "index": 44544,
+            "max_score": 8.622513434854524,
+            "mean_score": 3.504209758410705,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2784.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.706769189860433,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.6679174850544083,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.945807422396652,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 7.320494097311493,
+            "index": 29184,
+            "max_score": 6.945807422396652,
+            "mean_score": 3.320338760930634,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1824.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.9175231466103773,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.715106231684425,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.4625349799105654,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 7.095164358205368,
+            "index": 56576,
+            "max_score": 8.715106231684425,
+            "mean_score": 3.6780126458403983,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3536.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.436196736215001,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.137464320142071,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.598048187516449,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 4.17170924387352,
+            "index": 2816,
+            "max_score": 5.137464320142071,
+            "mean_score": 3.068602833970876,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 176.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.387609354227239,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1303144217887033,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.359842603896139,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 2.877766379912081,
+            "index": 37632,
+            "max_score": 4.387609354227239,
+            "mean_score": 2.790542900805334,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2352.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_08.edf",
+        "path": "data/chbmit/chb02/chb02_08.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 11,
+            "positive_rate": 0.049773755656108594,
+            "top": 11
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 11
+        },
+        "positive_windows": 11,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 11
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 12.69121545139546,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.303459158759981,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.052960858794168,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 16.700596183068736,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 25.748231652018344,
+            "index": 26368,
+            "max_score": 16.700596183068736,
+            "mean_score": 6.524245627365796,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1648.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.7625502414578107,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 13.180598380081998,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.120241646336838,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 4.237402814753153,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 12.3007930826298,
+            "index": 18688,
+            "max_score": 13.180598380081998,
+            "mean_score": 4.665583653671166,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1168.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.066111950885491,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.933487622345615,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.0885140781759675,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 7.934282453003876,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 10.02239610441095,
+            "index": 30976,
+            "max_score": 7.934282453003876,
+            "mean_score": 4.1593292524557475,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1936.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.445631859994606,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.620012057004639,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.730643740446455,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.1397057363195513,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 7.935993393765251,
+            "index": 4608,
+            "max_score": 8.445631859994606,
+            "mean_score": 4.163277707365252,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 288.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.0912201295701776,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.929602987429154,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.762097853881663,
+                "series": "FZ-CZ"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 7.782920970880994,
+            "index": 15872,
+            "max_score": 7.929602987429154,
+            "mean_score": 3.930792346714029,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 992.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.93492042891572,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.039071620158833,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.7009082473479875,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 6.674900296422541,
+            "index": 14592,
+            "max_score": 6.7009082473479875,
+            "mean_score": 3.5490781931805935,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 912.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.720998121621294,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.379210780541553,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.1294797818537017,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.229688684016549,
+            "index": 12800,
+            "max_score": 6.379210780541553,
+            "mean_score": 2.8518916684964144,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 800.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.114112633029864,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.407580632757394,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.1389049244473917,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 4.66059819023465,
+            "index": 19200,
+            "max_score": 6.407580632757394,
+            "mean_score": 3.076405537992636,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1200.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.011836719000494,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.16854623541946,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.863113264617936,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.0011443864403455,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 4.044640605478236,
+            "index": 57088,
+            "max_score": 6.011836719000494,
+            "mean_score": 3.3032765402811877,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3568.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.3270376356486606,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.3648457586810756,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 4.981862409719971,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.47210647366258,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 3.1458522777122875,
+            "index": 23552,
+            "max_score": 4.981862409719971,
+            "mean_score": 2.9702707693494985,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 1472.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.047652303344264,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.85864163262242,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.1944793060766554,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 3.100773242043339,
+            "index": 33792,
+            "max_score": 4.85864163262242,
+            "mean_score": 2.572093346199797,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2112.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_10.edf",
+        "path": "data/chbmit/chb02/chb02_10.edf",
+        "phase_counts": {
+          "interictal": 221
+        },
+        "phase_rates": {
+          "interictal": {
+            "anchors": 221,
+            "positive": 7,
+            "positive_rate": 0.03167420814479638,
+            "top": 7
+          }
+        },
+        "positive_phase_counts": {
+          "interictal": 7
+        },
+        "positive_windows": 7,
+        "seizures": [],
+        "top_phase_counts": {
+          "interictal": 7
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 4.184106720850426,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.712373437149744,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.423882842499013,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.112466174540811,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.3205362269919716,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 5.7533654020319664,
+            "index": 35584,
+            "max_score": 5.112466174540811,
+            "mean_score": 3.770608575237963,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 2224.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.066104565370655,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.343624193233733,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.042008186078625,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.004258394448523,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 5.455995339131537,
+            "index": 9984,
+            "max_score": 5.343624193233733,
+            "mean_score": 3.7100985217466715,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 624.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.036903282567491,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.604620517005042,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.807570527525813,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 5.449094327098345,
+            "index": 8448,
+            "max_score": 5.604620517005042,
+            "mean_score": 3.1494597902230765,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 528.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.2159158911963805,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1583851707997432,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.753529873729929,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.069471873327583,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 4.197302809053635,
+            "index": 5120,
+            "max_score": 5.2159158911963805,
+            "mean_score": 3.074213992132364,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 320.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.135296967210315,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.04117294923476,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.351214091679958,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 3.5276840081250325,
+            "index": 14336,
+            "max_score": 5.04117294923476,
+            "mean_score": 3.4036649454861467,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 896.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.8790209250491055,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.1653590750380562,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 3.0473946334064155,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.109224349545148,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 2.200998983038725,
+            "index": 55296,
+            "max_score": 4.109224349545148,
+            "mean_score": 3.145161951786742,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3456.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.1373368836508098,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.5063885255068854,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.88787088311362,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 1.531596292271315,
+            "index": 57088,
+            "max_score": 3.88787088311362,
+            "mean_score": 2.7859708258674636,
+            "nearest_seizure_distance_seconds": null,
+            "phase": "interictal",
+            "seconds": 3568.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_16+.edf",
+        "path": "data/chbmit/chb02/chb02_16+.edf",
+        "phase_counts": {
+          "ictal": 5,
+          "interictal": 145,
+          "postictal": 34,
+          "preictal": 37
+        },
+        "phase_rates": {
+          "ictal": {
+            "anchors": 5,
+            "positive": 4,
+            "positive_rate": 0.8,
+            "top": 2
+          },
+          "interictal": {
+            "anchors": 145,
+            "positive": 10,
+            "positive_rate": 0.06896551724137931,
+            "top": 3
+          },
+          "postictal": {
+            "anchors": 34,
+            "positive": 8,
+            "positive_rate": 0.23529411764705882,
+            "top": 5
+          },
+          "preictal": {
+            "anchors": 37,
+            "positive": 8,
+            "positive_rate": 0.21621621621621623,
+            "top": 2
+          }
+        },
+        "positive_phase_counts": {
+          "ictal": 4,
+          "interictal": 10,
+          "postictal": 8,
+          "preictal": 8
+        },
+        "positive_windows": 30,
+        "seizures": [
+          {
+            "end": 3053.0,
+            "start": 2972.0
+          }
+        ],
+        "top_phase_counts": {
+          "ictal": 2,
+          "interictal": 3,
+          "postictal": 5,
+          "preictal": 2
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 9.74071903760661,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 30.15188934048634,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.077612318775476,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 20.161743278618093,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 42.55660376349672,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 90.68856773898324,
+            "index": 41728,
+            "max_score": 42.55660376349672,
+            "mean_score": 17.839591542989407,
+            "nearest_seizure_distance_seconds": 364.0,
+            "phase": "preictal",
+            "seconds": 2608.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.081170359827776,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 16.225349263356627,
+                "series": "T7-P7"
+              },
+              {
+                "score": 5.173518304842935,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 7.291673650288399,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 6.228420045815419,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.263791415920873,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 28.26392304005203,
+            "index": 31488,
+            "max_score": 16.225349263356627,
+            "mean_score": 7.710653840008671,
+            "nearest_seizure_distance_seconds": 1004.0,
+            "phase": "interictal",
+            "seconds": 1968.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.486720467368967,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.042151750117971,
+                "series": "T7-P7"
+              },
+              {
+                "score": 14.586795635099136,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 8.460801498658487,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 6.284583921177267,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 24.861053272421827,
+            "index": 32512,
+            "max_score": 14.586795635099136,
+            "mean_score": 7.1142288727155725,
+            "nearest_seizure_distance_seconds": 940.0,
+            "phase": "interictal",
+            "seconds": 2032.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.0968408717303713,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 6.611432728804719,
+                "series": "T7-P7"
+              },
+              {
+                "score": 7.739341619025019,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 6.043120968022743,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 8.273151163250688,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.663725455364401,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 19.427612806197942,
+            "index": 56832,
+            "max_score": 8.273151163250688,
+            "mean_score": 6.237935467699657,
+            "nearest_seizure_distance_seconds": 499.0,
+            "phase": "postictal",
+            "seconds": 3552.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.995064778417379,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.630445840113491,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 13.626653504804333,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.913323989944875,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 17.165488113280077,
+            "index": 48384,
+            "max_score": 13.626653504804333,
+            "mean_score": 5.423902719947505,
+            "nearest_seizure_distance_seconds": 0.0,
+            "phase": "ictal",
+            "seconds": 3024.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.491201975183274,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.46945065476515,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.1007790059555043,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 9.871976153797576,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 14.933407789701505,
+            "index": 42240,
+            "max_score": 9.871976153797576,
+            "mean_score": 5.047689423337229,
+            "nearest_seizure_distance_seconds": 332.0,
+            "phase": "preictal",
+            "seconds": 2640.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.3805459680019774,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.656449823331665,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.1781526934552993,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.9954912769576993,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 8.653976817829712,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 4.507650782044782,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 13.372267361621134,
+            "index": 31232,
+            "max_score": 8.653976817829712,
+            "mean_score": 5.228711226936856,
+            "nearest_seizure_distance_seconds": 1020.0,
+            "phase": "interictal",
+            "seconds": 1952.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.6598572486952032,
+                "series": "T7-P7"
+              },
+              {
+                "score": 6.771444216869217,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 10.249452394070307,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 11.680753859634727,
+            "index": 50432,
+            "max_score": 10.249452394070307,
+            "mean_score": 4.502522938955586,
+            "nearest_seizure_distance_seconds": 99.0,
+            "phase": "postictal",
+            "seconds": 3152.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 6.063783705334469,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.378630035116111,
+                "series": "T7-P7"
+              },
+              {
+                "score": 8.248159247454641,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 3.3993497614202304,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 10.089922749325451,
+            "index": 47872,
+            "max_score": 8.248159247454641,
+            "mean_score": 4.164368495941848,
+            "nearest_seizure_distance_seconds": 0.0,
+            "phase": "ictal",
+            "seconds": 2992.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.228701337859289,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.7096991771212737,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 6.6107885032770675,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 7.22168991957492,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 8.77087893783255,
+            "index": 51456,
+            "max_score": 7.22168991957492,
+            "mean_score": 4.0753536373974315,
+            "nearest_seizure_distance_seconds": 163.0,
+            "phase": "postictal",
+            "seconds": 3216.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.0236330578395467,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 5.097576104720439,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.314400135171907,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 5.676227131831825,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 5.435594870034606,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 7.547431299598324,
+            "index": 49664,
+            "max_score": 5.676227131831825,
+            "mean_score": 3.951846675126461,
+            "nearest_seizure_distance_seconds": 51.0,
+            "phase": "postictal",
+            "seconds": 3104.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 3.6592432469182223,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 7.592517604902496,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.040421740232005,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 7.292182592052723,
+            "index": 52992,
+            "max_score": 7.592517604902496,
+            "mean_score": 3.6088634579527503,
+            "nearest_seizure_distance_seconds": 259.0,
+            "phase": "postictal",
+            "seconds": 3312.0
+          }
+        ]
+      },
+      {
+        "anchors": 221,
+        "duration_seconds": 3600.0,
+        "file": "chb02_19.edf",
+        "path": "data/chbmit/chb02/chb02_19.edf",
+        "phase_counts": {
+          "ictal": 1,
+          "interictal": 170,
+          "postictal": 13,
+          "preictal": 37
+        },
+        "phase_rates": {
+          "ictal": {
+            "anchors": 1,
+            "positive": 1,
+            "positive_rate": 1.0,
+            "top": 0
+          },
+          "interictal": {
+            "anchors": 170,
+            "positive": 32,
+            "positive_rate": 0.18823529411764706,
+            "top": 8
+          },
+          "postictal": {
+            "anchors": 13,
+            "positive": 7,
+            "positive_rate": 0.5384615384615384,
+            "top": 0
+          },
+          "preictal": {
+            "anchors": 37,
+            "positive": 8,
+            "positive_rate": 0.21621621621621623,
+            "top": 4
+          }
+        },
+        "positive_phase_counts": {
+          "ictal": 1,
+          "interictal": 32,
+          "postictal": 7,
+          "preictal": 8
+        },
+        "positive_windows": 48,
+        "seizures": [
+          {
+            "end": 3378.0,
+            "start": 3369.0
+          }
+        ],
+        "top_phase_counts": {
+          "interictal": 8,
+          "preictal": 4
+        },
+        "top_rows": [
+          {
+            "active_series": [
+              {
+                "score": 4.84617375986105,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.472625969649766,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 27.059768982497353,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 101.73372034284297,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 38.13195021452123,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 165.24423926937237,
+            "index": 38400,
+            "max_score": 101.73372034284297,
+            "mean_score": 30.423545723677933,
+            "nearest_seizure_distance_seconds": 969.0,
+            "phase": "interictal",
+            "seconds": 2400.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 7.263609355308123,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.63564076849318,
+                "series": "T7-P7"
+              },
+              {
+                "score": 14.671273129103703,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 15.719111275007203,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 76.31167994125826,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 6.69171988342901,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 106.29303435259948,
+            "index": 26112,
+            "max_score": 76.31167994125826,
+            "mean_score": 20.715505725433246,
+            "nearest_seizure_distance_seconds": 1737.0,
+            "phase": "interictal",
+            "seconds": 1632.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.37504408382497,
+                "series": "T7-P7"
+              },
+              {
+                "score": 8.929997990770444,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 93.02422194305315,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.589669468798957,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 99.91893348644753,
+            "index": 53504,
+            "max_score": 93.02422194305315,
+            "mean_score": 19.05774974854367,
+            "nearest_seizure_distance_seconds": 25.0,
+            "phase": "preictal",
+            "seconds": 3344.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 12.285546201312737,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.7789728039821915,
+                "series": "T7-P7"
+              },
+              {
+                "score": 4.617261518492737,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 19.2336282592452,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 62.47673361593711,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 6.29187080752389,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 91.68401320649387,
+            "index": 32512,
+            "max_score": 62.47673361593711,
+            "mean_score": 18.28066886774898,
+            "nearest_seizure_distance_seconds": 1337.0,
+            "phase": "interictal",
+            "seconds": 2032.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 10.324860873819292,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.193688061681205,
+                "series": "T7-P7"
+              },
+              {
+                "score": 3.17172075176087,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 10.560979335457365,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 67.92194657028745,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 13.456201164877411,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 6,
+            "emission": 90.62939675788358,
+            "index": 51456,
+            "max_score": 67.92194657028745,
+            "mean_score": 18.104899459647264,
+            "nearest_seizure_distance_seconds": 153.0,
+            "phase": "preictal",
+            "seconds": 3216.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 4.946265569495031,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 22.867638168923666,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.956963895656144,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 70.27894554722697,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 90.0498131813018,
+            "index": 41728,
+            "max_score": 70.27894554722697,
+            "mean_score": 17.594734354887112,
+            "nearest_seizure_distance_seconds": 761.0,
+            "phase": "interictal",
+            "seconds": 2608.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 17.478599208798176,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.619145068480744,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 3.3987681345709384,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 77.02576470651015,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 89.52227711836001,
+            "index": 45568,
+            "max_score": 77.02576470651015,
+            "mean_score": 17.331354100280514,
+            "nearest_seizure_distance_seconds": 521.0,
+            "phase": "preictal",
+            "seconds": 2848.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 14.324378637870206,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.717468171369068,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 75.16583926729237,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 89.20768607653164,
+            "index": 36608,
+            "max_score": 75.16583926729237,
+            "mean_score": 17.185454422888707,
+            "nearest_seizure_distance_seconds": 1081.0,
+            "phase": "interictal",
+            "seconds": 2288.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 8.57520605149163,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.3097417404809883,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 81.99822905594937,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 84.88317684792199,
+            "index": 40448,
+            "max_score": 81.99822905594937,
+            "mean_score": 16.703410522219965,
+            "nearest_seizure_distance_seconds": 841.0,
+            "phase": "interictal",
+            "seconds": 2528.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 12.179566293135245,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 3.2805629059271455,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 77.74973520662913,
+                "series": "FP2-F8"
+              }
+            ],
+            "active_series_count": 3,
+            "emission": 84.20986440569152,
+            "index": 27648,
+            "max_score": 77.74973520662913,
+            "mean_score": 16.40936672901866,
+            "nearest_seizure_distance_seconds": 1641.0,
+            "phase": "interictal",
+            "seconds": 1728.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 5.0753061074582595,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 8.163462811021112,
+                "series": "T7-P7"
+              },
+              {
+                "score": 76.4934877211413,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 5.983481673024916,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 4,
+            "emission": 83.71573831264558,
+            "index": 52992,
+            "max_score": 76.4934877211413,
+            "mean_score": 16.765164135040926,
+            "nearest_seizure_distance_seconds": 57.0,
+            "phase": "preictal",
+            "seconds": 3312.0
+          },
+          {
+            "active_series": [
+              {
+                "score": 12.149858027831076,
+                "series": "FP1-F7"
+              },
+              {
+                "score": 4.713319059309923,
+                "series": "FZ-CZ"
+              },
+              {
+                "score": 13.579022611592904,
+                "series": "CZ-PZ"
+              },
+              {
+                "score": 58.27412911630715,
+                "series": "FP2-F8"
+              },
+              {
+                "score": 9.329179651557897,
+                "series": "P8-O2"
+              }
+            ],
+            "active_series_count": 5,
+            "emission": 83.04550846659895,
+            "index": 31488,
+            "max_score": 58.27412911630715,
+            "mean_score": 16.565748330925356,
+            "nearest_seizure_distance_seconds": 1401.0,
+            "phase": "interictal",
+            "seconds": 1968.0
+          }
+        ]
+      }
+    ],
+    "phase_summary": {
+      "anchor_phase_counts": {
+        "ictal": 6,
+        "interictal": 1420,
+        "postictal": 47,
+        "preictal": 74
+      },
+      "positive_phase_counts": {
+        "ictal": 5,
+        "interictal": 69,
+        "postictal": 15,
+        "preictal": 16
+      },
+      "top_phase_counts": {
+        "ictal": 2,
+        "interictal": 38,
+        "postictal": 5,
+        "preictal": 6
+      }
+    },
+    "result": {
+      "accepted": true,
+      "aggregate_null_lift": 0.7534661465961061,
+      "candidate": {
+        "adaptive_window": 256,
+        "baseline_size": 1024,
+        "decay": 0.9,
+        "emission_threshold": 3.0,
+        "min_active_series": 3,
+        "score": "max",
+        "stride": 256
+      },
+      "files_scored": 7,
+      "files_skipped": 0,
+      "mean_fragility": 0.43571428571428567,
+      "mean_quality": 0.3811531664157713,
+      "mean_saturation": 0.010198951375421959,
+      "mean_stability": 0.05658627087198515,
+      "null_mean_total": 2865.7811345297587,
+      "null_mode_reports": [
+        {
+          "accepted": true,
+          "aggregate_null_lift": 0.7534661465961061,
+          "candidate": {
+            "adaptive_window": 256,
+            "baseline_size": 1024,
+            "decay": 0.9,
+            "emission_threshold": 3.0,
+            "min_active_series": 3,
+            "score": "max",
+            "stride": 256
+          },
+          "file_scores": [
+            {
+              "delta": 7.094350676623362,
+              "exceedances": 3,
+              "file": "chb02_02.edf",
+              "null_mean": 2.2171852113009796,
+              "observed": 9.311535887924341,
+              "z_effect": 2.3853725617586723
+            },
+            {
+              "delta": 9.774565917643868,
+              "exceedances": 1,
+              "file": "chb02_04.edf",
+              "null_mean": 1.997430401959684,
+              "observed": 11.771996319603552,
+              "z_effect": 3.1079033780864975
+            },
+            {
+              "delta": 22.608380530967384,
+              "exceedances": 2,
+              "file": "chb02_06.edf",
+              "null_mean": 8.55665426673183,
+              "observed": 31.165034797699214,
+              "z_effect": 2.898941759502615
+            },
+            {
+              "delta": 67.91395590485806,
+              "exceedances": 0,
+              "file": "chb02_08.edf",
+              "null_mean": 22.732832594754885,
+              "observed": 90.64678849961294,
+              "z_effect": 5.767099484089764
+            },
+            {
+              "delta": 7.223309624051154,
+              "exceedances": 18,
+              "file": "chb02_10.edf",
+              "null_mean": 20.892727536699404,
+              "observed": 28.116037160750558,
+              "z_effect": 0.9644530510687874
+            },
+            {
+              "delta": 162.381177948309,
+              "exceedances": 0,
+              "file": "chb02_16+.edf",
+              "null_mean": 182.1774902683279,
+              "observed": 344.5586682166369,
+              "z_effect": 4.435499214581469
+            },
+            {
+              "delta": 850.8577963885082,
+              "exceedances": 0,
+              "file": "chb02_19.edf",
+              "null_mean": 2627.206814249984,
+              "observed": 3478.064610638492,
+              "z_effect": 3.7551547282993125
+            }
+          ],
+          "files_scored": 7,
+          "files_skipped": 0,
+          "mean_fragility": 0.43571428571428567,
+          "mean_quality": 0.3811531664157713,
+          "mean_saturation": 0.010198951375421959,
+          "mean_stability": 0.05658627087198515,
+          "null_mean_total": 2865.7811345297587,
+          "null_mode": "permute",
+          "null_std_total": 226.69124032146064,
+          "null_total_empirical_p_floor": 0.009900990099009901,
+          "null_total_empirical_p_ge_observed": 0.009900990099009901,
+          "null_total_exceedances": 0,
+          "null_total_repeats": 100,
+          "null_total_unique_repeats": 100,
+          "observed_active_windows": 105,
+          "observed_minus_null_total": 1127.853536990961,
+          "observed_total": 3993.6346715207196,
+          "positive_file_fraction": 1.0,
+          "positive_files": 7,
+          "quality": 0.6195197030647979,
+          "skipped": [],
+          "z_effect": 4.975285041414051
+        }
+      ],
+      "null_modes": [
+        "permute"
+      ],
+      "null_std_total": 226.69124032146064,
+      "null_total_empirical_p_floor": 0.009900990099009901,
+      "null_total_empirical_p_ge_observed": 0.009900990099009901,
+      "null_total_exceedances": 0,
+      "null_total_repeats": 100,
+      "null_total_unique_repeats": 100,
+      "observed_minus_null_total": 1127.853536990961,
+      "observed_total": 3993.6346715207196,
+      "positive_file_fraction": 1.0,
+      "quality": 0.6195197030647979,
+      "worst_null_mode": "permute",
+      "z_effect": 4.975285041414051
+    },
+    "selected_candidate": {
+      "adaptive_window": 256,
+      "baseline_size": 1024,
+      "decay": 0.9,
+      "emission_threshold": 3.0,
+      "min_active_series": 3,
+      "score": "max",
+      "stride": 256
+    }
+  }
+}

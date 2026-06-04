@@ -18,6 +18,27 @@ import numpy as np
 from numpy.typing import NDArray
 from scipy.optimize import curve_fit
 
+_MAX_EXP_ARG = float(np.log(np.finfo(np.float64).max) - 1.0)
+_MIN_EXP_ARG = float(np.log(np.nextafter(0.0, 1.0)))
+
+
+def _bounded_exponential_prediction(
+    t: NDArray[np.floating],
+    *,
+    a: float,
+    b: float,
+    c: float,
+) -> NDArray[np.floating]:
+    exponent = np.clip(b * t, _MIN_EXP_ARG, _MAX_EXP_ARG)
+    with np.errstate(over="ignore", invalid="ignore"):
+        pred = a * np.exp(exponent) + c
+    return np.nan_to_num(
+        pred,
+        nan=0.0,
+        posinf=np.finfo(np.float64).max,
+        neginf=-np.finfo(np.float64).max,
+    )
+
 
 class TrendType(Enum):
     NONE = "none"
@@ -45,7 +66,12 @@ class TrendModel:
         elif self.trend_type == TrendType.QUADRATIC:
             return self.params["a"] * t**2 + self.params["b"] * t + self.params["c"]
         elif self.trend_type == TrendType.EXPONENTIAL:
-            return self.params["a"] * np.exp(self.params["b"] * t) + self.params["c"]
+            return _bounded_exponential_prediction(
+                t,
+                a=self.params["a"],
+                b=self.params["b"],
+                c=self.params["c"],
+            )
         raise ValueError(f"Unknown trend type: {self.trend_type}")
 
     def predict_damped(
@@ -182,7 +208,7 @@ def _fit_exponential(
         # Convert b back to original time scale
         a, b, c = popt
         b_original = b / t_max
-        pred = a * np.exp(b_original * t) + c
+        pred = _bounded_exponential_prediction(t, a=float(a), b=float(b_original), c=float(c))
         rss = float(np.sum(w * (y - pred) ** 2))
         return {"a": float(a), "b": float(b_original), "c": float(c)}, rss
     except (RuntimeError, ValueError):
