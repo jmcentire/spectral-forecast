@@ -1,0 +1,1237 @@
+{
+  "created_at": "2026-06-04T04:52:33.084152+00:00",
+  "dataset": {
+    "data_root": "data/chbmit",
+    "file_validation": "each EDF is parsed with load_edf_signals before use; parser failures are skipped",
+    "labels_used": "supervised predictor ablation only",
+    "name": "CHB-MIT Scalp EEG Database",
+    "subjects": [
+      "chb01",
+      "chb02",
+      "chb03"
+    ]
+  },
+  "elapsed_seconds": 512.8234260082245,
+  "evaluation": {
+    "ablations": {
+      "latent_only": 66,
+      "pedestrian": 79,
+      "pedestrian_spectral": 134,
+      "pedestrian_spectral_latent": 200,
+      "spectral_latent": 121
+    },
+    "aggregate": {
+      "latent_only": {
+        "brier": 0.29835620218835035,
+        "event_recall": 0.20634920634920637,
+        "false_alarms_per_hour": 7.641003130070916,
+        "feature_count": 66.0,
+        "lead_time_minutes_mean": 7.9875,
+        "pr_auc": 0.14814442709027342,
+        "precision": 0.11219015908250092,
+        "recall": 0.14686868686868687,
+        "roc_auc": 0.5386990441779492
+      },
+      "pedestrian": {
+        "brier": 0.24155697687399455,
+        "event_recall": 0.14285714285714285,
+        "false_alarms_per_hour": 3.03832509474111,
+        "feature_count": 79.0,
+        "lead_time_minutes_mean": 7.527777777777779,
+        "pr_auc": 0.11457234783099358,
+        "precision": 0.13201320132013203,
+        "recall": 0.06060606060606061,
+        "roc_auc": 0.3955441800309239
+      },
+      "pedestrian_spectral": {
+        "brier": 0.2912915451470884,
+        "event_recall": 0.30158730158730157,
+        "false_alarms_per_hour": 11.45967299351301,
+        "feature_count": 134.0,
+        "lead_time_minutes_mean": 3.41875,
+        "pr_auc": 0.07953117943304404,
+        "precision": 0.09338482867894632,
+        "recall": 0.08,
+        "roc_auc": 0.3459689279214891
+      },
+      "pedestrian_spectral_latent": {
+        "brier": 0.32660029530228657,
+        "event_recall": 0.25396825396825395,
+        "false_alarms_per_hour": 23.603095129814538,
+        "feature_count": 200.0,
+        "lead_time_minutes_mean": 5.661111111111111,
+        "pr_auc": 0.06966132786871156,
+        "precision": 0.03554328635125834,
+        "recall": 0.08474747474747474,
+        "roc_auc": 0.32960197513185197
+      },
+      "spectral_latent": {
+        "brier": 0.29296423867888477,
+        "event_recall": 0.30158730158730157,
+        "false_alarms_per_hour": 12.44763296432506,
+        "feature_count": 121.0,
+        "lead_time_minutes_mean": 8.21875,
+        "pr_auc": 0.16392332353164277,
+        "precision": 0.13360739979445016,
+        "recall": 0.1818181818181818,
+        "roc_auc": 0.5329579417767146
+      }
+    },
+    "comparison": {
+      "baseline": "pedestrian_spectral",
+      "delta_event_recall": -0.047619047619047616,
+      "delta_false_alarms_per_hour": 12.143422136301528,
+      "delta_pr_auc": -0.009869851564332482,
+      "delta_recall": 0.004747474747474736,
+      "full": "pedestrian_spectral_latent"
+    },
+    "feature_groups": {
+      "latent": 66,
+      "pedestrian": 79,
+      "spectral": 55
+    },
+    "feature_names": [
+      "latent_active_count",
+      "latent_active_fraction",
+      "latent_active_jaccard_prev",
+      "latent_excess_abs_mean",
+      "latent_excess_entropy",
+      "latent_excess_max",
+      "latent_excess_mean",
+      "latent_excess_median",
+      "latent_excess_min",
+      "latent_excess_q25",
+      "latent_excess_q75",
+      "latent_excess_std",
+      "latent_gated_emission",
+      "latent_raw_emission",
+      "latent_recent_active_count_abs_mean",
+      "latent_recent_active_count_max",
+      "latent_recent_active_count_mean",
+      "latent_recent_active_count_median",
+      "latent_recent_active_count_min",
+      "latent_recent_active_count_q25",
+      "latent_recent_active_count_q75",
+      "latent_recent_active_count_std",
+      "latent_recent_active_hamming_abs_mean",
+      "latent_recent_active_hamming_max",
+      "latent_recent_active_hamming_mean",
+      "latent_recent_active_hamming_median",
+      "latent_recent_active_hamming_min",
+      "latent_recent_active_hamming_q25",
+      "latent_recent_active_hamming_q75",
+      "latent_recent_active_hamming_std",
+      "latent_recent_channel_persistence_abs_mean",
+      "latent_recent_channel_persistence_max",
+      "latent_recent_channel_persistence_mean",
+      "latent_recent_channel_persistence_median",
+      "latent_recent_channel_persistence_min",
+      "latent_recent_channel_persistence_q25",
+      "latent_recent_channel_persistence_q75",
+      "latent_recent_channel_persistence_std",
+      "latent_recent_emission_abs_mean",
+      "latent_recent_emission_max",
+      "latent_recent_emission_mean",
+      "latent_recent_emission_median",
+      "latent_recent_emission_min",
+      "latent_recent_emission_q25",
+      "latent_recent_emission_q75",
+      "latent_recent_emission_slope",
+      "latent_recent_emission_std",
+      "latent_recent_excess_entropy_mean",
+      "latent_recent_pattern_entropy",
+      "latent_recent_pheromone",
+      "latent_recent_score_drift_l2_abs_mean",
+      "latent_recent_score_drift_l2_max",
+      "latent_recent_score_drift_l2_mean",
+      "latent_recent_score_drift_l2_median",
+      "latent_recent_score_drift_l2_min",
+      "latent_recent_score_drift_l2_q25",
+      "latent_recent_score_drift_l2_q75",
+      "latent_recent_score_drift_l2_std",
+      "latent_row_score_abs_mean",
+      "latent_row_score_max",
+      "latent_row_score_mean",
+      "latent_row_score_median",
+      "latent_row_score_min",
+      "latent_row_score_q25",
+      "latent_row_score_q75",
+      "latent_row_score_std",
+      "ped_channel_corr_abs_abs_mean",
+      "ped_channel_corr_abs_max",
+      "ped_channel_corr_abs_mean",
+      "ped_channel_corr_abs_median",
+      "ped_channel_corr_abs_min",
+      "ped_channel_corr_abs_q25",
+      "ped_channel_corr_abs_q75",
+      "ped_channel_corr_abs_std",
+      "ped_channel_corr_max",
+      "ped_channel_corr_mean",
+      "ped_channel_corr_median",
+      "ped_channel_corr_min",
+      "ped_channel_corr_q25",
+      "ped_channel_corr_q75",
+      "ped_channel_corr_std",
+      "ped_channel_diff_std_abs_mean",
+      "ped_channel_diff_std_max",
+      "ped_channel_diff_std_mean",
+      "ped_channel_diff_std_median",
+      "ped_channel_diff_std_min",
+      "ped_channel_diff_std_q25",
+      "ped_channel_diff_std_q75",
+      "ped_channel_diff_std_std",
+      "ped_channel_energy_abs_mean",
+      "ped_channel_energy_max",
+      "ped_channel_energy_mean",
+      "ped_channel_energy_median",
+      "ped_channel_energy_min",
+      "ped_channel_energy_q25",
+      "ped_channel_energy_q75",
+      "ped_channel_energy_std",
+      "ped_channel_line_length_abs_mean",
+      "ped_channel_line_length_max",
+      "ped_channel_line_length_mean",
+      "ped_channel_line_length_median",
+      "ped_channel_line_length_min",
+      "ped_channel_line_length_q25",
+      "ped_channel_line_length_q75",
+      "ped_channel_line_length_std",
+      "ped_channel_mean_abs_mean",
+      "ped_channel_mean_max",
+      "ped_channel_mean_mean",
+      "ped_channel_mean_median",
+      "ped_channel_mean_min",
+      "ped_channel_mean_q25",
+      "ped_channel_mean_q75",
+      "ped_channel_mean_std",
+      "ped_channel_range_abs_mean",
+      "ped_channel_range_max",
+      "ped_channel_range_mean",
+      "ped_channel_range_median",
+      "ped_channel_range_min",
+      "ped_channel_range_q25",
+      "ped_channel_range_q75",
+      "ped_channel_range_std",
+      "ped_channel_slope_abs_mean",
+      "ped_channel_slope_max",
+      "ped_channel_slope_mean",
+      "ped_channel_slope_median",
+      "ped_channel_slope_min",
+      "ped_channel_slope_q25",
+      "ped_channel_slope_q75",
+      "ped_channel_slope_std",
+      "ped_channel_std_abs_mean",
+      "ped_channel_std_max",
+      "ped_channel_std_mean",
+      "ped_channel_std_median",
+      "ped_channel_std_min",
+      "ped_channel_std_q25",
+      "ped_channel_std_q75",
+      "ped_channel_std_std",
+      "ped_channel_zero_crossing_abs_mean",
+      "ped_channel_zero_crossing_max",
+      "ped_channel_zero_crossing_mean",
+      "ped_channel_zero_crossing_median",
+      "ped_channel_zero_crossing_min",
+      "ped_channel_zero_crossing_q25",
+      "ped_channel_zero_crossing_q75",
+      "ped_channel_zero_crossing_std",
+      "spectral_drift_abs_mean",
+      "spectral_drift_count_ge_1",
+      "spectral_drift_count_ge_2",
+      "spectral_drift_count_ge_3",
+      "spectral_drift_max",
+      "spectral_drift_mean",
+      "spectral_drift_median",
+      "spectral_drift_min",
+      "spectral_drift_q25",
+      "spectral_drift_q75",
+      "spectral_drift_std",
+      "spectral_frozen_abs_mean",
+      "spectral_frozen_count_ge_1",
+      "spectral_frozen_count_ge_2",
+      "spectral_frozen_count_ge_3",
+      "spectral_frozen_max",
+      "spectral_frozen_mean",
+      "spectral_frozen_median",
+      "spectral_frozen_min",
+      "spectral_frozen_q25",
+      "spectral_frozen_q75",
+      "spectral_frozen_std",
+      "spectral_max_abs_mean",
+      "spectral_max_count_ge_1",
+      "spectral_max_count_ge_2",
+      "spectral_max_count_ge_3",
+      "spectral_max_max",
+      "spectral_max_mean",
+      "spectral_max_median",
+      "spectral_max_min",
+      "spectral_max_q25",
+      "spectral_max_q75",
+      "spectral_max_std",
+      "spectral_sliding_abs_mean",
+      "spectral_sliding_count_ge_1",
+      "spectral_sliding_count_ge_2",
+      "spectral_sliding_count_ge_3",
+      "spectral_sliding_max",
+      "spectral_sliding_mean",
+      "spectral_sliding_median",
+      "spectral_sliding_min",
+      "spectral_sliding_q25",
+      "spectral_sliding_q75",
+      "spectral_sliding_std",
+      "spectral_state_abs_mean",
+      "spectral_state_count_ge_1",
+      "spectral_state_count_ge_2",
+      "spectral_state_count_ge_3",
+      "spectral_state_max",
+      "spectral_state_mean",
+      "spectral_state_median",
+      "spectral_state_min",
+      "spectral_state_q25",
+      "spectral_state_q75",
+      "spectral_state_std"
+    ],
+    "splits": [
+      {
+        "models": {
+          "latent_only": {
+            "brier": 0.16131291495381922,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.1295336787564767,
+            "feature_count": 66.0,
+            "fn": 240.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.2010635431224193,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.13915065407023886,
+            "precision": 0.0,
+            "recall": 0.0,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2010635431224193
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1792611883325104
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1646193984101995
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15629677975515754
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14917749467010655
+                }
+              ],
+              "inner_pr_auc": 0.2010635431224193,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.5630876990980618,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "threshold": 0.9738126716139301,
+            "tn": 1736.0,
+            "tp": 0.0
+          },
+          "pedestrian": {
+            "brier": 0.2669341525562372,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.6476683937823834,
+            "feature_count": 79.0,
+            "fn": 240.0,
+            "fp": 5.0,
+            "inner_pr_auc": 0.34745933003257645,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.0734702986950809,
+            "precision": 0.0,
+            "recall": 0.0,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.34745933003257645
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.27846438875172974
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.21731682141957576
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19502743137084233
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.1810215355014596
+                }
+              ],
+              "inner_pr_auc": 0.34745933003257645,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.21850172711571675,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "threshold": 0.9913255111965809,
+            "tn": 1732.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral": {
+            "brier": 0.21537515462911425,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.1295336787564767,
+            "feature_count": 134.0,
+            "fn": 240.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.3250348146941423,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.0740902191257623,
+            "precision": 0.0,
+            "recall": 0.0,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.3250348146941423
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.18755106421766254
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13299263499273747
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11472412697118187
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10246905839101801
+                }
+              ],
+              "inner_pr_auc": 0.3250348146941423,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.2265616004605642,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "threshold": 0.9854176237377335,
+            "tn": 1736.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral_latent": {
+            "brier": 0.2328387362285377,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.38860103626943004,
+            "feature_count": 200.0,
+            "fn": 240.0,
+            "fp": 3.0,
+            "inner_pr_auc": 0.26714440107078447,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.07327557911820126,
+            "precision": 0.0,
+            "recall": 0.0,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26714440107078447
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17508874439874528
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12558766098494714
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11108397918610523
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10394807897397862
+                }
+              ],
+              "inner_pr_auc": 0.26714440107078447,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.2187176165803109,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "threshold": 0.9790481801194395,
+            "tn": 1734.0,
+            "tp": 0.0
+          },
+          "spectral_latent": {
+            "brier": 0.1545053474900737,
+            "event_count": 7.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.1295336787564767,
+            "feature_count": 121.0,
+            "fn": 240.0,
+            "fp": 1.0,
+            "inner_pr_auc": 0.19564923424914757,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 1737.0,
+            "positive_rate": 0.12139605462822459,
+            "positives": 240.0,
+            "pr_auc": 0.14569917837624508,
+            "precision": 0.0,
+            "recall": 0.0,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.19564923424914757
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.17494463694434698
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.16160223710178448
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14932694176992303
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.14392833182533804
+                }
+              ],
+              "inner_pr_auc": 0.19564923424914757,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.5659590289771637,
+            "rows": 1977.0,
+            "selected_c": 0.01,
+            "threshold": 0.9755889696551546,
+            "tn": 1736.0,
+            "tp": 0.0
+          }
+        },
+        "test_positives": 240,
+        "test_rows": 1977,
+        "test_subject": "chb01",
+        "train_positives": 295,
+        "train_rows": 4649
+      },
+      {
+        "models": {
+          "latent_only": {
+            "brier": 0.21076141488793224,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 6.633254716981132,
+            "feature_count": 66.0,
+            "fn": 44.0,
+            "fp": 75.0,
+            "inner_pr_auc": 0.08933093721471166,
+            "lead_time_minutes_mean": 9.75,
+            "lead_time_minutes_median": 9.75,
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.2188445695564023,
+            "precision": 0.29245283018867924,
+            "recall": 0.41333333333333333,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08845224645961042
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08907179553130862
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08933093721471166
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08887491236505879
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08797422578717307
+                }
+              ],
+              "inner_pr_auc": 0.08933093721471166,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.1
+            },
+            "roc_auc": 0.670985324947589,
+            "rows": 2619.0,
+            "selected_c": 0.1,
+            "threshold": 0.8469249415623813,
+            "tn": 2469.0,
+            "tp": 31.0
+          },
+          "pedestrian": {
+            "brier": 0.1930884783063449,
+            "event_count": 3.0,
+            "event_recall": 0.0,
+            "false_alarms_per_hour": 0.8844339622641509,
+            "feature_count": 79.0,
+            "fn": 75.0,
+            "fp": 10.0,
+            "inner_pr_auc": 0.08449914725031113,
+            "lead_time_minutes_mean": null,
+            "lead_time_minutes_median": null,
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.03235274498731254,
+            "precision": 0.0,
+            "recall": 0.0,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06922381227089963
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07064829223974964
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07191017867866031
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.07387576492793564
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.08449914725031113
+                }
+              ],
+              "inner_pr_auc": 0.08449914725031113,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0
+            },
+            "roc_auc": 0.4243186582809224,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "threshold": 0.978170769092668,
+            "tn": 2534.0,
+            "tp": 0.0
+          },
+          "pedestrian_spectral": {
+            "brier": 0.22013520346534352,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 1.6804245283018868,
+            "feature_count": 134.0,
+            "fn": 72.0,
+            "fp": 19.0,
+            "inner_pr_auc": 0.06813065598982515,
+            "lead_time_minutes_mean": 1.5333333333333334,
+            "lead_time_minutes_median": 1.5333333333333334,
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.03272725021047642,
+            "precision": 0.13636363636363635,
+            "recall": 0.04,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0667125744934873
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06646627066135796
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06640041494694379
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06684715297583449
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06813065598982515
+                }
+              ],
+              "inner_pr_auc": 0.06813065598982515,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0
+            },
+            "roc_auc": 0.319979035639413,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "threshold": 0.9786736452704616,
+            "tn": 2525.0,
+            "tp": 3.0
+          },
+          "pedestrian_spectral_latent": {
+            "brier": 0.23944733715043554,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 6.898584905660377,
+            "feature_count": 200.0,
+            "fn": 74.0,
+            "fp": 78.0,
+            "inner_pr_auc": 0.06880098613376505,
+            "lead_time_minutes_mean": 3.8833333333333333,
+            "lead_time_minutes_median": 3.8833333333333333,
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.02648793321371673,
+            "precision": 0.012658227848101266,
+            "recall": 0.013333333333333334,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06702690953288971
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06799310098964759
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0685446478728938
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06846823874259347
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06880098613376505
+                }
+              ],
+              "inner_pr_auc": 0.06880098613376505,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0
+            },
+            "roc_auc": 0.4039255765199161,
+            "rows": 2619.0,
+            "selected_c": 1.0,
+            "threshold": 0.9693682410996656,
+            "tn": 2466.0,
+            "tp": 1.0
+          },
+          "spectral_latent": {
+            "brier": 0.21577154199731774,
+            "event_count": 3.0,
+            "event_recall": 0.3333333333333333,
+            "false_alarms_per_hour": 6.633254716981132,
+            "feature_count": 121.0,
+            "fn": 45.0,
+            "fp": 75.0,
+            "inner_pr_auc": 0.09169324385546375,
+            "lead_time_minutes_mean": 9.75,
+            "lead_time_minutes_median": 9.75,
+            "negatives": 2544.0,
+            "positive_rate": 0.0286368843069874,
+            "positives": 75.0,
+            "pr_auc": 0.25436421021759364,
+            "precision": 0.2857142857142857,
+            "recall": 0.4,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09157416517025764
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09169324385546375
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09146754089825038
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09097180450237093
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.09028804066874418
+                }
+              ],
+              "inner_pr_auc": 0.09169324385546375,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.03
+            },
+            "roc_auc": 0.6372693920335428,
+            "rows": 2619.0,
+            "selected_c": 0.03,
+            "threshold": 0.8614000391827991,
+            "tn": 2469.0,
+            "tp": 30.0
+          }
+        },
+        "test_positives": 75,
+        "test_rows": 2619,
+        "test_subject": "chb02",
+        "train_positives": 460,
+        "train_rows": 4007
+      },
+      {
+        "models": {
+          "latent_only": {
+            "brier": 0.5229942767232996,
+            "event_count": 7.0,
+            "event_recall": 0.2857142857142857,
+            "false_alarms_per_hour": 16.16022099447514,
+            "feature_count": 66.0,
+            "fn": 214.0,
+            "fp": 130.0,
+            "inner_pr_auc": 0.24148654969149996,
+            "lead_time_minutes_mean": 6.225,
+            "lead_time_minutes_median": 6.225,
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.0864380576441791,
+            "precision": 0.04411764705882353,
+            "recall": 0.02727272727272727,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24148654969149996
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.23295258211838255
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2288060165579347
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2235443305185644
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.21949786523219159
+                }
+              ],
+              "inner_pr_auc": 0.24148654969149996,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.3820241084881969,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "threshold": 0.9550300212572116,
+            "tn": 1680.0,
+            "tp": 6.0
+          },
+          "pedestrian": {
+            "brier": 0.2646482997594015,
+            "event_count": 7.0,
+            "event_recall": 0.42857142857142855,
+            "false_alarms_per_hour": 7.582872928176796,
+            "feature_count": 79.0,
+            "fn": 180.0,
+            "fp": 61.0,
+            "inner_pr_auc": 0.15312571911387673,
+            "lead_time_minutes_mean": 7.527777777777779,
+            "lead_time_minutes_median": 7.15,
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.23789399981058731,
+            "precision": 0.39603960396039606,
+            "recall": 0.18181818181818182,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.06595212711604899
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0709485902534002
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.0762389234661196
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11092283835175835
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.15312571911387673
+                }
+              ],
+              "inner_pr_auc": 0.15312571911387673,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 1.0
+            },
+            "roc_auc": 0.5438121546961325,
+            "rows": 2030.0,
+            "selected_c": 1.0,
+            "threshold": 0.9799116690052684,
+            "tn": 1749.0,
+            "tp": 40.0
+          },
+          "pedestrian_spectral": {
+            "brier": 0.43836427734680744,
+            "event_count": 7.0,
+            "event_recall": 0.5714285714285714,
+            "false_alarms_per_hour": 32.569060773480665,
+            "feature_count": 134.0,
+            "fn": 176.0,
+            "fp": 262.0,
+            "inner_pr_auc": 0.11548766367822688,
+            "lead_time_minutes_mean": 5.304166666666667,
+            "lead_time_minutes_median": 4.8,
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.13177606896289337,
+            "precision": 0.1437908496732026,
+            "recall": 0.2,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10224040718192305
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10850276687928695
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11548766367822688
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.11526159982682475
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.10676689507010001
+                }
+              ],
+              "inner_pr_auc": 0.11548766367822688,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.1
+            },
+            "roc_auc": 0.49136614766449016,
+            "rows": 2030.0,
+            "selected_c": 0.1,
+            "threshold": 0.9799322204662608,
+            "tn": 1548.0,
+            "tp": 44.0
+          },
+          "pedestrian_spectral_latent": {
+            "brier": 0.5075148125278865,
+            "event_count": 7.0,
+            "event_recall": 0.42857142857142855,
+            "false_alarms_per_hour": 63.52209944751381,
+            "feature_count": 200.0,
+            "fn": 167.0,
+            "fp": 511.0,
+            "inner_pr_auc": 0.13709473578753667,
+            "lead_time_minutes_mean": 7.438888888888889,
+            "lead_time_minutes_median": 8.533333333333333,
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.10922047127421666,
+            "precision": 0.09397163120567376,
+            "recall": 0.2409090909090909,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13709473578753667
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13657063150995252
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.13288372061418907
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12865553286513548
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.12524661714164442
+                }
+              ],
+              "inner_pr_auc": 0.13709473578753667,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.3661627322953289,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "threshold": 0.9403569884069491,
+            "tn": 1299.0,
+            "tp": 53.0
+          },
+          "spectral_latent": {
+            "brier": 0.5086158265492629,
+            "event_count": 7.0,
+            "event_recall": 0.5714285714285714,
+            "false_alarms_per_hour": 30.58011049723757,
+            "feature_count": 121.0,
+            "fn": 188.0,
+            "fp": 246.0,
+            "inner_pr_auc": 0.2893657384325162,
+            "lead_time_minutes_mean": 6.6875,
+            "lead_time_minutes_median": 7.0249999999999995,
+            "negatives": 1810.0,
+            "positive_rate": 0.10837438423645321,
+            "positives": 220.0,
+            "pr_auc": 0.09170658200108958,
+            "precision": 0.11510791366906475,
+            "recall": 0.14545454545454545,
+            "regularization_selection": {
+              "candidates": [
+                {
+                  "c": 0.01,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2893657384325162
+                },
+                {
+                  "c": 0.03,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2861800724836641
+                },
+                {
+                  "c": 0.1,
+                  "folds": 2,
+                  "inner_pr_auc": 0.26640721761219005
+                },
+                {
+                  "c": 0.3,
+                  "folds": 2,
+                  "inner_pr_auc": 0.2559995323066329
+                },
+                {
+                  "c": 1.0,
+                  "folds": 2,
+                  "inner_pr_auc": 0.24100898640658802
+                }
+              ],
+              "inner_pr_auc": 0.2893657384325162,
+              "reason": "training-subject inner PR-AUC",
+              "selected_c": 0.01
+            },
+            "roc_auc": 0.39564540431943745,
+            "rows": 2030.0,
+            "selected_c": 0.01,
+            "threshold": 0.9268676696073267,
+            "tn": 1564.0,
+            "tp": 32.0
+          }
+        },
+        "test_positives": 220,
+        "test_rows": 2030,
+        "test_subject": "chb03",
+        "train_positives": 315,
+        "train_rows": 4596
+      }
+    ]
+  },
+  "method": {
+    "event_note": "events are file-local CHB-MIT summary seizures with at least one eligible preictal row",
+    "model_selection": "regularization C selected by inner leave-one-subject-out on training subjects only",
+    "negative_label": "anchor is outside seizure, postictal, and near-seizure exclusion gaps",
+    "positive_label": "anchor falls inside the preictal horizon before a labeled seizure",
+    "predictor": "median imputer + standard scaler + class-balanced logistic regression",
+    "purpose": "measure whether agnostic latent/stigmergic structure features improve a simple held-out-subject predictor over pedestrian and spectral features",
+    "split": "leave-one-subject-out"
+  },
+  "parameters": {
+    "adaptive_window": 256,
+    "baseline": 1024,
+    "channels": [
+      "FP1-F7",
+      "T7-P7",
+      "FZ-CZ",
+      "CZ-PZ",
+      "FP2-F8",
+      "P8-O2"
+    ],
+    "decay": 0.9,
+    "emission_threshold": 3.0,
+    "false_alarms_per_hour": 1.0,
+    "feature_window_seconds": 120.0,
+    "history_rows": 6,
+    "max_files_per_subject": 0,
+    "min_active_channels": 3,
+    "negative_gap_minutes": 30.0,
+    "postictal_minutes": 10.0,
+    "preictal_minutes": 10.0,
+    "regularization_cs": [
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0
+    ],
+    "score": "max",
+    "seed": 20260603,
+    "stride": 256,
+    "target_sample_rate": 16.0
+  },
+  "rows": {
+    "negative": 6091,
+    "phase_counts": {
+      "interictal": 6091,
+      "preictal": 535
+    },
+    "positive": 535,
+    "skipped": [],
+    "subjects": {
+      "chb01": {
+        "events": 7,
+        "files": 14,
+        "positives": 240,
+        "rows": 1977
+      },
+      "chb02": {
+        "events": 3,
+        "files": 14,
+        "positives": 75,
+        "rows": 2619
+      },
+      "chb03": {
+        "events": 7,
+        "files": 14,
+        "positives": 220,
+        "rows": 2030
+      }
+    },
+    "total": 6626
+  }
+}
