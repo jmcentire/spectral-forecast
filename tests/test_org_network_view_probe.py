@@ -5,6 +5,7 @@ from pathlib import Path
 
 from experiments.org_network_view_probe import (
     build_view_specs,
+    recommendation_state,
     remap_edges_by_order,
     run_view_probe,
 )
@@ -49,6 +50,52 @@ def test_build_view_specs_adds_candidates_and_controls() -> None:
     assert "candidate" in roles
     assert "null_control" in roles
     assert "artifact_control" in roles
+
+
+def test_recommendation_state_can_refuse_all_views() -> None:
+    recommendation = recommendation_state(
+        [
+            {
+                "view": "temporal_total_order",
+                "verdict": "ambiguous",
+                "best_control": {"score": 2.0},
+            },
+            {
+                "view": "relationship_graph",
+                "verdict": "control_dominates",
+                "best_control": {"score": 3.0},
+            },
+        ],
+        min_signal=1.0,
+    )
+
+    assert recommendation["state"] == "controls_too_strong"
+    assert not recommendation["proceed"]
+    assert recommendation["recommended_views"] == []
+    assert recommendation["rejected_views"] == ["relationship_graph"]
+    assert recommendation["unresolved_views"] == ["temporal_total_order"]
+
+
+def test_recommendation_state_can_select_subset() -> None:
+    recommendation = recommendation_state(
+        [
+            {
+                "view": "group_multilayer",
+                "verdict": "candidate_separates_from_controls",
+                "best_control": {"score": 2.0},
+            },
+            {
+                "view": "relation_churn",
+                "verdict": "ambiguous",
+                "best_control": {"score": 2.0},
+            },
+        ],
+        min_signal=1.0,
+    )
+
+    assert recommendation["state"] == "selective_candidate_set"
+    assert recommendation["proceed"]
+    assert recommendation["recommended_views"] == ["group_multilayer"]
 
 
 def test_run_view_probe_reports_candidate_control_comparison(tmp_path: Path) -> None:
@@ -117,5 +164,6 @@ def test_run_view_probe_reports_candidate_control_comparison(tmp_path: Path) -> 
 
     assert report["surfaces"]
     assert report["comparisons"]
+    assert report["recommendation"]["state"]
     assert any(row["role"] == "candidate" for row in report["surfaces"])
     assert any(row["role"] != "candidate" for row in report["surfaces"])

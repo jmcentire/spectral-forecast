@@ -230,7 +230,7 @@
       "view": "temporal_total_order"
     }
   ],
-  "created_at": "2026-06-04T17:01:48.567909+00:00",
+  "created_at": "2026-06-04T17:12:25.097462+00:00",
   "dataset": {
     "data_format": "edges",
     "dataset": "email-eu",
@@ -246,6 +246,25 @@
     "Ambiguous ties should be tested downstream in parallel or treated as unresolved.",
     "Map any surfaced anomalies back to canonical events/entities before naming them."
   ],
+  "recommendation": {
+    "proceed": true,
+    "reason": "Every assessed candidate view separated from controls.",
+    "recommended_views": [
+      "partial_order_or_hyperedge",
+      "relation_churn",
+      "relationship_graph",
+      "temporal_total_order"
+    ],
+    "rejected_views": [],
+    "state": "broad_candidate_set",
+    "strong_control_views": [
+      "partial_order_or_hyperedge",
+      "relation_churn",
+      "relationship_graph",
+      "temporal_total_order"
+    ],
+    "unresolved_views": []
+  },
   "surfaces": [
     {
       "dropped_series": [],

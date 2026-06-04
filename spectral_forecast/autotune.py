@@ -84,6 +84,9 @@ class AutoTuneNullSummary:
     empirical_p_ge_observed: float
     empirical_p_floor: float
     unique_null_totals: int
+    null_below_or_equal: int = 0
+    empirical_p_le_observed: float = 1.0
+    empirical_p_two_sided: float = 1.0
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -395,6 +398,9 @@ def summarize_observed_vs_null_totals(
     null_mean = float(np.mean(null))
     null_std = float(np.std(null, ddof=1)) if len(null) > 1 else 0.0
     exceedances = int(np.sum(null >= observed_total))
+    below_or_equal = int(np.sum(null <= observed_total))
+    p_ge = (exceedances + 1) / (len(null) + 1)
+    p_le = (below_or_equal + 1) / (len(null) + 1)
     return AutoTuneNullSummary(
         anchors=int(anchors),
         observed_total=float(observed_total),
@@ -405,9 +411,12 @@ def summarize_observed_vs_null_totals(
         observed_minus_null=float(observed_total) - null_mean,
         z_effect=(float(observed_total) - null_mean) / null_std if null_std > 0 else None,
         null_exceedances=exceedances,
-        empirical_p_ge_observed=(exceedances + 1) / (len(null) + 1),
+        empirical_p_ge_observed=p_ge,
         empirical_p_floor=1 / (len(null) + 1),
         unique_null_totals=int(len(set(float(value) for value in null))),
+        null_below_or_equal=below_or_equal,
+        empirical_p_le_observed=p_le,
+        empirical_p_two_sided=min(1.0, 2.0 * min(p_ge, p_le)),
     )
 
 

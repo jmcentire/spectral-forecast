@@ -9,7 +9,6 @@ random controls under the existing structure-readiness diagnostic.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import sys
 from dataclasses import dataclass
@@ -33,6 +32,7 @@ from experiments.org_network_autotune import (
     TemporalEdge,
     build_network_series,
     relation_only_network,
+    remap_edges_by_order,
 )
 from spectral_forecast.structure import StructureReadiness, structure_readiness
 
@@ -59,71 +59,6 @@ class ViewSpec:
             "feature_family": self.feature_family,
             "reason": self.reason,
         }
-
-
-def _pair(edge: TemporalEdge, *, directed: bool) -> tuple[str, str]:
-    return (edge.source, edge.target) if directed else tuple(sorted((edge.source, edge.target)))
-
-
-def _stable_hash(text: str) -> str:
-    return hashlib.sha1(text.encode("utf-8")).hexdigest()
-
-
-def remap_edges_by_order(
-    edges: Sequence[TemporalEdge],
-    *,
-    order: str,
-    labels: Mapping[str, str],
-    directed: bool,
-    seed: int,
-) -> list[TemporalEdge]:
-    """Replace timestamps with event ranks after sorting by an enforced order."""
-
-    indexed = list(enumerate(edges))
-    if order == "random_order":
-        rng = np.random.default_rng(seed)
-        permutation = rng.permutation(len(indexed))
-        ordered = [indexed[int(index)] for index in permutation]
-    else:
-        degrees: dict[str, int] = {}
-        first_seen: dict[tuple[str, str], float] = {}
-        for edge in edges:
-            degrees[edge.source] = degrees.get(edge.source, 0) + 1
-            degrees[edge.target] = degrees.get(edge.target, 0) + 1
-            key = _pair(edge, directed=directed)
-            first_seen[key] = min(first_seen.get(key, float("inf")), float(edge.timestamp))
-
-        def sort_key(item: tuple[int, TemporalEdge]) -> tuple[object, ...]:
-            index, edge = item
-            pair = _pair(edge, directed=directed)
-            pair_text = "|".join(pair)
-            source_group = labels.get(edge.source, "unknown")
-            target_group = labels.get(edge.target, "unknown")
-            if order in {"timestamp", "timestamp_bucket_partial_order"}:
-                return (float(edge.timestamp), index)
-            if order == "first_seen_pair":
-                return (first_seen[pair], float(edge.timestamp), pair_text, index)
-            if order == "degree_descending":
-                degree = degrees.get(edge.source, 0) + degrees.get(edge.target, 0)
-                return (-degree, float(edge.timestamp), pair_text, index)
-            if order == "group_then_time":
-                group_pair = tuple(sorted((source_group, target_group)))
-                return (group_pair, float(edge.timestamp), pair_text, index)
-            if order == "stable_id_or_alphabetic":
-                return (pair_text, float(edge.timestamp), index)
-            if order == "hash_order":
-                return (_stable_hash(pair_text), float(edge.timestamp), index)
-            if order == "silly_proxy_order":
-                digit_sevens = pair_text.count("7")
-                return (len(pair_text), -digit_sevens, pair_text[::-1], float(edge.timestamp), index)
-            raise ValueError(f"unknown enforced order: {order}")
-
-        ordered = sorted(indexed, key=sort_key)
-
-    return [
-        TemporalEdge(source=edge.source, target=edge.target, timestamp=float(rank))
-        for rank, (_, edge) in enumerate(ordered)
-    ]
 
 
 def _surface_for_spec(
@@ -499,6 +434,66 @@ def compare_surfaces(
     return comparisons
 
 
+def recommendation_state(
+    comparisons: Sequence[Mapping[str, Any]],
+    *,
+    min_signal: float,
+) -> dict[str, object]:
+    """Summarize whether any candidate views have earned a larger run."""
+
+    recommended = [
+        str(row["view"])
+        for row in comparisons
+        if row.get("verdict") == "candidate_separates_from_controls"
+    ]
+    rejected = [
+        str(row["view"])
+        for row in comparisons
+        if row.get("verdict") in {"control_dominates", "no_clear_signal"}
+    ]
+    unresolved = [
+        str(row["view"])
+        for row in comparisons
+        if row.get("verdict")
+        not in {
+            "candidate_separates_from_controls",
+            "control_dominates",
+            "no_clear_signal",
+        }
+    ]
+    strong_controls = [
+        str(row["view"])
+        for row in comparisons
+        if float(dict(row.get("best_control") or {}).get("score", 0.0)) >= min_signal
+    ]
+
+    if not comparisons:
+        state = "none_of_these"
+        reason = "No candidate/control comparisons were available."
+    elif not recommended and strong_controls:
+        state = "controls_too_strong"
+        reason = "No candidate view separated, while one or more controls showed usable structure."
+    elif not recommended:
+        state = "none_of_these"
+        reason = "No candidate view separated from its controls."
+    elif len(recommended) == len(comparisons):
+        state = "broad_candidate_set"
+        reason = "Every assessed candidate view separated from controls."
+    else:
+        state = "selective_candidate_set"
+        reason = "Only a subset of assessed candidate views separated from controls."
+
+    return {
+        "state": state,
+        "proceed": bool(recommended),
+        "reason": reason,
+        "recommended_views": recommended,
+        "rejected_views": rejected,
+        "unresolved_views": unresolved,
+        "strong_control_views": strong_controls,
+    }
+
+
 def run_view_probe(args: argparse.Namespace) -> dict[str, Any]:
     edges, labels, dataset_metadata, edge_path, label_path = _load_edges_and_labels(args)
     time_bin_adjustment = adjust_real_time_bin_seconds(args, edges)
@@ -542,6 +537,11 @@ def run_view_probe(args: argparse.Namespace) -> dict[str, Any]:
             )
         rows.append(row)
 
+    comparisons = compare_surfaces(
+        rows,
+        min_signal=args.min_signal,
+        min_gap=args.min_gap,
+    )
     return {
         "created_at": datetime.now(timezone.utc).isoformat(),
         "args": {
@@ -561,10 +561,10 @@ def run_view_probe(args: argparse.Namespace) -> dict[str, Any]:
             "order_candidates": assessment["order_candidates"],
         },
         "surfaces": rows,
-        "comparisons": compare_surfaces(
-            rows,
+        "comparisons": comparisons,
+        "recommendation": recommendation_state(
+            comparisons,
             min_signal=args.min_signal,
-            min_gap=args.min_gap,
         ),
         "interpretation_guardrails": [
             "A candidate view separating from controls earns a larger run; it is not a discovery by itself.",
@@ -642,6 +642,18 @@ def print_report(report: Mapping[str, Any], *, top: int) -> None:
                 float(best_candidate.get("score", 0.0)),
                 best_control.get("name", "-"),
                 float(best_control.get("score", 0.0)),
+            )
+        )
+    recommendation = dict(report.get("recommendation") or {})
+    if recommendation:
+        print(
+            "  recommendation state=%s proceed=%s recommended=%s rejected=%s unresolved=%s"
+            % (
+                recommendation.get("state"),
+                recommendation.get("proceed"),
+                ",".join(recommendation.get("recommended_views", [])) or "-",
+                ",".join(recommendation.get("rejected_views", [])) or "-",
+                ",".join(recommendation.get("unresolved_views", [])) or "-",
             )
         )
     print("  top surfaces")

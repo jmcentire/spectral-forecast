@@ -125,6 +125,21 @@ def test_observation_null_totals_can_be_summarized_as_batch_distribution():
     assert summary.observed_minus_null == score.null_summary.observed_minus_null
 
 
+def test_null_summary_reports_both_empirical_tails() -> None:
+    summary = summarize_observed_vs_null_totals(
+        anchors=4,
+        observed_total=0.0,
+        observed_active_windows=1,
+        null_totals=[1.0, 2.0, 3.0],
+    )
+
+    assert summary.null_exceedances == 3
+    assert summary.null_below_or_equal == 0
+    assert summary.empirical_p_ge_observed == 1.0
+    assert summary.empirical_p_le_observed == 0.25
+    assert summary.empirical_p_two_sided == 0.5
+
+
 def test_tune_observation_prefers_non_saturating_threshold():
     series = _shared_shift_series()
     saturated = AutoTuneConfig(

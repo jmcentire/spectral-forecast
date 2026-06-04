@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import hashlib
 import itertools
 import json
 import math
@@ -62,6 +63,92 @@ class TemporalEdge:
     source: str
     target: str
     timestamp: float
+
+
+def _edge_pair(edge: TemporalEdge, *, directed: bool) -> tuple[str, str]:
+    return (edge.source, edge.target) if directed else tuple(sorted((edge.source, edge.target)))
+
+
+def _stable_hash(text: str) -> str:
+    return hashlib.sha1(text.encode("utf-8")).hexdigest()
+
+
+def remap_edges_by_order_with_mapping(
+    edges: Sequence[TemporalEdge],
+    *,
+    order: str,
+    labels: Mapping[str, str],
+    directed: bool,
+    seed: int,
+) -> tuple[list[TemporalEdge], list[int]]:
+    """Replace timestamps with event ranks and retain original edge indices."""
+
+    indexed = list(enumerate(edges))
+    if order == "random_order":
+        rng = np.random.default_rng(seed)
+        permutation = rng.permutation(len(indexed))
+        ordered = [indexed[int(index)] for index in permutation]
+    else:
+        degrees: dict[str, int] = {}
+        first_seen: dict[tuple[str, str], float] = {}
+        for edge in edges:
+            degrees[edge.source] = degrees.get(edge.source, 0) + 1
+            degrees[edge.target] = degrees.get(edge.target, 0) + 1
+            key = _edge_pair(edge, directed=directed)
+            first_seen[key] = min(first_seen.get(key, float("inf")), float(edge.timestamp))
+
+        def sort_key(item: tuple[int, TemporalEdge]) -> tuple[object, ...]:
+            index, edge = item
+            pair = _edge_pair(edge, directed=directed)
+            pair_text = "|".join(pair)
+            source_group = labels.get(edge.source, "unknown")
+            target_group = labels.get(edge.target, "unknown")
+            if order in {"timestamp", "timestamp_bucket_partial_order"}:
+                return (float(edge.timestamp), index)
+            if order == "first_seen_pair":
+                return (first_seen[pair], float(edge.timestamp), pair_text, index)
+            if order == "degree_descending":
+                degree = degrees.get(edge.source, 0) + degrees.get(edge.target, 0)
+                return (-degree, float(edge.timestamp), pair_text, index)
+            if order == "group_then_time":
+                group_pair = tuple(sorted((source_group, target_group)))
+                return (group_pair, float(edge.timestamp), pair_text, index)
+            if order == "stable_id_or_alphabetic":
+                return (pair_text, float(edge.timestamp), index)
+            if order == "hash_order":
+                return (_stable_hash(pair_text), float(edge.timestamp), index)
+            if order == "silly_proxy_order":
+                digit_sevens = pair_text.count("7")
+                return (len(pair_text), -digit_sevens, pair_text[::-1], float(edge.timestamp), index)
+            raise ValueError(f"unknown enforced order: {order}")
+
+        ordered = sorted(indexed, key=sort_key)
+
+    remapped = [
+        TemporalEdge(source=edge.source, target=edge.target, timestamp=float(rank))
+        for rank, (_, edge) in enumerate(ordered)
+    ]
+    return remapped, [index for index, _ in ordered]
+
+
+def remap_edges_by_order(
+    edges: Sequence[TemporalEdge],
+    *,
+    order: str,
+    labels: Mapping[str, str],
+    directed: bool,
+    seed: int,
+) -> list[TemporalEdge]:
+    """Replace timestamps with event ranks after sorting by an enforced order."""
+
+    remapped, _ = remap_edges_by_order_with_mapping(
+        edges,
+        order=order,
+        labels=labels,
+        directed=directed,
+        seed=seed,
+    )
+    return remapped
 
 
 @dataclass(frozen=True)
@@ -883,6 +970,7 @@ def combine_null_scores(
     config: AutoTuneConfig,
     scores: Sequence[AutoTuneScore],
     null_modes: Sequence[str],
+    effective_block_sizes: Sequence[int],
 ) -> dict[str, Any]:
     if not scores:
         return {"candidate": config.to_dict(), "accepted": False, "quality": float("-inf")}
@@ -921,16 +1009,36 @@ def combine_null_scores(
         ),
         "null_total_repeats": worst.null_summary.null_repeats,
         "null_total_exceedances": worst.null_summary.null_exceedances,
+        "null_total_below_or_equal": worst.null_summary.null_below_or_equal,
         "null_total_empirical_p_ge_observed": worst.null_summary.empirical_p_ge_observed,
+        "null_total_empirical_p_le_observed": worst.null_summary.empirical_p_le_observed,
+        "null_total_empirical_p_two_sided": worst.null_summary.empirical_p_two_sided,
         "null_total_empirical_p_floor": worst.null_summary.empirical_p_floor,
         "null_total_unique_repeats": worst.null_summary.unique_null_totals,
+        "coherence_direction": (
+            "surplus"
+            if worst.null_summary.observed_minus_null > 0
+            else "deficit"
+            if worst.null_summary.observed_minus_null < 0
+            else "none"
+        ),
         "worst_null_mode": null_modes[scores.index(worst)],
         "null_modes": list(null_modes),
+        "null_mode_effective_block_sizes": {
+            mode: size
+            for mode, size in zip(null_modes, effective_block_sizes, strict=True)
+        },
         "null_mode_scores": [
             {"null_mode": mode, "score": _score_to_dict(score)}
             for mode, score in zip(null_modes, scores, strict=True)
         ],
     }
+
+
+def effective_null_block_size(requested: int, anchors: int) -> int:
+    """Bound block size so block permutation has at least two blocks when possible."""
+
+    return min(requested, max(1, anchors // 2))
 
 
 def score_candidate(
@@ -951,14 +1059,22 @@ def score_candidate(
     )
     null_modes = _parse_str_list(args.null_modes)
     scores: list[AutoTuneScore] = []
+    effective_block_sizes: list[int] = []
     for mode_index, null_mode in enumerate(null_modes):
+        effective_block_size = args.null_block_size
+        if null_mode == "block-permute":
+            effective_block_size = effective_null_block_size(
+                args.null_block_size,
+                observation.matrix.shape[0],
+            )
+        effective_block_sizes.append(effective_block_size)
         null_totals = observation_null_totals_for_config(
             observation,
             config,
             null_repeats=args.null_repeats,
             seed=args.seed + seed_offset + 100000 * mode_index,
             null_mode=null_mode,  # type: ignore[arg-type]
-            null_block_size=args.null_block_size,
+            null_block_size=effective_block_size,
         )
         scores.append(
             score_autotune_observation(
@@ -967,7 +1083,7 @@ def score_candidate(
                 null_totals=null_totals,
             )
         )
-    return combine_null_scores(config, scores, null_modes)
+    return combine_null_scores(config, scores, null_modes, effective_block_sizes)
 
 
 def score_configs(
@@ -976,9 +1092,10 @@ def score_configs(
     *,
     args: argparse.Namespace,
     segment_name: str,
+    cache: ObservationCache | None = None,
 ) -> dict[str, Any]:
     started = time.time()
-    cache = ObservationCache()
+    cache = cache or ObservationCache()
     reports: list[dict[str, Any]] = []
     skipped: list[dict[str, Any]] = []
     last_progress = 0.0
@@ -1057,6 +1174,121 @@ def _emissions(matrix: NDArray[np.float64], config: AutoTuneConfig) -> NDArray[n
     return emissions.astype(np.float64)
 
 
+def canonical_context_for_interval(
+    edges: Sequence[TemporalEdge],
+    labels: Mapping[str, str],
+    *,
+    absolute_start_timestamp: float,
+    bin_seconds: float,
+    start_bin: int,
+    end_bin: int,
+    directed: bool,
+    max_events: int,
+    max_entities: int,
+    max_pairs: int,
+    canonical_edges: Sequence[TemporalEdge] | None = None,
+    canonical_edge_indices: Sequence[int] | None = None,
+    coordinate_kind: str = "canonical_time",
+) -> dict[str, Any]:
+    """Map a transformed bin interval back to bounded canonical edge context."""
+
+    entity_counts: Counter[str] = Counter()
+    pair_counts: Counter[tuple[str, str]] = Counter()
+    group_counts: Counter[str] = Counter()
+    sampled_events: list[dict[str, Any]] = []
+    event_count = 0
+    cross_group_events = 0
+    if canonical_edge_indices is not None and len(canonical_edge_indices) != len(edges):
+        raise ValueError("canonical edge index mapping must align with analysis edges")
+    for edge_index, analysis_edge in enumerate(edges):
+        bin_index = _bin_index(
+            analysis_edge.timestamp,
+            start=absolute_start_timestamp,
+            bin_seconds=bin_seconds,
+        )
+        if bin_index < start_bin or bin_index >= end_bin:
+            continue
+        canonical_edge_index = (
+            int(canonical_edge_indices[edge_index])
+            if canonical_edge_indices is not None
+            else edge_index
+        )
+        edge = (
+            canonical_edges[canonical_edge_index]
+            if canonical_edges is not None
+            else analysis_edge
+        )
+        event_count += 1
+        entity_counts.update((edge.source, edge.target))
+        pair = (
+            (edge.source, edge.target)
+            if directed
+            else tuple(sorted((edge.source, edge.target)))
+        )
+        pair_counts[pair] += 1
+        source_group = labels.get(edge.source)
+        target_group = labels.get(edge.target)
+        if source_group is not None:
+            group_counts[source_group] += 1
+        if target_group is not None:
+            group_counts[target_group] += 1
+        if source_group is not None and target_group is not None and source_group != target_group:
+            cross_group_events += 1
+        if len(sampled_events) < max_events:
+            sampled_events.append(
+                {
+                    "analysis_edge_index": edge_index,
+                    "canonical_edge_index": canonical_edge_index,
+                    "source": edge.source,
+                    "target": edge.target,
+                    "timestamp": float(edge.timestamp),
+                    "source_group": source_group,
+                    "target_group": target_group,
+                }
+            )
+
+    coordinate_start = absolute_start_timestamp + start_bin * bin_seconds
+    coordinate_end = absolute_start_timestamp + end_bin * bin_seconds
+    return {
+        "start_bin": start_bin,
+        "end_bin": end_bin,
+        "coordinate_kind": coordinate_kind,
+        "analysis_coordinate_start": coordinate_start,
+        "analysis_coordinate_end": coordinate_end,
+        "timestamp_start": coordinate_start if coordinate_kind == "canonical_time" else None,
+        "timestamp_end": coordinate_end if coordinate_kind == "canonical_time" else None,
+        "event_count": event_count,
+        "sampled_events": sampled_events,
+        "sampled_events_truncated": event_count > len(sampled_events),
+        "unique_entity_count": len(entity_counts),
+        "top_entities": [
+            {
+                "entity": entity,
+                "event_endpoint_count": count,
+                "group": labels.get(entity),
+            }
+            for entity, count in entity_counts.most_common(max_entities)
+        ],
+        "unique_pair_count": len(pair_counts),
+        "top_pairs": [
+            {
+                "source": pair[0],
+                "target": pair[1],
+                "event_count": count,
+            }
+            for pair, count in pair_counts.most_common(max_pairs)
+        ],
+        "top_groups": [
+            {"group": group, "event_endpoint_count": count}
+            for group, count in group_counts.most_common(max_entities)
+        ],
+        "cross_group_event_count": cross_group_events,
+        "cross_group_event_fraction": (
+            cross_group_events / event_count if event_count > 0 else 0.0
+        ),
+    }
+
+
 def top_windows(
     series: Mapping[str, NDArray[np.float64]],
     raw_series: Mapping[str, NDArray[np.float64]],
@@ -1066,8 +1298,15 @@ def top_windows(
     segment_name: str,
     segment_bin_offset: int,
     absolute_start_timestamp: float,
+    canonical_edges: Sequence[TemporalEdge] | None = None,
+    analysis_edges: Sequence[TemporalEdge] | None = None,
+    canonical_edge_indices: Sequence[int] | None = None,
+    labels: Mapping[str, str] | None = None,
+    directed: bool = True,
+    observation: AutoTuneObservation | None = None,
 ) -> list[dict[str, Any]]:
-    observation = build_autotune_observation(series, config, sample_rate=args.sample_rate)
+    if observation is None:
+        observation = build_autotune_observation(series, config, sample_rate=args.sample_rate)
     emissions = _emissions(observation.matrix, config)
     ordered = np.argsort(emissions)[::-1]
     names = list(series.keys())
@@ -1095,15 +1334,74 @@ def top_windows(
                 "segment": segment_name,
                 "anchor": anchor,
                 "absolute_bin": absolute_bin,
-                "timestamp_start": absolute_start_timestamp + absolute_bin * args.bin_seconds,
-                "timestamp_end": absolute_start_timestamp + (absolute_bin + 1) * args.bin_seconds,
+                "coordinate_kind": (
+                    "canonical_time"
+                    if getattr(args, "event_order", "real-time") == "real-time"
+                    else "event_rank"
+                ),
+                "analysis_coordinate_start": absolute_start_timestamp
+                + absolute_bin * args.bin_seconds,
+                "analysis_coordinate_end": absolute_start_timestamp
+                + (absolute_bin + 1) * args.bin_seconds,
+                "timestamp_start": (
+                    absolute_start_timestamp + absolute_bin * args.bin_seconds
+                    if getattr(args, "event_order", "real-time") == "real-time"
+                    else None
+                ),
+                "timestamp_end": (
+                    absolute_start_timestamp + (absolute_bin + 1) * args.bin_seconds
+                    if getattr(args, "event_order", "real-time") == "real-time"
+                    else None
+                ),
                 "emission": emission,
                 "active_series_count": len(active),
                 "max_score": float(np.max(scores)) if len(scores) else 0.0,
                 "mean_score": float(np.mean(scores)) if len(scores) else 0.0,
                 "active_series": active,
+                "analysis_bins": {
+                    "frozen_baseline_start": segment_bin_offset,
+                    "frozen_baseline_end": segment_bin_offset + config.baseline_size,
+                    "adaptive_start": max(segment_bin_offset, absolute_bin - config.adaptive_window),
+                    "adaptive_end": absolute_bin,
+                    "anchor": absolute_bin,
+                },
             }
         )
+        if canonical_edges is not None:
+            context_labels = labels or {}
+            context_edges = analysis_edges or canonical_edges
+            rows[-1]["canonical_context"] = {
+                "anchor_bin": canonical_context_for_interval(
+                    context_edges,
+                    context_labels,
+                    absolute_start_timestamp=absolute_start_timestamp,
+                    bin_seconds=args.bin_seconds,
+                    start_bin=absolute_bin,
+                    end_bin=absolute_bin + 1,
+                    directed=directed,
+                    max_events=args.canonical_max_events,
+                    max_entities=args.canonical_max_entities,
+                    max_pairs=args.canonical_max_pairs,
+                    canonical_edges=canonical_edges if analysis_edges is not None else None,
+                    canonical_edge_indices=canonical_edge_indices,
+                    coordinate_kind=rows[-1]["coordinate_kind"],
+                ),
+                "adaptive_history": canonical_context_for_interval(
+                    context_edges,
+                    context_labels,
+                    absolute_start_timestamp=absolute_start_timestamp,
+                    bin_seconds=args.bin_seconds,
+                    start_bin=max(segment_bin_offset, absolute_bin - config.adaptive_window),
+                    end_bin=absolute_bin,
+                    directed=directed,
+                    max_events=args.canonical_max_events,
+                    max_entities=args.canonical_max_entities,
+                    max_pairs=args.canonical_max_pairs,
+                    canonical_edges=canonical_edges if analysis_edges is not None else None,
+                    canonical_edge_indices=canonical_edge_indices,
+                    coordinate_kind=rows[-1]["coordinate_kind"],
+                ),
+            }
         if len(rows) >= args.top_windows:
             break
     return rows
@@ -1122,7 +1420,81 @@ def _config_from_report(report: Mapping[str, Any]) -> AutoTuneConfig:
     )
 
 
+def build_selected_network(
+    edges: Sequence[TemporalEdge],
+    labels: Mapping[str, str],
+    *,
+    args: argparse.Namespace,
+) -> NetworkSeries:
+    """Build the requested structural feature family for downstream analysis."""
+
+    mode = "relation" if args.relation_only else args.surface_mode
+    if mode == "group" and not labels:
+        raise ValueError("group surface requires canonical group labels")
+    if mode == "full":
+        include_global = not args.no_global_series
+        include_nodes = not args.no_node_series
+        include_groups = not args.no_group_series
+        include_relation = not args.no_relation_series
+    elif mode == "relation":
+        include_global = not args.no_global_series
+        include_nodes = not args.no_node_series
+        include_groups = not args.no_group_series
+        include_relation = True
+    elif mode == "graph":
+        include_global = not args.no_global_series
+        include_nodes = not args.no_node_series
+        include_groups = False
+        include_relation = False
+    elif mode == "group":
+        include_global = not args.no_global_series
+        include_nodes = False
+        include_groups = True
+        include_relation = True
+    else:
+        raise ValueError(f"unknown surface mode: {mode}")
+
+    network = build_network_series(
+        edges,
+        labels,
+        bin_seconds=args.bin_seconds,
+        top_nodes=args.top_nodes,
+        top_groups=args.top_groups,
+        include_global=include_global,
+        include_nodes=include_nodes,
+        include_groups=include_groups,
+        include_relation=include_relation,
+        directed=args.directed,
+        transform=args.transform,
+        max_bins=args.max_bins,
+    )
+    if mode == "relation":
+        network = relation_only_network(network)
+    return NetworkSeries(
+        series=network.series,
+        raw_series=network.raw_series,
+        dropped_series=network.dropped_series,
+        metadata={
+            **network.metadata,
+            "surface_mode": mode,
+            "event_order": args.event_order,
+        },
+    )
+
+
 def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
+    args = argparse.Namespace(**vars(args))
+    runtime_defaults = {
+        "surface_mode": "full",
+        "event_order": "real-time",
+        "event_bin_size": 1024,
+        "canonical_max_events": 12,
+        "canonical_max_entities": 12,
+        "canonical_max_pairs": 12,
+    }
+    for name, value in runtime_defaults.items():
+        if not hasattr(args, name):
+            setattr(args, name, value)
     edge_path, label_path, dataset_metadata = resolve_dataset_files(args)
     data_format = str(dataset_metadata.get("data_format", args.data_format))
     if data_format == "edges":
@@ -1142,22 +1514,28 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
     else:
         raise ValueError(f"unknown data format: {data_format}")
     labels = read_labels(label_path)
-    network = build_network_series(
-        edges,
-        labels,
-        bin_seconds=args.bin_seconds,
-        top_nodes=args.top_nodes,
-        top_groups=args.top_groups,
-        include_global=not args.no_global_series,
-        include_nodes=not args.no_node_series,
-        include_groups=not args.no_group_series,
-        include_relation=not args.no_relation_series,
-        directed=args.directed,
-        transform=args.transform,
-        max_bins=args.max_bins,
-    )
-    if args.relation_only:
-        network = relation_only_network(network)
+    canonical_edges = edges
+    analysis_edges = edges
+    canonical_edge_indices: list[int] | None = None
+    requested_bin_seconds = float(args.bin_seconds)
+    if args.event_order != "real-time":
+        analysis_edges, canonical_edge_indices = remap_edges_by_order_with_mapping(
+            canonical_edges,
+            order=args.event_order,
+            labels=labels,
+            directed=args.directed,
+            seed=args.seed,
+        )
+        args.bin_seconds = float(args.event_bin_size)
+    network = build_selected_network(analysis_edges, labels, args=args)
+    projection = {
+        "surface_mode": network.metadata["surface_mode"],
+        "event_order": args.event_order,
+        "requested_bin_seconds": requested_bin_seconds,
+        "analysis_bin_seconds": float(args.bin_seconds),
+        "coordinate_kind": "canonical_time" if args.event_order == "real-time" else "event_rank",
+        "canonical_mapping_available": canonical_edge_indices is not None,
+    }
     n_bins = int(network.metadata["bin_count"])
     split = int(n_bins * args.validation_start_fraction)
     if args.no_validation:
@@ -1184,6 +1562,7 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
                 "label_path": str(label_path) if label_path else None,
                 "data_format": data_format,
             },
+            "analysis_projection": projection,
             "series_metadata": network.metadata,
             "dropped_series": network.dropped_series[:50],
             "calibration_bins": split,
@@ -1207,11 +1586,13 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
             f"validation bins {n_bins - split} are too short for requested configs; need at least {min_needed}"
         )
     configs = build_configs(args)
+    calibration_cache = ObservationCache()
     calibration = score_configs(
         calibration_series,
         configs,
         args=args,
         segment_name="calibration",
+        cache=calibration_cache,
     )
     selected = calibration.get("best")
     validation: dict[str, Any] | None = None
@@ -1219,6 +1600,13 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
     validation_top: list[dict[str, Any]] = []
     if selected:
         selected_config = _config_from_report(selected)
+        calibration_observation = observation_for_config(
+            calibration_series,
+            selected_config,
+            cache=calibration_cache,
+            sample_rate=args.sample_rate,
+            segment_name="calibration",
+        )
         calibration_top = top_windows(
             calibration_series,
             network.raw_series,
@@ -1227,18 +1615,32 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
             segment_name="calibration",
             segment_bin_offset=0,
             absolute_start_timestamp=float(network.metadata["start_timestamp"]),
+            canonical_edges=edges,
+            analysis_edges=analysis_edges if canonical_edge_indices is not None else None,
+            canonical_edge_indices=canonical_edge_indices,
+            labels=labels,
+            directed=args.directed,
+            observation=calibration_observation,
         )
         if not args.no_validation:
             assert validation_series is not None
+            validation_cache = ObservationCache()
             validation_scored = score_candidate(
                 validation_series,
                 selected_config,
-                cache=ObservationCache(),
+                cache=validation_cache,
                 args=args,
                 segment_name="validation",
                 seed_offset=999_000,
             )
             validation = validation_scored
+            validation_observation = observation_for_config(
+                validation_series,
+                selected_config,
+                cache=validation_cache,
+                sample_rate=args.sample_rate,
+                segment_name="validation",
+            )
             validation_top = top_windows(
                 validation_series,
                 network.raw_series,
@@ -1247,6 +1649,12 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
                 segment_name="validation",
                 segment_bin_offset=split,
                 absolute_start_timestamp=float(network.metadata["start_timestamp"]),
+                canonical_edges=edges,
+                analysis_edges=analysis_edges if canonical_edge_indices is not None else None,
+                canonical_edge_indices=canonical_edge_indices,
+                labels=labels,
+                directed=args.directed,
+                observation=validation_observation,
             )
 
     return {
@@ -1262,6 +1670,7 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
             "label_path": str(label_path) if label_path else None,
             "data_format": data_format,
         },
+        "analysis_projection": projection,
         "series_metadata": network.metadata,
         "dropped_series": network.dropped_series[:50],
         "calibration_bins": split,
@@ -1282,6 +1691,17 @@ def print_report(report: Mapping[str, Any], *, top: int) -> None:
     series = report.get("series_metadata", {})
     print("Organizational network autotune")
     print("  dataset=%s" % dataset.get("dataset", dataset.get("edge_path", "custom")))
+    projection = dict(report.get("analysis_projection") or {})
+    if projection:
+        print(
+            "  projection surface=%s order=%s analysis_bin_seconds=%s canonical_mapping=%s"
+            % (
+                projection.get("surface_mode"),
+                projection.get("event_order"),
+                projection.get("analysis_bin_seconds"),
+                projection.get("canonical_mapping_available"),
+            )
+        )
     print(
         "  bins=%s calibration=%s validation=%s series=%s dropped=%s"
         % (
@@ -1339,13 +1759,16 @@ def print_report(report: Mapping[str, Any], *, top: int) -> None:
         return
     cfg = best["candidate"]
     print(
-        "  calibration accepted=%s quality=%.4f z=%.2f delta=%.3f p_ge=%.4f unique=%s worst_null=%s"
+        "  calibration accepted=%s quality=%.4f direction=%s z=%.2f delta=%.3f p_ge=%.4f p_le=%.4f p_two=%.4f unique=%s worst_null=%s"
         % (
             best["accepted"],
             best["quality"],
+            best["coherence_direction"],
             best["z_effect"],
             best["observed_minus_null_total"],
             best["null_total_empirical_p_ge_observed"],
+            best["null_total_empirical_p_le_observed"],
+            best["null_total_empirical_p_two_sided"],
             best["null_total_unique_repeats"],
             best["worst_null_mode"],
         )
@@ -1365,13 +1788,16 @@ def print_report(report: Mapping[str, Any], *, top: int) -> None:
     if validation:
         validation = dict(validation)
         print(
-            "  validation accepted=%s quality=%.4f z=%.2f delta=%.3f p_ge=%.4f unique=%s worst_null=%s"
+            "  validation accepted=%s quality=%.4f direction=%s z=%.2f delta=%.3f p_ge=%.4f p_le=%.4f p_two=%.4f unique=%s worst_null=%s"
             % (
                 validation["accepted"],
                 validation["quality"],
+                validation["coherence_direction"],
                 validation["z_effect"],
                 validation["observed_minus_null_total"],
                 validation["null_total_empirical_p_ge_observed"],
+                validation["null_total_empirical_p_le_observed"],
+                validation["null_total_empirical_p_two_sided"],
                 validation["null_total_unique_repeats"],
                 validation["worst_null_mode"],
             )
@@ -1417,6 +1843,28 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--no-group-series", action="store_true")
     parser.add_argument("--no-relation-series", action="store_true")
     parser.add_argument("--relation-only", action="store_true")
+    parser.add_argument(
+        "--surface-mode",
+        choices=["full", "relation", "graph", "group"],
+        default="full",
+    )
+    parser.add_argument(
+        "--event-order",
+        choices=[
+            "real-time",
+            "timestamp",
+            "timestamp_bucket_partial_order",
+            "first_seen_pair",
+            "degree_descending",
+            "group_then_time",
+            "stable_id_or_alphabetic",
+            "hash_order",
+            "random_order",
+            "silly_proxy_order",
+        ],
+        default="real-time",
+    )
+    parser.add_argument("--event-bin-size", type=int, default=1024)
     parser.add_argument("--transform", choices=["none", "log", "robust", "log-robust"], default="log-robust")
     parser.add_argument("--validation-start-fraction", type=float, default=0.5)
     parser.add_argument("--no-validation", action="store_true")
@@ -1438,6 +1886,9 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--min-active-series", default="2,3")
     parser.add_argument("--top", type=int, default=8)
     parser.add_argument("--top-windows", type=int, default=10)
+    parser.add_argument("--canonical-max-events", type=int, default=12)
+    parser.add_argument("--canonical-max-entities", type=int, default=12)
+    parser.add_argument("--canonical-max-pairs", type=int, default=12)
     parser.add_argument("--progress", action="store_true")
     parser.add_argument("--progress-every", type=float, default=30.0)
     parser.add_argument("--output", type=Path, default=None)
@@ -1445,6 +1896,10 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     args = parser.parse_args(argv)
     if not 0.0 < args.validation_start_fraction < 1.0:
         raise ValueError("--validation-start-fraction must be in (0, 1)")
+    if min(args.canonical_max_events, args.canonical_max_entities, args.canonical_max_pairs) < 0:
+        raise ValueError("canonical context limits must be non-negative")
+    if args.event_bin_size <= 0:
+        raise ValueError("--event-bin-size must be positive")
     return args
 
 
