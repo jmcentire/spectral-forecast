@@ -720,6 +720,8 @@ def discover_cdip_windows(
         max_windows_per_group=max_windows_per_group,
         window_offset_per_group=window_offset_per_group,
         group_strategy=args.group_strategy,
+        progress_label=f"autotune:{args.validation_split}",
+        progress_every=args.progress_every if args.progress else 0.0,
     )
 
 
@@ -798,6 +800,8 @@ def discover_cdip_split_windows(
         max_windows_per_group=max_window_count,
         window_offset_per_group=0,
         group_strategy=args.group_strategy,
+        progress_label="autotune:disjoint-groups",
+        progress_every=args.progress_every if args.progress else 0.0,
     )
     return (
         _take_group_windows(

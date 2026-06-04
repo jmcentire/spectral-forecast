@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import heapq
 import itertools
 import json
 import math
@@ -68,6 +69,13 @@ class BatchWindow:
     @property
     def source_paths(self) -> tuple[str, ...]:
         return tuple(str(record.path) for record in self.records)
+
+
+@dataclass(frozen=True)
+class _ComboCandidate:
+    records: tuple[CdipRawRecord, ...]
+    platforms: tuple[str, ...]
+    digest: str
 
 
 def _iso(seconds: float) -> str:
@@ -138,6 +146,8 @@ def _discover_windows(
     max_windows_per_group: int,
     window_offset_per_group: int = 0,
     group_strategy: str = "first",
+    progress_label: str | None = None,
+    progress_every: float = 0.0,
 ) -> list[BatchWindow]:
     windows: list[BatchWindow] = []
     if window_offset_per_group < 0:
@@ -145,23 +155,48 @@ def _discover_windows(
     group_index = 0
     required_samples = max(min_clean_samples, window_samples)
     usage: Counter[str] = Counter()
-    combos = list(itertools.combinations(records, group_size))
+    combos = [
+        _ComboCandidate(
+            records=tuple(combo),
+            platforms=tuple(record.platform_id for record in combo),
+            digest=hashlib.sha1(
+                ",".join(record.platform_id for record in combo).encode("utf-8")
+            ).hexdigest(),
+        )
+        for combo in itertools.combinations(records, group_size)
+    ]
+    heap: list[tuple[tuple[int, int, str], int, _ComboCandidate]] = []
+    started_at = time.time()
+    last_progress = 0.0
 
-    def combo_rank(combo: Sequence[CdipRawRecord]) -> tuple[int, int, str]:
-        platforms = tuple(record.platform_id for record in combo)
-        digest = hashlib.sha1(",".join(platforms).encode("utf-8")).hexdigest()
+    def combo_rank(combo: _ComboCandidate) -> tuple[int, int, str]:
         return (
-            sum(usage[platform] for platform in platforms),
-            max((usage[platform] for platform in platforms), default=0),
-            digest,
+            sum(usage[platform] for platform in combo.platforms),
+            max((usage[platform] for platform in combo.platforms), default=0),
+            combo.digest,
         )
 
-    while combos and group_index < max_groups:
+    if group_strategy == "balanced":
+        heap = [(combo_rank(combo), index, combo) for index, combo in enumerate(combos)]
+        heapq.heapify(heap)
+
+    while group_index < max_groups:
         if group_strategy == "balanced":
-            best_index = min(range(len(combos)), key=lambda index: combo_rank(combos[index]))
-            combo = combos.pop(best_index)
+            if not heap:
+                break
+            while True:
+                rank, index, combo_candidate = heapq.heappop(heap)
+                current_rank = combo_rank(combo_candidate)
+                if current_rank == rank:
+                    break
+                heapq.heappush(heap, (current_rank, index, combo_candidate))
+                if not heap:
+                    break
         else:
-            combo = combos.pop(0)
+            if not combos:
+                break
+            combo_candidate = combos.pop(0)
+        combo = combo_candidate.records
 
         target_rate = min(record.sample_rate for record in combo)
         min_duration = (required_samples - 1) / target_rate
@@ -200,8 +235,30 @@ def _discover_windows(
 
         if selected_windows:
             if group_strategy == "balanced":
-                usage.update(record.platform_id for record in combo)
+                usage.update(combo_candidate.platforms)
             group_index += 1
+            if progress_every > 0.0:
+                now = time.time()
+                if now - last_progress >= progress_every:
+                    elapsed = max(now - started_at, 1e-9)
+                    rate = group_index / elapsed if group_index else 0.0
+                    eta = (max_groups - group_index) / rate if rate else 0.0
+                    print(
+                        "cdip_discover progress label=%s groups=%d/%d "
+                        "windows=%d remaining_combos=%d elapsed=%.1fs eta=%.1fs"
+                        % (
+                            progress_label or "windows",
+                            group_index,
+                            max_groups,
+                            len(windows),
+                            len(heap) if group_strategy == "balanced" else len(combos),
+                            elapsed,
+                            eta,
+                        ),
+                        file=sys.stderr,
+                        flush=True,
+                    )
+                    last_progress = now
 
     return windows
 
@@ -809,6 +866,8 @@ def run_batch(args: argparse.Namespace) -> dict[str, Any]:
             max_windows_per_group=args.max_windows_per_group,
             window_offset_per_group=args.window_offset_per_group,
             group_strategy=args.group_strategy,
+            progress_label="batch",
+            progress_every=args.progress_every,
         )
         if args.max_total_windows > 0:
             windows = windows[: args.max_total_windows]
