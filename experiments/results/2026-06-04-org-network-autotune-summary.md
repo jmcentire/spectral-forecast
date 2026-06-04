@@ -33,17 +33,22 @@ Code:
 
 - `experiments/org_network_autotune.py`
 - `tests/test_org_network_autotune.py`
+- `spectral_forecast/structure.py`
+- `tests/test_structure.py`
 
 Result JSON:
 
 - `experiments/results/2026-06-04-email-eu-org-network-autotune-smoke.json`
 - `experiments/results/2026-06-04-email-eu-org-network-autotune-permute-smoke.json`
 - `experiments/results/2026-06-04-email-eu-relation-only-autotune-permute-smoke.json`
+- `experiments/results/2026-06-04-email-eu-relation-only-structure-readiness.json`
 - `experiments/results/2026-06-04-enron-email-simplices-relation-autotune-permute-smoke.json`
 - `experiments/results/2026-06-04-enron-email-simplices-relation-only-autotune-permute-smoke.json`
+- `experiments/results/2026-06-04-enron-email-simplices-relation-only-structure-readiness.json`
 - `experiments/results/2026-06-04-sociopatterns-workplace-org-network-autotune-smoke.json`
 - `experiments/results/2026-06-04-sociopatterns-workplace-org-network-autotune-permute-smoke.json`
 - `experiments/results/2026-06-04-sociopatterns-workplace-relation-only-autotune-permute-smoke.json`
+- `experiments/results/2026-06-04-sociopatterns-workplace-relation-only-structure-readiness.json`
 
 Data sources:
 
@@ -97,21 +102,23 @@ Run shape:
 
 ### Block-Permutation Null
 
-Small bounded run:
+Larger run completed from the initial smoke command:
 
-- bins: 180 ten-minute bins
-- included edges: 17,140
-- calibration/validation split: 90 / 90 bins
-- series: 33
+- bins: 3,312 five-minute bins
+- included edges: 78,249
+- calibration/validation split: 1,656 / 1,656 bins
+- series: 57
 
 | Segment | Accepted | Delta | z effect | Empirical p_ge | Unique null totals |
 | --- | --- | ---: | ---: | ---: | ---: |
-| Calibration | no | ~0.000 | -0.98 | 1.0000 | 1 |
-| Validation | no | ~0.000 | 0.98 | 1.0000 | 1 |
+| Calibration | no | +2347.162 | 2.14 | 0.0196 | 50 |
+| Validation | yes | +657.068 | 0.92 | 0.1961 | 50 |
 
-The block null was degenerate on this bounded slice: all null totals collapsed
-to a single value. Treat this run as a null-design diagnostic, not as evidence
-for or against structure.
+The calibration surface has positive block-null lift, but it is saturated
+(`saturation_penalty = 1.0`), so the gate rejects it. The frozen configuration
+is accepted on validation, but because calibration did not clear the gate this
+is not counted as a discovered surface. Treat it as evidence that the feature
+surface contains structure but that the current aggregate is too blunt.
 
 ### Permutation Null
 
@@ -129,11 +136,10 @@ Non-degenerate bounded run:
 
 Interpretation:
 
-The first SocioPatterns feature surface is also rejected under the
-non-degenerate permutation null. The strongest windows are again mostly global
-activity and concentration bursts. Those are real workplace rhythms, but this
-surface does not produce cross-series residual structure stronger than the
-null.
+The first SocioPatterns feature surface is rejected under the permutation null.
+The strongest windows are again mostly global activity and concentration
+bursts. Those are real workplace rhythms, but this surface does not produce
+stable accepted residual structure stronger than the null.
 
 ## Current Read
 
@@ -141,9 +147,10 @@ The adapter works, but the first organizational feature family did not surface
 accepted latent structure. That is a useful negative control:
 
 - the pipeline did not accept ordinary communication volume as signal;
-- the validation split rejected the frozen selected configurations;
-- unique-null-total reporting caught a degenerate block null on the small
-  SocioPatterns slice;
+- validation did not rescue failed calibration surfaces in a way we can count
+  as discovery;
+- the larger SocioPatterns block-null run showed positive lift but failed the
+  calibration gate because it saturated;
 - the result is consistent across Email-Eu and SocioPatterns for this feature
   family.
 
@@ -215,35 +222,77 @@ to trust, especially because calibration was below null.
 ## Current Honest Read
 
 The organizational-network adapter is operational, and the relation-change
-features are the right direction conceptually. But the current organizational
-network experiments are negative:
+features are the right direction conceptually. The first read was negative:
 
 - volume/concentration features failed;
 - relation-change features also failed;
 - mild calibration positives did not transfer;
 - Enron co-participation churn did not beat nulls in calibration;
-- SocioPatterns block-permutation showed one degenerate null case, which the
-  unique-null-total instrumentation caught.
+- SocioPatterns block-permutation showed lift, but the selected calibration
+  surface saturated and was rejected.
 
-This does not prove there is no exploitable organizational structure. It does
-show that these first edge-stream representations are not enough. The method is
-behaving conservatively, which is good, but the organizational result itself is
-not yet promising.
+This did not prove there was no exploitable organizational structure. It only
+proved that the current observer/autotune extraction was not turning the
+structure into stable residual events.
+
+## Structure-Readiness Diagnostic
+
+A multichannel structure-readiness diagnostic was added after the negative
+autotune runs. It is entropy-like but not a single entropy number. It compares
+observed multichannel structure against independently shuffled columns that
+preserve each component's marginal distribution while destroying temporal
+alignment:
+
+- covariance eigenvalue entropy: are cross-series modes concentrated rather
+  than diffuse?
+- active-pattern entropy: do above-threshold activity patterns repeat more than
+  null?
+- temporal memory: do components have more lag-1 memory than shuffled columns?
+
+This is a preflight test. It says whether the dataset has dependence or
+compressibility that a detector might exploit. It does not say that the current
+observer can exploit it, and it does not identify what the structure means.
+
+Relation-only readiness results:
+
+| Dataset | Segment | Ready | Score | Active fraction | Cov entropy deficit | Cov z | Pattern z | Temporal z |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Email-Eu | Calibration | yes | 0.700 | 0.157 | 0.2166 | 382.71 | n/a | 59.89 |
+| Email-Eu | Validation | yes | 0.700 | 0.139 | 0.4389 | 788.18 | -0.10 | 128.29 |
+| SocioPatterns | Calibration | yes | 0.700 | 0.153 | 0.4327 | 231.51 | n/a | 86.57 |
+| SocioPatterns | Validation | yes | 0.700 | 0.175 | 0.3287 | 155.83 | n/a | 61.33 |
+| Enron simplices | Calibration | yes | 1.000 | 0.103 | 0.2078 | 336.72 | 4393.46 | 66.24 |
+| Enron simplices | Validation | yes | 0.700 | 0.145 | 0.2103 | 523.09 | n/a | 72.37 |
+
+Updated read:
+
+The relation-only organizational surfaces are not empty. They contain strong
+cross-component dependence and temporal memory relative to shuffled-column
+nulls. The failed autotune runs therefore point at an extraction mismatch, not
+at a structureless dataset.
+
+In plain terms: the data has organization in it; the current
+spectral-residual/stigmergy observer is not yet the right instrument for these
+edge-derived organizational features.
 
 ## Next Adapter Step
 
 The next feature surface should move from generic edge churn to richer
-organizational structure:
+organizational structure and/or a better observer for relational series:
 
-1. Temporal motifs, such as repeated A-to-B contact, reciprocal reply latency
+1. Add a readiness gate before expensive autotune; do not run full observer
+   grids on surfaces that fail structure readiness.
+2. Add a relation-native observer that models discrete/relational transitions
+   directly instead of forcing all features through the spectral residual path.
+3. Temporal motifs, such as repeated A-to-B contact, reciprocal reply latency
    buckets, and triadic closure bursts.
-2. Detrended or difference features, so the detector sees change in structure
+4. Detrended or difference features, so the detector sees change in structure
    rather than raw meeting/email volume.
-3. Role-aware features for datasets that actually have roles, titles, or
+5. Role-aware features for datasets that actually have roles, titles, or
    reliable groups.
-4. Thread/conversation features where message text or subject lines are
+6. Thread/conversation features where message text or subject lines are
    available.
-5. Explicit event-time attribution after discovery, especially Enron's public
+7. Explicit event-time attribution after discovery, especially Enron's public
    crisis timeline, but not as a tuning target.
 
 The next dataset should probably not be another bare temporal edge list. Use a

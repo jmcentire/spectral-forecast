@@ -39,6 +39,7 @@ from spectral_forecast.autotune import (
     observation_null_totals_for_config,
     score_autotune_observation,
 )
+from spectral_forecast.structure import structure_readiness
 
 
 @dataclass(frozen=True)
@@ -1030,6 +1031,24 @@ def score_configs(
     }
 
 
+def structure_readiness_report(
+    series: Mapping[str, NDArray[np.float64]],
+    *,
+    args: argparse.Namespace,
+) -> dict[str, Any]:
+    try:
+        return structure_readiness(
+            series,
+            null_repeats=args.structure_null_repeats,
+            seed=args.seed + 707,
+            active_z_threshold=args.structure_active_z,
+            min_series=args.structure_min_series,
+            min_score=args.structure_min_score,
+        ).to_dict()
+    except Exception as exc:  # noqa: BLE001 - report diagnostic failure without killing autotune.
+        return {"ready": False, "reason": "structure_readiness_error", "error": str(exc)}
+
+
 def _emissions(matrix: NDArray[np.float64], config: AutoTuneConfig) -> NDArray[np.float64]:
     excess = np.maximum(matrix - config.emission_threshold, 0.0)
     active = np.sum(excess > 0.0, axis=1)
@@ -1143,6 +1162,41 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
     split = int(n_bins * args.validation_start_fraction)
     if args.no_validation:
         split = n_bins
+    calibration_series = slice_series(network.series, start=0, end=split)
+    readiness: dict[str, Any] = {
+        "calibration": structure_readiness_report(calibration_series, args=args),
+    }
+    validation_series: dict[str, NDArray[np.float64]] | None = None
+    if not args.no_validation:
+        validation_series = slice_series(network.series, start=split, end=n_bins)
+        readiness["validation"] = structure_readiness_report(validation_series, args=args)
+    if args.readiness_only:
+        return {
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "args": {
+                key: str(value) if isinstance(value, Path) else value
+                for key, value in vars(args).items()
+                if key not in {"output"}
+            },
+            "dataset": {
+                **dataset_metadata,
+                "edge_path": str(edge_path),
+                "label_path": str(label_path) if label_path else None,
+                "data_format": data_format,
+            },
+            "series_metadata": network.metadata,
+            "dropped_series": network.dropped_series[:50],
+            "calibration_bins": split,
+            "validation_bins": 0 if args.no_validation else n_bins - split,
+            "structure_readiness": readiness,
+            "configs_searched": 0,
+            "calibration": None,
+            "validation": None,
+            "top_windows": {
+                "calibration": [],
+                "validation": [],
+            },
+        }
     min_needed = max(_parse_int_list(args.baselines)) + max(_parse_int_list(args.strides)) + 1
     if split < min_needed:
         raise ValueError(
@@ -1152,9 +1206,7 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError(
             f"validation bins {n_bins - split} are too short for requested configs; need at least {min_needed}"
         )
-
     configs = build_configs(args)
-    calibration_series = slice_series(network.series, start=0, end=split)
     calibration = score_configs(
         calibration_series,
         configs,
@@ -1177,7 +1229,7 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
             absolute_start_timestamp=float(network.metadata["start_timestamp"]),
         )
         if not args.no_validation:
-            validation_series = slice_series(network.series, start=split, end=n_bins)
+            assert validation_series is not None
             validation_scored = score_candidate(
                 validation_series,
                 selected_config,
@@ -1214,6 +1266,7 @@ def run_org_network_autotune(args: argparse.Namespace) -> dict[str, Any]:
         "dropped_series": network.dropped_series[:50],
         "calibration_bins": split,
         "validation_bins": 0 if args.no_validation else n_bins - split,
+        "structure_readiness": readiness,
         "configs_searched": len(configs),
         "calibration": calibration,
         "validation": validation,
@@ -1239,7 +1292,48 @@ def print_report(report: Mapping[str, Any], *, top: int) -> None:
             series.get("dropped_series_count"),
         )
     )
-    best = dict(report.get("calibration", {}).get("best") or {})
+    readiness = report.get("structure_readiness", {})
+    if readiness:
+        calibration_ready = dict(readiness.get("calibration") or {})
+        if calibration_ready:
+            print(
+                "  structure calibration ready=%s score=%.3f reason=%s cov_z=%s pattern_z=%s temporal_z=%s"
+                % (
+                    calibration_ready.get("ready"),
+                    float(calibration_ready.get("structure_score", 0.0)),
+                    calibration_ready.get("reason"),
+                    "None"
+                    if calibration_ready.get("covariance_z_effect") is None
+                    else "%.2f" % float(calibration_ready.get("covariance_z_effect", 0.0)),
+                    "None"
+                    if calibration_ready.get("pattern_z_effect") is None
+                    else "%.2f" % float(calibration_ready.get("pattern_z_effect", 0.0)),
+                    "None"
+                    if calibration_ready.get("temporal_z_effect") is None
+                    else "%.2f" % float(calibration_ready.get("temporal_z_effect", 0.0)),
+                )
+            )
+        validation_ready = dict(readiness.get("validation") or {})
+        if validation_ready:
+            print(
+                "  structure validation ready=%s score=%.3f reason=%s cov_z=%s pattern_z=%s temporal_z=%s"
+                % (
+                    validation_ready.get("ready"),
+                    float(validation_ready.get("structure_score", 0.0)),
+                    validation_ready.get("reason"),
+                    "None"
+                    if validation_ready.get("covariance_z_effect") is None
+                    else "%.2f" % float(validation_ready.get("covariance_z_effect", 0.0)),
+                    "None"
+                    if validation_ready.get("pattern_z_effect") is None
+                    else "%.2f" % float(validation_ready.get("pattern_z_effect", 0.0)),
+                    "None"
+                    if validation_ready.get("temporal_z_effect") is None
+                    else "%.2f" % float(validation_ready.get("temporal_z_effect", 0.0)),
+                )
+            )
+    calibration = dict(report.get("calibration") or {})
+    best = dict(calibration.get("best") or {})
     if not best:
         print("  no calibration candidate")
         return
@@ -1282,7 +1376,7 @@ def print_report(report: Mapping[str, Any], *, top: int) -> None:
                 validation["worst_null_mode"],
             )
         )
-    scores = list(report.get("calibration", {}).get("scores", []))[:top]
+    scores = list(calibration.get("scores", []))[:top]
     if len(scores) > 1:
         print("  top calibration configs")
         for row in scores:
@@ -1330,6 +1424,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--null-repeats", type=int, default=100)
     parser.add_argument("--null-modes", default="block-permute")
     parser.add_argument("--null-block-size", type=int, default=8)
+    parser.add_argument("--structure-null-repeats", type=int, default=50)
+    parser.add_argument("--structure-active-z", type=float, default=1.5)
+    parser.add_argument("--structure-min-series", type=int, default=3)
+    parser.add_argument("--structure-min-score", type=float, default=0.35)
+    parser.add_argument("--readiness-only", action="store_true")
     parser.add_argument("--seed", type=int, default=20260604)
     parser.add_argument("--baselines", default="96,128")
     parser.add_argument("--adaptive-windows", default="32,48")
