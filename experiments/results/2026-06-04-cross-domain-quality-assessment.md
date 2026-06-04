@@ -23,7 +23,7 @@ it loses structure, and where an attractive aggregate is an artifact.
 | Social: Enron | unresolved | none claimed | current representation cannot construct the frozen observer |
 | Ocean: CDIP | downgraded by stronger control | reproducible anchor-aligned observer-score structure; high-score windows are swell-like post hoc | original buoy-group-specific coherence does not replicate under trajectory regroup |
 | EEG: within-brain | mixed positive | recording-specific structure replicates for chb01 and chb02 | chb03 fails calibration/validation replication |
-| EEG: population nominal | promising, bounded | one common aggregate-developed instrument surfaces recording-specific population deviance in all three held-out runs | three epilepsy subjects cannot establish medical abnormality or external generalization |
+| EEG: population nominal | externally replicated, bounded | one frozen aggregate-developed instrument surfaces recording-specific organization and stable signed geometry in three unseen subjects | same-corpus replication cannot establish medical abnormality, named meaning, or cross-corpus generalization |
 
 ## Sober Interpretation
 
@@ -50,6 +50,14 @@ seizure-associated deviations, while `chb03` shows a broad persistent
 population difference. That is the kind of distinction a purely within-entity
 baseline cannot make.
 
+The frozen external extension adds a stricter result: `chb04-06` contributed to
+neither selection nor population fitting, yet all three exceeded
+recording-regroup controls and repeated their signed population-deviation
+geometry across disjoint recording halves. They did not repeat one pattern:
+`chb04` is population-difference dominated, `chb05` shows ordered later
+self-change, and `chb06` is self-change dominated. This supports the
+multi-view instrument methodology while leaving the structures' meaning open.
+
 The most important negative result is CDIP. Timing permutation, tide removal,
 spectral masking, and held-out groups were insufficient to establish
 group-specific coherence. A trajectory-regroup null preserved the shared score
@@ -71,9 +79,9 @@ surplus did not replicate. The earlier ocean claim is therefore superseded.
 
 ## Next Highest-Value Experiments
 
-1. Expand the common population EEG instrument to additional CHB-MIT subjects.
-   Freeze the current common candidate first; use new subjects as true external
-   tests before any retuning.
+1. Expand the now-frozen population EEG instrument to additional CHB-MIT
+   subjects without retuning. Grade within-subject replication, population
+   reference sensitivity, and recurring signed structural families.
 2. Add suitable non-epilepsy or healthy-control EEG if acquisition geometry is
    comparable. That is required before discussing abnormality.
 3. Add relation-change features to population scoring so the instrument can
@@ -92,3 +100,5 @@ surplus did not replicate. The earlier ocean claim is therefore superseded.
 - `experiments/results/2026-06-04-cdip-observer-group-null1000.json`
 - `experiments/results/2026-06-04-chbmit-observer-group-null1000.json`
 - `experiments/results/2026-06-04-chbmit-population-nominal.json`
+- `experiments/results/2026-06-04-chbmit-population-external.json`
+- `experiments/results/2026-06-04-chbmit-frozen-external-assessment.md`

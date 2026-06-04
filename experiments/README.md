@@ -274,3 +274,21 @@ python3 experiments/chbmit_population_nominal.py \
   --checkpoint /tmp/chbmit-population.checkpoint.json \
   --output experiments/results/chbmit-population.json
 ```
+
+After freezing that common instrument, evaluate genuinely unseen subjects with
+a separate runner. External subjects contribute to neither candidate selection
+nor the population nominal. The runner compares population deviance with a
+coverage-balanced alternating self view and an earlier-prefix-to-later
+order-sensitive self view; prediction is not involved:
+
+```bash
+python3 experiments/chbmit_population_external.py \
+  --training-subjects chb01 chb02 chb03 \
+  --external-subjects chb04 chb05 chb06 \
+  --max-files-per-subject 14 \
+  --null-repeats 1000 \
+  --workers 4 \
+  --progress \
+  --checkpoint /tmp/chbmit-population-external.checkpoint.json \
+  --output experiments/results/chbmit-population-external.json
+```

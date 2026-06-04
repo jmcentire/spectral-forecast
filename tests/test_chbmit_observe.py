@@ -23,6 +23,13 @@ File Name: chbxx_02.edf
 Number of Seizures in File: 1
 Seizure Start Time: 12 seconds
 Seizure End Time: 34 seconds
+
+File Name: chbxx_03.edf
+Number of Seizures in File: 2
+Seizure 1 Start Time: 56 seconds
+Seizure 1 End Time: 78 seconds
+Seizure 2 Start Time: 90 seconds
+Seizure 2 End Time: 123 seconds
 """,
         encoding="utf-8",
     )
@@ -31,6 +38,7 @@ Seizure End Time: 34 seconds
 
     assert labels["chbxx_01.edf"].seizures == ()
     assert labels["chbxx_02.edf"].seizures == ((12.0, 34.0),)
+    assert labels["chbxx_03.edf"].seizures == ((56.0, 78.0), (90.0, 123.0))
 
 
 def test_multi_channel_emissions_require_minimum_active_channels() -> None:

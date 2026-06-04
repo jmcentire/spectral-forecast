@@ -116,12 +116,21 @@ def population_feature_deviance_tensor(
 ) -> NDArray[np.float64]:
     """Return absolute robust population deviation per entity and feature."""
 
+    return np.abs(population_signed_deviance_tensor(tensor, nominal)).astype(np.float64)
+
+
+def population_signed_deviance_tensor(
+    tensor: NDArray[np.floating],
+    nominal: PopulationNominal,
+) -> NDArray[np.float64]:
+    """Return signed robust population deviation per entity and feature."""
+
     values = _validate_tensors(
         [tensor],
         entity_names=nominal.entity_names,
         feature_names=nominal.feature_names,
     )[0]
-    return np.abs(
+    return (
         (values - nominal.centers[None, :, :])
         / nominal.scales[None, :, :]
     ).astype(np.float64)

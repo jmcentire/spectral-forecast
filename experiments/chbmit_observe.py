@@ -179,8 +179,20 @@ def parse_chbmit_summary(path: Path) -> dict[str, FileSeizures]:
         if not file_match:
             continue
         file_name = file_match.group(1)
-        starts = [float(value) for value in re.findall(r"Seizure Start Time:\s+([0-9.]+)\s+seconds", block)]
-        ends = [float(value) for value in re.findall(r"Seizure End Time:\s+([0-9.]+)\s+seconds", block)]
+        starts = [
+            float(value)
+            for value in re.findall(
+                r"Seizure(?: \d+)? Start Time:\s+([0-9.]+)\s+seconds",
+                block,
+            )
+        ]
+        ends = [
+            float(value)
+            for value in re.findall(
+                r"Seizure(?: \d+)? End Time:\s+([0-9.]+)\s+seconds",
+                block,
+            )
+        ]
         out[file_name] = FileSeizures(
             file_name=file_name,
             seizures=tuple(zip(starts, ends, strict=False)),

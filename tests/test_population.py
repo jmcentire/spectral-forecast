@@ -6,6 +6,7 @@ from spectral_forecast.population import (
     fit_population_nominal,
     population_deviance_matrix,
     population_feature_deviance_tensor,
+    population_signed_deviance_tensor,
 )
 
 
@@ -30,6 +31,9 @@ def test_population_deviance_surfaces_persistent_heldout_difference() -> None:
     assert float(np.median(shifted_score[:, 1])) > float(np.median(ordinary_score[:, 1])) + 5.0
     feature_z = population_feature_deviance_tensor(shifted, nominal)
     assert feature_z.shape == shifted.shape
+    signed_z = population_signed_deviance_tensor(shifted, nominal)
+    assert float(np.median(signed_z[:, 1])) > 5.0
+    assert np.allclose(np.abs(signed_z), feature_z)
 
 
 def test_population_nominal_requires_matching_geometry() -> None:

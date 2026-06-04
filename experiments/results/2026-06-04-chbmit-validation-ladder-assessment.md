@@ -149,3 +149,21 @@ Self-referential and population nominals answer orthogonal questions:
 A generic structure-discovery system should retain both axes. Collapsing them
 causes stable abnormality to disappear into the entity's own definition of
 normal.
+
+## Frozen External Extension
+
+The common population instrument was subsequently frozen and run without
+retuning on checksum-verified `chb04`, `chb05`, and `chb06` recordings. Each
+external subject exceeded the channel-preserving recording-regroup null, and
+its signed population-deviation fingerprint replicated across disjoint,
+sequence-balanced recording halves.
+
+The external subjects exposed different geometries:
+
+- `chb04`: persistent population difference dominates self-change;
+- `chb05`: ordered later self-change dominates; and
+- `chb06`: self-change dominates while population deviation remains rare.
+
+This is external replication of an instrument response, not identification of
+medical abnormality or a prediction result. See
+`2026-06-04-chbmit-frozen-external-assessment.md`.
