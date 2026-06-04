@@ -1,0 +1,1344 @@
+{
+  "cache": {
+    "entries": 16,
+    "hits": 132,
+    "misses": 16
+  },
+  "calibration": {
+    "best": {
+      "accepted": true,
+      "aggregate_null_lift": 0.4368429662776535,
+      "candidate": {
+        "adaptive_window": 128,
+        "baseline_size": 256,
+        "decay": 0.9,
+        "emission_threshold": 8.0,
+        "min_active_series": 12,
+        "score": "max",
+        "stride": 32
+      },
+      "events_scored": 4,
+      "events_skipped": 0,
+      "mean_fragility": 0.0,
+      "mean_quality": -0.12221029510460482,
+      "mean_saturation": 0.7902097902097902,
+      "mean_stability": 0.6666666666666666,
+      "null_mean_total": 97174.01221752474,
+      "null_mode_reports": [
+        {
+          "accepted": true,
+          "aggregate_null_lift": 0.4368429662776535,
+          "candidate": {
+            "adaptive_window": 128,
+            "baseline_size": 256,
+            "decay": 0.9,
+            "emission_threshold": 8.0,
+            "min_active_series": 12,
+            "score": "max",
+            "stride": 32
+          },
+          "event_scores": [
+            {
+              "active_windows": 10,
+              "delta": -1.8189894035458565e-12,
+              "event": "frequency_0:event0:datatype3",
+              "exceedances": 93,
+              "null_mean": 10714.201167498757,
+              "observed": 10714.201167498755,
+              "saturation": 0.8601398601398601,
+              "z_effect": -1.0488088481701514
+            },
+            {
+              "active_windows": 10,
+              "delta": 1.8189894035458565e-12,
+              "event": "frequency_0:event2:datatype3",
+              "exceedances": 70,
+              "null_mean": 10185.976105063415,
+              "observed": 10185.976105063417,
+              "saturation": 0.8601398601398601,
+              "z_effect": 1.079215401276752
+            },
+            {
+              "active_windows": 8,
+              "delta": 305.7636103874497,
+              "event": "frequency_1:event0:datatype3",
+              "exceedances": 0,
+              "null_mean": 1048.52898547901,
+              "observed": 1354.2925958664598,
+              "saturation": 0.5804195804195804,
+              "z_effect": 2.969556766555901
+            },
+            {
+              "active_windows": 10,
+              "delta": 0.0,
+              "event": "frequency_1:event2:datatype3",
+              "exceedances": 92,
+              "null_mean": 75225.30595948355,
+              "observed": 75225.30595948355,
+              "saturation": 0.8601398601398601,
+              "z_effect": 0.0
+            }
+          ],
+          "events_scored": 4,
+          "events_skipped": 0,
+          "mean_fragility": 0.0,
+          "mean_quality": -0.12221029510460482,
+          "mean_saturation": 0.7902097902097902,
+          "mean_stability": 0.6666666666666666,
+          "null_mean_total": 97174.01221752474,
+          "null_mode": "permute",
+          "null_std_total": 102.96607690112565,
+          "null_total_empirical_p_floor": 0.009900990099009901,
+          "null_total_empirical_p_ge_observed": 0.009900990099009901,
+          "null_total_exceedances": 0,
+          "null_total_repeats": 100,
+          "null_total_unique_repeats": 100,
+          "observed_active_windows": 38,
+          "observed_minus_null_total": 305.76361038743926,
+          "observed_total": 97479.77582791218,
+          "positive_event_fraction": 0.5,
+          "positive_events": 2,
+          "quality": 0.012000446464808558,
+          "skipped": [],
+          "z_effect": 2.9695567665557685
+        }
+      ],
+      "null_modes": [
+        "permute"
+      ],
+      "null_std_total": 102.96607690112565,
+      "null_total_empirical_p_floor": 0.009900990099009901,
+      "null_total_empirical_p_ge_observed": 0.009900990099009901,
+      "null_total_exceedances": 0,
+      "null_total_repeats": 100,
+      "null_total_unique_repeats": 100,
+      "observed_minus_null_total": 305.76361038743926,
+      "observed_total": 97479.77582791218,
+      "positive_event_fraction": 0.5,
+      "quality": 0.012000446464808558,
+      "worst_null_mode": "permute",
+      "z_effect": 2.9695567665557685
+    },
+    "candidates": [
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.4368429662776535,
+        "candidate": {
+          "adaptive_window": 128,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 8.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.0,
+        "mean_quality": -0.12221029510460482,
+        "mean_saturation": 0.7902097902097902,
+        "mean_stability": 0.6666666666666666,
+        "null_mean_total": 97174.01221752474,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.4368429662776535,
+            "candidate": {
+              "adaptive_window": 128,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 8.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 10,
+                "delta": -1.8189894035458565e-12,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 93,
+                "null_mean": 10714.201167498757,
+                "observed": 10714.201167498755,
+                "saturation": 0.8601398601398601,
+                "z_effect": -1.0488088481701514
+              },
+              {
+                "active_windows": 10,
+                "delta": 1.8189894035458565e-12,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 70,
+                "null_mean": 10185.976105063415,
+                "observed": 10185.976105063417,
+                "saturation": 0.8601398601398601,
+                "z_effect": 1.079215401276752
+              },
+              {
+                "active_windows": 8,
+                "delta": 305.7636103874497,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 0,
+                "null_mean": 1048.52898547901,
+                "observed": 1354.2925958664598,
+                "saturation": 0.5804195804195804,
+                "z_effect": 2.969556766555901
+              },
+              {
+                "active_windows": 10,
+                "delta": 0.0,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 92,
+                "null_mean": 75225.30595948355,
+                "observed": 75225.30595948355,
+                "saturation": 0.8601398601398601,
+                "z_effect": 0.0
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.0,
+            "mean_quality": -0.12221029510460482,
+            "mean_saturation": 0.7902097902097902,
+            "mean_stability": 0.6666666666666666,
+            "null_mean_total": 97174.01221752474,
+            "null_mode": "permute",
+            "null_std_total": 102.96607690112565,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 38,
+            "observed_minus_null_total": 305.76361038743926,
+            "observed_total": 97479.77582791218,
+            "positive_event_fraction": 0.5,
+            "positive_events": 2,
+            "quality": 0.012000446464808558,
+            "skipped": [],
+            "z_effect": 2.9695567665557685
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 102.96607690112565,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 305.76361038743926,
+        "observed_total": 97479.77582791218,
+        "positive_event_fraction": 0.5,
+        "quality": 0.012000446464808558,
+        "worst_null_mode": "permute",
+        "z_effect": 2.9695567665557685
+      },
+      {
+        "accepted": false,
+        "aggregate_null_lift": 0.10769977199258171,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 128,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.08333333333333334,
+        "mean_quality": 0.027309324878617827,
+        "mean_saturation": 0.5113960113960114,
+        "mean_stability": 0.7916666666666666,
+        "null_mean_total": 119614.12290092622,
+        "null_mode_reports": [
+          {
+            "accepted": false,
+            "aggregate_null_lift": 0.10769977199258171,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 128,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 11,
+                "delta": 39.722803405851664,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 84,
+                "null_mean": 14652.572173335584,
+                "observed": 14692.294976741436,
+                "saturation": 0.6,
+                "z_effect": 0.16943671406118715
+              },
+              {
+                "active_windows": 9,
+                "delta": -247.4338947794049,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 85,
+                "null_mean": 4636.6043571611735,
+                "observed": 4389.170462381769,
+                "saturation": 0.48888888888888893,
+                "z_effect": -1.0379157065103917
+              },
+              {
+                "active_windows": 1,
+                "delta": 281.14588049798317,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 0,
+                "null_mean": 13.353605141484405,
+                "observed": 294.4994856394676,
+                "saturation": 0.05925925925925927,
+                "z_effect": 6.9808028942330616
+              },
+              {
+                "active_windows": 14,
+                "delta": -10.917809248203412,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 100311.59276528798,
+                "observed": 100300.67495603977,
+                "saturation": 0.8974358974358975,
+                "z_effect": -460314938478.2829
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.08333333333333334,
+            "mean_quality": 0.027309324878617827,
+            "mean_saturation": 0.5113960113960114,
+            "mean_stability": 0.7916666666666666,
+            "null_mean_total": 119614.12290092622,
+            "null_mode": "permute",
+            "null_std_total": 346.8011010277854,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.5346534653465347,
+            "null_total_exceedances": 53,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 87,
+            "observed_active_windows": 35,
+            "observed_minus_null_total": 62.51697987622174,
+            "observed_total": 119676.63988080244,
+            "positive_event_fraction": 0.5,
+            "positive_events": 2,
+            "quality": 0.07923426787676326,
+            "skipped": [],
+            "z_effect": 0.18026753574583643
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 346.8011010277854,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.5346534653465347,
+        "null_total_exceedances": 53,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 87,
+        "observed_minus_null_total": 62.51697987622174,
+        "observed_total": 119676.63988080244,
+        "positive_event_fraction": 0.5,
+        "quality": 0.07923426787676326,
+        "worst_null_mode": "permute",
+        "z_effect": 0.18026753574583643
+      },
+      {
+        "accepted": false,
+        "aggregate_null_lift": 0.39701962738787966,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 128,
+          "decay": 0.9,
+          "emission_threshold": 8.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.0,
+        "mean_quality": -0.07752288456358823,
+        "mean_saturation": 0.6713675213675213,
+        "mean_stability": 0.7916666666666666,
+        "null_mean_total": 124180.34382265061,
+        "null_mode_reports": [
+          {
+            "accepted": false,
+            "aggregate_null_lift": 0.39701962738787966,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 128,
+              "decay": 0.9,
+              "emission_threshold": 8.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 12,
+                "delta": -59.5670892508133,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 100,
+                "null_mean": 15824.697296584949,
+                "observed": 15765.130207334136,
+                "saturation": 0.7111111111111111,
+                "z_effect": -24218905886131.77
+              },
+              {
+                "active_windows": 13,
+                "delta": -34.86644252976839,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 97,
+                "null_mean": 5883.911483036224,
+                "observed": 5849.045040506456,
+                "saturation": 0.7948717948717949,
+                "z_effect": -0.9581105486442534
+              },
+              {
+                "active_windows": 8,
+                "delta": 523.9852969009305,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 0,
+                "null_mean": 896.7131396885738,
+                "observed": 1420.6984365895044,
+                "saturation": 0.28205128205128205,
+                "z_effect": 3.2463578175917855
+              },
+              {
+                "active_windows": 14,
+                "delta": -28.802776050637476,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 101575.0219033409,
+                "observed": 101546.21912729026,
+                "saturation": 0.8974358974358975,
+                "z_effect": -551107523953.5951
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.0,
+            "mean_quality": -0.07752288456358823,
+            "mean_saturation": 0.6713675213675213,
+            "mean_stability": 0.7916666666666666,
+            "null_mean_total": 124180.34382265061,
+            "null_mode": "permute",
+            "null_std_total": 162.1571346776625,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 47,
+            "observed_minus_null_total": 400.74898906974704,
+            "observed_total": 124581.09281172036,
+            "positive_event_fraction": 0.25,
+            "positive_events": 1,
+            "quality": 0.03423202228338168,
+            "skipped": [],
+            "z_effect": 2.4713620517922923
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 162.1571346776625,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 400.74898906974704,
+        "observed_total": 124581.09281172036,
+        "positive_event_fraction": 0.25,
+        "quality": 0.03423202228338168,
+        "worst_null_mode": "permute",
+        "z_effect": 2.4713620517922923
+      },
+      {
+        "accepted": false,
+        "aggregate_null_lift": 0.4674478724071522,
+        "candidate": {
+          "adaptive_window": 128,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.25,
+        "mean_quality": -0.1318529255199436,
+        "mean_saturation": 0.6548174048174048,
+        "mean_stability": 0.5833333333333333,
+        "null_mean_total": 93628.55279921734,
+        "null_mode_reports": [
+          {
+            "accepted": false,
+            "aggregate_null_lift": 0.4674478724071522,
+            "candidate": {
+              "adaptive_window": 128,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 10,
+                "delta": -1.8189894035458565e-12,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 67,
+                "null_mean": 9844.929303146984,
+                "observed": 9844.929303146982,
+                "saturation": 0.8601398601398601,
+                "z_effect": -0.7088991966887745
+              },
+              {
+                "active_windows": 9,
+                "delta": -37.95695498308487,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 9329.380564453588,
+                "observed": 9291.423609470503,
+                "saturation": 0.7222222222222222,
+                "z_effect": -11098001286179.76
+              },
+              {
+                "active_windows": 4,
+                "delta": 377.83454166294894,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 0,
+                "null_mean": 148.71233687964863,
+                "observed": 526.5468785425976,
+                "saturation": 0.17676767676767677,
+                "z_effect": 3.7237894659072506
+              },
+              {
+                "active_windows": 10,
+                "delta": -2.9103830456733704e-11,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 74305.53059473715,
+                "observed": 74305.53059473712,
+                "saturation": 0.8601398601398601,
+                "z_effect": -1.2610953357233277
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.25,
+            "mean_quality": -0.1318529255199436,
+            "mean_saturation": 0.6548174048174048,
+            "mean_stability": 0.5833333333333333,
+            "null_mean_total": 93628.55279921734,
+            "null_mode": "permute",
+            "null_std_total": 101.46506539163292,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 87,
+            "observed_active_windows": 33,
+            "observed_minus_null_total": 339.8775866798678,
+            "observed_total": 93968.43038589721,
+            "positive_event_fraction": 0.25,
+            "positive_events": 1,
+            "quality": -0.0024909574181555504,
+            "skipped": [],
+            "z_effect": 3.3497005631250008
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 101.46506539163292,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 87,
+        "observed_minus_null_total": 339.8775866798678,
+        "observed_total": 93968.43038589721,
+        "positive_event_fraction": 0.25,
+        "quality": -0.0024909574181555504,
+        "worst_null_mode": "permute",
+        "z_effect": 3.3497005631250008
+      },
+      {
+        "accepted": false,
+        "aggregate_null_lift": 0.46503623762710883,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.25,
+        "mean_quality": -0.13205983427275902,
+        "mean_saturation": 0.6548174048174048,
+        "mean_stability": 0.5833333333333333,
+        "null_mean_total": 93635.50754300161,
+        "null_mode_reports": [
+          {
+            "accepted": false,
+            "aggregate_null_lift": 0.46503623762710883,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 10,
+                "delta": 0.0,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 61,
+                "null_mean": 9845.35706830982,
+                "observed": 9845.35706830982,
+                "saturation": 0.8601398601398601,
+                "z_effect": 0.0
+              },
+              {
+                "active_windows": 9,
+                "delta": -37.95695498308487,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 9329.380564453588,
+                "observed": 9291.423609470503,
+                "saturation": 0.7222222222222222,
+                "z_effect": -10721687851181.723
+              },
+              {
+                "active_windows": 4,
+                "delta": 371.30756304152203,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 0,
+                "null_mean": 155.2393155010756,
+                "observed": 526.5468785425976,
+                "saturation": 0.17676767676767677,
+                "z_effect": 3.697925871805325
+              },
+              {
+                "active_windows": 10,
+                "delta": -2.9103830456733704e-11,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 74305.53059473715,
+                "observed": 74305.53059473712,
+                "saturation": 0.8601398601398601,
+                "z_effect": -1.2610953357233277
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.25,
+            "mean_quality": -0.13205983427275902,
+            "mean_saturation": 0.6548174048174048,
+            "mean_stability": 0.5833333333333333,
+            "null_mean_total": 93635.50754300161,
+            "null_mode": "permute",
+            "null_std_total": 100.40968259329836,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 89,
+            "observed_active_windows": 33,
+            "observed_minus_null_total": 333.35060805843386,
+            "observed_total": 93968.85815106005,
+            "positive_event_fraction": 0.25,
+            "positive_events": 1,
+            "quality": -0.003300774865981817,
+            "skipped": [],
+            "z_effect": 3.31990500765394
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 100.40968259329836,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 89,
+        "observed_minus_null_total": 333.35060805843386,
+        "observed_total": 93968.85815106005,
+        "positive_event_fraction": 0.25,
+        "quality": -0.003300774865981817,
+        "worst_null_mode": "permute",
+        "z_effect": 3.31990500765394
+      },
+      {
+        "accepted": false,
+        "aggregate_null_lift": 0.3589697512116514,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 8.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.0,
+        "mean_quality": -0.16506824290978822,
+        "mean_saturation": 0.7902097902097902,
+        "mean_stability": 0.6666666666666666,
+        "null_mean_total": 97216.24867675286,
+        "null_mode_reports": [
+          {
+            "accepted": false,
+            "aggregate_null_lift": 0.3589697512116514,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 8.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 10,
+                "delta": -1.8189894035458565e-12,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 88,
+                "null_mean": 10712.244569231658,
+                "observed": 10712.244569231656,
+                "saturation": 0.8601398601398601,
+                "z_effect": -0.9756654533819863
+              },
+              {
+                "active_windows": 10,
+                "delta": -0.735933946672958,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 10186.92569420818,
+                "observed": 10186.189760261506,
+                "saturation": 0.8601398601398601,
+                "z_effect": -364457044564.0186
+              },
+              {
+                "active_windows": 8,
+                "delta": 263.0039778380217,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 1,
+                "null_mean": 1091.7724538294563,
+                "observed": 1354.776431667478,
+                "saturation": 0.5804195804195804,
+                "z_effect": 2.0288149418042587
+              },
+              {
+                "active_windows": 10,
+                "delta": 0.0,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 82,
+                "null_mean": 75225.30595948355,
+                "observed": 75225.30595948355,
+                "saturation": 0.8601398601398601,
+                "z_effect": 0.0
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.0,
+            "mean_quality": -0.16506824290978822,
+            "mean_saturation": 0.7902097902097902,
+            "mean_stability": 0.6666666666666666,
+            "null_mean_total": 97216.24867675286,
+            "null_mode": "permute",
+            "null_std_total": 129.6342867053858,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.019801980198019802,
+            "null_total_exceedances": 1,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 38,
+            "observed_minus_null_total": 262.26804389132303,
+            "observed_total": 97478.51672064418,
+            "positive_event_fraction": 0.25,
+            "positive_events": 1,
+            "quality": -0.06282580510687537,
+            "skipped": [],
+            "z_effect": 2.0231379410245705
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 129.6342867053858,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.019801980198019802,
+        "null_total_exceedances": 1,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 262.26804389132303,
+        "observed_total": 97478.51672064418,
+        "positive_event_fraction": 0.25,
+        "quality": -0.06282580510687537,
+        "worst_null_mode": "permute",
+        "z_effect": 2.0231379410245705
+      },
+      {
+        "accepted": false,
+        "aggregate_null_lift": 0.2129535312833503,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 128,
+          "decay": 0.9,
+          "emission_threshold": 5.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.0,
+        "mean_quality": -0.2103705348552944,
+        "mean_saturation": 0.8717948717948718,
+        "mean_stability": 0.875,
+        "null_mean_total": 128171.34019243316,
+        "null_mode_reports": [
+          {
+            "accepted": false,
+            "aggregate_null_lift": 0.2129535312833503,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 128,
+              "decay": 0.9,
+              "emission_threshold": 5.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 14,
+                "delta": -11.247641609672428,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 100,
+                "null_mean": 16725.984849546523,
+                "observed": 16714.73720793685,
+                "saturation": 0.8974358974358975,
+                "z_effect": -5199778932225.827
+              },
+              {
+                "active_windows": 14,
+                "delta": -1.1512201730511151,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 100,
+                "null_mean": 6724.288580133687,
+                "observed": 6723.137359960636,
+                "saturation": 0.8974358974358975,
+                "z_effect": -1399372405232.4883
+              },
+              {
+                "active_windows": 12,
+                "delta": 100.64522288094395,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 16,
+                "null_mean": 2166.390914628768,
+                "observed": 2267.036137509712,
+                "saturation": 0.6923076923076924,
+                "z_effect": 0.8864997269532525
+              },
+              {
+                "active_windows": 15,
+                "delta": -1.4551915228366852e-11,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 84,
+                "null_mean": 102554.67584812417,
+                "observed": 102554.67584812416,
+                "saturation": 1.0,
+                "z_effect": -0.9318911162960933
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.0,
+            "mean_quality": -0.2103705348552944,
+            "mean_saturation": 0.8717948717948718,
+            "mean_stability": 0.875,
+            "null_mean_total": 128171.34019243316,
+            "null_mode": "permute",
+            "null_std_total": 113.53102524559718,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.24752475247524752,
+            "null_total_exceedances": 24,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 97,
+            "observed_active_windows": 55,
+            "observed_minus_null_total": 88.24636109819403,
+            "observed_total": 128259.58655353135,
+            "positive_event_fraction": 0.25,
+            "positive_events": 1,
+            "quality": -0.1446321520344568,
+            "skipped": [],
+            "z_effect": 0.7772885068843003
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 113.53102524559718,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.24752475247524752,
+        "null_total_exceedances": 24,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 97,
+        "observed_minus_null_total": 88.24636109819403,
+        "observed_total": 128259.58655353135,
+        "positive_event_fraction": 0.25,
+        "quality": -0.1446321520344568,
+        "worst_null_mode": "permute",
+        "z_effect": 0.7772885068843003
+      },
+      {
+        "accepted": false,
+        "aggregate_null_lift": 0.0,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 3,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 4,
+        "events_skipped": 0,
+        "mean_fragility": 0.0,
+        "mean_quality": -0.20815035281267974,
+        "mean_saturation": 0.7902097902097902,
+        "mean_stability": 0.6666666666666666,
+        "null_mean_total": 94398.53027339607,
+        "null_mode_reports": [
+          {
+            "accepted": false,
+            "aggregate_null_lift": 0.0,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 3,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 10,
+                "delta": 0.0,
+                "event": "frequency_0:event0:datatype3",
+                "exceedances": 59,
+                "null_mean": 9845.35706830982,
+                "observed": 9845.35706830982,
+                "saturation": 0.8601398601398601,
+                "z_effect": 0.0
+              },
+              {
+                "active_windows": 10,
+                "delta": 3.637978807091713e-12,
+                "event": "frequency_0:event2:datatype3",
+                "exceedances": 67,
+                "null_mean": 9329.380564453588,
+                "observed": 9329.380564453591,
+                "saturation": 0.8601398601398601,
+                "z_effect": 1.102145147600972
+              },
+              {
+                "active_windows": 8,
+                "delta": -19.847636752982908,
+                "event": "frequency_1:event0:datatype3",
+                "exceedances": 100,
+                "null_mean": 918.2620458955039,
+                "observed": 898.414409142521,
+                "saturation": 0.5804195804195804,
+                "z_effect": -12.456307987107962
+              },
+              {
+                "active_windows": 10,
+                "delta": -2.9103830456733704e-11,
+                "event": "frequency_1:event2:datatype3",
+                "exceedances": 99,
+                "null_mean": 74305.53059473715,
+                "observed": 74305.53059473712,
+                "saturation": 0.8601398601398601,
+                "z_effect": -1.2043875831929896
+              }
+            ],
+            "events_scored": 4,
+            "events_skipped": 0,
+            "mean_fragility": 0.0,
+            "mean_quality": -0.20815035281267974,
+            "mean_saturation": 0.7902097902097902,
+            "mean_stability": 0.6666666666666666,
+            "null_mean_total": 94398.53027339607,
+            "null_mode": "permute",
+            "null_std_total": 1.5933803799277442,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 1.0,
+            "null_total_exceedances": 100,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 4,
+            "observed_active_windows": 38,
+            "observed_minus_null_total": -19.847636753009283,
+            "observed_total": 94378.68263664306,
+            "positive_event_fraction": 0.25,
+            "positive_events": 1,
+            "quality": -0.19565035281267973,
+            "skipped": [],
+            "z_effect": -12.456307987116876
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 1.5933803799277442,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 1.0,
+        "null_total_exceedances": 100,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 4,
+        "observed_minus_null_total": -19.847636753009283,
+        "observed_total": 94378.68263664306,
+        "positive_event_fraction": 0.25,
+        "quality": -0.19565035281267973,
+        "worst_null_mode": "permute",
+        "z_effect": -12.456307987116876
+      }
+    ],
+    "events": [
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_0:event0:datatype3",
+        "event_index": 0,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_0.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_0:event2:datatype3",
+        "event_index": 2,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_0.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_1:event0:datatype3",
+        "event_index": 0,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_1.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_1:event2:datatype3",
+        "event_index": 2,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_1.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      }
+    ]
+  },
+  "created_at": "2026-06-04T03:45:14.039805+00:00",
+  "dataset": {
+    "name": "pmuBAGE synthetic PMU events",
+    "source": "https://github.com/NanpengYu/pmuBAGE",
+    "validation_boundary": "synthetic adapter/control case, not real-grid validation"
+  },
+  "elapsed_seconds": 215.52075695991516,
+  "method": {
+    "label_use": "none",
+    "selection": "rank candidate settings by aggregate cross-PMU emission lift on calibration events",
+    "validation": "freeze selected candidate and score disjoint heldout events"
+  },
+  "parameters": {
+    "adaptive_windows": [
+      64,
+      128
+    ],
+    "baselines": [
+      128,
+      256
+    ],
+    "candidate_count": 36,
+    "datatype_index": 3,
+    "decays": [
+      0.9
+    ],
+    "event_indices": "all",
+    "max_events": 0,
+    "min_active_sensors": [
+      3,
+      6,
+      12
+    ],
+    "min_positive_event_fraction": 0.5,
+    "min_z_effect": 2.0,
+    "null_block_size": 8,
+    "null_modes": [
+      "permute"
+    ],
+    "null_repeats": 100,
+    "sample_rate": 30.0,
+    "sensor_limit": 24,
+    "strides": [
+      32
+    ],
+    "tensors": [
+      "data/pmuBAGE/data/frequency/frequency_0.npy",
+      "data/pmuBAGE/data/frequency/frequency_1.npy"
+    ],
+    "thresholds": [
+      3.0,
+      5.0,
+      8.0,
+      12.0
+    ],
+    "validation_count": 8,
+    "validation_split": "alternate"
+  },
+  "validation": {
+    "events": [
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_0:event1:datatype3",
+        "event_index": 1,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_0.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_0:event3:datatype3",
+        "event_index": 3,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_0.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_1:event1:datatype3",
+        "event_index": 1,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_1.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "frequency",
+        "datatype_index": 3,
+        "event_id": "frequency_1:event3:datatype3",
+        "event_index": 3,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/frequency/frequency_1.npy",
+        "tensor_shape": [
+          4,
+          4,
+          100,
+          600
+        ]
+      }
+    ],
+    "result": {
+      "accepted": false,
+      "aggregate_null_lift": 0.0,
+      "candidate": {
+        "adaptive_window": 128,
+        "baseline_size": 256,
+        "decay": 0.9,
+        "emission_threshold": 8.0,
+        "min_active_series": 12,
+        "score": "max",
+        "stride": 32
+      },
+      "events_scored": 4,
+      "events_skipped": 0,
+      "mean_fragility": 0.0,
+      "mean_quality": -0.15725480506884307,
+      "mean_saturation": 0.7389277389277389,
+      "mean_stability": 0.75,
+      "null_mean_total": 84703.71309786782,
+      "null_mode_reports": [
+        {
+          "accepted": false,
+          "aggregate_null_lift": 0.0,
+          "candidate": {
+            "adaptive_window": 128,
+            "baseline_size": 256,
+            "decay": 0.9,
+            "emission_threshold": 8.0,
+            "min_active_series": 12,
+            "score": "max",
+            "stride": 32
+          },
+          "event_scores": [
+            {
+              "active_windows": 9,
+              "delta": -49.076858800948685,
+              "event": "frequency_0:event1:datatype3",
+              "exceedances": 100,
+              "null_mean": 27361.962228372526,
+              "observed": 27312.885369571577,
+              "saturation": 0.7828282828282829,
+              "z_effect": -4001823488157.8584
+            },
+            {
+              "active_windows": 9,
+              "delta": -62.26603974895079,
+              "event": "frequency_0:event3:datatype3",
+              "exceedances": 100,
+              "null_mean": 8439.190630978166,
+              "observed": 8376.924591229215,
+              "saturation": 0.7323232323232323,
+              "z_effect": -53852848154511.766
+            },
+            {
+              "active_windows": 10,
+              "delta": 7.275957614183426e-12,
+              "event": "frequency_1:event1:datatype3",
+              "exceedances": 28,
+              "null_mean": 47103.511208188924,
+              "observed": 47103.51120818893,
+              "saturation": 0.8601398601398601,
+              "z_effect": 1.5732132722552274
+            },
+            {
+              "active_windows": 8,
+              "delta": -65.8944912298291,
+              "event": "frequency_1:event3:datatype3",
+              "exceedances": 78,
+              "null_mean": 1799.0490303282297,
+              "observed": 1733.1545390984006,
+              "saturation": 0.5804195804195804,
+              "z_effect": -0.6896671624692171
+            }
+          ],
+          "events_scored": 4,
+          "events_skipped": 0,
+          "mean_fragility": 0.0,
+          "mean_quality": -0.15725480506884307,
+          "mean_saturation": 0.7389277389277389,
+          "mean_stability": 0.75,
+          "null_mean_total": 84703.71309786782,
+          "null_mode": "permute",
+          "null_std_total": 95.54535117187106,
+          "null_total_empirical_p_floor": 0.009900990099009901,
+          "null_total_empirical_p_ge_observed": 0.9504950495049505,
+          "null_total_exceedances": 95,
+          "null_total_repeats": 100,
+          "null_total_unique_repeats": 58,
+          "observed_active_windows": 36,
+          "observed_minus_null_total": -177.23738977969333,
+          "observed_total": 84526.47570808812,
+          "positive_event_fraction": 0.25,
+          "positive_events": 1,
+          "quality": -0.14475480506884306,
+          "skipped": [],
+          "z_effect": -1.8550079894611633
+        }
+      ],
+      "null_modes": [
+        "permute"
+      ],
+      "null_std_total": 95.54535117187106,
+      "null_total_empirical_p_floor": 0.009900990099009901,
+      "null_total_empirical_p_ge_observed": 0.9504950495049505,
+      "null_total_exceedances": 95,
+      "null_total_repeats": 100,
+      "null_total_unique_repeats": 58,
+      "observed_minus_null_total": -177.23738977969333,
+      "observed_total": 84526.47570808812,
+      "positive_event_fraction": 0.25,
+      "quality": -0.14475480506884306,
+      "worst_null_mode": "permute",
+      "z_effect": -1.8550079894611633
+    },
+    "selected_candidate": {
+      "adaptive_window": 128,
+      "baseline_size": 256,
+      "decay": 0.9,
+      "emission_threshold": 8.0,
+      "min_active_series": 12,
+      "score": "max",
+      "stride": 32
+    }
+  }
+}

@@ -1,0 +1,2123 @@
+{
+  "cache": {
+    "entries": 40,
+    "hits": 330,
+    "misses": 40
+  },
+  "calibration": {
+    "best": {
+      "accepted": true,
+      "aggregate_null_lift": 0.998019801980198,
+      "candidate": {
+        "adaptive_window": 64,
+        "baseline_size": 128,
+        "decay": 0.9,
+        "emission_threshold": 12.0,
+        "min_active_series": 12,
+        "score": "max",
+        "stride": 32
+      },
+      "events_scored": 10,
+      "events_skipped": 0,
+      "mean_fragility": 0.45,
+      "mean_quality": 0.3676188772625971,
+      "mean_saturation": 0.11444444444444443,
+      "mean_stability": 0.4333333333333333,
+      "null_mean_total": 1926.550485962537,
+      "null_mode_reports": [
+        {
+          "accepted": true,
+          "aggregate_null_lift": 0.998019801980198,
+          "candidate": {
+            "adaptive_window": 64,
+            "baseline_size": 128,
+            "decay": 0.9,
+            "emission_threshold": 12.0,
+            "min_active_series": 12,
+            "score": "max",
+            "stride": 32
+          },
+          "event_scores": [
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event0:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            },
+            {
+              "active_windows": 7,
+              "delta": 551.2613722588612,
+              "event": "voltage_0:event2:datatype2",
+              "exceedances": 0,
+              "null_mean": 989.7427271858676,
+              "observed": 1541.0040994447288,
+              "saturation": 0.2740740740740741,
+              "z_effect": 2.672741510031185
+            },
+            {
+              "active_windows": 2,
+              "delta": 396.252456350986,
+              "event": "voltage_0:event4:datatype2",
+              "exceedances": 0,
+              "null_mean": 20.367954890964757,
+              "observed": 416.62041124195076,
+              "saturation": 0.08518518518518518,
+              "z_effect": 9.298042039202643
+            },
+            {
+              "active_windows": 5,
+              "delta": 476.73273978119926,
+              "event": "voltage_0:event6:datatype2",
+              "exceedances": 2,
+              "null_mean": 564.7578809836185,
+              "observed": 1041.4906207648178,
+              "saturation": 0.22962962962962963,
+              "z_effect": 2.7180710194545554
+            },
+            {
+              "active_windows": 3,
+              "delta": 149.9366779070222,
+              "event": "voltage_0:event8:datatype2",
+              "exceedances": 1,
+              "null_mean": 97.43002482927969,
+              "observed": 247.36670273630187,
+              "saturation": 0.14814814814814814,
+              "z_effect": 2.3485247815365136
+            },
+            {
+              "active_windows": 2,
+              "delta": 590.1768250685221,
+              "event": "voltage_0:event10:datatype2",
+              "exceedances": 0,
+              "null_mean": 6.099745790411984,
+              "observed": 596.2765708589341,
+              "saturation": 0.025925925925925908,
+              "z_effect": 19.59760738196559
+            },
+            {
+              "active_windows": 2,
+              "delta": 305.7623670393046,
+              "event": "voltage_0:event12:datatype2",
+              "exceedances": 0,
+              "null_mean": 97.39568674487754,
+              "observed": 403.15805378418213,
+              "saturation": 0.14074074074074075,
+              "z_effect": 3.2547253832829304
+            },
+            {
+              "active_windows": 3,
+              "delta": 862.5014198597893,
+              "event": "voltage_0:event14:datatype2",
+              "exceedances": 0,
+              "null_mean": 108.14582498849016,
+              "observed": 970.6472448482795,
+              "saturation": 0.12962962962962962,
+              "z_effect": 7.167741161708374
+            },
+            {
+              "active_windows": 4,
+              "delta": 459.19703845074935,
+              "event": "voltage_0:event16:datatype2",
+              "exceedances": 0,
+              "null_mean": 42.61064054902669,
+              "observed": 501.80767899977604,
+              "saturation": 0.11111111111111109,
+              "z_effect": 7.162290659632673
+            },
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event18:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            }
+          ],
+          "events_scored": 10,
+          "events_skipped": 0,
+          "mean_fragility": 0.45,
+          "mean_quality": 0.3676188772625971,
+          "mean_saturation": 0.11444444444444443,
+          "mean_stability": 0.4333333333333333,
+          "null_mean_total": 1926.550485962537,
+          "null_mode": "permute",
+          "null_std_total": 357.5416832896796,
+          "null_total_empirical_p_floor": 0.009900990099009901,
+          "null_total_empirical_p_ge_observed": 0.009900990099009901,
+          "null_total_exceedances": 0,
+          "null_total_repeats": 100,
+          "null_total_unique_repeats": 100,
+          "observed_active_windows": 28,
+          "observed_minus_null_total": 3791.8208967164337,
+          "observed_total": 5718.371382678971,
+          "positive_event_fraction": 0.8,
+          "positive_events": 8,
+          "quality": 0.6571238277576467,
+          "skipped": [],
+          "z_effect": 10.605255481902253
+        }
+      ],
+      "null_modes": [
+        "permute"
+      ],
+      "null_std_total": 357.5416832896796,
+      "null_total_empirical_p_floor": 0.009900990099009901,
+      "null_total_empirical_p_ge_observed": 0.009900990099009901,
+      "null_total_exceedances": 0,
+      "null_total_repeats": 100,
+      "null_total_unique_repeats": 100,
+      "observed_minus_null_total": 3791.8208967164337,
+      "observed_total": 5718.371382678971,
+      "positive_event_fraction": 0.8,
+      "quality": 0.6571238277576467,
+      "worst_null_mode": "permute",
+      "z_effect": 10.605255481902253
+    },
+    "candidates": [
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.998019801980198,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 128,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.45,
+        "mean_quality": 0.3676188772625971,
+        "mean_saturation": 0.11444444444444443,
+        "mean_stability": 0.4333333333333333,
+        "null_mean_total": 1926.550485962537,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.998019801980198,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 128,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 7,
+                "delta": 551.2613722588612,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 0,
+                "null_mean": 989.7427271858676,
+                "observed": 1541.0040994447288,
+                "saturation": 0.2740740740740741,
+                "z_effect": 2.672741510031185
+              },
+              {
+                "active_windows": 2,
+                "delta": 396.252456350986,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 0,
+                "null_mean": 20.367954890964757,
+                "observed": 416.62041124195076,
+                "saturation": 0.08518518518518518,
+                "z_effect": 9.298042039202643
+              },
+              {
+                "active_windows": 5,
+                "delta": 476.73273978119926,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 2,
+                "null_mean": 564.7578809836185,
+                "observed": 1041.4906207648178,
+                "saturation": 0.22962962962962963,
+                "z_effect": 2.7180710194545554
+              },
+              {
+                "active_windows": 3,
+                "delta": 149.9366779070222,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 1,
+                "null_mean": 97.43002482927969,
+                "observed": 247.36670273630187,
+                "saturation": 0.14814814814814814,
+                "z_effect": 2.3485247815365136
+              },
+              {
+                "active_windows": 2,
+                "delta": 590.1768250685221,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 0,
+                "null_mean": 6.099745790411984,
+                "observed": 596.2765708589341,
+                "saturation": 0.025925925925925908,
+                "z_effect": 19.59760738196559
+              },
+              {
+                "active_windows": 2,
+                "delta": 305.7623670393046,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 0,
+                "null_mean": 97.39568674487754,
+                "observed": 403.15805378418213,
+                "saturation": 0.14074074074074075,
+                "z_effect": 3.2547253832829304
+              },
+              {
+                "active_windows": 3,
+                "delta": 862.5014198597893,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 0,
+                "null_mean": 108.14582498849016,
+                "observed": 970.6472448482795,
+                "saturation": 0.12962962962962962,
+                "z_effect": 7.167741161708374
+              },
+              {
+                "active_windows": 4,
+                "delta": 459.19703845074935,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 0,
+                "null_mean": 42.61064054902669,
+                "observed": 501.80767899977604,
+                "saturation": 0.11111111111111109,
+                "z_effect": 7.162290659632673
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.45,
+            "mean_quality": 0.3676188772625971,
+            "mean_saturation": 0.11444444444444443,
+            "mean_stability": 0.4333333333333333,
+            "null_mean_total": 1926.550485962537,
+            "null_mode": "permute",
+            "null_std_total": 357.5416832896796,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 28,
+            "observed_minus_null_total": 3791.8208967164337,
+            "observed_total": 5718.371382678971,
+            "positive_event_fraction": 0.8,
+            "positive_events": 8,
+            "quality": 0.6571238277576467,
+            "skipped": [],
+            "z_effect": 10.605255481902253
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 357.5416832896796,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 3791.8208967164337,
+        "observed_total": 5718.371382678971,
+        "positive_event_fraction": 0.8,
+        "quality": 0.6571238277576467,
+        "worst_null_mode": "permute",
+        "z_effect": 10.605255481902253
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.9322041950627984,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 8.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.4,
+        "mean_quality": 0.2869779106255087,
+        "mean_saturation": 0.258974358974359,
+        "mean_stability": 0.38333333333333336,
+        "null_mean_total": 3690.4576677008026,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.9322041950627984,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 8.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 2,
+                "delta": 130.34121860875106,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 0,
+                "null_mean": 1.0331106412128594,
+                "observed": 131.37432924996392,
+                "saturation": 0.02525252525252523,
+                "z_effect": 17.865480204776482
+              },
+              {
+                "active_windows": 7,
+                "delta": 389.82132773648084,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 0,
+                "null_mean": 682.818774828187,
+                "observed": 1072.6401025646678,
+                "saturation": 0.4405594405594406,
+                "z_effect": 2.7829619429377956
+              },
+              {
+                "active_windows": 3,
+                "delta": 419.5369745108278,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 0,
+                "null_mean": 95.91299248279424,
+                "observed": 515.4499669936221,
+                "saturation": 0.15656565656565657,
+                "z_effect": 4.9795371651317755
+              },
+              {
+                "active_windows": 9,
+                "delta": 156.26649895711262,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 6,
+                "null_mean": 1515.219327674193,
+                "observed": 1671.4858266313056,
+                "saturation": 0.7202797202797203,
+                "z_effect": 1.3663019385435418
+              },
+              {
+                "active_windows": 5,
+                "delta": 182.44573204038662,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 1,
+                "null_mean": 216.50711434461354,
+                "observed": 398.95284638500016,
+                "saturation": 0.2272727272727273,
+                "z_effect": 2.490544991381535
+              },
+              {
+                "active_windows": 5,
+                "delta": 520.9771427092506,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 0,
+                "null_mean": 534.5677816155375,
+                "observed": 1055.544924324788,
+                "saturation": 0.25252525252525254,
+                "z_effect": 3.21432122282107
+              },
+              {
+                "active_windows": 8,
+                "delta": 444.9515096209848,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 0,
+                "null_mean": 565.768004696805,
+                "observed": 1010.7195143177897,
+                "saturation": 0.5804195804195804,
+                "z_effect": 3.894134330281844
+              },
+              {
+                "active_windows": 2,
+                "delta": 837.4593261290473,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 0,
+                "null_mean": 8.515858826881216,
+                "observed": 845.9751849559285,
+                "saturation": 0.02525252525252523,
+                "z_effect": 20.264418968435454
+              },
+              {
+                "active_windows": 1,
+                "delta": 1.4336593812117258,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 46,
+                "null_mean": 70.11470259057788,
+                "observed": 71.5483619717896,
+                "saturation": 0.16161616161616163,
+                "z_effect": 0.02348597043409539
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.4,
+            "mean_quality": 0.2869779106255087,
+            "mean_saturation": 0.258974358974359,
+            "mean_stability": 0.38333333333333336,
+            "null_mean_total": 3690.4576677008026,
+            "null_mode": "permute",
+            "null_std_total": 315.3872993878414,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 42,
+            "observed_minus_null_total": 3083.2333896940527,
+            "observed_total": 6773.691057394855,
+            "positive_event_fraction": 0.9,
+            "positive_events": 9,
+            "quality": 0.5650289593912083,
+            "skipped": [],
+            "z_effect": 9.776022673324288
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 315.3872993878414,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 3083.2333896940527,
+        "observed_total": 6773.691057394855,
+        "positive_event_fraction": 0.9,
+        "quality": 0.5650289593912083,
+        "worst_null_mode": "permute",
+        "z_effect": 9.776022673324288
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.9443045782305013,
+        "candidate": {
+          "adaptive_window": 128,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 8.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.4,
+        "mean_quality": 0.28103151501109375,
+        "mean_saturation": 0.29277389277389276,
+        "mean_stability": 0.38333333333333336,
+        "null_mean_total": 3799.791213074054,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.9443045782305013,
+            "candidate": {
+              "adaptive_window": 128,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 8.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 2,
+                "delta": 131.37432924996392,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 0,
+                "null_mean": 0.0,
+                "observed": 131.37432924996392,
+                "saturation": 0.020202020202020183,
+                "z_effect": null
+              },
+              {
+                "active_windows": 8,
+                "delta": 462.4918539662401,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 0,
+                "null_mean": 703.9520568525888,
+                "observed": 1166.443910818829,
+                "saturation": 0.5804195804195804,
+                "z_effect": 3.792688272327116
+              },
+              {
+                "active_windows": 3,
+                "delta": 420.44184449217,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 0,
+                "null_mean": 95.00812250145208,
+                "observed": 515.4499669936221,
+                "saturation": 0.15656565656565657,
+                "z_effect": 4.822906117486205
+              },
+              {
+                "active_windows": 10,
+                "delta": 131.32542736585287,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 25,
+                "null_mean": 1586.847629084451,
+                "observed": 1718.1730564503039,
+                "saturation": 0.8601398601398601,
+                "z_effect": 1.1605167888972987
+              },
+              {
+                "active_windows": 5,
+                "delta": 197.12142403242316,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 1,
+                "null_mean": 203.04042503225642,
+                "observed": 400.1618490646796,
+                "saturation": 0.2272727272727273,
+                "z_effect": 2.4392678284364773
+              },
+              {
+                "active_windows": 6,
+                "delta": 622.5532092583356,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 0,
+                "null_mean": 521.8781947398144,
+                "observed": 1144.43140399815,
+                "saturation": 0.3006993006993007,
+                "z_effect": 4.611068840133257
+              },
+              {
+                "active_windows": 8,
+                "delta": 435.01674159170125,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 0,
+                "null_mean": 575.7027727260885,
+                "observed": 1010.7195143177897,
+                "saturation": 0.5804195804195804,
+                "z_effect": 3.6931927072809727
+              },
+              {
+                "active_windows": 2,
+                "delta": 828.900364312579,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 0,
+                "null_mean": 17.3657945729992,
+                "observed": 846.2661588855782,
+                "saturation": 0.02525252525252523,
+                "z_effect": 14.023281715314516
+              },
+              {
+                "active_windows": 2,
+                "delta": 60.29943077377763,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 16,
+                "null_mean": 95.99621756440354,
+                "observed": 156.29564833818117,
+                "saturation": 0.17676767676767677,
+                "z_effect": 1.0169153912446083
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.4,
+            "mean_quality": 0.28103151501109375,
+            "mean_saturation": 0.29277389277389276,
+            "mean_stability": 0.38333333333333336,
+            "null_mean_total": 3799.791213074054,
+            "null_mode": "permute",
+            "null_std_total": 283.06053572293695,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 46,
+            "observed_minus_null_total": 3289.5246250430437,
+            "observed_total": 7089.315838117098,
+            "positive_event_fraction": 0.9,
+            "positive_events": 9,
+            "quality": 0.5621076595687191,
+            "skipped": [],
+            "z_effect": 11.621276051928588
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 283.06053572293695,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 3289.5246250430437,
+        "observed_total": 7089.315838117098,
+        "positive_event_fraction": 0.9,
+        "quality": 0.5621076595687191,
+        "worst_null_mode": "permute",
+        "z_effect": 11.621276051928588
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.998019801980198,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.55,
+        "mean_quality": 0.1882463200480708,
+        "mean_saturation": 0.048484848484848485,
+        "mean_stability": 0.3,
+        "null_mean_total": 420.65711861725583,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.998019801980198,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 2,
+                "delta": 376.5542848343858,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 0,
+                "null_mean": 27.317909582214835,
+                "observed": 403.8721944166006,
+                "saturation": 0.09595959595959595,
+                "z_effect": 6.909644404424538
+              },
+              {
+                "active_windows": 1,
+                "delta": 334.98454491594794,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 0,
+                "null_mean": 0.0,
+                "observed": 334.98454491594794,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 4,
+                "delta": 430.4286683357629,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 0,
+                "null_mean": 349.713942853545,
+                "observed": 780.1426111893079,
+                "saturation": 0.2171717171717172,
+                "z_effect": 3.211586371980405
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 1,
+                "delta": 410.50967512498477,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 0,
+                "null_mean": 27.585327150515745,
+                "observed": 438.0950022755005,
+                "saturation": 0.09595959595959595,
+                "z_effect": 5.902278204915231
+              },
+              {
+                "active_windows": 0,
+                "delta": -16.039939030980303,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 100,
+                "null_mean": 16.039939030980303,
+                "observed": 0.0,
+                "saturation": 0.07575757575757576,
+                "z_effect": -0.41269420316444394
+              },
+              {
+                "active_windows": 1,
+                "delta": 716.3442382230994,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 0,
+                "null_mean": 0.0,
+                "observed": 716.3442382230994,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.55,
+            "mean_quality": 0.1882463200480708,
+            "mean_saturation": 0.048484848484848485,
+            "mean_stability": 0.3,
+            "null_mean_total": 420.65711861725583,
+            "null_mode": "permute",
+            "null_std_total": 158.29076079192205,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 9,
+            "observed_minus_null_total": 2252.7814724032005,
+            "observed_total": 2673.4385910204564,
+            "positive_event_fraction": 0.5,
+            "positive_events": 5,
+            "quality": 0.4627512705431203,
+            "skipped": [],
+            "z_effect": 14.231920177353555
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 158.29076079192205,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 2252.7814724032005,
+        "observed_total": 2673.4385910204564,
+        "positive_event_fraction": 0.5,
+        "quality": 0.4627512705431203,
+        "worst_null_mode": "permute",
+        "z_effect": 14.231920177353555
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.998019801980198,
+        "candidate": {
+          "adaptive_window": 128,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.55,
+        "mean_quality": 0.1858177584986061,
+        "mean_saturation": 0.048989898989898986,
+        "mean_stability": 0.3,
+        "null_mean_total": 477.0857788414433,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.998019801980198,
+            "candidate": {
+              "adaptive_window": 128,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 2,
+                "delta": 360.19583685027493,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 0,
+                "null_mean": 43.67635756632568,
+                "observed": 403.8721944166006,
+                "saturation": 0.09595959595959595,
+                "z_effect": 5.122513659758042
+              },
+              {
+                "active_windows": 1,
+                "delta": 334.98454491594794,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 0,
+                "null_mean": 0.0,
+                "observed": 334.98454491594794,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 4,
+                "delta": 381.63406112261487,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 0,
+                "null_mean": 391.1196046101595,
+                "observed": 772.7536657327744,
+                "saturation": 0.22222222222222224,
+                "z_effect": 2.674351459825459
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 1,
+                "delta": 413.7450210087877,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 1,
+                "null_mean": 24.349981266712774,
+                "observed": 438.0950022755005,
+                "saturation": 0.09595959595959595,
+                "z_effect": 5.500349181141679
+              },
+              {
+                "active_windows": 0,
+                "delta": -17.939835398245357,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 100,
+                "null_mean": 17.939835398245357,
+                "observed": 0.0,
+                "saturation": 0.07575757575757576,
+                "z_effect": -0.40985956070253116
+              },
+              {
+                "active_windows": 1,
+                "delta": 716.3442382230994,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 0,
+                "null_mean": 0.0,
+                "observed": 716.3442382230994,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.55,
+            "mean_quality": 0.1858177584986061,
+            "mean_saturation": 0.048989898989898986,
+            "mean_stability": 0.3,
+            "null_mean_total": 477.0857788414433,
+            "null_mode": "permute",
+            "null_std_total": 183.75488075737377,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 9,
+            "observed_minus_null_total": 2188.9638667224795,
+            "observed_total": 2666.0496455639227,
+            "positive_event_fraction": 0.5,
+            "positive_events": 5,
+            "quality": 0.4603227089936556,
+            "skipped": [],
+            "z_effect": 11.912412109546866
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 183.75488075737377,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 2188.9638667224795,
+        "observed_total": 2666.0496455639227,
+        "positive_event_fraction": 0.5,
+        "quality": 0.4603227089936556,
+        "worst_null_mode": "permute",
+        "z_effect": 11.912412109546866
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.6972936565558838,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 128,
+          "decay": 0.9,
+          "emission_threshold": 8.0,
+          "min_active_series": 12,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.23333333333333334,
+        "mean_quality": 0.1976457007161489,
+        "mean_saturation": 0.44421652421652424,
+        "mean_stability": 0.5033333333333333,
+        "null_mean_total": 11598.450491926957,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.6972936565558838,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 128,
+              "decay": 0.9,
+              "emission_threshold": 8.0,
+              "min_active_series": 12,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 5,
+                "delta": 244.8044210419647,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 0,
+                "null_mean": 125.53566447578908,
+                "observed": 370.3400855177538,
+                "saturation": 0.17407407407407405,
+                "z_effect": 3.346773292312709
+              },
+              {
+                "active_windows": 12,
+                "delta": 60.1374419540748,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 36,
+                "null_mean": 2757.9680260982796,
+                "observed": 2818.1054680523544,
+                "saturation": 0.6923076923076924,
+                "z_effect": 0.44149328054322556
+              },
+              {
+                "active_windows": 8,
+                "delta": 281.5682456018601,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 1,
+                "null_mean": 886.0384253497461,
+                "observed": 1167.6066709516062,
+                "saturation": 0.3111111111111111,
+                "z_effect": 2.286877284375974
+              },
+              {
+                "active_windows": 13,
+                "delta": 124.90136958838502,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 19,
+                "null_mean": 2235.4867728742647,
+                "observed": 2360.3881424626497,
+                "saturation": 0.7948717948717949,
+                "z_effect": 0.9894199789848215
+              },
+              {
+                "active_windows": 11,
+                "delta": 61.882455669375304,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 26,
+                "null_mean": 1221.4040786173498,
+                "observed": 1283.286534286725,
+                "saturation": 0.5897435897435896,
+                "z_effect": 0.6831711433109819
+              },
+              {
+                "active_windows": 8,
+                "delta": 877.5635226530852,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 0,
+                "null_mean": 551.6090690433358,
+                "observed": 1429.172591696421,
+                "saturation": 0.28205128205128205,
+                "z_effect": 6.183519860299314
+              },
+              {
+                "active_windows": 11,
+                "delta": 357.1143315113536,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 0,
+                "null_mean": 1369.1300150738075,
+                "observed": 1726.244346585161,
+                "saturation": 0.5897435897435896,
+                "z_effect": 2.377861121650603
+              },
+              {
+                "active_windows": 11,
+                "delta": 255.2523472293865,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 5,
+                "null_mean": 1618.855633440886,
+                "observed": 1874.1079806702726,
+                "saturation": 0.5897435897435896,
+                "z_effect": 1.5579275912202613
+              },
+              {
+                "active_windows": 8,
+                "delta": 491.1694371607749,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 0,
+                "null_mean": 817.7622770805189,
+                "observed": 1308.9317142412938,
+                "saturation": 0.29259259259259257,
+                "z_effect": 3.8233217805790747
+              },
+              {
+                "active_windows": 3,
+                "delta": 124.16364618686507,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 0,
+                "null_mean": 14.660529872974028,
+                "observed": 138.8241760598391,
+                "saturation": 0.1259259259259259,
+                "z_effect": 5.528104934823389
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.23333333333333334,
+            "mean_quality": 0.1976457007161489,
+            "mean_saturation": 0.44421652421652424,
+            "mean_stability": 0.5033333333333333,
+            "null_mean_total": 11598.450491926957,
+            "null_mode": "permute",
+            "null_std_total": 398.49558886536227,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 90,
+            "observed_minus_null_total": 2878.5572185971196,
+            "observed_total": 14477.007710524076,
+            "positive_event_fraction": 1.0,
+            "positive_events": 10,
+            "quality": 0.42196911485511984,
+            "skipped": [],
+            "z_effect": 7.2235610607215115
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 398.49558886536227,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 2878.5572185971196,
+        "observed_total": 14477.007710524076,
+        "positive_event_fraction": 1.0,
+        "quality": 0.42196911485511984,
+        "worst_null_mode": "permute",
+        "z_effect": 7.2235610607215115
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.6915825786870406,
+        "candidate": {
+          "adaptive_window": 128,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 6,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.3666666666666667,
+        "mean_quality": 0.11675722364463204,
+        "mean_saturation": 0.3342657342657343,
+        "mean_stability": 0.4333333333333334,
+        "null_mean_total": 4375.749453213179,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.6915825786870406,
+            "candidate": {
+              "adaptive_window": 128,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 6,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 2,
+                "delta": 29.43277590105291,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 2,
+                "null_mean": 16.120288012754617,
+                "observed": 45.55306391380753,
+                "saturation": 0.0,
+                "z_effect": 2.2170568051904604
+              },
+              {
+                "active_windows": 9,
+                "delta": 58.80283213036466,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 9,
+                "null_mean": 786.5103300712096,
+                "observed": 845.3131622015743,
+                "saturation": 0.7202797202797203,
+                "z_effect": 1.2896876230700884
+              },
+              {
+                "active_windows": 2,
+                "delta": 190.61272525272054,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 0,
+                "null_mean": 177.75281948822024,
+                "observed": 368.3655447409408,
+                "saturation": 0.0,
+                "z_effect": 2.916605389007188
+              },
+              {
+                "active_windows": 8,
+                "delta": -42.75999181908469,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 92,
+                "null_mean": 1178.4126357963887,
+                "observed": 1135.652643977304,
+                "saturation": 0.5804195804195804,
+                "z_effect": -1.738801449335738
+              },
+              {
+                "active_windows": 8,
+                "delta": 81.68089573045683,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 0,
+                "null_mean": 243.55091392155248,
+                "observed": 325.2318096520093,
+                "saturation": 0.5804195804195804,
+                "z_effect": 2.504725986968094
+              },
+              {
+                "active_windows": 9,
+                "delta": 83.40600518933411,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 15,
+                "null_mean": 982.8711826448173,
+                "observed": 1066.2771878341514,
+                "saturation": 0.7202797202797203,
+                "z_effect": 1.2250078222583718
+              },
+              {
+                "active_windows": 8,
+                "delta": 6.757073106104144,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 50,
+                "null_mean": 688.9246472434887,
+                "observed": 695.6817203495929,
+                "saturation": 0.5804195804195804,
+                "z_effect": 0.12610293125493627
+              },
+              {
+                "active_windows": 2,
+                "delta": 620.0875300058223,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 0,
+                "null_mean": 122.04169923541045,
+                "observed": 742.1292292412327,
+                "saturation": 0.0,
+                "z_effect": 5.321439475334856
+              },
+              {
+                "active_windows": 5,
+                "delta": -4.501672956588067,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 57,
+                "null_mean": 179.5649367993367,
+                "observed": 175.06326384274863,
+                "saturation": 0.16083916083916083,
+                "z_effect": -0.130634713879324
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.3666666666666667,
+            "mean_quality": 0.11675722364463204,
+            "mean_saturation": 0.3342657342657343,
+            "mean_stability": 0.4333333333333334,
+            "null_mean_total": 4375.749453213179,
+            "null_mode": "permute",
+            "null_std_total": 176.66823625825327,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 53,
+            "observed_minus_null_total": 1023.5181725401826,
+            "observed_total": 5399.267625753361,
+            "positive_event_fraction": 0.7,
+            "positive_events": 7,
+            "quality": 0.3246528683163922,
+            "skipped": [],
+            "z_effect": 5.793447618076663
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 176.66823625825327,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 1023.5181725401826,
+        "observed_total": 5399.267625753361,
+        "positive_event_fraction": 0.7,
+        "quality": 0.3246528683163922,
+        "worst_null_mode": "permute",
+        "z_effect": 5.793447618076663
+      },
+      {
+        "accepted": true,
+        "aggregate_null_lift": 0.6832002547546401,
+        "candidate": {
+          "adaptive_window": 64,
+          "baseline_size": 256,
+          "decay": 0.9,
+          "emission_threshold": 12.0,
+          "min_active_series": 6,
+          "score": "max",
+          "stride": 32
+        },
+        "events_scored": 10,
+        "events_skipped": 0,
+        "mean_fragility": 0.35,
+        "mean_quality": 0.10582849582202573,
+        "mean_saturation": 0.31818181818181823,
+        "mean_stability": 0.4333333333333334,
+        "null_mean_total": 4408.729782512212,
+        "null_mode_reports": [
+          {
+            "accepted": true,
+            "aggregate_null_lift": 0.6832002547546401,
+            "candidate": {
+              "adaptive_window": 64,
+              "baseline_size": 256,
+              "decay": 0.9,
+              "emission_threshold": 12.0,
+              "min_active_series": 6,
+              "score": "max",
+              "stride": 32
+            },
+            "event_scores": [
+              {
+                "active_windows": 2,
+                "delta": 29.224655552134053,
+                "event": "voltage_0:event0:datatype2",
+                "exceedances": 0,
+                "null_mean": 16.328408361673475,
+                "observed": 45.55306391380753,
+                "saturation": 0.0,
+                "z_effect": 2.461036815897733
+              },
+              {
+                "active_windows": 9,
+                "delta": 58.38850950394385,
+                "event": "voltage_0:event2:datatype2",
+                "exceedances": 17,
+                "null_mean": 808.8905673070963,
+                "observed": 867.2790768110401,
+                "saturation": 0.7202797202797203,
+                "z_effect": 1.1405183428688621
+              },
+              {
+                "active_windows": 2,
+                "delta": 174.97769442222557,
+                "event": "voltage_0:event4:datatype2",
+                "exceedances": 1,
+                "null_mean": 193.3878503187152,
+                "observed": 368.3655447409408,
+                "saturation": 0.0,
+                "z_effect": 2.262762420238345
+              },
+              {
+                "active_windows": 8,
+                "delta": -37.589567025718225,
+                "event": "voltage_0:event6:datatype2",
+                "exceedances": 89,
+                "null_mean": 1180.6311564595558,
+                "observed": 1143.0415894338375,
+                "saturation": 0.5804195804195804,
+                "z_effect": -1.3163178952369772
+              },
+              {
+                "active_windows": 8,
+                "delta": 80.57919319900788,
+                "event": "voltage_0:event8:datatype2",
+                "exceedances": 2,
+                "null_mean": 244.65261645300143,
+                "observed": 325.2318096520093,
+                "saturation": 0.5804195804195804,
+                "z_effect": 2.447503319902314
+              },
+              {
+                "active_windows": 9,
+                "delta": 70.6146716074852,
+                "event": "voltage_0:event10:datatype2",
+                "exceedances": 28,
+                "null_mean": 995.6625162266662,
+                "observed": 1066.2771878341514,
+                "saturation": 0.7202797202797203,
+                "z_effect": 1.0472974630591227
+              },
+              {
+                "active_windows": 8,
+                "delta": -1.7894565437027268,
+                "event": "voltage_0:event12:datatype2",
+                "exceedances": 52,
+                "null_mean": 697.4711768932956,
+                "observed": 695.6817203495929,
+                "saturation": 0.5804195804195804,
+                "z_effect": -0.038699611510069
+              },
+              {
+                "active_windows": 2,
+                "delta": 611.1021329167407,
+                "event": "voltage_0:event14:datatype2",
+                "exceedances": 0,
+                "null_mean": 131.0270963244919,
+                "observed": 742.1292292412327,
+                "saturation": 0.0,
+                "z_effect": 5.086034879211593
+              },
+              {
+                "active_windows": 3,
+                "delta": -46.66383604572192,
+                "event": "voltage_0:event16:datatype2",
+                "exceedances": 92,
+                "null_mean": 140.67839416771685,
+                "observed": 94.01455812199492,
+                "saturation": 0.0,
+                "z_effect": -1.4771912095563793
+              },
+              {
+                "active_windows": 0,
+                "delta": 0.0,
+                "event": "voltage_0:event18:datatype2",
+                "exceedances": 100,
+                "null_mean": 0.0,
+                "observed": 0.0,
+                "saturation": 0.0,
+                "z_effect": null
+              }
+            ],
+            "events_scored": 10,
+            "events_skipped": 0,
+            "mean_fragility": 0.35,
+            "mean_quality": 0.10582849582202573,
+            "mean_saturation": 0.31818181818181823,
+            "mean_stability": 0.4333333333333334,
+            "null_mean_total": 4408.729782512212,
+            "null_mode": "permute",
+            "null_std_total": 179.44224840506627,
+            "null_total_empirical_p_floor": 0.009900990099009901,
+            "null_total_empirical_p_ge_observed": 0.009900990099009901,
+            "null_total_exceedances": 0,
+            "null_total_repeats": 100,
+            "null_total_unique_repeats": 100,
+            "observed_active_windows": 51,
+            "observed_minus_null_total": 938.8439975863948,
+            "observed_total": 5347.573780098607,
+            "positive_event_fraction": 0.6,
+            "positive_events": 6,
+            "quality": 0.3066285595106858,
+            "skipped": [],
+            "z_effect": 5.232012003478039
+          }
+        ],
+        "null_modes": [
+          "permute"
+        ],
+        "null_std_total": 179.44224840506627,
+        "null_total_empirical_p_floor": 0.009900990099009901,
+        "null_total_empirical_p_ge_observed": 0.009900990099009901,
+        "null_total_exceedances": 0,
+        "null_total_repeats": 100,
+        "null_total_unique_repeats": 100,
+        "observed_minus_null_total": 938.8439975863948,
+        "observed_total": 5347.573780098607,
+        "positive_event_fraction": 0.6,
+        "quality": 0.3066285595106858,
+        "worst_null_mode": "permute",
+        "z_effect": 5.232012003478039
+      }
+    ],
+    "events": [
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event0:datatype2",
+        "event_index": 0,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event2:datatype2",
+        "event_index": 2,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event4:datatype2",
+        "event_index": 4,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event6:datatype2",
+        "event_index": 6,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event8:datatype2",
+        "event_index": 8,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event10:datatype2",
+        "event_index": 10,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event12:datatype2",
+        "event_index": 12,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event14:datatype2",
+        "event_index": 14,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event16:datatype2",
+        "event_index": 16,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event18:datatype2",
+        "event_index": 18,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      }
+    ]
+  },
+  "created_at": "2026-06-04T03:51:32.803683+00:00",
+  "dataset": {
+    "name": "pmuBAGE synthetic PMU events",
+    "source": "https://github.com/NanpengYu/pmuBAGE",
+    "validation_boundary": "synthetic adapter/control case, not real-grid validation"
+  },
+  "elapsed_seconds": 361.79954504966736,
+  "method": {
+    "label_use": "none",
+    "selection": "rank candidate settings by aggregate cross-PMU emission lift on calibration events",
+    "validation": "freeze selected candidate and score disjoint heldout events"
+  },
+  "parameters": {
+    "adaptive_windows": [
+      64,
+      128
+    ],
+    "baselines": [
+      128,
+      256
+    ],
+    "candidate_count": 36,
+    "datatype_index": 2,
+    "decays": [
+      0.9
+    ],
+    "event_indices": "all",
+    "max_events": 0,
+    "min_active_sensors": [
+      3,
+      6,
+      12
+    ],
+    "min_positive_event_fraction": 0.5,
+    "min_z_effect": 2.0,
+    "null_block_size": 8,
+    "null_modes": [
+      "permute"
+    ],
+    "null_repeats": 100,
+    "sample_rate": 30.0,
+    "sensor_limit": 24,
+    "strides": [
+      32
+    ],
+    "tensors": [
+      "data/pmuBAGE/data/voltage/voltage_0.npy"
+    ],
+    "thresholds": [
+      3.0,
+      5.0,
+      8.0,
+      12.0
+    ],
+    "validation_count": 8,
+    "validation_split": "alternate"
+  },
+  "validation": {
+    "events": [
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event1:datatype2",
+        "event_index": 1,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event3:datatype2",
+        "event_index": 3,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event5:datatype2",
+        "event_index": 5,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event7:datatype2",
+        "event_index": 7,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event9:datatype2",
+        "event_index": 9,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event11:datatype2",
+        "event_index": 11,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event13:datatype2",
+        "event_index": 13,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event15:datatype2",
+        "event_index": 15,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event17:datatype2",
+        "event_index": 17,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      },
+      {
+        "datatype": "voltage_magnitude",
+        "datatype_index": 2,
+        "event_id": "voltage_0:event19:datatype2",
+        "event_index": 19,
+        "samples": 600,
+        "sensor_count": 24,
+        "tensor": "data/pmuBAGE/data/voltage/voltage_0.npy",
+        "tensor_shape": [
+          20,
+          4,
+          100,
+          600
+        ]
+      }
+    ],
+    "result": {
+      "accepted": false,
+      "aggregate_null_lift": 0.998019801980198,
+      "candidate": {
+        "adaptive_window": 64,
+        "baseline_size": 128,
+        "decay": 0.9,
+        "emission_threshold": 12.0,
+        "min_active_series": 12,
+        "score": "max",
+        "stride": 32
+      },
+      "events_scored": 10,
+      "events_skipped": 0,
+      "mean_fragility": 0.85,
+      "mean_quality": -0.0025153722951405805,
+      "mean_saturation": 0.03703703703703705,
+      "mean_stability": 0.0,
+      "null_mean_total": 231.73083729146302,
+      "null_mode_reports": [
+        {
+          "accepted": false,
+          "aggregate_null_lift": 0.998019801980198,
+          "candidate": {
+            "adaptive_window": 64,
+            "baseline_size": 128,
+            "decay": 0.9,
+            "emission_threshold": 12.0,
+            "min_active_series": 12,
+            "score": "max",
+            "stride": 32
+          },
+          "event_scores": [
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event1:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            },
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event3:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            },
+            {
+              "active_windows": 5,
+              "delta": 213.88170273539438,
+              "event": "voltage_0:event5:datatype2",
+              "exceedances": 0,
+              "null_mean": 155.73537744137278,
+              "observed": 369.61708017676716,
+              "saturation": 0.20000000000000004,
+              "z_effect": 2.79147385245279
+            },
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event7:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            },
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event9:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            },
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event11:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            },
+            {
+              "active_windows": 3,
+              "delta": 400.21362441979005,
+              "event": "voltage_0:event13:datatype2",
+              "exceedances": 0,
+              "null_mean": 71.53077559941941,
+              "observed": 471.7444000192095,
+              "saturation": 0.13703703703703707,
+              "z_effect": 4.624344283353142
+            },
+            {
+              "active_windows": 0,
+              "delta": -4.464684250670858,
+              "event": "voltage_0:event15:datatype2",
+              "exceedances": 100,
+              "null_mean": 4.464684250670858,
+              "observed": 0.0,
+              "saturation": 0.03333333333333336,
+              "z_effect": -0.2264634881820317
+            },
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event17:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            },
+            {
+              "active_windows": 0,
+              "delta": 0.0,
+              "event": "voltage_0:event19:datatype2",
+              "exceedances": 100,
+              "null_mean": 0.0,
+              "observed": 0.0,
+              "saturation": 0.0,
+              "z_effect": null
+            }
+          ],
+          "events_scored": 10,
+          "events_skipped": 0,
+          "mean_fragility": 0.85,
+          "mean_quality": -0.0025153722951405805,
+          "mean_saturation": 0.03703703703703705,
+          "mean_stability": 0.0,
+          "null_mean_total": 231.73083729146302,
+          "null_mode": "permute",
+          "null_std_total": 119.5727477427361,
+          "null_total_empirical_p_floor": 0.009900990099009901,
+          "null_total_empirical_p_ge_observed": 0.009900990099009901,
+          "null_total_exceedances": 0,
+          "null_total_repeats": 100,
+          "null_total_unique_repeats": 98,
+          "observed_active_windows": 8,
+          "observed_minus_null_total": 609.6306429045136,
+          "observed_total": 841.3614801959766,
+          "positive_event_fraction": 0.2,
+          "positive_events": 2,
+          "quality": 0.2569895781999089,
+          "skipped": [],
+          "z_effect": 5.098407909937388
+        }
+      ],
+      "null_modes": [
+        "permute"
+      ],
+      "null_std_total": 119.5727477427361,
+      "null_total_empirical_p_floor": 0.009900990099009901,
+      "null_total_empirical_p_ge_observed": 0.009900990099009901,
+      "null_total_exceedances": 0,
+      "null_total_repeats": 100,
+      "null_total_unique_repeats": 98,
+      "observed_minus_null_total": 609.6306429045136,
+      "observed_total": 841.3614801959766,
+      "positive_event_fraction": 0.2,
+      "quality": 0.2569895781999089,
+      "worst_null_mode": "permute",
+      "z_effect": 5.098407909937388
+    },
+    "selected_candidate": {
+      "adaptive_window": 64,
+      "baseline_size": 128,
+      "decay": 0.9,
+      "emission_threshold": 12.0,
+      "min_active_series": 12,
+      "score": "max",
+      "stride": 32
+    }
+  }
+}
