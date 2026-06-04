@@ -239,7 +239,7 @@ Recommended five-dataset queue:
 
 | Priority | Dataset | Organizational lens | First question |
 | ---: | --- | --- | --- |
-| 1 | SNAP `email-Eu-core-temporal` | Internal institutional email | Do communication-regime shifts surface across departments? |
+| 1 | SNAP `email-Eu-core-temporal` | Internal institutional email | Do communication-regime shifts surface across global/top-node flow? |
 | 2 | SocioPatterns workplace contacts | Face-to-face workplace interaction | Do department coupling and meeting rhythms surface without labels? |
 | 3 | Enron email corpus/core | Corporate crisis communication | Do known crisis-period communication structures surface post hoc? |
 | 4 | GH Archive / curated open-source org data | Distributed maintainership and coordination | Do release crunches, bottlenecks, or contributor churn surface? |

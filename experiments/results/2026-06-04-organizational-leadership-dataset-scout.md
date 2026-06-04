@@ -21,7 +21,7 @@ but they are weak first-class tests for spectral/stigmergic structure discovery.
 
 | Priority | Dataset | Organizational lens | Why it fits | First adapter |
 | ---: | --- | --- | --- | --- |
-| 1 | SNAP `email-Eu-core-temporal` | Internal organizational email | 986 people, 332,334 temporal directed emails over 803 days; department labels/subnetworks support attribution | Bin email events into per-department/per-node activity, reciprocity, entropy, and cross-department flow series |
+| 1 | SNAP `email-Eu-core-temporal` | Internal organizational email | 986 people, 332,334 temporal directed emails over 803 days; department subnetworks support cohort checks, but static department labels do not map onto the temporal full-graph node IDs | Bin email events into global and top-node activity, reciprocity, entropy, and concentration series |
 | 2 | SocioPatterns workplace contact data | Face-to-face workplace interaction | High-resolution temporal contacts in an office, plus department metadata; small enough for a quick pilot | Bin 20-second contacts into department activity/contact-intensity time series |
 | 3 | Enron email corpus/core | Corporate crisis communication and leadership failure | Public corporate communication corpus around a known collapse; role/hierarchy/crisis period attribution is possible | Start with core temporal sequences or curated weekly graphs; compare pre-crisis/crisis/post-crisis residual structure |
 | 4 | MAEC earnings-call dataset | Executive/leadership communication | Speaker-attributed earnings-call transcripts plus low-level audio features; firm/date structure and market-risk context | Convert per-speaker segments into firm-quarter leadership signal series: sentiment, modality, uncertainty, turn-taking, audio prosody proxies |
@@ -40,30 +40,35 @@ Fit:
 - Directed temporal email edges `(source, target, timestamp)`.
 - 986 nodes, 332,334 temporal edges, 803-day span.
 - Four departmental temporal subnetworks are available.
-- Static `email-Eu-core` department labels are available for 42 departments.
+- Static `email-Eu-core` department labels exist for the static graph, but SNAP
+  notes that the static and temporal node IDs are not the same. Do not use the
+  static department-label file for full temporal-graph attribution.
 
 Why it is first:
 
 - Small enough for a fast run.
 - Directly organizational.
 - Already temporal.
-- Department structure gives a clean post-hoc attribution layer.
+- It can be run without labels on the full temporal graph, and the four
+  department subnetworks can be used as separate cohort checks.
 
 First question:
 
 > Does the detector surface coherent residual structure around shifts in
-> departmental communication load, cross-department brokerage, or internal
-> coordination bursts?
+> communication load, reciprocity, concentration, or top-node coordination
+> bursts?
 
 Suggested first run:
 
-1. Download full temporal file and department labels/subnetworks.
+1. Download the full temporal file and, separately, the four temporal
+   department subnetworks.
 2. Build daily or half-day bins.
-3. Emit series for department send/receive volume, cross-department flow,
-   sender concentration, receiver concentration, reciprocity, and active-node
-   entropy.
+3. Emit series for total volume, top-node send/receive volume, sender
+   concentration, receiver concentration, reciprocity, and active-node entropy.
 4. Run label-free autotune.
-5. Attribute top windows to departments and cross-department edges.
+5. Attribute top windows to node-level communication structure; compare the
+   four department subnetworks as separate cohorts rather than as labels on the
+   full graph.
 
 ### 2. SocioPatterns Workplace Contact Network
 
