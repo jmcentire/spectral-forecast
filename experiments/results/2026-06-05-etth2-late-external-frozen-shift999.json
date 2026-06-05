@@ -1,0 +1,94 @@
+{
+  "best": {
+    "accepted": true,
+    "compression_score": 0.7884615384615384,
+    "config": {
+      "adaptive_window": 256,
+      "baseline_size": 1024,
+      "decay": 0.75,
+      "emission_threshold": 13.629695749397975,
+      "min_active_series": 3,
+      "score": "max",
+      "stride": 128
+    },
+    "fragility_penalty": 0.25,
+    "null_lift_score": 0.5252524661643446,
+    "null_summary": {
+      "anchors": 56,
+      "empirical_p_floor": 0.001,
+      "empirical_p_ge_observed": 0.001,
+      "empirical_p_le_observed": 1.0,
+      "empirical_p_two_sided": 0.002,
+      "null_below_or_equal": 999,
+      "null_exceedances": 0,
+      "null_mean": 12498.886760613432,
+      "null_repeats": 999,
+      "null_std": 2534.597028514036,
+      "observed_active_windows": 37,
+      "observed_minus_null": 5119.909938289098,
+      "observed_total": 17618.79669890253,
+      "unique_null_totals": 999,
+      "z_effect": 2.0200094455609614
+    },
+    "quality": 0.18361356901316453,
+    "readiness_score": 1.0,
+    "residual_activity_score": 1.0,
+    "saturation_penalty": 0.478021978021978,
+    "stability_score": 0.0
+  },
+  "parameters": {
+    "all_numeric": true,
+    "candidate_count": 1,
+    "columns": null,
+    "derived_thresholds": null,
+    "file": "data/ETTh2.csv",
+    "null_block_size": 8,
+    "null_mode": "shift",
+    "null_repeats": 999,
+    "sample_limit": 8192,
+    "sample_offset": 8192,
+    "sample_rate": 1.0,
+    "single_config": true,
+    "threshold_quantiles": null
+  },
+  "scores": [
+    {
+      "accepted": true,
+      "compression_score": 0.7884615384615384,
+      "config": {
+        "adaptive_window": 256,
+        "baseline_size": 1024,
+        "decay": 0.75,
+        "emission_threshold": 13.629695749397975,
+        "min_active_series": 3,
+        "score": "max",
+        "stride": 128
+      },
+      "fragility_penalty": 0.25,
+      "null_lift_score": 0.5252524661643446,
+      "null_summary": {
+        "anchors": 56,
+        "empirical_p_floor": 0.001,
+        "empirical_p_ge_observed": 0.001,
+        "empirical_p_le_observed": 1.0,
+        "empirical_p_two_sided": 0.002,
+        "null_below_or_equal": 999,
+        "null_exceedances": 0,
+        "null_mean": 12498.886760613432,
+        "null_repeats": 999,
+        "null_std": 2534.597028514036,
+        "observed_active_windows": 37,
+        "observed_minus_null": 5119.909938289098,
+        "observed_total": 17618.79669890253,
+        "unique_null_totals": 999,
+        "z_effect": 2.0200094455609614
+      },
+      "quality": 0.18361356901316453,
+      "readiness_score": 1.0,
+      "residual_activity_score": 1.0,
+      "saturation_penalty": 0.478021978021978,
+      "stability_score": 0.0
+    }
+  ],
+  "skipped": []
+}

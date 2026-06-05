@@ -56,7 +56,6 @@ def summarize_order_null(
     candidate_deltas = _candidate_min_deltas(candidate_report)
     stable = set(candidate_report["replication"]["stable_detected_mechanisms"])
     rows: dict[str, Any] = {}
-    confirmed: list[str] = []
     for name, candidate_value in candidate_deltas.items():
         null = np.asarray(control_min_deltas[name], dtype=np.float64)
         mean = float(np.mean(null))
@@ -64,13 +63,6 @@ def summarize_order_null(
         exceedances = int(np.sum(null >= candidate_value))
         p_ge = float((exceedances + 1) / (len(null) + 1))
         z_effect = (candidate_value - mean) / std if std > 1e-12 else None
-        order_sensitive = bool(
-            name in stable
-            and candidate_value > mean
-            and p_ge <= significance_level
-        )
-        if order_sensitive:
-            confirmed.append(name)
         rows[name] = {
             "candidate_replicated": name in stable,
             "candidate_min_delta": candidate_value,
@@ -82,8 +74,34 @@ def summarize_order_null(
             "empirical_p_ge_candidate": p_ge,
             "empirical_p_floor": float(1.0 / (len(null) + 1)),
             "unique_random_order_values": int(len(np.unique(np.round(null, decimals=12)))),
-            "confirmed_order_sensitive": order_sensitive,
+            "fdr_bh_q_value": None,
+            "fdr_by_q_value": None,
+            "confirmed_order_sensitive": False,
         }
+    ordered = sorted(
+        (float(row["empirical_p_ge_candidate"]), name)
+        for name, row in rows.items()
+    )
+    harmonic = float(sum(1.0 / rank for rank in range(1, len(ordered) + 1)))
+    adjusted: dict[str, float] = {}
+    running = 1.0
+    for rank in range(len(ordered), 0, -1):
+        p_value, name = ordered[rank - 1]
+        running = min(running, p_value * len(ordered) / rank)
+        adjusted[name] = running
+    confirmed: list[str] = []
+    for name, row in rows.items():
+        bh_q = float(min(1.0, adjusted[name]))
+        by_q = float(min(1.0, bh_q * harmonic))
+        row["fdr_bh_q_value"] = bh_q
+        row["fdr_by_q_value"] = by_q
+        row["confirmed_order_sensitive"] = bool(
+            name in stable
+            and float(row["candidate_minus_random_order_mean"]) > 0.0
+            and by_q <= significance_level
+        )
+        if row["confirmed_order_sensitive"]:
+            confirmed.append(name)
     return {
         "grade": (
             "confirmed_order_sensitive_structure"
@@ -92,6 +110,10 @@ def summarize_order_null(
         ),
         "confirmed_order_sensitive_mechanisms": sorted(confirmed),
         "candidate_replicated_mechanisms": sorted(stable),
+        "multiplicity": (
+            "Benjamini-Yekutieli arbitrary-dependence-safe FDR across all "
+            "tested relationship mechanisms"
+        ),
         "metrics": rows,
     }
 
@@ -230,13 +252,14 @@ def print_report(report: Mapping[str, Any]) -> None:
     )
     for name, row in summary["metrics"].items():
         print(
-            "  %-18s candidate_delta=% .6f random_mean=% .6f z=%s p_ge=%.4f confirmed=%s"
+            "  %-18s candidate_delta=% .6f random_mean=% .6f z=%s p_ge=%.4f by_q=%.4f confirmed=%s"
             % (
                 name,
                 row["candidate_min_delta"],
                 row["random_order_mean_min_delta"],
                 row["z_effect_size"],
                 row["empirical_p_ge_candidate"],
+                row["fdr_by_q_value"],
                 row["confirmed_order_sensitive"],
             )
         )

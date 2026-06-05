@@ -2,6 +2,13 @@
 
 import numpy as np
 
+import spectral_forecast.autotune as autotune_module
+from experiments.autotune_observe import (
+    build_configs,
+    derive_quantile_thresholds,
+    expand_threshold_grid,
+    parse_args,
+)
 from spectral_forecast.autotune import (
     AutoTuneConfig,
     build_autotune_observation,
@@ -169,6 +176,104 @@ def test_tune_observation_prefers_non_saturating_threshold():
     assert result.best is not None
     assert result.best.config == selective
     assert result.scores[0].saturation_penalty <= result.scores[1].saturation_penalty
+
+
+def test_tune_observation_reuses_observer_geometry(monkeypatch):
+    series = _shared_shift_series()
+    configs = [
+        AutoTuneConfig(
+            baseline_size=144,
+            adaptive_window=72,
+            stride=12,
+            emission_threshold=threshold,
+            decay=0.8,
+            min_active_series=2,
+        )
+        for threshold in (2.0, 2.5)
+    ]
+    original = autotune_module.build_autotune_observation
+    calls = 0
+
+    def counted(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(autotune_module, "build_autotune_observation", counted)
+
+    result = tune_observation(series, configs=configs, null_repeats=4, seed=5)
+
+    assert len(result.scores) == 2
+    assert calls == 1
+
+
+def test_derive_quantile_thresholds_uses_calibration_score_scale():
+    series = _shared_shift_series()
+    config = AutoTuneConfig(
+        baseline_size=144,
+        adaptive_window=72,
+        stride=12,
+        emission_threshold=2.0,
+        decay=0.8,
+        min_active_series=2,
+    )
+
+    thresholds = derive_quantile_thresholds(
+        series,
+        [config],
+        quantiles=[0.5, 0.9],
+        sample_rate=1.0,
+    )
+
+    assert len(thresholds) == 2
+    assert thresholds[0] < thresholds[1]
+    assert thresholds[0] > 0.0
+
+
+def test_autotune_observe_singular_override_builds_frozen_config():
+    args = parse_args(
+        [
+            "example.csv",
+            "--baseline",
+            "1024",
+            "--adaptive-window",
+            "256",
+            "--stride",
+            "128",
+            "--emission-threshold",
+            "13.5",
+            "--decay",
+            "0.75",
+            "--min-active",
+            "3",
+        ]
+    )
+
+    configs = build_configs(args)
+
+    assert configs is not None
+    assert len(configs) == 1
+    assert configs[0].baseline_size == 1024
+    assert configs[0].emission_threshold == 13.5
+
+
+def test_expand_threshold_grid_removes_preexisting_threshold_duplicates():
+    configs = [
+        AutoTuneConfig(
+            baseline_size=144,
+            adaptive_window=72,
+            stride=12,
+            emission_threshold=threshold,
+            decay=0.8,
+            min_active_series=2,
+        )
+        for threshold in (2.0, 2.5, 3.0)
+    ]
+
+    expanded = expand_threshold_grid(configs, [10.0, 20.0])
+
+    assert len(expanded) == 2
+    assert [config.emission_threshold for config in expanded] == [10.0, 20.0]
 
 
 def test_default_autotune_configs_are_valid_for_common_length():

@@ -7,7 +7,9 @@ from experiments.chbmit_predictor_ablation import (
     _late_fusion_models,
     _label_anchor,
     _latent_features,
+    _temporal_shift_audit,
     _threshold_for_false_alarm_rate,
+    parse_args,
 )
 from spectral_forecast.autotune import AutoTuneConfig
 
@@ -123,6 +125,10 @@ def test_candidate_feature_counts_caps_and_deduplicates() -> None:
     assert _candidate_feature_counts(3, "8,16") == [3]
 
 
+def test_parse_args_exposes_temporal_null_repeats_once() -> None:
+    assert parse_args([]).temporal_null_repeats == 999
+
+
 def test_late_fusion_models_return_mean_and_logistic_controls() -> None:
     class Args:
         regularization_cs = "0.1"
@@ -174,3 +180,37 @@ def test_late_fusion_models_return_mean_and_logistic_controls() -> None:
     assert reports["late_fusion_mean"]["feature_count"] == 3.0
     assert reports["late_fusion_logistic"]["feature_count"] == 3.0
     assert reports["late_fusion_logistic"]["pr_auc"] is not None
+
+
+def test_temporal_shift_audit_rejects_file_only_correlation() -> None:
+    rows = [
+        FeatureRow(
+            "s1",
+            "seizure_file" if index < 10 else "negative_file",
+            index,
+            float(index % 10),
+            int(index in {8, 9}),
+            "preictal" if index in {8, 9} else "interictal",
+            "evt" if index in {8, 9} else None,
+            10.0 if index in {8, 9} else None,
+            {},
+        )
+        for index in range(20)
+    ]
+    file_only = np.asarray([0.9] * 10 + [0.1] * 10, dtype=np.float64)
+    timing = np.asarray([0.1] * 8 + [0.9, 0.9] + [0.1] * 10, dtype=np.float64)
+
+    audit = _temporal_shift_audit(
+        [rows],
+        [{"file_only": file_only, "timing": timing}],
+        comparisons={"timing_delta": ("timing", "file_only")},
+        null_repeats=999,
+        seed=41,
+    )
+
+    models = {row["model"]: row for row in audit["models"]}
+    comparison = audit["comparisons"][0]
+    assert models["file_only"]["empirical_p_ge_observed"] == 1.0
+    assert models["timing"]["empirical_p_ge_observed"] <= 0.05
+    assert comparison["observed_minus_null"] > 0.0
+    assert comparison["empirical_p_ge_observed"] <= 0.05

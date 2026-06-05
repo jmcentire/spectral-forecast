@@ -13,10 +13,12 @@ import argparse
 import json
 import sys
 import time
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping, Sequence
+
+import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -54,6 +56,109 @@ def acquisition_stratum(metadata: Mapping[str, Any]) -> str:
     )
 
 
+def collapse_exact_start_contexts(
+    windows: Sequence[Mapping[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Merge overlapping raw-profile triangles with identical sampling geometry."""
+
+    grouped: dict[tuple[str, str, str, int, float], list[Mapping[str, Any]]] = (
+        defaultdict(list)
+    )
+    geometries_by_start: dict[tuple[str, str], set[tuple[str, int, float]]] = (
+        defaultdict(set)
+    )
+    for window in windows:
+        source = window["source"]
+        segment = str(window["segment"])
+        start = str(source["start"])
+        geometry = (
+            str(source["end"]),
+            int(source["samples"]),
+            float(source["target_sample_rate"]),
+        )
+        grouped[(segment, start, *geometry)].append(window)
+        geometries_by_start[(segment, start)].add(geometry)
+
+    collapsed = []
+    duplicate_profiles = 0
+    entity_count_distribution: Counter[int] = Counter()
+    source_window_count_distribution: Counter[int] = Counter()
+    for context_index, (
+        (segment, start, end, samples, target_sample_rate),
+        context_windows,
+    ) in enumerate(
+        sorted(grouped.items())
+    ):
+        profiles: dict[str, Mapping[str, Any]] = {}
+        sources: dict[str, Mapping[str, Any]] = {}
+        for window in context_windows:
+            raw_layer = next(
+                layer
+                for layer in window["layers"]
+                if str(layer["layer"]) == "raw"
+            )
+            for profile in raw_layer["spectral_profiles"]:
+                entity = str(profile["entity"])
+                if entity in profiles:
+                    duplicate_profiles += 1
+                    observed = np.asarray(profile["power"], dtype=np.float64)
+                    existing = np.asarray(profiles[entity]["power"], dtype=np.float64)
+                    if not np.allclose(observed, existing, rtol=1e-10, atol=1e-12):
+                        raise ValueError(
+                            f"raw profile disagrees across overlapping contexts: "
+                            f"{segment} {start} {entity}"
+                        )
+                    continue
+                profiles[entity] = profile
+            for source_row in window["source"]["sources"]:
+                sources[str(source_row["entity"])] = source_row
+        entity_count_distribution[len(profiles)] += 1
+        source_window_count_distribution[len(context_windows)] += 1
+        collapsed.append(
+            {
+                "segment": segment,
+                "group_index": context_index,
+                "window_index": 0,
+                "window_key": f"{segment}:exact-start:{context_index}",
+                "entities": sorted(profiles),
+                "source": {
+                    "start": start,
+                    "end": end,
+                    "samples": samples,
+                    "target_sample_rate": target_sample_rate,
+                    "sources": [sources[entity] for entity in sorted(sources)],
+                },
+                "layers": [
+                    {
+                        "layer": "raw",
+                        "spectral_profiles": [
+                            profiles[entity] for entity in sorted(profiles)
+                        ],
+                    }
+                ],
+            }
+        )
+    return collapsed, {
+        "input_windows": len(windows),
+        "collapsed_contexts": len(collapsed),
+        "overlapping_contexts": int(
+            sum(len(context_windows) > 1 for context_windows in grouped.values())
+        ),
+        "starts_with_multiple_sampling_geometries": int(
+            sum(len(geometries) > 1 for geometries in geometries_by_start.values())
+        ),
+        "duplicate_profiles_verified_equal": duplicate_profiles,
+        "entity_count_distribution": {
+            str(count): frequency
+            for count, frequency in sorted(entity_count_distribution.items())
+        },
+        "source_window_count_distribution": {
+            str(count): frequency
+            for count, frequency in sorted(source_window_count_distribution.items())
+        },
+    }
+
+
 def run_control(args: argparse.Namespace) -> dict[str, Any]:
     started = time.time()
     source = json.loads(args.source_report.read_text(encoding="utf-8"))
@@ -71,8 +176,15 @@ def run_control(args: argparse.Namespace) -> dict[str, Any]:
         str(layer): [str(family) for family in families]
         for layer, families in source["calibration"]["supported_hypotheses"].items()
     }
+    analysis_windows: Sequence[Mapping[str, Any]] = source["windows"]
+    context_collapse = None
+    if args.context_mode == "exact-start-collapse":
+        analysis_windows, context_collapse = collapse_exact_start_contexts(
+            source["windows"]
+        )
+        supported_by_layer = {"raw": supported_by_layer["raw"]}
     spectral_specificity = _spectral_specificity(
-        source["windows"],
+        analysis_windows,
         supported_by_layer=supported_by_layer,
         null_repeats=args.null_repeats,
         seed=args.seed,
@@ -88,7 +200,9 @@ def run_control(args: argparse.Namespace) -> dict[str, Any]:
             ("raw", SIGNED_ENVELOPE_PROFILE),
         ),
         dyadic_entity_effect_scopes=("global", "segment", "exact_context"),
+        dyadic_null_controls=("freedman_lane", "context_node_relabel"),
         persistence_minimum_time_clusters=(1, 2),
+        persistence_minimum_companion_sets=(1, 2),
         progress=args.progress,
     )
     pair_summaries = spectral_specificity["pair_summary"]
@@ -111,6 +225,15 @@ def run_control(args: argparse.Namespace) -> dict[str, Any]:
                 "geography, oceanographic quantities, and event labels remain unused"
             ),
             "candidate_surface": "within-acquisition-stratum pair profiles only",
+            "context_mode": (
+                "original selected triangle contexts"
+                if args.context_mode == "original"
+                else (
+                    "canonical raw profiles from overlapping selected triangles "
+                    "collapsed by exact segment, time span, sample count, and "
+                    "target sample rate"
+                )
+            ),
             "envelope_normalization": "independent within each acquisition stratum",
             "pair_domain_control": (
                 "exact-occurrence matched alternatives from the same segment, "
@@ -149,11 +272,14 @@ def run_control(args: argparse.Namespace) -> dict[str, Any]:
             "replication_separation_hours": args.replication_separation_hours,
             "seed": args.seed,
             "source_report": str(args.source_report),
+            "context_mode": args.context_mode,
         },
         "station_metadata": metadata,
         "entity_strata": entity_strata,
         "stratum_entity_counts": dict(Counter(entity_strata.values())),
         "source_windows": int(source["completed_windows"]),
+        "analysis_contexts": len(analysis_windows),
+        "context_collapse": context_collapse,
         "candidate_pair_view_rows": len(pair_summaries),
         "testable_pair_view_rows": len(testable),
         "spectral_specificity": spectral_specificity,
@@ -163,6 +289,11 @@ def run_control(args: argparse.Namespace) -> dict[str, Any]:
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-report", type=Path, default=DEFAULT_SOURCE_REPORT)
+    parser.add_argument(
+        "--context-mode",
+        choices=("original", "exact-start-collapse"),
+        default="original",
+    )
     parser.add_argument("--null-repeats", type=int, default=4999)
     parser.add_argument("--replication-separation-hours", type=float, default=24.0)
     parser.add_argument("--seed", type=int, default=20260605)

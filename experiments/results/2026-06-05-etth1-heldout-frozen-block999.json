@@ -1,0 +1,94 @@
+{
+  "best": {
+    "accepted": true,
+    "compression_score": 0.8235294117647058,
+    "config": {
+      "adaptive_window": 256,
+      "baseline_size": 1024,
+      "decay": 0.75,
+      "emission_threshold": 13.629695749397975,
+      "min_active_series": 3,
+      "score": "max",
+      "stride": 128
+    },
+    "fragility_penalty": 0.125,
+    "null_lift_score": 0.5269907994137679,
+    "null_summary": {
+      "anchors": 56,
+      "empirical_p_floor": 0.001,
+      "empirical_p_ge_observed": 0.006,
+      "empirical_p_le_observed": 0.995,
+      "empirical_p_two_sided": 0.012,
+      "null_below_or_equal": 994,
+      "null_exceedances": 5,
+      "null_mean": 4175.83437031682,
+      "null_repeats": 999,
+      "null_std": 350.97423859399413,
+      "observed_active_windows": 37,
+      "observed_minus_null": 1013.7912916038185,
+      "observed_total": 5189.625661920639,
+      "unique_null_totals": 999,
+      "z_effect": 2.8885062780250634
+    },
+    "quality": 0.21085575339129725,
+    "readiness_score": 1.0,
+    "residual_activity_score": 1.0,
+    "saturation_penalty": 0.478021978021978,
+    "stability_score": 0.0
+  },
+  "parameters": {
+    "all_numeric": true,
+    "candidate_count": 1,
+    "columns": null,
+    "derived_thresholds": null,
+    "file": "data/ETTh1.csv",
+    "null_block_size": 8,
+    "null_mode": "block-permute",
+    "null_repeats": 999,
+    "sample_limit": 8192,
+    "sample_offset": 8192,
+    "sample_rate": 1.0,
+    "single_config": true,
+    "threshold_quantiles": null
+  },
+  "scores": [
+    {
+      "accepted": true,
+      "compression_score": 0.8235294117647058,
+      "config": {
+        "adaptive_window": 256,
+        "baseline_size": 1024,
+        "decay": 0.75,
+        "emission_threshold": 13.629695749397975,
+        "min_active_series": 3,
+        "score": "max",
+        "stride": 128
+      },
+      "fragility_penalty": 0.125,
+      "null_lift_score": 0.5269907994137679,
+      "null_summary": {
+        "anchors": 56,
+        "empirical_p_floor": 0.001,
+        "empirical_p_ge_observed": 0.006,
+        "empirical_p_le_observed": 0.995,
+        "empirical_p_two_sided": 0.012,
+        "null_below_or_equal": 994,
+        "null_exceedances": 5,
+        "null_mean": 4175.83437031682,
+        "null_repeats": 999,
+        "null_std": 350.97423859399413,
+        "observed_active_windows": 37,
+        "observed_minus_null": 1013.7912916038185,
+        "observed_total": 5189.625661920639,
+        "unique_null_totals": 999,
+        "z_effect": 2.8885062780250634
+      },
+      "quality": 0.21085575339129725,
+      "readiness_score": 1.0,
+      "residual_activity_score": 1.0,
+      "saturation_penalty": 0.478021978021978,
+      "stability_score": 0.0
+    }
+  ],
+  "skipped": []
+}

@@ -1,5 +1,13 @@
 # Cross-Domain Latent-Structure Instrument Quality Assessment
 
+## Subsequent Resolution
+
+This assessment is superseded by
+`2026-06-05-rigorous-cross-domain-assessment.md`, which incorporates the final
+exact-context CDIP control, the corrected EEG predictor timing audit, the
+organizational multiplicity control, and frozen ETT aggregate/relationship
+validation.
+
 ## Scope
 
 This assessment applies one explicit validation ladder to ocean, EEG, and
@@ -24,6 +32,7 @@ it loses structure, and where an attractive aggregate is an artifact.
 | Ocean: CDIP | downgraded by stronger control | reproducible anchor-aligned observer-score structure; high-score windows are swell-like post hoc | original buoy-group-specific coherence does not replicate under trajectory regroup |
 | EEG: within-brain | mixed positive | recording-specific structure replicates for chb01 and chb02 | chb03 fails calibration/validation replication |
 | EEG: population nominal | externally replicated, bounded | one frozen aggregate-developed instrument surfaces recording-specific organization and stable signed geometry in three unseen subjects | same-corpus replication cannot establish medical abnormality, named meaning, or cross-corpus generalization |
+| EEG: predictor timing audit | negative predictive validation | none of the absolute models or latent-feature contributions survives a within-file temporal-shift null after BY correction | prior uncorrected model rankings do not establish time-local precursor information |
 
 ## Sober Interpretation
 
@@ -64,6 +73,13 @@ group-specific coherence. A trajectory-regroup null preserved the shared score
 template while breaking only buoy membership, and the claimed buoy-group
 surplus did not replicate. The earlier ocean claim is therefore superseded.
 
+The supervised EEG predictor is now also a negative validation. A fixed-
+prediction temporal-shift audit preserves subject/file context and label blocks
+while breaking only event-relative timing. No tested model or latent-feature
+contribution survived correction across the audit. The label-free structures
+may still be real, but this experiment does not establish time-local predictive
+information.
+
 ## Required Rules Going Forward
 
 - Define the relationship being claimed before choosing the null.
@@ -102,3 +118,5 @@ surplus did not replicate. The earlier ocean claim is therefore superseded.
 - `experiments/results/2026-06-04-chbmit-population-nominal.json`
 - `experiments/results/2026-06-04-chbmit-population-external.json`
 - `experiments/results/2026-06-04-chbmit-frozen-external-assessment.md`
+- `experiments/results/2026-06-05-chbmit-predictor-temporal-audit-assessment.md`
+- `experiments/results/2026-06-05-chbmit-predictor-temporal-shift-null999.json`

@@ -697,13 +697,19 @@ def _dyadic_residual_persistence_summary(
     null_repeats: int,
     seed: int,
     entity_effect_scope: str = "global",
+    null_control: str = "freedman_lane",
     replication_separation_seconds: float = 0.0,
     minimum_independent_time_clusters: int = 1,
+    minimum_distinct_companion_sets: int = 1,
 ) -> dict[str, Any]:
     """Test persistent dyadic effects beyond an additive entity-effect model."""
 
     if entity_effect_scope not in {"global", "segment", "exact_context"}:
         raise ValueError(f"unknown entity effect scope: {entity_effect_scope}")
+    if null_control not in {"freedman_lane", "context_node_relabel"}:
+        raise ValueError(f"unknown dyadic null control: {null_control}")
+    if minimum_distinct_companion_sets < 1:
+        raise ValueError("minimum distinct companion sets must be positive")
 
     candidate_contexts: dict[
         tuple[str, int, int, str],
@@ -773,24 +779,36 @@ def _dyadic_residual_persistence_summary(
         )
         for pair in pair_counts
     }
+    pair_companion_sets: dict[tuple[str, str], set[tuple[str, ...]]] = defaultdict(set)
+    for values in contexts.values():
+        context_entities = sorted(
+            {entity for pair, _, _ in values for entity in pair}
+        )
+        for pair, _, _ in values:
+            pair_companion_sets[pair].add(
+                tuple(entity for entity in context_entities if entity not in pair)
+            )
     eligible_pairs = sorted(
         pair
         for pair, count in pair_counts.items()
         if count >= 2
         and pair_time_clusters[pair] >= minimum_independent_time_clusters
+        and len(pair_companion_sets[pair]) >= minimum_distinct_companion_sets
     )
     pair_index = {pair: index for index, pair in enumerate(eligible_pairs)}
 
     observations = []
+    observation_timestamps: list[float] = []
     context_observation_indices: dict[
         tuple[str, int, int, str], list[int]
     ] = defaultdict(list)
     for context, values in sorted(contexts.items()):
         scores = np.asarray([score for _, score, _ in values], dtype=np.float64)
         normalized = (scores - np.mean(scores)) / np.std(scores)
-        for pair, value in zip((pair for pair, _, _ in values), normalized):
+        for (pair, _, start), value in zip(values, normalized):
             observation_index = len(observations)
             observations.append((context, pair, float(value)))
+            observation_timestamps.append(datetime.fromisoformat(start).timestamp())
             context_observation_indices[context].append(observation_index)
 
     context_index = {context: index for index, context in enumerate(sorted(contexts))}
@@ -842,6 +860,24 @@ def _dyadic_residual_persistence_summary(
         pair_projection[identity, observation_index] = 1.0
         counts[identity] += 1.0
 
+    context_node_relabel_maps = {}
+    if null_control == "context_node_relabel":
+        for context, indices in context_observation_indices.items():
+            pair_to_index = {
+                observations[index][1]: index
+                for index in indices
+            }
+            entities = sorted({entity for pair in pair_to_index for entity in pair})
+            expected_pairs = {
+                pair
+                for pair in combinations(entities, 2)
+            }
+            if set(pair_to_index) != expected_pairs:
+                raise ValueError(
+                    "context-node relabel control requires complete local pair graphs"
+                )
+            context_node_relabel_maps[context] = (entities, pair_to_index)
+
     def statistics(residuals: np.ndarray) -> np.ndarray:
         pair_sums = pair_projection @ residuals
         if residuals.ndim == 1:
@@ -865,33 +901,113 @@ def _dyadic_residual_persistence_summary(
             profile_key,
             scope,
             entity_effect_scope,
+            null_control,
             minimum_independent_time_clusters,
+            minimum_distinct_companion_sets,
             "dyadic_residual_persistence",
         )
         batch_size = min(500, null_repeats)
         for batch_start in range(0, null_repeats, batch_size):
             repeats = min(batch_size, null_repeats - batch_start)
             permuted = np.empty((n_observations, repeats), dtype=np.float64)
-            for indices in context_observation_indices.values():
-                index_array = np.asarray(indices, dtype=np.int64)
-                orders = np.argsort(
-                    rng.random((len(index_array), repeats)),
-                    axis=0,
-                )
-                permuted[index_array, :] = reduced_residual[index_array][orders]
-            synthetic = fitted[:, None] + permuted
+            if null_control == "freedman_lane":
+                for indices in context_observation_indices.values():
+                    index_array = np.asarray(indices, dtype=np.int64)
+                    orders = np.argsort(
+                        rng.random((len(index_array), repeats)),
+                        axis=0,
+                    )
+                    permuted[index_array, :] = reduced_residual[index_array][orders]
+                synthetic = fitted[:, None] + permuted
+            else:
+                for entities, pair_to_index in context_node_relabel_maps.values():
+                    for repeat in range(repeats):
+                        assigned = rng.permutation(entities)
+                        relabel = dict(zip(entities, assigned))
+                        for source_pair, source_index in pair_to_index.items():
+                            target_pair = tuple(
+                                sorted(
+                                    (
+                                        str(relabel[source_pair[0]]),
+                                        str(relabel[source_pair[1]]),
+                                    )
+                                )
+                            )
+                            permuted[pair_to_index[target_pair], repeat] = values[
+                                source_index
+                            ]
+                synthetic = permuted
             synthetic_residual = synthetic - design @ (design_pinv @ synthetic)
             null_values.extend(
                 float(value)
                 for value in statistics(synthetic_residual)
             )
     summary = _null_summary(observed, null_values)
+    contribution_concentration: dict[str, float | None] = {
+        "top_1_share": None,
+        "top_5_share": None,
+        "top_10_share": None,
+        "effective_pair_count": None,
+    }
+    cross_half_effect: dict[str, float | int | None] = {
+        "pairs": 0,
+        "pearson": None,
+        "sign_agreement": None,
+    }
+    if reduced_residual is not None and len(eligible_pairs):
+        pair_sums = pair_projection @ reduced_residual
+        contributions = pair_sums**2 / counts
+        contribution_total = float(np.sum(contributions))
+        if contribution_total > 1e-12:
+            ordered = np.sort(contributions)[::-1]
+            contribution_concentration = {
+                "top_1_share": float(np.sum(ordered[:1]) / contribution_total),
+                "top_5_share": float(np.sum(ordered[:5]) / contribution_total),
+                "top_10_share": float(np.sum(ordered[:10]) / contribution_total),
+                "effective_pair_count": float(
+                    contribution_total**2 / np.sum(contributions**2)
+                ),
+            }
+        if scope == "full" and cutoff_timestamp is not None:
+            early_sums = np.zeros(len(eligible_pairs), dtype=np.float64)
+            late_sums = np.zeros(len(eligible_pairs), dtype=np.float64)
+            early_counts = np.zeros(len(eligible_pairs), dtype=np.float64)
+            late_counts = np.zeros(len(eligible_pairs), dtype=np.float64)
+            for index, identity in enumerate(pair_assignment):
+                if identity < 0:
+                    continue
+                if observation_timestamps[index] <= cutoff_timestamp:
+                    early_sums[identity] += reduced_residual[index]
+                    early_counts[identity] += 1.0
+                else:
+                    late_sums[identity] += reduced_residual[index]
+                    late_counts[identity] += 1.0
+            both = (early_counts > 0.0) & (late_counts > 0.0)
+            early_means = early_sums[both] / early_counts[both]
+            late_means = late_sums[both] / late_counts[both]
+            correlation = None
+            if (
+                len(early_means) >= 2
+                and float(np.std(early_means)) > 1e-12
+                and float(np.std(late_means)) > 1e-12
+            ):
+                correlation = float(np.corrcoef(early_means, late_means)[0, 1])
+            cross_half_effect = {
+                "pairs": int(np.sum(both)),
+                "pearson": correlation,
+                "sign_agreement": (
+                    float(np.mean(np.sign(early_means) == np.sign(late_means)))
+                    if len(early_means)
+                    else None
+                ),
+            }
     pair_residual_effects = sorted(
         [
             {
                 "entities": list(pair),
                 "occurrences": int(counts[index]),
                 "independent_time_clusters": pair_time_clusters[pair],
+                "distinct_companion_sets": len(pair_companion_sets[pair]),
                 "mean_residual": float(
                     (pair_projection @ reduced_residual)[index] / counts[index]
                 )
@@ -909,6 +1025,7 @@ def _dyadic_residual_persistence_summary(
             "profile": profile_key,
             "scope": scope,
             "entity_effect_scope": entity_effect_scope,
+            "null_control": null_control,
             "cutoff_timestamp": cutoff_timestamp,
             "contexts": len(contexts),
             "candidate_contexts": len(candidate_contexts),
@@ -921,10 +1038,13 @@ def _dyadic_residual_persistence_summary(
             "eligible_pair_identities": len(eligible_pairs),
             "replication_separation_seconds": replication_separation_seconds,
             "minimum_independent_time_clusters": minimum_independent_time_clusters,
+            "minimum_distinct_companion_sets": minimum_distinct_companion_sets,
             "observations": n_observations,
             "reduced_model_columns": n_columns,
             "reduced_model_rank": rank,
             "residual_degrees_of_freedom": n_observations - rank,
+            "contribution_concentration": contribution_concentration,
+            "cross_half_effect": cross_half_effect,
             "statistic": (
                 "occurrence-weighted between-pair variance of mean residual "
                 "alignment after the declared additive entity-effect model"
@@ -937,12 +1057,24 @@ def _dyadic_residual_persistence_summary(
             "informative_context_gate": (
                 "all nonconstant exact contexts are used for global and segment "
                 "entity effects; exact-context entity effects require more pair "
-                "observations than the local additive model rank"
+                "observations than the local additive model rank; eligible pair "
+                "identities must also satisfy the declared independent-time and "
+                "distinct-companion-set gates"
             ),
             "null_generation": (
-                "Freedman-Lane: permutes reduced-model residuals only within exact "
-                "contexts, adds fitted context and entity effects, refits the "
-                "declared reduced model, and recomputes dyadic persistence"
+                (
+                    "Freedman-Lane: permutes reduced-model residuals only within "
+                    "exact contexts, adds fitted context and entity effects, "
+                    "refits the declared reduced model, and recomputes dyadic "
+                    "persistence"
+                )
+                if null_control == "freedman_lane"
+                else (
+                    "randomly relabels entity nodes within each complete exact-"
+                    "context pair graph, preserving the complete local score "
+                    "geometry and shared-node dependencies; refits the declared "
+                    "reduced model and recomputes dyadic persistence"
+                )
             ),
             "top_pair_residual_effects": pair_residual_effects[:25],
         }
@@ -995,7 +1127,9 @@ def _spectral_specificity(
     compute_identity_persistence: bool = False,
     dyadic_persistence_hypotheses: Sequence[tuple[str, str]] = (),
     dyadic_entity_effect_scopes: Sequence[str] = ("global",),
+    dyadic_null_controls: Sequence[str] = ("freedman_lane",),
     persistence_minimum_time_clusters: Sequence[int] = (1,),
+    persistence_minimum_companion_sets: Sequence[int] = (1,),
     progress: bool = False,
 ) -> dict[str, Any]:
     """Test spectral hypotheses while preserving the obvious domain spectrum."""
@@ -1047,13 +1181,21 @@ def _spectral_specificity(
         for layer, profile in dyadic_persistence_hypotheses
     }
     dyadic_effect_scopes = tuple(str(scope) for scope in dyadic_entity_effect_scopes)
+    dyadic_controls = tuple(str(control) for control in dyadic_null_controls)
     persistence_time_clusters = tuple(
         int(count) for count in persistence_minimum_time_clusters
+    )
+    persistence_companion_sets = tuple(
+        int(count) for count in persistence_minimum_companion_sets
     )
     if not persistence_time_clusters or any(
         count < 1 for count in persistence_time_clusters
     ):
         raise ValueError("persistence minimum time clusters must be positive")
+    if not persistence_companion_sets or any(
+        count < 1 for count in persistence_companion_sets
+    ):
+        raise ValueError("persistence minimum companion sets must be positive")
     invalid_effect_scopes = set(dyadic_effect_scopes) - {
         "global",
         "segment",
@@ -1063,6 +1205,23 @@ def _spectral_specificity(
         raise ValueError(
             f"unknown dyadic entity effect scopes: {sorted(invalid_effect_scopes)}"
         )
+    invalid_dyadic_controls = set(dyadic_controls) - {
+        "freedman_lane",
+        "context_node_relabel",
+    }
+    if invalid_dyadic_controls:
+        raise ValueError(
+            f"unknown dyadic null controls: {sorted(invalid_dyadic_controls)}"
+        )
+    dyadic_completed = 0
+    dyadic_total = (
+        3
+        * len(dyadic_hypotheses)
+        * len(dyadic_effect_scopes)
+        * len(dyadic_controls)
+        * len(persistence_time_clusters)
+        * len(persistence_companion_sets)
+    )
     for layer_name, records in sorted(by_layer.items()):
         if not records:
             continue
@@ -1358,24 +1517,39 @@ def _spectral_specificity(
                         if (layer_name, profile_key) not in dyadic_hypotheses:
                             continue
                         for entity_effect_scope in dyadic_effect_scopes:
-                            dyadic_residual_persistence.append(
-                                _dyadic_residual_persistence_summary(
-                                    pair_occurrences,
-                                    profile_key=profile_key,
-                                    layer_name=layer_name,
-                                    scope=scope,
-                                    cutoff_timestamp=cutoff_timestamp,
-                                    null_repeats=null_repeats,
-                                    seed=seed,
-                                    entity_effect_scope=entity_effect_scope,
-                                    replication_separation_seconds=(
-                                        replication_separation_seconds
-                                    ),
-                                    minimum_independent_time_clusters=(
-                                        minimum_time_clusters
-                                    ),
-                                )
-                            )
+                            for null_control in dyadic_controls:
+                                for minimum_companion_sets in persistence_companion_sets:
+                                    dyadic_residual_persistence.append(
+                                        _dyadic_residual_persistence_summary(
+                                            pair_occurrences,
+                                            profile_key=profile_key,
+                                            layer_name=layer_name,
+                                            scope=scope,
+                                            cutoff_timestamp=cutoff_timestamp,
+                                            null_repeats=null_repeats,
+                                            seed=seed,
+                                            entity_effect_scope=entity_effect_scope,
+                                            null_control=null_control,
+                                            replication_separation_seconds=(
+                                                replication_separation_seconds
+                                            ),
+                                            minimum_independent_time_clusters=(
+                                                minimum_time_clusters
+                                            ),
+                                            minimum_distinct_companion_sets=(
+                                                minimum_companion_sets
+                                            ),
+                                        )
+                                    )
+                                    dyadic_completed += 1
+                                    if (
+                                        dyadic_completed % 12 == 0
+                                        or dyadic_completed == dyadic_total
+                                    ):
+                                        report(
+                                            "phase=dyadic_controls "
+                                            f"complete={dyadic_completed}/{dyadic_total}"
+                                        )
         repeated_pairs = [
             pair for pair, occurrences in pair_occurrences.items() if len(occurrences) >= 2
         ]
@@ -1762,7 +1936,7 @@ def _spectral_specificity(
         )
     dyadic_replication = []
     dyadic_by_hypothesis: dict[
-        tuple[str, str, str, int], dict[str, dict[str, Any]]
+        tuple[str, str, str, str, int, int], dict[str, dict[str, Any]]
     ] = (
         defaultdict(dict)
     )
@@ -1772,14 +1946,18 @@ def _spectral_specificity(
                 str(row["layer"]),
                 str(row["profile"]),
                 str(row["entity_effect_scope"]),
+                str(row["null_control"]),
                 int(row["minimum_independent_time_clusters"]),
+                int(row["minimum_distinct_companion_sets"]),
             )
         ][str(row["scope"])] = row
     for (
         layer_name,
         profile_key,
         entity_effect_scope,
+        null_control,
         minimum_time_clusters,
+        minimum_companion_sets,
     ), scopes in sorted(dyadic_by_hypothesis.items()):
         full = scopes.get("full")
         early = scopes.get("early")
@@ -1789,7 +1967,9 @@ def _spectral_specificity(
                 "layer": layer_name,
                 "profile": profile_key,
                 "entity_effect_scope": entity_effect_scope,
+                "null_control": null_control,
                 "minimum_independent_time_clusters": minimum_time_clusters,
+                "minimum_distinct_companion_sets": minimum_companion_sets,
                 "full_detected_fdr": bool(full and full["detected_fdr"]),
                 "early_detected_fdr": bool(early and early["detected_fdr"]),
                 "late_detected_fdr": bool(late and late["detected_fdr"]),
@@ -1859,6 +2039,9 @@ def _spectral_specificity(
             "persistence_minimum_independent_time_clusters": list(
                 persistence_time_clusters
             ),
+            "persistence_minimum_distinct_companion_sets": list(
+                persistence_companion_sets
+            ),
             "persistence_replication_separation_seconds": (
                 replication_separation_seconds
             ),
@@ -1872,6 +2055,7 @@ def _spectral_specificity(
                 for layer, profile in sorted(dyadic_hypotheses)
             ],
             "dyadic_entity_effect_scopes": list(dyadic_effect_scopes),
+            "dyadic_null_controls": list(dyadic_controls),
         },
         "layer_summary": layer_summaries,
         "pair_summary": pair_summaries,

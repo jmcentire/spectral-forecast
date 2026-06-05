@@ -516,6 +516,82 @@ def test_dyadic_residual_control_detects_persistent_pair_effects() -> None:
     assert summary["detected"]
 
 
+def test_dyadic_node_relabel_control_detects_persistent_pair_effects() -> None:
+    summary = _dyadic_residual_persistence_summary(
+        _synthetic_complete_pair_occurrences(
+            dyadic_effects={
+                ("a", "b"): 3.0,
+                ("a", "f"): -2.0,
+                ("c", "d"): 2.0,
+                ("e", "f"): -3.0,
+            }
+        ),
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=999,
+        seed=371,
+        entity_effect_scope="exact_context",
+        null_control="context_node_relabel",
+    )
+
+    assert summary["null_control"] == "context_node_relabel"
+    assert summary["observed_minus_null"] > 0.0
+    assert summary["empirical_p_ge_observed"] <= 0.01
+    assert summary["detected"]
+
+
+def test_dyadic_control_can_require_distinct_companion_sets() -> None:
+    summary = _dyadic_residual_persistence_summary(
+        _synthetic_complete_pair_occurrences(
+            dyadic_effects={("a", "b"): 3.0}
+        ),
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=99,
+        seed=372,
+        entity_effect_scope="exact_context",
+        minimum_distinct_companion_sets=2,
+    )
+
+    assert summary["minimum_distinct_companion_sets"] == 2
+    assert summary["eligible_pair_identities"] == 0
+    assert summary["empirical_p_ge_observed"] is None
+
+
+def test_freedman_lane_dyadic_control_allows_incomplete_local_pair_graphs() -> None:
+    pair_occurrences = {("a", "b"): [], ("a", "c"): []}
+    for window_index in range(4):
+        for pair, score in ((("a", "b"), 0.9), (("a", "c"), 0.1)):
+            pair_occurrences[pair].append(
+                {
+                    "segment": "validation",
+                    "group_index": window_index,
+                    "window_index": 0,
+                    "corpus_stratum": "x",
+                    "start": f"2026-01-{window_index + 1:02d}T00:00:00+00:00",
+                    "raw_profile": score,
+                }
+            )
+
+    summary = _dyadic_residual_persistence_summary(
+        pair_occurrences,
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=9,
+        seed=373,
+        entity_effect_scope="global",
+        null_control="freedman_lane",
+    )
+
+    assert summary["null_control"] == "freedman_lane"
+
+
 def test_exact_context_dyadic_effect_is_unidentifiable_in_triangles() -> None:
     pair_occurrences = {
         ("a", "b"): [],

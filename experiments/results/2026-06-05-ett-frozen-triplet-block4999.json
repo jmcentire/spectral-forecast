@@ -1,0 +1,1397 @@
+{
+  "method": {
+    "multiplicity": "Benjamini-Yekutieli within each segment",
+    "null": "block-permute",
+    "replication": "exact subset must survive correction in every supplied segment",
+    "selection": "enumerate exact frozen-config series subsets"
+  },
+  "parameters": {
+    "config": {
+      "adaptive_window": 256,
+      "baseline_size": 1024,
+      "decay": 0.75,
+      "emission_threshold": 13.629695749397975,
+      "min_active_series": 3,
+      "score": "max",
+      "stride": 128
+    },
+    "null_block_size": 8,
+    "null_mode": "block-permute",
+    "null_repeats": 4999,
+    "sample_limit": 8192,
+    "sample_offset": 8192,
+    "sample_rate": 1.0,
+    "subset_size": 3
+  },
+  "replicated_subsets": [],
+  "segment_results": {
+    "ETTh1": [
+      {
+        "active_windows": 33,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.002,
+        "fdr_by_q_value": 0.2902746993311803,
+        "null_exceedances": 9,
+        "null_mean": 3542.8884085343584,
+        "null_repeats": 4999,
+        "observed_minus_null": 1180.0110084727407,
+        "observed_total": 4722.899417007099,
+        "subset": [
+          "LUFL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 4999,
+        "z_effect": 3.209175697017177
+      },
+      {
+        "active_windows": 2,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.011,
+        "fdr_by_q_value": 0.7982554231607456,
+        "null_exceedances": 54,
+        "null_mean": 22.563894020042696,
+        "null_repeats": 4999,
+        "observed_minus_null": 91.24523790306083,
+        "observed_total": 113.80913192310352,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "LUFL"
+        ],
+        "unique_null_totals": 232,
+        "z_effect": 2.797973682882148
+      },
+      {
+        "active_windows": 5,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.1692,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 845,
+        "null_mean": 496.1518211001691,
+        "null_repeats": 4999,
+        "observed_minus_null": 164.827956305873,
+        "observed_total": 660.9797774060421,
+        "subset": [
+          "MULL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 4912,
+        "z_effect": 1.0533645768392117
+      },
+      {
+        "active_windows": 2,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.146,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 729,
+        "null_mean": 36.8669301656096,
+        "null_repeats": 4999,
+        "observed_minus_null": 73.35341502091202,
+        "observed_total": 110.22034518652163,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "OT"
+        ],
+        "unique_null_totals": 251,
+        "z_effect": 1.36079400008106
+      },
+      {
+        "active_windows": 3,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.3344,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 1671,
+        "null_mean": 265.20945474103485,
+        "null_repeats": 4999,
+        "observed_minus_null": 66.89855775072454,
+        "observed_total": 332.1080124917594,
+        "subset": [
+          "MULL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 3649,
+        "z_effect": 0.4739286257838127
+      },
+      {
+        "active_windows": 2,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.074,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 369,
+        "null_mean": 11.624733037426852,
+        "null_repeats": 4999,
+        "observed_minus_null": 34.41562263532239,
+        "observed_total": 46.04035567274924,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 166,
+        "z_effect": 1.6789930855886386
+      },
+      {
+        "active_windows": 4,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.4556,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 2277,
+        "null_mean": 258.7281706094592,
+        "null_repeats": 4999,
+        "observed_minus_null": 16.36010059941526,
+        "observed_total": 275.08827120887446,
+        "subset": [
+          "HUFL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 3886,
+        "z_effect": 0.14666157143569425
+      },
+      {
+        "active_windows": 2,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.3942,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 1970,
+        "null_mean": 83.24851280413631,
+        "null_repeats": 4999,
+        "observed_minus_null": 8.554292844500594,
+        "observed_total": 91.8028056486369,
+        "subset": [
+          "MUFL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 2863,
+        "z_effect": 0.18727267651446622
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "MUFL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "MULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "MULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "MULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "LUFL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MULL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "MULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "MULL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "MULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 3,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.5064,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 2531,
+        "null_mean": 157.6468415937916,
+        "null_repeats": 4999,
+        "observed_minus_null": -2.6472363785302946,
+        "observed_total": 154.9996052152613,
+        "subset": [
+          "MULL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 4151,
+        "z_effect": -0.035660816628007866
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 9.277250112522163,
+        "null_repeats": 4999,
+        "observed_minus_null": -9.277250112522163,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MULL",
+          "LULL"
+        ],
+        "unique_null_totals": 71,
+        "z_effect": -0.48303616437672564
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 21.475190520577474,
+        "null_repeats": 4999,
+        "observed_minus_null": -21.475190520577474,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 85,
+        "z_effect": -0.6071865275084045
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 28.717748832724396,
+        "null_repeats": 4999,
+        "observed_minus_null": -28.717748832724396,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MULL",
+          "OT"
+        ],
+        "unique_null_totals": 85,
+        "z_effect": -0.5303992765063769
+      },
+      {
+        "active_windows": 2,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.7128,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 3563,
+        "null_mean": 194.93522131283308,
+        "null_repeats": 4999,
+        "observed_minus_null": -38.952426150423804,
+        "observed_total": 155.98279516240927,
+        "subset": [
+          "MUFL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 3859,
+        "z_effect": -0.54172656541453
+      },
+      {
+        "active_windows": 2,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.7444,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 3721,
+        "null_mean": 132.7940950463709,
+        "null_repeats": 4999,
+        "observed_minus_null": -44.580076134315874,
+        "observed_total": 88.21401891205502,
+        "subset": [
+          "MUFL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 2894,
+        "z_effect": -0.6427644900754959
+      },
+      {
+        "active_windows": 4,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.6004,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 3001,
+        "null_mean": 387.31402896958207,
+        "null_repeats": 4999,
+        "observed_minus_null": -47.09341679608468,
+        "observed_total": 340.2206121734974,
+        "subset": [
+          "HUFL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 3815,
+        "z_effect": -0.264635917270705
+      },
+      {
+        "active_windows": 6,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.6218,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 3108,
+        "null_mean": 655.8528101577441,
+        "null_repeats": 4999,
+        "observed_minus_null": -69.93227229443471,
+        "observed_total": 585.9205378633094,
+        "subset": [
+          "HUFL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 4821,
+        "z_effect": -0.34556581348788384
+      }
+    ],
+    "ETTh2": [
+      {
+        "active_windows": 31,
+        "detected_fdr_by": true,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.0002,
+        "fdr_by_q_value": 0.029027469933118027,
+        "null_exceedances": 0,
+        "null_mean": 8170.889902764707,
+        "null_repeats": 4999,
+        "observed_minus_null": 7900.204992497963,
+        "observed_total": 16071.09489526267,
+        "subset": [
+          "HULL",
+          "MULL",
+          "OT"
+        ],
+        "unique_null_totals": 4999,
+        "z_effect": 2.851632702345852
+      },
+      {
+        "active_windows": 7,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.0104,
+        "fdr_by_q_value": 0.7547142182610687,
+        "null_exceedances": 51,
+        "null_mean": 556.1041279841714,
+        "null_repeats": 4999,
+        "observed_minus_null": 3895.182539699747,
+        "observed_total": 4451.2866676839185,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "MULL"
+        ],
+        "unique_null_totals": 4587,
+        "z_effect": 3.5620281017625155
+      },
+      {
+        "active_windows": 11,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.0198,
+        "fdr_by_q_value": 0.9143653028932178,
+        "null_exceedances": 98,
+        "null_mean": 1054.731712476282,
+        "null_repeats": 4999,
+        "observed_minus_null": 1862.0831889580256,
+        "observed_total": 2916.8149014343076,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "OT"
+        ],
+        "unique_null_totals": 4252,
+        "z_effect": 2.8578937873533374
+      },
+      {
+        "active_windows": 7,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.0252,
+        "fdr_by_q_value": 0.9143653028932178,
+        "null_exceedances": 125,
+        "null_mean": 88.45756008288578,
+        "null_repeats": 4999,
+        "observed_minus_null": 179.76580113190357,
+        "observed_total": 268.22336121478935,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "MULL"
+        ],
+        "unique_null_totals": 3208,
+        "z_effect": 2.701826983944415
+      },
+      {
+        "active_windows": 7,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.0462,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 230,
+        "null_mean": 2569.2537645421794,
+        "null_repeats": 4999,
+        "observed_minus_null": 3790.8169966703504,
+        "observed_total": 6360.07076121253,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "OT"
+        ],
+        "unique_null_totals": 4986,
+        "z_effect": 2.344368694217828
+      },
+      {
+        "active_windows": 9,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.279,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 1394,
+        "null_mean": 2662.8153836098268,
+        "null_repeats": 4999,
+        "observed_minus_null": 517.907396448029,
+        "observed_total": 3180.7227800578557,
+        "subset": [
+          "HUFL",
+          "MULL",
+          "OT"
+        ],
+        "unique_null_totals": 4997,
+        "z_effect": 0.6025487896297839
+      },
+      {
+        "active_windows": 8,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.2864,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 1431,
+        "null_mean": 2147.983162503569,
+        "null_repeats": 4999,
+        "observed_minus_null": 517.9042305936455,
+        "observed_total": 2665.8873930972145,
+        "subset": [
+          "MUFL",
+          "MULL",
+          "OT"
+        ],
+        "unique_null_totals": 4995,
+        "z_effect": 0.6058026600505204
+      },
+      {
+        "active_windows": 8,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.327,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 1634,
+        "null_mean": 2475.8361554015237,
+        "null_repeats": 4999,
+        "observed_minus_null": 330.0448261223037,
+        "observed_total": 2805.8809815238274,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "OT"
+        ],
+        "unique_null_totals": 4999,
+        "z_effect": 0.4086777630538623
+      },
+      {
+        "active_windows": 1,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.0854,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 426,
+        "null_mean": 207.06499713254405,
+        "null_repeats": 4999,
+        "observed_minus_null": 219.8467392026104,
+        "observed_total": 426.91173633515444,
+        "subset": [
+          "MULL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 211,
+        "z_effect": 1.2545775448965144
+      },
+      {
+        "active_windows": 8,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.14,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 699,
+        "null_mean": 253.5376565961936,
+        "null_repeats": 4999,
+        "observed_minus_null": 167.69847677834642,
+        "observed_total": 421.23613337454003,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "MULL"
+        ],
+        "unique_null_totals": 4897,
+        "z_effect": 1.2021231094912805
+      },
+      {
+        "active_windows": 6,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 0.0458,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 228,
+        "null_mean": 79.52110007077269,
+        "null_repeats": 4999,
+        "observed_minus_null": 156.78595845308513,
+        "observed_total": 236.30705852385782,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "MUFL"
+        ],
+        "unique_null_totals": 3000,
+        "z_effect": 2.3878375642271172
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MULL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MULL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "MULL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MULL",
+          "LUFL",
+          "LULL"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "MULL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 0.0,
+        "null_repeats": 4999,
+        "observed_minus_null": 0.0,
+        "observed_total": 0.0,
+        "subset": [
+          "LUFL",
+          "LULL",
+          "OT"
+        ],
+        "unique_null_totals": 1,
+        "z_effect": null
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 4.714301521116217,
+        "null_repeats": 4999,
+        "observed_minus_null": -4.714301521116217,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MUFL",
+          "LUFL"
+        ],
+        "unique_null_totals": 64,
+        "z_effect": -0.461625800868858
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 8.105952330099777,
+        "null_repeats": 4999,
+        "observed_minus_null": -8.105952330099777,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MUFL",
+          "LUFL"
+        ],
+        "unique_null_totals": 64,
+        "z_effect": -0.500544022284797
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 8.12644402449508,
+        "null_repeats": 4999,
+        "observed_minus_null": -8.12644402449508,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "HULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 64,
+        "z_effect": -0.5045486019990171
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 10.047967491982966,
+        "null_repeats": 4999,
+        "observed_minus_null": -10.047967491982966,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "MULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 106,
+        "z_effect": -0.5900124910541887
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 10.20164234168678,
+        "null_repeats": 4999,
+        "observed_minus_null": -10.20164234168678,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "MULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 106,
+        "z_effect": -0.5980701861260291
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 16.6847583796325,
+        "null_repeats": 4999,
+        "observed_minus_null": -16.6847583796325,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "MULL",
+          "LUFL"
+        ],
+        "unique_null_totals": 106,
+        "z_effect": -0.7002705775464514
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 118.81967909498262,
+        "null_repeats": 4999,
+        "observed_minus_null": -118.81967909498262,
+        "observed_total": 0.0,
+        "subset": [
+          "HUFL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 127,
+        "z_effect": -0.7233883430992334
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 120.04533433399665,
+        "null_repeats": 4999,
+        "observed_minus_null": -120.04533433399665,
+        "observed_total": 0.0,
+        "subset": [
+          "MUFL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 127,
+        "z_effect": -0.7237742553408814
+      },
+      {
+        "active_windows": 0,
+        "detected_fdr_by": false,
+        "empirical_p_floor": 0.0002,
+        "empirical_p_ge_observed": 1.0,
+        "fdr_by_q_value": 1.0,
+        "null_exceedances": 4999,
+        "null_mean": 165.71057003772935,
+        "null_repeats": 4999,
+        "observed_minus_null": -165.71057003772935,
+        "observed_total": 0.0,
+        "subset": [
+          "HULL",
+          "LUFL",
+          "OT"
+        ],
+        "unique_null_totals": 127,
+        "z_effect": -0.9290958238284
+      }
+    ]
+  },
+  "segments": [
+    {
+      "detected_subsets": 0,
+      "file": "data/ETTh1.csv",
+      "name": "ETTh1",
+      "samples": 8192,
+      "series": [
+        "HUFL",
+        "HULL",
+        "MUFL",
+        "MULL",
+        "LUFL",
+        "LULL",
+        "OT"
+      ],
+      "tested_subsets": 35
+    },
+    {
+      "detected_subsets": 1,
+      "file": "data/ETTh2.csv",
+      "name": "ETTh2",
+      "samples": 8192,
+      "series": [
+        "HUFL",
+        "HULL",
+        "MUFL",
+        "MULL",
+        "LUFL",
+        "LULL",
+        "OT"
+      ],
+      "tested_subsets": 35
+    }
+  ]
+}

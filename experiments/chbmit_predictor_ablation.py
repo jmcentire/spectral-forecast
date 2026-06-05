@@ -707,6 +707,176 @@ def _classification_metrics(
     return metrics
 
 
+def _empirical_null_summary(
+    observed: float,
+    null_values: Sequence[float],
+) -> dict[str, float | int | None]:
+    null = np.asarray(null_values, dtype=np.float64)
+    if not len(null):
+        return {
+            "observed": _finite(observed),
+            "null_repeats": 0,
+            "null_unique_values": 0,
+            "null_mean": None,
+            "null_std": None,
+            "observed_minus_null": None,
+            "z_effect": None,
+            "null_exceedances": None,
+            "empirical_p_ge_observed": None,
+            "empirical_p_floor": None,
+        }
+    mean = float(np.mean(null))
+    std = float(np.std(null, ddof=1)) if len(null) > 1 else 0.0
+    delta = float(observed - mean)
+    return {
+        "observed": _finite(observed),
+        "null_repeats": len(null),
+        "null_unique_values": len(np.unique(np.round(null, decimals=12))),
+        "null_mean": _finite(mean),
+        "null_std": _finite(std),
+        "observed_minus_null": _finite(delta),
+        "z_effect": _finite(delta / std) if std > 1e-12 else None,
+        "null_exceedances": int(np.sum(null >= observed)),
+        "empirical_p_ge_observed": float(
+            (np.sum(null >= observed) + 1) / (len(null) + 1)
+        ),
+        "empirical_p_floor": float(1.0 / (len(null) + 1)),
+    }
+
+
+def _apply_by_fdr(rows: Sequence[dict[str, Any]]) -> None:
+    eligible = [
+        (float(row["empirical_p_ge_observed"]), index)
+        for index, row in enumerate(rows)
+        if row.get("empirical_p_ge_observed") is not None
+    ]
+    eligible.sort(key=lambda item: item[0])
+    total = len(eligible)
+    harmonic = float(sum(1.0 / rank for rank in range(1, total + 1)))
+    adjusted: dict[int, float] = {}
+    running = 1.0
+    for rank in range(total, 0, -1):
+        p_value, index = eligible[rank - 1]
+        running = min(running, p_value * total / rank)
+        adjusted[index] = min(1.0, running * harmonic)
+    for index, row in enumerate(rows):
+        row["fdr_by_q_value"] = adjusted.get(index)
+        row["detected_fdr_by"] = bool(
+            adjusted.get(index, 1.0) <= 0.05
+            and float(row.get("observed_minus_null") or 0.0) > 0.0
+        )
+
+
+def _temporal_shift_audit(
+    split_rows: Sequence[Sequence[FeatureRow]],
+    split_predictions: Sequence[Mapping[str, NDArray[np.float64]]],
+    *,
+    comparisons: Mapping[str, tuple[str, str]],
+    null_repeats: int,
+    seed: int,
+) -> dict[str, Any]:
+    """Test fixed held-out predictions against within-file label timing shifts."""
+
+    if average_precision_score is None:
+        raise RuntimeError("scikit-learn is required for temporal shift audit")
+    if len(split_rows) != len(split_predictions):
+        raise ValueError("split rows and predictions must have equal length")
+    common_models = sorted(
+        set.intersection(*(set(predictions) for predictions in split_predictions))
+    )
+    observed_model_scores = {
+        model: float(
+            np.mean(
+                [
+                    average_precision_score(_labels(rows), predictions[model])
+                    for rows, predictions in zip(split_rows, split_predictions)
+                ]
+            )
+        )
+        for model in common_models
+    }
+    rng = np.random.default_rng(seed)
+    null_model_scores = {model: [] for model in common_models}
+    for _ in range(null_repeats):
+        shifted_by_split = []
+        for rows in split_rows:
+            shifted = _labels(rows).copy()
+            indices_by_file: dict[str, list[int]] = {}
+            for index, row in enumerate(rows):
+                indices_by_file.setdefault(row.file, []).append(index)
+            for indices in indices_by_file.values():
+                ordered = sorted(
+                    indices,
+                    key=lambda index: (rows[index].seconds, rows[index].anchor),
+                )
+                labels = shifted[ordered].copy()
+                if len(labels) < 2 or len(np.unique(labels)) < 2:
+                    continue
+                offset = int(rng.integers(1, len(labels)))
+                shifted[ordered] = np.roll(labels, offset)
+            shifted_by_split.append(shifted)
+        for model in common_models:
+            null_model_scores[model].append(
+                float(
+                    np.mean(
+                        [
+                            average_precision_score(labels, predictions[model])
+                            for labels, predictions in zip(
+                                shifted_by_split,
+                                split_predictions,
+                            )
+                        ]
+                    )
+                )
+            )
+
+    model_rows = []
+    for model in common_models:
+        row = {
+            "kind": "model_pr_auc",
+            "model": model,
+            **_empirical_null_summary(
+                observed_model_scores[model],
+                null_model_scores[model],
+            ),
+        }
+        model_rows.append(row)
+
+    comparison_rows = []
+    for name, (full_model, baseline_model) in comparisons.items():
+        if full_model not in common_models or baseline_model not in common_models:
+            continue
+        observed = observed_model_scores[full_model] - observed_model_scores[baseline_model]
+        null_values = [
+            full - baseline
+            for full, baseline in zip(
+                null_model_scores[full_model],
+                null_model_scores[baseline_model],
+            )
+        ]
+        comparison_rows.append(
+            {
+                "kind": "paired_pr_auc_delta",
+                "name": name,
+                "full_model": full_model,
+                "baseline_model": baseline_model,
+                **_empirical_null_summary(observed, null_values),
+            }
+        )
+    _apply_by_fdr([*model_rows, *comparison_rows])
+    return {
+        "method": (
+            "models and feature selection remain fixed from outer leave-one-subject-"
+            "out evaluation; labels are circularly shifted only within each held-out "
+            "EDF file, preserving file membership, prevalence, and contiguous label "
+            "blocks while breaking alignment to predictor timing"
+        ),
+        "null_repeats": null_repeats,
+        "models": model_rows,
+        "comparisons": comparison_rows,
+    }
+
+
 def _mean_metric(rows: Sequence[Mapping[str, float | None]], key: str) -> float | None:
     values = [float(row[key]) for row in rows if row.get(key) is not None]
     if not values:
@@ -745,7 +915,7 @@ def _fit_one_model(
     *,
     row_hours: float,
     feature_selection: bool,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], NDArray[np.float64]]:
     selection = _select_model_hyperparameters(
         train_rows,
         names,
@@ -778,7 +948,7 @@ def _fit_one_model(
     metrics["feature_selection"] = bool(feature_selection)  # type: ignore[assignment]
     metrics["inner_pr_auc"] = selection["inner_pr_auc"]
     metrics["model_selection"] = selection  # type: ignore[assignment]
-    return metrics
+    return metrics, test_prob
 
 
 def _family_probability_matrix(
@@ -950,6 +1120,8 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         raise ValueError("leave-one-subject-out evaluation requires at least two subjects")
     row_hours = (args.stride / args.target_sample_rate) / 3600.0
     split_reports: list[dict[str, Any]] = []
+    heldout_rows: list[Sequence[FeatureRow]] = []
+    heldout_predictions: list[dict[str, NDArray[np.float64]]] = []
     for subject in subjects:
         train_rows = [row for row in rows if row.subject != subject]
         test_rows = [row for row in rows if row.subject == subject]
@@ -963,10 +1135,11 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
             "test_positives": int(np.sum(test_y)),
             "models": {},
         }
+        split_predictions: dict[str, NDArray[np.float64]] = {}
         for model_name, names in ablations.items():
             if not names:
                 continue
-            split["models"][model_name] = _fit_one_model(
+            metrics, probabilities = _fit_one_model(
                 train_rows,
                 test_rows,
                 names,
@@ -974,10 +1147,12 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
                 row_hours=row_hours,
                 feature_selection=False,
             )
+            split["models"][model_name] = metrics
+            split_predictions[model_name] = probabilities
         for model_name, names in selected_ablations.items():
             if not names:
                 continue
-            split["models"][model_name] = _fit_one_model(
+            metrics, probabilities = _fit_one_model(
                 train_rows,
                 test_rows,
                 names,
@@ -985,6 +1160,8 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
                 row_hours=row_hours,
                 feature_selection=True,
             )
+            split["models"][model_name] = metrics
+            split_predictions[model_name] = probabilities
         split["models"].update(
             _late_fusion_models(
                 train_rows,
@@ -995,6 +1172,8 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
             )
         )
         split_reports.append(split)
+        heldout_rows.append(test_rows)
+        heldout_predictions.append(split_predictions)
 
     aggregate: dict[str, dict[str, float | None]] = {}
     metric_keys = (
@@ -1092,6 +1271,26 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
             else None
         ),
     }
+    temporal_shift_audit = _temporal_shift_audit(
+        heldout_rows,
+        heldout_predictions,
+        comparisons={
+            "raw_latent_addition": (
+                "pedestrian_spectral_latent",
+                "pedestrian_spectral",
+            ),
+            "selected_latent_addition": (
+                "pedestrian_spectral_latent_selected",
+                "pedestrian_spectral_selected",
+            ),
+            "latent_only_vs_baseline": (
+                "latent_only",
+                "pedestrian_spectral",
+            ),
+        },
+        null_repeats=args.temporal_null_repeats,
+        seed=args.seed + 1009,
+    )
     return {
         "feature_names": feature_names,
         "feature_groups": {name: len(values) for name, values in groups.items()},
@@ -1105,6 +1304,7 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         "splits": split_reports,
         "aggregate": aggregate,
         "comparison": comparison,
+        "temporal_shift_audit": temporal_shift_audit,
     }
 
 
@@ -1167,6 +1367,11 @@ def run_ablation(args: argparse.Namespace) -> dict[str, Any]:
                 "selected-feature logistic models and late fusion over pedestrian/spectral/latent "
                 "family probabilities are trained without outer-held-out labels"
             ),
+            "temporal_shift_control": (
+                "fixed outer-held-out predictions are tested against within-file "
+                "circular label shifts to distinguish timing-aligned predictive "
+                "structure from subject/file-level correlation"
+            ),
             "positive_label": "anchor falls inside the preictal horizon before a labeled seizure",
             "negative_label": "anchor is outside seizure, postictal, and near-seizure exclusion gaps",
             "event_note": "events are file-local CHB-MIT summary seizures with at least one eligible preictal row",
@@ -1190,6 +1395,7 @@ def run_ablation(args: argparse.Namespace) -> dict[str, Any]:
             "regularization_cs": _parse_float_list(args.regularization_cs),
             "selection_ks": _parse_int_list(args.selection_ks),
             "fusion_meta_c": args.fusion_meta_c,
+            "temporal_null_repeats": args.temporal_null_repeats,
             "max_files_per_subject": args.max_files_per_subject,
             "seed": args.seed,
         },
@@ -1215,6 +1421,7 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
     evaluation = report["evaluation"]
     aggregate = evaluation["aggregate"]
     comparison = evaluation["comparison"]
+    temporal_audit = evaluation["temporal_shift_audit"]
     lines = [
         "# CHB-MIT predictor ablation",
         "",
@@ -1271,6 +1478,29 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
             f"- Late-fusion logistic delta PR-AUC: {_fmt(comparison['late_fusion_logistic_delta_pr_auc'])}",
             f"- Best model: `{comparison['best_model']['name'] if comparison['best_model'] else 'n/a'}` PR-AUC {_fmt(comparison['best_model']['pr_auc'] if comparison['best_model'] else None)}",
             f"- Best latent-bearing model: `{comparison['best_latent_model']['name'] if comparison['best_latent_model'] else 'n/a'}` PR-AUC {_fmt(comparison['best_latent_model']['pr_auc'] if comparison['best_latent_model'] else None)}",
+            "",
+            "## Fixed-Prediction Temporal Shift Audit",
+            "",
+            "Within-file label shifts preserve file membership and prevalence while breaking predictor timing.",
+            "",
+            "| Test | Observed | Null mean | Delta | Empirical p | BY q |",
+            "| --- | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
+    for row in [*temporal_audit["models"], *temporal_audit["comparisons"]]:
+        lines.append(
+            "| %s | %s | %s | %s | %s | %s |"
+            % (
+                row.get("model", row.get("name")),
+                _fmt(row["observed"]),
+                _fmt(row["null_mean"]),
+                _fmt(row["observed_minus_null"]),
+                _fmt(row["empirical_p_ge_observed"], 4),
+                _fmt(row["fdr_by_q_value"], 4),
+            )
+        )
+    lines.extend(
+        [
             "",
             "## Integration Readout",
             "",
@@ -1347,6 +1577,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         default=1.0,
         help="Fixed logistic C for the late-fusion meta model",
     )
+    parser.add_argument("--temporal-null-repeats", type=int, default=999)
     parser.add_argument("--max-files-per-subject", type=int, default=0)
     parser.add_argument("--max-iter", type=int, default=1000)
     parser.add_argument("--seed", type=int, default=20260603)
@@ -1383,6 +1614,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         parser.error("--selection-ks values must be positive")
     if args.fusion_meta_c <= 0:
         parser.error("--fusion-meta-c must be positive")
+    if args.temporal_null_repeats < 1:
+        parser.error("--temporal-null-repeats must be >= 1")
     if args.max_files_per_subject < 0:
         parser.error("--max-files-per-subject must be >= 0")
     return args
@@ -1437,6 +1670,16 @@ def print_report(report: Mapping[str, Any]) -> None:
             best_latent["name"],
             _fmt(best_latent["pr_auc"]),
         ))
+    for row in report["evaluation"]["temporal_shift_audit"]["comparisons"]:
+        print(
+            "  temporal audit %-24s delta=%s p=%s q=%s"
+            % (
+                row["name"],
+                _fmt(row["observed"]),
+                _fmt(row["empirical_p_ge_observed"], 4),
+                _fmt(row["fdr_by_q_value"], 4),
+            )
+        )
 
 
 def main(argv: Sequence[str] | None = None) -> None:

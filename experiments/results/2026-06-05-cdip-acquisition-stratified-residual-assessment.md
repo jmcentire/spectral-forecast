@@ -2,6 +2,16 @@
 
 Date: 2026-06-05 UTC
 
+## Subsequent Resolution
+
+The exact-context identifiability limit documented below was subsequently
+attacked by collapsing overlapping selected triangles with identical sampling
+geometry into canonical multi-buoy contexts. The stricter result survives an
+exact-context additive-buoy model and dependency-preserving node-label null,
+but does not establish both-half chronological replication.
+
+See `2026-06-05-cdip-exact-context-dyadic-assessment.md`.
+
 ## Question
 
 After the label-blind relationship instrument recovered CDIP sample-rate and

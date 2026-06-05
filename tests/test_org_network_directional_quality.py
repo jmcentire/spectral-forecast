@@ -130,11 +130,13 @@ def test_order_null_summary_confirms_replicated_candidate_above_controls() -> No
     summary = summarize_order_null(
         candidate,
         {
-            "coactivation": [0.1, 0.12, 0.15, 0.2],
-            "phase_offset": [0.1, 0.35, 0.4, 0.45],
+            "coactivation": [0.1] * 19,
+            "phase_offset": [0.1] + [0.35] * 18,
         },
         significance_level=0.25,
     )
 
     assert summary["grade"] == "confirmed_order_sensitive_structure"
     assert summary["confirmed_order_sensitive_mechanisms"] == ["coactivation"]
+    assert summary["metrics"]["coactivation"]["fdr_by_q_value"] <= 0.25
+    assert not summary["metrics"]["phase_offset"]["confirmed_order_sensitive"]

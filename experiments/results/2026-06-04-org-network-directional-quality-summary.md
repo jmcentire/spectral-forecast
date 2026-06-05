@@ -1,5 +1,14 @@
 # Organizational-Network Directional Quality
 
+## Subsequent Multiplicity Audit
+
+The second-level order-null decision now uses Benjamini-Yekutieli FDR across
+the four tested relationship mechanisms. Existing Email-Eu and SocioPatterns
+results survive. Enron required a 999-order rerun and then retained only
+coactivation.
+
+See `2026-06-05-org-network-order-null-multiplicity-assessment.md`.
+
 ## Question
 
 Can a label-free diagnostic distinguish several forms of multichannel

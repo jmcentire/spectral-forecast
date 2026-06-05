@@ -280,13 +280,6 @@ def _null_summary(
     if null_mode not in ("permute", "shift", "block-permute"):
         raise ValueError(f"Unknown null mode: {null_mode}")
 
-    observed_emissions = _emissions_from_matrix(
-        matrix,
-        threshold=config.emission_threshold,
-        min_active_series=config.min_active_series,
-    )
-    observed_total = _decayed_total(observed_emissions, decay=config.decay)
-
     rng = np.random.default_rng(seed)
     null_totals = []
     for _ in range(null_repeats):
@@ -766,12 +759,33 @@ def tune_observation(
 
     scores: list[AutoTuneScore] = []
     skipped: list[dict[str, object]] = []
+    observation_cache: dict[tuple[object, ...], AutoTuneObservation] = {}
+    observation_errors: dict[tuple[object, ...], str] = {}
     for index, config in enumerate(candidates):
+        observation_key = (
+            config.baseline_size,
+            config.adaptive_window,
+            config.stride,
+            config.score,
+        )
         try:
-            score = score_autotune_config(
-                series,
+            if observation_key in observation_errors:
+                raise ValueError(observation_errors[observation_key])
+            observation = observation_cache.get(observation_key)
+            if observation is None:
+                try:
+                    observation = build_autotune_observation(
+                        series,
+                        config,
+                        sample_rate=sample_rate,
+                    )
+                except Exception as exc:  # noqa: BLE001 - reuse geometry failure reason.
+                    observation_errors[observation_key] = str(exc)
+                    raise
+                observation_cache[observation_key] = observation
+            score = score_autotune_observation(
+                observation,
                 config,
-                sample_rate=sample_rate,
                 null_repeats=null_repeats,
                 seed=seed + index,
                 null_mode=null_mode,
