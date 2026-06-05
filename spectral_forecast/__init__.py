@@ -31,6 +31,16 @@ from spectral_forecast.autotune import (
     score_autotune_config,
     tune_observation,
 )
+from spectral_forecast.relationships import (
+    RelationshipCalibration,
+    RelationshipDiscovery,
+    RelationshipEvidence,
+    calibrate_relationship_geometry,
+    discover_relationships,
+    normalized_spectral_profile,
+    residualize_relationship_view,
+    spectral_profile_alignment,
+)
 
 __all__ = [
     "extract",
@@ -65,4 +75,12 @@ __all__ = [
     "default_autotune_configs",
     "score_autotune_config",
     "tune_observation",
+    "RelationshipCalibration",
+    "RelationshipDiscovery",
+    "RelationshipEvidence",
+    "calibrate_relationship_geometry",
+    "discover_relationships",
+    "normalized_spectral_profile",
+    "residualize_relationship_view",
+    "spectral_profile_alignment",
 ]

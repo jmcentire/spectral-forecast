@@ -232,6 +232,53 @@ The calibration injects known positive-valued score mechanisms and independent
 noise. It reports which mechanisms the observed geometry can recover; it does
 not call the real-data result adequate merely because that result is positive.
 
+For canonical-waveform relationship discovery, bypass the anomaly observer and
+retain explicit relationship hypotheses, family-specific nulls, exact-geometry
+known-answer calibration, residual branches, and source back-mapping:
+
+```bash
+python3 experiments/cdip_relationship_discovery.py \
+  --groups-per-segment 4 \
+  --windows-per-group 3 \
+  --layers raw,common:0.5,common:1.0,dominant:0.5,dominant:1.0 \
+  --null-repeats 19 \
+  --checkpoint /tmp/cdip-relationships.checkpoint.json \
+  --progress \
+  --output experiments/results/cdip-relationships.json
+```
+
+The source report supplies only reproducible aligned raw-window paths and
+timestamps. Prior observer scores and anomaly settings are ignored.
+
+Calibration is performed independently for every transformation layer.
+Corpus-level pair controls preserve the ordinary spectral envelope while
+breaking only pair membership or temporal concurrence, and pair hypotheses are
+Benjamini-Hochberg corrected across supported views. Reuse compatible
+exact-geometry calibration when widening the pair graph:
+
+```bash
+python3 experiments/cdip_relationship_discovery.py \
+  --calibration-report experiments/results/cdip-relationships-bounded.json \
+  --groups-per-segment 64 \
+  --windows-per-group 2 \
+  --layers raw,dominant:0.5,dominant:1.0 \
+  --null-repeats 39 \
+  --corpus-null-repeats 4999 \
+  --replication-separation-hours 24 \
+  --checkpoint /tmp/cdip-relationships-graph.checkpoint.json \
+  --progress \
+  --output experiments/results/cdip-relationships-graph.json
+```
+
+After discovery is frozen, audit whether surfaced pair identities recover
+geography without allowing coordinates to influence selection:
+
+```bash
+python3 experiments/cdip_relationship_geography_audit.py \
+  --relationship-report experiments/results/cdip-relationships-graph.json \
+  --output experiments/results/cdip-relationships-geography-audit.json
+```
+
 Observer-layer random-order controls rebuild the observer for every randomized
 event order. These runs are substantially more expensive, so use a checkpoint:
 
