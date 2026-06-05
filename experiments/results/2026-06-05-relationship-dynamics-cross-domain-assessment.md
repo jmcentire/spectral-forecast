@@ -102,9 +102,12 @@ Post-hoc seizure labels do not explain the discovery result. Most detected
 recordings contain no seizure near the frozen split. One split was 102 seconds
 after a short seizure; another seizure-bearing recording had no detected step.
 
-Grade: **promising**. This is a held-out relationship-change recurrence result
-with a channel-label permutation control, but it remains same-corpus,
-small-sample evidence whose physical source is unresolved.
+Grade: **meh**. This is a held-out relationship-change recurrence result with a
+channel-label permutation control, but it remains same-corpus, small-sample
+evidence whose physical source is unresolved. Comparable established change
+point and dynamic-network methods should be expected to recover at least this
+much structure. This result does not justify further investment in the current
+representation.
 
 ## Predictor Check
 
@@ -140,10 +143,11 @@ permutation. This is stable recurrence, not yet identified latent meaning; a
 shared recording artifact remains a live alternative. The same features did
 not improve time-aligned seizure prediction.
 
-The next rigorous test is an external EEG corpus or a fully untouched CHB-MIT
-subject/file block with the five-channel geometry and fingerprint statistic
-frozen. No further channel removal, relationship-family addition, or threshold
-tuning should occur before that validation.
+The current relationship-dynamics formulation should be retained as a tested
+negative baseline, not advanced to another validation cycle. The next work
+should replace the representation with stronger established multivariate change
+point or dynamic-network methods and compare them under the same label-free,
+held-out, permutation-controlled protocol.
 
 ## Primary Artifacts
 
