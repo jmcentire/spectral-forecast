@@ -13,7 +13,7 @@ import hashlib
 import json
 import sys
 import time
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from itertools import combinations, permutations, product
 from pathlib import Path
@@ -25,6 +25,7 @@ if str(ROOT) not in sys.path:
 
 import numpy as np
 from scipy.io import netcdf_file
+from scipy.stats import rankdata
 
 from experiments.cdip_observe import CHANNEL_VARIABLES, _decode_attr, _scalar
 from spectral_forecast.relationships import (
@@ -266,7 +267,12 @@ def _evidence_deposit(
     return float(z * (1.0 - float(row["empirical_p_ge_observed"])))
 
 
-def _null_summary(observed: float, null_values: Sequence[float]) -> dict[str, Any]:
+def _null_summary(
+    observed: float,
+    null_values: Sequence[float],
+    *,
+    exact: bool = False,
+) -> dict[str, Any]:
     null = np.asarray(null_values, dtype=np.float64)
     if len(null) == 0:
         return {
@@ -280,6 +286,7 @@ def _null_summary(observed: float, null_values: Sequence[float]) -> dict[str, An
             "null_exceedances": None,
             "empirical_p_ge_observed": None,
             "empirical_p_floor": None,
+            "exact_null": exact,
             "detected": False,
         }
     mean = float(np.mean(null))
@@ -287,7 +294,11 @@ def _null_summary(observed: float, null_values: Sequence[float]) -> dict[str, An
     delta = float(observed - mean)
     z_effect = delta / std if std > 1e-12 else None
     exceedances = int(np.sum(null >= observed))
-    p_ge = float((exceedances + 1) / (len(null) + 1))
+    p_ge = float(
+        exceedances / len(null)
+        if exact
+        else (exceedances + 1) / (len(null) + 1)
+    )
     return {
         "observed": float(observed),
         "null_repeats": len(null),
@@ -298,7 +309,8 @@ def _null_summary(observed: float, null_values: Sequence[float]) -> dict[str, An
         "z_effect": z_effect,
         "null_exceedances": exceedances,
         "empirical_p_ge_observed": p_ge,
-        "empirical_p_floor": float(1.0 / (len(null) + 1)),
+        "empirical_p_floor": float(1.0 / (len(null) if exact else len(null) + 1)),
+        "exact_null": exact,
         "detected": bool(
             delta > 0.0
             and p_ge <= 0.05
@@ -308,30 +320,44 @@ def _null_summary(observed: float, null_values: Sequence[float]) -> dict[str, An
     }
 
 
-def _add_envelope_profiles(records: Sequence[dict[str, Any]]) -> None:
-    """Attach the preregistered corpus-envelope attenuation ladder in place."""
+def _add_envelope_profiles(
+    records: Sequence[dict[str, Any]],
+    *,
+    stratum_key: str | None = None,
+) -> None:
+    """Attach the envelope ladder, optionally normalized within known strata."""
 
-    powers = np.stack([row["power"] for row in records])
-    log_power = np.log(np.maximum(powers, 1e-12))
-    baseline = np.median(log_power, axis=0)
-    mad = 1.4826 * np.median(np.abs(log_power - baseline[None, :]), axis=0)
-    mad = np.where(mad > 1e-6, mad, 1.0)
-    for index, row in enumerate(records):
-        for profile_key, fraction in ENVELOPE_PROFILE_FRACTIONS.items():
-            if fraction == 0.0:
-                profile = powers[index]
-            else:
-                profile = np.exp(log_power[index] - fraction * baseline)
-                profile = profile / np.sum(profile)
-            row[profile_key] = profile
-        row[SIGNED_ENVELOPE_PROFILE] = (
-            log_power[index] - baseline
-        ) / mad
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in records:
+        grouped[str(row.get(stratum_key, "all")) if stratum_key else "all"].append(row)
+    for stratum_records in grouped.values():
+        powers = np.stack([row["power"] for row in stratum_records])
+        log_power = np.log(np.maximum(powers, 1e-12))
+        baseline = np.median(log_power, axis=0)
+        mad = 1.4826 * np.median(np.abs(log_power - baseline[None, :]), axis=0)
+        mad = np.where(mad > 1e-6, mad, 1.0)
+        for index, row in enumerate(stratum_records):
+            for profile_key, fraction in ENVELOPE_PROFILE_FRACTIONS.items():
+                if fraction == 0.0:
+                    profile = powers[index]
+                else:
+                    profile = np.exp(log_power[index] - fraction * baseline)
+                    profile = profile / np.sum(profile)
+                row[profile_key] = profile
+            row[SIGNED_ENVELOPE_PROFILE] = (
+                log_power[index] - baseline
+            ) / mad
 
 
-def _apply_pair_fdr(pair_summaries: Sequence[dict[str, Any]]) -> None:
-    """Apply BH jointly across every supported pair, view, and profile tried."""
+def _apply_pair_fdr(
+    pair_summaries: Sequence[dict[str, Any]],
+    *,
+    selected_method: str = "bh",
+) -> None:
+    """Apply BH and BY jointly across every supported pair/view/profile tried."""
 
+    if selected_method not in {"bh", "by"}:
+        raise ValueError(f"unknown pair FDR method: {selected_method}")
     for control in ("domain_regroup", "temporal_regroup"):
         eligible = []
         for index, row in enumerate(pair_summaries):
@@ -339,6 +365,10 @@ def _apply_pair_fdr(pair_summaries: Sequence[dict[str, Any]]) -> None:
                 summary = row[profile_key][control]
                 summary["fdr_q_value"] = None
                 summary["detected_fdr"] = False
+                summary["fdr_bh_q_value"] = None
+                summary["detected_fdr_bh"] = False
+                summary["fdr_by_q_value"] = None
+                summary["detected_fdr_by"] = False
                 p_value = summary.get("empirical_p_ge_observed")
                 if (
                     row["spectral_alignment_calibrated_supported"]
@@ -353,12 +383,28 @@ def _apply_pair_fdr(pair_summaries: Sequence[dict[str, Any]]) -> None:
             p_value, index, profile_key = eligible[rank - 1]
             running = min(running, p_value * total / rank)
             adjusted[(index, profile_key)] = float(min(1.0, running))
-        for (index, profile_key), q_value in adjusted.items():
+        harmonic = float(sum(1.0 / rank for rank in range(1, total + 1)))
+        for (index, profile_key), bh_q_value in adjusted.items():
             summary = pair_summaries[index][profile_key][control]
             z_effect = summary.get("z_effect")
-            summary["fdr_q_value"] = q_value
+
+            def detected(q_value: float) -> bool:
+                return bool(
+                    q_value <= 0.05
+                    and float(summary["observed_minus_null"]) > 0.0
+                    and z_effect is not None
+                    and float(z_effect) >= 1.5
+                )
+
+            by_q_value = float(min(1.0, bh_q_value * harmonic))
+            summary["fdr_bh_q_value"] = bh_q_value
+            summary["detected_fdr_bh"] = detected(bh_q_value)
+            summary["fdr_by_q_value"] = by_q_value
+            summary["detected_fdr_by"] = detected(by_q_value)
+            selected_q = bh_q_value if selected_method == "bh" else by_q_value
+            summary["fdr_q_value"] = selected_q
             summary["detected_fdr"] = bool(
-                q_value <= 0.05
+                selected_q <= 0.05
                 and float(summary["observed_minus_null"]) > 0.0
                 and z_effect is not None
                 and float(z_effect) >= 1.5
@@ -417,10 +463,498 @@ def _classify_pair_summary(row: dict[str, Any]) -> None:
     )
 
 
+def _apply_identity_persistence_fdr(
+    summaries: Sequence[dict[str, Any]],
+    *,
+    selected_method: str,
+) -> None:
+    """Correct aggregate identity-persistence hypotheses jointly."""
+
+    if selected_method not in {"bh", "by"}:
+        raise ValueError(f"unknown identity FDR method: {selected_method}")
+    eligible = [
+        (float(row["empirical_p_ge_observed"]), index)
+        for index, row in enumerate(summaries)
+        if row.get("empirical_p_ge_observed") is not None
+    ]
+    eligible.sort(key=lambda item: item[0])
+    adjusted: dict[int, float] = {}
+    running = 1.0
+    total = len(eligible)
+    for rank in range(total, 0, -1):
+        p_value, index = eligible[rank - 1]
+        running = min(running, p_value * total / rank)
+        adjusted[index] = float(min(1.0, running))
+    harmonic = float(sum(1.0 / rank for rank in range(1, total + 1)))
+    for index, row in enumerate(summaries):
+        row["fdr_bh_q_value"] = None
+        row["detected_fdr_bh"] = False
+        row["fdr_by_q_value"] = None
+        row["detected_fdr_by"] = False
+        row["fdr_q_value"] = None
+        row["detected_fdr"] = False
+        if index not in adjusted:
+            continue
+        bh_q_value = adjusted[index]
+        by_q_value = float(min(1.0, bh_q_value * harmonic))
+        z_effect = row.get("z_effect")
+
+        def detected(q_value: float) -> bool:
+            return bool(
+                q_value <= 0.05
+                and float(row["observed_minus_null"]) > 0.0
+                and z_effect is not None
+                and float(z_effect) >= 1.5
+            )
+
+        row["fdr_bh_q_value"] = bh_q_value
+        row["detected_fdr_bh"] = detected(bh_q_value)
+        row["fdr_by_q_value"] = by_q_value
+        row["detected_fdr_by"] = detected(by_q_value)
+        selected_q = bh_q_value if selected_method == "bh" else by_q_value
+        row["fdr_q_value"] = selected_q
+        row["detected_fdr"] = detected(selected_q)
+
+
+def _independent_time_cluster_count(
+    starts: Sequence[str],
+    *,
+    separation_seconds: float,
+) -> int:
+    """Count timestamp clusters separated by at least the declared interval."""
+
+    timestamps = sorted(datetime.fromisoformat(str(start)).timestamp() for start in starts)
+    clusters: list[list[float]] = []
+    for timestamp in timestamps:
+        if (
+            not clusters
+            or timestamp - clusters[-1][-1] >= separation_seconds
+        ):
+            clusters.append([timestamp])
+        else:
+            clusters[-1].append(timestamp)
+    return len(clusters)
+
+
+def _identity_persistence_summary(
+    pair_occurrences: Mapping[tuple[str, str], Sequence[Mapping[str, Any]]],
+    *,
+    profile_key: str,
+    layer_name: str,
+    scope: str,
+    cutoff_timestamp: float | None,
+    null_repeats: int,
+    seed: int,
+    replication_separation_seconds: float = 0.0,
+    minimum_independent_time_clusters: int = 1,
+) -> dict[str, Any]:
+    """Test whether pair identities retain stable local rank across contexts."""
+
+    contexts: dict[
+        tuple[str, int, int, str],
+        list[tuple[tuple[str, str], float, str]],
+    ] = defaultdict(list)
+    for pair, occurrences in pair_occurrences.items():
+        for occurrence in occurrences:
+            timestamp = datetime.fromisoformat(str(occurrence["start"])).timestamp()
+            if scope == "early" and cutoff_timestamp is not None and timestamp > cutoff_timestamp:
+                continue
+            if scope == "late" and cutoff_timestamp is not None and timestamp <= cutoff_timestamp:
+                continue
+            context = (
+                str(occurrence["segment"]),
+                int(occurrence["group_index"]),
+                int(occurrence["window_index"]),
+                str(occurrence["corpus_stratum"]),
+            )
+            contexts[context].append(
+                (pair, float(occurrence[profile_key]), str(occurrence["start"]))
+            )
+    contexts = {
+        context: values
+        for context, values in contexts.items()
+        if len(values) >= 2
+    }
+    pair_counts = Counter(
+        pair
+        for values in contexts.values()
+        for pair, _, _ in values
+    )
+    pair_time_clusters = {
+        pair: _independent_time_cluster_count(
+            [
+                start
+                for values in contexts.values()
+                for candidate_pair, _, start in values
+                if candidate_pair == pair
+            ],
+            separation_seconds=replication_separation_seconds,
+        )
+        for pair in pair_counts
+    }
+    eligible_pairs = sorted(
+        pair
+        for pair, count in pair_counts.items()
+        if count >= 2
+        and pair_time_clusters[pair] >= minimum_independent_time_clusters
+    )
+    pair_index = {pair: index for index, pair in enumerate(eligible_pairs)}
+    normalized_contexts = []
+    source_contexts: dict[tuple[str, str], list[str]] = defaultdict(list)
+    for values in contexts.values():
+        scores = np.asarray([score for _, score, _ in values], dtype=np.float64)
+        ranks = rankdata(scores, method="average")
+        scale = (len(values) - 1) / 2.0
+        normalized = (ranks - (len(values) + 1) / 2.0) / scale
+        identities = [pair_index.get(pair) for pair, _, _ in values]
+        normalized_contexts.append((identities, normalized))
+        for pair, _, start in values:
+            if pair in pair_index:
+                source_contexts[pair].append(start)
+
+    counts = np.zeros(len(eligible_pairs), dtype=np.float64)
+    observed_sums = np.zeros(len(eligible_pairs), dtype=np.float64)
+    for identities, normalized in normalized_contexts:
+        for identity, value in zip(identities, normalized):
+            if identity is None:
+                continue
+            counts[identity] += 1.0
+            observed_sums[identity] += float(value)
+
+    def statistic(sums: np.ndarray) -> float:
+        if not len(sums) or not np.any(counts):
+            return 0.0
+        means = np.divide(sums, counts, out=np.zeros_like(sums), where=counts > 0)
+        return float(np.sum(counts * means**2) / np.sum(counts))
+
+    observed = statistic(observed_sums)
+    null_values = []
+    if len(eligible_pairs) >= 2 and normalized_contexts:
+        rng = _rng_for(
+            seed,
+            layer_name,
+            profile_key,
+            scope,
+            minimum_independent_time_clusters,
+            "pair_identity_persistence",
+        )
+        for _ in range(null_repeats):
+            sums = np.zeros(len(eligible_pairs), dtype=np.float64)
+            for identities, normalized in normalized_contexts:
+                assigned = normalized[rng.permutation(len(normalized))]
+                for identity, value in zip(identities, assigned):
+                    if identity is not None:
+                        sums[identity] += float(value)
+            null_values.append(statistic(sums))
+    summary = _null_summary(observed, null_values)
+    summary.update(
+        {
+            "layer": layer_name,
+            "profile": profile_key,
+            "scope": scope,
+            "cutoff_timestamp": cutoff_timestamp,
+            "contexts": len(normalized_contexts),
+            "eligible_pair_identities": len(eligible_pairs),
+            "pair_occurrences": int(np.sum(counts)),
+            "replication_separation_seconds": replication_separation_seconds,
+            "minimum_independent_time_clusters": minimum_independent_time_clusters,
+            "statistic": (
+                "occurrence-weighted between-pair variance of mean within-context "
+                "spectral-alignment rank"
+            ),
+            "null_generation": (
+                "permutes complete local score-rank sets among pair identities "
+                "within each exact segment/group/window/acquisition-stratum context"
+            ),
+            "top_pair_effects": sorted(
+                [
+                    {
+                        "entities": list(pair),
+                        "occurrences": int(counts[index]),
+                        "independent_time_clusters": pair_time_clusters[pair],
+                        "mean_local_rank": float(
+                            observed_sums[index] / counts[index]
+                        ),
+                        "source_starts": sorted(set(source_contexts[pair])),
+                    }
+                    for pair, index in pair_index.items()
+                ],
+                key=lambda row: abs(float(row["mean_local_rank"])),
+                reverse=True,
+            )[:25],
+        }
+    )
+    return summary
+
+
+def _dyadic_residual_persistence_summary(
+    pair_occurrences: Mapping[tuple[str, str], Sequence[Mapping[str, Any]]],
+    *,
+    profile_key: str,
+    layer_name: str,
+    scope: str,
+    cutoff_timestamp: float | None,
+    null_repeats: int,
+    seed: int,
+    entity_effect_scope: str = "global",
+    replication_separation_seconds: float = 0.0,
+    minimum_independent_time_clusters: int = 1,
+) -> dict[str, Any]:
+    """Test persistent dyadic effects beyond an additive entity-effect model."""
+
+    if entity_effect_scope not in {"global", "segment", "exact_context"}:
+        raise ValueError(f"unknown entity effect scope: {entity_effect_scope}")
+
+    candidate_contexts: dict[
+        tuple[str, int, int, str],
+        list[tuple[tuple[str, str], float, str]],
+    ] = defaultdict(list)
+    for pair, occurrences in pair_occurrences.items():
+        for occurrence in occurrences:
+            timestamp = datetime.fromisoformat(str(occurrence["start"])).timestamp()
+            if scope == "early" and cutoff_timestamp is not None and timestamp > cutoff_timestamp:
+                continue
+            if scope == "late" and cutoff_timestamp is not None and timestamp <= cutoff_timestamp:
+                continue
+            context = (
+                str(occurrence["segment"]),
+                int(occurrence["group_index"]),
+                int(occurrence["window_index"]),
+                str(occurrence["corpus_stratum"]),
+            )
+            candidate_contexts[context].append(
+                (pair, float(occurrence[profile_key]), str(occurrence["start"]))
+            )
+    candidate_contexts = {
+        context: values
+        for context, values in candidate_contexts.items()
+        if len(values) >= 2
+        and float(np.std([score for _, score, _ in values])) > 1e-12
+    }
+    context_pair_count_distribution = Counter(
+        len(values) for values in candidate_contexts.values()
+    )
+    locally_identifiable_contexts = {}
+    for context, values in candidate_contexts.items():
+        local_entities = sorted({entity for pair, _, _ in values for entity in pair})
+        local_entity_index = {
+            entity: index for index, entity in enumerate(local_entities)
+        }
+        local_design = np.ones(
+            (len(values), len(local_entities) + 1),
+            dtype=np.float64,
+        )
+        for row, (pair, _, _) in enumerate(values):
+            local_design[row, 1:] = 0.0
+            local_design[row, 1 + local_entity_index[pair[0]]] = 1.0
+            local_design[row, 1 + local_entity_index[pair[1]]] = 1.0
+        local_rank = int(np.linalg.matrix_rank(local_design))
+        if len(values) > local_rank:
+            locally_identifiable_contexts[context] = values
+    contexts = (
+        locally_identifiable_contexts
+        if entity_effect_scope == "exact_context"
+        else candidate_contexts
+    )
+    pair_counts = Counter(
+        pair
+        for values in contexts.values()
+        for pair, _, _ in values
+    )
+    pair_time_clusters = {
+        pair: _independent_time_cluster_count(
+            [
+                start
+                for values in contexts.values()
+                for candidate_pair, _, start in values
+                if candidate_pair == pair
+            ],
+            separation_seconds=replication_separation_seconds,
+        )
+        for pair in pair_counts
+    }
+    eligible_pairs = sorted(
+        pair
+        for pair, count in pair_counts.items()
+        if count >= 2
+        and pair_time_clusters[pair] >= minimum_independent_time_clusters
+    )
+    pair_index = {pair: index for index, pair in enumerate(eligible_pairs)}
+
+    observations = []
+    context_observation_indices: dict[
+        tuple[str, int, int, str], list[int]
+    ] = defaultdict(list)
+    for context, values in sorted(contexts.items()):
+        scores = np.asarray([score for _, score, _ in values], dtype=np.float64)
+        normalized = (scores - np.mean(scores)) / np.std(scores)
+        for pair, value in zip((pair for pair, _, _ in values), normalized):
+            observation_index = len(observations)
+            observations.append((context, pair, float(value)))
+            context_observation_indices[context].append(observation_index)
+
+    context_index = {context: index for index, context in enumerate(sorted(contexts))}
+
+    def entity_effect_key(
+        context: tuple[str, int, int, str],
+        entity: str,
+    ) -> tuple[str, str]:
+        if entity_effect_scope == "global":
+            return ("global", entity)
+        if entity_effect_scope == "segment":
+            return (context[0], entity)
+        return (repr(context), entity)
+
+    entity_effect_keys = sorted(
+        {
+            entity_effect_key(context, entity)
+            for context, pair, _ in observations
+            for entity in pair
+        }
+    )
+    entity_effect_index = {
+        key: index for index, key in enumerate(entity_effect_keys)
+    }
+    n_observations = len(observations)
+    n_columns = len(context_index) + len(entity_effect_index)
+    design = np.zeros((n_observations, n_columns), dtype=np.float64)
+    values = np.zeros(n_observations, dtype=np.float64)
+    pair_assignment = np.full(n_observations, -1, dtype=np.int64)
+    for index, (context, pair, value) in enumerate(observations):
+        design[index, context_index[context]] = 1.0
+        design[
+            index,
+            len(context_index) + entity_effect_index[entity_effect_key(context, pair[0])],
+        ] = 1.0
+        design[
+            index,
+            len(context_index) + entity_effect_index[entity_effect_key(context, pair[1])],
+        ] = 1.0
+        values[index] = value
+        if pair in pair_index:
+            pair_assignment[index] = pair_index[pair]
+
+    pair_projection = np.zeros((len(eligible_pairs), n_observations), dtype=np.float64)
+    counts = np.zeros(len(eligible_pairs), dtype=np.float64)
+    for observation_index, identity in enumerate(pair_assignment):
+        if identity < 0:
+            continue
+        pair_projection[identity, observation_index] = 1.0
+        counts[identity] += 1.0
+
+    def statistics(residuals: np.ndarray) -> np.ndarray:
+        pair_sums = pair_projection @ residuals
+        if residuals.ndim == 1:
+            return np.asarray(
+                [float(np.sum(pair_sums**2 / counts) / np.sum(counts))]
+            )
+        return np.sum(pair_sums**2 / counts[:, None], axis=0) / np.sum(counts)
+
+    null_values: list[float] = []
+    observed = 0.0
+    reduced_residual: np.ndarray | None = None
+    rank = int(np.linalg.matrix_rank(design)) if n_observations else 0
+    if len(eligible_pairs) >= 2 and n_observations > rank:
+        design_pinv = np.linalg.pinv(design)
+        fitted = design @ (design_pinv @ values)
+        reduced_residual = values - fitted
+        observed = float(statistics(reduced_residual)[0])
+        rng = _rng_for(
+            seed,
+            layer_name,
+            profile_key,
+            scope,
+            entity_effect_scope,
+            minimum_independent_time_clusters,
+            "dyadic_residual_persistence",
+        )
+        batch_size = min(500, null_repeats)
+        for batch_start in range(0, null_repeats, batch_size):
+            repeats = min(batch_size, null_repeats - batch_start)
+            permuted = np.empty((n_observations, repeats), dtype=np.float64)
+            for indices in context_observation_indices.values():
+                index_array = np.asarray(indices, dtype=np.int64)
+                orders = np.argsort(
+                    rng.random((len(index_array), repeats)),
+                    axis=0,
+                )
+                permuted[index_array, :] = reduced_residual[index_array][orders]
+            synthetic = fitted[:, None] + permuted
+            synthetic_residual = synthetic - design @ (design_pinv @ synthetic)
+            null_values.extend(
+                float(value)
+                for value in statistics(synthetic_residual)
+            )
+    summary = _null_summary(observed, null_values)
+    pair_residual_effects = sorted(
+        [
+            {
+                "entities": list(pair),
+                "occurrences": int(counts[index]),
+                "independent_time_clusters": pair_time_clusters[pair],
+                "mean_residual": float(
+                    (pair_projection @ reduced_residual)[index] / counts[index]
+                )
+                if reduced_residual is not None
+                else None,
+            }
+            for pair, index in pair_index.items()
+        ],
+        key=lambda row: abs(float(row["mean_residual"] or 0.0)),
+        reverse=True,
+    )
+    summary.update(
+        {
+            "layer": layer_name,
+            "profile": profile_key,
+            "scope": scope,
+            "entity_effect_scope": entity_effect_scope,
+            "cutoff_timestamp": cutoff_timestamp,
+            "contexts": len(contexts),
+            "candidate_contexts": len(candidate_contexts),
+            "locally_identifiable_contexts": len(locally_identifiable_contexts),
+            "context_pair_count_distribution": {
+                str(size): int(count)
+                for size, count in sorted(context_pair_count_distribution.items())
+            },
+            "distinct_entities": len({entity for pair in pair_counts for entity in pair}),
+            "eligible_pair_identities": len(eligible_pairs),
+            "replication_separation_seconds": replication_separation_seconds,
+            "minimum_independent_time_clusters": minimum_independent_time_clusters,
+            "observations": n_observations,
+            "reduced_model_columns": n_columns,
+            "reduced_model_rank": rank,
+            "residual_degrees_of_freedom": n_observations - rank,
+            "statistic": (
+                "occurrence-weighted between-pair variance of mean residual "
+                "alignment after the declared additive entity-effect model"
+            ),
+            "reduced_model": (
+                "linearly standardizes complete pair scores within each exact "
+                "context, fits exact-context intercepts, and fits additive "
+                f"entity-incidence main effects at {entity_effect_scope} scope"
+            ),
+            "informative_context_gate": (
+                "all nonconstant exact contexts are used for global and segment "
+                "entity effects; exact-context entity effects require more pair "
+                "observations than the local additive model rank"
+            ),
+            "null_generation": (
+                "Freedman-Lane: permutes reduced-model residuals only within exact "
+                "contexts, adds fitted context and entity effects, refits the "
+                "declared reduced model, and recomputes dyadic persistence"
+            ),
+            "top_pair_residual_effects": pair_residual_effects[:25],
+        }
+    )
+    return summary
+
+
 def _mean_group_alignment(
     records: Sequence[Mapping[str, Any]],
     *,
     profile_key: str,
+    within_stratum_only: bool = False,
 ) -> float:
     scores = []
     grouped: dict[tuple[str, int, int], list[Mapping[str, Any]]] = defaultdict(list)
@@ -431,6 +965,11 @@ def _mean_group_alignment(
     for group in grouped.values():
         for left, right in combinations(group, 2):
             if left["entity"] == right["entity"]:
+                continue
+            if (
+                within_stratum_only
+                and left.get("corpus_stratum") != right.get("corpus_stratum")
+            ):
                 continue
             scores.append(
                 spectral_profile_alignment(
@@ -448,9 +987,30 @@ def _spectral_specificity(
     null_repeats: int,
     seed: int,
     replication_separation_seconds: float,
+    entity_strata: Mapping[str, str] | None = None,
+    within_stratum_pairs_only: bool = False,
+    pair_domain_control: str = "global_pair_bootstrap",
+    require_complete_matched_occurrences: bool = False,
+    pair_fdr_method: str = "bh",
+    compute_identity_persistence: bool = False,
+    dyadic_persistence_hypotheses: Sequence[tuple[str, str]] = (),
+    dyadic_entity_effect_scopes: Sequence[str] = ("global",),
+    persistence_minimum_time_clusters: Sequence[int] = (1,),
     progress: bool = False,
 ) -> dict[str, Any]:
     """Test spectral hypotheses while preserving the obvious domain spectrum."""
+
+    if pair_domain_control not in {
+        "global_pair_bootstrap",
+        "matched_occurrence_regroup",
+    }:
+        raise ValueError(f"unknown pair domain control: {pair_domain_control}")
+    if require_complete_matched_occurrences and (
+        pair_domain_control != "matched_occurrence_regroup"
+    ):
+        raise ValueError(
+            "complete matched-occurrence coverage requires matched occurrence control"
+        )
 
     def report(message: str) -> None:
         if progress:
@@ -460,13 +1020,19 @@ def _spectral_specificity(
     for window in windows:
         for layer in window["layers"]:
             for profile in layer.get("spectral_profiles", []):
+                entity = str(profile["entity"])
                 by_layer[str(layer["layer"])].append(
                     {
                         "segment": str(window["segment"]),
                         "group_index": int(window["group_index"]),
                         "window_index": int(window["window_index"]),
                         "start": str(window["source"]["start"]),
-                        "entity": str(profile["entity"]),
+                        "entity": entity,
+                        "corpus_stratum": (
+                            str(entity_strata.get(entity, "unassigned"))
+                            if entity_strata is not None
+                            else "all"
+                        ),
                         "power": np.asarray(profile["power"], dtype=np.float64),
                     }
                 )
@@ -474,18 +1040,58 @@ def _spectral_specificity(
     layer_summaries = []
     temporal_pairs = []
     pair_summaries = []
+    identity_persistence = []
+    dyadic_residual_persistence = []
+    dyadic_hypotheses = {
+        (str(layer), str(profile))
+        for layer, profile in dyadic_persistence_hypotheses
+    }
+    dyadic_effect_scopes = tuple(str(scope) for scope in dyadic_entity_effect_scopes)
+    persistence_time_clusters = tuple(
+        int(count) for count in persistence_minimum_time_clusters
+    )
+    if not persistence_time_clusters or any(
+        count < 1 for count in persistence_time_clusters
+    ):
+        raise ValueError("persistence minimum time clusters must be positive")
+    invalid_effect_scopes = set(dyadic_effect_scopes) - {
+        "global",
+        "segment",
+        "exact_context",
+    }
+    if invalid_effect_scopes:
+        raise ValueError(
+            f"unknown dyadic entity effect scopes: {sorted(invalid_effect_scopes)}"
+        )
     for layer_name, records in sorted(by_layer.items()):
         if not records:
             continue
         report(f"layer={layer_name} phase=envelope_profiles records={len(records)}")
-        _add_envelope_profiles(records)
+        _add_envelope_profiles(
+            records,
+            stratum_key="corpus_stratum" if entity_strata is not None else None,
+        )
         domain_observed = {
-            profile_key: _mean_group_alignment(records, profile_key=profile_key)
+            profile_key: _mean_group_alignment(
+                records,
+                profile_key=profile_key,
+                within_stratum_only=within_stratum_pairs_only,
+            )
             for profile_key in SPECTRAL_PROFILE_KEYS
         }
-        strata: dict[tuple[str, int], list[dict[str, Any]]] = defaultdict(list)
+        strata: dict[tuple[str, int, str], list[dict[str, Any]]] = defaultdict(list)
         for row in records:
-            strata[(row["segment"], row["window_index"])].append(row)
+            strata[
+                (
+                    row["segment"],
+                    row["window_index"],
+                    (
+                        row["corpus_stratum"]
+                        if within_stratum_pairs_only
+                        else "all"
+                    ),
+                )
+            ].append(row)
         domain_null = {profile_key: [] for profile_key in SPECTRAL_PROFILE_KEYS}
         domain_rng = _rng_for(seed, layer_name, "layer_domain_regroup")
         for _ in range(null_repeats):
@@ -509,6 +1115,7 @@ def _spectral_specificity(
                     _mean_group_alignment(
                         regrouped,
                         profile_key=profile_key,
+                        within_stratum_only=within_stratum_pairs_only,
                     )
                 )
         report(f"layer={layer_name} phase=layer_domain_regroup complete")
@@ -516,6 +1123,17 @@ def _spectral_specificity(
         temporal_groups: dict[tuple[str, int], dict[str, dict[int, dict[str, Any]]]] = (
             defaultdict(lambda: defaultdict(dict))
         )
+        entity_stratum = {
+            str(row["entity"]): str(row["corpus_stratum"])
+            for row in records
+        }
+
+        def pair_allowed(left_entity: str, right_entity: str) -> bool:
+            return bool(
+                not within_stratum_pairs_only
+                or entity_stratum[left_entity] == entity_stratum[right_entity]
+            )
+
         for row in records:
             temporal_groups[(row["segment"], row["group_index"])][row["entity"]][
                 row["window_index"]
@@ -550,6 +1168,8 @@ def _spectral_specificity(
                         else common_windows
                     )
                 for left_entity, right_entity in combinations(entities, 2):
+                    if not pair_allowed(left_entity, right_entity):
+                        continue
                     for position in range(len(common_windows)):
                         left = entity_rows[left_entity][assigned[left_entity][position]]
                         right = entity_rows[right_entity][assigned[right_entity][position]]
@@ -589,6 +1209,8 @@ def _spectral_specificity(
         for (segment, group_index), entity_rows in temporal_groups.items():
             entities = sorted(entity_rows)
             for left_entity, right_entity in combinations(entities, 2):
+                if not pair_allowed(left_entity, right_entity):
+                    continue
                 common_windows = sorted(
                     set(entity_rows[left_entity]) & set(entity_rows[right_entity])
                 )
@@ -601,6 +1223,7 @@ def _spectral_specificity(
                     "segment": segment,
                     "group_index": group_index,
                     "entities": [left_entity, right_entity],
+                    "corpus_stratum": entity_stratum[left_entity],
                     "window_indices": common_windows,
                 }
                 for profile_key in SPECTRAL_PROFILE_KEYS:
@@ -653,11 +1276,14 @@ def _spectral_specificity(
             for left, right in combinations(sorted(group, key=lambda row: row["entity"]), 2):
                 if left["entity"] == right["entity"]:
                     continue
+                if not pair_allowed(str(left["entity"]), str(right["entity"])):
+                    continue
                 occurrence = {
                     "segment": segment,
                     "group_index": group_index,
                     "window_index": window_index,
                     "start": left["start"],
+                    "corpus_stratum": left["corpus_stratum"],
                     "left": left,
                     "right": right,
                 }
@@ -669,12 +1295,87 @@ def _spectral_specificity(
                 pair_occurrences[(left["entity"], right["entity"])].append(occurrence)
         all_pair_scores = {
             profile_key: [
-                (pair, float(occurrence[profile_key]))
+                (
+                    pair,
+                    str(occurrence["corpus_stratum"]),
+                    float(occurrence[profile_key]),
+                )
                 for pair, occurrences in pair_occurrences.items()
                 for occurrence in occurrences
             ]
             for profile_key in SPECTRAL_PROFILE_KEYS
         }
+        matched_occurrence_scores: dict[
+            str,
+            dict[tuple[str, int, int, str], list[tuple[tuple[str, str], float]]],
+        ] = {
+            profile_key: defaultdict(list)
+            for profile_key in SPECTRAL_PROFILE_KEYS
+        }
+        for candidate_pair, occurrences in pair_occurrences.items():
+            for occurrence in occurrences:
+                context = (
+                    str(occurrence["segment"]),
+                    int(occurrence["group_index"]),
+                    int(occurrence["window_index"]),
+                    str(occurrence["corpus_stratum"]),
+                )
+                for profile_key in SPECTRAL_PROFILE_KEYS:
+                    matched_occurrence_scores[profile_key][context].append(
+                        (candidate_pair, float(occurrence[profile_key]))
+                    )
+        if compute_identity_persistence or any(
+            layer_name == candidate_layer
+            for candidate_layer, _ in dyadic_hypotheses
+        ):
+            timestamps = [
+                datetime.fromisoformat(str(occurrence["start"])).timestamp()
+                for occurrences in pair_occurrences.values()
+                for occurrence in occurrences
+            ]
+            cutoff_timestamp = float(np.median(timestamps)) if timestamps else None
+            for scope in ("full", "early", "late"):
+                for profile_key in SPECTRAL_PROFILE_KEYS:
+                    for minimum_time_clusters in persistence_time_clusters:
+                        if compute_identity_persistence:
+                            identity_persistence.append(
+                                _identity_persistence_summary(
+                                    pair_occurrences,
+                                    profile_key=profile_key,
+                                    layer_name=layer_name,
+                                    scope=scope,
+                                    cutoff_timestamp=cutoff_timestamp,
+                                    null_repeats=null_repeats,
+                                    seed=seed,
+                                    replication_separation_seconds=(
+                                        replication_separation_seconds
+                                    ),
+                                    minimum_independent_time_clusters=(
+                                        minimum_time_clusters
+                                    ),
+                                )
+                            )
+                        if (layer_name, profile_key) not in dyadic_hypotheses:
+                            continue
+                        for entity_effect_scope in dyadic_effect_scopes:
+                            dyadic_residual_persistence.append(
+                                _dyadic_residual_persistence_summary(
+                                    pair_occurrences,
+                                    profile_key=profile_key,
+                                    layer_name=layer_name,
+                                    scope=scope,
+                                    cutoff_timestamp=cutoff_timestamp,
+                                    null_repeats=null_repeats,
+                                    seed=seed,
+                                    entity_effect_scope=entity_effect_scope,
+                                    replication_separation_seconds=(
+                                        replication_separation_seconds
+                                    ),
+                                    minimum_independent_time_clusters=(
+                                        minimum_time_clusters
+                                    ),
+                                )
+                            )
         repeated_pairs = [
             pair for pair, occurrences in pair_occurrences.items() if len(occurrences) >= 2
         ]
@@ -699,6 +1400,7 @@ def _spectral_specificity(
             pair_summary: dict[str, Any] = {
                 "layer": layer_name,
                 "entities": list(pair),
+                "corpus_stratum": str(occurrences[0]["corpus_stratum"]),
                 "occurrences": len(occurrences),
                 "segments": sorted({row["segment"] for row in occurrences}),
                 "replicated_across_segments": (
@@ -721,30 +1423,109 @@ def _spectral_specificity(
                 ],
             }
             for profile_key in SPECTRAL_PROFILE_KEYS:
-                observed = float(
+                all_occurrence_observed = float(
                     np.mean([row[profile_key] for row in occurrences])
                 )
-                other_scores = [
-                    score
-                    for candidate_pair, score in all_pair_scores[profile_key]
-                    if candidate_pair != pair
-                ]
-                domain_rng = _rng_for(
-                    seed,
+                domain_rng_parts = [
                     layer_name,
                     pair[0],
                     pair[1],
                     profile_key,
                     "pair_domain_regroup",
-                )
-                pair_domain_null = np.mean(
-                    domain_rng.choice(
-                        np.asarray(other_scores, dtype=np.float64),
-                        size=(null_repeats, len(occurrences)),
-                        replace=True,
-                    ),
-                    axis=1,
-                ).tolist()
+                ]
+                if pair_domain_control != "global_pair_bootstrap":
+                    domain_rng_parts.append(pair_domain_control)
+                domain_rng = _rng_for(seed, *domain_rng_parts)
+                domain_observed_value = all_occurrence_observed
+                matched_count = len(occurrences)
+                matched_coverage = 1.0
+                complete_matched_coverage = True
+                candidate_pool_sizes: list[int] = []
+                domain_null_exact = False
+                domain_permutation_space = 0
+                if pair_domain_control == "global_pair_bootstrap":
+                    other_scores = [
+                        score
+                        for candidate_pair, candidate_stratum, score in all_pair_scores[
+                            profile_key
+                        ]
+                        if candidate_pair != pair
+                        and (
+                            not within_stratum_pairs_only
+                            or candidate_stratum == pair_summary["corpus_stratum"]
+                        )
+                    ]
+                    pair_domain_null = (
+                        np.mean(
+                            domain_rng.choice(
+                                np.asarray(other_scores, dtype=np.float64),
+                                size=(null_repeats, len(occurrences)),
+                                replace=True,
+                            ),
+                            axis=1,
+                        ).tolist()
+                        if other_scores
+                        else []
+                    )
+                    candidate_pool_sizes = [len(other_scores)] * len(occurrences)
+                else:
+                    alternative_scores = []
+                    matched_observed = []
+                    for occurrence in occurrences:
+                        context = (
+                            str(occurrence["segment"]),
+                            int(occurrence["group_index"]),
+                            int(occurrence["window_index"]),
+                            str(occurrence["corpus_stratum"]),
+                        )
+                        candidates = [
+                            score
+                            for candidate_pair, score in matched_occurrence_scores[
+                                profile_key
+                            ][context]
+                        ]
+                        candidate_pool_sizes.append(len(candidates))
+                        if len(candidates) >= 2:
+                            alternative_scores.append(
+                                np.asarray(candidates, dtype=np.float64)
+                            )
+                            matched_observed.append(float(occurrence[profile_key]))
+                    matched_count = len(matched_observed)
+                    matched_coverage = matched_count / len(occurrences)
+                    complete_matched_coverage = matched_count == len(occurrences)
+                    eligible = bool(
+                        matched_count >= 2
+                        and (
+                            complete_matched_coverage
+                            or not require_complete_matched_occurrences
+                        )
+                    )
+                    if eligible:
+                        domain_observed_value = float(np.mean(matched_observed))
+                        domain_permutation_space = int(
+                            np.prod(
+                                [len(values) for values in alternative_scores],
+                                dtype=object,
+                            )
+                        )
+                        if domain_permutation_space <= null_repeats:
+                            pair_domain_null = [
+                                float(sum(values) / matched_count)
+                                for values in product(*alternative_scores)
+                            ]
+                            domain_null_exact = True
+                        else:
+                            totals = np.zeros(null_repeats, dtype=np.float64)
+                            for candidates in alternative_scores:
+                                totals += candidates[
+                                    domain_rng.integers(
+                                        len(candidates),
+                                        size=null_repeats,
+                                    )
+                                ]
+                            pair_domain_null = (totals / matched_count).tolist()
+                    else:
+                        pair_domain_null = []
                 grouped_occurrences: dict[
                     tuple[str, int], list[dict[str, Any]]
                 ] = defaultdict(list)
@@ -823,8 +1604,35 @@ def _spectral_specificity(
                     if temporal_observed_scores
                     else 0
                 )
+                domain_summary = _null_summary(
+                    domain_observed_value,
+                    pair_domain_null,
+                    exact=domain_null_exact,
+                )
+                domain_summary.update(
+                    {
+                        "null_generation": (
+                            pair_domain_control
+                            if pair_domain_control == "global_pair_bootstrap"
+                            else "matched_occurrence_exact_permutation_space"
+                            if domain_null_exact
+                            else "matched_occurrence_sampled_permutation_space"
+                            if pair_domain_null
+                            else "matched_occurrence_untestable"
+                        ),
+                        "all_occurrence_observed": all_occurrence_observed,
+                        "matched_occurrences": matched_count,
+                        "matched_occurrence_coverage": matched_coverage,
+                        "complete_matched_occurrence_coverage": complete_matched_coverage,
+                        "candidate_pool_sizes": candidate_pool_sizes,
+                        "permutation_space_size": domain_permutation_space,
+                        "require_complete_matched_occurrences": (
+                            require_complete_matched_occurrences
+                        ),
+                    }
+                )
                 pair_summary[profile_key] = {
-                    "domain_regroup": _null_summary(observed, pair_domain_null),
+                    "domain_regroup": domain_summary,
                     "temporal_regroup": temporal_summary,
                 }
             pair_summary["spectral_alignment_calibrated_supported"] = (
@@ -859,6 +1667,15 @@ def _spectral_specificity(
                     for profile_key in temporal_observed
                 },
                 "profiles": len(records),
+                "corpus_strata": {
+                    str(stratum): int(count)
+                    for stratum, count in sorted(
+                        Counter(
+                            str(row["corpus_stratum"])
+                            for row in records
+                        ).items()
+                    )
+                },
             }
         )
         report(f"layer={layer_name} phase=complete")
@@ -870,7 +1687,15 @@ def _spectral_specificity(
         ),
         reverse=True,
     )
-    _apply_pair_fdr(pair_summaries)
+    _apply_pair_fdr(pair_summaries, selected_method=pair_fdr_method)
+    _apply_identity_persistence_fdr(
+        identity_persistence,
+        selected_method=pair_fdr_method,
+    )
+    _apply_identity_persistence_fdr(
+        dyadic_residual_persistence,
+        selected_method=pair_fdr_method,
+    )
     for row in pair_summaries:
         _classify_pair_summary(row)
     classification_rank = {
@@ -895,11 +1720,110 @@ def _spectral_specificity(
         ),
         reverse=True,
     )
+    identity_replication = []
+    identity_by_hypothesis: dict[
+        tuple[str, str, int], dict[str, dict[str, Any]]
+    ] = (
+        defaultdict(dict)
+    )
+    for row in identity_persistence:
+        identity_by_hypothesis[
+            (
+                str(row["layer"]),
+                str(row["profile"]),
+                int(row["minimum_independent_time_clusters"]),
+            )
+        ][str(row["scope"])] = row
+    for (
+        layer_name,
+        profile_key,
+        minimum_time_clusters,
+    ), scopes in sorted(identity_by_hypothesis.items()):
+        full = scopes.get("full")
+        early = scopes.get("early")
+        late = scopes.get("late")
+        identity_replication.append(
+            {
+                "layer": layer_name,
+                "profile": profile_key,
+                "minimum_independent_time_clusters": minimum_time_clusters,
+                "full_detected_fdr": bool(full and full["detected_fdr"]),
+                "early_detected_fdr": bool(early and early["detected_fdr"]),
+                "late_detected_fdr": bool(late and late["detected_fdr"]),
+                "replicated_across_chronological_halves": bool(
+                    full
+                    and early
+                    and late
+                    and full["detected_fdr"]
+                    and early["detected_fdr"]
+                    and late["detected_fdr"]
+                ),
+            }
+        )
+    dyadic_replication = []
+    dyadic_by_hypothesis: dict[
+        tuple[str, str, str, int], dict[str, dict[str, Any]]
+    ] = (
+        defaultdict(dict)
+    )
+    for row in dyadic_residual_persistence:
+        dyadic_by_hypothesis[
+            (
+                str(row["layer"]),
+                str(row["profile"]),
+                str(row["entity_effect_scope"]),
+                int(row["minimum_independent_time_clusters"]),
+            )
+        ][str(row["scope"])] = row
+    for (
+        layer_name,
+        profile_key,
+        entity_effect_scope,
+        minimum_time_clusters,
+    ), scopes in sorted(dyadic_by_hypothesis.items()):
+        full = scopes.get("full")
+        early = scopes.get("early")
+        late = scopes.get("late")
+        dyadic_replication.append(
+            {
+                "layer": layer_name,
+                "profile": profile_key,
+                "entity_effect_scope": entity_effect_scope,
+                "minimum_independent_time_clusters": minimum_time_clusters,
+                "full_detected_fdr": bool(full and full["detected_fdr"]),
+                "early_detected_fdr": bool(early and early["detected_fdr"]),
+                "late_detected_fdr": bool(late and late["detected_fdr"]),
+                "replicated_across_chronological_halves": bool(
+                    full
+                    and early
+                    and late
+                    and full["detected_fdr"]
+                    and early["detected_fdr"]
+                    and late["detected_fdr"]
+                ),
+            }
+        )
     return {
         "method": {
             "domain_regroup": (
                 "preserves every spectral profile and view stratum while "
                 "randomizing candidate group membership"
+            ),
+            "envelope_normalization_strata": (
+                "known entity strata"
+                if entity_strata is not None
+                else "complete corpus"
+            ),
+            "within_stratum_pairs_only": within_stratum_pairs_only,
+            "pair_domain_control": pair_domain_control,
+            "require_complete_matched_occurrences": (
+                require_complete_matched_occurrences
+            ),
+            "matched_occurrence_regroup": (
+                "for each candidate pair occurrence, samples only alternative "
+                "pairs from the same segment, group, window index, and known "
+                "entity stratum; candidates without complete matched-occurrence "
+                "coverage are untestable when the complete-coverage gate is enabled"
             ),
             "temporal_regroup": (
                 "preserves entity identity, group membership, every complete "
@@ -920,14 +1844,42 @@ def _spectral_specificity(
                 "preregistered": True,
             },
             "pair_multiplicity": (
-                "Benjamini-Hochberg FDR correction is applied jointly across every "
-                "supported pair, waveform view, and tried attenuation profile, "
-                "separately for the domain-regroup and temporal-regroup controls"
+                "Benjamini-Hochberg and Benjamini-Yekutieli FDR corrections are "
+                "computed jointly across every supported pair, waveform view, and "
+                "tried attenuation profile, separately for the domain-regroup and "
+                "temporal-regroup controls"
             ),
+            "selected_pair_fdr_method": pair_fdr_method,
+            "identity_persistence": (
+                "tests whether pair identities retain consistently high or low "
+                "within-context alignment rank; nulls permute the complete local "
+                "rank set only within exact context and acquisition stratum"
+            ),
+            "identity_persistence_scopes": ["full", "early", "late"],
+            "persistence_minimum_independent_time_clusters": list(
+                persistence_time_clusters
+            ),
+            "persistence_replication_separation_seconds": (
+                replication_separation_seconds
+            ),
+            "dyadic_residual_persistence": (
+                "confirmatory nested control on explicitly selected hypotheses; "
+                "removes independent additive entity effects within every exact "
+                "context before testing persistent pair identity"
+            ),
+            "dyadic_persistence_hypotheses": [
+                {"layer": layer, "profile": profile}
+                for layer, profile in sorted(dyadic_hypotheses)
+            ],
+            "dyadic_entity_effect_scopes": list(dyadic_effect_scopes),
         },
         "layer_summary": layer_summaries,
         "pair_summary": pair_summaries,
         "top_temporal_pairs": temporal_pairs[:50],
+        "identity_persistence": identity_persistence,
+        "identity_persistence_replication": identity_replication,
+        "dyadic_residual_persistence": dyadic_residual_persistence,
+        "dyadic_residual_persistence_replication": dyadic_replication,
     }
 
 

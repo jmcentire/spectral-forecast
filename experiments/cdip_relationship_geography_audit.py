@@ -19,6 +19,7 @@ from scipy.io import netcdf_file
 from scipy.stats import hypergeom
 
 
+ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RELATIONSHIP_REPORT = Path(
     "experiments/results/"
     "2026-06-04-cdip-relationship-discovery-graph64-null4999.json"
@@ -203,12 +204,29 @@ def audit_geography(
     }
 
 
+def _source_windows(report: Mapping[str, Any], report_path: Path) -> Sequence[Mapping[str, Any]]:
+    if "windows" in report:
+        return report["windows"]
+    source_report = report.get("source_report")
+    if source_report is None:
+        raise ValueError(f"{report_path} does not contain windows or a source report")
+    source_path = Path(str(source_report))
+    if not source_path.is_absolute():
+        source_path = ROOT / source_path
+    source = json.loads(source_path.read_text(encoding="utf-8"))
+    return _source_windows(source, source_path)
+
+
 def run_audit(report_path: Path) -> dict[str, Any]:
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    pair_summaries = report["aggregate"]["spectral_specificity"]["pair_summary"]
+    pair_summaries = (
+        report["aggregate"]["spectral_specificity"]["pair_summary"]
+        if "aggregate" in report
+        else report["spectral_specificity"]["pair_summary"]
+    )
     paths = {}
     names = {}
-    for window in report["windows"]:
+    for window in _source_windows(report, report_path):
         for source in window["source"]["sources"]:
             entity = str(source["entity"])
             paths[entity] = Path(source["path"])

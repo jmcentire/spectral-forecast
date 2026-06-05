@@ -1,0 +1,698 @@
+{
+  "audits": [
+    {
+      "entity_effect_scope": "segment",
+      "minimum_independent_time_clusters": 2,
+      "pairs": [
+        {
+          "absolute_depth_difference": 348.0,
+          "absolute_mean_residual": 0.9093424983613718,
+          "distance_km": 1520.104405933468,
+          "entities": [
+            "028p1",
+            "036p1"
+          ],
+          "mean_depth": 213.0,
+          "mean_residual": -0.9093424983613718,
+          "platform_names": [
+            "SANTA MONICA BAY, CA BUOY - 028p1",
+            "GRAYS HARBOR, WA BUOY - 036p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 74.0,
+          "absolute_mean_residual": 0.5968394226387557,
+          "distance_km": 7873.688559193129,
+          "entities": [
+            "225p1",
+            "240p1"
+          ],
+          "mean_depth": 47.0,
+          "mean_residual": -0.5968394226387557,
+          "platform_names": [
+            "KANEOHE BAY, WETS, HI BUOY - 225p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 67.0,
+          "absolute_mean_residual": 0.4476541031162761,
+          "distance_km": 3947.6970206589576,
+          "entities": [
+            "156p1",
+            "202p1"
+          ],
+          "mean_depth": 166.5,
+          "mean_residual": 0.4476541031162761,
+          "platform_names": [
+            "MONTEREY CANYON OUTER, CA BUOY - 156p1",
+            "HANALEI, KAUAI, HI BUOY - 202p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 50.0,
+          "absolute_mean_residual": 0.37605433791134585,
+          "distance_km": 11339.121599502236,
+          "entities": [
+            "189p1",
+            "240p1"
+          ],
+          "mean_depth": 35.0,
+          "mean_residual": 0.37605433791134585,
+          "platform_names": [
+            "AUNUU, AMERICAN SAMOA BUOY - 189p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 68.19999980926514,
+          "absolute_mean_residual": 0.3219255484775192,
+          "distance_km": 1043.9968483590596,
+          "entities": [
+            "200p1",
+            "226p1"
+          ],
+          "mean_depth": 46.90000009536743,
+          "mean_residual": 0.3219255484775192,
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "PULLEY RIDGE, FL BUOY - 226p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 114.70999908447266,
+          "absolute_mean_residual": 0.29865506942768844,
+          "distance_km": 4072.535402766402,
+          "entities": [
+            "147p1",
+            "156p1"
+          ],
+          "mean_depth": 75.64500045776367,
+          "mean_residual": -0.29865506942768844,
+          "platform_names": [
+            "CAPE HENRY, VA BUOY - 147p1",
+            "MONTEREY CANYON OUTER, CA BUOY - 156p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 2.8000001907348633,
+          "absolute_mean_residual": 0.29581897603362417,
+          "distance_km": 407.17478128823524,
+          "entities": [
+            "200p1",
+            "240p1"
+          ],
+          "mean_depth": 11.400000095367432,
+          "mean_residual": 0.29581897603362417,
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 974.800048828125,
+          "absolute_mean_residual": 0.2594847013028574,
+          "distance_km": 1463.6189644617043,
+          "entities": [
+            "191p1",
+            "280p1"
+          ],
+          "mean_depth": 562.4000244140625,
+          "mean_residual": 0.2594847013028574,
+          "platform_names": [
+            "POINT LOMA SOUTH, CA BUOY - 191p1",
+            "YAQUINA CHANNEL SW, OR BUOY - 280p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 1000.4200477600098,
+          "absolute_mean_residual": 0.24422671071308838,
+          "distance_km": 4180.651020986125,
+          "entities": [
+            "154p1",
+            "191p1"
+          ],
+          "mean_depth": 549.5900249481201,
+          "mean_residual": -0.24422671071308838,
+          "platform_names": [
+            "BLOCK ISLAND, RI BUOY - 154p1",
+            "POINT LOMA SOUTH, CA BUOY - 191p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 32.62000274658203,
+          "absolute_mean_residual": 0.1703257588577999,
+          "distance_km": 1562.6203548773346,
+          "entities": [
+            "036p1",
+            "213p1"
+          ],
+          "mean_depth": 55.310001373291016,
+          "mean_residual": 0.1703257588577999,
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "SAN PEDRO SOUTH, CA BUOY - 213p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 203.0,
+          "absolute_mean_residual": 0.16782000062156088,
+          "distance_km": 3107.144512933506,
+          "entities": [
+            "094p1",
+            "269p1"
+          ],
+          "mean_depth": 246.5,
+          "mean_residual": 0.16782000062156088,
+          "platform_names": [
+            "CAPE MENDOCINO, CA BUOY - 094p1",
+            "RAWLEY POINT EAST, WI BUOY - 269p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 382.5199890136719,
+          "absolute_mean_residual": 0.16357878005312215,
+          "distance_km": 3319.6549895622516,
+          "entities": [
+            "092p1",
+            "144p1"
+          ],
+          "mean_depth": 285.25999450683594,
+          "mean_residual": 0.16357878005312215,
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "ST. PETERSBURG OFFSHORE, FL BUOY - 144p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 169.52000045776367,
+          "absolute_mean_residual": 0.11224235924142364,
+          "distance_km": 7779.506093074058,
+          "entities": [
+            "187p1",
+            "217p1"
+          ],
+          "mean_depth": 115.23999977111816,
+          "mean_residual": -0.11224235924142364,
+          "platform_names": [
+            "PAUWELA, MAUI, HI BUOY - 187p1",
+            "ONSLOW BAY OUTER, NC BUOY - 217p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 190.0,
+          "absolute_mean_residual": 0.0787725644261959,
+          "distance_km": 7785.851076059062,
+          "entities": [
+            "187p1",
+            "240p1"
+          ],
+          "mean_depth": 105.0,
+          "mean_residual": -0.0787725644261959,
+          "platform_names": [
+            "PAUWELA, MAUI, HI BUOY - 187p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 226.96002197265625,
+          "absolute_mean_residual": 0.05132787755310886,
+          "distance_km": 3993.3791209267974,
+          "entities": [
+            "100p1",
+            "188p1"
+          ],
+          "mean_depth": 458.4800109863281,
+          "mean_residual": 0.05132787755310886,
+          "platform_names": [
+            "TORREY PINES OUTER, CA BUOY - 100p1",
+            "HILO, HAWAII, HI BUOY - 188p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 326.70999908447266,
+          "absolute_mean_residual": 0.034783253152614685,
+          "distance_km": 7773.04248972357,
+          "entities": [
+            "147p1",
+            "188p1"
+          ],
+          "mean_depth": 181.64500045776367,
+          "mean_residual": -0.034783253152614685,
+          "platform_names": [
+            "CAPE HENRY, VA BUOY - 147p1",
+            "HILO, HAWAII, HI BUOY - 188p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 17.43000030517578,
+          "absolute_mean_residual": 0.007095442123195239,
+          "distance_km": 3985.5964774491813,
+          "entities": [
+            "076p1",
+            "240p1"
+          ],
+          "mean_depth": 18.71500015258789,
+          "mean_residual": -0.007095442123195239,
+          "platform_names": [
+            "DIABLO CANYON, CA BUOY - 076p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        }
+      ],
+      "profile": "envelope_attenuation_1.00"
+    },
+    {
+      "entity_effect_scope": "segment",
+      "minimum_independent_time_clusters": 2,
+      "pairs": [
+        {
+          "absolute_depth_difference": 2.8000001907348633,
+          "absolute_mean_residual": 0.8795454330474413,
+          "distance_km": 407.17478128823524,
+          "entities": [
+            "200p1",
+            "240p1"
+          ],
+          "mean_depth": 11.400000095367432,
+          "mean_residual": 0.8795454330474413,
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 348.0,
+          "absolute_mean_residual": 0.8016668901471471,
+          "distance_km": 1520.104405933468,
+          "entities": [
+            "028p1",
+            "036p1"
+          ],
+          "mean_depth": 213.0,
+          "mean_residual": -0.8016668901471471,
+          "platform_names": [
+            "SANTA MONICA BAY, CA BUOY - 028p1",
+            "GRAYS HARBOR, WA BUOY - 036p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 74.0,
+          "absolute_mean_residual": 0.689831241538889,
+          "distance_km": 7873.688559193129,
+          "entities": [
+            "225p1",
+            "240p1"
+          ],
+          "mean_depth": 47.0,
+          "mean_residual": -0.689831241538889,
+          "platform_names": [
+            "KANEOHE BAY, WETS, HI BUOY - 225p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 67.0,
+          "absolute_mean_residual": 0.47084998578442516,
+          "distance_km": 3947.6970206589576,
+          "entities": [
+            "156p1",
+            "202p1"
+          ],
+          "mean_depth": 166.5,
+          "mean_residual": 0.47084998578442516,
+          "platform_names": [
+            "MONTEREY CANYON OUTER, CA BUOY - 156p1",
+            "HANALEI, KAUAI, HI BUOY - 202p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 50.0,
+          "absolute_mean_residual": 0.4584148587060013,
+          "distance_km": 11339.121599502236,
+          "entities": [
+            "189p1",
+            "240p1"
+          ],
+          "mean_depth": 35.0,
+          "mean_residual": 0.4584148587060013,
+          "platform_names": [
+            "AUNUU, AMERICAN SAMOA BUOY - 189p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 190.0,
+          "absolute_mean_residual": 0.38866878604256916,
+          "distance_km": 7785.851076059062,
+          "entities": [
+            "187p1",
+            "240p1"
+          ],
+          "mean_depth": 105.0,
+          "mean_residual": -0.38866878604256916,
+          "platform_names": [
+            "PAUWELA, MAUI, HI BUOY - 187p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 1000.4200477600098,
+          "absolute_mean_residual": 0.36830525749361576,
+          "distance_km": 4180.651020986125,
+          "entities": [
+            "154p1",
+            "191p1"
+          ],
+          "mean_depth": 549.5900249481201,
+          "mean_residual": -0.36830525749361576,
+          "platform_names": [
+            "BLOCK ISLAND, RI BUOY - 154p1",
+            "POINT LOMA SOUTH, CA BUOY - 191p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 68.19999980926514,
+          "absolute_mean_residual": 0.3362230407228809,
+          "distance_km": 1043.9968483590596,
+          "entities": [
+            "200p1",
+            "226p1"
+          ],
+          "mean_depth": 46.90000009536743,
+          "mean_residual": 0.3362230407228809,
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "PULLEY RIDGE, FL BUOY - 226p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 226.96002197265625,
+          "absolute_mean_residual": 0.3155874938124734,
+          "distance_km": 3993.3791209267974,
+          "entities": [
+            "100p1",
+            "188p1"
+          ],
+          "mean_depth": 458.4800109863281,
+          "mean_residual": -0.3155874938124734,
+          "platform_names": [
+            "TORREY PINES OUTER, CA BUOY - 100p1",
+            "HILO, HAWAII, HI BUOY - 188p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 17.43000030517578,
+          "absolute_mean_residual": 0.29023787927268185,
+          "distance_km": 3985.5964774491813,
+          "entities": [
+            "076p1",
+            "240p1"
+          ],
+          "mean_depth": 18.71500015258789,
+          "mean_residual": -0.29023787927268185,
+          "platform_names": [
+            "DIABLO CANYON, CA BUOY - 076p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 382.5199890136719,
+          "absolute_mean_residual": 0.18626940570325756,
+          "distance_km": 3319.6549895622516,
+          "entities": [
+            "092p1",
+            "144p1"
+          ],
+          "mean_depth": 285.25999450683594,
+          "mean_residual": -0.18626940570325756,
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "ST. PETERSBURG OFFSHORE, FL BUOY - 144p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 32.62000274658203,
+          "absolute_mean_residual": 0.18073477284792894,
+          "distance_km": 1562.6203548773346,
+          "entities": [
+            "036p1",
+            "213p1"
+          ],
+          "mean_depth": 55.310001373291016,
+          "mean_residual": 0.18073477284792894,
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "SAN PEDRO SOUTH, CA BUOY - 213p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 974.800048828125,
+          "absolute_mean_residual": 0.16585066567684514,
+          "distance_km": 1463.6189644617043,
+          "entities": [
+            "191p1",
+            "280p1"
+          ],
+          "mean_depth": 562.4000244140625,
+          "mean_residual": 0.16585066567684514,
+          "platform_names": [
+            "POINT LOMA SOUTH, CA BUOY - 191p1",
+            "YAQUINA CHANNEL SW, OR BUOY - 280p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 326.70999908447266,
+          "absolute_mean_residual": 0.12337659377119126,
+          "distance_km": 7773.04248972357,
+          "entities": [
+            "147p1",
+            "188p1"
+          ],
+          "mean_depth": 181.64500045776367,
+          "mean_residual": -0.12337659377119126,
+          "platform_names": [
+            "CAPE HENRY, VA BUOY - 147p1",
+            "HILO, HAWAII, HI BUOY - 188p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 203.0,
+          "absolute_mean_residual": 0.0966942885685611,
+          "distance_km": 3107.144512933506,
+          "entities": [
+            "094p1",
+            "269p1"
+          ],
+          "mean_depth": 246.5,
+          "mean_residual": -0.0966942885685611,
+          "platform_names": [
+            "CAPE MENDOCINO, CA BUOY - 094p1",
+            "RAWLEY POINT EAST, WI BUOY - 269p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 169.52000045776367,
+          "absolute_mean_residual": 0.08597927978102682,
+          "distance_km": 7779.506093074058,
+          "entities": [
+            "187p1",
+            "217p1"
+          ],
+          "mean_depth": 115.23999977111816,
+          "mean_residual": 0.08597927978102682,
+          "platform_names": [
+            "PAUWELA, MAUI, HI BUOY - 187p1",
+            "ONSLOW BAY OUTER, NC BUOY - 217p1"
+          ]
+        },
+        {
+          "absolute_depth_difference": 114.70999908447266,
+          "absolute_mean_residual": 0.039839741448941146,
+          "distance_km": 4072.535402766402,
+          "entities": [
+            "147p1",
+            "156p1"
+          ],
+          "mean_depth": 75.64500045776367,
+          "mean_residual": -0.039839741448941146,
+          "platform_names": [
+            "CAPE HENRY, VA BUOY - 147p1",
+            "MONTEREY CANYON OUTER, CA BUOY - 156p1"
+          ]
+        }
+      ],
+      "profile": "signed_envelope_residual"
+    }
+  ],
+  "hypotheses": [
+    {
+      "detected_fdr_by": false,
+      "effect": "mean_residual",
+      "empirical_p_two_sided": 0.1066,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "distance_km",
+      "null_exceedances_two_sided": 2131,
+      "null_repeats": 19999,
+      "null_unique_values": 592,
+      "observed_spearman": -0.3921568627450981,
+      "pairs": 17,
+      "profile": "envelope_attenuation_1.00"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "mean_residual",
+      "empirical_p_two_sided": 0.0814,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "absolute_depth_difference",
+      "null_exceedances_two_sided": 1627,
+      "null_repeats": 19999,
+      "null_unique_values": 1372,
+      "observed_spearman": -0.4142156862745099,
+      "pairs": 17,
+      "profile": "envelope_attenuation_1.00"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "mean_residual",
+      "empirical_p_two_sided": 0.3901,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "mean_depth",
+      "null_exceedances_two_sided": 7801,
+      "null_repeats": 19999,
+      "null_unique_values": 1224,
+      "observed_spearman": -0.1985294117647059,
+      "pairs": 17,
+      "profile": "envelope_attenuation_1.00"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "absolute_mean_residual",
+      "empirical_p_two_sided": 0.516,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "distance_km",
+      "null_exceedances_two_sided": 10319,
+      "null_repeats": 19999,
+      "null_unique_values": 598,
+      "observed_spearman": -0.16911764705882354,
+      "pairs": 17,
+      "profile": "envelope_attenuation_1.00"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "absolute_mean_residual",
+      "empirical_p_two_sided": 0.5749,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "absolute_depth_difference",
+      "null_exceedances_two_sided": 11497,
+      "null_repeats": 19999,
+      "null_unique_values": 1426,
+      "observed_spearman": -0.14215686274509806,
+      "pairs": 17,
+      "profile": "envelope_attenuation_1.00"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "absolute_mean_residual",
+      "empirical_p_two_sided": 0.50185,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "mean_depth",
+      "null_exceedances_two_sided": 10036,
+      "null_repeats": 19999,
+      "null_unique_values": 1338,
+      "observed_spearman": -0.17401960784313728,
+      "pairs": 17,
+      "profile": "envelope_attenuation_1.00"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "mean_residual",
+      "empirical_p_two_sided": 0.1556,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "distance_km",
+      "null_exceedances_two_sided": 3111,
+      "null_repeats": 19999,
+      "null_unique_values": 587,
+      "observed_spearman": -0.35294117647058826,
+      "pairs": 17,
+      "profile": "signed_envelope_residual"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "mean_residual",
+      "empirical_p_two_sided": 0.01965,
+      "fdr_by_q_value": 0.7317370779220779,
+      "known_relationship": "absolute_depth_difference",
+      "null_exceedances_two_sided": 392,
+      "null_repeats": 19999,
+      "null_unique_values": 1352,
+      "observed_spearman": -0.5392156862745099,
+      "pairs": 17,
+      "profile": "signed_envelope_residual"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "mean_residual",
+      "empirical_p_two_sided": 0.12105,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "mean_depth",
+      "null_exceedances_two_sided": 2420,
+      "null_repeats": 19999,
+      "null_unique_values": 1274,
+      "observed_spearman": -0.36274509803921573,
+      "pairs": 17,
+      "profile": "signed_envelope_residual"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "absolute_mean_residual",
+      "empirical_p_two_sided": 0.82205,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "distance_km",
+      "null_exceedances_two_sided": 16440,
+      "null_repeats": 19999,
+      "null_unique_values": 604,
+      "observed_spearman": -0.06372549019607844,
+      "pairs": 17,
+      "profile": "signed_envelope_residual"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "absolute_mean_residual",
+      "empirical_p_two_sided": 0.37955,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "absolute_depth_difference",
+      "null_exceedances_two_sided": 7590,
+      "null_repeats": 19999,
+      "null_unique_values": 1481,
+      "observed_spearman": -0.25490196078431376,
+      "pairs": 17,
+      "profile": "signed_envelope_residual"
+    },
+    {
+      "detected_fdr_by": false,
+      "effect": "absolute_mean_residual",
+      "empirical_p_two_sided": 0.312,
+      "fdr_by_q_value": 1.0,
+      "known_relationship": "mean_depth",
+      "null_exceedances_two_sided": 6239,
+      "null_repeats": 19999,
+      "null_unique_values": 1434,
+      "observed_spearman": -0.303921568627451,
+      "pairs": 17,
+      "profile": "signed_envelope_residual"
+    }
+  ],
+  "method": {
+    "confirmatory_surface": "full-corpus, segment-buoy-adjusted, at-least-two-independent-time-cluster residual pair effects in the two deepest raw profiles",
+    "label_use": "post-hoc attribution only",
+    "multiplicity": "BY FDR across all post-hoc attribution hypotheses",
+    "null": "QAP-like node-label permutation keeps the discovered edge surface and pair residuals fixed while reassigning station geography/depth",
+    "selection_use": "none"
+  },
+  "relationship_report": "experiments/results/2026-06-05-cdip-acquisition-stratified-residual-control-null4999.json",
+  "signature": {
+    "permutation_repeats": 19999,
+    "seed": 20260605
+  }
+}

@@ -8,6 +8,8 @@ from experiments.cdip_relationship_discovery import (
     _add_envelope_profiles,
     _aggregate,
     _apply_pair_fdr,
+    _dyadic_residual_persistence_summary,
+    _identity_persistence_summary,
     _layer_view,
     _parse_layers,
     _rng_for,
@@ -61,6 +63,27 @@ def test_envelope_attenuation_ladder_preserves_raw_endpoint() -> None:
     assert len(records[0][SIGNED_ENVELOPE_PROFILE]) == 3
 
 
+def test_envelope_profiles_can_remove_a_known_class_envelope() -> None:
+    records = [
+        {"corpus_stratum": "left", "power": np.asarray([0.8, 0.2])},
+        {"corpus_stratum": "left", "power": np.asarray([0.6, 0.4])},
+        {"corpus_stratum": "right", "power": np.asarray([0.2, 0.8])},
+        {"corpus_stratum": "right", "power": np.asarray([0.4, 0.6])},
+    ]
+
+    _add_envelope_profiles(records, stratum_key="corpus_stratum")
+
+    for stratum in ("left", "right"):
+        residuals = np.stack(
+            [
+                row[SIGNED_ENVELOPE_PROFILE]
+                for row in records
+                if row["corpus_stratum"] == stratum
+            ]
+        )
+        assert np.allclose(np.median(residuals, axis=0), 0.0)
+
+
 def test_pair_fdr_corrects_jointly_across_every_tried_profile() -> None:
     row = {"spectral_alignment_calibrated_supported": True}
     for profile_key in SPECTRAL_PROFILE_KEYS:
@@ -80,6 +103,29 @@ def test_pair_fdr_corrects_jointly_across_every_tried_profile() -> None:
 
     raw = row["raw_profile"]["domain_regroup"]
     assert np.isclose(raw["fdr_q_value"], 0.06)
+    assert not raw["detected_fdr"]
+
+
+def test_pair_fdr_can_select_arbitrary_dependence_safe_by_rule() -> None:
+    row = {"spectral_alignment_calibrated_supported": True}
+    for profile_key in SPECTRAL_PROFILE_KEYS:
+        row[profile_key] = {}
+        for control in ("domain_regroup", "temporal_regroup"):
+            row[profile_key][control] = {
+                "empirical_p_ge_observed": (
+                    0.005
+                    if profile_key == "raw_profile" and control == "domain_regroup"
+                    else 1.0
+                ),
+                "observed_minus_null": 1.0,
+                "z_effect": 3.0,
+            }
+
+    _apply_pair_fdr([row], selected_method="by")
+
+    raw = row["raw_profile"]["domain_regroup"]
+    assert raw["detected_fdr_bh"]
+    assert not raw["detected_fdr_by"]
     assert not raw["detected_fdr"]
 
 
@@ -227,3 +273,284 @@ def test_pair_temporal_null_enumerates_small_permutation_space_once() -> None:
     assert temporal["null_generation"] == "exact_permutation_space"
     assert temporal["permutation_space_size"] == 2
     assert temporal["null_repeats"] == 2
+
+
+def test_stratified_matched_occurrence_control_excludes_cross_class_pairs() -> None:
+    windows = []
+    for window_index in range(3):
+        profiles = [
+            {"entity": "a", "power": [0.8, 0.1, 0.1]},
+            {"entity": "b", "power": [0.78, 0.12, 0.1]},
+            {"entity": "c", "power": [0.1, 0.8, 0.1]},
+            {"entity": "d", "power": [0.8, 0.1, 0.1]},
+        ]
+        windows.append(
+            {
+                "segment": "validation",
+                "group_index": 0,
+                "window_index": window_index,
+                "source": {"start": f"2026-01-0{window_index + 1}T00:00:00+00:00"},
+                "layers": [{"layer": "raw", "spectral_profiles": profiles}],
+            }
+        )
+
+    result = _spectral_specificity(
+        windows,
+        supported_by_layer={"raw": ["spectral_alignment"]},
+        null_repeats=99,
+        seed=33,
+        replication_separation_seconds=24.0 * 3600.0,
+        entity_strata={"a": "x", "b": "x", "c": "x", "d": "y"},
+        within_stratum_pairs_only=True,
+        pair_domain_control="matched_occurrence_regroup",
+        require_complete_matched_occurrences=True,
+    )
+
+    pairs = {tuple(row["entities"]): row for row in result["pair_summary"]}
+    assert set(pairs) == {("a", "b"), ("a", "c"), ("b", "c")}
+    domain = pairs[("a", "b")]["raw_profile"]["domain_regroup"]
+    assert domain["complete_matched_occurrence_coverage"]
+    assert domain["matched_occurrences"] == 3
+    assert domain["candidate_pool_sizes"] == [3, 3, 3]
+    assert domain["null_generation"] == "matched_occurrence_exact_permutation_space"
+    assert domain["permutation_space_size"] == 27
+    assert domain["exact_null"]
+
+
+def test_complete_matched_occurrence_gate_marks_uncontrolled_pair_untestable() -> None:
+    windows = [
+        {
+            "segment": "validation",
+            "group_index": 0,
+            "window_index": window_index,
+            "source": {"start": f"2026-01-0{window_index + 1}T00:00:00+00:00"},
+            "layers": [
+                {
+                    "layer": "raw",
+                    "spectral_profiles": [
+                        {"entity": "a", "power": [0.8, 0.1, 0.1]},
+                        {"entity": "b", "power": [0.78, 0.12, 0.1]},
+                        {"entity": "d", "power": [0.1, 0.8, 0.1]},
+                    ],
+                }
+            ],
+        }
+        for window_index in range(2)
+    ]
+
+    result = _spectral_specificity(
+        windows,
+        supported_by_layer={"raw": ["spectral_alignment"]},
+        null_repeats=99,
+        seed=34,
+        replication_separation_seconds=24.0 * 3600.0,
+        entity_strata={"a": "x", "b": "x", "d": "y"},
+        within_stratum_pairs_only=True,
+        pair_domain_control="matched_occurrence_regroup",
+        require_complete_matched_occurrences=True,
+    )
+
+    pair = result["pair_summary"][0]
+    domain = pair["raw_profile"]["domain_regroup"]
+    assert pair["entities"] == ["a", "b"]
+    assert not domain["complete_matched_occurrence_coverage"]
+    assert domain["matched_occurrences"] == 0
+    assert domain["empirical_p_ge_observed"] is None
+    assert not domain["detected_fdr"]
+
+
+def test_identity_persistence_detects_stable_local_pair_rank() -> None:
+    pair_occurrences = {
+        ("a", "b"): [],
+        ("a", "c"): [],
+        ("b", "c"): [],
+    }
+    for window_index in range(6):
+        for pair, score in (
+            (("a", "b"), 0.9),
+            (("a", "c"), 0.5),
+            (("b", "c"), 0.1),
+        ):
+            pair_occurrences[pair].append(
+                {
+                    "segment": "validation",
+                    "group_index": window_index,
+                    "window_index": 0,
+                    "corpus_stratum": "x",
+                    "start": f"2026-01-{window_index + 1:02d}T00:00:00+00:00",
+                    "raw_profile": score,
+                }
+            )
+
+    summary = _identity_persistence_summary(
+        pair_occurrences,
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=999,
+        seed=35,
+    )
+
+    assert summary["eligible_pair_identities"] == 3
+    assert summary["contexts"] == 6
+    assert summary["observed_minus_null"] > 0.0
+    assert summary["empirical_p_ge_observed"] <= 0.05
+
+
+def test_identity_persistence_can_require_independent_time_clusters() -> None:
+    pair_occurrences = {
+        ("a", "b"): [],
+        ("a", "c"): [],
+        ("b", "c"): [],
+    }
+    for minute in (0, 30):
+        for pair, score in (
+            (("a", "b"), 0.9),
+            (("a", "c"), 0.5),
+            (("b", "c"), 0.1),
+        ):
+            pair_occurrences[pair].append(
+                {
+                    "segment": "validation",
+                    "group_index": minute,
+                    "window_index": 0,
+                    "corpus_stratum": "x",
+                    "start": f"2026-01-01T00:{minute:02d}:00+00:00",
+                    "raw_profile": score,
+                }
+            )
+
+    summary = _identity_persistence_summary(
+        pair_occurrences,
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=99,
+        seed=351,
+        replication_separation_seconds=24.0 * 3600.0,
+        minimum_independent_time_clusters=2,
+    )
+
+    assert summary["eligible_pair_identities"] == 0
+    assert summary["empirical_p_ge_observed"] is None
+
+
+def _synthetic_complete_pair_occurrences(
+    *,
+    dyadic_effects: dict[tuple[str, str], float] | None = None,
+) -> dict[tuple[str, str], list[dict[str, object]]]:
+    entities = ["a", "b", "c", "d", "e", "f"]
+    pair_occurrences = {
+        (left, right): []
+        for index, left in enumerate(entities)
+        for right in entities[index + 1 :]
+    }
+    dyadic_effects = dyadic_effects or {}
+    for window_index in range(16):
+        node_effects = {
+            entity: (
+                (entity_index - 2.5) * (1.0 + 0.05 * window_index)
+                + 0.2 * np.sin(window_index + entity_index)
+            )
+            for entity_index, entity in enumerate(entities)
+        }
+        for pair in pair_occurrences:
+            pair_occurrences[pair].append(
+                {
+                    "segment": "validation",
+                    "group_index": window_index,
+                    "window_index": 0,
+                    "corpus_stratum": "x",
+                    "start": f"2026-01-{window_index + 1:02d}T00:00:00+00:00",
+                    "raw_profile": (
+                        node_effects[pair[0]]
+                        + node_effects[pair[1]]
+                        + dyadic_effects.get(pair, 0.0)
+                    ),
+                }
+            )
+    return pair_occurrences
+
+
+def test_dyadic_residual_control_removes_per_context_node_effects() -> None:
+    summary = _dyadic_residual_persistence_summary(
+        _synthetic_complete_pair_occurrences(),
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=199,
+        seed=36,
+        entity_effect_scope="exact_context",
+    )
+
+    assert summary["contexts"] == 16
+    assert summary["residual_degrees_of_freedom"] > 0
+    assert summary["observed"] < 1e-20
+    assert not summary["detected"]
+
+
+def test_dyadic_residual_control_detects_persistent_pair_effects() -> None:
+    summary = _dyadic_residual_persistence_summary(
+        _synthetic_complete_pair_occurrences(
+            dyadic_effects={
+                ("a", "b"): 3.0,
+                ("a", "f"): -2.0,
+                ("c", "d"): 2.0,
+                ("e", "f"): -3.0,
+            }
+        ),
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=999,
+        seed=37,
+        entity_effect_scope="exact_context",
+    )
+
+    assert summary["observed_minus_null"] > 0.0
+    assert summary["empirical_p_ge_observed"] <= 0.01
+    assert summary["detected"]
+
+
+def test_exact_context_dyadic_effect_is_unidentifiable_in_triangles() -> None:
+    pair_occurrences = {
+        ("a", "b"): [],
+        ("a", "c"): [],
+        ("b", "c"): [],
+    }
+    for window_index in range(8):
+        for pair, score in (
+            (("a", "b"), 0.9),
+            (("a", "c"), 0.5),
+            (("b", "c"), 0.1),
+        ):
+            pair_occurrences[pair].append(
+                {
+                    "segment": "validation",
+                    "group_index": window_index,
+                    "window_index": 0,
+                    "corpus_stratum": "x",
+                    "start": f"2026-01-{window_index + 1:02d}T00:00:00+00:00",
+                    "raw_profile": score,
+                }
+            )
+
+    summary = _dyadic_residual_persistence_summary(
+        pair_occurrences,
+        profile_key="raw_profile",
+        layer_name="raw",
+        scope="full",
+        cutoff_timestamp=None,
+        null_repeats=199,
+        seed=38,
+        entity_effect_scope="exact_context",
+    )
+
+    assert summary["candidate_contexts"] == 8
+    assert summary["locally_identifiable_contexts"] == 0
+    assert summary["context_pair_count_distribution"] == {"3": 8}
+    assert summary["empirical_p_ge_observed"] is None

@@ -276,13 +276,20 @@ def audit_metadata(
 
 def run_audit(report_path: Path) -> dict[str, Any]:
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    pair_summaries = report["aggregate"]["spectral_specificity"]["pair_summary"]
-    paths = {
-        str(source["entity"]): Path(source["path"])
-        for window in report["windows"]
-        for source in window["source"]["sources"]
-    }
-    metadata = {entity: _station_metadata(path) for entity, path in paths.items()}
+    pair_summaries = (
+        report["aggregate"]["spectral_specificity"]["pair_summary"]
+        if "aggregate" in report
+        else report["spectral_specificity"]["pair_summary"]
+    )
+    if "station_metadata" in report:
+        metadata = report["station_metadata"]
+    else:
+        paths = {
+            str(source["entity"]): Path(source["path"])
+            for window in report["windows"]
+            for source in window["source"]["sources"]
+        }
+        metadata = {entity: _station_metadata(path) for entity, path in paths.items()}
     profile_keys = [
         profile_key
         for profile_key in PROFILE_KEYS
