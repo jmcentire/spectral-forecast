@@ -13,6 +13,7 @@ import json
 import math
 import sys
 import time
+import warnings
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,6 +35,12 @@ from experiments.chbmit_observe import (
 )
 from spectral_forecast.autotune import AutoTuneConfig
 from spectral_forecast.observation import ObservationResult, ScoreName, observe_series
+from spectral_forecast.relationship_dynamics import (
+    exact_identity_distance,
+    global_motif_distance,
+    relationship_adjacency,
+    structural_role_distance,
+)
 
 try:
     from sklearn.feature_selection import SelectKBest, f_classif
@@ -196,6 +203,38 @@ def _pedestrian_features(window: NDArray[np.float64]) -> dict[str, float]:
     return features
 
 
+def _relationship_features(
+    current_window: NDArray[np.float64],
+    previous_window: NDArray[np.float64],
+    baseline_graph: NDArray[np.float64],
+) -> dict[str, float]:
+    """Describe generic relationship change without event labels."""
+
+    current = relationship_adjacency(current_window.T, family="correlation")
+    previous = relationship_adjacency(previous_window.T, family="correlation")
+    features: dict[str, float] = {}
+    for prefix, reference in (("prev", previous), ("baseline", baseline_graph)):
+        role_distance, role_assignment = structural_role_distance(reference, current)
+        delta = current - reference
+        upper = delta[np.triu_indices_from(delta, k=1)]
+        entity_change = np.sum(np.abs(delta), axis=1)
+        features[f"relationship_{prefix}_exact_distance"] = exact_identity_distance(
+            reference, current
+        )
+        features[f"relationship_{prefix}_role_distance"] = role_distance
+        features[f"relationship_{prefix}_motif_distance"] = global_motif_distance(
+            reference, current
+        )
+        features[f"relationship_{prefix}_role_substitution_fraction"] = float(
+            np.mean(np.asarray(role_assignment) != np.arange(len(role_assignment)))
+        )
+        features.update(_stats(f"relationship_{prefix}_edge_delta", upper))
+        features.update(
+            _stats(f"relationship_{prefix}_entity_change", entity_change)
+        )
+    return features
+
+
 def _spectral_features(
     matrices: Mapping[ScoreName, NDArray[np.float64]],
     row_index: int,
@@ -347,6 +386,14 @@ def build_file_rows(
     anchors, matrices, ordered_channels = _score_matrices(results, SCORE_NAMES)
     seizures = labels.get(path.name, FileSeizures(path.name, ())).seizures
     window_samples = max(2, int(round(feature_window_seconds * target_sample_rate)))
+    baseline_window = np.vstack(
+        [series[channel][:window_samples] for channel in ordered_channels]
+    )
+    if baseline_window.shape[1] < window_samples:
+        return []
+    baseline_graph = relationship_adjacency(
+        baseline_window.T, family="correlation"
+    )
     rows: list[FeatureRow] = []
     for row_index, anchor in enumerate(anchors):
         seconds = float(anchor) / target_sample_rate
@@ -362,13 +409,20 @@ def build_file_rows(
         if label is None:
             continue
         start = anchor - window_samples
-        if start < 0:
+        previous_start = start - window_samples
+        if previous_start < 0:
             continue
         window = np.vstack([series[channel][start:anchor] for channel in ordered_channels])
+        previous_window = np.vstack(
+            [series[channel][previous_start:start] for channel in ordered_channels]
+        )
         if window.shape[1] < 2:
             continue
         features: dict[str, float] = {}
         features.update(_pedestrian_features(window))
+        features.update(
+            _relationship_features(window, previous_window, baseline_graph)
+        )
         features.update(_spectral_features(matrices, row_index))
         features.update(
             _latent_features(
@@ -515,6 +569,21 @@ def _make_model(
     )
 
 
+def _fit_model(model: Any, matrix: NDArray[np.float64], labels: NDArray[np.int64]) -> None:
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message=r"Features \[.*\] are constant\.",
+            category=UserWarning,
+        )
+        warnings.filterwarnings(
+            "ignore",
+            message="invalid value encountered in divide",
+            category=RuntimeWarning,
+        )
+        model.fit(matrix, labels)
+
+
 def _select_model_hyperparameters(
     train_rows: Sequence[FeatureRow],
     names: Sequence[str],
@@ -556,7 +625,7 @@ def _select_model_hyperparameters(
                     regularization_c=regularization_c,
                     selected_k=selected_k,
                 )
-                model.fit(_matrix(inner_train, names), inner_train_y)
+                _fit_model(model, _matrix(inner_train, names), inner_train_y)
                 probabilities = model.predict_proba(_matrix(inner_validation, names))[:, 1]
                 scores.append(float(average_precision_score(inner_validation_y, probabilities)))
             candidate_rows.append(
@@ -929,7 +998,7 @@ def _fit_one_model(
     )
     train_x = _matrix(train_rows, names)
     test_x = _matrix(test_rows, names)
-    model.fit(train_x, _labels(train_rows))
+    _fit_model(model, train_x, _labels(train_rows))
     train_prob = model.predict_proba(train_x)[:, 1]
     test_prob = model.predict_proba(test_x)[:, 1]
     metrics = _evaluate_probability_model(
@@ -973,7 +1042,7 @@ def _family_probability_matrix(
             regularization_c=float(selection["selected_c"]),
             selected_k=selection["selected_k"],
         )
-        model.fit(_matrix(source_rows, names), _labels(source_rows))
+        _fit_model(model, _matrix(source_rows, names), _labels(source_rows))
         columns.append(model.predict_proba(_matrix(target_rows, names))[:, 1])
         selections.append(
             {
@@ -1098,13 +1167,26 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         "pedestrian": [name for name in feature_names if name.startswith("ped_")],
         "spectral": [name for name in feature_names if name.startswith("spectral_")],
         "latent": [name for name in feature_names if name.startswith("latent_")],
+        "relationship": [
+            name for name in feature_names if name.startswith("relationship_")
+        ],
     }
     ablations = {
         "pedestrian": groups["pedestrian"],
         "pedestrian_spectral": groups["pedestrian"] + groups["spectral"],
         "latent_only": groups["latent"],
+        "relationship_only": groups["relationship"],
         "spectral_latent": groups["spectral"] + groups["latent"],
         "pedestrian_spectral_latent": groups["pedestrian"] + groups["spectral"] + groups["latent"],
+        "pedestrian_spectral_relationship": (
+            groups["pedestrian"] + groups["spectral"] + groups["relationship"]
+        ),
+        "pedestrian_spectral_latent_relationship": (
+            groups["pedestrian"]
+            + groups["spectral"]
+            + groups["latent"]
+            + groups["relationship"]
+        ),
     }
     selected_ablations = {
         f"{name}_selected": names
@@ -1222,9 +1304,19 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         for name, row in scored_models
         if "latent" in name or name.startswith("late_fusion")
     ]
+    relationship_candidates = [
+        (name, row)
+        for name, row in scored_models
+        if "relationship" in name
+    ]
     best_latent_model = (
         max(latent_candidates, key=lambda item: float(item[1]["pr_auc"]))
         if latent_candidates
+        else None
+    )
+    best_relationship_model = (
+        max(relationship_candidates, key=lambda item: float(item[1]["pr_auc"]))
+        if relationship_candidates
         else None
     )
     comparison = {
@@ -1260,6 +1352,18 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
             "pedestrian_spectral",
             "pr_auc",
         ),
+        "relationship_full": "pedestrian_spectral_relationship",
+        "relationship_delta_pr_auc": _delta(
+            "pedestrian_spectral_relationship",
+            "pedestrian_spectral",
+            "pr_auc",
+        ),
+        "selected_relationship_full": "pedestrian_spectral_relationship_selected",
+        "selected_relationship_delta_pr_auc": _delta(
+            "pedestrian_spectral_relationship_selected",
+            "pedestrian_spectral_selected",
+            "pr_auc",
+        ),
         "best_model": (
             {"name": best_model[0], "pr_auc": best_model[1]["pr_auc"]}
             if best_model is not None
@@ -1268,6 +1372,14 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
         "best_latent_model": (
             {"name": best_latent_model[0], "pr_auc": best_latent_model[1]["pr_auc"]}
             if best_latent_model is not None
+            else None
+        ),
+        "best_relationship_model": (
+            {
+                "name": best_relationship_model[0],
+                "pr_auc": best_relationship_model[1]["pr_auc"],
+            }
+            if best_relationship_model is not None
             else None
         ),
     }
@@ -1286,6 +1398,14 @@ def evaluate(rows: Sequence[FeatureRow], args: argparse.Namespace) -> dict[str, 
             "latent_only_vs_baseline": (
                 "latent_only",
                 "pedestrian_spectral",
+            ),
+            "raw_relationship_addition": (
+                "pedestrian_spectral_relationship",
+                "pedestrian_spectral",
+            ),
+            "selected_relationship_addition": (
+                "pedestrian_spectral_relationship_selected",
+                "pedestrian_spectral_selected",
             ),
         },
         null_repeats=args.temporal_null_repeats,
@@ -1354,8 +1474,9 @@ def run_ablation(args: argparse.Namespace) -> dict[str, Any]:
         },
         "method": {
             "purpose": (
-                "measure whether agnostic latent/stigmergic structure features improve a "
-                "simple held-out-subject predictor over pedestrian and spectral features"
+                "measure whether agnostic latent/stigmergic and relationship-change "
+                "features improve a simple held-out-subject predictor over pedestrian "
+                "and spectral features"
             ),
             "split": "leave-one-subject-out",
             "predictor": "median imputer + standard scaler + class-balanced logistic regression",
@@ -1364,8 +1485,9 @@ def run_ablation(args: argparse.Namespace) -> dict[str, Any]:
                 "leave-one-subject-out on training subjects only"
             ),
             "integration_controls": (
-                "selected-feature logistic models and late fusion over pedestrian/spectral/latent "
-                "family probabilities are trained without outer-held-out labels"
+                "selected-feature logistic models and late fusion over pedestrian, "
+                "spectral, latent, and relationship family probabilities are trained "
+                "without outer-held-out labels"
             ),
             "temporal_shift_control": (
                 "fixed outer-held-out predictions are tested against within-file "
@@ -1427,7 +1549,7 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
         "",
         "This is a supervised measurement harness, not a label-free discovery run. Labels train and evaluate the predictor; the feature layers remain generic.",
         "Logistic regularization and optional feature counts are selected by inner leave-one-subject-out on training subjects only.",
-        "Late-fusion controls combine pedestrian/spectral/latent family probabilities without using outer-held-out labels.",
+        "Late-fusion controls combine pedestrian, spectral, latent, and relationship family probabilities without using outer-held-out labels.",
         "",
         "## Dataset",
         "",
@@ -1479,6 +1601,14 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
             f"- Best model: `{comparison['best_model']['name'] if comparison['best_model'] else 'n/a'}` PR-AUC {_fmt(comparison['best_model']['pr_auc'] if comparison['best_model'] else None)}",
             f"- Best latent-bearing model: `{comparison['best_latent_model']['name'] if comparison['best_latent_model'] else 'n/a'}` PR-AUC {_fmt(comparison['best_latent_model']['pr_auc'] if comparison['best_latent_model'] else None)}",
             "",
+            "## Relationship Contribution",
+            "",
+            f"- Full: `{comparison['relationship_full']}`",
+            f"- Raw delta PR-AUC: {_fmt(comparison['relationship_delta_pr_auc'])}",
+            f"- Selected full: `{comparison['selected_relationship_full']}`",
+            f"- Selected delta PR-AUC: {_fmt(comparison['selected_relationship_delta_pr_auc'])}",
+            f"- Best relationship-bearing model: `{comparison['best_relationship_model']['name'] if comparison['best_relationship_model'] else 'n/a'}` PR-AUC {_fmt(comparison['best_relationship_model']['pr_auc'] if comparison['best_relationship_model'] else None)}",
+            "",
             "## Fixed-Prediction Temporal Shift Audit",
             "",
             "Within-file label shifts preserve file membership and prevalence while breaking predictor timing.",
@@ -1504,9 +1634,10 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
             "",
             "## Integration Readout",
             "",
-            "- Raw full-stack integration remains worse than raw pedestrian+spectral on PR-AUC.",
-            "- Train-only feature selection makes the full stack beat the selected pedestrian+spectral baseline, but the best model is still latent-only selected.",
-            "- Late fusion improves PR-AUC over raw pedestrian+spectral, but the fixed false-alarm threshold can still suppress recall.",
+            f"- Raw latent addition delta PR-AUC: {_fmt(comparison['delta_pr_auc'])}.",
+            f"- Raw relationship addition delta PR-AUC: {_fmt(comparison['relationship_delta_pr_auc'])}.",
+            f"- Selected relationship addition delta PR-AUC: {_fmt(comparison['selected_relationship_delta_pr_auc'])}.",
+            "- Treat raw rankings as descriptive until the fixed-prediction temporal shift audit survives multiplicity correction.",
             "",
             "## Split Details",
             "",
@@ -1534,7 +1665,7 @@ def markdown_summary(report: Mapping[str, Any]) -> str:
             "",
             "## Interpretation Guardrails",
             "",
-            "- This does not claim domain-general prediction. It asks whether latent structure contributes to a simple downstream predictor when labels exist.",
+            "- This does not claim domain-general prediction. It asks whether generic latent and relationship structure contributes to a simple downstream predictor when labels exist.",
             "- Leave-one-subject-out prevents random-window leakage, but the cohort is still small.",
             "- CHB-MIT labels are file-local here; cross-file preictal continuity is not modeled.",
         ]

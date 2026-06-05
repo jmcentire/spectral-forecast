@@ -1,0 +1,747 @@
+{
+  "corpora": [
+    {
+      "detected_event_counts": [
+        {
+          "events": 1,
+          "fraction": 0.25,
+          "metric": "exact_identity",
+          "mode": "step"
+        },
+        {
+          "events": 0,
+          "fraction": 0.0,
+          "metric": "structural_role",
+          "mode": "step"
+        },
+        {
+          "events": 0,
+          "fraction": 0.0,
+          "metric": "global_motif",
+          "mode": "step"
+        },
+        {
+          "events": 2,
+          "fraction": 0.5,
+          "metric": "exact_identity",
+          "mode": "drift"
+        },
+        {
+          "events": 0,
+          "fraction": 0.0,
+          "metric": "structural_role",
+          "mode": "drift"
+        },
+        {
+          "events": 1,
+          "fraction": 0.25,
+          "metric": "global_motif",
+          "mode": "drift"
+        }
+      ],
+      "events": [
+        {
+          "detected_mode_metrics": [
+            {
+              "metric": "exact_identity",
+              "mode": "drift"
+            },
+            {
+              "metric": "exact_identity",
+              "mode": "step"
+            }
+          ],
+          "event_index": 0,
+          "result": {
+            "entities": [
+              "pmu_000",
+              "pmu_001",
+              "pmu_002",
+              "pmu_003",
+              "pmu_004",
+              "pmu_005",
+              "pmu_006",
+              "pmu_007",
+              "pmu_008",
+              "pmu_009",
+              "pmu_010",
+              "pmu_011",
+              "pmu_012",
+              "pmu_013",
+              "pmu_014",
+              "pmu_015",
+              "pmu_016",
+              "pmu_017",
+              "pmu_018",
+              "pmu_019",
+              "pmu_020",
+              "pmu_021",
+              "pmu_022",
+              "pmu_023"
+            ],
+            "evidence": [
+              {
+                "attributes": {
+                  "best_split_anchor": 512,
+                  "best_split_graph_index": 28,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": true,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.005,
+                "fdr_by_q_value": 0.03675,
+                "metric": "exact_identity",
+                "mode": "step",
+                "null_exceedances": 4,
+                "null_mean": 0.8062025949775957,
+                "null_repeats": 999,
+                "null_std": 0.13687375020725576,
+                "observed": 1.2641038520447219,
+                "observed_minus_null": 0.45790125706712614,
+                "z_effect": 3.345427858692897
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 512,
+                  "best_split_graph_index": 28,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.158,
+                "fdr_by_q_value": 0.58065,
+                "metric": "structural_role",
+                "mode": "step",
+                "null_exceedances": 157,
+                "null_mean": 1.3220271182410699,
+                "null_repeats": 999,
+                "null_std": 0.48875311111669356,
+                "observed": 1.823518198942186,
+                "observed_minus_null": 0.5014910807011161,
+                "z_effect": 1.0260621759630728
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 512,
+                  "best_split_graph_index": 28,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.3,
+                "fdr_by_q_value": 0.882,
+                "metric": "global_motif",
+                "mode": "step",
+                "null_exceedances": 299,
+                "null_mean": 75.12678989771061,
+                "null_repeats": 999,
+                "null_std": 37.85463594578817,
+                "observed": 93.52466019440917,
+                "observed_minus_null": 18.397870296698557,
+                "z_effect": 0.48601366350600356
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.8307104660045835
+                },
+                "detected_fdr_by": true,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.001,
+                "fdr_by_q_value": 0.014700000000000001,
+                "metric": "exact_identity",
+                "mode": "drift",
+                "null_exceedances": 0,
+                "null_mean": 0.2805569511451864,
+                "null_repeats": 999,
+                "null_std": 0.17520376545849042,
+                "observed": 0.8307104660045835,
+                "observed_minus_null": 0.5501535148593971,
+                "z_effect": 3.140078145122631
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.439877769289534
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.032,
+                "fdr_by_q_value": 0.15680000000000002,
+                "metric": "structural_role",
+                "mode": "drift",
+                "null_exceedances": 31,
+                "null_mean": 0.16979561685444036,
+                "null_repeats": 999,
+                "null_std": 0.1246465927318045,
+                "observed": 0.439877769289534,
+                "observed_minus_null": 0.2700821524350936,
+                "z_effect": 2.1667832751450744
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.10557677616501145
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.598,
+                "fdr_by_q_value": 1.0,
+                "metric": "global_motif",
+                "mode": "drift",
+                "null_exceedances": 597,
+                "null_mean": 0.15702532173120407,
+                "null_repeats": 999,
+                "null_std": 0.11438369114910768,
+                "observed": 0.10557677616501145,
+                "observed_minus_null": -0.05144854556619262,
+                "z_effect": -0.44978917054814743
+              }
+            ],
+            "family": "correlation",
+            "graph_windows": 34,
+            "min_segment_windows": 6,
+            "null_block_estimated": true,
+            "null_block_size": 3,
+            "null_exhaustive": false,
+            "null_permutation_space": 479001599,
+            "null_repeats": 999,
+            "requested_null_repeats": 999,
+            "stride": 16,
+            "window_size": 64
+          }
+        },
+        {
+          "detected_mode_metrics": [
+            {
+              "metric": "global_motif",
+              "mode": "drift"
+            }
+          ],
+          "event_index": 1,
+          "result": {
+            "entities": [
+              "pmu_000",
+              "pmu_001",
+              "pmu_002",
+              "pmu_003",
+              "pmu_004",
+              "pmu_005",
+              "pmu_006",
+              "pmu_007",
+              "pmu_008",
+              "pmu_009",
+              "pmu_010",
+              "pmu_011",
+              "pmu_012",
+              "pmu_013",
+              "pmu_014",
+              "pmu_015",
+              "pmu_016",
+              "pmu_017",
+              "pmu_018",
+              "pmu_019",
+              "pmu_020",
+              "pmu_021",
+              "pmu_022",
+              "pmu_023"
+            ],
+            "evidence": [
+              {
+                "attributes": {
+                  "best_split_anchor": 176,
+                  "best_split_graph_index": 7,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.02,
+                "fdr_by_q_value": 0.0735,
+                "metric": "exact_identity",
+                "mode": "step",
+                "null_exceedances": 19,
+                "null_mean": 0.8568033067666553,
+                "null_repeats": 999,
+                "null_std": 0.17690601284505586,
+                "observed": 1.306260418405091,
+                "observed_minus_null": 0.4494571116384357,
+                "z_effect": 2.5406548053971196
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 176,
+                  "best_split_graph_index": 7,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.252,
+                "fdr_by_q_value": 0.7408800000000001,
+                "metric": "structural_role",
+                "mode": "step",
+                "null_exceedances": 251,
+                "null_mean": 2.191466079174558,
+                "null_repeats": 999,
+                "null_std": 0.7063690600487491,
+                "observed": 2.8331500225584474,
+                "observed_minus_null": 0.6416839433838892,
+                "z_effect": 0.9084258918979327
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 176,
+                  "best_split_graph_index": 7,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.455,
+                "fdr_by_q_value": 1.0,
+                "metric": "global_motif",
+                "mode": "step",
+                "null_exceedances": 454,
+                "null_mean": 98.4656493130883,
+                "null_repeats": 999,
+                "null_std": 34.51539340272127,
+                "observed": 109.84159560611825,
+                "observed_minus_null": 11.37594629302994,
+                "z_effect": 0.3295905151738191
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.6883116883116883
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.018,
+                "fdr_by_q_value": 0.0735,
+                "metric": "exact_identity",
+                "mode": "drift",
+                "null_exceedances": 17,
+                "null_mean": 0.3042851866381278,
+                "null_repeats": 999,
+                "null_std": 0.18382684083700704,
+                "observed": 0.6883116883116883,
+                "observed_minus_null": 0.3840265016735605,
+                "z_effect": 2.0890665363392915
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.6653934300993124
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.008,
+                "fdr_by_q_value": 0.058800000000000005,
+                "metric": "structural_role",
+                "mode": "drift",
+                "null_exceedances": 7,
+                "null_mean": 0.2308152308152308,
+                "null_repeats": 999,
+                "null_std": 0.16093678413313883,
+                "observed": 0.6653934300993124,
+                "observed_minus_null": 0.4345781992840816,
+                "z_effect": 2.7003037349408343
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.6846447669977082
+                },
+                "detected_fdr_by": true,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.002,
+                "fdr_by_q_value": 0.029400000000000003,
+                "metric": "global_motif",
+                "mode": "drift",
+                "null_exceedances": 1,
+                "null_mean": 0.22342938813527047,
+                "null_repeats": 999,
+                "null_std": 0.15216300712541575,
+                "observed": 0.6846447669977082,
+                "observed_minus_null": 0.4612153788624377,
+                "z_effect": 3.031061146697074
+              }
+            ],
+            "family": "correlation",
+            "graph_windows": 34,
+            "min_segment_windows": 6,
+            "null_block_estimated": true,
+            "null_block_size": 4,
+            "null_exhaustive": false,
+            "null_permutation_space": 362879,
+            "null_repeats": 999,
+            "requested_null_repeats": 999,
+            "stride": 16,
+            "window_size": 64
+          }
+        },
+        {
+          "detected_mode_metrics": [],
+          "event_index": 2,
+          "result": {
+            "entities": [
+              "pmu_000",
+              "pmu_001",
+              "pmu_002",
+              "pmu_003",
+              "pmu_004",
+              "pmu_005",
+              "pmu_006",
+              "pmu_007",
+              "pmu_008",
+              "pmu_009",
+              "pmu_010",
+              "pmu_011",
+              "pmu_012",
+              "pmu_013",
+              "pmu_014",
+              "pmu_015",
+              "pmu_016",
+              "pmu_017",
+              "pmu_018",
+              "pmu_019",
+              "pmu_020",
+              "pmu_021",
+              "pmu_022",
+              "pmu_023"
+            ],
+            "evidence": [
+              {
+                "attributes": {
+                  "best_split_anchor": 432,
+                  "best_split_graph_index": 23,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.083,
+                "fdr_by_q_value": 0.30502500000000005,
+                "metric": "exact_identity",
+                "mode": "step",
+                "null_exceedances": 82,
+                "null_mean": 0.4680315842454705,
+                "null_repeats": 999,
+                "null_std": 0.073692965987457,
+                "observed": 0.5808637617855844,
+                "observed_minus_null": 0.11283217754011393,
+                "z_effect": 1.5311119050265756
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 432,
+                  "best_split_graph_index": 23,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.464,
+                "fdr_by_q_value": 1.0,
+                "metric": "structural_role",
+                "mode": "step",
+                "null_exceedances": 463,
+                "null_mean": 0.9466129315555157,
+                "null_repeats": 999,
+                "null_std": 0.4059922105656369,
+                "observed": 0.9828128165339302,
+                "observed_minus_null": 0.03619988497841442,
+                "z_effect": 0.08916398895432004
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 432,
+                  "best_split_graph_index": 23,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.431,
+                "fdr_by_q_value": 1.0,
+                "metric": "global_motif",
+                "mode": "step",
+                "null_exceedances": 430,
+                "null_mean": 40.4290745262946,
+                "null_repeats": 999,
+                "null_std": 22.525527386091078,
+                "observed": 44.38934943922233,
+                "observed_minus_null": 3.96027491292773,
+                "z_effect": 0.1758127499102683
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.6488922841864018
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.005,
+                "fdr_by_q_value": 0.0735,
+                "metric": "exact_identity",
+                "mode": "drift",
+                "null_exceedances": 4,
+                "null_mean": 0.25653048005989176,
+                "null_repeats": 999,
+                "null_std": 0.15297839441367928,
+                "observed": 0.6488922841864018,
+                "observed_minus_null": 0.39236180412651,
+                "z_effect": 2.564818421779861
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.44201680672268906
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.023,
+                "fdr_by_q_value": 0.1421,
+                "metric": "structural_role",
+                "mode": "drift",
+                "null_exceedances": 22,
+                "null_mean": 0.1563272975037681,
+                "null_repeats": 999,
+                "null_std": 0.1186591123530876,
+                "observed": 0.44201680672268906,
+                "observed_minus_null": 0.285689509218921,
+                "z_effect": 2.4076491350180502
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.42307104660045836
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.029,
+                "fdr_by_q_value": 0.1421,
+                "metric": "global_motif",
+                "mode": "drift",
+                "null_exceedances": 28,
+                "null_mean": 0.15278854102383516,
+                "null_repeats": 999,
+                "null_std": 0.11823920882510489,
+                "observed": 0.42307104660045836,
+                "observed_minus_null": 0.2702825055766232,
+                "z_effect": 2.2858957554123625
+              }
+            ],
+            "family": "correlation",
+            "graph_windows": 34,
+            "min_segment_windows": 6,
+            "null_block_estimated": true,
+            "null_block_size": 2,
+            "null_exhaustive": false,
+            "null_permutation_space": 355687428095999,
+            "null_repeats": 999,
+            "requested_null_repeats": 999,
+            "stride": 16,
+            "window_size": 64
+          }
+        },
+        {
+          "detected_mode_metrics": [
+            {
+              "metric": "exact_identity",
+              "mode": "drift"
+            }
+          ],
+          "event_index": 3,
+          "result": {
+            "entities": [
+              "pmu_000",
+              "pmu_001",
+              "pmu_002",
+              "pmu_003",
+              "pmu_004",
+              "pmu_005",
+              "pmu_006",
+              "pmu_007",
+              "pmu_008",
+              "pmu_009",
+              "pmu_010",
+              "pmu_011",
+              "pmu_012",
+              "pmu_013",
+              "pmu_014",
+              "pmu_015",
+              "pmu_016",
+              "pmu_017",
+              "pmu_018",
+              "pmu_019",
+              "pmu_020",
+              "pmu_021",
+              "pmu_022",
+              "pmu_023"
+            ],
+            "evidence": [
+              {
+                "attributes": {
+                  "best_split_anchor": 320,
+                  "best_split_graph_index": 16,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.181,
+                "fdr_by_q_value": 0.9334500000000001,
+                "metric": "exact_identity",
+                "mode": "step",
+                "null_exceedances": 180,
+                "null_mean": 0.8966341755608231,
+                "null_repeats": 999,
+                "null_std": 0.1652818491643953,
+                "observed": 1.0697703334746709,
+                "observed_minus_null": 0.17313615791384773,
+                "z_effect": 1.047520697458075
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 320,
+                  "best_split_graph_index": 16,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.361,
+                "fdr_by_q_value": 1.0,
+                "metric": "structural_role",
+                "mode": "step",
+                "null_exceedances": 360,
+                "null_mean": 2.2064937078171774,
+                "null_repeats": 999,
+                "null_std": 0.9084801397000176,
+                "observed": 2.5456144261679685,
+                "observed_minus_null": 0.33912071835079116,
+                "z_effect": 0.37328357938872464
+              },
+              {
+                "attributes": {
+                  "best_split_anchor": 320,
+                  "best_split_graph_index": 16,
+                  "scan_corrected": true
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.254,
+                "fdr_by_q_value": 0.9334500000000001,
+                "metric": "global_motif",
+                "mode": "step",
+                "null_exceedances": 253,
+                "null_mean": 90.18259562037679,
+                "null_repeats": 999,
+                "null_std": 51.952425487736,
+                "observed": 119.45615681098221,
+                "observed_minus_null": 29.27356119060542,
+                "z_effect": 0.5634686141365199
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.8013750954927424
+                },
+                "detected_fdr_by": true,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.001,
+                "fdr_by_q_value": 0.014700000000000001,
+                "metric": "exact_identity",
+                "mode": "drift",
+                "null_exceedances": 0,
+                "null_mean": 0.28860839449074743,
+                "null_repeats": 999,
+                "null_std": 0.16910915443014563,
+                "observed": 0.8013750954927424,
+                "observed_minus_null": 0.512766701001995,
+                "z_effect": 3.0321640642689447
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.2953399541634836
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.221,
+                "fdr_by_q_value": 0.9334500000000001,
+                "metric": "structural_role",
+                "mode": "drift",
+                "null_exceedances": 220,
+                "null_mean": 0.1949272419860655,
+                "null_repeats": 999,
+                "null_std": 0.13594302283593301,
+                "observed": 0.2953399541634836,
+                "observed_minus_null": 0.10041271217741807,
+                "z_effect": 0.7386382182968243
+              },
+              {
+                "attributes": {
+                  "baseline_graph_windows": 6,
+                  "signed_spearman_correlation": 0.030404889228418636
+                },
+                "detected_fdr_by": false,
+                "empirical_p_floor": 0.001,
+                "empirical_p_ge_observed": 0.888,
+                "fdr_by_q_value": 1.0,
+                "metric": "global_motif",
+                "mode": "drift",
+                "null_exceedances": 887,
+                "null_mean": 0.17050404109227638,
+                "null_repeats": 999,
+                "null_std": 0.12493482724941313,
+                "observed": 0.030404889228418636,
+                "observed_minus_null": -0.14009915186385774,
+                "z_effect": -1.121377881158561
+              }
+            ],
+            "family": "correlation",
+            "graph_windows": 34,
+            "min_segment_windows": 6,
+            "null_block_estimated": true,
+            "null_block_size": 3,
+            "null_exhaustive": false,
+            "null_permutation_space": 479001599,
+            "null_repeats": 999,
+            "requested_null_repeats": 999,
+            "stride": 16,
+            "window_size": 64
+          }
+        }
+      ],
+      "events_analyzed": 4,
+      "path": "data/pmuBAGE/data/frequency/frequency_3.npy",
+      "recurring_mode_metrics": [
+        {
+          "metric": "exact_identity",
+          "mode": "drift"
+        }
+      ],
+      "samples_per_event": 600,
+      "sensors": 24,
+      "tensor_shape": [
+        4,
+        4,
+        100,
+        600
+      ]
+    }
+  ],
+  "method": {
+    "label_use": "none",
+    "null": "unique block permutations with graph autocorrelation block estimate",
+    "recurrence_gate": 0.5,
+    "unit_of_replication": "independent synthetic PMU event",
+    "within_event_multiplicity": "Benjamini-Yekutieli across step and drift by exact identity, structural role, and global motif"
+  },
+  "parameters": {
+    "datatype_index": 3,
+    "min_segment_windows": 6,
+    "null_repeats": 999,
+    "relationship_family": "correlation",
+    "relationship_stride": 16,
+    "relationship_window": 64,
+    "seed": 20260605,
+    "sensor_limit": 24
+  },
+  "replicated_recurring_mode_metrics": []
+}

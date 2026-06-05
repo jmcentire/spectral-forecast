@@ -1,0 +1,45 @@
+{
+  "development": "experiments/results/2026-06-05-chbmit-six-subject-equal-hour-no-fp2f8-attribution.json",
+  "development_fingerprints": 3,
+  "entities": [
+    "FP1-F7",
+    "T7-P7",
+    "FZ-CZ",
+    "CZ-PZ",
+    "P8-O2"
+  ],
+  "evidence": [
+    {
+      "detected_fdr_by": false,
+      "empirical_p_ge_observed": 0.0608,
+      "fdr_by_q_value": 0.0912,
+      "metric": "signed",
+      "null_exceedances": 303,
+      "null_mean": 0.008798814565874124,
+      "null_repeats": 4999,
+      "null_std": 0.11599297060136167,
+      "observed_median_cross_run_cosine": 0.194051623621698,
+      "unique_null_configurations": 4999
+    },
+    {
+      "detected_fdr_by": true,
+      "empirical_p_ge_observed": 0.006,
+      "fdr_by_q_value": 0.018000000000000002,
+      "metric": "absolute",
+      "null_exceedances": 29,
+      "null_mean": 0.6075349400038097,
+      "null_repeats": 4999,
+      "null_std": 0.06503990007846236,
+      "observed_median_cross_run_cosine": 0.7774634792603476,
+      "unique_null_configurations": 4999
+    }
+  ],
+  "method": {
+    "multiplicity": "Benjamini-Yekutieli across signed and absolute tests",
+    "null": "independent canonical node-label permutation for each held-out fingerprint, shared across all of its development comparisons",
+    "statistic": "median all-pairs cross-run edge-fingerprint cosine"
+  },
+  "seed": 20260605,
+  "validation": "experiments/results/2026-06-05-chbmit-six-subject-second-hour-no-fp2f8-attribution.json",
+  "validation_fingerprints": 3
+}

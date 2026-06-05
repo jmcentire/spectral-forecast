@@ -1,0 +1,178 @@
+{
+  "method": {
+    "drift_control": "absolute Spearman ordering of distance from the frozen early graph against block-permuted graph-window order",
+    "label_use": "none",
+    "multiplicity": "Benjamini-Yekutieli across six mode-metric tests per segment",
+    "step_control": "exact-identity CUSUM selects one change point; exact, role, and motif distances are evaluated at that split against block-null rescans",
+    "surface": "observer"
+  },
+  "parameters": {
+    "min_segment_windows": 4,
+    "null_block_size": 2,
+    "null_repeats": 999,
+    "observer_config": {
+      "adaptive_window": 256,
+      "baseline_size": 1024,
+      "decay": 0.75,
+      "emission_threshold": 13.629695749397975,
+      "min_active_series": 3,
+      "score": "max",
+      "stride": 128
+    },
+    "relationship_family": "correlation",
+    "relationship_stride": 2,
+    "relationship_window": 32,
+    "seed": 20260605
+  },
+  "replicated_mode_metrics": [],
+  "segments": [
+    {
+      "limit": 8192,
+      "name": "external",
+      "offset": 8192,
+      "path": "data/ETTh2.csv",
+      "result": {
+        "entities": [
+          "HUFL",
+          "HULL",
+          "MUFL",
+          "MULL",
+          "LUFL",
+          "LULL",
+          "OT"
+        ],
+        "evidence": [
+          {
+            "attributes": {
+              "best_split_anchor": 42,
+              "best_split_graph_index": 5,
+              "scan_corrected": true
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.016,
+            "fdr_by_q_value": 0.07840000000000001,
+            "metric": "exact_identity",
+            "mode": "step",
+            "null_exceedances": 15,
+            "null_mean": 0.3318475096597709,
+            "null_repeats": 999,
+            "null_std": 0.07473764099083212,
+            "observed": 0.49404540131896646,
+            "observed_minus_null": 0.16219789165919557,
+            "z_effect": 2.1702302816741565
+          },
+          {
+            "attributes": {
+              "best_split_anchor": 42,
+              "best_split_graph_index": 5,
+              "scan_corrected": true
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.016,
+            "fdr_by_q_value": 0.07840000000000001,
+            "metric": "structural_role",
+            "mode": "step",
+            "null_exceedances": 15,
+            "null_mean": 0.30291292486052035,
+            "null_repeats": 999,
+            "null_std": 0.042651290002666424,
+            "observed": 0.37420179353499333,
+            "observed_minus_null": 0.07128886867447298,
+            "z_effect": 1.6714352290403462
+          },
+          {
+            "attributes": {
+              "best_split_anchor": 42,
+              "best_split_graph_index": 5,
+              "scan_corrected": true
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.112,
+            "fdr_by_q_value": 0.40866,
+            "metric": "global_motif",
+            "mode": "step",
+            "null_exceedances": 111,
+            "null_mean": 0.7498153475493204,
+            "null_repeats": 999,
+            "null_std": 0.1376007977863293,
+            "observed": 0.9788015398157137,
+            "observed_minus_null": 0.22898619226639327,
+            "z_effect": 1.6641341907186467
+          },
+          {
+            "attributes": {
+              "baseline_graph_windows": 4,
+              "signed_spearman_correlation": 0.9340659340659341
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.004,
+            "fdr_by_q_value": 0.058800000000000005,
+            "metric": "exact_identity",
+            "mode": "drift",
+            "null_exceedances": 3,
+            "null_mean": 0.3597278597278597,
+            "null_repeats": 999,
+            "null_std": 0.2318671246224899,
+            "observed": 0.9340659340659341,
+            "observed_minus_null": 0.5743380743380744,
+            "z_effect": 2.477013829680133
+          },
+          {
+            "attributes": {
+              "baseline_graph_windows": 4,
+              "signed_spearman_correlation": 0.6318681318681317
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.139,
+            "fdr_by_q_value": 0.40866,
+            "metric": "structural_role",
+            "mode": "drift",
+            "null_exceedances": 138,
+            "null_mean": 0.3513568513568514,
+            "null_repeats": 999,
+            "null_std": 0.2250859942002933,
+            "observed": 0.6318681318681317,
+            "observed_minus_null": 0.2805112805112803,
+            "z_effect": 1.2462404935851616
+          },
+          {
+            "attributes": {
+              "baseline_graph_windows": 4,
+              "signed_spearman_correlation": 0.3681318681318681
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.454,
+            "fdr_by_q_value": 1.0,
+            "metric": "global_motif",
+            "mode": "drift",
+            "null_exceedances": 453,
+            "null_mean": 0.35102685102685105,
+            "null_repeats": 999,
+            "null_std": 0.22474141636162923,
+            "observed": 0.3681318681318681,
+            "observed_minus_null": 0.01710501710501705,
+            "z_effect": 0.0761097682035319
+          }
+        ],
+        "family": "correlation",
+        "graph_windows": 13,
+        "min_segment_windows": 4,
+        "null_block_size": 2,
+        "null_exhaustive": false,
+        "null_permutation_space": 5039,
+        "null_repeats": 999,
+        "requested_null_repeats": 999,
+        "stride": 2,
+        "window_size": 32
+      },
+      "source_rows": 8192,
+      "surface_rows": 56
+    }
+  ]
+}

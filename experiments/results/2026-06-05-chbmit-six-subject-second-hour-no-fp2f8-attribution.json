@@ -1,0 +1,539 @@
+{
+  "attributions": [
+    {
+      "description": {
+        "edge_delta_upper": [
+          -0.18615931706853764,
+          0.23308278027856572,
+          0.20323039219595695,
+          0.16481906708168942,
+          -0.19621063560921514,
+          -0.14431249658818646,
+          -0.3543554321012642,
+          0.5286252776131151,
+          -0.09888751085942568,
+          0.04425524456884561
+        ],
+        "global_motif_distance": 0.4369100319224979,
+        "motif_signature_delta": [
+          -0.8810378813672035,
+          -0.0784513782282037,
+          0.24925566940572308,
+          0.6317984177897311,
+          0.46660991142303976,
+          -0.013990337218137472,
+          -0.10483969761961498,
+          0.4686912223943762,
+          0.5157658654293096,
+          0.7381356026184802,
+          -0.14014945006310275,
+          -0.43641196159374884,
+          0.027400863695612565,
+          0.00977813664692595,
+          0.539382411314313,
+          0.22191662149733615
+        ],
+        "role_assignment": [
+          0,
+          1,
+          3,
+          2,
+          4
+        ],
+        "role_distance": 0.24812399153064785,
+        "split_anchor": 77312,
+        "split_graph_index": 149,
+        "top_changed_edges": [
+          {
+            "absolute_delta": 0.5286252776131151,
+            "after": 0.692086501002208,
+            "before": 0.16346122338909302,
+            "delta": 0.5286252776131151,
+            "left_entity": "FZ-CZ",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.3543554321012642,
+            "after": -0.11773766207679397,
+            "before": 0.23661777002447024,
+            "delta": -0.3543554321012642,
+            "left_entity": "T7-P7",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.23308278027856572,
+            "after": 0.6260768975734459,
+            "before": 0.39299411729488015,
+            "delta": 0.23308278027856572,
+            "left_entity": "FP1-F7",
+            "right_entity": "FZ-CZ"
+          },
+          {
+            "absolute_delta": 0.20323039219595695,
+            "after": 0.48522963862413737,
+            "before": 0.2819992464281804,
+            "delta": 0.20323039219595695,
+            "left_entity": "FP1-F7",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.19621063560921514,
+            "after": 0.11052466116101516,
+            "before": 0.3067352967702303,
+            "delta": -0.19621063560921514,
+            "left_entity": "T7-P7",
+            "right_entity": "FZ-CZ"
+          },
+          {
+            "absolute_delta": 0.18615931706853764,
+            "after": -0.41491510756793226,
+            "before": -0.22875579049939462,
+            "delta": -0.18615931706853764,
+            "left_entity": "FP1-F7",
+            "right_entity": "T7-P7"
+          },
+          {
+            "absolute_delta": 0.16481906708168942,
+            "after": 0.28690046050684825,
+            "before": 0.12208139342515885,
+            "delta": 0.16481906708168942,
+            "left_entity": "FP1-F7",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.14431249658818646,
+            "after": 0.07686845170689738,
+            "before": 0.22118094829508383,
+            "delta": -0.14431249658818646,
+            "left_entity": "T7-P7",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.09888751085942568,
+            "after": 0.1129083533402544,
+            "before": 0.21179586419968008,
+            "delta": -0.09888751085942568,
+            "left_entity": "FZ-CZ",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.04425524456884561,
+            "after": 0.20779643665031253,
+            "before": 0.16354119208146692,
+            "delta": 0.04425524456884561,
+            "left_entity": "CZ-PZ",
+            "right_entity": "P8-O2"
+          }
+        ],
+        "top_changed_entities": [
+          {
+            "absolute_change": 1.0568062043603215,
+            "entity": "FZ-CZ",
+            "fraction": 0.24531953306436277
+          },
+          {
+            "absolute_change": 0.920423410966104,
+            "entity": "CZ-PZ",
+            "fraction": 0.2136605940314164
+          },
+          {
+            "absolute_change": 0.8810378813672034,
+            "entity": "T7-P7",
+            "fraction": 0.20451791518374318
+          },
+          {
+            "absolute_change": 0.7872915566247498,
+            "entity": "FP1-F7",
+            "fraction": 0.18275630504421975
+          },
+          {
+            "absolute_change": 0.6623172546112248,
+            "entity": "P8-O2",
+            "fraction": 0.15374565267625784
+          }
+        ],
+        "top_entity_fraction": 0.24531953306436277,
+        "top_three_entity_fraction": 0.6634980422795224
+      },
+      "entities": [
+        "FP1-F7",
+        "T7-P7",
+        "FZ-CZ",
+        "CZ-PZ",
+        "P8-O2"
+      ],
+      "nearest_seizure_distance_seconds": 1620.0,
+      "path": "data/chbmit/chb03/chb03_02.edf",
+      "seizures": [
+        [
+          731.0,
+          796.0
+        ]
+      ],
+      "split_seconds": 2416.0
+    },
+    {
+      "description": {
+        "edge_delta_upper": [
+          0.12270243711923781,
+          -0.05839375164303487,
+          -0.04528482474134146,
+          -0.06458278218446267,
+          -0.08042077263000506,
+          -0.06840668555657517,
+          -0.14764722916497103,
+          0.034507578783339155,
+          -0.04109455124228667,
+          0.02254184410393309
+        ],
+        "global_motif_distance": 0.16795703202238188,
+        "motif_signature_delta": [
+          -0.1737722502323135,
+          -0.045558921449601164,
+          -0.2307827184877872,
+          -0.10836679657566506,
+          -0.09367678756696673,
+          -0.3726209538000924,
+          -0.23408264184362015,
+          -0.2909637956880768,
+          -0.10836679657566506,
+          -0.09367678756696673,
+          0.02528241687252103,
+          0.09499969791159171,
+          0.09948299942238453,
+          -0.1465029072985024,
+          -0.07326220690799556,
+          -0.009492207041401125
+        ],
+        "role_assignment": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "role_distance": 0.10415790822126106,
+        "split_anchor": 99328,
+        "split_graph_index": 192,
+        "top_changed_edges": [
+          {
+            "absolute_delta": 0.14764722916497103,
+            "after": -0.010814061828715917,
+            "before": 0.1368331673362551,
+            "delta": -0.14764722916497103,
+            "left_entity": "T7-P7",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.12270243711923781,
+            "after": -0.0843358859050462,
+            "before": -0.20703832302428402,
+            "delta": 0.12270243711923781,
+            "left_entity": "FP1-F7",
+            "right_entity": "T7-P7"
+          },
+          {
+            "absolute_delta": 0.08042077263000506,
+            "after": 0.01917251187535948,
+            "before": 0.09959328450536455,
+            "delta": -0.08042077263000506,
+            "left_entity": "T7-P7",
+            "right_entity": "FZ-CZ"
+          },
+          {
+            "absolute_delta": 0.06840668555657517,
+            "after": 0.08066491383852603,
+            "before": 0.1490715993951012,
+            "delta": -0.06840668555657517,
+            "left_entity": "T7-P7",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.06458278218446267,
+            "after": 0.03466564971173475,
+            "before": 0.09924843189619742,
+            "delta": -0.06458278218446267,
+            "left_entity": "FP1-F7",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.05839375164303487,
+            "after": 0.2333376563451384,
+            "before": 0.29173140798817326,
+            "delta": -0.05839375164303487,
+            "left_entity": "FP1-F7",
+            "right_entity": "FZ-CZ"
+          },
+          {
+            "absolute_delta": 0.04528482474134146,
+            "after": 0.13254622905214408,
+            "before": 0.17783105379348554,
+            "delta": -0.04528482474134146,
+            "left_entity": "FP1-F7",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.04109455124228667,
+            "after": 0.11097514319104276,
+            "before": 0.15206969443332943,
+            "delta": -0.04109455124228667,
+            "left_entity": "FZ-CZ",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.034507578783339155,
+            "after": 0.3611081298491319,
+            "before": 0.3266005510657927,
+            "delta": 0.034507578783339155,
+            "left_entity": "FZ-CZ",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.02254184410393309,
+            "after": 0.2019988776858912,
+            "before": 0.1794570335819581,
+            "delta": 0.02254184410393309,
+            "left_entity": "CZ-PZ",
+            "right_entity": "P8-O2"
+          }
+        ],
+        "top_changed_entities": [
+          {
+            "absolute_change": 0.419177124470789,
+            "entity": "T7-P7",
+            "fraction": 0.30570875909048034
+          },
+          {
+            "absolute_change": 0.29096379568807684,
+            "entity": "FP1-F7",
+            "fraction": 0.2122018968290734
+          },
+          {
+            "absolute_change": 0.27586640669565343,
+            "entity": "P8-O2",
+            "fraction": 0.20119126722898015
+          },
+          {
+            "absolute_change": 0.21441665429866574,
+            "entity": "FZ-CZ",
+            "fraction": 0.15637554028439235
+          },
+          {
+            "absolute_change": 0.17074093318518888,
+            "entity": "CZ-PZ",
+            "fraction": 0.12452253656707389
+          }
+        ],
+        "top_entity_fraction": 0.30570875909048034,
+        "top_three_entity_fraction": 0.7191019231485338
+      },
+      "entities": [
+        "FP1-F7",
+        "T7-P7",
+        "FZ-CZ",
+        "CZ-PZ",
+        "P8-O2"
+      ],
+      "nearest_seizure_distance_seconds": null,
+      "path": "data/chbmit/chb05/chb05_02.edf",
+      "seizures": [],
+      "split_seconds": 3104.0
+    },
+    {
+      "description": {
+        "edge_delta_upper": [
+          -0.03707028405792274,
+          0.08330888006829973,
+          0.03192995486965247,
+          0.06969383981230748,
+          -0.02729694858841225,
+          -0.01137239986017391,
+          -0.033904375605032525,
+          0.12441957867590886,
+          0.0002045182424258163,
+          -0.029731183387745386
+        ],
+        "global_motif_distance": 0.06872971428687764,
+        "motif_signature_delta": [
+          0.14786239069233695,
+          0.006262799061955454,
+          -0.01555599146977693,
+          0.08654801175645771,
+          0.11524595029764201,
+          0.01828115778832823,
+          -0.08077036349285649,
+          -0.04594800647099517,
+          -0.10710677622478981,
+          -0.06531612935259457,
+          0.051781206605211905,
+          0.028398897738196233,
+          0.01238532622986014,
+          -0.04316562573583296,
+          -0.04939980483743556,
+          0.003400526247479326
+        ],
+        "role_assignment": [
+          0,
+          3,
+          2,
+          1,
+          4
+        ],
+        "role_distance": 0.05296128269705129,
+        "split_anchor": 25600,
+        "split_graph_index": 48,
+        "top_changed_edges": [
+          {
+            "absolute_delta": 0.12441957867590886,
+            "after": -0.0373656868889564,
+            "before": -0.16178526556486525,
+            "delta": 0.12441957867590886,
+            "left_entity": "FZ-CZ",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.08330888006829973,
+            "after": 0.07494797572620444,
+            "before": -0.008360904342095283,
+            "delta": 0.08330888006829973,
+            "left_entity": "FP1-F7",
+            "right_entity": "FZ-CZ"
+          },
+          {
+            "absolute_delta": 0.06969383981230748,
+            "after": -0.15777405216634063,
+            "before": -0.2274678919786481,
+            "delta": 0.06969383981230748,
+            "left_entity": "FP1-F7",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.03707028405792274,
+            "after": -0.0922284728603104,
+            "before": -0.05515818880238766,
+            "delta": -0.03707028405792274,
+            "left_entity": "FP1-F7",
+            "right_entity": "T7-P7"
+          },
+          {
+            "absolute_delta": 0.033904375605032525,
+            "after": -0.0997710613162583,
+            "before": -0.06586668571122578,
+            "delta": -0.033904375605032525,
+            "left_entity": "T7-P7",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.03192995486965247,
+            "after": 0.008123798514128155,
+            "before": -0.023806156355524317,
+            "delta": 0.03192995486965247,
+            "left_entity": "FP1-F7",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.029731183387745386,
+            "after": 0.17261993706180043,
+            "before": 0.2023511204495458,
+            "delta": -0.029731183387745386,
+            "left_entity": "CZ-PZ",
+            "right_entity": "P8-O2"
+          },
+          {
+            "absolute_delta": 0.02729694858841225,
+            "after": 0.10020863182875087,
+            "before": 0.12750558041716312,
+            "delta": -0.02729694858841225,
+            "left_entity": "T7-P7",
+            "right_entity": "FZ-CZ"
+          },
+          {
+            "absolute_delta": 0.01137239986017391,
+            "after": 0.27812224036455224,
+            "before": 0.28949464022472615,
+            "delta": -0.01137239986017391,
+            "left_entity": "T7-P7",
+            "right_entity": "CZ-PZ"
+          },
+          {
+            "absolute_delta": 0.0002045182424258163,
+            "after": 0.24473243721873458,
+            "before": 0.24452791897630877,
+            "delta": 0.0002045182424258163,
+            "left_entity": "FZ-CZ",
+            "right_entity": "P8-O2"
+          }
+        ],
+        "top_changed_entities": [
+          {
+            "absolute_change": 0.23522992557504666,
+            "entity": "FZ-CZ",
+            "fraction": 0.26198839119757755
+          },
+          {
+            "absolute_change": 0.2220029588081824,
+            "entity": "FP1-F7",
+            "fraction": 0.24725679726792243
+          },
+          {
+            "absolute_change": 0.19745311679348063,
+            "entity": "CZ-PZ",
+            "fraction": 0.2199142999310585
+          },
+          {
+            "absolute_change": 0.1335339170475112,
+            "entity": "P8-O2",
+            "fraction": 0.14872400274780087
+          },
+          {
+            "absolute_change": 0.10964400811154144,
+            "entity": "T7-P7",
+            "fraction": 0.1221165088556407
+          }
+        ],
+        "top_entity_fraction": 0.26198839119757755,
+        "top_three_entity_fraction": 0.7291594883965584
+      },
+      "entities": [
+        "FP1-F7",
+        "T7-P7",
+        "FZ-CZ",
+        "CZ-PZ",
+        "P8-O2"
+      ],
+      "nearest_seizure_distance_seconds": null,
+      "path": "data/chbmit/chb06/chb06_02.edf",
+      "seizures": [],
+      "split_seconds": 800.0
+    }
+  ],
+  "detected_recordings": 3,
+  "discovery": "experiments/results/2026-06-05-chbmit-six-subject-second-hour-no-fp2f8-validation.json",
+  "method": {
+    "attribution_labels_used_post_hoc": true,
+    "discovery_labels_used": false,
+    "split_locations": "frozen from discovery artifact"
+  },
+  "top_three_channel_counts": [
+    {
+      "channel": "FZ-CZ",
+      "recordings": 2
+    },
+    {
+      "channel": "CZ-PZ",
+      "recordings": 2
+    },
+    {
+      "channel": "T7-P7",
+      "recordings": 2
+    },
+    {
+      "channel": "FP1-F7",
+      "recordings": 2
+    },
+    {
+      "channel": "P8-O2",
+      "recordings": 1
+    }
+  ]
+}

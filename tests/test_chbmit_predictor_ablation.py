@@ -7,11 +7,13 @@ from experiments.chbmit_predictor_ablation import (
     _late_fusion_models,
     _label_anchor,
     _latent_features,
+    _relationship_features,
     _temporal_shift_audit,
     _threshold_for_false_alarm_rate,
     parse_args,
 )
 from spectral_forecast.autotune import AutoTuneConfig
+from spectral_forecast.relationship_dynamics import relationship_adjacency
 
 
 def test_label_anchor_keeps_only_preictal_and_far_interictal() -> None:
@@ -102,6 +104,36 @@ def test_latent_features_capture_gated_emission_and_history() -> None:
     assert features["latent_gated_emission"] > 0.0
     assert features["latent_recent_pheromone"] > features["latent_gated_emission"]
     assert 0.0 <= features["latent_active_jaccard_prev"] <= 1.0
+
+
+def test_relationship_features_separate_identity_role_and_motif_change() -> None:
+    rng = np.random.default_rng(4)
+    latent_a = rng.normal(size=256)
+    latent_b = rng.normal(size=256)
+    previous = np.vstack(
+        [
+            latent_a + rng.normal(0.0, 0.1, 256),
+            latent_a + rng.normal(0.0, 0.1, 256),
+            latent_b + rng.normal(0.0, 0.1, 256),
+            latent_b + rng.normal(0.0, 0.1, 256),
+        ]
+    )
+    leaves = rng.normal(size=(3, 256))
+    current = np.vstack(
+        [
+            np.sum(leaves, axis=0) / np.sqrt(3.0),
+            leaves[0],
+            leaves[1],
+            leaves[2],
+        ]
+    )
+    baseline = relationship_adjacency(previous.T, family="correlation")
+
+    features = _relationship_features(current, previous, baseline)
+
+    assert features["relationship_prev_exact_distance"] > 0.1
+    assert features["relationship_prev_role_distance"] > 0.1
+    assert features["relationship_prev_motif_distance"] > 0.1
 
 
 def test_classification_metrics_report_event_recall_and_false_alarm_rate() -> None:

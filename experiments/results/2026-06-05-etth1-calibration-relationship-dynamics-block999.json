@@ -1,0 +1,195 @@
+{
+  "method": {
+    "drift_control": "absolute Spearman ordering of distance from the frozen early graph against block-permuted graph-window order",
+    "label_use": "none",
+    "multiplicity": "Benjamini-Yekutieli across six mode-metric tests per segment",
+    "step_control": "exact-identity CUSUM selects one change point; exact, role, and motif distances are evaluated at that split against block-null rescans",
+    "surface": "observer"
+  },
+  "parameters": {
+    "min_segment_windows": 4,
+    "null_block_size": 2,
+    "null_repeats": 999,
+    "observer_config": {
+      "adaptive_window": 256,
+      "baseline_size": 1024,
+      "decay": 0.75,
+      "emission_threshold": 13.629695749397975,
+      "min_active_series": 3,
+      "score": "max",
+      "stride": 128
+    },
+    "relationship_family": "correlation",
+    "relationship_stride": 2,
+    "relationship_window": 32,
+    "seed": 20260605
+  },
+  "replicated_mode_metrics": [
+    {
+      "metric": "exact_identity",
+      "mode": "drift"
+    },
+    {
+      "metric": "global_motif",
+      "mode": "drift"
+    },
+    {
+      "metric": "structural_role",
+      "mode": "drift"
+    },
+    {
+      "metric": "exact_identity",
+      "mode": "step"
+    }
+  ],
+  "segments": [
+    {
+      "limit": 8192,
+      "name": "calibration",
+      "offset": 0,
+      "path": "data/ETTh1.csv",
+      "result": {
+        "entities": [
+          "HUFL",
+          "HULL",
+          "MUFL",
+          "MULL",
+          "LUFL",
+          "LULL",
+          "OT"
+        ],
+        "evidence": [
+          {
+            "attributes": {
+              "best_split_anchor": 50,
+              "best_split_graph_index": 9,
+              "scan_corrected": true
+            },
+            "detected_fdr_by": true,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.008,
+            "fdr_by_q_value": 0.029400000000000003,
+            "metric": "exact_identity",
+            "mode": "step",
+            "null_exceedances": 7,
+            "null_mean": 0.2974194969660766,
+            "null_repeats": 999,
+            "null_std": 0.09145759857332095,
+            "observed": 0.4712613029873999,
+            "observed_minus_null": 0.17384180602132326,
+            "z_effect": 1.9007912817867774
+          },
+          {
+            "attributes": {
+              "best_split_anchor": 50,
+              "best_split_graph_index": 9,
+              "scan_corrected": true
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.218,
+            "fdr_by_q_value": 0.5341,
+            "metric": "structural_role",
+            "mode": "step",
+            "null_exceedances": 217,
+            "null_mean": 0.2901547428393151,
+            "null_repeats": 999,
+            "null_std": 0.067027705731676,
+            "observed": 0.3378175812685543,
+            "observed_minus_null": 0.04766283842923924,
+            "z_effect": 0.7110915987493617
+          },
+          {
+            "attributes": {
+              "best_split_anchor": 50,
+              "best_split_graph_index": 9,
+              "scan_corrected": true
+            },
+            "detected_fdr_by": false,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.188,
+            "fdr_by_q_value": 0.5341,
+            "metric": "global_motif",
+            "mode": "step",
+            "null_exceedances": 187,
+            "null_mean": 0.7667732032806241,
+            "null_repeats": 999,
+            "null_std": 0.21830536689470667,
+            "observed": 1.0249054595270095,
+            "observed_minus_null": 0.25813225624638536,
+            "z_effect": 1.1824366020780792
+          },
+          {
+            "attributes": {
+              "baseline_graph_windows": 4,
+              "signed_spearman_correlation": 0.9560439560439561
+            },
+            "detected_fdr_by": true,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.002,
+            "fdr_by_q_value": 0.014700000000000001,
+            "metric": "exact_identity",
+            "mode": "drift",
+            "null_exceedances": 1,
+            "null_mean": 0.4116754116754117,
+            "null_repeats": 999,
+            "null_std": 0.25270663848241126,
+            "observed": 0.9560439560439561,
+            "observed_minus_null": 0.5443685443685444,
+            "z_effect": 2.1541521332310913
+          },
+          {
+            "attributes": {
+              "baseline_graph_windows": 4,
+              "signed_spearman_correlation": 0.9505494505494506
+            },
+            "detected_fdr_by": true,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.002,
+            "fdr_by_q_value": 0.014700000000000001,
+            "metric": "structural_role",
+            "mode": "drift",
+            "null_exceedances": 1,
+            "null_mean": 0.3834878834878835,
+            "null_repeats": 999,
+            "null_std": 0.2544019251335973,
+            "observed": 0.9505494505494506,
+            "observed_minus_null": 0.5670615670615671,
+            "z_effect": 2.2289987261840842
+          },
+          {
+            "attributes": {
+              "baseline_graph_windows": 4,
+              "signed_spearman_correlation": 0.9340659340659341
+            },
+            "detected_fdr_by": true,
+            "empirical_p_floor": 0.001,
+            "empirical_p_ge_observed": 0.003,
+            "fdr_by_q_value": 0.014700000000000003,
+            "metric": "global_motif",
+            "mode": "drift",
+            "null_exceedances": 2,
+            "null_mean": 0.3877283877283877,
+            "null_repeats": 999,
+            "null_std": 0.2516515132929662,
+            "observed": 0.9340659340659341,
+            "observed_minus_null": 0.5463375463375464,
+            "z_effect": 2.1710083884991955
+          }
+        ],
+        "family": "correlation",
+        "graph_windows": 13,
+        "min_segment_windows": 4,
+        "null_block_size": 2,
+        "null_exhaustive": false,
+        "null_permutation_space": 5039,
+        "null_repeats": 999,
+        "requested_null_repeats": 999,
+        "stride": 2,
+        "window_size": 32
+      },
+      "source_rows": 8192,
+      "surface_rows": 56
+    }
+  ]
+}

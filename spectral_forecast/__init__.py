@@ -41,6 +41,18 @@ from spectral_forecast.relationships import (
     residualize_relationship_view,
     spectral_profile_alignment,
 )
+from spectral_forecast.relationship_dynamics import (
+    RelationshipDynamicsEvidence,
+    RelationshipDynamicsResult,
+    RelationshipGraphSequence,
+    analyze_relationship_dynamics,
+    describe_step_change,
+    estimate_relationship_block_size,
+    exact_identity_distance,
+    global_motif_distance,
+    structural_role_distance,
+    window_relationship_graphs,
+)
 
 __all__ = [
     "extract",
@@ -78,8 +90,18 @@ __all__ = [
     "RelationshipCalibration",
     "RelationshipDiscovery",
     "RelationshipEvidence",
+    "RelationshipDynamicsEvidence",
+    "RelationshipDynamicsResult",
+    "RelationshipGraphSequence",
     "calibrate_relationship_geometry",
     "discover_relationships",
+    "analyze_relationship_dynamics",
+    "describe_step_change",
+    "estimate_relationship_block_size",
+    "exact_identity_distance",
+    "global_motif_distance",
+    "structural_role_distance",
+    "window_relationship_graphs",
     "normalized_spectral_profile",
     "residualize_relationship_view",
     "spectral_profile_alignment",
