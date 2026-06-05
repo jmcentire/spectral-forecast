@@ -1,0 +1,1172 @@
+{
+  "method": {
+    "label_use": "none during detection; known answers used only for scoring",
+    "algorithms": [
+      "changeforest random-forest classifier two-sample gain with binary segmentation",
+      "changeforest k-nearest-neighbor two-sample gain with binary segmentation"
+    ],
+    "views": [
+      "raw observations (diagnostic only when serial dependence is present)",
+      "per-channel AR(1) residuals estimated without event timing"
+    ],
+    "calibration": "package model-selection permutation test at alpha 0.05; no real-data tuning",
+    "pmubage_ground_truth": "600 samples per event with fixed event start at sample 300",
+    "gain_gate_status": "post-hoc design after package p-values failed on autocorrelated baselines; threshold uses only first-half-file pre-event gains and is frozen on second-half files"
+  },
+  "parameters": {
+    "seed": 20260605,
+    "permutations": 99,
+    "estimators": 50,
+    "synthetic_repeats": 100,
+    "synthetic_samples": 400,
+    "synthetic_dimensions": 8,
+    "pmu_sensor_limit": 100,
+    "pmu_event_onset": 300,
+    "pmu_tolerance": 15,
+    "gain_quantile": 0.99
+  },
+  "synthetic": {
+    "summaries": [
+      {
+        "scenario": "stationary_iid",
+        "method": "random_forest",
+        "view": "raw",
+        "trials": 100,
+        "detections": 4,
+        "detection_rate": 0.04,
+        "detection_rate_wilson95": [
+          0.01566330399154762,
+          0.0983707143588792
+        ],
+        "median_split_points": 0.0
+      },
+      {
+        "scenario": "stationary_iid",
+        "method": "random_forest",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 7,
+        "detection_rate": 0.07,
+        "detection_rate_wilson95": [
+          0.03431926106727268,
+          0.137495147390735
+        ],
+        "median_split_points": 0.0
+      },
+      {
+        "scenario": "stationary_iid",
+        "method": "knn",
+        "view": "raw",
+        "trials": 100,
+        "detections": 6,
+        "detection_rate": 0.06,
+        "detection_rate_wilson95": [
+          0.027786123963188192,
+          0.1247681544589592
+        ],
+        "median_split_points": 0.0
+      },
+      {
+        "scenario": "stationary_iid",
+        "method": "knn",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 8,
+        "detection_rate": 0.08,
+        "detection_rate_wilson95": [
+          0.041093461484380624,
+          0.14998107700948735
+        ],
+        "median_split_points": 0.0
+      },
+      {
+        "scenario": "stationary_ar1",
+        "method": "random_forest",
+        "view": "raw",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_split_points": 61.5
+      },
+      {
+        "scenario": "stationary_ar1",
+        "method": "random_forest",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 5,
+        "detection_rate": 0.05,
+        "detection_rate_wilson95": [
+          0.02154367915436796,
+          0.11175046923191913
+        ],
+        "median_split_points": 0.0
+      },
+      {
+        "scenario": "stationary_ar1",
+        "method": "knn",
+        "view": "raw",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_split_points": 63.0
+      },
+      {
+        "scenario": "stationary_ar1",
+        "method": "knn",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 4,
+        "detection_rate": 0.04,
+        "detection_rate_wilson95": [
+          0.01566330399154762,
+          0.0983707143588792
+        ],
+        "median_split_points": 0.0
+      },
+      {
+        "scenario": "mean_shift",
+        "method": "random_forest",
+        "view": "raw",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 200,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "mean_shift",
+        "method": "random_forest",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 199,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "mean_shift",
+        "method": "knn",
+        "view": "raw",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 200,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "mean_shift",
+        "method": "knn",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 199,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "covariance_shift",
+        "method": "random_forest",
+        "view": "raw",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 200,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "covariance_shift",
+        "method": "random_forest",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 199,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "covariance_shift",
+        "method": "knn",
+        "view": "raw",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 200,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "covariance_shift",
+        "method": "knn",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 199,
+        "tolerance": 20,
+        "localized_trials": 100,
+        "localized_rate_all_trials": 1.0,
+        "localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "median_absolute_error_detected": 0.0,
+        "root_localized_trials": 100,
+        "root_localized_rate_all_trials": 1.0,
+        "root_localized_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "root_median_absolute_error_detected": 0.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "tail_shift",
+        "method": "random_forest",
+        "view": "raw",
+        "trials": 100,
+        "detections": 99,
+        "detection_rate": 0.99,
+        "detection_rate_wilson95": [
+          0.9455138038212946,
+          0.9982325679358593
+        ],
+        "expected_split": 200,
+        "tolerance": 20,
+        "localized_trials": 92,
+        "localized_rate_all_trials": 0.92,
+        "localized_rate_wilson95": [
+          0.8500189229905127,
+          0.9589065385156194
+        ],
+        "median_absolute_error_detected": 3.0,
+        "root_localized_trials": 90,
+        "root_localized_rate_all_trials": 0.9,
+        "root_localized_rate_wilson95": [
+          0.8256343384950865,
+          0.9447708629393249
+        ],
+        "root_median_absolute_error_detected": 3.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "tail_shift",
+        "method": "random_forest",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 100,
+        "detection_rate": 1.0,
+        "detection_rate_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "expected_split": 199,
+        "tolerance": 20,
+        "localized_trials": 94,
+        "localized_rate_all_trials": 0.94,
+        "localized_rate_wilson95": [
+          0.8752318455410406,
+          0.9722138760368118
+        ],
+        "median_absolute_error_detected": 2.0,
+        "root_localized_trials": 92,
+        "root_localized_rate_all_trials": 0.92,
+        "root_localized_rate_wilson95": [
+          0.8500189229905127,
+          0.9589065385156194
+        ],
+        "root_median_absolute_error_detected": 3.0,
+        "median_split_points": 1.0
+      },
+      {
+        "scenario": "tail_shift",
+        "method": "knn",
+        "view": "raw",
+        "trials": 100,
+        "detections": 14,
+        "detection_rate": 0.14,
+        "detection_rate_wilson95": [
+          0.08526343659939134,
+          0.22137188210963837
+        ],
+        "expected_split": 200,
+        "tolerance": 20,
+        "localized_trials": 0,
+        "localized_rate_all_trials": 0.0,
+        "localized_rate_wilson95": [
+          3.469446951953614e-18,
+          0.03699349820698568
+        ],
+        "median_absolute_error_detected": 195.5,
+        "root_localized_trials": 0,
+        "root_localized_rate_all_trials": 0.0,
+        "root_localized_rate_wilson95": [
+          3.469446951953614e-18,
+          0.03699349820698568
+        ],
+        "root_median_absolute_error_detected": 196.0,
+        "median_split_points": 0.0
+      },
+      {
+        "scenario": "tail_shift",
+        "method": "knn",
+        "view": "ar1_residual",
+        "trials": 100,
+        "detections": 12,
+        "detection_rate": 0.12,
+        "detection_rate_wilson95": [
+          0.06999406437019488,
+          0.19812099426711421
+        ],
+        "expected_split": 199,
+        "tolerance": 20,
+        "localized_trials": 0,
+        "localized_rate_all_trials": 0.0,
+        "localized_rate_wilson95": [
+          3.469446951953614e-18,
+          0.03699349820698568
+        ],
+        "median_absolute_error_detected": 195.0,
+        "root_localized_trials": 0,
+        "root_localized_rate_all_trials": 0.0,
+        "root_localized_rate_wilson95": [
+          3.469446951953614e-18,
+          0.03699349820698568
+        ],
+        "root_median_absolute_error_detected": 195.0,
+        "median_split_points": 0.0
+      }
+    ]
+  },
+  "pmubage": {
+    "corpora": [
+      {
+        "kind": "frequency",
+        "datatype_index": 3,
+        "files": 21,
+        "events": 84,
+        "methods": [
+          {
+            "method": "random_forest",
+            "view": "raw",
+            "full_event": {
+              "trials": 84,
+              "detections": 84,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "expected_split": 300,
+              "tolerance": 15,
+              "localized_trials": 84,
+              "localized_rate_all_trials": 1.0,
+              "localized_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "median_absolute_error_detected": 1.0,
+              "root_localized_trials": 84,
+              "root_localized_rate_all_trials": 1.0,
+              "root_localized_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "root_median_absolute_error_detected": 1.0,
+              "median_split_points": 65.0
+            },
+            "pre_event_negative": {
+              "trials": 84,
+              "detections": 84,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "median_split_points": 58.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 205.30234826841615,
+              "calibration_files": 10,
+              "calibration_baselines": 40,
+              "validation_files": 11,
+              "validation_events": {
+                "trials": 44,
+                "detections": 44,
+                "detection_rate": 1.0,
+                "detection_rate_wilson95": [
+                  0.9197043962415192,
+                  1.0
+                ],
+                "expected_split": 300,
+                "tolerance": 15,
+                "localized_trials": 44,
+                "localized_rate_all_trials": 1.0,
+                "localized_rate_wilson95": [
+                  0.9197043962415192,
+                  1.0
+                ],
+                "median_absolute_error_detected": 1.0,
+                "root_localized_trials": 44,
+                "root_localized_rate_all_trials": 1.0,
+                "root_localized_rate_wilson95": [
+                  0.9197043962415192,
+                  1.0
+                ],
+                "root_median_absolute_error_detected": 1.0,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 44,
+                "detections": 2,
+                "detection_rate": 0.045454545454545456,
+                "detection_rate_wilson95": [
+                  0.012555109949594967,
+                  0.15134998437629657
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          },
+          {
+            "method": "random_forest",
+            "view": "ar1_residual",
+            "full_event": {
+              "trials": 84,
+              "detections": 84,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "expected_split": 299,
+              "tolerance": 15,
+              "localized_trials": 84,
+              "localized_rate_all_trials": 1.0,
+              "localized_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "median_absolute_error_detected": 1.0,
+              "root_localized_trials": 76,
+              "root_localized_rate_all_trials": 0.9047619047619048,
+              "root_localized_rate_wilson95": [
+                0.8231736440500729,
+                0.9509482900904406
+              ],
+              "root_median_absolute_error_detected": 1.0,
+              "median_split_points": 18.0
+            },
+            "pre_event_negative": {
+              "trials": 84,
+              "detections": 75,
+              "detection_rate": 0.8928571428571429,
+              "detection_rate_wilson95": [
+                0.8087538548365549,
+                0.9425997871233551
+              ],
+              "median_split_points": 4.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 92.78753466906079,
+              "calibration_files": 10,
+              "calibration_baselines": 40,
+              "validation_files": 11,
+              "validation_events": {
+                "trials": 44,
+                "detections": 40,
+                "detection_rate": 0.9090909090909091,
+                "detection_rate_wilson95": [
+                  0.7884076083340138,
+                  0.9640778067726837
+                ],
+                "expected_split": 299,
+                "tolerance": 15,
+                "localized_trials": 38,
+                "localized_rate_all_trials": 0.8636363636363636,
+                "localized_rate_wilson95": [
+                  0.7329054695148456,
+                  0.9359704550244412
+                ],
+                "median_absolute_error_detected": 1.0,
+                "root_localized_trials": 38,
+                "root_localized_rate_all_trials": 0.8636363636363636,
+                "root_localized_rate_wilson95": [
+                  0.7329054695148456,
+                  0.9359704550244412
+                ],
+                "root_median_absolute_error_detected": 1.0,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 44,
+                "detections": 4,
+                "detection_rate": 0.09090909090909091,
+                "detection_rate_wilson95": [
+                  0.03592219322731624,
+                  0.21159239166598612
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          },
+          {
+            "method": "knn",
+            "view": "raw",
+            "full_event": {
+              "trials": 84,
+              "detections": 84,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "expected_split": 300,
+              "tolerance": 15,
+              "localized_trials": 84,
+              "localized_rate_all_trials": 1.0,
+              "localized_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "median_absolute_error_detected": 2.0,
+              "root_localized_trials": 55,
+              "root_localized_rate_all_trials": 0.6547619047619048,
+              "root_localized_rate_wilson95": [
+                0.548337948187197,
+                0.7476498501606463
+              ],
+              "root_median_absolute_error_detected": 10.5,
+              "median_split_points": 66.0
+            },
+            "pre_event_negative": {
+              "trials": 84,
+              "detections": 84,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.95626827158534,
+                0.9999999999999999
+              ],
+              "median_split_points": 58.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 206.02099232921728,
+              "calibration_files": 10,
+              "calibration_baselines": 40,
+              "validation_files": 11,
+              "validation_events": {
+                "trials": 44,
+                "detections": 44,
+                "detection_rate": 1.0,
+                "detection_rate_wilson95": [
+                  0.9197043962415192,
+                  1.0
+                ],
+                "expected_split": 300,
+                "tolerance": 15,
+                "localized_trials": 28,
+                "localized_rate_all_trials": 0.6363636363636364,
+                "localized_rate_wilson95": [
+                  0.4886637687904344,
+                  0.762164702911798
+                ],
+                "median_absolute_error_detected": 11.5,
+                "root_localized_trials": 28,
+                "root_localized_rate_all_trials": 0.6363636363636364,
+                "root_localized_rate_wilson95": [
+                  0.4886637687904344,
+                  0.762164702911798
+                ],
+                "root_median_absolute_error_detected": 11.5,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 44,
+                "detections": 1,
+                "detection_rate": 0.022727272727272728,
+                "detection_rate_wilson95": [
+                  0.004023252060053224,
+                  0.11807709698213287
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          },
+          {
+            "method": "knn",
+            "view": "ar1_residual",
+            "full_event": {
+              "trials": 84,
+              "detections": 81,
+              "detection_rate": 0.9642857142857143,
+              "detection_rate_wilson95": [
+                0.9001830642748655,
+                0.9877803307686647
+              ],
+              "expected_split": 299,
+              "tolerance": 15,
+              "localized_trials": 71,
+              "localized_rate_all_trials": 0.8452380952380952,
+              "localized_rate_wilson95": [
+                0.7530135778901519,
+                0.9072668953473448
+              ],
+              "median_absolute_error_detected": 1.0,
+              "root_localized_trials": 60,
+              "root_localized_rate_all_trials": 0.7142857142857143,
+              "root_localized_rate_wilson95": [
+                0.6099796004669878,
+                0.7998496587838723
+              ],
+              "root_median_absolute_error_detected": 4.0,
+              "median_split_points": 9.0
+            },
+            "pre_event_negative": {
+              "trials": 84,
+              "detections": 48,
+              "detection_rate": 0.5714285714285714,
+              "detection_rate_wilson95": [
+                0.4647695274572077,
+                0.6718402256264122
+              ],
+              "median_split_points": 1.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 63.25194785096337,
+              "calibration_files": 10,
+              "calibration_baselines": 40,
+              "validation_files": 11,
+              "validation_events": {
+                "trials": 44,
+                "detections": 40,
+                "detection_rate": 0.9090909090909091,
+                "detection_rate_wilson95": [
+                  0.7884076083340138,
+                  0.9640778067726837
+                ],
+                "expected_split": 299,
+                "tolerance": 15,
+                "localized_trials": 31,
+                "localized_rate_all_trials": 0.7045454545454546,
+                "localized_rate_wilson95": [
+                  0.5577979987383977,
+                  0.8184447088149512
+                ],
+                "median_absolute_error_detected": 3.0,
+                "root_localized_trials": 31,
+                "root_localized_rate_all_trials": 0.7045454545454546,
+                "root_localized_rate_wilson95": [
+                  0.5577979987383977,
+                  0.8184447088149512
+                ],
+                "root_median_absolute_error_detected": 3.0,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 44,
+                "detections": 5,
+                "detection_rate": 0.11363636363636363,
+                "detection_rate_wilson95": [
+                  0.04952780601092492,
+                  0.23979152416608285
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "voltage",
+        "datatype_index": 2,
+        "files": 31,
+        "events": 620,
+        "methods": [
+          {
+            "method": "random_forest",
+            "view": "raw",
+            "full_event": {
+              "trials": 620,
+              "detections": 620,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "expected_split": 300,
+              "tolerance": 15,
+              "localized_trials": 620,
+              "localized_rate_all_trials": 1.0,
+              "localized_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "median_absolute_error_detected": 2.0,
+              "root_localized_trials": 620,
+              "root_localized_rate_all_trials": 1.0,
+              "root_localized_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "root_median_absolute_error_detected": 2.0,
+              "median_split_points": 66.0
+            },
+            "pre_event_negative": {
+              "trials": 620,
+              "detections": 620,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "median_split_points": 55.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 201.27164378975294,
+              "calibration_files": 15,
+              "calibration_baselines": 300,
+              "validation_files": 16,
+              "validation_events": {
+                "trials": 320,
+                "detections": 320,
+                "detection_rate": 1.0,
+                "detection_rate_wilson95": [
+                  0.9881378411686904,
+                  1.0
+                ],
+                "expected_split": 300,
+                "tolerance": 15,
+                "localized_trials": 320,
+                "localized_rate_all_trials": 1.0,
+                "localized_rate_wilson95": [
+                  0.9881378411686904,
+                  1.0
+                ],
+                "median_absolute_error_detected": 2.0,
+                "root_localized_trials": 320,
+                "root_localized_rate_all_trials": 1.0,
+                "root_localized_rate_wilson95": [
+                  0.9881378411686904,
+                  1.0
+                ],
+                "root_median_absolute_error_detected": 2.0,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 320,
+                "detections": 2,
+                "detection_rate": 0.00625,
+                "detection_rate_wilson95": [
+                  0.0017156520668368674,
+                  0.0224982297790815
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          },
+          {
+            "method": "random_forest",
+            "view": "ar1_residual",
+            "full_event": {
+              "trials": 620,
+              "detections": 620,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "expected_split": 299,
+              "tolerance": 15,
+              "localized_trials": 618,
+              "localized_rate_all_trials": 0.9967741935483871,
+              "localized_rate_wilson95": [
+                0.9883154446635892,
+                0.9991149213215161
+              ],
+              "median_absolute_error_detected": 2.0,
+              "root_localized_trials": 607,
+              "root_localized_rate_all_trials": 0.9790322580645161,
+              "root_localized_rate_wilson95": [
+                0.9644589039377948,
+                0.9877060918335566
+              ],
+              "root_median_absolute_error_detected": 2.0,
+              "median_split_points": 35.0
+            },
+            "pre_event_negative": {
+              "trials": 620,
+              "detections": 574,
+              "detection_rate": 0.9258064516129032,
+              "detection_rate_wilson95": [
+                0.902451770449447,
+                0.9439171146806431
+              ],
+              "median_split_points": 4.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 155.8337903263581,
+              "calibration_files": 15,
+              "calibration_baselines": 300,
+              "validation_files": 16,
+              "validation_events": {
+                "trials": 320,
+                "detections": 250,
+                "detection_rate": 0.78125,
+                "detection_rate_wilson95": [
+                  0.7327656244034267,
+                  0.8230619112539616
+                ],
+                "expected_split": 299,
+                "tolerance": 15,
+                "localized_trials": 249,
+                "localized_rate_all_trials": 0.778125,
+                "localized_rate_wilson95": [
+                  0.7294513453938242,
+                  0.8202003287562597
+                ],
+                "median_absolute_error_detected": 2.0,
+                "root_localized_trials": 249,
+                "root_localized_rate_all_trials": 0.778125,
+                "root_localized_rate_wilson95": [
+                  0.7294513453938242,
+                  0.8202003287562597
+                ],
+                "root_median_absolute_error_detected": 2.0,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 320,
+                "detections": 1,
+                "detection_rate": 0.003125,
+                "detection_rate_wilson95": [
+                  0.0005518523918175474,
+                  0.017486167946796506
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          },
+          {
+            "method": "knn",
+            "view": "raw",
+            "full_event": {
+              "trials": 620,
+              "detections": 620,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "expected_split": 300,
+              "tolerance": 15,
+              "localized_trials": 620,
+              "localized_rate_all_trials": 1.0,
+              "localized_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "median_absolute_error_detected": 2.0,
+              "root_localized_trials": 567,
+              "root_localized_rate_all_trials": 0.9145161290322581,
+              "root_localized_rate_wilson95": [
+                0.8898750561703671,
+                0.934052229732789
+              ],
+              "root_median_absolute_error_detected": 2.0,
+              "median_split_points": 65.0
+            },
+            "pre_event_negative": {
+              "trials": 620,
+              "detections": 620,
+              "detection_rate": 1.0,
+              "detection_rate_wilson95": [
+                0.9938422514785149,
+                0.9999999999999999
+              ],
+              "median_split_points": 52.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 203.7012949488867,
+              "calibration_files": 15,
+              "calibration_baselines": 300,
+              "validation_files": 16,
+              "validation_events": {
+                "trials": 320,
+                "detections": 320,
+                "detection_rate": 1.0,
+                "detection_rate_wilson95": [
+                  0.9881378411686904,
+                  1.0
+                ],
+                "expected_split": 300,
+                "tolerance": 15,
+                "localized_trials": 300,
+                "localized_rate_all_trials": 0.9375,
+                "localized_rate_wilson95": [
+                  0.9054405958383621,
+                  0.9591800151842419
+                ],
+                "median_absolute_error_detected": 2.0,
+                "root_localized_trials": 300,
+                "root_localized_rate_all_trials": 0.9375,
+                "root_localized_rate_wilson95": [
+                  0.9054405958383621,
+                  0.9591800151842419
+                ],
+                "root_median_absolute_error_detected": 2.0,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 320,
+                "detections": 3,
+                "detection_rate": 0.009375,
+                "detection_rate_wilson95": [
+                  0.003193368736470109,
+                  0.027196374616752568
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          },
+          {
+            "method": "knn",
+            "view": "ar1_residual",
+            "full_event": {
+              "trials": 620,
+              "detections": 601,
+              "detection_rate": 0.9693548387096774,
+              "detection_rate_wilson95": [
+                0.9526344356396451,
+                0.9802949036514771
+              ],
+              "expected_split": 299,
+              "tolerance": 15,
+              "localized_trials": 560,
+              "localized_rate_all_trials": 0.9032258064516129,
+              "localized_rate_wilson95": [
+                0.8774103031342926,
+                0.9240753835419291
+              ],
+              "median_absolute_error_detected": 2.0,
+              "root_localized_trials": 515,
+              "root_localized_rate_all_trials": 0.8306451612903226,
+              "root_localized_rate_wilson95": [
+                0.7991069424416879,
+                0.8581113206328139
+              ],
+              "root_median_absolute_error_detected": 2.0,
+              "median_split_points": 18.0
+            },
+            "pre_event_negative": {
+              "trials": 620,
+              "detections": 403,
+              "detection_rate": 0.65,
+              "detection_rate_wilson95": [
+                0.6116365067840978,
+                0.6865161686594569
+              ],
+              "median_split_points": 1.0
+            },
+            "heldout_gain_gate": {
+              "quantile": 0.99,
+              "threshold": 146.42550451687998,
+              "calibration_files": 15,
+              "calibration_baselines": 300,
+              "validation_files": 16,
+              "validation_events": {
+                "trials": 320,
+                "detections": 197,
+                "detection_rate": 0.615625,
+                "detection_rate_wilson95": [
+                  0.5612550037485393,
+                  0.6672518720217202
+                ],
+                "expected_split": 299,
+                "tolerance": 15,
+                "localized_trials": 190,
+                "localized_rate_all_trials": 0.59375,
+                "localized_rate_wilson95": [
+                  0.5391354070743448,
+                  0.6461404381447846
+                ],
+                "median_absolute_error_detected": 2.0,
+                "root_localized_trials": 190,
+                "root_localized_rate_all_trials": 0.59375,
+                "root_localized_rate_wilson95": [
+                  0.5391354070743448,
+                  0.6461404381447846
+                ],
+                "root_median_absolute_error_detected": 2.0,
+                "median_split_points": 1.0
+              },
+              "validation_pre_event": {
+                "trials": 320,
+                "detections": 0,
+                "detection_rate": 0.0,
+                "detection_rate_wilson95": [
+                  0.0,
+                  0.011862158831309737
+                ],
+                "median_split_points": 1.0
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "checkpoint": "experiments/results/2026-06-05-established-change-point-checkpoint.jsonl",
+    "resumed_rows": 5632,
+    "computed_rows": 0
+  },
+  "elapsed_seconds": 18.32233214378357
+}
