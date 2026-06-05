@@ -11,6 +11,12 @@ trajectories while breaking original buoy membership. Use
 assessments as the current source of truth before preparing a replacement
 methods report.
 
+A later explicit-relationship instrument recovered a separately controlled
+CDIP pair graph and a preregistered corpus-envelope attenuation ladder. That
+result does not rehabilitate this draft's aggregate-coherence claim; it is a
+different method and result. Its current source of truth is
+`2026-06-04-cdip-envelope-attenuation-independent-time-assessment.md`.
+
 ## Status
 
 This is a draft methods report for a Zenodo-style artifact release. It is not

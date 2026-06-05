@@ -45,3 +45,23 @@ def test_geography_audit_uses_only_fdr_detected_pair_identities() -> None:
     assert result["thresholds"][0]["detected_close"] == 1
     assert result["thresholds"][0]["matched_permutation_repeats"] == 99
     assert result["detected_pairs"][0]["layers"] == ["dominant:1.0", "raw"]
+
+
+def test_geography_audit_can_grade_a_residual_profile_independently() -> None:
+    rows = [_pair("a", "b", detected=False), _pair("a", "c", detected=False)]
+    rows[1]["signed_envelope_residual"] = {
+        "domain_regroup": {"detected_fdr": True}
+    }
+
+    result = audit_geography(
+        rows,
+        coordinates={"a": (0.0, 0.0), "b": (0.0, 0.5), "c": (40.0, 40.0)},
+        names={"a": "A", "b": "B", "c": "C"},
+        profile_key="signed_envelope_residual",
+        thresholds_km=(100.0,),
+        matched_permutation_repeats=9,
+        seed=2,
+    )
+
+    assert result["summary"]["profile_key"] == "signed_envelope_residual"
+    assert result["detected_pairs"][0]["entities"] == ["a", "c"]

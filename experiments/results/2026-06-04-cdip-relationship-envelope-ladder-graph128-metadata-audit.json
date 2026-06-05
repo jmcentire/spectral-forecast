@@ -1,0 +1,4015 @@
+{
+  "profile_audits": {
+    "envelope_attenuation_0.25": {
+      "detected_pairs": [
+        {
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.3778224361778626,
+          "water_depths": [
+            476.5199890136719,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "092p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 3.345726146258245,
+          "water_depths": [
+            476.5199890136719,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "157p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            2.559999942779541,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.6416987746523217,
+          "water_depths": [
+            366.0,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "194p1",
+            "250p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.21797557801437978,
+          "water_depths": [
+            23.280000686645508,
+            28.950000762939453
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 2.1886408336448278,
+          "water_depths": [
+            39.0,
+            348.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0986122886681098,
+          "water_depths": [
+            39.0,
+            117.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.5452685806163973,
+          "water_depths": [
+            39.0,
+            182.8800048828125
+          ]
+        },
+        {
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.9418973258209482,
+          "water_depths": [
+            223.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.1670540846631662,
+          "water_depths": [
+            550.0,
+            650.0
+          ]
+        },
+        {
+          "entities": [
+            "100p1",
+            "220p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.01637581701297154,
+          "water_depths": [
+            571.9600219726562,
+            562.6699829101562
+          ]
+        },
+        {
+          "entities": [
+            "142p1",
+            "213p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            2.559999942779541,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.5673322513017809,
+          "water_depths": [
+            14.9399995803833,
+            71.62000274658203
+          ]
+        },
+        {
+          "entities": [
+            "147p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.015982754562778055,
+          "water_depths": [
+            18.290000915527344,
+            18.0
+          ]
+        },
+        {
+          "entities": [
+            "157p1",
+            "196p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            2.559999942779541,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.3415335672623699,
+          "water_depths": [
+            366.0,
+            515.0
+          ]
+        },
+        {
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "unknown",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 4.641572672757531,
+          "water_depths": [
+            4252.0,
+            41.0
+          ]
+        },
+        {
+          "entities": [
+            "191p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 4.1355714697124535,
+          "water_depths": [
+            1049.800048828125,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "192p1",
+            "430p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.3285040669720361,
+          "water_depths": [
+            18.0,
+            25.0
+          ]
+        },
+        {
+          "entities": [
+            "202p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.8325814637483102,
+          "water_depths": [
+            200.0,
+            32.0
+          ]
+        },
+        {
+          "entities": [
+            "203p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.830599302544319,
+          "water_depths": [
+            1890.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.279745601024223,
+          "water_depths": [
+            31.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "215p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.5674276734760038,
+          "water_depths": [
+            23.25,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "217p1",
+            "430p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.19819489093175155,
+          "water_depths": [
+            30.479999542236328,
+            25.0
+          ]
+        },
+        {
+          "entities": [
+            "220p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 3.511909754650515,
+          "water_depths": [
+            562.6699829101562,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "262p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.880519461453153,
+          "water_depths": [
+            17.0,
+            303.0
+          ]
+        }
+      ],
+      "method": {
+        "label_use": "post-hoc audit only",
+        "matched_metadata_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "profile_key": "envelope_attenuation_0.25",
+        "selection_use": "none"
+      },
+      "metrics": [
+        {
+          "detected_matches": 11,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 98291,
+          "matched_permutation_p_ge_detected_matches": 0.982910170898291,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_match"
+        },
+        {
+          "detected_matches": 10,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 95338,
+          "matched_permutation_p_ge_detected_matches": 0.953380466195338,
+          "matched_permutation_repeats": 100000,
+          "metric": "processing_family_match"
+        },
+        {
+          "detected_matches": 10,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 95338,
+          "matched_permutation_p_ge_detected_matches": 0.953380466195338,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_and_processing_family_match"
+        },
+        {
+          "detected_median": 1.5673322513017809,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 26564,
+          "matched_permutation_p_le_detected_median": 0.2656473435265647,
+          "matched_permutation_repeats": 100000,
+          "metric": "water_depth_absolute_log_ratio_median"
+        }
+      ],
+      "summary": {
+        "detected_pair_identities": 23,
+        "detected_processing_family_counts": {
+          "hv": 3,
+          "iv": 11,
+          "lx": 31,
+          "unknown": 1
+        },
+        "detected_sample_rate_counts": {
+          "1.2799999713897705": 32,
+          "2.559999942779541": 14
+        },
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_0.25"
+      }
+    },
+    "envelope_attenuation_0.50": {
+      "detected_pairs": [
+        {
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.3778224361778626,
+          "water_depths": [
+            476.5199890136719,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "092p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 3.345726146258245,
+          "water_depths": [
+            476.5199890136719,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "157p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            2.559999942779541,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.6416987746523217,
+          "water_depths": [
+            366.0,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "028p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.3906444042512851,
+          "water_depths": [
+            387.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 2.1886408336448278,
+          "water_depths": [
+            39.0,
+            348.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0986122886681098,
+          "water_depths": [
+            39.0,
+            117.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.5452685806163973,
+          "water_depths": [
+            39.0,
+            182.8800048828125
+          ]
+        },
+        {
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.9418973258209482,
+          "water_depths": [
+            223.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.1670540846631662,
+          "water_depths": [
+            550.0,
+            650.0
+          ]
+        },
+        {
+          "entities": [
+            "100p1",
+            "220p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.01637581701297154,
+          "water_depths": [
+            571.9600219726562,
+            562.6699829101562
+          ]
+        },
+        {
+          "entities": [
+            "142p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.7616937511818495,
+          "water_depths": [
+            14.9399995803833,
+            32.0
+          ]
+        },
+        {
+          "entities": [
+            "143p1",
+            "240p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.020202687854778488,
+          "water_depths": [
+            9.800000190734863,
+            10.0
+          ]
+        },
+        {
+          "entities": [
+            "147p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.015982754562778055,
+          "water_depths": [
+            18.290000915527344,
+            18.0
+          ]
+        },
+        {
+          "entities": [
+            "154p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0091737476513918,
+          "water_depths": [
+            49.380001068115234,
+            18.0
+          ]
+        },
+        {
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "unknown",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 4.641572672757531,
+          "water_depths": [
+            4252.0,
+            41.0
+          ]
+        },
+        {
+          "entities": [
+            "191p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 4.1355714697124535,
+          "water_depths": [
+            1049.800048828125,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "200p1",
+            "279p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.4462870877272584,
+          "water_depths": [
+            12.800000190734863,
+            20.0
+          ]
+        },
+        {
+          "entities": [
+            "203p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.830599302544319,
+          "water_depths": [
+            1890.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.279745601024223,
+          "water_depths": [
+            31.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "215p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.31309178797714926,
+          "water_depths": [
+            23.25,
+            17.0
+          ]
+        },
+        {
+          "entities": [
+            "215p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.5674276734760038,
+          "water_depths": [
+            23.25,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "220p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 3.511909754650515,
+          "water_depths": [
+            562.6699829101562,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "262p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.880519461453153,
+          "water_depths": [
+            17.0,
+            303.0
+          ]
+        }
+      ],
+      "method": {
+        "label_use": "post-hoc audit only",
+        "matched_metadata_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "profile_key": "envelope_attenuation_0.50",
+        "selection_use": "none"
+      },
+      "metrics": [
+        {
+          "detected_matches": 16,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 43357,
+          "matched_permutation_p_ge_detected_matches": 0.4335756642433576,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_match"
+        },
+        {
+          "detected_matches": 15,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 31639,
+          "matched_permutation_p_ge_detected_matches": 0.3163968360316397,
+          "matched_permutation_repeats": 100000,
+          "metric": "processing_family_match"
+        },
+        {
+          "detected_matches": 15,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 31639,
+          "matched_permutation_p_ge_detected_matches": 0.3163968360316397,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_and_processing_family_match"
+        },
+        {
+          "detected_median": 1.3778224361778626,
+          "detected_pairs": 23,
+          "matched_permutation_exceedances": 15586,
+          "matched_permutation_p_le_detected_median": 0.15586844131558683,
+          "matched_permutation_repeats": 100000,
+          "metric": "water_depth_absolute_log_ratio_median"
+        }
+      ],
+      "summary": {
+        "detected_pair_identities": 23,
+        "detected_processing_family_counts": {
+          "hv": 3,
+          "iv": 8,
+          "lx": 34,
+          "unknown": 1
+        },
+        "detected_sample_rate_counts": {
+          "1.2799999713897705": 35,
+          "2.559999942779541": 11
+        },
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_0.50"
+      }
+    },
+    "envelope_attenuation_0.75": {
+      "detected_pairs": [
+        {
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.3778224361778626,
+          "water_depths": [
+            476.5199890136719,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "160p1",
+            "209p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.1184149159642893,
+          "water_depths": [
+            76.5,
+            25.0
+          ]
+        },
+        {
+          "entities": [
+            "200p1",
+            "240p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.24686009283268692,
+          "water_depths": [
+            12.800000190734863,
+            10.0
+          ]
+        },
+        {
+          "entities": [
+            "028p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.3906444042512851,
+          "water_depths": [
+            387.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 2.1886408336448278,
+          "water_depths": [
+            39.0,
+            348.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0986122886681098,
+          "water_depths": [
+            39.0,
+            117.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.5452685806163973,
+          "water_depths": [
+            39.0,
+            182.8800048828125
+          ]
+        },
+        {
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.9418973258209482,
+          "water_depths": [
+            223.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.1670540846631662,
+          "water_depths": [
+            550.0,
+            650.0
+          ]
+        },
+        {
+          "entities": [
+            "100p1",
+            "220p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.01637581701297154,
+          "water_depths": [
+            571.9600219726562,
+            562.6699829101562
+          ]
+        },
+        {
+          "entities": [
+            "142p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.7616937511818495,
+          "water_depths": [
+            14.9399995803833,
+            32.0
+          ]
+        },
+        {
+          "entities": [
+            "162p1",
+            "265p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.4464921509214192,
+          "water_depths": [
+            24.3799991607666,
+            15.600000381469727
+          ]
+        },
+        {
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "unknown",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 4.641572672757531,
+          "water_depths": [
+            4252.0,
+            41.0
+          ]
+        },
+        {
+          "entities": [
+            "191p1",
+            "262p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 4.1231416512738175,
+          "water_depths": [
+            1049.800048828125,
+            17.0
+          ]
+        },
+        {
+          "entities": [
+            "200p1",
+            "279p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.4462870877272584,
+          "water_depths": [
+            12.800000190734863,
+            20.0
+          ]
+        },
+        {
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.279745601024223,
+          "water_depths": [
+            31.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "209p1",
+            "256p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.6097655716208943,
+          "water_depths": [
+            25.0,
+            46.0
+          ]
+        },
+        {
+          "entities": [
+            "215p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.31309178797714926,
+          "water_depths": [
+            23.25,
+            17.0
+          ]
+        },
+        {
+          "entities": [
+            "249p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.09844007281325251,
+          "water_depths": [
+            32.0,
+            29.0
+          ]
+        }
+      ],
+      "method": {
+        "label_use": "post-hoc audit only",
+        "matched_metadata_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "profile_key": "envelope_attenuation_0.75",
+        "selection_use": "none"
+      },
+      "metrics": [
+        {
+          "detected_matches": 19,
+          "detected_pairs": 19,
+          "matched_permutation_exceedances": 34,
+          "matched_permutation_p_ge_detected_matches": 0.00034999650003499967,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_match"
+        },
+        {
+          "detected_matches": 18,
+          "detected_pairs": 19,
+          "matched_permutation_exceedances": 58,
+          "matched_permutation_p_ge_detected_matches": 0.0005899941000589994,
+          "matched_permutation_repeats": 100000,
+          "metric": "processing_family_match"
+        },
+        {
+          "detected_matches": 18,
+          "detected_pairs": 19,
+          "matched_permutation_exceedances": 58,
+          "matched_permutation_p_ge_detected_matches": 0.0005899941000589994,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_and_processing_family_match"
+        },
+        {
+          "detected_median": 0.7616937511818495,
+          "detected_pairs": 19,
+          "matched_permutation_exceedances": 684,
+          "matched_permutation_p_le_detected_median": 0.0068499315006849935,
+          "matched_permutation_repeats": 100000,
+          "metric": "water_depth_absolute_log_ratio_median"
+        }
+      ],
+      "summary": {
+        "detected_pair_identities": 19,
+        "detected_processing_family_counts": {
+          "iv": 12,
+          "lx": 25,
+          "unknown": 1
+        },
+        "detected_sample_rate_counts": {
+          "1.2799999713897705": 26,
+          "2.559999942779541": 12
+        },
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_0.75"
+      }
+    },
+    "envelope_attenuation_1.00": {
+      "detected_pairs": [
+        {
+          "entities": [
+            "045p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.069800591429564,
+          "water_depths": [
+            223.0,
+            650.0
+          ]
+        },
+        {
+          "entities": [
+            "071p1",
+            "153p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 3.4767049341703005,
+          "water_depths": [
+            550.0,
+            17.0
+          ]
+        },
+        {
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.3778224361778626,
+          "water_depths": [
+            476.5199890136719,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "160p1",
+            "209p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.1184149159642893,
+          "water_depths": [
+            76.5,
+            25.0
+          ]
+        },
+        {
+          "entities": [
+            "028p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.3906444042512851,
+          "water_depths": [
+            387.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0986122886681098,
+          "water_depths": [
+            39.0,
+            117.0
+          ]
+        },
+        {
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.9418973258209482,
+          "water_depths": [
+            223.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "142p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.7616937511818495,
+          "water_depths": [
+            14.9399995803833,
+            32.0
+          ]
+        },
+        {
+          "entities": [
+            "162p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.2719728131696287,
+          "water_depths": [
+            24.3799991607666,
+            32.0
+          ]
+        },
+        {
+          "entities": [
+            "196p1",
+            "200p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 3.6947217148370037,
+          "water_depths": [
+            515.0,
+            12.800000190734863
+          ]
+        },
+        {
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.279745601024223,
+          "water_depths": [
+            31.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "215p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.31309178797714926,
+          "water_depths": [
+            23.25,
+            17.0
+          ]
+        },
+        {
+          "entities": [
+            "244p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.784386660370511,
+          "water_depths": [
+            100.0,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "249p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.09844007281325251,
+          "water_depths": [
+            32.0,
+            29.0
+          ]
+        },
+        {
+          "entities": [
+            "252p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.591367847412345,
+          "water_depths": [
+            22.700000762939453,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "264p1",
+            "430p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "hv",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.3980922992506203,
+          "water_depths": [
+            16.790000915527344,
+            25.0
+          ]
+        }
+      ],
+      "method": {
+        "label_use": "post-hoc audit only",
+        "matched_metadata_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "profile_key": "envelope_attenuation_1.00",
+        "selection_use": "none"
+      },
+      "metrics": [
+        {
+          "detected_matches": 16,
+          "detected_pairs": 16,
+          "matched_permutation_exceedances": 138,
+          "matched_permutation_p_ge_detected_matches": 0.0013899861001389986,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_match"
+        },
+        {
+          "detected_matches": 14,
+          "detected_pairs": 16,
+          "matched_permutation_exceedances": 2391,
+          "matched_permutation_p_ge_detected_matches": 0.023919760802391977,
+          "matched_permutation_repeats": 100000,
+          "metric": "processing_family_match"
+        },
+        {
+          "detected_matches": 14,
+          "detected_pairs": 16,
+          "matched_permutation_exceedances": 2391,
+          "matched_permutation_p_ge_detected_matches": 0.023919760802391977,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_and_processing_family_match"
+        },
+        {
+          "detected_median": 1.084206440048837,
+          "detected_pairs": 16,
+          "matched_permutation_exceedances": 9229,
+          "matched_permutation_p_le_detected_median": 0.0922990770092299,
+          "matched_permutation_repeats": 100000,
+          "metric": "water_depth_absolute_log_ratio_median"
+        }
+      ],
+      "summary": {
+        "detected_pair_identities": 16,
+        "detected_processing_family_counts": {
+          "hv": 2,
+          "iv": 14,
+          "lx": 16
+        },
+        "detected_sample_rate_counts": {
+          "1.2799999713897705": 16,
+          "2.559999942779541": 16
+        },
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_1.00"
+      }
+    },
+    "raw_profile": {
+      "detected_pairs": [
+        {
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.3778224361778626,
+          "water_depths": [
+            476.5199890136719,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "092p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 3.345726146258245,
+          "water_depths": [
+            476.5199890136719,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "157p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            2.559999942779541,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.6416987746523217,
+          "water_depths": [
+            366.0,
+            1890.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 2.1886408336448278,
+          "water_depths": [
+            39.0,
+            348.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0986122886681098,
+          "water_depths": [
+            39.0,
+            117.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.5452685806163973,
+          "water_depths": [
+            39.0,
+            182.8800048828125
+          ]
+        },
+        {
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.9418973258209482,
+          "water_depths": [
+            223.0,
+            571.9600219726562
+          ]
+        },
+        {
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.1670540846631662,
+          "water_depths": [
+            550.0,
+            650.0
+          ]
+        },
+        {
+          "entities": [
+            "076p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:0.5"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 3.1653350468145502,
+          "water_depths": [
+            27.43000030517578,
+            650.0
+          ]
+        },
+        {
+          "entities": [
+            "098p1",
+            "225p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.03636764417087483,
+          "water_depths": [
+            81.0,
+            84.0
+          ]
+        },
+        {
+          "entities": [
+            "147p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.015982754562778055,
+          "water_depths": [
+            18.290000915527344,
+            18.0
+          ]
+        },
+        {
+          "entities": [
+            "157p1",
+            "196p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            2.559999942779541,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.3415335672623699,
+          "water_depths": [
+            366.0,
+            515.0
+          ]
+        },
+        {
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "unknown",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 4.641572672757531,
+          "water_depths": [
+            4252.0,
+            41.0
+          ]
+        },
+        {
+          "entities": [
+            "166p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "unknown",
+            "lx"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 5.521931395405622,
+          "water_depths": [
+            4252.0,
+            17.0
+          ]
+        },
+        {
+          "entities": [
+            "191p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 4.1355714697124535,
+          "water_depths": [
+            1049.800048828125,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "192p1",
+            "430p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.3285040669720361,
+          "water_depths": [
+            18.0,
+            25.0
+          ]
+        },
+        {
+          "entities": [
+            "202p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.8325814637483102,
+          "water_depths": [
+            200.0,
+            32.0
+          ]
+        },
+        {
+          "entities": [
+            "203p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.830599302544319,
+          "water_depths": [
+            1890.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.279745601024223,
+          "water_depths": [
+            31.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "215p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.5674276734760038,
+          "water_depths": [
+            23.25,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "220p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "hv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 3.511909754650515,
+          "water_depths": [
+            562.6699829101562,
+            16.790000915527344
+          ]
+        },
+        {
+          "entities": [
+            "262p1",
+            "271p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "iv"
+          ],
+          "processing_family_match": false,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": false,
+          "sample_rate_match": false,
+          "sample_rates": [
+            1.2799999713897705,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.880519461453153,
+          "water_depths": [
+            17.0,
+            303.0
+          ]
+        }
+      ],
+      "method": {
+        "label_use": "post-hoc audit only",
+        "matched_metadata_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "profile_key": "raw_profile",
+        "selection_use": "none"
+      },
+      "metrics": [
+        {
+          "detected_matches": 12,
+          "detected_pairs": 22,
+          "matched_permutation_exceedances": 94695,
+          "matched_permutation_p_ge_detected_matches": 0.946950530494695,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_match"
+        },
+        {
+          "detected_matches": 10,
+          "detected_pairs": 22,
+          "matched_permutation_exceedances": 88372,
+          "matched_permutation_p_ge_detected_matches": 0.8837211627883721,
+          "matched_permutation_repeats": 100000,
+          "metric": "processing_family_match"
+        },
+        {
+          "detected_matches": 10,
+          "detected_pairs": 22,
+          "matched_permutation_exceedances": 88372,
+          "matched_permutation_p_ge_detected_matches": 0.8837211627883721,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_and_processing_family_match"
+        },
+        {
+          "detected_median": 1.8315903831463145,
+          "detected_pairs": 22,
+          "matched_permutation_exceedances": 37567,
+          "matched_permutation_p_le_detected_median": 0.3756762432375676,
+          "matched_permutation_repeats": 100000,
+          "metric": "water_depth_absolute_log_ratio_median"
+        }
+      ],
+      "summary": {
+        "detected_pair_identities": 22,
+        "detected_processing_family_counts": {
+          "hv": 3,
+          "iv": 9,
+          "lx": 30,
+          "unknown": 2
+        },
+        "detected_sample_rate_counts": {
+          "1.2799999713897705": 32,
+          "2.559999942779541": 12
+        },
+        "population_pair_identities": 492,
+        "profile_key": "raw_profile"
+      }
+    },
+    "signed_envelope_residual": {
+      "detected_pairs": [
+        {
+          "entities": [
+            "071p1",
+            "153p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 3.4767049341703005,
+          "water_depths": [
+            550.0,
+            17.0
+          ]
+        },
+        {
+          "entities": [
+            "157p1",
+            "160p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.565342592568876,
+          "water_depths": [
+            366.0,
+            76.5
+          ]
+        },
+        {
+          "entities": [
+            "168p1",
+            "188p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0813704822336037,
+          "water_depths": [
+            117.0,
+            345.0
+          ]
+        },
+        {
+          "entities": [
+            "200p1",
+            "240p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": true,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.24686009283268692,
+          "water_depths": [
+            12.800000190734863,
+            10.0
+          ]
+        },
+        {
+          "entities": [
+            "028p1",
+            "092p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.20808497884604354,
+          "water_depths": [
+            387.0,
+            476.5199890136719
+          ]
+        },
+        {
+          "entities": [
+            "028p1",
+            "213p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.6870502901101239,
+          "water_depths": [
+            387.0,
+            71.62000274658203
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.0986122886681098,
+          "water_depths": [
+            39.0,
+            117.0
+          ]
+        },
+        {
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.5452685806163973,
+          "water_depths": [
+            39.0,
+            182.8800048828125
+          ]
+        },
+        {
+          "entities": [
+            "094p1",
+            "202p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 0.5538851132264376,
+          "water_depths": [
+            348.0,
+            200.0
+          ]
+        },
+        {
+          "entities": [
+            "157p1",
+            "248p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.5811531580675269,
+          "water_depths": [
+            366.0,
+            75.30000305175781
+          ]
+        },
+        {
+          "entities": [
+            "162p1",
+            "248p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 1.1277170857037415,
+          "water_depths": [
+            24.3799991607666,
+            75.30000305175781
+          ]
+        },
+        {
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 2.279745601024223,
+          "water_depths": [
+            31.0,
+            303.0
+          ]
+        },
+        {
+          "entities": [
+            "248p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.9541843453473652,
+          "water_depths": [
+            75.30000305175781,
+            29.0
+          ]
+        },
+        {
+          "entities": [
+            "249p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "iv",
+            "iv"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            2.559999942779541,
+            2.559999942779541
+          ],
+          "water_depth_absolute_log_ratio": 0.09844007281325251,
+          "water_depths": [
+            32.0,
+            29.0
+          ]
+        },
+        {
+          "entities": [
+            "269p1",
+            "274p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "processing_families": [
+            "lx",
+            "lx"
+          ],
+          "processing_family_match": true,
+          "replicated_across_distinct_times": false,
+          "sample_rate_and_processing_family_match": true,
+          "sample_rate_match": true,
+          "sample_rates": [
+            1.2799999713897705,
+            1.2799999713897705
+          ],
+          "water_depth_absolute_log_ratio": 1.2390641241372062,
+          "water_depths": [
+            145.0,
+            42.0
+          ]
+        }
+      ],
+      "method": {
+        "label_use": "post-hoc audit only",
+        "matched_metadata_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "profile_key": "signed_envelope_residual",
+        "selection_use": "none"
+      },
+      "metrics": [
+        {
+          "detected_matches": 15,
+          "detected_pairs": 15,
+          "matched_permutation_exceedances": 92,
+          "matched_permutation_p_ge_detected_matches": 0.0009299907000929991,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_match"
+        },
+        {
+          "detected_matches": 15,
+          "detected_pairs": 15,
+          "matched_permutation_exceedances": 27,
+          "matched_permutation_p_ge_detected_matches": 0.00027999720002799973,
+          "matched_permutation_repeats": 100000,
+          "metric": "processing_family_match"
+        },
+        {
+          "detected_matches": 15,
+          "detected_pairs": 15,
+          "matched_permutation_exceedances": 27,
+          "matched_permutation_p_ge_detected_matches": 0.00027999720002799973,
+          "matched_permutation_repeats": 100000,
+          "metric": "sample_rate_and_processing_family_match"
+        },
+        {
+          "detected_median": 1.1277170857037415,
+          "detected_pairs": 15,
+          "matched_permutation_exceedances": 24173,
+          "matched_permutation_p_le_detected_median": 0.24173758262417375,
+          "matched_permutation_repeats": 100000,
+          "metric": "water_depth_absolute_log_ratio_median"
+        }
+      ],
+      "summary": {
+        "detected_pair_identities": 15,
+        "detected_processing_family_counts": {
+          "iv": 12,
+          "lx": 18
+        },
+        "detected_sample_rate_counts": {
+          "1.2799999713897705": 18,
+          "2.559999942779541": 12
+        },
+        "population_pair_identities": 492,
+        "profile_key": "signed_envelope_residual"
+      }
+    }
+  },
+  "relationship_report": "experiments/results/2026-06-04-cdip-relationship-envelope-ladder-graph128-independent-time.json",
+  "station_metadata": {
+    "028p1": {
+      "deployment_id": "028p1_d25",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 387.0
+    },
+    "029p1": {
+      "deployment_id": "029p1_d28",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 600.0
+    },
+    "036p1": {
+      "deployment_id": "036p1_d53",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 39.0
+    },
+    "045p1": {
+      "deployment_id": "045p1_d31",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 223.0
+    },
+    "071p1": {
+      "deployment_id": "071p1_d25",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 550.0
+    },
+    "076p1": {
+      "deployment_id": "076p1_d37",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 27.43000030517578
+    },
+    "092p1": {
+      "deployment_id": "092p1_d27",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 476.5199890136719
+    },
+    "094p1": {
+      "deployment_id": "094p1_d21",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 348.0
+    },
+    "098p1": {
+      "deployment_id": "098p1_d25",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 81.0
+    },
+    "100p1": {
+      "deployment_id": "100p1_d20",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 571.9600219726562
+    },
+    "106p1": {
+      "deployment_id": "106p1_d29",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 200.0
+    },
+    "132p1": {
+      "deployment_id": "132p1_d20",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 15.239999771118164
+    },
+    "142p1": {
+      "deployment_id": "142p1_d29",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 14.9399995803833
+    },
+    "143p1": {
+      "deployment_id": "143p1_d36",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 9.800000190734863
+    },
+    "144p1": {
+      "deployment_id": "144p1_d19",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 94.0
+    },
+    "147p1": {
+      "deployment_id": "147p1_d20",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 18.290000915527344
+    },
+    "150p1": {
+      "deployment_id": "150p1_d20",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 17.0
+    },
+    "153p1": {
+      "deployment_id": "153p1_d07",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 17.0
+    },
+    "154p1": {
+      "deployment_id": "154p1_d14",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 49.380001068115234
+    },
+    "156p1": {
+      "deployment_id": "156p1_d12",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 133.0
+    },
+    "157p1": {
+      "deployment_id": "157p1_d13",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 366.0
+    },
+    "160p1": {
+      "deployment_id": "160p1_d12",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 76.5
+    },
+    "162p1": {
+      "deployment_id": "162p1_d17",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 24.3799991607666
+    },
+    "166p1": {
+      "deployment_id": "166p1_d11",
+      "processing_family": "unknown",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 4252.0
+    },
+    "168p1": {
+      "deployment_id": "168p1_d15",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 117.0
+    },
+    "179p1": {
+      "deployment_id": "179p1_d17",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 182.8800048828125
+    },
+    "181p1": {
+      "deployment_id": "181p1_d21",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 32.90999984741211
+    },
+    "187p1": {
+      "deployment_id": "187p1_d12",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 200.0
+    },
+    "188p1": {
+      "deployment_id": "188p1_d13",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 345.0
+    },
+    "189p1": {
+      "deployment_id": "189p1_d10",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 60.0
+    },
+    "191p1": {
+      "deployment_id": "191p1_d24",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 1049.800048828125
+    },
+    "192p1": {
+      "deployment_id": "192p1_d09",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 18.0
+    },
+    "194p1": {
+      "deployment_id": "194p1_d07",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 23.280000686645508
+    },
+    "196p1": {
+      "deployment_id": "196p1_d12",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 515.0
+    },
+    "200p1": {
+      "deployment_id": "200p1_d14",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 12.800000190734863
+    },
+    "201p1": {
+      "deployment_id": "201p1_d09",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 41.0
+    },
+    "202p1": {
+      "deployment_id": "202p1_d14",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 200.0
+    },
+    "203p1": {
+      "deployment_id": "203p1_d10",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 1890.0
+    },
+    "204p1": {
+      "deployment_id": "204p1_d09",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 31.0
+    },
+    "209p1": {
+      "deployment_id": "209p1_d12",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 25.0
+    },
+    "213p1": {
+      "deployment_id": "213p1_d07",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 71.62000274658203
+    },
+    "214p1": {
+      "deployment_id": "214p1_d11",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 14.0
+    },
+    "215p1": {
+      "deployment_id": "215p1_d08",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 23.25
+    },
+    "217p1": {
+      "deployment_id": "217p1_d08",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 30.479999542236328
+    },
+    "220p1": {
+      "deployment_id": "220p1_d07",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 562.6699829101562
+    },
+    "222p1": {
+      "deployment_id": "222p1_d08",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 650.0
+    },
+    "225p1": {
+      "deployment_id": "225p1_d07",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 84.0
+    },
+    "226p1": {
+      "deployment_id": "226p1_d12",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 81.0
+    },
+    "240p1": {
+      "deployment_id": "240p1_d13",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 10.0
+    },
+    "243p1": {
+      "deployment_id": "243p1_d06",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 21.0
+    },
+    "244p1": {
+      "deployment_id": "244p1_d07",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 100.0
+    },
+    "248p1": {
+      "deployment_id": "248p1_d08",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 75.30000305175781
+    },
+    "249p1": {
+      "deployment_id": "249p1_d04",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 32.0
+    },
+    "250p1": {
+      "deployment_id": "250p1_d05",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 28.950000762939453
+    },
+    "252p1": {
+      "deployment_id": "252p1_d07",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 22.700000762939453
+    },
+    "256p1": {
+      "deployment_id": "256p1_d07",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 46.0
+    },
+    "262p1": {
+      "deployment_id": "262p1_d03",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 17.0
+    },
+    "263p1": {
+      "deployment_id": "263p1_d06",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 10.600000381469727
+    },
+    "264p1": {
+      "deployment_id": "264p1_d04",
+      "processing_family": "hv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 16.790000915527344
+    },
+    "265p1": {
+      "deployment_id": "265p1_d10",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 15.600000381469727
+    },
+    "268p1": {
+      "deployment_id": "268p1_d04",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 160.0
+    },
+    "269p1": {
+      "deployment_id": "269p1_d04",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 145.0
+    },
+    "270p1": {
+      "deployment_id": "270p1_d04",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 29.0
+    },
+    "271p1": {
+      "deployment_id": "271p1_d06",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 303.0
+    },
+    "274p1": {
+      "deployment_id": "274p1_d03",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 42.0
+    },
+    "279p1": {
+      "deployment_id": "279p1_d01",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 20.0
+    },
+    "280p1": {
+      "deployment_id": "280p1_d02",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 75.0
+    },
+    "284p1": {
+      "deployment_id": "284p1_d01",
+      "processing_family": "lx",
+      "sample_rate": 1.2799999713897705,
+      "water_depth": 11.130000114440918
+    },
+    "430p1": {
+      "deployment_id": "430p1_d20",
+      "processing_family": "iv",
+      "sample_rate": 2.559999942779541,
+      "water_depth": 25.0
+    }
+  }
+}

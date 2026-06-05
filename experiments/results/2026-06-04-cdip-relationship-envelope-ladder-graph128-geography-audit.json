@@ -1,0 +1,2716 @@
+{
+  "audit": {
+    "detected_pairs": [
+      {
+        "distance_km": 10.481476134261701,
+        "entities": [
+          "098p1",
+          "225p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "raw"
+        ],
+        "platform_names": [
+          "MOKAPU POINT, HI BUOY - 098p1",
+          "KANEOHE BAY, WETS, HI BUOY - 225p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 28.940731773032834,
+        "entities": [
+          "045p1",
+          "100p1"
+        ],
+        "layers": [
+          "raw"
+        ],
+        "platform_names": [
+          "OCEANSIDE OFFSHORE, CA BUOY - 045p1",
+          "TORREY PINES OUTER, CA BUOY - 100p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 44.24967874440535,
+        "entities": [
+          "262p1",
+          "271p1"
+        ],
+        "layers": [
+          "raw"
+        ],
+        "platform_names": [
+          "LEUCADIA NEARSHORE, CA BUOY - 262p1",
+          "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 60.1953044883394,
+        "entities": [
+          "220p1",
+          "264p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "MISSION BAY WEST, CA BUOY - 220p1",
+          "RED BEACH NEARSHORE, CA BUOY - 264p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 61.1282109709708,
+        "entities": [
+          "192p1",
+          "430p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "OREGON INLET, NC BUOY - 192p1",
+          "DUCK FRF 26M, NC BUOY - 430p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 64.52051208515073,
+        "entities": [
+          "215p1",
+          "271p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0"
+        ],
+        "platform_names": [
+          "LONG BEACH CHANNEL, CA BUOY - 215p1",
+          "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 74.35941695637109,
+        "entities": [
+          "071p1",
+          "222p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "raw"
+        ],
+        "platform_names": [
+          "HARVEST, CA BUOY - 071p1",
+          "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 75.72043449217315,
+        "entities": [
+          "076p1",
+          "222p1"
+        ],
+        "layers": [
+          "dominant:0.5"
+        ],
+        "platform_names": [
+          "DIABLO CANYON, CA BUOY - 076p1",
+          "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 83.54102668612062,
+        "entities": [
+          "092p1",
+          "264p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "SAN PEDRO, CA BUOY - 092p1",
+          "RED BEACH NEARSHORE, CA BUOY - 264p1"
+        ],
+        "replicated_across_segments": true
+      },
+      {
+        "distance_km": 86.10551960527802,
+        "entities": [
+          "036p1",
+          "179p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "GRAYS HARBOR, WA BUOY - 036p1",
+          "ASTORIA CANYON, OR BUOY - 179p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 86.27256257134154,
+        "entities": [
+          "191p1",
+          "264p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "raw"
+        ],
+        "platform_names": [
+          "POINT LOMA SOUTH, CA BUOY - 191p1",
+          "RED BEACH NEARSHORE, CA BUOY - 264p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 116.80482963014448,
+        "entities": [
+          "092p1",
+          "203p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "SAN PEDRO, CA BUOY - 092p1",
+          "SANTA CRUZ BASIN, CA BUOY - 203p1"
+        ],
+        "replicated_across_segments": true
+      },
+      {
+        "distance_km": 134.0477929542525,
+        "entities": [
+          "147p1",
+          "192p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0"
+        ],
+        "platform_names": [
+          "CAPE HENRY, VA BUOY - 147p1",
+          "OREGON INLET, NC BUOY - 192p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 182.8967587619402,
+        "entities": [
+          "203p1",
+          "271p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "SANTA CRUZ BASIN, CA BUOY - 203p1",
+          "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 368.17384263345303,
+        "entities": [
+          "157p1",
+          "203p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "POINT SUR, CA BUOY - 157p1",
+          "SANTA CRUZ BASIN, CA BUOY - 203p1"
+        ],
+        "replicated_across_segments": true
+      },
+      {
+        "distance_km": 662.9192445511165,
+        "entities": [
+          "036p1",
+          "168p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "GRAYS HARBOR, WA BUOY - 036p1",
+          "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 731.0830171903369,
+        "entities": [
+          "036p1",
+          "094p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0"
+        ],
+        "platform_names": [
+          "GRAYS HARBOR, WA BUOY - 036p1",
+          "CAPE MENDOCINO, CA BUOY - 094p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 2956.6836183577147,
+        "entities": [
+          "166p1",
+          "262p1"
+        ],
+        "layers": [
+          "dominant:1.0"
+        ],
+        "platform_names": [
+          "OCEAN STATION PAPA BUOY - 166p1",
+          "LEUCADIA NEARSHORE, CA BUOY - 262p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 2975.6404295488546,
+        "entities": [
+          "166p1",
+          "201p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0"
+        ],
+        "platform_names": [
+          "OCEAN STATION PAPA BUOY - 166p1",
+          "SCRIPPS NEARSHORE, CA BUOY - 201p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 3839.9102347379576,
+        "entities": [
+          "204p1",
+          "271p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "LOWER COOK INLET, AK BUOY - 204p1",
+          "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 9381.411824140027,
+        "entities": [
+          "157p1",
+          "196p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "POINT SUR, CA BUOY - 157p1",
+          "RITIDIAN POINT, GUAM BUOY - 196p1"
+        ],
+        "replicated_across_segments": false
+      },
+      {
+        "distance_km": 9521.139940366756,
+        "entities": [
+          "202p1",
+          "249p1"
+        ],
+        "layers": [
+          "dominant:0.5",
+          "dominant:1.0",
+          "raw"
+        ],
+        "platform_names": [
+          "HANALEI, KAUAI, HI BUOY - 202p1",
+          "ARECIBO, PUERTO RICO BUOY - 249p1"
+        ],
+        "replicated_across_segments": false
+      }
+    ],
+    "method": {
+      "detected_pair_rule": "at least one calibrated layer has FDR-significant raw_profile domain-regroup evidence",
+      "label_use": "post-hoc audit only",
+      "matched_geography_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+      "selection_use": "none"
+    },
+    "summary": {
+      "detected_median_distance_km": 101.53869610074301,
+      "detected_pair_identities": 22,
+      "population_median_distance_km": 3732.654073614369,
+      "population_pair_identities": 492,
+      "profile_key": "raw_profile"
+    },
+    "thresholds": [
+      {
+        "detected_close": 11,
+        "detected_close_fraction": 0.5,
+        "detected_pairs": 22,
+        "hypergeometric_p_ge_detected_close": 7.126576259766031e-10,
+        "matched_permutation_exceedances": 0,
+        "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+        "matched_permutation_repeats": 100000,
+        "population_close": 27,
+        "population_close_fraction": 0.054878048780487805,
+        "population_pairs": 492,
+        "threshold_km": 100.0
+      },
+      {
+        "detected_close": 14,
+        "detected_close_fraction": 0.6363636363636364,
+        "detected_pairs": 22,
+        "hypergeometric_p_ge_detected_close": 3.3825501395415864e-11,
+        "matched_permutation_exceedances": 0,
+        "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+        "matched_permutation_repeats": 100000,
+        "population_close": 43,
+        "population_close_fraction": 0.08739837398373984,
+        "population_pairs": 492,
+        "threshold_km": 250.0
+      },
+      {
+        "detected_close": 17,
+        "detected_close_fraction": 0.7727272727272727,
+        "detected_pairs": 22,
+        "hypergeometric_p_ge_detected_close": 1.3346018713506134e-08,
+        "matched_permutation_exceedances": 0,
+        "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+        "matched_permutation_repeats": 100000,
+        "population_close": 105,
+        "population_close_fraction": 0.21341463414634146,
+        "population_pairs": 492,
+        "threshold_km": 1000.0
+      }
+    ]
+  },
+  "profile_audits": {
+    "envelope_attenuation_0.25": {
+      "detected_pairs": [
+        {
+          "distance_km": 22.409871175038287,
+          "entities": [
+            "100p1",
+            "220p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "TORREY PINES OUTER, CA BUOY - 100p1",
+            "MISSION BAY WEST, CA BUOY - 220p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 28.940731773032834,
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEANSIDE OFFSHORE, CA BUOY - 045p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 44.24967874440535,
+          "entities": [
+            "262p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "platform_names": [
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 60.1953044883394,
+          "entities": [
+            "220p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "MISSION BAY WEST, CA BUOY - 220p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 61.1282109709708,
+          "entities": [
+            "192p1",
+            "430p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OREGON INLET, NC BUOY - 192p1",
+            "DUCK FRF 26M, NC BUOY - 430p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 64.52051208515073,
+          "entities": [
+            "215p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LONG BEACH CHANNEL, CA BUOY - 215p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 74.35941695637109,
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "HARVEST, CA BUOY - 071p1",
+            "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 83.54102668612062,
+          "entities": [
+            "092p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 86.10551960527802,
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "ASTORIA CANYON, OR BUOY - 179p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 86.27256257134154,
+          "entities": [
+            "191p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT LOMA SOUTH, CA BUOY - 191p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 116.80482963014448,
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 134.0477929542525,
+          "entities": [
+            "147p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "CAPE HENRY, VA BUOY - 147p1",
+            "OREGON INLET, NC BUOY - 192p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 182.8967587619402,
+          "entities": [
+            "203p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA CRUZ BASIN, CA BUOY - 203p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 258.49459053776707,
+          "entities": [
+            "217p1",
+            "430p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "ONSLOW BAY OUTER, NC BUOY - 217p1",
+            "DUCK FRF 26M, NC BUOY - 430p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 368.17384263345303,
+          "entities": [
+            "157p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT SUR, CA BUOY - 157p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 616.9822936335603,
+          "entities": [
+            "142p1",
+            "213p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "SAN FRANCISCO BAR, CA BUOY - 142p1",
+            "SAN PEDRO SOUTH, CA BUOY - 213p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 662.9192445511165,
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 731.0830171903369,
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "CAPE MENDOCINO, CA BUOY - 094p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 797.3952354373146,
+          "entities": [
+            "194p1",
+            "250p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "ST. AUGUSTINE, FL BUOY - 194p1",
+            "CAPE HATTERAS EAST, NC BUOY - 250p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 2975.6404295488546,
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEAN STATION PAPA BUOY - 166p1",
+            "SCRIPPS NEARSHORE, CA BUOY - 201p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3839.9102347379576,
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LOWER COOK INLET, AK BUOY - 204p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 9381.411824140027,
+          "entities": [
+            "157p1",
+            "196p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT SUR, CA BUOY - 157p1",
+            "RITIDIAN POINT, GUAM BUOY - 196p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 9521.139940366756,
+          "entities": [
+            "202p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "HANALEI, KAUAI, HI BUOY - 202p1",
+            "ARECIBO, PUERTO RICO BUOY - 249p1"
+          ],
+          "replicated_across_segments": false
+        }
+      ],
+      "method": {
+        "detected_pair_rule": "at least one calibrated layer has FDR-significant envelope_attenuation_0.25 domain-regroup evidence",
+        "label_use": "post-hoc audit only",
+        "matched_geography_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "selection_use": "none"
+      },
+      "summary": {
+        "detected_median_distance_km": 134.0477929542525,
+        "detected_pair_identities": 23,
+        "population_median_distance_km": 3732.654073614369,
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_0.25"
+      },
+      "thresholds": [
+        {
+          "detected_close": 10,
+          "detected_close_fraction": 0.43478260869565216,
+          "detected_pairs": 23,
+          "hypergeometric_p_ge_detected_close": 3.012106412363158e-08,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 27,
+          "population_close_fraction": 0.054878048780487805,
+          "population_pairs": 492,
+          "threshold_km": 100.0
+        },
+        {
+          "detected_close": 13,
+          "detected_close_fraction": 0.5652173913043478,
+          "detected_pairs": 23,
+          "hypergeometric_p_ge_detected_close": 1.6890812087358457e-09,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 43,
+          "population_close_fraction": 0.08739837398373984,
+          "population_pairs": 492,
+          "threshold_km": 250.0
+        },
+        {
+          "detected_close": 19,
+          "detected_close_fraction": 0.8260869565217391,
+          "detected_pairs": 23,
+          "hypergeometric_p_ge_detected_close": 1.8715609902956375e-10,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 105,
+          "population_close_fraction": 0.21341463414634146,
+          "population_pairs": 492,
+          "threshold_km": 1000.0
+        }
+      ]
+    },
+    "envelope_attenuation_0.50": {
+      "detected_pairs": [
+        {
+          "distance_km": 22.409871175038287,
+          "entities": [
+            "100p1",
+            "220p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "TORREY PINES OUTER, CA BUOY - 100p1",
+            "MISSION BAY WEST, CA BUOY - 220p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 28.940731773032834,
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEANSIDE OFFSHORE, CA BUOY - 045p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 44.24967874440535,
+          "entities": [
+            "262p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "platform_names": [
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 60.1953044883394,
+          "entities": [
+            "220p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "MISSION BAY WEST, CA BUOY - 220p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 64.52051208515073,
+          "entities": [
+            "215p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LONG BEACH CHANNEL, CA BUOY - 215p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 74.35941695637109,
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "HARVEST, CA BUOY - 071p1",
+            "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 83.54102668612062,
+          "entities": [
+            "092p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 86.10551960527802,
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "ASTORIA CANYON, OR BUOY - 179p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 86.27256257134154,
+          "entities": [
+            "191p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT LOMA SOUTH, CA BUOY - 191p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 108.68972796232056,
+          "entities": [
+            "215p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "LONG BEACH CHANNEL, CA BUOY - 215p1",
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 116.80482963014448,
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 134.0477929542525,
+          "entities": [
+            "147p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "CAPE HENRY, VA BUOY - 147p1",
+            "OREGON INLET, NC BUOY - 192p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 155.36600741967402,
+          "entities": [
+            "028p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA MONICA BAY, CA BUOY - 028p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 182.8967587619402,
+          "entities": [
+            "203p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA CRUZ BASIN, CA BUOY - 203p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 368.17384263345303,
+          "entities": [
+            "157p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT SUR, CA BUOY - 157p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 662.9192445511165,
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 686.2020220003901,
+          "entities": [
+            "154p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "BLOCK ISLAND, RI BUOY - 154p1",
+            "OREGON INLET, NC BUOY - 192p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 731.0830171903369,
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "CAPE MENDOCINO, CA BUOY - 094p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 1045.2704659933272,
+          "entities": [
+            "143p1",
+            "240p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "CAPE CANAVERAL NEARSHORE, FL BUOY - 143p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 1105.4920768365473,
+          "entities": [
+            "200p1",
+            "279p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "CHANDELEUR ISLANDS SE, LA BUOY - 279p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 2975.6404295488546,
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEAN STATION PAPA BUOY - 166p1",
+            "SCRIPPS NEARSHORE, CA BUOY - 201p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3839.9102347379576,
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LOWER COOK INLET, AK BUOY - 204p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 5794.070669869697,
+          "entities": [
+            "142p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "SAN FRANCISCO BAR, CA BUOY - 142p1",
+            "ARECIBO, PUERTO RICO BUOY - 249p1"
+          ],
+          "replicated_across_segments": false
+        }
+      ],
+      "method": {
+        "detected_pair_rule": "at least one calibrated layer has FDR-significant envelope_attenuation_0.50 domain-regroup evidence",
+        "label_use": "post-hoc audit only",
+        "matched_geography_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "selection_use": "none"
+      },
+      "summary": {
+        "detected_median_distance_km": 134.0477929542525,
+        "detected_pair_identities": 23,
+        "population_median_distance_km": 3732.654073614369,
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_0.50"
+      },
+      "thresholds": [
+        {
+          "detected_close": 9,
+          "detected_close_fraction": 0.391304347826087,
+          "detected_pairs": 23,
+          "hypergeometric_p_ge_detected_close": 5.466489786240878e-07,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 27,
+          "population_close_fraction": 0.054878048780487805,
+          "population_pairs": 492,
+          "threshold_km": 100.0
+        },
+        {
+          "detected_close": 14,
+          "detected_close_fraction": 0.6086956521739131,
+          "detected_pairs": 23,
+          "hypergeometric_p_ge_detected_close": 8.148161581020753e-11,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 43,
+          "population_close_fraction": 0.08739837398373984,
+          "population_pairs": 492,
+          "threshold_km": 250.0
+        },
+        {
+          "detected_close": 18,
+          "detected_close_fraction": 0.782608695652174,
+          "detected_pairs": 23,
+          "hypergeometric_p_ge_detected_close": 3.179688450906033e-09,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 105,
+          "population_close_fraction": 0.21341463414634146,
+          "population_pairs": 492,
+          "threshold_km": 1000.0
+        }
+      ]
+    },
+    "envelope_attenuation_0.75": {
+      "detected_pairs": [
+        {
+          "distance_km": 22.409871175038287,
+          "entities": [
+            "100p1",
+            "220p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "TORREY PINES OUTER, CA BUOY - 100p1",
+            "MISSION BAY WEST, CA BUOY - 220p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 28.940731773032834,
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEANSIDE OFFSHORE, CA BUOY - 045p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 61.436504387799665,
+          "entities": [
+            "191p1",
+            "262p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "POINT LOMA SOUTH, CA BUOY - 191p1",
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 74.35941695637109,
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "HARVEST, CA BUOY - 071p1",
+            "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 86.10551960527802,
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "ASTORIA CANYON, OR BUOY - 179p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 108.68972796232056,
+          "entities": [
+            "215p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "LONG BEACH CHANNEL, CA BUOY - 215p1",
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 116.80482963014448,
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 155.36600741967402,
+          "entities": [
+            "028p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA MONICA BAY, CA BUOY - 028p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 407.17478128823524,
+          "entities": [
+            "200p1",
+            "240p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 451.4080209158686,
+          "entities": [
+            "160p1",
+            "209p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "JEFFREYS LEDGE, NH BUOY - 160p1",
+            "BARNEGAT, NJ BUOY - 209p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 662.9192445511165,
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 731.0830171903369,
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "CAPE MENDOCINO, CA BUOY - 094p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 1105.4920768365473,
+          "entities": [
+            "200p1",
+            "279p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "CHANDELEUR ISLANDS SE, LA BUOY - 279p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 1882.051767248749,
+          "entities": [
+            "209p1",
+            "256p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "BARNEGAT, NJ BUOY - 209p1",
+            "SOUTHWEST PASS ENTRANCE W, LA BUOY - 256p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 2975.6404295488546,
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEAN STATION PAPA BUOY - 166p1",
+            "SCRIPPS NEARSHORE, CA BUOY - 201p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3839.9102347379576,
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LOWER COOK INLET, AK BUOY - 204p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 4471.8328729344785,
+          "entities": [
+            "162p1",
+            "265p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "CLATSOP SPIT, OR BUOY - 162p1",
+            "HOLLYWOOD BEACH, FL BUOY - 265p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 5794.070669869697,
+          "entities": [
+            "142p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN FRANCISCO BAR, CA BUOY - 142p1",
+            "ARECIBO, PUERTO RICO BUOY - 249p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 6024.342734266668,
+          "entities": [
+            "249p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "ARECIBO, PUERTO RICO BUOY - 249p1",
+            "TILLAMOOK BAY SOUTH JETTY, OR BUOY - 270p1"
+          ],
+          "replicated_across_segments": false
+        }
+      ],
+      "method": {
+        "detected_pair_rule": "at least one calibrated layer has FDR-significant envelope_attenuation_0.75 domain-regroup evidence",
+        "label_use": "post-hoc audit only",
+        "matched_geography_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "selection_use": "none"
+      },
+      "summary": {
+        "detected_median_distance_km": 451.4080209158686,
+        "detected_pair_identities": 19,
+        "population_median_distance_km": 3732.654073614369,
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_0.75"
+      },
+      "thresholds": [
+        {
+          "detected_close": 5,
+          "detected_close_fraction": 0.2631578947368421,
+          "detected_pairs": 19,
+          "hypergeometric_p_ge_detected_close": 0.0023256745323600005,
+          "matched_permutation_exceedances": 70,
+          "matched_permutation_p_ge_detected_close": 0.0007099929000709993,
+          "matched_permutation_repeats": 100000,
+          "population_close": 27,
+          "population_close_fraction": 0.054878048780487805,
+          "population_pairs": 492,
+          "threshold_km": 100.0
+        },
+        {
+          "detected_close": 8,
+          "detected_close_fraction": 0.42105263157894735,
+          "detected_pairs": 19,
+          "hypergeometric_p_ge_detected_close": 6.538845962051436e-05,
+          "matched_permutation_exceedances": 6,
+          "matched_permutation_p_ge_detected_close": 6.999930000699993e-05,
+          "matched_permutation_repeats": 100000,
+          "population_close": 43,
+          "population_close_fraction": 0.08739837398373984,
+          "population_pairs": 492,
+          "threshold_km": 250.0
+        },
+        {
+          "detected_close": 12,
+          "detected_close_fraction": 0.631578947368421,
+          "detected_pairs": 19,
+          "hypergeometric_p_ge_detected_close": 6.731549543535668e-05,
+          "matched_permutation_exceedances": 2,
+          "matched_permutation_p_ge_detected_close": 2.999970000299997e-05,
+          "matched_permutation_repeats": 100000,
+          "population_close": 105,
+          "population_close_fraction": 0.21341463414634146,
+          "population_pairs": 492,
+          "threshold_km": 1000.0
+        }
+      ]
+    },
+    "envelope_attenuation_1.00": {
+      "detected_pairs": [
+        {
+          "distance_km": 28.940731773032834,
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEANSIDE OFFSHORE, CA BUOY - 045p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 108.68972796232056,
+          "entities": [
+            "215p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "LONG BEACH CHANNEL, CA BUOY - 215p1",
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 116.80482963014448,
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 155.36600741967402,
+          "entities": [
+            "028p1",
+            "100p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA MONICA BAY, CA BUOY - 028p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 363.95122678546943,
+          "entities": [
+            "071p1",
+            "153p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "HARVEST, CA BUOY - 071p1",
+            "DEL MAR NEARSHORE, CA BUOY - 153p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 410.59042311603747,
+          "entities": [
+            "045p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OCEANSIDE OFFSHORE, CA BUOY - 045p1",
+            "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 451.4080209158686,
+          "entities": [
+            "160p1",
+            "209p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "JEFFREYS LEDGE, NH BUOY - 160p1",
+            "BARNEGAT, NJ BUOY - 209p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 662.9192445511165,
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 2073.1211666244076,
+          "entities": [
+            "252p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "ARANSAS PASS CHANNEL ENTRANCE S, TX BUOY - 252p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3579.759688750043,
+          "entities": [
+            "244p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SATAN SHOAL, FL BUOY - 244p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3812.256219105492,
+          "entities": [
+            "264p1",
+            "430p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "RED BEACH NEARSHORE, CA BUOY - 264p1",
+            "DUCK FRF 26M, NC BUOY - 430p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3839.9102347379576,
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LOWER COOK INLET, AK BUOY - 204p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 5794.070669869697,
+          "entities": [
+            "142p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN FRANCISCO BAR, CA BUOY - 142p1",
+            "ARECIBO, PUERTO RICO BUOY - 249p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 6024.342734266668,
+          "entities": [
+            "249p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "ARECIBO, PUERTO RICO BUOY - 249p1",
+            "TILLAMOOK BAY SOUTH JETTY, OR BUOY - 270p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 6047.9880724661125,
+          "entities": [
+            "162p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "CLATSOP SPIT, OR BUOY - 162p1",
+            "ARECIBO, PUERTO RICO BUOY - 249p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 13062.922749693027,
+          "entities": [
+            "196p1",
+            "200p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "RITIDIAN POINT, GUAM BUOY - 196p1",
+            "WILMINGTON HARBOR, NC BUOY - 200p1"
+          ],
+          "replicated_across_segments": false
+        }
+      ],
+      "method": {
+        "detected_pair_rule": "at least one calibrated layer has FDR-significant envelope_attenuation_1.00 domain-regroup evidence",
+        "label_use": "post-hoc audit only",
+        "matched_geography_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "selection_use": "none"
+      },
+      "summary": {
+        "detected_median_distance_km": 1368.0202055877621,
+        "detected_pair_identities": 16,
+        "population_median_distance_km": 3732.654073614369,
+        "population_pair_identities": 492,
+        "profile_key": "envelope_attenuation_1.00"
+      },
+      "thresholds": [
+        {
+          "detected_close": 1,
+          "detected_close_fraction": 0.0625,
+          "detected_pairs": 16,
+          "hypergeometric_p_ge_detected_close": 0.6004981021560374,
+          "matched_permutation_exceedances": 48719,
+          "matched_permutation_p_ge_detected_close": 0.4871951280487195,
+          "matched_permutation_repeats": 100000,
+          "population_close": 27,
+          "population_close_fraction": 0.054878048780487805,
+          "population_pairs": 492,
+          "threshold_km": 100.0
+        },
+        {
+          "detected_close": 4,
+          "detected_close_fraction": 0.25,
+          "detected_pairs": 16,
+          "hypergeometric_p_ge_detected_close": 0.042407942936644516,
+          "matched_permutation_exceedances": 3960,
+          "matched_permutation_p_ge_detected_close": 0.03960960390396096,
+          "matched_permutation_repeats": 100000,
+          "population_close": 43,
+          "population_close_fraction": 0.08739837398373984,
+          "population_pairs": 492,
+          "threshold_km": 250.0
+        },
+        {
+          "detected_close": 8,
+          "detected_close_fraction": 0.5,
+          "detected_pairs": 16,
+          "hypergeometric_p_ge_detected_close": 0.009352053093954805,
+          "matched_permutation_exceedances": 828,
+          "matched_permutation_p_ge_detected_close": 0.008289917100828992,
+          "matched_permutation_repeats": 100000,
+          "population_close": 105,
+          "population_close_fraction": 0.21341463414634146,
+          "population_pairs": 492,
+          "threshold_km": 1000.0
+        }
+      ]
+    },
+    "raw_profile": {
+      "detected_pairs": [
+        {
+          "distance_km": 10.481476134261701,
+          "entities": [
+            "098p1",
+            "225p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "platform_names": [
+            "MOKAPU POINT, HI BUOY - 098p1",
+            "KANEOHE BAY, WETS, HI BUOY - 225p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 28.940731773032834,
+          "entities": [
+            "045p1",
+            "100p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "OCEANSIDE OFFSHORE, CA BUOY - 045p1",
+            "TORREY PINES OUTER, CA BUOY - 100p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 44.24967874440535,
+          "entities": [
+            "262p1",
+            "271p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 60.1953044883394,
+          "entities": [
+            "220p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "MISSION BAY WEST, CA BUOY - 220p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 61.1282109709708,
+          "entities": [
+            "192p1",
+            "430p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "OREGON INLET, NC BUOY - 192p1",
+            "DUCK FRF 26M, NC BUOY - 430p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 64.52051208515073,
+          "entities": [
+            "215p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "LONG BEACH CHANNEL, CA BUOY - 215p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 74.35941695637109,
+          "entities": [
+            "071p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "platform_names": [
+            "HARVEST, CA BUOY - 071p1",
+            "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 75.72043449217315,
+          "entities": [
+            "076p1",
+            "222p1"
+          ],
+          "layers": [
+            "dominant:0.5"
+          ],
+          "platform_names": [
+            "DIABLO CANYON, CA BUOY - 076p1",
+            "SANTA LUCIA ESCARPMENT, CA BUOY - 222p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 83.54102668612062,
+          "entities": [
+            "092p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 86.10551960527802,
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "ASTORIA CANYON, OR BUOY - 179p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 86.27256257134154,
+          "entities": [
+            "191p1",
+            "264p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT LOMA SOUTH, CA BUOY - 191p1",
+            "RED BEACH NEARSHORE, CA BUOY - 264p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 116.80482963014448,
+          "entities": [
+            "092p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SAN PEDRO, CA BUOY - 092p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 134.0477929542525,
+          "entities": [
+            "147p1",
+            "192p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "CAPE HENRY, VA BUOY - 147p1",
+            "OREGON INLET, NC BUOY - 192p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 182.8967587619402,
+          "entities": [
+            "203p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA CRUZ BASIN, CA BUOY - 203p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 368.17384263345303,
+          "entities": [
+            "157p1",
+            "203p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT SUR, CA BUOY - 157p1",
+            "SANTA CRUZ BASIN, CA BUOY - 203p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 662.9192445511165,
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 731.0830171903369,
+          "entities": [
+            "036p1",
+            "094p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "CAPE MENDOCINO, CA BUOY - 094p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 2956.6836183577147,
+          "entities": [
+            "166p1",
+            "262p1"
+          ],
+          "layers": [
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "OCEAN STATION PAPA BUOY - 166p1",
+            "LEUCADIA NEARSHORE, CA BUOY - 262p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 2975.6404295488546,
+          "entities": [
+            "166p1",
+            "201p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0"
+          ],
+          "platform_names": [
+            "OCEAN STATION PAPA BUOY - 166p1",
+            "SCRIPPS NEARSHORE, CA BUOY - 201p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3839.9102347379576,
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LOWER COOK INLET, AK BUOY - 204p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 9381.411824140027,
+          "entities": [
+            "157p1",
+            "196p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT SUR, CA BUOY - 157p1",
+            "RITIDIAN POINT, GUAM BUOY - 196p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 9521.139940366756,
+          "entities": [
+            "202p1",
+            "249p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "HANALEI, KAUAI, HI BUOY - 202p1",
+            "ARECIBO, PUERTO RICO BUOY - 249p1"
+          ],
+          "replicated_across_segments": false
+        }
+      ],
+      "method": {
+        "detected_pair_rule": "at least one calibrated layer has FDR-significant raw_profile domain-regroup evidence",
+        "label_use": "post-hoc audit only",
+        "matched_geography_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "selection_use": "none"
+      },
+      "summary": {
+        "detected_median_distance_km": 101.53869610074301,
+        "detected_pair_identities": 22,
+        "population_median_distance_km": 3732.654073614369,
+        "population_pair_identities": 492,
+        "profile_key": "raw_profile"
+      },
+      "thresholds": [
+        {
+          "detected_close": 11,
+          "detected_close_fraction": 0.5,
+          "detected_pairs": 22,
+          "hypergeometric_p_ge_detected_close": 7.126576259766031e-10,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 27,
+          "population_close_fraction": 0.054878048780487805,
+          "population_pairs": 492,
+          "threshold_km": 100.0
+        },
+        {
+          "detected_close": 14,
+          "detected_close_fraction": 0.6363636363636364,
+          "detected_pairs": 22,
+          "hypergeometric_p_ge_detected_close": 3.3825501395415864e-11,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 43,
+          "population_close_fraction": 0.08739837398373984,
+          "population_pairs": 492,
+          "threshold_km": 250.0
+        },
+        {
+          "detected_close": 17,
+          "detected_close_fraction": 0.7727272727272727,
+          "detected_pairs": 22,
+          "hypergeometric_p_ge_detected_close": 1.3346018713506134e-08,
+          "matched_permutation_exceedances": 0,
+          "matched_permutation_p_ge_detected_close": 9.99990000099999e-06,
+          "matched_permutation_repeats": 100000,
+          "population_close": 105,
+          "population_close_fraction": 0.21341463414634146,
+          "population_pairs": 492,
+          "threshold_km": 1000.0
+        }
+      ]
+    },
+    "signed_envelope_residual": {
+      "detected_pairs": [
+        {
+          "distance_km": 40.74319080171025,
+          "entities": [
+            "028p1",
+            "092p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA MONICA BAY, CA BUOY - 028p1",
+            "SAN PEDRO, CA BUOY - 092p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 52.91763975231783,
+          "entities": [
+            "028p1",
+            "213p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "SANTA MONICA BAY, CA BUOY - 028p1",
+            "SAN PEDRO SOUTH, CA BUOY - 213p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 86.10551960527802,
+          "entities": [
+            "036p1",
+            "179p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "ASTORIA CANYON, OR BUOY - 179p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 221.05225415894722,
+          "entities": [
+            "162p1",
+            "248p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "CLATSOP SPIT, OR BUOY - 162p1",
+            "ANGELES POINT, WA BUOY - 248p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 291.70881323252934,
+          "entities": [
+            "248p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "ANGELES POINT, WA BUOY - 248p1",
+            "TILLAMOOK BAY SOUTH JETTY, OR BUOY - 270p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 363.95122678546943,
+          "entities": [
+            "071p1",
+            "153p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "HARVEST, CA BUOY - 071p1",
+            "DEL MAR NEARSHORE, CA BUOY - 153p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 407.17478128823524,
+          "entities": [
+            "200p1",
+            "240p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "WILMINGTON HARBOR, NC BUOY - 200p1",
+            "THIMBLE SHOAL, VA BUOY - 240p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 662.9192445511165,
+          "entities": [
+            "036p1",
+            "168p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "GRAYS HARBOR, WA BUOY - 036p1",
+            "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 845.6466637820173,
+          "entities": [
+            "269p1",
+            "274p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "RAWLEY POINT EAST, WI BUOY - 269p1",
+            "OSWEGO, NY BUOY - 274p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 1320.9691346715417,
+          "entities": [
+            "157p1",
+            "248p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "POINT SUR, CA BUOY - 157p1",
+            "ANGELES POINT, WA BUOY - 248p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3726.9619674519245,
+          "entities": [
+            "168p1",
+            "188p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "HUMBOLDT BAY NORTH SPIT, CA BUOY - 168p1",
+            "HILO, HAWAII, HI BUOY - 188p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 3830.888344545326,
+          "entities": [
+            "094p1",
+            "202p1"
+          ],
+          "layers": [
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "CAPE MENDOCINO, CA BUOY - 094p1",
+            "HANALEI, KAUAI, HI BUOY - 202p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 3839.9102347379576,
+          "entities": [
+            "204p1",
+            "271p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "LOWER COOK INLET, AK BUOY - 204p1",
+            "GREEN BEACH OFFSHORE, CA BUOY - 271p1"
+          ],
+          "replicated_across_segments": false
+        },
+        {
+          "distance_km": 4438.430553628545,
+          "entities": [
+            "157p1",
+            "160p1"
+          ],
+          "layers": [
+            "raw"
+          ],
+          "platform_names": [
+            "POINT SUR, CA BUOY - 157p1",
+            "JEFFREYS LEDGE, NH BUOY - 160p1"
+          ],
+          "replicated_across_segments": true
+        },
+        {
+          "distance_km": 6024.342734266668,
+          "entities": [
+            "249p1",
+            "270p1"
+          ],
+          "layers": [
+            "dominant:0.5",
+            "dominant:1.0",
+            "raw"
+          ],
+          "platform_names": [
+            "ARECIBO, PUERTO RICO BUOY - 249p1",
+            "TILLAMOOK BAY SOUTH JETTY, OR BUOY - 270p1"
+          ],
+          "replicated_across_segments": false
+        }
+      ],
+      "method": {
+        "detected_pair_rule": "at least one calibrated layer has FDR-significant signed_envelope_residual domain-regroup evidence",
+        "label_use": "post-hoc audit only",
+        "matched_geography_null": "samples one tested pair per discovery while matching each discovery's occurrence count and independent-time-cluster count",
+        "selection_use": "none"
+      },
+      "summary": {
+        "detected_median_distance_km": 662.9192445511165,
+        "detected_pair_identities": 15,
+        "population_median_distance_km": 3732.654073614369,
+        "population_pair_identities": 492,
+        "profile_key": "signed_envelope_residual"
+      },
+      "thresholds": [
+        {
+          "detected_close": 3,
+          "detected_close_fraction": 0.2,
+          "detected_pairs": 15,
+          "hypergeometric_p_ge_detected_close": 0.043126753821386817,
+          "matched_permutation_exceedances": 2162,
+          "matched_permutation_p_ge_detected_close": 0.021629783702162977,
+          "matched_permutation_repeats": 100000,
+          "population_close": 27,
+          "population_close_fraction": 0.054878048780487805,
+          "population_pairs": 492,
+          "threshold_km": 100.0
+        },
+        {
+          "detected_close": 4,
+          "detected_close_fraction": 0.26666666666666666,
+          "detected_pairs": 15,
+          "hypergeometric_p_ge_detected_close": 0.03394049290759131,
+          "matched_permutation_exceedances": 1100,
+          "matched_permutation_p_ge_detected_close": 0.011009889901100989,
+          "matched_permutation_repeats": 100000,
+          "population_close": 43,
+          "population_close_fraction": 0.08739837398373984,
+          "population_pairs": 492,
+          "threshold_km": 250.0
+        },
+        {
+          "detected_close": 9,
+          "detected_close_fraction": 0.6,
+          "detected_pairs": 15,
+          "hypergeometric_p_ge_detected_close": 0.0010676078919634332,
+          "matched_permutation_exceedances": 63,
+          "matched_permutation_p_ge_detected_close": 0.0006399936000639994,
+          "matched_permutation_repeats": 100000,
+          "population_close": 105,
+          "population_close_fraction": 0.21341463414634146,
+          "population_pairs": 492,
+          "threshold_km": 1000.0
+        }
+      ]
+    }
+  },
+  "relationship_report": "experiments/results/2026-06-04-cdip-relationship-envelope-ladder-graph128-independent-time.json"
+}

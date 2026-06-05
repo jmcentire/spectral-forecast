@@ -2,6 +2,15 @@
 
 Date: 2026-06-04
 
+## Follow-Up Status
+
+The first broad relationship graph below remains the historical starting
+point, but its conclusion that complete envelope removal left no
+FDR-significant pair was not stable after correcting hypothesis-order-dependent
+null RNG streams. The preregistered attenuation ladder and widened
+independent-time result supersede that specific negative conclusion:
+`2026-06-04-cdip-envelope-attenuation-independent-time-assessment.md`.
+
 ## Question
 
 Can a label-agnostic instrument recover meaningful relationship structure from

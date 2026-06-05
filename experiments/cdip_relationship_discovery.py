@@ -9,12 +9,13 @@ source mapping, family-specific null, and exact-geometry known-answer gate.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 import time
 from collections import defaultdict
 from datetime import datetime, timezone
-from itertools import combinations, permutations
+from itertools import combinations, permutations, product
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -40,6 +41,18 @@ DEFAULT_SOURCE_REPORT = Path(
     "2026-06-03-cdip-autotune-big-ocean-naive-512-512-heldout-shift-permute50.json"
 )
 
+ENVELOPE_PROFILE_FRACTIONS = {
+    "raw_profile": 0.0,
+    "envelope_attenuation_0.25": 0.25,
+    "envelope_attenuation_0.50": 0.50,
+    "envelope_attenuation_0.75": 0.75,
+    "envelope_attenuation_1.00": 1.00,
+}
+SIGNED_ENVELOPE_PROFILE = "signed_envelope_residual"
+SPECTRAL_PROFILE_KEYS = tuple(ENVELOPE_PROFILE_FRACTIONS) + (
+    SIGNED_ENVELOPE_PROFILE,
+)
+
 
 def _write_json(path: Path, payload: Mapping[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -49,6 +62,14 @@ def _write_json(path: Path, payload: Mapping[str, Any]) -> None:
         encoding="utf-8",
     )
     temporary.replace(path)
+
+
+def _rng_for(seed: int, *parts: object) -> np.random.Generator:
+    """Return a stable null stream that is independent of hypothesis ordering."""
+
+    payload = "\x1f".join([str(seed), *(str(part) for part in parts)]).encode("utf-8")
+    derived = int.from_bytes(hashlib.blake2b(payload, digest_size=8).digest(), "big")
+    return np.random.default_rng(derived)
 
 
 def _window_key(segment: str, window: Mapping[str, Any]) -> str:
@@ -69,6 +90,9 @@ def _resume_signature(signature: Mapping[str, Any]) -> dict[str, Any]:
     payload.pop("replication_separation_hours", None)
     payload.pop("block_size", None)
     payload.pop("calibration_report", None)
+    payload["spectral_profiles_only"] = bool(
+        payload.get("spectral_profiles_only", False)
+    )
     return payload
 
 
@@ -284,13 +308,34 @@ def _null_summary(observed: float, null_values: Sequence[float]) -> dict[str, An
     }
 
 
-def _apply_pair_fdr(pair_summaries: Sequence[dict[str, Any]]) -> None:
-    """Apply BH correction across every supported pair/view hypothesis family."""
+def _add_envelope_profiles(records: Sequence[dict[str, Any]]) -> None:
+    """Attach the preregistered corpus-envelope attenuation ladder in place."""
 
-    for profile_key in ("raw_profile", "envelope_residual"):
-        for control in ("domain_regroup", "temporal_regroup"):
-            eligible = []
-            for index, row in enumerate(pair_summaries):
+    powers = np.stack([row["power"] for row in records])
+    log_power = np.log(np.maximum(powers, 1e-12))
+    baseline = np.median(log_power, axis=0)
+    mad = 1.4826 * np.median(np.abs(log_power - baseline[None, :]), axis=0)
+    mad = np.where(mad > 1e-6, mad, 1.0)
+    for index, row in enumerate(records):
+        for profile_key, fraction in ENVELOPE_PROFILE_FRACTIONS.items():
+            if fraction == 0.0:
+                profile = powers[index]
+            else:
+                profile = np.exp(log_power[index] - fraction * baseline)
+                profile = profile / np.sum(profile)
+            row[profile_key] = profile
+        row[SIGNED_ENVELOPE_PROFILE] = (
+            log_power[index] - baseline
+        ) / mad
+
+
+def _apply_pair_fdr(pair_summaries: Sequence[dict[str, Any]]) -> None:
+    """Apply BH jointly across every supported pair, view, and profile tried."""
+
+    for control in ("domain_regroup", "temporal_regroup"):
+        eligible = []
+        for index, row in enumerate(pair_summaries):
+            for profile_key in SPECTRAL_PROFILE_KEYS:
                 summary = row[profile_key][control]
                 summary["fdr_q_value"] = None
                 summary["detected_fdr"] = False
@@ -299,25 +344,77 @@ def _apply_pair_fdr(pair_summaries: Sequence[dict[str, Any]]) -> None:
                     row["spectral_alignment_calibrated_supported"]
                     and p_value is not None
                 ):
-                    eligible.append((float(p_value), index))
-            eligible.sort(key=lambda item: item[0])
-            adjusted: dict[int, float] = {}
-            running = 1.0
-            total = len(eligible)
-            for rank in range(total, 0, -1):
-                p_value, index = eligible[rank - 1]
-                running = min(running, p_value * total / rank)
-                adjusted[index] = float(min(1.0, running))
-            for index, q_value in adjusted.items():
-                summary = pair_summaries[index][profile_key][control]
-                z_effect = summary.get("z_effect")
-                summary["fdr_q_value"] = q_value
-                summary["detected_fdr"] = bool(
-                    q_value <= 0.05
-                    and float(summary["observed_minus_null"]) > 0.0
-                    and z_effect is not None
-                    and float(z_effect) >= 1.5
-                )
+                    eligible.append((float(p_value), index, profile_key))
+        eligible.sort(key=lambda item: item[0])
+        adjusted: dict[tuple[int, str], float] = {}
+        running = 1.0
+        total = len(eligible)
+        for rank in range(total, 0, -1):
+            p_value, index, profile_key = eligible[rank - 1]
+            running = min(running, p_value * total / rank)
+            adjusted[(index, profile_key)] = float(min(1.0, running))
+        for (index, profile_key), q_value in adjusted.items():
+            summary = pair_summaries[index][profile_key][control]
+            z_effect = summary.get("z_effect")
+            summary["fdr_q_value"] = q_value
+            summary["detected_fdr"] = bool(
+                q_value <= 0.05
+                and float(summary["observed_minus_null"]) > 0.0
+                and z_effect is not None
+                and float(z_effect) >= 1.5
+            )
+
+
+def _classify_pair_summary(row: dict[str, Any]) -> None:
+    domain_fractions = [
+        fraction
+        for profile_key, fraction in ENVELOPE_PROFILE_FRACTIONS.items()
+        if row[profile_key]["domain_regroup"]["detected_fdr"]
+    ]
+    temporal_fractions = [
+        fraction
+        for profile_key, fraction in ENVELOPE_PROFILE_FRACTIONS.items()
+        if row[profile_key]["temporal_regroup"]["detected_fdr"]
+    ]
+    concurrent_fractions = sorted(set(domain_fractions) & set(temporal_fractions))
+    signed_domain = bool(
+        row[SIGNED_ENVELOPE_PROFILE]["domain_regroup"]["detected_fdr"]
+    )
+    signed_temporal = bool(
+        row[SIGNED_ENVELOPE_PROFILE]["temporal_regroup"]["detected_fdr"]
+    )
+    row["attenuation_survival"] = {
+        "domain_fractions": domain_fractions,
+        "temporal_fractions": temporal_fractions,
+        "concurrent_fractions": concurrent_fractions,
+        "deepest_domain_fraction": max(domain_fractions) if domain_fractions else None,
+        "deepest_concurrent_fraction": (
+            max(concurrent_fractions) if concurrent_fractions else None
+        ),
+        "signed_residual_domain": signed_domain,
+        "signed_residual_temporal": signed_temporal,
+        "signed_residual_concurrent": signed_domain and signed_temporal,
+    }
+    deepest = row["attenuation_survival"]["deepest_domain_fraction"]
+    concurrent = bool(concurrent_fractions)
+    if signed_domain:
+        base = "signed_residual"
+        concurrent = signed_temporal
+    elif deepest == 1.0:
+        base = "fully_envelope_attenuated"
+    elif deepest is not None and deepest > 0.0:
+        base = "partially_envelope_attenuated"
+    elif deepest == 0.0:
+        base = "ordinary_spectral_shape"
+    elif temporal_fractions or signed_temporal:
+        row["classification"] = "concurrence_without_pair_specificity"
+        return
+    else:
+        row["classification"] = "generic_or_unresolved"
+        return
+    row["classification"] = (
+        f"{base}_concurrent_pair" if concurrent else f"{base}_pair_specific"
+    )
 
 
 def _mean_group_alignment(
@@ -351,8 +448,13 @@ def _spectral_specificity(
     null_repeats: int,
     seed: int,
     replication_separation_seconds: float,
+    progress: bool = False,
 ) -> dict[str, Any]:
     """Test spectral hypotheses while preserving the obvious domain spectrum."""
+
+    def report(message: str) -> None:
+        if progress:
+            print(f"cdip_relationship corpus={message}", file=sys.stderr, flush=True)
 
     by_layer: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for window in windows:
@@ -369,36 +471,23 @@ def _spectral_specificity(
                     }
                 )
 
-    rng = np.random.default_rng(seed)
     layer_summaries = []
     temporal_pairs = []
     pair_summaries = []
     for layer_name, records in sorted(by_layer.items()):
         if not records:
             continue
-        powers = np.stack([row["power"] for row in records])
-        log_power = np.log(np.maximum(powers, 1e-12))
-        baseline = np.median(log_power, axis=0)
-        mad = 1.4826 * np.median(np.abs(log_power - baseline[None, :]), axis=0)
-        mad = np.where(mad > 1e-6, mad, 1.0)
-        for row, residual in zip(records, (log_power - baseline[None, :]) / mad[None, :]):
-            row["envelope_residual"] = residual
-
+        report(f"layer={layer_name} phase=envelope_profiles records={len(records)}")
+        _add_envelope_profiles(records)
         domain_observed = {
-            "raw_profile": _mean_group_alignment(records, profile_key="power"),
-            "envelope_residual": _mean_group_alignment(
-                records,
-                profile_key="envelope_residual",
-            ),
+            profile_key: _mean_group_alignment(records, profile_key=profile_key)
+            for profile_key in SPECTRAL_PROFILE_KEYS
         }
         strata: dict[tuple[str, int], list[dict[str, Any]]] = defaultdict(list)
         for row in records:
             strata[(row["segment"], row["window_index"])].append(row)
-        domain_null = {"raw_profile": [], "envelope_residual": []}
-        profile_keys = {
-            "raw_profile": "power",
-            "envelope_residual": "envelope_residual",
-        }
+        domain_null = {profile_key: [] for profile_key in SPECTRAL_PROFILE_KEYS}
+        domain_rng = _rng_for(seed, layer_name, "layer_domain_regroup")
         for _ in range(null_repeats):
             regrouped = []
             for stratum in strata.values():
@@ -406,7 +495,10 @@ def _spectral_specificity(
                     len([row for row in stratum if row["group_index"] == group])
                     for group in sorted({row["group_index"] for row in stratum})
                 ]
-                shuffled = [stratum[int(index)] for index in rng.permutation(len(stratum))]
+                shuffled = [
+                    stratum[int(index)]
+                    for index in domain_rng.permutation(len(stratum))
+                ]
                 offset = 0
                 for synthetic_group, size in enumerate(group_sizes):
                     for row in shuffled[offset : offset + size]:
@@ -416,9 +508,10 @@ def _spectral_specificity(
                 domain_null[profile_key].append(
                     _mean_group_alignment(
                         regrouped,
-                        profile_key=profile_keys[profile_key],
+                        profile_key=profile_key,
                     )
                 )
+        report(f"layer={layer_name} phase=layer_domain_regroup complete")
 
         temporal_groups: dict[tuple[str, int], dict[str, dict[int, dict[str, Any]]]] = (
             defaultdict(lambda: defaultdict(dict))
@@ -428,7 +521,12 @@ def _spectral_specificity(
                 row["window_index"]
             ] = row
 
-        def temporal_score(*, profile_key: str, randomize: bool) -> float:
+        def temporal_score(
+            *,
+            profile_key: str,
+            randomize: bool,
+            score_rng: np.random.Generator | None = None,
+        ) -> float:
             scores = []
             for entity_rows in temporal_groups.values():
                 entities = sorted(entity_rows)
@@ -446,7 +544,7 @@ def _spectral_specificity(
                     assigned[entity] = (
                         [
                             common_windows[int(index)]
-                            for index in rng.permutation(len(common_windows))
+                            for index in score_rng.permutation(len(common_windows))
                         ]
                         if randomize
                         else common_windows
@@ -465,20 +563,28 @@ def _spectral_specificity(
 
         temporal_observed = {
             profile_key: temporal_score(
-                profile_key=profile_keys[profile_key],
+                profile_key=profile_key,
                 randomize=False,
             )
-            for profile_key in ("raw_profile", "envelope_residual")
+            for profile_key in SPECTRAL_PROFILE_KEYS
         }
-        temporal_null = {"raw_profile": [], "envelope_residual": []}
-        for _ in range(null_repeats):
-            for profile_key in temporal_null:
+        temporal_null = {profile_key: [] for profile_key in SPECTRAL_PROFILE_KEYS}
+        for profile_key in temporal_null:
+            temporal_rng = _rng_for(
+                seed,
+                layer_name,
+                profile_key,
+                "layer_temporal_regroup",
+            )
+            for _ in range(null_repeats):
                 temporal_null[profile_key].append(
                     temporal_score(
-                        profile_key=profile_keys[profile_key],
+                        profile_key=profile_key,
                         randomize=True,
+                        score_rng=temporal_rng,
                     )
                 )
+        report(f"layer={layer_name} phase=layer_temporal_regroup complete")
 
         for (segment, group_index), entity_rows in temporal_groups.items():
             entities = sorted(entity_rows)
@@ -497,7 +603,7 @@ def _spectral_specificity(
                     "entities": [left_entity, right_entity],
                     "window_indices": common_windows,
                 }
-                for profile_key in ("power", "envelope_residual"):
+                for profile_key in SPECTRAL_PROFILE_KEYS:
                     scores = []
                     for permutation in candidate_permutations:
                         scores.append(
@@ -528,12 +634,7 @@ def _spectral_specificity(
                         for index, score in enumerate(scores)
                         if index != observed_index
                     ]
-                    name = (
-                        "raw_profile"
-                        if profile_key == "power"
-                        else "envelope_residual"
-                    )
-                    pair_row[name] = {
+                    pair_row[profile_key] = {
                         **_null_summary(observed, nonconcurrent),
                         "identity_is_best": bool(observed >= max(scores) - 1e-12),
                         "exact_permutations": len(scores),
@@ -552,32 +653,32 @@ def _spectral_specificity(
             for left, right in combinations(sorted(group, key=lambda row: row["entity"]), 2):
                 if left["entity"] == right["entity"]:
                     continue
-                pair_occurrences[(left["entity"], right["entity"])].append(
-                    {
-                        "segment": segment,
-                        "group_index": group_index,
-                        "window_index": window_index,
-                        "start": left["start"],
-                        "left": left,
-                        "right": right,
-                        "raw_profile": spectral_profile_alignment(
-                            left["power"],
-                            right["power"],
-                        ),
-                        "envelope_residual": spectral_profile_alignment(
-                            left["envelope_residual"],
-                            right["envelope_residual"],
-                        ),
-                    }
-                )
+                occurrence = {
+                    "segment": segment,
+                    "group_index": group_index,
+                    "window_index": window_index,
+                    "start": left["start"],
+                    "left": left,
+                    "right": right,
+                }
+                for profile_key in SPECTRAL_PROFILE_KEYS:
+                    occurrence[profile_key] = spectral_profile_alignment(
+                        left[profile_key],
+                        right[profile_key],
+                    )
+                pair_occurrences[(left["entity"], right["entity"])].append(occurrence)
         all_pair_scores = {
             profile_key: [
                 (pair, float(occurrence[profile_key]))
                 for pair, occurrences in pair_occurrences.items()
                 for occurrence in occurrences
             ]
-            for profile_key in ("raw_profile", "envelope_residual")
+            for profile_key in SPECTRAL_PROFILE_KEYS
         }
+        repeated_pairs = [
+            pair for pair, occurrences in pair_occurrences.items() if len(occurrences) >= 2
+        ]
+        processed_pairs = 0
         for pair, occurrences in pair_occurrences.items():
             if len(occurrences) < 2:
                 continue
@@ -619,7 +720,7 @@ def _spectral_specificity(
                     for row in occurrences
                 ],
             }
-            for profile_key in ("raw_profile", "envelope_residual"):
+            for profile_key in SPECTRAL_PROFILE_KEYS:
                 observed = float(
                     np.mean([row[profile_key] for row in occurrences])
                 )
@@ -628,18 +729,22 @@ def _spectral_specificity(
                     for candidate_pair, score in all_pair_scores[profile_key]
                     if candidate_pair != pair
                 ]
-                pair_domain_null = [
-                    float(
-                        np.mean(
-                            rng.choice(
-                                other_scores,
-                                size=len(occurrences),
-                                replace=True,
-                            )
-                        )
-                    )
-                    for _ in range(null_repeats)
-                ]
+                domain_rng = _rng_for(
+                    seed,
+                    layer_name,
+                    pair[0],
+                    pair[1],
+                    profile_key,
+                    "pair_domain_regroup",
+                )
+                pair_domain_null = np.mean(
+                    domain_rng.choice(
+                        np.asarray(other_scores, dtype=np.float64),
+                        size=(null_repeats, len(occurrences)),
+                        replace=True,
+                    ),
+                    axis=1,
+                ).tolist()
                 grouped_occurrences: dict[
                     tuple[str, int], list[dict[str, Any]]
                 ] = defaultdict(list)
@@ -656,57 +761,82 @@ def _spectral_specificity(
                     for row in rows
                 ]
                 pair_temporal_null = []
+                temporal_null_method = None
+                temporal_permutation_space = 0
                 if temporal_observed_scores:
-                    source_key = (
-                        "power"
-                        if profile_key == "raw_profile"
-                        else "envelope_residual"
+                    temporal_rng = _rng_for(
+                        seed,
+                        layer_name,
+                        pair[0],
+                        pair[1],
+                        profile_key,
+                        "pair_temporal_regroup",
                     )
-                    for _ in range(null_repeats):
-                        scores = []
-                        for rows in eligible:
-                            order = rng.permutation(len(rows))
-                            for index, row in enumerate(rows):
-                                scores.append(
-                                    spectral_profile_alignment(
-                                        row["left"][source_key],
-                                        rows[int(order[index])]["right"][source_key],
+                    group_permutation_sums = []
+                    for rows in eligible:
+                        sums = []
+                        for order in permutations(range(len(rows))):
+                            sums.append(
+                                float(
+                                    sum(
+                                        spectral_profile_alignment(
+                                            row["left"][profile_key],
+                                            rows[int(order[index])]["right"][profile_key],
+                                        )
+                                        for index, row in enumerate(rows)
                                     )
                                 )
-                        pair_temporal_null.append(float(np.mean(scores)))
+                            )
+                        group_permutation_sums.append(np.asarray(sums, dtype=np.float64))
+                    temporal_permutation_space = int(
+                        np.prod(
+                            [len(values) for values in group_permutation_sums],
+                            dtype=object,
+                        )
+                    )
+                    total_observations = len(temporal_observed_scores)
+                    if temporal_permutation_space <= null_repeats:
+                        pair_temporal_null = [
+                            float(sum(values) / total_observations)
+                            for values in product(*group_permutation_sums)
+                        ]
+                        temporal_null_method = "exact_permutation_space"
+                    else:
+                        totals = np.zeros(null_repeats, dtype=np.float64)
+                        for values in group_permutation_sums:
+                            totals += values[
+                                temporal_rng.integers(len(values), size=null_repeats)
+                            ]
+                        pair_temporal_null = (totals / total_observations).tolist()
+                        temporal_null_method = "sampled_permutation_space"
+                temporal_summary = _null_summary(
+                    (
+                        float(np.mean(temporal_observed_scores))
+                        if temporal_observed_scores
+                        else 0.0
+                    ),
+                    pair_temporal_null,
+                )
+                temporal_summary["null_generation"] = temporal_null_method
+                temporal_summary["permutation_space_size"] = (
+                    temporal_permutation_space
+                    if temporal_observed_scores
+                    else 0
+                )
                 pair_summary[profile_key] = {
                     "domain_regroup": _null_summary(observed, pair_domain_null),
-                    "temporal_regroup": _null_summary(
-                        (
-                            float(np.mean(temporal_observed_scores))
-                            if temporal_observed_scores
-                            else 0.0
-                        ),
-                        pair_temporal_null,
-                    ),
+                    "temporal_regroup": temporal_summary,
                 }
-            supported = "spectral_alignment" in set(
-                supported_by_layer.get(layer_name, ())
-            )
-            domain_specific = bool(
-                supported
-                and pair_summary["envelope_residual"]["domain_regroup"]["detected"]
-            )
-            concurrent_specific = bool(
-                supported
-                and pair_summary["envelope_residual"]["temporal_regroup"]["detected"]
-            )
-            pair_summary["spectral_alignment_calibrated_supported"] = supported
-            pair_summary["classification"] = (
-                "concurrent_pair_specific"
-                if domain_specific and concurrent_specific
-                else "persistent_pair_specific"
-                if domain_specific
-                else "concurrence_without_pair_specificity"
-                if concurrent_specific
-                else "generic_or_unresolved"
+            pair_summary["spectral_alignment_calibrated_supported"] = (
+                "spectral_alignment" in set(supported_by_layer.get(layer_name, ()))
             )
             pair_summaries.append(pair_summary)
+            processed_pairs += 1
+            if processed_pairs % 50 == 0 or processed_pairs == len(repeated_pairs):
+                report(
+                    f"layer={layer_name} phase=pair_controls "
+                    f"pairs={processed_pairs}/{len(repeated_pairs)}"
+                )
 
         layer_summaries.append(
             {
@@ -731,48 +861,33 @@ def _spectral_specificity(
                 "profiles": len(records),
             }
         )
+        report(f"layer={layer_name} phase=complete")
 
     temporal_pairs.sort(
         key=lambda row: (
-            row["envelope_residual"]["identity_is_best"],
-            row["envelope_residual"]["observed_minus_null"] or float("-inf"),
+            row[SIGNED_ENVELOPE_PROFILE]["identity_is_best"],
+            row[SIGNED_ENVELOPE_PROFILE]["observed_minus_null"] or float("-inf"),
         ),
         reverse=True,
     )
     _apply_pair_fdr(pair_summaries)
     for row in pair_summaries:
-        row["classification_nominal"] = row["classification"]
-        envelope_domain_specific = bool(
-            row["envelope_residual"]["domain_regroup"]["detected_fdr"]
-        )
-        envelope_concurrent_specific = bool(
-            row["envelope_residual"]["temporal_regroup"]["detected_fdr"]
-        )
-        shape_domain_specific = bool(
-            row["raw_profile"]["domain_regroup"]["detected_fdr"]
-        )
-        shape_concurrent_specific = bool(
-            row["raw_profile"]["temporal_regroup"]["detected_fdr"]
-        )
-        row["classification"] = (
-            "beyond_envelope_concurrent_pair"
-            if envelope_domain_specific and envelope_concurrent_specific
-            else "beyond_envelope_pair_specific"
-            if envelope_domain_specific
-            else "spectral_shape_concurrent_pair"
-            if shape_domain_specific and shape_concurrent_specific
-            else "spectral_shape_pair_specific"
-            if shape_domain_specific
-            else "concurrence_without_pair_specificity"
-            if envelope_concurrent_specific or shape_concurrent_specific
-            else "generic_or_unresolved"
-        )
+        _classify_pair_summary(row)
+    classification_rank = {
+        "signed_residual_concurrent_pair": 9,
+        "signed_residual_pair_specific": 8,
+        "fully_envelope_attenuated_concurrent_pair": 7,
+        "fully_envelope_attenuated_pair_specific": 6,
+        "partially_envelope_attenuated_concurrent_pair": 5,
+        "partially_envelope_attenuated_pair_specific": 4,
+        "ordinary_spectral_shape_concurrent_pair": 3,
+        "ordinary_spectral_shape_pair_specific": 2,
+        "concurrence_without_pair_specificity": 1,
+        "generic_or_unresolved": 0,
+    }
     pair_summaries.sort(
         key=lambda row: (
-            row["classification"] == "beyond_envelope_concurrent_pair",
-            row["classification"] == "beyond_envelope_pair_specific",
-            row["classification"] == "spectral_shape_concurrent_pair",
-            row["classification"] == "spectral_shape_pair_specific",
+            classification_rank[row["classification"]],
             row["replicated_across_distinct_times"],
             row["raw_profile"]["domain_regroup"]["z_effect"]
             if row["raw_profile"]["domain_regroup"]["z_effect"] is not None
@@ -791,13 +906,23 @@ def _spectral_specificity(
                 "spectral profile, and the generic domain envelope while "
                 "randomizing only within-group window concurrence"
             ),
-            "envelope_residual": (
+            "signed_envelope_residual": (
                 "robust log-spectrum residual after subtracting the corpus median "
                 "and scaling each frequency bin by corpus MAD"
             ),
+            "envelope_attenuation_ladder": {
+                "fractions": list(ENVELOPE_PROFILE_FRACTIONS.values()),
+                "definition": (
+                    "normalize(exp(log_power - fraction * corpus_median_log_power)); "
+                    "fraction zero is the ordinary spectrum and fraction one is the "
+                    "positive ratio-to-envelope endpoint"
+                ),
+                "preregistered": True,
+            },
             "pair_multiplicity": (
-                "Benjamini-Hochberg FDR correction is applied across every supported "
-                "pair/view hypothesis separately for each profile and control family"
+                "Benjamini-Hochberg FDR correction is applied jointly across every "
+                "supported pair, waveform view, and tried attenuation profile, "
+                "separately for the domain-regroup and temporal-regroup controls"
             ),
         },
         "layer_summary": layer_summaries,
@@ -814,6 +939,7 @@ def _aggregate(
     corpus_null_repeats: int,
     seed: int,
     replication_separation_seconds: float,
+    progress: bool = False,
 ) -> dict[str, Any]:
     supported = {
         (str(layer), str(family))
@@ -1021,6 +1147,7 @@ def _aggregate(
             null_repeats=corpus_null_repeats,
             seed=seed,
             replication_separation_seconds=replication_separation_seconds,
+            progress=progress,
         ),
     }
 
@@ -1058,6 +1185,7 @@ def run_relationship_discovery(args: argparse.Namespace) -> dict[str, Any]:
         "max_lag": args.max_lag,
         "hypothesis_decay": args.hypothesis_decay,
         "replication_separation_hours": args.replication_separation_hours,
+        "spectral_profiles_only": args.spectral_profiles_only,
         "seed": args.seed,
     }
     completed: list[dict[str, Any]] = []
@@ -1150,7 +1278,11 @@ def run_relationship_discovery(args: argparse.Namespace) -> dict[str, Any]:
         )
         calibrations[layer] = calibration.to_dict()
         write_checkpoint(complete=False)
-        if args.progress:
+        if args.progress and (
+            len(completed) == 1
+            or len(completed) % 25 == 0
+            or len(completed) == len(selected)
+        ):
             print(
                 "cdip_relationship calibration=%d/%d layer=%s supported=%s elapsed=%.1fs"
                 % (
@@ -1180,16 +1312,23 @@ def run_relationship_discovery(args: argparse.Namespace) -> dict[str, Any]:
         layer_rows = []
         for layer_index, layer in enumerate(layers):
             view, residualization = _layer_view(matrix, layer)
-            discovery = discover_relationships(
-                view,
-                entities,
-                sample_rate=float(window["sample_rate"]),
-                layer=layer,
-                null_repeats=args.null_repeats,
-                seed=args.seed + 100_000 * selection_index + 1000 * layer_index,
-                nperseg=args.nperseg,
-                max_lag=args.max_lag,
-            )
+            if args.spectral_profiles_only:
+                discovery_payload = {
+                    "layer": layer,
+                    "evidence": [],
+                    "spectral_profiles_only": True,
+                }
+            else:
+                discovery_payload = discover_relationships(
+                    view,
+                    entities,
+                    sample_rate=float(window["sample_rate"]),
+                    layer=layer,
+                    null_repeats=args.null_repeats,
+                    seed=args.seed + 100_000 * selection_index + 1000 * layer_index,
+                    nperseg=args.nperseg,
+                    max_lag=args.max_lag,
+                ).to_dict()
             profiles = []
             frequencies = None
             for column, entity in enumerate(entities):
@@ -1210,7 +1349,7 @@ def run_relationship_discovery(args: argparse.Namespace) -> dict[str, Any]:
                 {
                     "layer": layer,
                     "residualization": residualization,
-                    "discovery": discovery.to_dict(),
+                    "discovery": discovery_payload,
                     "spectral_frequencies": [
                         float(value)
                         for value in (
@@ -1257,6 +1396,7 @@ def run_relationship_discovery(args: argparse.Namespace) -> dict[str, Any]:
         corpus_null_repeats=args.corpus_null_repeats,
         seed=args.seed + 50_000_000,
         replication_separation_seconds=args.replication_separation_hours * 3600.0,
+        progress=args.progress,
     )
     return {
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -1286,6 +1426,7 @@ def run_relationship_discovery(args: argparse.Namespace) -> dict[str, Any]:
                 "spectral domain-regroup and within-group temporal-regroup controls "
                 "preserve the obvious spectral envelope before testing specificity"
             ),
+            "spectral_profiles_only": args.spectral_profiles_only,
         },
         "signature": signature,
         "calibration": {
@@ -1335,6 +1476,14 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=20260604)
     parser.add_argument("--checkpoint", type=Path, default=None)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument(
+        "--spectral-profiles-only",
+        action="store_true",
+        help=(
+            "Skip expensive per-window relationship families while retaining "
+            "calibrated layers, canonical source mappings, and corpus spectral tests"
+        ),
+    )
     parser.add_argument("--progress", action="store_true")
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args(argv)

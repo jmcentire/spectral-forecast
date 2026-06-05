@@ -80,6 +80,7 @@ def audit_geography(
     *,
     coordinates: Mapping[str, tuple[float, float]],
     names: Mapping[str, str],
+    profile_key: str = "raw_profile",
     thresholds_km: Sequence[float] = (100.0, 250.0, 1000.0),
     matched_permutation_repeats: int = 100_000,
     seed: int = 20260604,
@@ -96,7 +97,11 @@ def audit_geography(
             int(row.get("occurrences", 0)),
             int(row.get("independent_time_clusters", 0)),
         )
-        if bool(row["raw_profile"]["domain_regroup"].get("detected_fdr", False)):
+        if bool(
+            row.get(profile_key, {})
+            .get("domain_regroup", {})
+            .get("detected_fdr", False)
+        ):
             detected_layers[pair].add(str(row["layer"]))
             replicated[pair] = bool(
                 replicated[pair]
@@ -176,11 +181,12 @@ def audit_geography(
                 "occurrence count and independent-time-cluster count"
             ),
             "detected_pair_rule": (
-                "at least one calibrated layer has FDR-significant raw-profile "
+                f"at least one calibrated layer has FDR-significant {profile_key} "
                 "domain-regroup evidence"
             ),
         },
         "summary": {
+            "profile_key": profile_key,
             "population_pair_identities": len(distances),
             "detected_pair_identities": len(detected_pairs),
             "population_median_distance_km": (
@@ -208,13 +214,31 @@ def run_audit(report_path: Path) -> dict[str, Any]:
             paths[entity] = Path(source["path"])
             names[entity] = str(source["platform_name"])
     coordinates = {entity: _coordinate(path) for entity, path in paths.items()}
-    return {
-        "relationship_report": str(report_path),
-        "audit": audit_geography(
+    profile_keys = [
+        profile_key
+        for profile_key in (
+            "raw_profile",
+            "envelope_attenuation_0.25",
+            "envelope_attenuation_0.50",
+            "envelope_attenuation_0.75",
+            "envelope_attenuation_1.00",
+            "signed_envelope_residual",
+        )
+        if pair_summaries and profile_key in pair_summaries[0]
+    ]
+    profile_audits = {
+        profile_key: audit_geography(
             pair_summaries,
             coordinates=coordinates,
             names=names,
-        ),
+            profile_key=profile_key,
+        )
+        for profile_key in profile_keys
+    }
+    return {
+        "relationship_report": str(report_path),
+        "audit": profile_audits["raw_profile"],
+        "profile_audits": profile_audits,
     }
 
 
